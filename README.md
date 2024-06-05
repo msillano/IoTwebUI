@@ -1,11 +1,11 @@
-# IoTwubUI: Elevate Your Tuya Device Experience (ver. 1.3)
+# IoTwebUI: Elevate Your Tuya Device Experience (ver. 1.3)
 [versione italiana](https://github.com/msillano/TuyaUIweb/blob/main/LEGGIMI.md)
 
 This complete and dynamic solution organizes all your devices, rooms, and homes in an intuitive tree structure within a web browser. Each node in the tree has an informative tooltip with real-time updated values of the device's properties, giving you a complete and immediate overview of your Tuya ecosystem.
 
-To ensure maximum security, **TuyaUIweb** operates exclusively in read-only mode, without making any changes to your data on Tuya Cloud.
+To ensure maximum security, **IoTwebUI** operates exclusively in read-only mode, without making any changes to your data on Tuya Cloud.
 
-Developed using `vis-network` and the `TuyaCloud v2` API, **TuyaUIweb** represents a significant step forward in monitoring and managing your Tuya devices.
+Developed using `vis-network` and the `TuyaCloud v2` API, **IoTwebUI** represents a significant step forward in monitoring and managing your Tuya devices.
 
 ### Features:
  **At-a-glance overview of the entire situation.** <br>
@@ -29,14 +29,14 @@ In 'expert mode', a command is available to put the entire data structure obtain
 
 ### Implementation notes
 
-- TuyaUIweb derives from a similar interface designed for [TuyaDAEMON](https://github.com/msillano/tuyaDEAMON-applications/tree/main/daemon.visUI.widget).
+- IoTwebUI derives from a similar interface designed for [TuyaDAEMON](https://github.com/msillano/tuyaDEAMON-applications/tree/main/daemon.visUI.widget).
 - The choice of the visualization library fell on [Vis-Network](https://visjs.github.io/vis-network/docs/network/) for its good flexibility combined with ease of use.
 - In the tooltips, by default, all the properties included in the 'status' of the device are presented, with the names and values used by Tuya Cloud. Some values can be encoded.
 - The first problem is the CORS security protocol, implemented by modern browsers. An application (even in js, node-red, etc) does not have this problem, but an APP that runs in a browser does. It is necessary to disable CORS when launching the browser - tested on Chrome Version 125.0.6422.61 (64-bit):<br>
    `chrome.exe --user-data-dir="C://Chrome dev session" --disable-web-security`<br>
  See `goTuyaUI.bat` file (for Windows + Chrome). It applies only to this instance, the others will remain protected. >br>
 As an alternative to the 'bat' file, the 'Cross Domains - CORS' extension can be used with some browsers, see [ISSUE4](https://github.com/msillano/TuyaUIweb/issues/4)
-- Tuya places limits on the frequency of cloud access. **TuyaUIweb** takes this into account, and the initial phase (when it reads all the data from the Cloud) is blocking and not very short. As also in SmartLife.
+- Tuya places limits on the frequency of cloud access. **IoTwebUI** takes this into account, and the initial phase (when it reads all the data from the Cloud) is blocking and not very short. As also in SmartLife.
 - To overcome the impossibility of creating files directly from an HTML page, again for security reasons, to export the data I used a file logging library [debugout.js](https://github.com/inorganicik/debugout.js). For this reason, the control over the generated files is not complete, and small manual interventions are necessary.
 - The files are saved in the `download` dir, with the fixed name `tuyalog-hh-mm-ss.cvs|json`.
 - Operation continues normally even with the browser window iconized.
@@ -48,6 +48,15 @@ _DO NOT make it accessible from the outside or by third parties, otherwise, all 
 <hr>
 
 ### Versions
+- 2.0 Major functional upgrade.
+    - Added buttons to fire Tuya 'Tap-to-Run' scenes from this APP.
+    - Added 'Alert': testing values, and doing actions (options): beep, pop-up, voice message, open URL, execute 'Tap-to-Run'
+    - Added 'user RULES' for no-limits user automation (requires basic js skill)
+    - Added 'Alert register' historical log of Alerts and Rules
+    - Added interface for defining logged values, with export to config, for easy maintenance
+    - Added interface for defining Alert conditions, with export to config, for easy maintenance
+    - Redesigned interface with Bootstrap 5.3, fluid, and with dark mode, for better user experience
+
 - 1.2 Functional update.
    - Added (in 'config') the possibility to exclude some 'homes'
    - Two modes introduced: normal | expert
@@ -61,11 +70,11 @@ _DO NOT make it accessible from the outside or by third parties, otherwise, all 
 - 1.0 Initial release
 
 ## Installation
-1) Download and unzip the `TuyaUIweb.1.x.zip` file to a directory (with the permissions required by the operating system). 
+1) Download and unzip the `IoTwebUI.1.x.zip` file to a directory (with the permissions required by the operating system). 
 2) Perform the configuration operations.
-3) The main file is `tuyaui.html`. A WEB server is not required: as the code is all in JavaScript, TuyaUIweb is executed by the browser. To launch it, see the `goTuyaUI.bat` file (for Windows, Chrome). For other operating systems/browsers, create a similar script.<br>
+3) The main file is `IoTwebUI.html`. A WEB server is not required: as the code is all in JavaScript, IoTwebUI is executed by the browser. To launch it, see the `goTuyaUI.bat` file (for Windows, Chrome). For other operating systems/browsers, create a similar script.<br>
 note: Ignore the Chrome message: "You are using an unsupported command line flag: - disable-web-security...": unsupported but working.
-4) During installation and setup, the console is useful (in the browser - developer tools -, or menu 'inspect element') because the information and error messages of TuyaUIweb go there.
+4) During installation and setup, the console is useful (in the browser - developer tools -, or menu 'inspect element') because the information and error messages of IoTwebUI go there.
 On the left startup OK (Chrome, CORS disabled) on the right CORS error case (Opera):
 
 
