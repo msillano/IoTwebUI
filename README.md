@@ -1,4 +1,4 @@
-# IpTwubUI: Elevate Your Tuya Device Experience
+# IoTwubUI: Elevate Your Tuya Device Experience (ver. 1.3)
 [versione italiana](https://github.com/msillano/TuyaUIweb/blob/main/LEGGIMI.md)
 
 This complete and dynamic solution organizes all your devices, rooms, and homes in an intuitive tree structure within a web browser. Each node in the tree has an informative tooltip with real-time updated values of the device's properties, giving you a complete and immediate overview of your Tuya ecosystem.
