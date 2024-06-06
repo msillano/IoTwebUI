@@ -1,5 +1,5 @@
-# TuyaUIweb: Tuya WEBAPP User Interface #
-[english version](https://github.com/msillano/TuyaUIweb/blob/main/README.md)
+# IoTwebUI 1.2: Tuya WEBAPP User Interface #
+[english version](https://github.com/msillano/IoTwebUI/blob/main/README12.md)
 
 **TuyaUIweb, la mia nuova interfaccia web per Tuya, eleva il monitoraggio dei dispositivi Tuya a un livello superiore.** 
 Questa soluzione completa e dinamica organizza tutti i tuoi dispositivi, stanze e case in una struttura ad albero intuitiva all'interno di un browser web. Ogni nodo dell'albero presenta un tooltip informativo con i valori aggiornati in tempo reale delle proprietà del dispositivo, offrendoti una panoramica completa e immediata del tuo ecosistema Tuya. 
