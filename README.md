@@ -1,5 +1,5 @@
 # IoTwebUI 1.2: Elevate Your Tuya Device Experience
-[versione italiana](https://github.com/msillano/TuyaUIweb/blob/main/LEGGIMI.md)
+[versione italiana](https://github.com/msillano/IoTwebUI/blob/main/LEGGIMI12.md)
 
 This complete and dynamic solution organizes all your devices, rooms, and homes in an intuitive tree structure within a web browser. Each node in the tree has an informative tooltip with real-time updated values of the device's properties, giving you a complete and immediate overview of your Tuya ecosystem.
 
@@ -159,7 +159,7 @@ MIT License
 _This project is a work-in-progress: it is provided "as is", without warranties of any kind, express or implied._
 
 - _If you develop any interesting extension or application with TuyaUIweb let me know: we can insert it here._
-- _For problems regarding the code and operation of TuyaUIweb, open an 'issue' here ([githun](https://github.com/msillano/TuyaUIweb/issues))._
+- _For problems regarding the code and operation of TuyaUIweb, open an 'issue' here ([github](https://github.com/msillano/IoTwebUI/issues))._
 - _For more general questions regarding Tuya, SmartLife (Tuya smart), and TuyaUIweb, which may also interest other users, please post in the group [Tuya and Smart Life Italia](https://www.facebook.com/groups/tuyaitalia)_
 
 Thank you for your interest in TuyaUIweb <br>
