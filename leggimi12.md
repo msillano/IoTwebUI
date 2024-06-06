@@ -1,7 +1,7 @@
 # IoTwebUI 1.2: Tuya WEBAPP User Interface #
 [english version](https://github.com/msillano/IoTwebUI/blob/main/README12.md)
 
-**TuyaUIweb, la mia nuova interfaccia web per Tuya, eleva il monitoraggio dei dispositivi Tuya a un livello superiore.** 
+**IoTwebUI, la mia nuova interfaccia web per Tuya, eleva il monitoraggio dei dispositivi Tuya a un livello superiore.** 
 Questa soluzione completa e dinamica organizza tutti i tuoi dispositivi, stanze e case in una struttura ad albero intuitiva all'interno di un browser web. Ogni nodo dell'albero presenta un tooltip informativo con i valori aggiornati in tempo reale delle proprietà del dispositivo, offrendoti una panoramica completa e immediata del tuo ecosistema Tuya. 
 
 **_Per garantire la massima sicurezza, **IoTwebUI** opera esclusivamente in modalità di sola lettura, senza apportare alcuna modifica ai tuoi dati su Tuya Cloud._** <br>
@@ -32,15 +32,15 @@ In modalità 'expert' è disponibile un comando per avere nella console l'intera
 
 ### Note di implementazione
 
-- TuyaUIweb deriva da un'interfaccia analoga progettata per [TuyaDAEMON](https://github.com/msillano/tuyaDEAMON-applications/tree/main/daemon.visUI.widget).
+- IoTwebUI deriva da un'interfaccia analoga progettata per [TuyaDAEMON](https://github.com/msillano/tuyaDEAMON-applications/tree/main/daemon.visUI.widget).
 - La scelta della libreria di visualizzazione è caduta su [Vis-Network](https://visjs.github.io/vis-network/docs/network/) per la buona flessibilità unita a semplicità di uso.
 - Nei tooltip, per default, sono presentate tutte le proprietà incluse nello 'status' del device, con i nomi e i valori usati da Tuya Cloud. Alcuni valori possono essere codificati.
 - Un primo problema è il protocollo di sicurezza CORS, implementato sui moderni browser. Una applicazione (anche in js, node-red, etc)  non ha questo problema, ma una APP che gira in un browser sì. E' necessario disabilitare CORS al memento del lancio del browser - testato Chrome (Versione 125.0.6422.61  - 64 bit):<br>
    `chrome.exe --user-data-dir="C://Chrome dev session" --disable-web-security`<br>
   (vedi file `goTuyaUI.bat`). Vale solo per questa istanza, le altre resteranno protette.<br>
-  Come alternativa al file 'bat', con alcuni browser si può usare l'estensione 'Cross Domains - CORS', vedi [ISSUE4](https://github.com/msillano/TuyaUIweb/issues/4).
+  Come alternativa al file 'bat', con alcuni browser si può usare l'estensione 'Cross Domains - CORS', vedi [ISSUE4](https://github.com/msillano/IoTwebUI/issues/4).
 
-- Tuya pone dei limiti alla frequenza degli accessi al cloud. _TuyaUIweb_ ne tiene conto, e la fase iniziale (quando legge tutti i dati dal Cloud) è bloccante e non brevissima. Come anche in SmartLife.
+- Tuya pone dei limiti alla frequenza degli accessi al cloud. _IoTwebUI_ ne tiene conto, e la fase iniziale (quando legge tutti i dati dal Cloud) è bloccante e non brevissima (3-5 s, in funzione del numero di device). Come anche in SmartLife.
 - Per ovviare all'impossibilità di creare file direttamente da una pagina HTML, sempre per motivi di sicurezza, per l'export dei dati sono ricorso ad una libreria di logging su file [debugout.js](https://github.com/inorganik/debugout.js). Per questo motivo il controllo sui file generati non è completo e sono necessari piccoli  interventi manuali sui file esportati.
 - I file sono salvati nella dir `download`, con il nome  `tuyalog-hh-mm-ss.cvs|json`.
 - Il funzionamento continua regolarmente anche con la finestra del browser iconizzata.
@@ -52,6 +52,17 @@ _NON rendetela accessibile dall'esterno o da terzi, altrimenti tutti i vostri da
 <hr>
 
 ### Versioni
+
+- 2.0 Importante aggiornamento funzionale.
+  - Aggiunta la possibiltà di attivare le scene "Tap-to-Run" di Tuya da questa APP.
+  - Aggiunto 'Avvisi': controlla valori ed eseguire azioni (opzioni): segnale acustico, pop-up, messaggio vocale, apertura URL, esecuzione 'Tap-to-Run'
+  - Aggiunte "REGOLE utente" per automazioni utente senza limiti (richiede competenze js di base)
+  - Aggiunto registro storico "Registro avvisi" per avvisi e regole
+  - Aggiunta interfaccia per la definizione dei dati da registrare su file, con esportazione nella configurazione, per una facile manutenzione
+  - Aggiunta interfaccia per la definizione degli avvisi, con esportazione nella configurazione, per una facile manutenzione
+  - Aggiunta interfaccia per l'editing e il test delle regole al run-time, con esportazione nella configurazione, per una facile manutenzione
+  - Interfaccia ridisegnata con Bootstrap 5.3, fluida e con modalità oscura, per una migliore esperienza utente
+    
 - 1.2  Aggiornamento funzionale.
   - Aggiunta in 'config' la possibilità di escludere alcune 'home'
   - Introdotti due modi: normale | expert
