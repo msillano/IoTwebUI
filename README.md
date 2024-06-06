@@ -72,7 +72,7 @@ _DO NOT make it accessible from the outside or by third parties, otherwise, all 
 ## Installation
 1) Download and unzip the `IoTwebUI.1.x.zip` file to a directory (with the permissions required by the operating system). 
 2) Perform the configuration operations.
-3) The main file is `IoTwebUI.html`. A WEB server is not required: as the code is all in JavaScript, IoTwebUI is executed by the browser. To launch it, see the `goTuyaUI.bat` file (for Windows, Chrome). For other operating systems/browsers, create a similar script.<br>
+3) The main file is `iotui.html`. A WEB server is not required: as the code is all in JavaScript, iotui is executed by the browser. To launch it, see the `run_me.bat` file (for Windows, Chrome). For other operating systems/browsers, create a similar script.<br>
 note: Ignore the Chrome message: "You are using an unsupported command line flag: - disable-web-security...": unsupported but working.
 4) During installation and setup, the console is useful (in the browser - developer tools -, or menu 'inspect element') because the information and error messages of IoTwebUI go there.
 On the left startup OK (Chrome, CORS disabled) on the right CORS error case (Opera):
@@ -88,13 +88,13 @@ This APP is for experienced users, therefore it is acceptable that the configura
  - The INDISPENSABLE data to be entered are your own Tuya credentials for 'plataform.tuya' (Users of HA and other similar hubs already have them, but new users must sign up, there are many guides on the web. [This one](https://github.com/iRayanKhan/homebridge-tuya/wiki/Get-Local-Keys-for-your-devices) is one of the clearest, others are [listed here](https://github.com/msillano/tuyaDAEMON/wiki/50.-Howto:-add-a-new-device-to-tuyaDAEMON#1-preconditions). An advantage is that you have access to the Tuya platform, with a lot of data on your devices, and to the technical documentation.
 
  - Other options concern: timing (Cloud and log) and log configuration: the format, autosave, the required values, or the look & feel, such as the presence of pan/zoom buttons.
- - Update the `goTuyaUI.bat` launcher file with the paths of the host system.
+ - Update the `run_me.bat` launcher file with the paths of your host system.
 
 ### Customizations
 Two areas have been highlighted and related functions are placed in a separate file (`custom.js`) for user editing simplicity, with detailed instructions and examples:
 
 **Custom icons**<br>
-_Tuya no longer allows you to change the icons, due to a questionable interpretation of its current copyright laws by its legal advisors._ In TuyaUIweb I have chosen the 'awesome4' icons, with a wide choice and free to use. To customize them, the user must provide a selection criterion and an indication of the icon to use.
+_Tuya no longer allows you to change the icons, due to a questionable interpretation of its current copyright laws by its legal advisors._ In IoTwebUI I have chosen the 'awesome4' icons, with a wide choice and free to use. To customize them, the user must provide a selection criterion and an indication of the icon to use.
 By default, for example, they have special icons (see images): 
 
 - Thermometers (a device with the name 'Temp...' or 'TF_') 
@@ -107,7 +107,6 @@ _Depending on the device, not all properties in Tuya status are useful:_
  - in other cases, you need to divide by 10 or 100 to have the value in SI units
  - maybe you like to translate Tuya's names
  - if desired, you can add new information, for example by deriving it from that of the device (e.g. temperature in °C and also in °F).
- - For users of TuyaDEAMON or similar HUBs such as HA: it can be useful to include the device_id (device.id) and secret_key (device.local_key) in the tooltip of each device.
  -  etc. 
 
 ### CSV format
