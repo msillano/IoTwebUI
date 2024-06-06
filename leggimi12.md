@@ -72,7 +72,7 @@ _NON rendetela accessibile dall'esterno o da terzi, altrimenti tutti i vostri da
 Nelle immagini: a sinistra avvio OK (Chrome, CORS disattivato) a destra caso di errore CORS (Opera):
 
 <div><img src="https://github.com/msillano/IoTwebUI/blob/main/pics/okconsole.png?raw=true" alt="normal start" width="300" />
-   <img src="https://github.com/msillano/IoTwebUI/blob/main/pics/CORSerror.png?raw=true" alt="CORS error" width="300" align="right" /></div>
+   <img src="https://github.com/msillano/IoTwebUI/blob/main/pics/CORSerror.png?raw=true" alt="CORS error" width="400" align="right" /></div>
 
 ### Configurazione
 L'app **TuyaUIweb** è per utenti non alle prime armi, pertanto è accettabile che la configurazione avvenga direttamente editando un file (`config`.js). _Le solite avvertenze: fare una copia del file prima di ogni modifica, usare un editor UTF8 (io uso Notepad-plusplus), e attenzione a NON ALTERARE niente altro (soprattutto virgole  ','  ed  apici '"')._
