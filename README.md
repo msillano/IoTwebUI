@@ -78,7 +78,7 @@ note: Ignore the Chrome message: "You are using an unsupported command line flag
 On the left startup OK (Chrome, CORS disabled) on the right CORS error case (Opera):
 
 
-   <img src="https://github.com/msillano/msillano/IoTwebUI/blob/main/pics/okconsole.png?raw=true" alt="normal start" width="300" />
+   <img src="https://github.com/msillano/IoTwebUI/blob/main/pics/okconsole.png?raw=true" alt="normal start" width="300" />
    <img src="https://github.com/msillano/IoTwebUI/blob/main/pics/CORSerror.png?raw=true" alt="CORS error" width="300" align="right" />
 <hr>
 
