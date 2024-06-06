@@ -21,7 +21,7 @@ Se necessario è possibile ricaricare ed aggiornare tutta la struttura, e.g. in 
 
 In **'expert mode'** (da VER 1.2) nel tooltip di ogni device è presente anche la categoria del device (in chiaro), il `device_id` (device.id) e `secret_key` (device.local_key).  Per gli utenti di TuyaDEAMON o di HUB similari come HA queste informazioni sono molto utili.
 
-![](https://github.com/msillano/TuyaUIweb/blob/main/pics/ver1.2.png?raw=true)
+![](https://github.com/msillano/IoTwebUI/blob/main/pics/ver1.2.png?raw=true)
 
 ### Logging ed esportazione dati
 E' possibile esportare su un file alcuni dati: l'utente deve specificare `home`, `device` e `status` (proprietà) per identificare i dati che interessano e questi sono salvati ad intervalli regolari (minimo 1 minuto) in un buffer interno (max 5000 records - 80h@1 rec/min), esportato poi su file automaticamente o su comando utente.<br>
@@ -71,8 +71,8 @@ _NON rendetela accessibile dall'esterno o da terzi, altrimenti tutti i vostri da
 4) In fase di installazione e setup è utile la console (nel browser - strumenti per programmatori -, o menu contestuale 'ispeziona') perchè lì vanno i messaggi di informazione e di errore di TuyaUIweb.<BR>
 Nelle immagini: a sinistra avvio OK (Chrome, CORS disattivato) a destra caso di errore CORS (Opera):
 
-<div><img src="https://github.com/msillano/TuyaUIweb/blob/main/pics/okconsole.png?raw=true" alt="normal start" width="300" />
-   <img src="https://github.com/msillano/TuyaUIweb/blob/main/pics/CORSerror.png?raw=true" alt="CORS error" width="300" align="right" /></div>
+<div><img src="https://github.com/msillano/IoTwebUI/blob/main/pics/okconsole.png?raw=true" alt="normal start" width="300" />
+   <img src="https://github.com/msillano/IoTwebUI/blob/main/pics/CORSerror.png?raw=true" alt="CORS error" width="300" align="right" /></div>
 
 ### Configurazione
 L'app **TuyaUIweb** è per utenti non alle prime armi, pertanto è accettabile che la configurazione avvenga direttamente editando un file (`config`.js). _Le solite avvertenze: fare una copia del file prima di ogni modifica, usare un editor UTF8 (io uso Notepad-plusplus), e attenzione a NON ALTERARE niente altro (soprattutto virgole  ','  ed  apici '"')._
