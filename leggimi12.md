@@ -61,7 +61,8 @@ _NON rendetela accessibile dall'esterno o da terzi, altrimenti tutti i vostri da
   - Aggiunta interfaccia per la definizione dei dati da registrare su file, con esportazione nella configurazione, per una facile manutenzione
   - Aggiunta interfaccia per la definizione degli avvisi, con esportazione nella configurazione, per una facile manutenzione
   - Aggiunta interfaccia per l'editing e il test delle regole al run-time, con esportazione nella configurazione, per una facile manutenzione
-  - Interfaccia ridisegnata con Bootstrap 5.3, fluida e con modalità oscura, per una migliore esperienza utente
+  - Interfaccia ridisegnata con Bootstrap 5.3, fluida e con modalità chiara/scura, per una migliore esperienza utente
+  - Menu dinamico a scomparsa, per avere il massimo spazio a disposizione del grafo.
     
 - 1.2  Aggiornamento funzionale.
   - Aggiunta in 'config' la possibilità di escludere alcune 'home'
