@@ -3,9 +3,9 @@
 
 **_Stanco delle limitazioni di SmartLife?  IoTwebUI 2.0 è arrivato per dare nuova linfa alla tua casa intelligente, con un arsenale di funzionalità che ti faranno dire "finalmente!". <br> La filosofia 'open' è nel DNA di questa APP che esalta la customizzazione ed il controllo da parte dell'utente._** 
 
-Cosa puoi fare?<br>
+_Cosa puoi fare?_<br>
 👀 Controlla tutto: Interfaccia intuitiva e personalizzabile, dati sempre a portata di mano, gestione flessibile.<br>
-🔬 Esporta dati: Salva le serie storiche per le tue analisi, nel formato più utile<br>
+🔬 Esportazione dati: Salva le serie storiche per le tue analisi, nel formato più utile<br>
 ⚡️ Automazioni potenti: Crea automazioni complesse e personalizzate con le RULE, impossibili con SmartLife!<br>
 ⏱️ Alert personalizzati: Monitora ogni aspetto della tua domotica e ricevi avvisi realtime. <br>
 👌 Integrazione perfetta: Combina device, proprietà, RULE e Tuya tap-to-run per un'automazione fluida e completa.
@@ -20,21 +20,21 @@ Cosa puoi fare?<br>
  - Un menu a scomparsa con informazioni sulla configurazione e opzioni dinamiche ti darà accesso rapido a tutto ciò che ti serve.
  - E se vuoi personalizzare ancora di più, libera la tua creatività con icone, colori e popup informativi a tua scelta.
 
-**_Dati: al sicuro e sempre a portata di mano_**
+#### Dati: al sicuro e sempre a portata di mano
 
  - Registra i dati delle proprietà che ti interessano su file, così avrai sempre un archivio completo della tua domotica.
  - Calcola medie mobili, valori decodificati o normalizzati per un'analisi ancora più approfondita.
  - Scegli il salvataggio automatico o manuale, con opzioni di formato dati (CSV o JSON), periodo di campionamento e cadenza  di salvataggio per adattarsi alle tue esigenze.
  - Gestione al runtime: flessibilità senza limiti
 
-**_Tap-to-run Tuya: il potere a portata di dito_**
+#### Tap-to-run Tuya: il potere a portata di dito
 
  - Una pagina dedicata con un tab per ogni "home" ti permette di avere tutto sotto controllo.
  - Caricamento automatico all'avvio per una domotica sempre pronta all'azione.
  - Lancia i tap-to-run Tuya con un semplice click e personalizza i colori dei pulsanti per un'esperienza ancora più intuitiva.
  - Escludi i tap-to-run che non ti servono per avere un'interfaccia pulita e ordinata.
 
-**_Alert: mai più un evento perso_**
+#### Alert: mai più un evento perso
 
  - puoi attivare una funzione di controllo su qualsiasi proprietà dei dispositivi e sceglere i test "maggiore, uguale" o "minore" per monitorare ogni aspetto della tua domotica.
  - Stessa logica delle condizioni Tuya, per un linguaggio comune ed affidabile.
@@ -42,7 +42,7 @@ Cosa puoi fare?<br>
  - Real Time, con un ritardo medio garantito pari al 50% del periodo di campionamento Tuya, per un equilibrio perfetto tra rapidità e precisione.
  - Definizione degli Alert al runtime: controllo totale in tempo reale
 
-**_RULE: Domanda di automazioni più potenti? IoTwebUI 2.0 ha la risposta!_**
+#### RULE: Domanda di automazioni più potenti? IoTwebUI 2.0 ha la risposta!
 
  - Effettuare operazioni aritmetiche e utilizzare variabili per una flessibilità senza limiti.
  - Confrontare i valori di due proprietà diverse, per automazioni ancora più libere.
@@ -54,7 +54,7 @@ Cosa puoi fare?<br>
     4. In caso di errore durante il test, un popup ti indicherà la riga e il tipo di errore per una risoluzione rapida e precisa.
     5. Esporta le tue RULE per inserirle nel file di configurazione e renderle permanenti.
 
-**_Modalità EXPERT: per controllare tutto il controllabile_**
+#### Modalità EXPERT: per controllare tutto il controllabile
 
 La modalità EXPERT offre un controllo totale sulla personalizzazione di IoTwebUI.
    - Accedi alle interfacce di configurazione e apporta modifiche che saranno valide solo per quel run.
