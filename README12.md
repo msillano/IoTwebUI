@@ -161,12 +161,13 @@ _This project is a work-in-progress: it is provided "as is", without warranties 
 - _For problems regarding the code and operation of TuyaUIweb, open an 'issue' here ([github](https://github.com/msillano/IoTwebUI/issues))._
 - _For more general questions regarding Tuya, SmartLife (Tuya smart), and TuyaUIweb, which may also interest other users, please post in the group [Tuya and Smart Life Italia](https://www.facebook.com/groups/tuyaitalia)_
 
-Thank you for your interest in TuyaUIweb <br>
+Thank you for your interest in IoTwebUI <br>
 m.s.
 
 <hr>
 
 ### Acknowledgments
+All trademarks are the property of their respective owners.
 
  - https://visjs.github.io/vis-network/docs/network
  - https://fontawesome.com/v4/icons/
