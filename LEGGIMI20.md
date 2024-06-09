@@ -5,6 +5,7 @@
 
 Cosa puoi fare?<br>
 👀 Controlla tutto: Interfaccia intuitiva e personalizzabile, dati sempre a portata di mano, gestione flessibile.<br>
+🔬 Esporta dati: Salva le serie storiche per le tue analisi, nel formato più utile<br>
 ⚡️ Automazioni potenti: Crea automazioni complesse e personalizzate con le RULE, impossibili con SmartLife!<br>
 ⏱️ Alert personalizzati: Monitora ogni aspetto della tua domotica e ricevi avvisi realtime. <br>
 👌 Integrazione perfetta: Combina device, proprietà, RULE e Tuya tap-to-run per un'automazione fluida e completa.
