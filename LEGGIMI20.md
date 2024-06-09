@@ -3,13 +3,13 @@
 
 **_Stanco delle limitazioni di SmartLife?  IoTwebUI 2.0 è arrivato per dare nuova linfa alla tua casa intelligente, con un arsenale di funzionalità che ti faranno dire "finalmente!". <br> La filosofia 'open' è nel DNA di questa APP che esalta la customizzazione ed il controllo da parte dell'utente._** 
 
-Cosa puoi fare?
+Cosa puoi fare?<br>
 👀 Controlla tutto: Interfaccia intuitiva e personalizzabile, dati sempre a portata di mano, gestione flessibile.<br>
 ⚡️ Automazioni potenti: Crea automazioni complesse e personalizzate con le RULE, impossibili con SmartLife!<br>
 ⏱️ Alert personalizzati: Monitora ogni aspetto della tua domotica e ricevi avvisi realtime. <br>
-👌 Integrazione perfetta: Combina device, proprietà, RULE e Tuya tap-to-run per un'automazione fluida e completa.<br>
+👌 Integrazione perfetta: Combina device, proprietà, RULE e Tuya tap-to-run per un'automazione fluida e completa.
 
-### Prestazioni:
+## Prestazioni:
 
 **_Interfaccia: un piacere per gli occhi e per il controllo_**
 
@@ -25,7 +25,8 @@ Cosa puoi fare?
  - Scegli il salvataggio automatico o manuale, con opzioni di formato dati (CSV o JSON), periodo di campionamento e cadenza  di salvataggio per adattarsi alle tue esigenze.
  - Calcola medie mobili, valori decodificati o normalizzati per un'analisi ancora più approfondita.
  - Gestione al runtime: flessibilità senza limiti
-    - Aggiungi o escludi proprietà dal Log con un semplice click.
+    - Salva un file quando vuoi
+    - Aggiungi o escludi proprietà dal LogDati con un semplice click.
     - Esporta  le definizioni in uso per aggiornare stabilmente il file di configurazione.
 
 **_Tap-to-run Tuya: il potere a portata di dito_**
@@ -44,32 +45,27 @@ Cosa puoi fare?
  - Definizione degli Alert al runtime: controllo totale in tempo reale
 
 **_RULE: Domanda di automazioni più potenti? IoTwebUI 2.0 ha la risposta!_**
-- Effettuare operazioni aritmetiche e utilizzare variabili per una flessibilità senza limiti.
+
+ - Effettuare operazioni aritmetiche e utilizzare variabili per una flessibilità senza limiti.
  - Confrontare i valori di due proprietà diverse, per automazioni ancora più libere.
  - Eseguire azioni complesse, come attivare tap-to-run Tuya o inviare comandi ad altre applicazioni via REST.
  - Come funziona?
     1. Crea le RULE al runtime con un'interfaccia user-friendly, anche se non sei un programmatore esperto.
-    2. Utilizza macro predefinite per i compiti comuni e ripetitivi, risparmiando tempo e fatica.
+    2. Utilizza MACRO predefinite per i compiti comuni e ripetitivi, risparmiando tempo e fatica.
     3. Testa le tue RULE in tempo reale per assicurarti che funzionino perfettamente.
     4. In caso di errore durante il test, un popup ti indicherà la riga e il tipo di errore per una risoluzione rapida e precisa.
     5. Esporta le tue RULE per inserirle nel file di configurazione e renderle permanenti.
 
+**_Modalità EXPERT_** per controllare tutto il controllabile
+
+La modalità EXPERT offre un controllo totale sulla personalizzazione di IoTwebUI.
+   - Accedi alle interfacce di configurazione e apporta modifiche che saranno valide solo per quel run.
+   - Copia i dati dal "pad" di esportazione nei file di configurazione per rendere stabili le tue scelte.
+   - Puoi disattivare la modalità EXPERT nella configurazione quando hai finito di personalizzare.
 
 
 
 
-
-
-_In un solo colpo d'occhio si ha la situazione completa sotto controllo._
-
-In fase iniziale tutti i dati necessari sono letti da Tuya Cloud e viene costruita una struttura locale contenente TUTTE le informazioni. Il grafo ad albero di visualizzazione è costruito in base a queste informazioni. 
-
-Tutti i nodi (root, case, stanze e  device) sono rappresentati da icone (customizzabili), grigie quando il device è disconnesso, Il colore del link indica il tipo di device: se blu è WiFi, se rosso usa un HUB (subdevice). Ogni device ha un tooltip che visualizza lo 'status' attuale del device.
-
-L'aggiornamento dei dati  avviene in polling: sono letti dal Cloud con frequenza regolabile dall'utente, da 30s a alcuni minuti, e i popup (customizzabili) sono aggiornati subito.<BR>
-Se necessario è possibile ricaricare ed aggiornare tutta la struttura, e.g. in caso di aggiunte di nuovi device.
-
-In **'expert mode'** (da VER 1.2) nel tooltip di ogni device è presente anche la categoria del device (in chiaro), il `device_id` (device.id) e `secret_key` (device.local_key).  Per gli utenti di TuyaDEAMON o di HUB similari come HA queste informazioni sono molto utili.
 
 ![](https://github.com/msillano/IoTwebUI/blob/main/pics/ver1.2.png?raw=true)
 
