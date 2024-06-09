@@ -1,23 +1,64 @@
 # IoTwebUI 2.0: Tuya WEBAPP open extension #
 [english version](https://github.com/msillano/IoTwebUI/blob/main/README12.md)
 
-**Stanco delle limitazioni di SmartLife?  IoTwebUI 2.0 è arrivato per dare nuova linfa alla tua casa intelligente, con un arsenale di funzionalità che ti faranno dire "finalmente!". <br> La filosofia 'open' è nel DNA di questa APP che esalta la customizzazione ed il controllo da parte dell'utente.** 
+**_Stanco delle limitazioni di SmartLife?  IoTwebUI 2.0 è arrivato per dare nuova linfa alla tua casa intelligente, con un arsenale di funzionalità che ti faranno dire "finalmente!". <br> La filosofia 'open' è nel DNA di questa APP che esalta la customizzazione ed il controllo da parte dell'utente._** 
 
 Cosa puoi fare?
-
-Controlla tutto: Interfaccia intuitiva e personalizzabile, dati sempre a portata di mano, gestione flessibile.<br>
+👀 Controlla tutto: Interfaccia intuitiva e personalizzabile, dati sempre a portata di mano, gestione flessibile.<br>
 ⚡️ Automazioni potenti: Crea automazioni complesse e personalizzate con le RULE, impossibili con SmartLife!<br>
 ⏱️ Alert personalizzati: Monitora ogni aspetto della tua domotica e ricevi avvisi realtime. <br>
- - Integrazione perfetta: Combina device, proprietà, RULE e tuya tap-to-run per un'automazione fluida e completa.<br>
-
-
-Questa soluzione completa e dinamica organizza tutti i tuoi dispositivi, stanze e case in una struttura ad albero intuitiva all'interno di un browser web. Ogni nodo dell'albero presenta un tooltip informativo con i valori aggiornati in tempo reale delle proprietà del dispositivo, offrendoti una panoramica completa e immediata del tuo ecosistema Tuya. 
-
-**_Per garantire la massima sicurezza, **IoTwebUI** opera esclusivamente in modalità di sola lettura, senza apportare alcuna modifica ai tuoi dati su Tuya Cloud._** <br>
-Sviluppata utilizzando `vis-network` e l'API `TuyaCloud v2`, **IoTwebUI** rappresenta un passo avanti significativo nel monitoraggio e nella gestione dei tuoi dispositivi Tuya.
-
+👌 Integrazione perfetta: Combina device, proprietà, RULE e Tuya tap-to-run per un'automazione fluida e completa.<br>
 
 ### Prestazioni:
+
+**_Interfaccia: un piacere per gli occhi e per il controllo_**
+
+ - Scegli tra il tema chiaro o scuro, a seconda dei tuoi gusti.
+ - Naviga tra i tuoi dispositivi e le 'home' con un albero trascinabile e zoommabile, perfetto per tenere tutto sotto controllo.
+ - Popup informativi con nuove icone ti terranno aggiornato sullo stato di ogni proprietà di un device, senza perderti neanche un dettaglio.
+ - Un menu a scomparsa con informazioni sulla configurazione e opzioni dinamiche ti darà accesso rapido a tutto ciò che ti serve.
+ - E se vuoi personalizzare ancora di più, libera la tua creatività con icone, colori e popup informativi a tua scelta.
+
+**_Dati: al sicuro e sempre a portata di mano_**
+
+ - Registra i dati delle proprietà che ti interessano su file, così avrai sempre un archivio completo della tua domotica.
+ - Scegli il salvataggio automatico o manuale, con opzioni di formato dati (CSV o JSON), periodo di campionamento e cadenza  di salvataggio per adattarsi alle tue esigenze.
+ - Calcola medie mobili, valori decodificati o normalizzati per un'analisi ancora più approfondita.
+ - Gestione al runtime: flessibilità senza limiti
+    - Aggiungi o escludi proprietà dal Log con un semplice click.
+    - Esporta  le definizioni in uso per aggiornare stabilmente il file di configurazione.
+
+**_Tap-to-run Tuya: il potere a portata di dito_**
+
+ - Una pagina dedicata con un tab per ogni "home" ti permette di avere tutto sotto controllo.
+ - Caricamento automatico all'avvio per una domotica sempre pronta all'azione.
+ - Lancia i tap-to-run Tuya con un semplice click e personalizza i colori dei pulsanti per un'esperienza ancora più intuitiva.
+ - Escludi i tap-to-run che non ti servono per avere un'interfaccia pulita e ordinata.
+
+**_Alert: mai più un evento perso_**
+
+ - puoi attivare una funzione di controllo su qualsiasi proprietà dei dispositivi e sceglere i test "maggiore, uguale" o "minore" per monitorare ogni aspetto della tua domotica.
+ - Stessa logica delle condizioni Tuya, per un linguaggio comune ed affidabile.
+ - Scegli tra diverse azioni conseguenziali: beep, pop-up, messaggio vocale, lancio di URL o tap-to-run Tuya.
+ - Real Time, con un ritardo medio garantito pari al 50% del periodo di campionamento Tuya, per un equilibrio perfetto tra rapidità e precisione.
+ - Definizione degli Alert al runtime: controllo totale in tempo reale
+
+**_RULE: Domanda di automazioni più potenti? IoTwebUI 2.0 ha la risposta!_**
+- Effettuare operazioni aritmetiche e utilizzare variabili per una flessibilità senza limiti.
+ - Confrontare i valori di due proprietà diverse, per automazioni ancora più libere.
+ - Eseguire azioni complesse, come attivare tap-to-run Tuya o inviare comandi ad altre applicazioni via REST.
+ - Come funziona?
+    1. Crea le RULE al runtime con un'interfaccia user-friendly, anche se non sei un programmatore esperto.
+    2. Utilizza macro predefinite per i compiti comuni e ripetitivi, risparmiando tempo e fatica.
+    3. Testa le tue RULE in tempo reale per assicurarti che funzionino perfettamente.
+    4. In caso di errore durante il test, un popup ti indicherà la riga e il tipo di errore per una risoluzione rapida e precisa.
+    5. Esporta le tue RULE per inserirle nel file di configurazione e renderle permanenti.
+
+
+
+
+
+
 
 _In un solo colpo d'occhio si ha la situazione completa sotto controllo._
 
@@ -55,6 +96,8 @@ In modalità 'expert' è disponibile un comando per avere nella console l'intera
 - Il funzionamento continua regolarmente anche con la finestra del browser iconizzata.
 
 **NOTA sulla sicurezza**
+
+**_Per garantire la massima sicurezza, **IoTwebUI** opera esclusivamente in modalità di sola lettura, senza apportare alcuna modifica ai tuoi dati su Tuya Cloud._** <br>
 
 _**Questa APP è totalmente aperta, priva di ogni protezione, e contiene nei file le vostre credenziali in chiaro!**_ <br>
 _NON rendetela accessibile dall'esterno o da terzi, altrimenti tutti i vostri dati, credenziali Tuya incluse, sono esposti!_
