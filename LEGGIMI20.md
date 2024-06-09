@@ -5,10 +5,10 @@
 
 Cosa puoi fare?
 
-Controlla tutto: Interfaccia intuitiva e personalizzabile, dati sempre a portata di mano, gestione flessibile.
-⚡️ Automazioni potenti: Crea automazioni complesse e personalizzate con le RULE, impossibili con SmartLife!
-⏱️ Alert personalizzati: Monitora ogni aspetto della tua domotica e ricevi avvisi realtime.
- - Integrazione perfetta: Combina device, proprietà, RULE e tuya tap-to-run per un'automazione fluida e completa.
+Controlla tutto: Interfaccia intuitiva e personalizzabile, dati sempre a portata di mano, gestione flessibile.<br>
+⚡️ Automazioni potenti: Crea automazioni complesse e personalizzate con le RULE, impossibili con SmartLife!<br>
+⏱️ Alert personalizzati: Monitora ogni aspetto della tua domotica e ricevi avvisi realtime. <br>
+ - Integrazione perfetta: Combina device, proprietà, RULE e tuya tap-to-run per un'automazione fluida e completa.<br>
 
 
 Questa soluzione completa e dinamica organizza tutti i tuoi dispositivi, stanze e case in una struttura ad albero intuitiva all'interno di un browser web. Ogni nodo dell'albero presenta un tooltip informativo con i valori aggiornati in tempo reale delle proprietà del dispositivo, offrendoti una panoramica completa e immediata del tuo ecosistema Tuya. 
