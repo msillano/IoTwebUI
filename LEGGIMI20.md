@@ -220,6 +220,7 @@ m.s.
 
 ### Riconoscimenti
 Tutti i marchi riportati appartengono ai legittimi proprietari.
+- https://getbootstrap.com/docs/5.3/getting-started/introduction/
 - https://visjs.github.io/vis-network/docs/network
 - https://fontawesome.com/v4/icons/
 - https://code.google.com/archive/p/crypto-js/
