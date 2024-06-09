@@ -1,5 +1,5 @@
 # IoTwebUI 1.2: Elevate Your Tuya Device Experience
-[versione italiana](https://github.com/msillano/IoTwebUI/blob/main/leggimi12.md)
+[🇮🇹 versione italiana](https://github.com/msillano/IoTwebUI/blob/main/leggimi12.md)
 
 This complete and dynamic solution organizes all your devices, rooms, and homes in an intuitive tree structure within a web browser. Each node in the tree has an informative tooltip with real-time updated values of the device's properties, giving you a complete and immediate overview of your Tuya ecosystem.
 
