@@ -101,10 +101,10 @@ _NON rendetela accessibile dall'esterno o da terzi, altrimenti tutti i vostri da
 
 - 2.0 Importante aggiornamento funzionale.
   - Aggiunta la possibiltà di attivare le scene "Tap-to-Run" di Tuya da questa APP.
-  - Aggiunto 'Avvisi': controlla valori ed eseguire azioni (opzioni): segnale acustico, pop-up, messaggio vocale, apertura URL, esecuzione 'Tap-to-Run'
-  - Aggiunte "REGOLE utente" per automazioni utente senza limiti (richiede competenze js di base)
-  - Aggiunto registro storico "Registro avvisi" per avvisi e regole
-  - Aggiunta interfaccia per la definizione dei dati da registrare su file, con esportazione nella configurazione, per una facile manutenzione
+  - Aggiunto 'Avvisi' (Alertt): controlla valori ed eseguire azioni (opzioni): segnale acustico, pop-up, messaggio vocale, apertura URL, esecuzione 'Tap-to-Run'
+  - Aggiunte "REGOLE utente" (RULE) per automazioni utente senza limiti (richiede competenze js di base)
+  - Aggiunto "Registro avvisi" (Alert register) per avvisi e regole
+  - Aggiunta interfaccia per la definizione dei dati da registrare sul file dataLog, con esportazione nella configurazione, per una facile manutenzione
   - Aggiunta interfaccia per la definizione degli avvisi, con esportazione nella configurazione, per una facile manutenzione
   - Aggiunta interfaccia per l'editing e il test delle regole al run-time, con esportazione nella configurazione, per una facile manutenzione
   - Interfaccia ridisegnata con Bootstrap 5.3, fluida e con modalità chiara/scura, per una migliore esperienza utente
