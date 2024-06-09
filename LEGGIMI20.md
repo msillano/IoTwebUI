@@ -23,12 +23,9 @@ Cosa puoi fare?<br>
 **_Dati: al sicuro e sempre a portata di mano_**
 
  - Registra i dati delle proprietà che ti interessano su file, così avrai sempre un archivio completo della tua domotica.
- - Scegli il salvataggio automatico o manuale, con opzioni di formato dati (CSV o JSON), periodo di campionamento e cadenza  di salvataggio per adattarsi alle tue esigenze.
  - Calcola medie mobili, valori decodificati o normalizzati per un'analisi ancora più approfondita.
+ - Scegli il salvataggio automatico o manuale, con opzioni di formato dati (CSV o JSON), periodo di campionamento e cadenza  di salvataggio per adattarsi alle tue esigenze.
  - Gestione al runtime: flessibilità senza limiti
-    - Salva un file quando vuoi
-    - Aggiungi o escludi proprietà dal LogDati con un semplice click.
-    - Esporta  le definizioni in uso per aggiornare stabilmente il file di configurazione.
 
 **_Tap-to-run Tuya: il potere a portata di dito_**
 
