@@ -1,5 +1,7 @@
 ## IoTwebUI 2.0: Open Extension for Tuya Web App
 
+🇮🇹 [versione italiana](https://github.com/msillano/IoTwebUI/blob/main/LEGGIMI20.md)
+
 **_Tired of SmartLife's limitations? IoTwebUI 2.0 is here to breathe new life into your smart home, with features that will make you say "Finally!". The 'open' philosophy is in this APP's DNA, enhancing customization and user control._**
 
 _What can you do?_<br>
