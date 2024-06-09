@@ -174,7 +174,7 @@ m.s.
 <hr>
 
 ### Riconoscimenti
-
+Tutti i marchi riportati appartengono ai legittimi proprietari.
 - https://visjs.github.io/vis-network/docs/network
 - https://fontawesome.com/v4/icons/
 - https://code.google.com/archive/p/crypto-js/
