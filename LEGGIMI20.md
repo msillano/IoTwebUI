@@ -60,7 +60,7 @@ La modalità EXPERT offre un controllo totale sulla personalizzazione di IoTwebU
    - Copia i dati dal "pad" di esportazione nei file di configurazione per rendere stabili le tue scelte.
    - Puoi disattivare la modalità EXPERT nella configurazione quando hai finito di personalizzare.
 
-
+[aspetto della versione 2.0](https://github.com/msillano/IoTwebUI/blob/main/pics/ver20-look.png?raw=true)
 
 
 
