@@ -1,7 +1,16 @@
-# IoTwebUI 1.2: Tuya WEBAPP User Interface #
+# IoTwebUI 2.0: Tuya WEBAPP open extension #
 [english version](https://github.com/msillano/IoTwebUI/blob/main/README12.md)
 
-**IoTwebUI, la mia nuova interfaccia web per Tuya, eleva il monitoraggio dei dispositivi Tuya a un livello superiore.** 
+**Stanco delle limitazioni di SmartLife?  IoTwebUI 2.0 è arrivato per dare nuova linfa alla tua casa intelligente, con un arsenale di funzionalità che ti faranno dire "finalmente!". <br> La filosofia 'open' è nel DNA di questa APP che esalta la customizzazione ed il controllo da parte dell'utente.** 
+
+Cosa puoi fare?
+
+Controlla tutto: Interfaccia intuitiva e personalizzabile, dati sempre a portata di mano, gestione flessibile.
+⚡️ Automazioni potenti: Crea automazioni complesse e personalizzate con le RULE, impossibili con SmartLife!
+⏱️ Alert personalizzati: Monitora ogni aspetto della tua domotica e ricevi avvisi realtime.
+ - Integrazione perfetta: Combina device, proprietà, RULE e tuya tap-to-run per un'automazione fluida e completa.
+
+
 Questa soluzione completa e dinamica organizza tutti i tuoi dispositivi, stanze e case in una struttura ad albero intuitiva all'interno di un browser web. Ogni nodo dell'albero presenta un tooltip informativo con i valori aggiornati in tempo reale delle proprietà del dispositivo, offrendoti una panoramica completa e immediata del tuo ecosistema Tuya. 
 
 **_Per garantire la massima sicurezza, **IoTwebUI** opera esclusivamente in modalità di sola lettura, senza apportare alcuna modifica ai tuoi dati su Tuya Cloud._** <br>
