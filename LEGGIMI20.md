@@ -10,7 +10,6 @@ _Cosa puoi fare?_<br>
 ⏱️ Alert personalizzati: Monitora ogni aspetto della tua domotica e ricevi avvisi realtime. <br>
 👌 Integrazione perfetta: Combina device, proprietà, RULE e Tuya tap-to-run per un'automazione fluida e completa.
 
-## Prestazioni:
 
 #### Interfaccia: un piacere per gli occhi e per il controllo
 
