@@ -12,7 +12,7 @@ Cosa puoi fare?<br>
 
 ## Prestazioni:
 
-**_Interfaccia: un piacere per gli occhi e per il controllo_**
+#### Interfaccia: un piacere per gli occhi e per il controllo
 
  - Scegli tra il tema chiaro o scuro, a seconda dei tuoi gusti.
  - Naviga tra i tuoi dispositivi e le 'home' con un albero trascinabile e zoommabile, perfetto per tenere tutto sotto controllo.
@@ -54,7 +54,7 @@ Cosa puoi fare?<br>
     4. In caso di errore durante il test, un popup ti indicherà la riga e il tipo di errore per una risoluzione rapida e precisa.
     5. Esporta le tue RULE per inserirle nel file di configurazione e renderle permanenti.
 
-**_Modalità EXPERT_** per controllare tutto il controllabile
+**_Modalità EXPERT: per controllare tutto il controllabile_**
 
 La modalità EXPERT offre un controllo totale sulla personalizzazione di IoTwebUI.
    - Accedi alle interfacce di configurazione e apporta modifiche che saranno valide solo per quel run.
