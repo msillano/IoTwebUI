@@ -67,9 +67,6 @@ La modalità EXPERT offre un controllo totale sulla personalizzazione di IoTwebU
 
 - IoTwebUI deriva da un'interfaccia analoga progettata per [TuyaDAEMON](https://github.com/msillano/tuyaDEAMON-applications/tree/main/daemon.visUI.widget).
 - La scelta della libreria di visualizzazione è caduta su [Vis-Network](https://visjs.github.io/vis-network/docs/network/) per la buona flessibilità unita a semplicità di uso.
-- 
-- Nei tooltip, per default, sono presentate tutte le proprietà incluse nello 'status' del device, con i nomi e i valori usati da Tuya Cloud. Alcuni valori possono essere codificati.
-
 - Un primo problema è il protocollo di sicurezza CORS, implementato sui moderni browser. Una applicazione (anche in js, node-red, etc)  non ha questo problema, ma una APP che gira in un browser sì. E' necessario disabilitare CORS al memento del lancio del browser - testato Chrome (Versione 125.0.6422.61  - 64 bit):<br>
    `chrome.exe --user-data-dir="C://Chrome dev session" --disable-web-security`<br>
   (vedi file `run-me.bat`). Vale solo per questa istanza, le altre resteranno protette.<br>
@@ -86,14 +83,14 @@ La modalità EXPERT offre un controllo totale sulla personalizzazione di IoTwebU
 ### Interfaccia utente
 ![](https://github.com/msillano/IoTwebUI/blob/main/pics/tootip20.png?raw=true)
 
-Nei tooltip, per default, sono presentate tutte le proprietà incluse nello 'status' del device, con i nomi e i valori usati da Tuya Cloud. Alcuni valori possono essere codificati. Vedi figere:
-   - tuya_bridge.switch_1 è interessato da un 'alert'. tuya_bridge.switch_inching è codificato (AAAC)
-   - 'temperatura studio'.va_temperature è salvato su datafile
-   - Per 'temperatura soggiorno'.va _humidity è scattato l'Alert, ed è indicata la condizione (>40)
-   - Il tooltip 'termo studio' è customizzato,  per presentare la temperatra con i corretti decimali.
-   - In modo EXPERT sono aggiunti ai tooltip i seguenti valori:
+Nei tooltip, per default, sono presentate tutte le proprietà incluse nello 'status' del device, con i nomi e i valori usati da Tuya Cloud. Alcuni valori possono essere codificati. Vedi figure sopra.
+   - `tuya_bridge.switch_1` è interessato da un 'alert'. tuya_bridge.switch_inching è codificato (AAAC)
+   - `temperatura studio.va_temperature` è salvato sul datafile
+   - Per `temperatura soggiorno.va _humidity` è scattato l'Alert, ed è indicata la condizione (>40)
+   - Il tooltip `termo studio` è customizzato,  per presentare la temperatra con i corretti decimali.
+   - In modo EXPERT sono aggiunti nei tooltip i seguenti valori:
        - `isa`:  nome del 'tipo' Tuya del device ( in codice è `device.category`). In totale circa 600 tipi.
-       - `id`:  `device.id`, richiesto da alcuni HUB
+       - `id`:  `device.id`, richiesto da alcuni HUB (e.g. TuyaDAEMON, HA, etc..).
        - `key`: `device.local_key`, richiesto da alcuni HUB 
 
 ### Logging ed esportazione dati
@@ -119,21 +116,22 @@ L'utente può scegliere in configurazione tra due formati: `CVS` (indicato, per 
 
 In modalità EXPERT è disponibile nel menu un comando per avere nella console l'intera struttura dati ottenuta da Tuya Cloud ('Dump data'): può essere esplorata a ogni livello nel pad della console oppure può essere copiata con copy&paste in formato JSON.
 
+
 ### Alert ed avvisi
-In modo EXPERT cliccando su un device si apre un dialogo, nella parte inferiore permette la definizione degli 'Alert':
+In modo EXPERT cliccando su un device si apre un dialogo che nella parte inferiore permette la definizione degli 'Alert':
 <TABLE width = "100%" >
  <TR>
   <TD  width = "200px">
    <img src="https://github.com/msillano/IoTwebUI/blob/main/pics/alert21.png?raw=true" />
   </TD>
   <TD><ol>
-       <li>        Scelta della condizione: 'maggiore', 'uguale' o 'minore'
+        <li>  Scelta della condizione: 'maggiore', 'uguale' o 'minore'
         <li>  Il valore di confronto, un numero (24) o una stringa (true)
         <li>  Messaggio associato: è usato <ul>
              <li> negli Alert con 'pop-up'
-          <li> è il testo letto nel caso 'voice'
-           <li> oppure è un URL ed allore è aperta nel browser
-            <li> oppure è il nome di un 'tap-to-run' che è eseguito </ul>
+             <li> è il testo letto nel caso 'voice'
+             <li> oppure è un URL ed allore è aperta nel browser
+             <li> oppure è il nome di un 'tap-to-run' che è eseguito </ul>
          <li>  Azione: una o più a scelta tra 'beep' 'pop' e 'voice' (URL e tap-to-run sono automatiche) </li></ol>
  <i> nota: per avere, ad esempio, sia 'pop' che 'tap-to-run', creare due Alert con le stesse condizioni: in uno 'message' sarà il testo per il 'pop-up', nell'altro il nome del 'tap-to-run'.</i>
   </TD>
