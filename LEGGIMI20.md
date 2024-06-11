@@ -101,10 +101,11 @@ L'utente può scegliere in configurazione tra due formati: `CVS` (indicato, per 
  <TR>
   <TD>
   In modo EXPERT cliccando su un device si apre un dialogo, nella parte superiore interessa l'export dei dati su file:
-     - newLog - aggiunge al log (solo per il run corrente)
-     - clear dev - elimina il device dal log, (tutte le proprietà)
-     - config - apre pop-up per vedere le definizioni del log attuale
-     - cance - chiude il dialogo.
+   <ul>  
+    <li>  <b> newLog </b>- aggiunge al log (solo per il run corrente)
+    <li>  <b>clear dev </b>-  elimina il device dal log, (tutte le proprietà)
+    <li>  <b> config </b>- apre pop-up per vedere le definizioni del log attuale
+    <li>  <b> cancel </b>b- chiude il dialogo.</ul>
   </TD>
   <TD>
    <img src="https://github.com/msillano/IoTwebUI/blob/main/pics/alert20.png?raw=true" />
@@ -131,14 +132,14 @@ In modo EXPERT cliccando su un device si apre un dialogo, nella parte inferiore 
            <li> oppure è un URL ed allore è aperta nel browser
             <li> oppure è il nome di un 'tap-to-run' che è eseguito </ul>
          <li>  Azione: una o più a scelta tra 'beep' 'pop' e 'voice' (URL e tap-to-run sono automatiche) </li></ol>
- <i> nota: per avere, ad esempio, sia 'pop' che 'tap-to-run', creare due Alert con le stesse condizioni: in una 'message' sarà il testo per il 'pop-up', nell'altra il nome del 'tap-to-run'.</i>
+ <i> nota: per avere, ad esempio, sia 'pop' che 'tap-to-run', creare due Alert con le stesse condizioni: in uno 'message' sarà il testo per il 'pop-up', nell'altro il nome del 'tap-to-run'.</i>
   </TD>
  </TR>
 </TABLE>
 Bottoni:
  <ul>  
     <li>  <b> newTest </b>- aggiunge un nuovo Alert (solo  run corrente)
-    <li>  <b>lear dev </b>- elimina tutti gli Alert del device (solo  run corrente)
+    <li>  <b>clear dev </b>- elimina tutti gli Alert del device (solo  run corrente)
     <li>  <b> config </b>- apre pop-up per vedere le definizioni  degli alert attuali
     <li>  <b> cancel </b>b- chiude il dialogo.</ul>
 
@@ -149,7 +150,9 @@ Bottoni:
  <TR>
   <TD>
    Una parte importante è dedicata ad un pad di editing delle RULE (per dettagli vedi oltre).<br>
-<i>Nota: se preferite usare un editor esterno più performante, potete certamente farlo, con copia-incolla.</i> <br>
+_Nota: se preferite usare un editor esterno più performante, potete certamente farlo, con copia-incolla._<br>
+Si possono gestire due insiemi di RULE: quelle in _uso_, inizialmente lette dal file `usrrulesXX.X.js`, e quelle nuove, _in Edit_ nel nel pad.
+<br>
   
    I bottoni presenti offrono le seguenti funzionalità;
    <ul>  
@@ -158,7 +161,7 @@ Bottoni:
     <li>  <b> Replace </b>- le RULE attualmente in uso sono sostitute da quelle in edit.
     <li>  <b> Export </b>- Crea un pop-up da cui copiare le RULE per renderle permanenti.
     <li>  <b> Test Start </b>- Start test delle RULE in Edit: le RULE in uso sono sospese.
-    <li>  <b>Test End</b>- Termina il Test e ripristina le ROULE precedenti (auto in caso di errore)
+    <li>  <b> Test End</b>- Termina il Test e ripristina le ROULE precedenti (auto in caso di errore)
     </ul>
  </TD>
   <TD>
@@ -290,6 +293,17 @@ Il risultato JSON corretto è il seguente, utilizzabile con parser JSON per ricr
 ]
 ```
 E' un array di array contenenti le singole misure (oggetti).
+
+### RULE - sintassi
+Il particolare ambiente in cui sono valutate le RULE comporta qualche limite alla sintassi js standard:
+- importante: il codice è eseguito una riga alla volta, non è possibile scrivere blocchi che occupano più righe!
+  Per contenere la lunghezza delle righe, usare più variabili intermedie.
+- definire le variabili sempre con la sintassi var \_pippo =...
+- usare un underscore '\_' come primo carattere nel nome delle variabili: si evitano così interferenze con altre variabili.
+- le RULE sono eseguite immediatamente dopo un aggiornamente dei dati Tuya. Molte funzioni devono quindi conservare lo stato tra un run ed il successivo. Le MACRO si occupano di ciò e semplificano la scrittura di RULE complesse.
+
+### RULE - MACRO
+Possiamo dividerle in due gruppi: il primo che gestisce le interazioni con le risorse disponibili in IoTwebUI (una sorta di API interna). il secondo gruppo di MACRO sono invece generali, modificando in qualche modo utile  i dati forniti dai device. 
 
 <hr>
 Progetto OpenSource, Licenza MIT, (c)2024 marco sillano
