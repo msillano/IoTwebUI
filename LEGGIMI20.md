@@ -119,7 +119,7 @@ In modalità EXPERT è disponibile nel menu un comando per avere nella console l
 In modo EXPERT cliccando su un device si apre un dialogo, nella parte inferiore permette la definizione degli 'Alert':
 <TABLE width = "100%" >
  <TR>
-  <TD  width = "15%">
+  <TD  width = "200px">
    <img src="https://github.com/msillano/IoTwebUI/blob/main/pics/alert21.png?raw=true" />
   </TD>
   <TD>
@@ -128,7 +128,7 @@ In modo EXPERT cliccando su un device si apre un dialogo, nella parte inferiore 
        2. Il valore di confronto, un numero (24) o una stringa (true)
        3. Messaggio associato: è usato
             - negli Alert con 'pop-up'
-            - è il testo nel caso 'voice'
+            - è il testo letto nel caso 'voice'
             - oppure è un URL ed allore è aperta nel browser
             - oppure è il nome di un 'tap-to-run' che è eseguito
        4.  Azione: una o più a scelta tra 'beep' 'pop' e 'voice' (URL e tap-to-run sono automatiche)
