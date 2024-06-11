@@ -154,8 +154,8 @@ Bottoni:
  <TR>
   <TD>
    Una parte importante è dedicata ad un pad di editing delle RULE (per dettagli vedi oltre).<br>
-_Nota: se preferite usare un editor esterno più performante, potete certamente farlo, con copia-incolla._<br>
-Si possono gestire due insiemi di RULE: quelle in _uso_, inizialmente lette dal file `usrrulesXX.X.js`, e quelle nuove, _in Edit_ nel nel pad.
+<i>Nota: se preferite usare un editor esterno più performante, potete certamente farlo, con copia-incolla.</i><br>
+Si possono gestire due insiemi di RULE: quelle in <i>uso</i>, inizialmente lette dal file `usrrulesXX.X.js`, e quelle nuove, <i>in Edit</i> nel nel pad.
 <br>
   
    I bottoni presenti offrono le seguenti funzionalità;
@@ -163,7 +163,7 @@ Si possono gestire due insiemi di RULE: quelle in _uso_, inizialmente lette dal 
     <li>  <b> Clear </b>- pulisce l'area di edit
     <li>  <b> Load </b>- copia in Edit le RULE attualmente in uso
     <li>  <b> Replace </b>- le RULE attualmente in uso sono sostitute da quelle in edit.
-    <li>  <b> Export </b>- Crea un pop-up per vedere le definizioni delle  RULE attuali.<br> <i>Le RULE permanenti sono nel file `usrrulesXX.X.js`: possono essere editate direttamente o copiate dal pop-up.</i>
+    <li>  <b> Export </b>- Crea un pop-up per vedere le definizioni delle  RULE in usso.<br> <i>Le RULE permanenti sono nel file 'usrrulesXX.X.js': possono essere editate direttamente o copiate dal pop-up.</i>
     <li>  <b> Test Start </b>- Start test delle RULE in Edit: le RULE in uso sono sospese.
     <li>  <b> Test End</b>- Termina il Test e ripristina le ROULE precedenti (auto in caso di errore)
     </ul>
