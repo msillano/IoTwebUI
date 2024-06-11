@@ -122,21 +122,22 @@ In modo EXPERT cliccando su un device si apre un dialogo, nella parte inferiore 
   <TD  width = "200px">
    <img src="https://github.com/msillano/IoTwebUI/blob/main/pics/alert21.png?raw=true" />
   </TD>
-  <TD>
-       1. Scelta della condizione: 'maggiore', 'uguale' o 'minore'
-       2. Il valore di confronto, un numero (24) o una stringa (true)
-       3. Messaggio associato: è usato
-            - negli Alert con 'pop-up'
-            - è il testo letto nel caso 'voice'
-            - oppure è un URL ed allore è aperta nel browser
-            - oppure è il nome di un 'tap-to-run' che è eseguito
-       4.  Azione: una o più a scelta tra 'beep' 'pop' e 'voice' (URL e tap-to-run sono automatiche)
-       nota: per avere, ad esempio, sia 'pop' che 'tap-to-run', creare due Alert con le stesse condizioni: in una 'message' sarà il testo per il 'pop-up', nell'altra il nome del 'tap-to-run'.
-   
-     - newTest - aggiunge un nuovo Alert (solo per il run corrente)
-     - clear dev - elimina il device dal log, (tutte le proprietà)
-     - config - apre pop-up per vedere le definizioni del log attuale
-     - cance - chiude il dialogo.
+  <TD><ol>
+       <li>        Scelta della condizione: 'maggiore', 'uguale' o 'minore'
+        <li>  Il valore di confronto, un numero (24) o una stringa (true)
+        <li>  Messaggio associato: è usato <ul>
+             <li> negli Alert con 'pop-up'
+          <li> è il testo letto nel caso 'voice'
+           <li> oppure è un URL ed allore è aperta nel browser
+            <li> oppure è il nome di un 'tap-to-run' che è eseguito </ul>
+         <li>  Azione: una o più a scelta tra 'beep' 'pop' e 'voice' (URL e tap-to-run sono automatiche) </li></ol>
+ <i> nota: per avere, ad esempio, sia 'pop' che 'tap-to-run', creare due Alert con le stesse condizioni: in una 'message' sarà il testo per il 'pop-up', nell'altra il nome del 'tap-to-run'.</i>
+Bottoni:
+ <ul>  
+    <li>  <b> newTest </b>- aggiunge un nuovo Alert (solo  run corrente)
+    <li>  <b>lear dev </b>- elimina tutti gli Alert del device (solo  run corrente)
+    <li>  <b> config </b>- apre pop-up per vedere le definizioni  degli alert attuali
+    <li>  <b> cancel </b>b- chiude il dialogo.</ul>
   </TD>
  </TR>
 </TABLE>
