@@ -132,18 +132,32 @@ In modo EXPERT cliccando su un device si apre un dialogo, nella parte inferiore 
             <li> oppure è il nome di un 'tap-to-run' che è eseguito </ul>
          <li>  Azione: una o più a scelta tra 'beep' 'pop' e 'voice' (URL e tap-to-run sono automatiche) </li></ol>
  <i> nota: per avere, ad esempio, sia 'pop' che 'tap-to-run', creare due Alert con le stesse condizioni: in una 'message' sarà il testo per il 'pop-up', nell'altra il nome del 'tap-to-run'.</i>
+  </TD>
+ </TR>
+</TABLE>
 Bottoni:
  <ul>  
     <li>  <b> newTest </b>- aggiunge un nuovo Alert (solo  run corrente)
     <li>  <b>lear dev </b>- elimina tutti gli Alert del device (solo  run corrente)
     <li>  <b> config </b>- apre pop-up per vedere le definizioni  degli alert attuali
     <li>  <b> cancel </b>b- chiude il dialogo.</ul>
+
+
+### RULE
+<TABLE width = "100%" >
+ <TR>
+  <TD>
+  In modo EXPERT cliccando su un device si apre un dialogo, nella parte superiore interessa l'export dei dati su file:
+     - newLog - aggiunge al log (solo per il run corrente)
+     - clear dev - elimina il device dal log, (tutte le proprietà)
+     - config - apre pop-up per vedere le definizioni del log attuale
+     - cance - chiude il dialogo.
+  </TD>
+  <TD>
+   <img src="https://github.com/msillano/IoTwebUI/blob/main/pics/alert20.png?raw=true" />
   </TD>
  </TR>
 </TABLE>
-
-### RULE
-
 ### EXPERT ode
 
 
