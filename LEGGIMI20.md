@@ -84,8 +84,13 @@ La modalità EXPERT offre un controllo totale sulla personalizzazione di IoTwebU
 - Il funzionamento continua regolarmente anche con la finestra del browser iconizzata.
 
 ### Interfaccia utente
+![](https://github.com/msillano/IoTwebUI/blob/main/pics/tootip20.png?raw=true)
 
-- Nei tooltip, per default, sono presentate tutte le proprietà incluse nello 'status' del device, con i nomi e i valori usati da Tuya Cloud. Alcuni valori possono essere codificati.
+Nei tooltip, per default, sono presentate tutte le proprietà incluse nello 'status' del device, con i nomi e i valori usati da Tuya Cloud. Alcuni valori possono essere codificati. Vedi figere:
+   - tuya_bridge.switch_1 è interessato da un 'alert'. tuya_bridge.switch_inching è codificato
+   - 'temperatura studio'.va_temperature è salvato su datafile
+   - 'temperatura soggiorno'.va _humidity è scattato l'Alert, ed è indicata la condizione (>40)
+
 
 ### Logging ed esportazione dati
 
