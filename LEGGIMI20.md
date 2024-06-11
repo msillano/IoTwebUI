@@ -115,7 +115,7 @@ L'utente può scegliere in configurazione tra due formati: `CVS` (indicato, per 
 
 In modalità EXPERT è disponibile nel menu un comando per avere nella console l'intera struttura dati ottenuta da Tuya Cloud ('Dump data'): può essere esplorata a ogni livello nel pad della console oppure può essere copiata con copy&paste in formato JSON.
 
-### Alert
+### Alert ed avvisi
 In modo EXPERT cliccando su un device si apre un dialogo, nella parte inferiore permette la definizione degli 'Alert':
 <TABLE width = "100%" >
  <TR>
@@ -143,7 +143,7 @@ Bottoni:
     <li>  <b> cancel </b>b- chiude il dialogo.</ul>
 
 
-### RULE
+### RULE: automazioni no limits.
   In modo EXPERT il menu presenta l'opzione "RULE page" che apre una pagina dedicata alla gestione delle RULE: 
 <TABLE width = "100%" >
  <TR>
@@ -166,9 +166,8 @@ Bottoni:
   </TD>
  </TR>
 </TABLE>
-### EXPERT ode
 
-
+<HR>
 **NOTE sulla sicurezza**
 
 **_Per garantire la massima sicurezza, **IoTwebUI** opera esclusivamente in modalità di sola lettura, senza apportare alcuna modifica ai tuoi dati su Tuya Cloud._** <br>
