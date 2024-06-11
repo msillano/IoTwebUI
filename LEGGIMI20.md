@@ -100,7 +100,11 @@ L'utente può scegliere in configurazione tra due formati: `CVS` (indicato, per 
 <TABLE width = "100%" >
  <TR>
   <TD>
-  In modo EXPERT cliccando su un device si apre un dialogo  
+  In modo EXPERT cliccando su un device si apre un dialogo, nella parte superiore interessa l'export dei dati su file:
+     - newLog - aggiunge al log (solo per il run corrente)
+     - clear dev - elimina il device dal log, (tutte le proprietà)
+     - config - apre pop-up per vedere le definizioni del log attuale
+     - cance - chiude il dialogo.
   </TD>
   <TD>
    <img src="https://github.com/msillano/IoTwebUI/blob/main/pics/alert20.png?raw=true" />
