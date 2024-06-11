@@ -113,9 +113,33 @@ L'utente può scegliere in configurazione tra due formati: `CVS` (indicato, per 
 </TABLE>
 
 
-In modalità 'expert' è disponibile un comando per avere nella console l'intera struttura dati ottenuta da Tuya Cloud: può essere esplorata a ogni livello nel pad della console oppure può essere copiata con copy&paste in formato JSON.
+In modalità EXPERT è disponibile nel menu un comando per avere nella console l'intera struttura dati ottenuta da Tuya Cloud ('Dump data'): può essere esplorata a ogni livello nel pad della console oppure può essere copiata con copy&paste in formato JSON.
 
 ### Alert
+<TABLE width = "100%" >
+ <TR>
+  <TD>
+   <img src="https://github.com/msillano/IoTwebUI/blob/main/pics/alert21.png?raw=true" />
+  </TD>
+  <TD>
+  In modo EXPERT cliccando su un device si apre un dialogo, nella parte inferiore permette la definizione degli 'Alert':
+       1. Scelta della condizione: 'maggiore', 'uguale' o 'minore'
+       2. Il valore di confronto, un numero (24) o una stringa (true)
+       3. Messaggio associato: è usato
+            - negli Alert con 'pop-up'
+            - è il testo nel caso 'voice'
+            - oppure è un URL ed allore è aperta nel browser
+            - oppure è il nome di un 'tap-to-run' che è eseguito
+       4.  Azione: una o più a scelta tra 'beep' 'pop' e 'voice' (URL e tap-to-run sono automatiche)
+       nota: per avere, ad esempio, sia 'pop' che 'tap-to-run', creare due Alert con le stesse condizioni: in una 'message' sarà il testo per il 'pop-up', nell'altra il nome del 'tap-to-run'.
+   
+     - newTest - aggiunge un nuovo Alert (solo per il run corrente)
+     - clear dev - elimina il device dal log, (tutte le proprietà)
+     - config - apre pop-up per vedere le definizioni del log attuale
+     - cance - chiude il dialogo.
+  </TD>
+ </TR>
+</TABLE>
 
 ### RULE
 
