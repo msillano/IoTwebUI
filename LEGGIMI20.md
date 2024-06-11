@@ -1,7 +1,7 @@
 # IoTwebUI 2.0: Tuya WEBAPP open extension #
 [english version](https://github.com/msillano/IoTwebUI/blob/main/README20.md)
 
-**_Stanco delle limitazioni di SmartLife?  IoTwebUI 2.0 è arrivato per dare nuova linfa alla tua casa intelligente, con un arsenale di funzionalità che ti faranno dire "finalmente!". <br> La filosofia 'open' è nel DNA di questa APP, ed esalta la customizzazione ed il controllo da parte dell'utente._** 
+**_Stanco delle limitazioni di SmartLife?  IoTwebUI 2.0 è arrivato per dare nuova linfa alla tua casa intelligente, con un arsenale di funzionalità che ti faranno dire "finalmente!". <br> La filosofia 'open' è nel DNA di questa APP, che esalta la customizzazione ed il controllo da parte dell'utente._** 
 
 _Cosa puoi fare?_<br>
 👀 Controlla tutto: Interfaccia intuitiva e personalizzabile, dati sempre a portata di mano, gestione flessibile.<br>
@@ -77,9 +77,9 @@ La modalità EXPERT offre un controllo totale sulla personalizzazione di IoTwebU
 
 - Tuya pone dei limiti alla frequenza degli accessi al cloud. _IoTwebUI_ ne tiene conto, e la fase iniziale (quando legge tutti i dati dal Cloud) è bloccante e non brevissima (3-5 s, in funzione del numero di device). Come anche in SmartLife.
 
-- Per ovviare all'impossibilità di creare file direttamente da una pagina HTML, sempre per motivi di sicurezza, per l'export dei dati sono ricorso ad una libreria di logging su file [debugout.js](https://github.com/inorganik/debugout.js). Per questo motivo il controllo sui file generati non è completo e sono necessari piccoli  interventi manuali sui file esportati.
+- Un secondo problema è l'impossibilità di creare file direttamente da una pagina HTML, sempre per motivi di sicurezza. Per l'export dei dati sono ricorso ad una libreria di logging su file [debugout.js](https://github.com/inorganik/debugout.js). Per questo motivo il controllo sui file generati non è completo e sono necessari piccoli  interventi manuali sui file esportati.
 - I file di datalog sono salvati nella dir `download`, con il nome  `tuyalog-hh-mm-ss.cvs|json`.
-- Per lo stesso motivo non è possibile aggiornare dall'APP i file di configurazione. Si è scelta una soluzione che prevede l'intervento dell'utente con un copia-incolla.
+- Per lo stesso motivo non è possibile aggiornare dall'APP i file di configurazione. Ho scelto una soluzione di compromesso, che prevede l'intervento dell'utente con un copia-incolla.
  
 - Il funzionamento continua regolarmente anche con la finestra del browser iconizzata.
 
