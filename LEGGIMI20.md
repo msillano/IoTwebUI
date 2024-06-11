@@ -144,17 +144,25 @@ Bottoni:
 
 
 ### RULE
+  In modo EXPERT il menu presenta l'opzione "RULE page" che apre una pagina dedicata alla gestione delle RULE: 
 <TABLE width = "100%" >
  <TR>
   <TD>
-  In modo EXPERT cliccando su un device si apre un dialogo, nella parte superiore interessa l'export dei dati su file:
-     - newLog - aggiunge al log (solo per il run corrente)
-     - clear dev - elimina il device dal log, (tutte le proprietà)
-     - config - apre pop-up per vedere le definizioni del log attuale
-     - cance - chiude il dialogo.
-  </TD>
+   Una parte importante è dedicata ad un pad di editing delle RULE (per dettagli vedi oltre).<br>
+<i>Nota: se preferite usare un editor esterno più performante, potete certamente farlo, con copia-incolla.</i> <br>
+  
+   I bottoni presenti offrono le seguenti funzionalità;
+   <ul>  
+    <li>  <b> Clear </b>- pulisce l'area di edit
+    <li>  <b> Load </b>- copia in Edit le RULE attualmente in uso
+    <li>  <b> Replace </b>- le RULE attualmente in uso sono sostitute da quelle in edit.
+    <li>  <b> Export </b>- Crea un pop-up da cui copiare le RULE per renderle permanenti.
+    <li>  <b> Test Start </b>- Start test delle RULE in Edit: le RULE in uso sono sospese.
+    <li>  <b>Test End</b>- Termina il Test e ripristina le ROULE precedenti (auto in caso di errore)
+    </ul>
+ </TD>
   <TD>
-   <img src="https://github.com/msillano/IoTwebUI/blob/main/pics/alert20.png?raw=true" />
+   <img src="https://github.com/msillano/IoTwebUI/blob/main/pics/rules20.png?raw=true" />
   </TD>
  </TR>
 </TABLE>
