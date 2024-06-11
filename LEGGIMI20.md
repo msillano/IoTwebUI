@@ -296,15 +296,76 @@ E' un array di array contenenti le singole misure (oggetti).
 
 ### RULE - sintassi
 Il particolare ambiente in cui sono valutate le RULE comporta qualche limite alla sintassi js standard:
-- importante: il codice è eseguito una riga alla volta, non è possibile scrivere blocchi che occupano più righe!
-  Per contenere la lunghezza delle righe, usare più variabili intermedie.
+- importante: il codice è eseguito una riga alla volta, non è possibile scrivere blocchi js che occuppino più righe!
+  Per contenere la lunghezza delle righe, usare delle variabili intermedie.
 - definire le variabili sempre con la sintassi var \_pippo =...
 - usare un underscore '\_' come primo carattere nel nome delle variabili: si evitano così interferenze con altre variabili.
 - le RULE sono eseguite immediatamente dopo un aggiornamente dei dati Tuya. Molte funzioni devono quindi conservare lo stato tra un run ed il successivo. Le MACRO si occupano di ciò e semplificano la scrittura di RULE complesse.
+<hr>
+
+ESEMPIO 1: usato per testare le MACRO, funziona con i miei device (deve essere modificato per i vostri). <BR>
+
+```
+// -- various temperature calculations with popup and logging:
+// using variables, and MACROS: GET() AVG() ROUND() EVERY() POP() DATALOG()
+ var _tf = GET("TF_frigo","va_temperature");
+ var _tm = AVG(_tf, 12);
+ var _tr = ROUND( _tm/10,  -1);  // I only get tens
+ if(EVERY(8)) POP( "FRIGO", "Frigo: "+ _tf/10 + "°C, media: "+_tm/10 +"°C, round " + _tr +"°C");
+ DATALOG("frigo.media", _tm/10);
+ 
+// using again _tf, and MACROS: ISCONNECTED() ISCHANGED()  TIME() VOICE() ROUND()
+// note: the delay is a function of the Tuya polling interval and device data period. In strings, ROUND can be used to cut a number. 
+
+ var _annonce = "Alle ore " + TIME(hrs)+" la temperatura è cambiata. Il frigo è a " + ROUND(_tf/10, 1) + " gradi";
+ if(ISCONNECTED("TF_frigo") && ISCHANGED(_tf)) VOICE(_annonce);    
+
+// -- more functions (testing purpose):
+// using MACROS: WEEKMAP() BEEP()
+
+ if ( WEEKMAP("DLMM-VS")) BEEP();
+
+// using variables, and MACROS: ISTRIGGERL() DAYMAP() SCENA()
+
+ var _trgl = ISTRIGGERL(GET("tuya_bridge", "switch_1"));
+ if(DAYMAP(false,"08:30", true, "22:00") && _trgl) SCENA('sirena2');
+
+// Voice message if someone keeps the door open
+// using variables and MACROS: CONFIRMH() ALERTLOG()
+// note: this example shows how to debug RULES, using single functions and 'console.log()'
+// note: after an if()  you can use a comma ',' to execute more than one MACRO 
+
+var _doorev = GET("Sensore porta", "doorcontact_state") ;   //event: true if door open
+var _doorok = CONFIRMH(_doorev, "01:20");         // true only after 1:20
+if(ISTRIGGERH(_doorok)) VOICE("chiudere la porta, grazie"), ALERTLOG("ingresso", "porta aperta") ;
+console.log("DOOR", _doorev, _doorok);
+```
+ESEMPIO 2 - Un caso concreto di controllo del riscaldamento
+Ho il riscaldamento centralizzato, con valvole termostatiche su ogni radiatore: ogni stanza ha il suo profilo di temperatura desiderato (Ttarget). Tutto funziona molto bene, tranne in casi eccezionali (esempio, impianto spento per manutezione). <br>
+ Vorrei implementare con Tuya una strategia di questo tipo: se la temperatura ambiente è minore di un 'tot' rispetto a Ttarget, accendere il condizionatore come pompa di calore con lo stesso Ttarget. Cioè:
+
+   Se  (( Ttarget - Tambiente ) > tot) => clima.warm( Ttarget ) 
+ 
+_Questa automaziono non è realizzabile con Smartlife_, nè con Alexa o Google, perchè non si possono usare operazioni aritmetiche,  perchè si possono fare confronti solo con costanti, e perchè non esistono tap-to-run parametrici od almeno con nomi dinamici.
+ 
+Chiedo troppo? Un sistema 'open' deve permetterlo: infatti con le RULE _si può fare_! <br>
+_Alcune precondizioni: la mia termovalvola ('Termo letto')  ha le proprietà 'temp_set' e 'temp_current'.
+Per semplicità ho utilizzato come temperatura Target solo i valori 16, 20, 21 °C: in questo modo mi occorrono solo 3 tap-to-run chiamati Tletto16, Tletto20 e Tletto21, per accendere ed impostare il clima._
+```
+var _tot = 2.3;  // da tarare 
+var _Ttarget =  GET("Termo letto", "temp_set") ;
+var _nowClima = ISTRIGGERH( ( _Ttarget -  GET("Termo letto", "temp_set")) > _tot)
+if (_nowClima) SCENA("TLetto" + ROUND(_Ttarget. 0) ), ALERTLOG("RULE Tletto", "acceso clima") ;
+```
 
 ### RULE - MACRO
-Possiamo dividerle in due gruppi: il primo che gestisce le interazioni con le risorse disponibili in IoTwebUI (una sorta di API interna). il secondo gruppo di MACRO sono invece generali, modificando in qualche modo utile  i dati forniti dai device. 
+Possiamo dividerle in due gruppi: il primo che gestisce le interazioni con le risorse disponibili in IoTwebUI (una sorta di API interna). il secondo gruppo di MACRO sono invece generali, modificando in qualche modo utile  i dati forniti dai device. <dl>
+<dt>  ISTRIGGERH(condition) </dt>
+<dd> Ritorna 'true' solo al passaggio della condizione da 'false' a 'true' (come le condizioni delle automazioni Tuya). </dd>
+<dt>  ISTRIGGERL(condition) </dt>
+<dd> Ritorna 'true' solo al passaggio della condizione da 'true' a 'false'  (opposto di ISTRIGGERH) /dd>
 
+</dl>
 <hr>
 Progetto OpenSource, Licenza MIT, (c)2024 marco sillano
 
