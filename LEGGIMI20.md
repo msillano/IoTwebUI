@@ -123,7 +123,6 @@ In modo EXPERT cliccando su un device si apre un dialogo, nella parte inferiore 
    <img src="https://github.com/msillano/IoTwebUI/blob/main/pics/alert21.png?raw=true" />
   </TD>
   <TD>
-  
        1. Scelta della condizione: 'maggiore', 'uguale' o 'minore'
        2. Il valore di confronto, un numero (24) o una stringa (true)
        3. Messaggio associato: è usato
