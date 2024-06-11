@@ -87,9 +87,10 @@ La modalità EXPERT offre un controllo totale sulla personalizzazione di IoTwebU
 ![](https://github.com/msillano/IoTwebUI/blob/main/pics/tootip20.png?raw=true)
 
 Nei tooltip, per default, sono presentate tutte le proprietà incluse nello 'status' del device, con i nomi e i valori usati da Tuya Cloud. Alcuni valori possono essere codificati. Vedi figere:
-   - tuya_bridge.switch_1 è interessato da un 'alert'. tuya_bridge.switch_inching è codificato
+   - tuya_bridge.switch_1 è interessato da un 'alert'. tuya_bridge.switch_inching è codificato (AAAC)
    - 'temperatura studio'.va_temperature è salvato su datafile
-   - 'temperatura soggiorno'.va _humidity è scattato l'Alert, ed è indicata la condizione (>40)
+   - Per 'temperatura soggiorno'.va _humidity è scattato l'Alert, ed è indicata la condizione (>40)
+   - Il tooltip 'termo studio' è customizzato,  per presentare la temperatra con i corretti decimali.
 
 
 ### Logging ed esportazione dati
@@ -98,9 +99,6 @@ E' possibile esportare su un file alcuni dati: l'utente deve specificare solo `d
 L'utente può scegliere tra due formati: `CVS` (indicato, per esempio, per DB e spreadsheet tipo Excel) oppure `JSON` (per elaborazioni più complesse con programmi ad hoc) con pochissimi interventi di editing sui file (vedi oltre i formati).
 
 In modalità 'expert' è disponibile un comando per avere nella console l'intera struttura dati ottenuta da Tuya Cloud: può essere esplorata a ogni livello nel pad della console oppure può essere copiata con copy&paste in formato JSON.
-
-### Tap-to-run
-
 
 ### Alert
 
