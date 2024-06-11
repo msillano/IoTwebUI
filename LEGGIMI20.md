@@ -91,7 +91,10 @@ Nei tooltip, per default, sono presentate tutte le proprietà incluse nello 'sta
    - 'temperatura studio'.va_temperature è salvato su datafile
    - Per 'temperatura soggiorno'.va _humidity è scattato l'Alert, ed è indicata la condizione (>40)
    - Il tooltip 'termo studio' è customizzato,  per presentare la temperatra con i corretti decimali.
-
+   - In modo EXPERT sono aggiunti ai tooltip i seguenti valori:
+       - `isa`:  nome del 'tipo' Tuya del device ( in codice è `device.category`). In totale circa 600 tipi.
+       - `id`:  `device.id`, richiesto da alcuni HUB
+       - `key`: `device.local_key`, richiesto da alcuni HUB 
 
 ### Logging ed esportazione dati
 
@@ -197,12 +200,10 @@ _NON rendetela accessibile dall'esterno o da terzi, altrimenti tutti i vostri da
   - Aggiunta in 'config' la possibilità di escludere alcune 'home'
   - Introdotti due modi: normale | expert
     1. Il DUMP dei dati Tuya in console è possibile solo in modo expert
-    2. In modo 'expert' sono aggiunti al tooltip 3 nuovi dati (se disponibili):
-       - `isa`:  nome del 'tipo' Tuya del device ( in codice è `device.category`). In totale circa 600 tipi.
-       - `id`:  `device.id`, richiesto da alcuni HUB
-       - `key`: `device.local_key`, richiesto da alcuni HUB 
-        
+    2. In modo 'expert' sono aggiunti al tooltip 3 nuovi dati (se disponibili)
+         
 - 1.1  Correzione bugs
+
 - 1.0  Versione iniziale
 
 ### Installazione
