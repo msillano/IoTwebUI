@@ -116,13 +116,14 @@ L'utente può scegliere in configurazione tra due formati: `CVS` (indicato, per 
 In modalità EXPERT è disponibile nel menu un comando per avere nella console l'intera struttura dati ottenuta da Tuya Cloud ('Dump data'): può essere esplorata a ogni livello nel pad della console oppure può essere copiata con copy&paste in formato JSON.
 
 ### Alert
+In modo EXPERT cliccando su un device si apre un dialogo, nella parte inferiore permette la definizione degli 'Alert':
 <TABLE width = "100%" >
  <TR>
-  <TD>
+  <TD  width = "15%">
    <img src="https://github.com/msillano/IoTwebUI/blob/main/pics/alert21.png?raw=true" />
   </TD>
   <TD>
-  In modo EXPERT cliccando su un device si apre un dialogo, nella parte inferiore permette la definizione degli 'Alert':
+  
        1. Scelta della condizione: 'maggiore', 'uguale' o 'minore'
        2. Il valore di confronto, un numero (24) o una stringa (true)
        3. Messaggio associato: è usato
