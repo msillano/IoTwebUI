@@ -103,7 +103,7 @@ L'utente può scegliere in configurazione tra due formati: `CVS` (indicato, per 
   In modo EXPERT cliccando su un device si apre un dialogo  
   </TD>
   <TD>
-   ![](https://github.com/msillano/IoTwebUI/blob/main/pics/alert20.png?raw=true)
+   <img href="https://github.com/msillano/IoTwebUI/blob/main/pics/alert20.png?raw=true" />
   </TD>
  </TR>
 </TABLE>
