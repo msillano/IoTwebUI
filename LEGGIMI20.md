@@ -6,7 +6,7 @@
 _Cosa puoi fare?_<br>
 👀 Controlla tutto: Interfaccia intuitiva e personalizzabile, dati sempre a portata di mano, gestione flessibile.<br>
 🔬 Esportazione dati: Salva le serie storiche per le tue analisi, nel formato più utile<br>
-⚡️ Automazioni potenti: Crea automazioni complesse e personalizzate con le RULE, impossibili con SmartLife!<br>
+⚡️ Automazioni potenti: Crea automazioni complesse con le RULE, impossibili con SmartLife!<br>
 ⏱️ Alert personalizzati: Monitora ogni aspetto della tua domotica e ricevi avvisi realtime. <br>
 👌 Integrazione perfetta: Combina device, proprietà, RULE e Tuya tap-to-run per un'automazione fluida e completa.
 
@@ -106,7 +106,8 @@ L'utente può scegliere in configurazione tra due formati: `CVS` (indicato, per 
    <ul>  
     <li>  <b> newLog </b>- aggiunge al log (solo per il run corrente)
     <li>  <b>clear dev </b>-  elimina il device dal log, (tutte le proprietà)
-    <li>  <b> config </b>- apre pop-up per vedere le definizioni del log attuale
+    <li>  <b> config </b>- apre pop-up per vedere le definizioni del log attuale <br>
+        <i> I 'log' permanenti sono nel file `config.js`: possono essere editati direttamente o copiati dal pop-up.</i>
     <li>  <b> cancel </b>b- chiude il dialogo.</ul>
   </TD>
   <TD>
@@ -141,12 +142,12 @@ In modo EXPERT cliccando su un device si apre un dialogo che nella parte inferio
 </TABLE>
 Bottoni:
  <ul>  
-    <li>  <b> newTest </b>- aggiunge un nuovo Alert (solo  run corrente)
-    <li>  <b>clear dev </b>- elimina tutti gli Alert del device (solo  run corrente)
-    <li>  <b> config </b>- apre pop-up per vedere le definizioni  degli alert attuali
+    <li>  <b> newTest </b>- aggiunge un nuovo Alert (solo per il  run corrente)
+    <li>  <b>clear dev </b>- elimina tutti gli Alert del device (solo per il run corrente)
+    <li>  <b> config </b>- apre pop-up per vedere le definizioni  degli alert attuali. <br>
+        <i> Gli 'Alert' permanenti sono nel file `config.js`: possono essere editati direttamente o copiati dal pop-up.</i>
     <li>  <b> cancel </b>b- chiude il dialogo.</ul>
-
-
+ 
 ### RULE: automazioni no limits.
   In modo EXPERT il menu presenta l'opzione "RULE page" che apre una pagina dedicata alla gestione delle RULE: 
 <TABLE width = "100%" >
@@ -162,7 +163,7 @@ Si possono gestire due insiemi di RULE: quelle in _uso_, inizialmente lette dal 
     <li>  <b> Clear </b>- pulisce l'area di edit
     <li>  <b> Load </b>- copia in Edit le RULE attualmente in uso
     <li>  <b> Replace </b>- le RULE attualmente in uso sono sostitute da quelle in edit.
-    <li>  <b> Export </b>- Crea un pop-up da cui copiare le RULE per renderle permanenti.
+    <li>  <b> Export </b>- Crea un pop-up per vedere le definizioni delle  RULE attuali.<br> <i>Le RULE permanenti sono nel file `usrrulesXX.X.js`: possono essere editate direttamente o copiate dal pop-up.</i>
     <li>  <b> Test Start </b>- Start test delle RULE in Edit: le RULE in uso sono sospese.
     <li>  <b> Test End</b>- Termina il Test e ripristina le ROULE precedenti (auto in caso di errore)
     </ul>
