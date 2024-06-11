@@ -344,7 +344,7 @@ ESEMPIO 2 - Un caso concreto di controllo del riscaldamento
 Ho il riscaldamento centralizzato, con valvole termostatiche su ogni radiatore: ogni stanza ha il suo profilo di temperatura desiderato (Ttarget). Tutto funziona molto bene, tranne in casi eccezionali (esempio, impianto spento per manutezione). <br>
  Vorrei implementare con Tuya una strategia di questo tipo: se la temperatura ambiente è minore di un 'tot' rispetto a Ttarget, accendere il condizionatore come pompa di calore con lo stesso Ttarget. Cioè:
 
-   Se  (( Ttarget - Tambiente ) > tot) => clima.warm( Ttarget ) 
+   `Se  (( Ttarget - Tambiente ) > tot) => clima.warm( Ttarget )` 
  
 _Questa automaziono non è realizzabile con Smartlife_, nè con Alexa o Google, perchè non si possono usare operazioni aritmetiche,  perchè si possono fare confronti solo con costanti, e perchè non esistono tap-to-run parametrici od almeno con nomi dinamici.
  
@@ -361,9 +361,51 @@ if (_nowClima) SCENA("TLetto" + ROUND(_Ttarget. 0) ), ALERTLOG("RULE Tletto", "a
 ### RULE - MACRO
 Possiamo dividerle in due gruppi: il primo che gestisce le interazioni con le risorse disponibili in IoTwebUI (una sorta di API interna). il secondo gruppo di MACRO sono invece generali, modificando in qualche modo utile  i dati forniti dai device. <dl>
 <dt>  ISTRIGGERH(condition) </dt>
-<dd> Ritorna 'true' solo al passaggio della condizione da 'false' a 'true' (come le condizioni delle automazioni Tuya). </dd>
+<dd> Ritorna `true` solo al passaggio della `condizione` da `false` a `true` (come le condizioni delle automazioni Tuya). </dd>
 <dt>  ISTRIGGERL(condition) </dt>
-<dd> Ritorna 'true' solo al passaggio della condizione da 'true' a 'false'  (opposto di ISTRIGGERH) /dd>
+<dd> Ritorna `true` solo al passaggio della `condizione` da `true` a `false`  (inverso  di ISTRIGGERH) </dd>
+<dt>  CONFIRMH(condition, time) </dt>
+<dd> Ritorna `true` solo se la `condizione` rimane `true` per almeno 'time' tempo.<BR>
+time = "hh:mm:ss" oppure "mm:ss" oppure "ss"</dd>
+<dt>  CONFIRML(condition, time) </dt>
+<dd> Ritorna `true` solo se la `condizione` rimane `false` per almeno 'time' tempo  (inverso  di CONFIRMH).<BR>
+`time` = costante nei formati "hh:mm:ss" oppure "mm:ss" oppure "ss"</dd>
+<dt>  EVERY(n)</dt>
+<dd>  Semplice timer: ritorna `true` solo dopo n esecuzioni, ciclico </dd>
+<dt>  TIME(wath) </dt>
+<dd>  ritorna  "hh:mm:ss" oppure "mm:ss" oppure "ss" riferiti all'ora attuale, a seconda di 'wath'.
+  `whath`: una delle costanti così definite: `hrs` = 11, `min` = 14, `sec` = 17. (senza apici). </dd>
+<dt>  DAYMAP(val1, time1, val2, time2, ... more) </dt>
+<dd> Ritorna: fino a `time1` l'ourput è `val1`, da  `time1` a  `time2`  l'output è `val2`... avanti così fino  all'ultimo `time` dopo di che  l'output è di nuovo `val1`.<br>
+Naturalmente i valori `val` + `time` devono essere aggiunti a coppie, quanti ne servono. Tutti i `time` in formato "hh:mm:ss".<br>
+Usi: profili di temperatura giornalieri, eventi ad orario o abilitazione per intervalli di tempo, etc.
+ </dd>
+<dt>  WEEKMAP(map) </dt>
+<dd> `map` è una stringa di sette caratteri qualsisi, uno al giorno partendo dalla Domenica. Solo se il carattere è '-' (trattino) ritorna falese altrimenti torna `true`. Esempio: "'DLMM-VS' è falso solo il Giovedì. </dd>
+ <dt> AVG(value, n) </dt>
+<dd> Media mobile degli ultimi `n` valori: torna una stringa con 2 decimali.<br>
+`n` è in numero di loop, in tempo t = n x tuyaInterval (definito in config.js file)</dd>
+
+ <dt> MAX(value, n) </dt>
+<dd>Il più grande  degli ultimi `n` valori.<br>
+`n` è in numero di loop, in tempo t = n x tuyaInterval (definito in config.js file)</dd>
+
+ <dt> ZEROMAX() </dt>
+<dd>Azzera tutti i MAX() presenti in caso di lunghi periodi, e.g. 24h.<br>
+_esempio_: `if(ISTRIGGERH(DAYMAP(false, '00:00:00', true, '00:20:00'))) ZEROMAX();`<br>
+_nota: deve essere posizionato dopo tutti i MAX() presenti._
+ </dd>
+<dt>ISCHANGED(value) </dt>
+<dd> ritorna  `true` ogni volta che  `value ` cambia rispetto al valore precedente.</dd>
+
+<dt>ROUND(number, pos)</dt>
+<dd> Torna una stringa con pos cifre decimali (se pos >0) <br>
+     oppure ubìn numero intero (pos = 0) <br>
+     oppure un numero arrotondato (pos < 0) <br>
+     _esempi:_ ROUND (123.567, 2) = "123.56";  ROUND(123.567, 0)  = "123";  ROUND(123.567, -2)  = "100"; 
+ 
+</dd>
+
 
 </dl>
 <hr>
