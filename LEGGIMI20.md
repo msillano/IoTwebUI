@@ -107,7 +107,7 @@ Alcune piccole icone informano l'utente (vedi figure sopra):
 ### Logging ed esportazione dati
 
 E' possibile esportare su un file alcuni dati: l'utente deve specificare solo `device` e `status` (proprietà) per identificare i dati che interessano e questi sono salvati ad intervalli regolari (minimo 1 minuto) in un buffer interno (max 5000 records - pari a 80h @1 rec/min), esportato poi su file automaticamente o su comando utente.<br>
-L'utente può scegliere in configurazione tra due formati: `CVS` (indicato, per esempio, per DB e spreadsheet tipo Excel) oppure `JSON` (per elaborazioni più complesse con programmi ad hoc) con pochissimi interventi di editing sui file (vedi oltre i formati).
+L'utente può scegliere in configurazione tra due formati: `CSV` (indicato, per esempio, per DB e spreadsheet tipo Excel) oppure `JSON` (per elaborazioni più complesse con programmi ad hoc) con pochissimi interventi di editing sui file (vedi oltre i formati).
 <TABLE width = "100%" >
  <TR>
   <TD>
@@ -266,7 +266,7 @@ Queste customizzazioni NON sono necessarie, ma redono più utile e gradevole l'u
 
 ### formato CSV
 
-Questo è un esempio di file di log in formato CVS:
+Questo è un esempio di file di log in formato CSV:
 ```
 [date, time, ROMA.TF_frigo.va_temperature, ROMA.Temperatura studio.va_temperature]
 [2024-05-17, 06:35:28, 71, 22]
@@ -278,7 +278,7 @@ Le operazioni da fare sono le seguenti (in un editor ASCII, ad esempio Notepad++
 1) Eliminare la parentesi quadra '[' all'inizio di ogni riga.
 2) Sostituire la parentesi quadra finale con un punto e virgola ';'.
    
-Il risultato CVS corretto è il seguente, importabile in molti DB e spreadsheet:
+Il risultato CSV corretto è il seguente, importabile in molti DB e spreadsheet:
 ```
 date, time, ROMA.TF_frigo.va_temperature, ROMA.Temperatura studio.va_temperature;
 2024-05-17, 06:35:28, 71, 22;
@@ -293,7 +293,7 @@ Questo è un esempio di file di log in formato JSON:
 [{"home":"ROMA","device":"TF_frigo","status":"va_temperature","result":70,"day":"2024-05-17","time":"19:39:51"},
  {"home":"ROMA","device":"Temperatura studio","status":"va_temperature","result":25,"day":"2024-05-17","time":"19:39:51"}],
 ```
-Notare che tutti i dati identificativi sono aggiunti ad ogni misura, ottenendo un risultato più verboso del caso CVS.
+Notare che tutti i dati identificativi sono aggiunti ad ogni misura, ottenendo un risultato più verboso del caso CSV.
 L'operazioni da fare è la seguente (in un editor ASCII, ad esempio Notepad++):
 1) Aggiungere una coppia di parentesi quadre '[]' per racchiudere tutto il contenuto.
    
@@ -372,7 +372,7 @@ _Ho il riscaldamento centralizzato, con valvole termostatiche su ogni radiatore:
  
 _Questa automazione non è realizzabile con Smartlife_, nè con Alexa o Google, perchè:
    - non si possono usare operazioni aritmetiche,
-   - si possono fare confronti solo con costanti,
+   - si possono fare confronti solo con valori costanti,
    - non esistono tap-to-run parametrici od almeno con nomi dinamici.
  
 Chiedo troppo? Un sistema 'open' devrebbe permettere queste automazioni. O no? infatti con le RULE _si può fare_! <br>
