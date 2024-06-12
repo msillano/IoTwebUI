@@ -133,7 +133,7 @@ In modo EXPERT cliccando su un device si apre un dialogo che nella parte inferio
         <li>  Messaggio associato: è usato <ul>
              <li> negli Alert con 'pop-up'
              <li> è il testo letto nel caso 'voice'
-             <li> oppure è un URL ed allore è aperta nel browser
+             <li> oppure è un URL ed allora è aperto nel browser
              <li> oppure è il nome di un 'tap-to-run' che è eseguito </ul>
          <li>  Azione: una o più a scelta tra 'beep' 'pop' e 'voice' (URL e tap-to-run sono automatiche) </li></ol>
  <i> nota: per avere, ad esempio, sia 'pop' che 'tap-to-run', creare due Alert con le stesse condizioni: in uno 'message' sarà il testo per il 'pop-up', nell'altro il nome del 'tap-to-run'.</i>
@@ -155,7 +155,7 @@ Bottoni:
   <TD>
    Una parte importante è dedicata ad un pad di editing delle RULE (per dettagli vedi oltre).<br>
 <i>Nota: se preferite usare un editor esterno più performante, potete certamente farlo, con copia-incolla.</i><br>
-Si possono gestire due insiemi di RULE: quelle in <i>uso</i>, inizialmente lette dal file `usrrulesXX.X.js`, e quelle nuove, <i>in Edit</i> nel nel pad.
+Si possono gestire due insiemi di RULE: quelle in <i>uso</i>, inizialmente lette dal file `usrrulesXX.X.js`, e quelle nuove, <i>in Edit</i> nel pad.
 <br>
   
    I bottoni presenti offrono le seguenti funzionalità;
@@ -223,7 +223,7 @@ Nelle immagini: a sinistra avvio OK (Chrome, CORS disattivato) a destra in caso 
 
 L'app **IoTwebUI** non è per utenti alle prime armi, pertanto è accettabile che la configurazione avvenga direttamente editando un file (`config`.js). _Le solite avvertenze: fare una copia del file prima di ogni modifica, usare un editor UTF8 (io uso Notepad-plusplus), e attenzione a NON ALTERARE niente altro (soprattutto virgole  ','  ed  apici '"')._
 
- - I dati INDISPENSABILI da inserire sono le proprie `credenziali Tuya` per la 'platform.tuya'. <BR> Gli utenti di HA ed altri hub simili dovrrebbero già averle, ma i nuovi utenti si devono iscrivere, ci sono molte guide nel web. [Questa](https://github.com/iRayanKhan/homebridge-tuya/wiki/Get-Local-Keys-for-your-devices) è una delle più chiare, altre sono [elencate qui](https://github.com/msillano/tuyaDAEMON/wiki/50.-Howto:-add-a-new-device-to-tuyaDAEMON#1-preconditions). Un vantaggio è che si ha accesso alla piattaforma Tuya, con molti dati sui propri device, ed alla documentazione tecnica.
+ - I dati INDISPENSABILI da inserire sono le proprie `credenziali Tuya` per la 'platform.tuya'. <BR> Gli utenti di tuyaDAEMON, Homebridge, HA ed altri hub simili dovrebbero già averle, ma i nuovi utenti si devono iscrivere, ci sono molte guide nel web. [Questa](https://github.com/iRayanKhan/homebridge-tuya/wiki/Get-Local-Keys-for-your-devices) è una delle più chiare, altre sono [elencate qui](https://github.com/msillano/tuyaDAEMON/wiki/50.-Howto:-add-a-new-device-to-tuyaDAEMON#1-preconditions). Un vantaggio è che si ha accesso alla piattaforma Tuya, con molti dati sui propri device, ed alla documentazione tecnica.
 
 - Altre opzioni riguardano: timing (Cloud e log) e configurazione del log: il formato, l'autosave, i valori richiesti, oppure il look&feel, come la presenza dei bottoni di pan/zoom. <BR>Dalla versione 1.2 la possibilità di escludere alcune home.
 
