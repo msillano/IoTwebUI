@@ -75,7 +75,7 @@ La modalità EXPERT offre un controllo totale sulla personalizzazione di IoTwebU
 - Tuya pone dei limiti alla frequenza degli accessi al cloud. _IoTwebUI_ ne tiene conto, e la fase iniziale (quando legge tutti i dati dal Cloud) è bloccante e non brevissima (3-5 s, in funzione del numero di device). Come anche in SmartLife.
 
 - Un secondo problema è l'impossibilità di creare file direttamente da una pagina HTML, sempre per motivi di sicurezza. Per l'export dei dati sono ricorso ad una libreria di logging su file [debugout.js](https://github.com/inorganik/debugout.js). Per questo motivo il controllo sui file generati non è completo e sono necessari piccoli  interventi manuali sui file esportati.
-- I file di datalog sono salvati nella dir `download`, con il nome  `tuyalog-hh-mm-ss.cvs|json`.
+- I file di datalog sono salvati nella dir `download`, con il nome  `tuyalog-hh-mm-ss.csv|json`.
 - Per lo stesso motivo non è possibile aggiornare dall'APP i file di configurazione. Ho scelto una soluzione di compromesso, che prevede l'intervento dell'utente con un semplice copia-incolla.
  
 - Il funzionamento continua regolarmente anche con la finestra del browser iconizzata.
@@ -86,7 +86,7 @@ La modalità EXPERT offre un controllo totale sulla personalizzazione di IoTwebU
 Nei tooltip, per default, sono presentate tutte le proprietà incluse nello 'status' del device, con i nomi e i valori usati da Tuya Cloud. Alcuni valori possono essere codificati. <br>
 Alcune piccole icone informano l'utente (vedi figure sopra):
    - `tuya_bridge.switch_1` è sotto osservazione per un 'alert'
-   - `tuya_bridge.switch_inching` è un esempio di valore codificato (AAAC). <br> _nota: Se siete interessati alla decodifica, molte funzioni sono state sviluppate per tuyaDAEMON (vedi 'core_device', node 'ENCODE/DECODE user library')._ 
+   - `tuya_bridge.switch_inching` è un esempio di valore codificato (AAAC). <br> _nota: Se siete interessati alla decodifica dei valori Tuya, molte funzioni sono state sviluppate per tuyaDAEMON (vedi 'core_device', nodo 'ENCODE/DECODE user library')._ 
    - `temperatura studio.va_temperature` è salvato sul datafile, insieme agli altri dati in `logList`.
    -  Per il device `temperatura soggiorno` è scattato l'Alert (icona speciale)
    - `temperatura soggiorno.va _humidity`  è la causa dell'Alert, ed è anche indicata la condizione (>40)
