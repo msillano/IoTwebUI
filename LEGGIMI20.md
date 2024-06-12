@@ -101,7 +101,7 @@ Alcune piccole icone informano l'utente (vedi figure sopra):
  I 'tap-to-run sono presentati per 'home' (max 100) ed in ordine alfabetico.
  I nomi dei 'tap-to-run' possono avere due vicoli:
   - Utilizare prefissi per raggruppare in IoTwebUI i comandi correlati.
-  - Essere facili da ricordare e da riconosere (se si usa il comando vocale con Google o Alexa).<br>
+  - Essere facili da ricordare e da riconosere (se si usano i comandi vocali con Google o Alexa).<br>
 
 
 ### Logging ed esportazione dati
