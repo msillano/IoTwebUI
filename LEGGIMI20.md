@@ -434,7 +434,7 @@ time = "hh:mm:ss" oppure "mm:ss" oppure "ss"</dd>
 <dd> Ritorna 'true' solo se la "condizione" rimane 'false' per almeno il tempo 'time'  (inverso  di CONFIRMH).<BR>
 `time` = costante nei formati "hh:mm:ss" oppure "mm:ss" oppure "ss"</dd>
  
-<dt>HYSTERESIS (*)(value, test, delta)</dt>
+<dt>HYSTERESIS (value, test, delta)  (*)</dt>
  <dd> Confronta 'value' con 'test', usando come intervallo di isteresi 'delta': L'output diventa 'true' se 'value &gt; test + delta/2',  oppure 'false' se 'value &lt; test - delta/2'. </dd>
  
 <dt>  EVERY(n) (*)</dt>
