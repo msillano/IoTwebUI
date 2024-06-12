@@ -125,9 +125,7 @@ L'utente può scegliere in configurazione tra due formati: `CSV` (indicato, per 
  </TR>
 </TABLE>
 
-
 In modalità EXPERT è disponibile nel menu un comando per avere nella console l'intera struttura dati ottenuta da Tuya Cloud ('Dump data'): può essere esplorata a ogni livello nel pad della console oppure può essere copiata con copy&paste in formato JSON.
-
 
 ### Alert ed avvisi
 In modo EXPERT cliccando su un device si apre un dialogo che nella parte inferiore permette la definizione degli 'Alert':
@@ -315,7 +313,7 @@ Il particolare ambiente in cui sono valutate le RULE comporta qualche limite all
 - usare sempre un underscore **_** come primo carattere nel _nome delle variabili_: si evitano così interferenze con altre variabili.
 - Volori predefiniti:`true` e `false` per le condizioni; le costanti numeriche sono con il punto, all'inglese (`3.14`), e tutte le stringhe vogliono gli apici (`"oggi "`);
 - Usare **//** per i commenti, continuano fino a fine riga
-- Le operazioni js più utili sono quelle aritmetiche (**+, -, *, /**), quelle logiche per le condizioni: (**&&** -and, **||** -or, **!** -negazione) e le operazioni di confronto ( **&gt;**, **=**, **&lt;**, **&gt;=**, **&lt;=**); la concatenazione delle stringhe è fatta semplicemente con il **+** ("ore " **+** "10:30").
+- Le operazioni js più utili sono quelle aritmetiche (**+, -, *, /**), quelle logiche per le condizioni: (**&&** -and, **||** -or, **!** -negazione) e le operazioni di confronto ( **&gt;**, **==**, **!=**, **&lt;**, **&gt;=**, **&lt;=**); la concatenazione delle stringhe è fatta semplicemente con il **+** ("ore " **+** "10:30").
 - attenzione al '+': in `a + b`, se `a` e `b` sono numeri, fa la somma, ma se uno dei due è una stringa, automaticamente anche l'altro è convertito in stringa. E la conversione `numero => stringa` può portare a sorprese quando non sono numeri interi! Usare sempre ROUND() quando dovete usare dei numeri con la virgola nelle stringhe (vedi esempi).
 - le RULE sono eseguite ad ogni loop, dopo un aggiornamento dei dati Tuya. Molte MACRO devono quindi conservare lo stato tra un run ed il successivo, e sono individuate con (*). 
 - Il costrutto js più utile nelle RULE è l'**if** (esecuzione condizionale), che assume varie forme:<br>
@@ -382,13 +380,13 @@ Per semplicità ho utilizzato come temperatura Target solo i valori 16, 20, 21 �
 var _tot = 2.3;  // da tarare il prossimo inverno
 var _Ttarget =  GET("Termo letto", "temp_set") ;
 var _nowClima = ISTRIGGERH( ( _Ttarget -  GET("Termo letto", "temp_set") ) > _tot);
-if (_nowClima) SCENA("TLetto" + ROUND(_Ttarget. 0) ), ALERTLOG("RULE Tletto", "acceso clima") ;
+if (_nowClima) SCENA("TLetto" + ROUND( _Ttarget, 0) ), ALERTLOG("RULE Tletto", "acceso clima") ;
 ```
 
 ### RULE - MACRO
 Possiamo dividere le MACRO in due gruppi: il primo che gestisce le interazioni con le risorse disponibili in **IoTwebUI** (una sorta di API interna). Il secondo gruppo di MACRO sono invece generali, modificando in qualche modo utile  i dati in input.
 _nota: obiettivo delle MACRO non è quello di duplicare le funzionalità delle automazioni Tuya (anche se a volte c'è sovrapposizione) e.g. non esistono MACRO per 'meteo' o 'delay', quanto quello di fornire strumenti più avanzati di calcolo, per ottenere 'automazioni' fin'ora impossibili.   L'uso di device virtuali e di tap-to-run permette di suddividere i compiti tra scene Tuya (automazioni e tap-to-run) e RULE nel modo più efficiente._ <br>
-Ovviamente si possono sempre aggiungere nuove MACRO, o come customizzazione (se create nuove MACRO comnicatelo) oppure in nuove release di **IoTwebUI**.
+Ovviamente si possono sempre aggiungere nuove MACRO, o come customizzazione (se create nuove MACRO comnicatemelo) oppure in nuove release di **IoTwebUI**.
 <hr>
 
 #### MACRO per risorse
@@ -423,30 +421,41 @@ nota: il dato proviene dal Cloud, può differire dal valore locale mostrato da S
 #### MACRO funzionali
 <dl>
 <dt>  ISTRIGGERH(condition) (*) </dt>
-<dd> Ritorna 'true' solo al passaggio della "condizione" da 'false a true', evita che la "condizione" 'true' agisca ad ogni run (come le condizioni delle automazioni Tuya). </dd>
+<dd> Ritorna 'true' solo al passaggio della "condizione" da 'false a true', evita che la "condizione" 'true' agisca ad ogni run (analogo alle condizioni delle automazioni Tuya). </dd>
+ 
 <dt>  ISTRIGGERL(condition) (*)</dt>
 <dd> Ritorna 'true' solo al passaggio della "condizione" da 'true a false'  (inverso  di ISTRIGGERH) </dd>
+ 
 <dt>  CONFIRMH(condition, time) (*) </dt>
 <dd> Ritorna 'true' solo se la "condizione" rimane 'true' per almeno il tempo 'time'. Caso tipico una porta aperta: vedi esempi.<BR>
 time = "hh:mm:ss" oppure "mm:ss" oppure "ss"</dd>
+ 
 <dt>  CONFIRML(condition, time) (*) </dt>
 <dd> Ritorna 'true' solo se la "condizione" rimane 'false' per almeno il tempo 'time'  (inverso  di CONFIRMH).<BR>
 `time` = costante nei formati "hh:mm:ss" oppure "mm:ss" oppure "ss"</dd>
+ 
 <dt>HYSTERESIS (*)(value, test, delta)</dt>
  <dd> Confronta 'value' con 'test', usando come intervallo di isteresi 'delta': L'output diventa 'true' se 'value &gt; test + delta/2',  oppure 'false' se 'value &lt; test - delta/2'. </dd>
+ 
 <dt>  EVERY(n) (*)</dt>
 <dd>  Semplice timer: ritorna 'true' solo dopo "n" esecuzioni, ciclico <br>
+       E' garantito il valore 'true' solo per ogni n-simo loop (non richiede ISTRIGGERH()).
       'n' è in numero di loop, in tempo: tempo = n x tuyaInterval (definito in 'config.js' file). </dd>
+ 
 <dt>  TIME(wath) </dt>
-<dd>  ritorna  "hh:mm:ss" oppure "mm:ss" oppure "ss" calcolati dall'ora attuale, a seconda di 'wath'.
-  'wath': una delle costanti così definite: <i>hrs</i> = 11, <i>min</i> = 14, <i>sec</i> = 17 (senza apici). </dd>
+<dd>  ritorna una stringa, "hh:mm:ss" oppure "mm:ss" oppure "ss" calcolata dall'ora attuale, a seconda di 'wath'.
+  'wath': una delle costanti così definite: <i>hrs</i> = 11, <i>min</i> = 14, <i>sec</i> = 17 (senza apici, non sono stringhe).<br>
+   Esempio:  <i>"Alle ore " + TIME(hrs)</i> </dd>
+ 
 <dt>  DAYMAP(val1, time1, val2, time2, ... more) </dt>
 <dd> Ritorna: fino a 'time1' l'output è 'val1', da  'time1' a  'time2'  l'output è 'val2'... avanti così fino  all'ultimo 'time' dopo di che  l'output è di nuovo 'val1'.<br>
 Naturalmente i valori 'val' e 'time' devono essere presenti a coppie, tanti quanti ne servono. Tutti i 'time' in formato "hh:mm:ss".<br>
-Usi: profili di temperatura giornalieri, eventi ad orario o abilitazione per intervalli di tempo, etc.
+Usi: profili di temperatura giornalieri, eventi ad orario o abilitazione per intervalli di tempo, etc., a seconda se 'val' è una temperatura, oppure 'buongiorno'/'buonasera', oppure true/false, etc..
  </dd>
+ 
 <dt>  WEEKMAP(map) </dt>
 <dd> 'map' è una stringa di sette caratteri qualsiasi, uno per giorno della settimana, partendo dalla Domenica (e.g.: 'DLMMGVS' o 'SMTWTFS' o '1234567'). Solo se il carattere corrispondente ad oggi è '-' (trattino) ritorna 'false' altrimenti torna 'true'. <br> Esempio: WEEKMAP("DLMM-VS") è falso solo il Giovedì. </dd>
+ 
 <dt> AVG(value, n) (*) </dt>
 <dd> Media mobile degli ultimi 'n' valori: torna una stringa con 2 decimali.<br>
 'n' è in numero di loop, in tempo: tempo = n x tuyaInterval (definito in 'config.js' file).</dd>
@@ -459,8 +468,8 @@ Usi: profili di temperatura giornalieri, eventi ad orario o abilitazione per int
 <dd>Azzera tutti i MAX() presenti in caso di lunghi periodi, e.g. 24h.<br>
 <i>nota: deve essere posizionato dopo tutti i MAX() presenti.</i>
  Esempio: 'if(ISTRIGGERH(DAYMAP(false, '00:00:00', true, '00:20:00'))) ZEROMAX();'<br>
-
  </dd>
+ 
 <dt>ISCHANGED(value) (*) </dt>
 <dd> ritorna  'true'` ogni volta che   'value' cambia rispetto al valore precedente.</dd>
 
