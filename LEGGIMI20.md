@@ -90,7 +90,7 @@ Alcune piccole icone informano l'utente (vedi figure sopra):
    - `temperatura studio.va_temperature` è salvato sul datafile
    -  Per il device `temperatura soggiorno` è scattato l'Alert (icona speciale)
    - `temperatura soggiorno.va _humidity`  è la causa dell'Alert, ed è anche indicata la condizione (>40)
-   - Il tooltip `termo studio` è customizzato,  per presentare le temperature con i corretti decimali.
+   - Il tooltip `termo studio` è customizzato,  per presentare le temperature con i corretti decimali. (nota: solo nel tooltip: Alert e RULE usano sempre il valore fornito da Tuya Cloud, i.e. 222 e 190).
    - In modo EXPERT sono aggiunti nei tooltip i seguenti valori:
        - `isa`:  nome del 'tipo' Tuya del device (in codice è `device.category`). In totale circa 600 tipi.
        - `id`:  `device.id`, richiesto da alcuni HUB (e.g. TuyaDAEMON, Homebridge, HA, etc..).
