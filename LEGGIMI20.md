@@ -174,7 +174,7 @@ Si possono gestire due insiemi di RULE: quelle in <i>uso</i>, inizialmente lette
     <li>  <b> Replace </b>- le RULE attualmente in uso sono sostitute da quelle in edit.
     <li>  <b> Export </b>- Crea un pop-up per vedere le definizioni delle  RULE in uso. <i>Le RULE permanenti sono nel file 'usrrulesXX.X.js': possono essere editate direttamente o copiate dal pop-up.</i>
     <li>  <b> Test Start </b>- Start test delle RULE in Edit: le RULE in uso sono sospese.
-    <li>  <b> Test End</b>- Termina il Test e ripristina le ROULE precedenti (auto in caso di errore)
+    <li>  <b> Test End</b>- Termina il Test e ripristina le RULE precedenti (auto in caso di errore)
     </ul>
  </TD>
   <TD>
