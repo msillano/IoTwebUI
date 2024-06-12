@@ -377,6 +377,8 @@ if (_nowClima) SCENA("TLetto" + ROUND(_Ttarget. 0) ), ALERTLOG("RULE Tletto", "a
 
 ### RULE - MACRO
 Possiamo dividere le MACRO in due gruppi: il primo che gestisce le interazioni con le risorse disponibili in **IoTwebUI** (una sorta di API interna). Il secondo gruppo di MACRO sono invece generali, modificando in qualche modo utile  i dati in input.
+_nota: obiettivo delle MACRO non è quello di duplicare le funzionalità delle automazioni Tuya (anche se a volte c'è sovrapposizione) e.g. non esistono MACRO per 'meteo' o 'delay', quanto quello di fornire strumenti più avanzati di calcolo, per ottenere 'automazioni' impossibili!   L'uso di device virtuali e di tap-to-run permette di suddividere i compiti tra scene Tuya (automazioni e tap-to-run) e RULE nel modo più efficiente possibile._ <br>
+Ovviamente si possono sempre aggiungere nuove MACRO, o come customizzazione (se create nuove MACRO comnicatelo) oppure in nuove release di **IoTwebUI**.
 <hr>
 
 #### MACRO per risorse
@@ -427,7 +429,7 @@ time = "hh:mm:ss" oppure "mm:ss" oppure "ss"</dd>
 <dd>  ritorna  "hh:mm:ss" oppure "mm:ss" oppure "ss" calcolati dall'ora attuale, a seconda di 'wath'.
   'wath': una delle costanti così definite: <i>hrs</i> = 11, <i>min</i> = 14, <i>sec</i> = 17 (senza apici). </dd>
 <dt>  DAYMAP(val1, time1, val2, time2, ... more) </dt>
-<dd> Ritorna: fino a 'time1' l'ourput è 'val1', da  'time1' a  'time2'  l'output è 'val2'... avanti così fino  all'ultimo 'time' dopo di che  l'output è di nuovo 'val1'.<br>
+<dd> Ritorna: fino a 'time1' l'output è 'val1', da  'time1' a  'time2'  l'output è 'val2'... avanti così fino  all'ultimo 'time' dopo di che  l'output è di nuovo 'val1'.<br>
 Naturalmente i valori 'val' e 'time' devono essere presenti a coppie, tanti quanti ne servono. Tutti i 'time' in formato "hh:mm:ss".<br>
 Usi: profili di temperatura giornalieri, eventi ad orario o abilitazione per intervalli di tempo, etc.
  </dd>
