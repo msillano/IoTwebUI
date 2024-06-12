@@ -313,6 +313,11 @@ Il particolare ambiente in cui sono valutate le RULE comporta qualche limite all
   Per contenere la lunghezza delle righe, usare delle variabili intermedie.
 - definire le variabili sempre con la sintassi `var _pippo =...`
 - usare sempre un underscore  `_` come primo carattere nel _nome delle variabili_: si evitano così interferenze con altre variabili.
+- Le operazioni js più utili sono quelle aritmetiche (+, -, *, /) e quelle logiche (&& -and, || -or, ! -negazione); la concatenazione delle stringhe è fatta semplicemente con il + ("ore " + "10:30").
+- In costrutto js più utile nelle RULE è l'IF (esecuzione condizionale), che assume varie forme:<br>
+   `**if(**condizione**)** azione;` <br>
+   `**if(** condiz1 && condiz2**)** azione1, azione2;` <br>
+   `if (condizione) azione1 else azione2; ` <br>
 - le RULE sono eseguite immediatamente dopo un aggiornamento dei dati Tuya. Molte funzioni devono quindi conservare lo stato tra un run ed il successivo. Le MACRO si occupano di ciò e semplificano la scrittura di RULE complesse.
   
 <hr>
