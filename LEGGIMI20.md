@@ -4,7 +4,7 @@
 **_Stanco delle limitazioni di SmartLife?  IoTwebUI 2.0 è arrivato per dare nuova linfa alla tua casa intelligente, con un arsenale di funzionalità che ti faranno dire "finalmente!". <br> La filosofia 'open' è nel DNA di questa APP, che esalta la customizzazione ed il controllo da parte dell'utente._** 
 
 _Cosa puoi fare?_<br>
-👀 Controlla tutto: Interfaccia intuitiva e personalizzabile, dati sempre a portata di mano, gestione flessibile.<br>
+👀 Controlla tutto: Interfaccia intuitiva e personalizzabile, dati sempre a portata di mano, visualizzazione flessibile.<br>
 🔬 Esportazione dati: Salva le serie storiche per le tue analisi, nel formato più utile<br>
 ⚡️ Automazioni potenti: Crea automazioni complesse con le RULE, impossibili con SmartLife!<br>
 ⏱️ Alert personalizzati: Monitora ogni aspetto della tua domotica e ricevi avvisi realtime. <br>
@@ -364,7 +364,7 @@ if (_nowClima) SCENA("TLetto" + ROUND(_Ttarget. 0) ), ALERTLOG("RULE Tletto", "a
 ```
 
 ### RULE - MACRO
-Possiamo dividerle in due gruppi: il primo che gestisce le interazioni con le risorse disponibili in **IoTwebUI** (una sorta di API interna). Il secondo gruppo di MACRO sono invece generali, modificando in qualche modo utile  i dati in input.
+Possiamo dividere le MACRO in due gruppi: il primo che gestisce le interazioni con le risorse disponibili in **IoTwebUI** (una sorta di API interna). Il secondo gruppo di MACRO sono invece generali, modificando in qualche modo utile  i dati in input.
 #### MACRO per risorse
 <dl>
 <dt>ISCONNECTED(device)</dt>
@@ -372,13 +372,13 @@ Possiamo dividerle in due gruppi: il primo che gestisce le interazioni con le ri
 nota: il dato proviene dal Cloud, può differire dal valore locale mostrato da SmartLife. </dd>
 
 <dt>GET(device, property)</dt>
-<dd>Ritorna il valore di 'property' (i nomi originali mostrati nel tooltip) di device (nome o ID)</dd>
+<dd>Ritorna il valore di 'property' (i nomi originali mostrati nel tooltip) del device (nome o ID)</dd>
 
 <dt>DATALOG(name, value)</dt>
 <dd>Aggiunge un nuovo 'value' al file di log dati, con il 'name' indicato.</dd>
 
 <dt>ALERTLOG(name, message)</dt>
-<dd>Aggiunge il 'message' al registro delle allerte, identificato da 'name'</dd>
+<dd>Aggiunge il 'message' al registro degli avvisi, identificato da 'name'</dd>
 <dt>BEEP()</dt>
 <dd>Segnale di avviso.</dd>
 <dt> POP(device, message)</dt>
