@@ -250,9 +250,9 @@ Ma sono facilmente personalizzabili dall'utente: basta fornire un criterio di se
    - i Gateway (device con 'Gateway' nel nome).
      
  - Il contenuto dei tooltip, varia a seconda del device. E' un settore dove è utile la possibilità di personalizzazioni, il metodo scelto (un filtro) permette ogni libertà: <br>
-    - Alcuni valori sono criptati: si può scegliere di non farli vedere  - oppure di decodificarli, il codice necessario è disponibile in TuyaDAEMON, ma ho scartato questa opzione per non avere tooltip troppo grandi (vedi immagine 2).
-    - In altri casi occorre dividere per 10 o 100 per avere il valore in unità SI, (vedi immagine 1).   
-    - Come sviluppatore preferisco avere i nomi delle proprietà originali Tuya, ma si possono rendere più frendly traducendoli in Italiano.
+    - Alcuni valori sono criptati: si può scegliere di non farli vedere  - oppure di decodificarli, il codice necessario è disponibile in TuyaDAEMON, ma ho scartato questa opzione per non avere tooltip troppo grandi.
+    - In altri casi occorre dividere per 10 o 100 per avere il valore in unità SI.   
+    - Come sviluppatore preferisco avere i nomi delle proprietà originali Tuya, ma si possono rendere più frendly traducendoli.
     - Se si desidera si possono anche aggiungere nuove informazioni per esempio derivandole da quelle del device (e.g. temperatura in °C ed anche in °F).
 
 - Per i 'tap-to-run' Tuya, è possibile personalizzare il colore dei pulsanti modificando `sceneColor(scene)` in `custom.js`.
@@ -325,7 +325,6 @@ Il particolare ambiente in cui sono valutate le RULE comporta qualche limite all
 <hr>
 
 **ESEMPIO 1**: usato per testare le MACRO, funziona con i miei device (deve essere modificato per i vostri). <BR>
-
 ```
 // -- various temperature calculations with popup and logging:
 //  using variables, and MACROS: GET() AVG() ROUND() EVERY() POP() DATALOG()
@@ -392,7 +391,7 @@ Ovviamente si possono sempre aggiungere nuove MACRO, o come customizzazione (se 
 #### MACRO per risorse
 <dl>
 <dt>ISCONNECTED(device)</dt>
-<dd>Ritorna 'true' se il device è connessa. <br>
+<dd>Ritorna 'true' se il device (nome o ID) è connesso. <br>
 nota: il dato proviene dal Cloud, può differire dal valore locale mostrato da SmartLife. </dd>
 
 <dt>GET(device, property)</dt>
@@ -405,14 +404,19 @@ nota: il dato proviene dal Cloud, può differire dal valore locale mostrato da S
 
 <dt>ALERTLOG(name, message) </dt>
 <dd>Aggiunge il 'message' al registro degli avvisi, identificato da 'name'</dd>
+
 <dt>BEEP()</dt>
 <dd>Segnale di avviso.</dd>
+
 <dt> POP(device, message)</dt>
 <dd>Segnale di avviso.</dd>
+
 <dt>XURL(url)</dt>
 <dd>Segnale di avviso.</dd>
+
 <dt>VOICE(message)</dt>
 <dd>Segnale di avviso.</dd>
+
 <dt>SCENA(scenaNome) </dt>
 <dd>Esegue un _tap-to-Run_, presente nell'elenco letto dal Cloud.</dd>
 </dl>
@@ -427,12 +431,12 @@ nota: il dato proviene dal Cloud, può differire dal valore locale mostrato da S
 <dd> Ritorna 'true' solo al passaggio della "condizione" da 'true a false'  (inverso  di ISTRIGGERH) </dd>
  
 <dt>  CONFIRMH(condition, time) (*) </dt>
-<dd> Ritorna 'true' solo se la "condizione" rimane 'true' per almeno il tempo 'time'. Caso tipico una porta aperta: vedi esempi.<BR>
-time = "hh:mm:ss" oppure "mm:ss" oppure "ss"</dd>
+<dd> Ritorna 'true' solo se la "condizione" rimane 'true' per almeno il tempo 'time'. Poi resta 'true' fino a quando la 'condizione' è 'true'. Caso tipico una porta aperta: vedi esempi.<BR>
+time = costante nei formati "hh:mm:ss" oppure "mm:ss" oppure "ss". Deve essere maggiore di TuyaInterval.</dd>
  
 <dt>  CONFIRML(condition, time) (*) </dt>
 <dd> Ritorna 'true' solo se la "condizione" rimane 'false' per almeno il tempo 'time'  (inverso  di CONFIRMH).<BR>
-`time` = costante nei formati "hh:mm:ss" oppure "mm:ss" oppure "ss"</dd>
+`time` = costante nei formati "hh:mm:ss" oppure "mm:ss" oppure "ss". Deve essere maggiore di TuyaInterval.</dd>
  
 <dt>HYSTERESIS (value, test, delta)  (*)</dt>
  <dd> Confronta 'value' con 'test', usando come intervallo di isteresi 'delta': L'output diventa 'true' se 'value &gt; test + delta/2',  oppure 'false' se 'value &lt; test - delta/2'. </dd>
@@ -471,7 +475,7 @@ Usi: profili di temperatura giornalieri, eventi ad orario o abilitazione per int
  </dd>
  
 <dt>ISCHANGED(value) (*) </dt>
-<dd> ritorna  'true'` ogni volta che   'value' cambia rispetto al valore precedente.</dd>
+<dd> ritorna 'true' ogni volta che 'value' cambia rispetto al valore precedente.</dd>
 
 <dt>ROUND(number, pos)</dt>
 <dd> Torna una stringa con 'pos' cifre decimali (se 'pos' >0) <br>
