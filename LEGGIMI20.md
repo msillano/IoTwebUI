@@ -314,9 +314,10 @@ Il particolare ambiente in cui sono valutate le RULE comporta qualche limite all
 - definire le variabili sempre con la sintassi `var _pippo =...`
 - usare sempre un underscore  `_` come primo carattere nel _nome delle variabili_: si evitano così interferenze con altre variabili.
 - le RULE sono eseguite immediatamente dopo un aggiornamento dei dati Tuya. Molte funzioni devono quindi conservare lo stato tra un run ed il successivo. Le MACRO si occupano di ciò e semplificano la scrittura di RULE complesse.
+  
 <hr>
 
-ESEMPIO 1: usato per testare le MACRO, funziona con i miei device (deve essere modificato per i vostri). <BR>
+**ESEMPIO 1**: usato per testare le MACRO, funziona con i miei device (deve essere modificato per i vostri). <BR>
 
 ```
 // -- various temperature calculations with popup and logging:
@@ -353,7 +354,7 @@ var _doorok = CONFIRMH(_doorev, "01:20");         // true only after 1:20
 if(ISTRIGGERH(_doorok)) VOICE("chiudere la porta, grazie"), ALERTLOG("ingresso", "porta aperta") ;
 console.log("DOOR", _doorev, _doorok);
 ```
-ESEMPIO 2 - Un caso concreto di controllo del riscaldamento
+**ESEMPIO 2** - Un caso concreto di controllo del riscaldamento <br>
 Ho il riscaldamento centralizzato, con valvole termostatiche su ogni radiatore: ogni stanza ha il suo profilo di temperatura desiderato (Ttarget). Tutto funziona molto bene, tranne in casi eccezionali (esempio, impianto spento per manutezione). <br>
  Vorrei implementare con Tuya una strategia di questo tipo: _se la temperatura ambiente è minore di un 'tot' rispetto a Ttarget, accendere il condizionatore come pompa di calore con lo stesso Ttarget._ Cioè:
 
@@ -400,7 +401,6 @@ nota: il dato proviene dal Cloud, può differire dal valore locale mostrato da S
 <dd>Segnale di avviso.</dd>
 <dt>SCENA(scenaNome) </dt>
 <dd>Esegue un _tap-to-Run_, presente nell'elenco letto dal Cloud.</dd>
-
 </dl>
 
 #### MACRO funzionali
