@@ -402,7 +402,7 @@ nota: il dato proviene dal Cloud, può differire dal valore locale mostrato da S
 
 <dt>DATALOG(name, value) (*)</dt>
 <dd>Aggiunge un nuovo 'value' al file di log dati, con il 'name' indicato.<br>
-_nota: il salvataggio dati durante un test inizia subito, ma, in formato CSV, la prima riga con i nomi non è aggiornata. Eventualmente salvare il file di log per avere il nuovo file aggiornato. Questo solo in fase di test: con le RULE  in <i>uso</i> dall'avvio non c'è problema._
+<i>nota: il salvataggio dati durante un test inizia subito, ma, nel formato CSV, la prima riga con i nomi non è aggiornata. Eventualmente salvare il file di log per avere il nuovo file aggiornato. Questo solo in fase di test: con le RULE  in <i>uso</i> dall'avvio non c'è problema.</i> 
 </dd>
 
 <dt>ALERTLOG(name, message) </dt>
