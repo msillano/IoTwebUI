@@ -85,14 +85,14 @@ La modalità EXPERT offre un controllo totale sulla personalizzazione di IoTwebU
 
 Nei tooltip, per default, sono presentate tutte le proprietà incluse nello 'status' del device, con i nomi e i valori usati da Tuya Cloud. Alcuni valori possono essere codificati. <br>
 Alcune piccole icone informano l'utente (vedi figure sopra):
-   - `tuya_bridge.switch_1` è interessato da un 'alert'. `tuya_bridge.switch_inching` è codificato (AAAC)
+   - `tuya_bridge.switch_1` è interessato da un 'alert'. `tuya_bridge.switch_inching` è un esempio di valore codificato (AAAC). <br> _nota: Se siete interessati alla decodifica, molte funzioni sono presenti in tuyaDAEMON (vedi core, node )._ 
    - `temperatura studio.va_temperature` è salvato sul datafile
    -  Per il device `temperatura soggiorno` è scattato l'Alert (icona speciale)
    - `temperatura soggiorno.va _humidity`  è la causa dell'Alert, ed è anche indicata la condizione (>40)
    - Il tooltip `termo studio` è customizzato,  per presentare le temperature con i corretti decimali.
    - In modo EXPERT sono aggiunti nei tooltip i seguenti valori:
        - `isa`:  nome del 'tipo' Tuya del device (in codice è `device.category`). In totale circa 600 tipi.
-       - `id`:  `device.id`, richiesto da alcuni HUB (e.g. TuyaDAEMON, HA, etc..).
+       - `id`:  `device.id`, richiesto da alcuni HUB (e.g. TuyaDAEMON, Homebridge, HA, etc..).
        - `key`: `device.local_key`, richiesto da alcuni HUB 
 
 ### Logging ed esportazione dati
