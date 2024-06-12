@@ -117,7 +117,7 @@ L'utente può scegliere in configurazione tra due formati: `CVS` (indicato, per 
     <li>  <b>clear dev </b>-  elimina il device dal log, (tutte le proprietà)
     <li>  <b> config </b>- apre pop-up per vedere le definizioni del log attuale <br>
         <i> I 'log' permanenti sono nel file `config.js`: possono essere editati direttamente o copiati dal pop-up.</i>
-    <li>  <b> cancel </b>b- chiude il dialogo.</ul>
+    <li>  <b> cancel </b>- chiude il dialogo.</ul>
   </TD>
   <TD>
    <img src="https://github.com/msillano/IoTwebUI/blob/main/pics/alert20.png?raw=true" />
