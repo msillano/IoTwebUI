@@ -311,18 +311,18 @@ E' un array di array contenenti le singole misure (oggetti).
 ### RULE - sintassi
 Il particolare ambiente in cui sono valutate le RULE comporta qualche limite alla sintassi js standard:
 - **importante**: il codice è eseguito una riga alla volta, non è possibile scrivere blocchi js che occuppino più righe!  Per contenere la lunghezza delle righe, usare delle variabili intermedie (vedi esempi).
-- definire le variabili sempre con la sintassi: **var** _pippo **=**...`
+- definire le variabili sempre con la sintassi: **var** `_pippo` **=**...
 - usare sempre un underscore **_** come primo carattere nel _nome delle variabili_: si evitano così interferenze con altre variabili.
 - Volori predefiniti:`true` e `false` per le condizioni; le costanti numeriche sono con il punto, all'inglese (`3.14`), e tutte le stringhe vogliono gli apici (`"oggi "`);
-- Usare **//** per i commenti, fino a fine riga
+- Usare **//** per i commenti, continuano fino a fine riga
 - Le operazioni js più utili sono quelle aritmetiche (**+, -, *, /**), quelle logiche per le condizioni: (**&&** -and, **||** -or, **!** -negazione) e le operazioni di confronto ( **&gt;**, **=**, **&lt;**, **&gt;=**, **&lt;=**); la concatenazione delle stringhe è fatta semplicemente con il **+** ("ore " **+** "10:30").
 - attenzione al '+': in `a + b`, se `a` e `b` sono numeri, fa la somma, ma se uno dei due è una stringa, automaticamente anche l'altro è convertito in stringa. E la conversione `numero => stringa` può portare a sorprese quando non sono numeri interi! Usare sempre ROUND() quando dovete usare dei numeri con la virgola nelle stringhe (vedi esempi).
+- le RULE sono eseguite ad ogni loop, dopo un aggiornamento dei dati Tuya. Molte MACRO devono quindi conservare lo stato tra un run ed il successivo, e sono individuate con (*). 
 - Il costrutto js più utile nelle RULE è l'**if** (esecuzione condizionale), che assume varie forme:<br>
    **if(** `condizione` **)** `azione;` <br>
    **if(** `condiz1 && condiz2` **)** `azione1`**,** `azione2;` <br>
    **if (** `condizione` **)** `azione1` **else** `azione2;` <br>
-- **importante**: per come sono implementate, le MACRO che usano memoria (individuate da (*)) NON possono essere usate nella parte `azione` di un **if**. Per ragioni analoghe non sono ammessi **if  nidificati** (un **if** nella zona azione di un altro **if**). Sono vincoli che non pongono, però, serie limitazioni.
-- le RULE sono eseguite ad ogni loop, dopo un aggiornamento dei dati Tuya. Molte funzioni devono quindi conservare lo stato tra un run ed il successivo. Le MACRO si occupano di ciò e semplificano la scrittura di RULE complesse.
+- **importante**: per come sono implementate, le MACRO che usano memoria (*) NON possono essere usate nella parte `azione` di un **if**. Per ragioni analoghe non sono ammessi **if  nidificati** (un **if** nella zona azione di un altro **if**). Sono vincoli che non pongono, però, serie limitazioni.
   
 <hr>
 
@@ -381,7 +381,7 @@ Per semplicità ho utilizzato come temperatura Target solo i valori 16, 20, 21 �
 ```
 var _tot = 2.3;  // da tarare il prossimo inverno
 var _Ttarget =  GET("Termo letto", "temp_set") ;
-var _nowClima = ISTRIGGERH( ( _Ttarget -  GET("Termo letto", "temp_set")) > _tot)
+var _nowClima = ISTRIGGERH( ( _Ttarget -  GET("Termo letto", "temp_set") ) > _tot);
 if (_nowClima) SCENA("TLetto" + ROUND(_Ttarget. 0) ), ALERTLOG("RULE Tletto", "acceso clima") ;
 ```
 
@@ -446,12 +446,12 @@ Naturalmente i valori 'val' e 'time' devono essere presenti a coppie, tanti quan
 Usi: profili di temperatura giornalieri, eventi ad orario o abilitazione per intervalli di tempo, etc.
  </dd>
 <dt>  WEEKMAP(map) </dt>
-<dd> 'map' è una stringa di sette caratteri qualsiasi, uno per giorno, partendo dalla Domenica (e.g.: 'DLMMGVS' o 'SMTWTFS' o '1234567'). Solo se il carattere corrispondente ad oggi è '-' (trattino) ritorna 'false' altrimenti torna 'true'. <br> Esempio: WEEKMAP("DLMM-VS") è falso solo il Giovedì. </dd>
- <dt> AVG(value, n) (*) </dt>
+<dd> 'map' è una stringa di sette caratteri qualsiasi, uno per giorno della settimana, partendo dalla Domenica (e.g.: 'DLMMGVS' o 'SMTWTFS' o '1234567'). Solo se il carattere corrispondente ad oggi è '-' (trattino) ritorna 'false' altrimenti torna 'true'. <br> Esempio: WEEKMAP("DLMM-VS") è falso solo il Giovedì. </dd>
+<dt> AVG(value, n) (*) </dt>
 <dd> Media mobile degli ultimi 'n' valori: torna una stringa con 2 decimali.<br>
 'n' è in numero di loop, in tempo: tempo = n x tuyaInterval (definito in 'config.js' file).</dd>
 
- <dt> MAX(value, n) (*) </dt>
+<dt> MAX(value, n) (*) </dt>
 <dd>Ritorna il più grande  degli ultimi 'n' valori.<br>
 'n' è in numero di loop, in tempo: tempo = n x tuyaInterval (definito in config.js file).</dd>
 
@@ -479,9 +479,9 @@ Progetto OpenSource, Licenza MIT, (c)2024 marco sillano
 
 _Questo progetto è un work-in-progress: viene fornito "così com'è", senza garanzie di alcun tipo, implicite o esplicite._
 
-- _Se sviluppate qualche estensione o applicazione interessante con TuyaUIweb fatemelo sapere: possiamo inserirla qui._
-- _Per problemi riguardanti il codice ed il funzionamento di TuyaUIweb, aprite un 'issue' qui ([github](https://github.com/msillano/TuyaUIweb/issues))._
-- _Per problemi più generali riguardanti  Tuya, SmartLife (Tuya smart) e TuyaUIweb, che possono interessare anche altri utenti, postate pure nel gruppo [Tuya e Smart Life Italia](https://www.facebook.com/groups/tuyaitalia)_
+- _Se sviluppate qualche estensione o applicazione interessante con IoTwebUI fatemelo sapere: possiamo inserirla qui, o nella prossima release._
+- _Per problemi riguardanti il codice ed il funzionamento di IoTwebUI, aprite un 'issue' qui ([github](https://github.com/msillano/IoTwebUI/issues))._
+- _Per problemi più generali riguardanti  Tuya, SmartLife (Tuya smart) e IoTwebUI, che possono interessare anche altri utenti, postate pure nel gruppo [Tuya e Smart Life Italia](https://www.facebook.com/groups/tuyaitalia)_
 
 Grazie per l'interesse <ms>
 m.s.
@@ -490,6 +490,7 @@ m.s.
 
 ### Riconoscimenti
 Tutti i marchi riportati appartengono ai legittimi proprietari.
+
 - https://getbootstrap.com/docs/5.3/getting-started/introduction/
 - https://visjs.github.io/vis-network/docs/network
 - https://fontawesome.com/v4/icons/
