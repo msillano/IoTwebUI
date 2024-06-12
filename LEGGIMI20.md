@@ -94,7 +94,15 @@ Alcune piccole icone informano l'utente (vedi figure sopra):
    - In modo EXPERT sono aggiunti nei tooltip i seguenti valori:
        - `isa`:  nome del 'tipo' Tuya del device (in codice è `device.category`). In totale circa 600 tipi.
        - `id`:  `device.id`, richiesto da alcuni HUB (e.g. TuyaDAEMON, Homebridge, HA, etc..).
-       - `key`: `device.local_key`, richiesto da alcuni HUB 
+       - `key`: `device.local_key`, richiesto da alcuni HUB
+         
+### tap-to_run Tuya
+
+ I 'tap-to-run sono presentati per 'home' (max 100) ed in ordine alfabetico.
+ I nomi dei 'tap-to-run' possono avere due vicoli:
+  - Utilizare prefissi per raggruppare in IoTwebUI i comandi correlati.
+  - Essere facili da ricordare e da riconosere (se si usa il comando vocale con Google o Alexa).<br>
+
 
 ### Logging ed esportazione dati
 
@@ -226,11 +234,11 @@ L'app **IoTwebUI** non è per utenti alle prime armi, pertanto è accettabile ch
 
  - I dati INDISPENSABILI da inserire sono le proprie `credenziali Tuya` per la 'platform.tuya'. <BR> Gli utenti di tuyaDAEMON, Homebridge, HA ed altri hub simili dovrebbero già averle, ma i nuovi utenti si devono iscrivere, ci sono molte guide nel web. [Questa](https://github.com/iRayanKhan/homebridge-tuya/wiki/Get-Local-Keys-for-your-devices) è una delle più chiare, altre sono [elencate qui](https://github.com/msillano/tuyaDAEMON/wiki/50.-Howto:-add-a-new-device-to-tuyaDAEMON#1-preconditions). Un vantaggio è che si ha accesso alla piattaforma Tuya, con molti dati sui propri device, ed alla documentazione tecnica.
 
-- Altre opzioni riguardano: timing (Cloud e log) e configurazione del log: il formato, l'autosave, i valori richiesti, oppure il look&feel, come la presenza dei bottoni di pan/zoom. <BR>Dalla versione 1.2 la possibilità di escludere alcune home.
+- Altre opzioni riguardano: timing (Cloud e log) e configurazione del log: il formato, l'autosave, i valori richiesti, oppure il look&feel, come la presenza dei bottoni di pan/zoom. <BR>Dalla versione 1.2 la possibilità di escludere alcune home, e dalla versione 2.0 quella di escludere alcuni tap-to-run ed anche gli 'alert', individuando evento e tipo di azione.
 
-- Aggiornare con i path del sistema ospite il file di lancio `run_me.bat`.
-- 
- 
+. Dalla versione 2.0 le definizioni per 'dataLog', 'Alert' e RULE possono essere create nella APP, con semplici interfacce utente, e poi esportate per essere copiate nei rispettivi file.
+
+- Aggiornare con i path del sistema ospite il file di lancio `run_me.bat`. 
 
 ## Customizzazioni
 
@@ -240,16 +248,18 @@ Alcune aree sono state privilegiate e le rispettive funzioni poste per semplicit
  - _Tuya non permette più di cambiare le icone, per una opinabile  interpretazione dei suoi consulenti legali delle attuali leggi sul copyright._  
 Per questa APP, invece, ho scelto le icone `awesome4`, con un'[ampissima scelta](https://fontawesome.com/v4/cheatsheet/) e  di libero uso. Di default tutti i device hanno la stessa icona, un cubo.<br>
 Ma sono facilmente personalizzabili dall'utente: basta fornire un criterio di selezione dei device e l'indicazione dell'icona `awesome4` da usare. Come esempio, hanno icone speciali (vedi immagini):
-   - i Termometri (device con nome 'Temp...')
-   - le Valvole termostatiche (device con nome 'Termo...')
-   - i Gateway (device con 'Gateway' nel nome)
+   - i Termometri (device con nome 'Temp...').
+   - le Valvole termostatiche (device con nome 'Termo...').
+   - i Gateway (device con 'Gateway' nel nome).
      
  - Il contenuto dei tooltip, varia a seconda del device. E' un settore dove è utile la possibilità di personalizzazioni, il metodo scelto (un filtro) permette ogni libertà: <br>
-    - Alcuni valori sono criptati: si può scegliere di non farli vedere  - oppure di decodificarli, il codice necessario è disponibile in TuyaDAEMON, ma ho scartato questa opzione per non avere tooltip troppo grandi (vedi immagine 2)
-    - In altri casi occorre dividere per 10 o 100 per avere il valore in unità SI, (vedi immagine 1)   
+    - Alcuni valori sono criptati: si può scegliere di non farli vedere  - oppure di decodificarli, il codice necessario è disponibile in TuyaDAEMON, ma ho scartato questa opzione per non avere tooltip troppo grandi (vedi immagine 2).
+    - In altri casi occorre dividere per 10 o 100 per avere il valore in unità SI, (vedi immagine 1).   
     - Come sviluppatore preferisco avere i nomi delle proprietà originali Tuya, ma si possono rendere più frendly traducendoli in Italiano.
     - Se si desidera si possono anche aggiungere nuove informazioni per esempio derivandole da quelle del device (e.g. temperatura in °C ed anche in °F).
 
+- Per i 'tap-to-run' Tuya, è possibile personalizzare il colore dei pulsanti modificando `sceneColor(scene)` in `custom.js`.
+  
 Queste customizzazioni NON sono necessarie, ma redono più utile e gradevole l'uso di TuyaUIweb.
 <hr>
 
