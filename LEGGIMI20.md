@@ -138,7 +138,7 @@ In modo EXPERT cliccando su un device si apre un dialogo che nella parte inferio
   </TD>
   <TD><ol>
         <li>  Scelta della condizione: 'maggiore', 'uguale' o 'minore'
-        <li>  Il valore di confronto, un numero (24) o una stringa (true)
+        <li>  Il valore di confronto, un numero (24) o una stringa (e.g. true) senza apici (").
         <li>  Messaggio associato: è usato <ul>
              <li> negli Alert con 'pop-up'
              <li> è il testo letto nel caso 'voice'
@@ -312,8 +312,9 @@ Il particolare ambiente in cui sono valutate le RULE comporta qualche limite all
 - **importante**: il codice è eseguito una riga alla volta, non è possibile scrivere blocchi js che occuppino più righe!  Per contenere la lunghezza delle righe, usare delle variabili intermedie (vedi esempi).
 - definire le variabili sempre con la sintassi: **var** _pippo **=**...`
 - usare sempre un underscore **_** come primo carattere nel _nome delle variabili_: si evitano così interferenze con altre variabili.
-- Usare **//** per i commenti fino a fine riga
-- Le operazioni js più utili sono quelle aritmetiche (**+, -, *, /**), quelle logiche (**&&** -and, **||** -or, **!** -negazione) e i confronti ( **&gt;**, **=**, **&lt;**, **&gt;=**, **&lt;=**); la concatenazione delle stringhe è fatta semplicemente con il **+** ("ore " **+** "10:30").
+- Volori predefiniti:`true` e `false` per le condizioni; le costanti numeriche sono con il punto, all'inglese (`3.14`), e tutte le stringhe vogliono gli apici (`"oggi "`);
+- Usare **//** per i commenti, fino a fine riga
+- Le operazioni js più utili sono quelle aritmetiche (**+, -, *, /**), quelle logiche per le condizioni: (**&&** -and, **||** -or, **!** -negazione) e le operazioni di confronto ( **&gt;**, **=**, **&lt;**, **&gt;=**, **&lt;=**); la concatenazione delle stringhe è fatta semplicemente con il **+** ("ore " **+** "10:30").
 - attenzione al '+': in `a + b`, se `a` e `b` sono numeri, fa la somma, ma se uno dei due è una stringa, automaticamente anche l'altro è convertito in stringa. E la conversione `numero => stringa` può portare a sorprese quando non sono numeri interi! Usare sempre ROUND() quando dovete usare dei numeri con la virgola nelle stringhe (vedi esempi).
 - Il costrutto js più utile nelle RULE è l'**if** (esecuzione condizionale), che assume varie forme:<br>
    **if(** `condizione` **)** `azione;` <br>
@@ -328,14 +329,15 @@ Il particolare ambiente in cui sono valutate le RULE comporta qualche limite all
 ```
 // -- various temperature calculations with popup and logging:
 //  using variables, and MACROS: GET() AVG() ROUND() EVERY() POP() DATALOG()
- var _tf = GET("TF_frigo","va_temperature");
- var _tm = AVG(_tf, 12);
- var _tr = ROUND( _tm/10,  -1);  // I only get tens
- if(EVERY(8)) POP( "FRIGO", "Frigo: "+ _tf/10 + "°C, media: "+_tm/10 +"°C, round " + _tr +"°C");  // divisions can get problems in numbers
- DATALOG("frigo.media", _tm/10);
+ var _tf = GET("TF_frigo","va_temperature"); // read temperature sensor
+ var _tm = AVG(_tf, 12);                     // get average from last 12 valus
+ var _tr = ROUND( _tm/10,  -1);              // round to the nearest ten
+ if(EVERY(8)) POP( "FRIGO", "Frigo: "+ _tf/10 + "°C, media: "+_tm/10 +"°C, round " + _tr +"°C");                   // divisions can get problems in numbers!
+ DATALOG("frigo.media", _tm/10);            // saves average on file
  
 // using again _tf, and MACROS: ISCONNECTED() ISCHANGED()  TIME() VOICE() ROUND()
-// note: the delay is a function of the Tuya polling interval and  the device data period. In strings, ROUND can be used to cut a number. 
+// note: the delay is a function of the Tuya polling interval and  the device data period.
+// In strings, ROUND can be used to cut a number. 
 
  var _annonce = "Alle ore " + TIME(hrs)+" la temperatura è cambiata. Il frigo è a " + ROUND(_tf/10, 1) + " gradi";
  if(ISCONNECTED("TF_frigo") && ISCHANGED(_tf)) VOICE(_annonce);    
@@ -352,13 +354,13 @@ Il particolare ambiente in cui sono valutate le RULE comporta qualche limite all
 
 // Voice message if someone keeps the door open
 // using variables and MACROS: CONFIRMH() ALERTLOG()
-// note: this example shows how to debug RULES, using single functions and 'console.log()'
+// note: this example shows how to debug RULES, using single functions per line and 'console.log()' to see the values of variables.
 // note: after an if()  you can use a comma ',' to execute more than one action. 
 
 var _doorev = GET("Sensore porta", "doorcontact_state") ;   //event: true if door open
-var _doorok = CONFIRMH(_doorev, "01:20");         // true only after 1:20
-if(ISTRIGGERH(_doorok)) VOICE("chiudere la porta, grazie"), ALERTLOG("ingresso", "porta aperta") ;
-console.log("DOOR", _doorev, _doorok);
+var _dooropen = CONFIRMH(_doorev, "01:20");         // true only after 1:20
+if(ISTRIGGERH(_dooropen)) VOICE("chiudere la porta, grazie"), ALERTLOG("ingresso", "porta aperta") ;
+console.log("DOOR", _doorev, _dooropen);
 ```
 **ESEMPIO 2** - Un caso concreto di controllo del riscaldamento <br>
 _Ho il riscaldamento centralizzato, con valvole termostatiche su ogni radiatore: ogni stanza ha il suo profilo di temperatura desiderato (Ttarget). Tutto funziona molto bene, tranne in casi eccezionali (esempio, impianto spento per manutezione)._ <br>
@@ -383,7 +385,7 @@ if (_nowClima) SCENA("TLetto" + ROUND(_Ttarget. 0) ), ALERTLOG("RULE Tletto", "a
 
 ### RULE - MACRO
 Possiamo dividere le MACRO in due gruppi: il primo che gestisce le interazioni con le risorse disponibili in **IoTwebUI** (una sorta di API interna). Il secondo gruppo di MACRO sono invece generali, modificando in qualche modo utile  i dati in input.
-_nota: obiettivo delle MACRO non è quello di duplicare le funzionalità delle automazioni Tuya (anche se a volte c'è sovrapposizione) e.g. non esistono MACRO per 'meteo' o 'delay', quanto quello di fornire strumenti più avanzati di calcolo, per ottenere 'automazioni' impossibili!   L'uso di device virtuali e di tap-to-run permette di suddividere i compiti tra scene Tuya (automazioni e tap-to-run) e RULE nel modo più efficiente._ <br>
+_nota: obiettivo delle MACRO non è quello di duplicare le funzionalità delle automazioni Tuya (anche se a volte c'è sovrapposizione) e.g. non esistono MACRO per 'meteo' o 'delay', quanto quello di fornire strumenti più avanzati di calcolo, per ottenere 'automazioni' fin'ora impossibili.   L'uso di device virtuali e di tap-to-run permette di suddividere i compiti tra scene Tuya (automazioni e tap-to-run) e RULE nel modo più efficiente._ <br>
 Ovviamente si possono sempre aggiungere nuove MACRO, o come customizzazione (se create nuove MACRO comnicatelo) oppure in nuove release di **IoTwebUI**.
 <hr>
 
