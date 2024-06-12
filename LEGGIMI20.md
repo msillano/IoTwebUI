@@ -85,7 +85,8 @@ La modalità EXPERT offre un controllo totale sulla personalizzazione di IoTwebU
 
 Nei tooltip, per default, sono presentate tutte le proprietà incluse nello 'status' del device, con i nomi e i valori usati da Tuya Cloud. Alcuni valori possono essere codificati. <br>
 Alcune piccole icone informano l'utente (vedi figure sopra):
-   - `tuya_bridge.switch_1` è interessato da un 'alert'. `tuya_bridge.switch_inching` è un esempio di valore codificato (AAAC). <br> _nota: Se siete interessati alla decodifica, molte funzioni sono presenti in tuyaDAEMON (vedi core, node )._ 
+   - `tuya_bridge.switch_1` è interessato da un 'alert'
+   - `tuya_bridge.switch_inching` è un esempio di valore codificato (AAAC). <br> _nota: Se siete interessati alla decodifica, molte funzioni sono presenti in tuyaDAEMON (vedi 'core_device', node 'ENCODE/DECODE user library')._ 
    - `temperatura studio.va_temperature` è salvato sul datafile
    -  Per il device `temperatura soggiorno` è scattato l'Alert (icona speciale)
    - `temperatura soggiorno.va _humidity`  è la causa dell'Alert, ed è anche indicata la condizione (>40)
