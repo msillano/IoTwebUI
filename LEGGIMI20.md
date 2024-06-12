@@ -300,9 +300,9 @@ E' un array di array contenenti le singole misure (oggetti).
 Il particolare ambiente in cui sono valutate le RULE comporta qualche limite alla sintassi js standard:
 - importante: il codice è eseguito una riga alla volta, non è possibile scrivere blocchi js che occuppino più righe!
   Per contenere la lunghezza delle righe, usare delle variabili intermedie.
-- definire le variabili sempre con la sintassi `var \_pippo =...`
-- usare un underscore '\_' come primo carattere nel _nome delle variabili_: si evitano così interferenze con altre variabili.
-- le RULE sono eseguite immediatamente dopo un aggiornamente dei dati Tuya. Molte funzioni devono quindi conservare lo stato tra un run ed il successivo. Le MACRO si occupano di ciò e semplificano la scrittura di RULE complesse.
+- definire le variabili sempre con la sintassi `var _pippo =...`
+- usare sempre un underscore  `_` come primo carattere nel _nome delle variabili_: si evitano così interferenze con altre variabili.
+- le RULE sono eseguite immediatamente dopo un aggiornamento dei dati Tuya. Molte funzioni devono quindi conservare lo stato tra un run ed il successivo. Le MACRO si occupano di ciò e semplificano la scrittura di RULE complesse.
 <hr>
 
 ESEMPIO 1: usato per testare le MACRO, funziona con i miei device (deve essere modificato per i vostri). <BR>
@@ -317,7 +317,7 @@ ESEMPIO 1: usato per testare le MACRO, funziona con i miei device (deve essere m
  DATALOG("frigo.media", _tm/10);
  
 // using again _tf, and MACROS: ISCONNECTED() ISCHANGED()  TIME() VOICE() ROUND()
-// note: the delay is a function of the Tuya polling interval and device data period. In strings, ROUND can be used to cut a number. 
+// note: the delay is a function of the Tuya polling interval and  the device data period. In strings, ROUND can be used to cut a number. 
 
  var _annonce = "Alle ore " + TIME(hrs)+" la temperatura è cambiata. Il frigo è a " + ROUND(_tf/10, 1) + " gradi";
  if(ISCONNECTED("TF_frigo") && ISCHANGED(_tf)) VOICE(_annonce);    
@@ -325,7 +325,7 @@ ESEMPIO 1: usato per testare le MACRO, funziona con i miei device (deve essere m
 // -- more functions (testing purpose):
 // using MACROS: WEEKMAP() BEEP()
 
- if ( WEEKMAP("DLMM-VS")) BEEP();
+ if ( WEEKMAP("DLMM-VS")) BEEP();  // stupid beep every Tuya polling, but not Thursday
 
 // using variables, and MACROS: ISTRIGGERL() DAYMAP() SCENA()
 
@@ -364,19 +364,30 @@ if (_nowClima) SCENA("TLetto" + ROUND(_Ttarget. 0) ), ALERTLOG("RULE Tletto", "a
 ```
 
 ### RULE - MACRO
-Possiamo dividerle in due gruppi: il primo che gestisce le interazioni con le risorse disponibili in IoTwebUI (una sorta di API interna). Il secondo gruppo di MACRO sono invece generali, modificando in qualche modo utile  i dati in imput.
+Possiamo dividerle in due gruppi: il primo che gestisce le interazioni con le risorse disponibili in **IoTwebUI** (una sorta di API interna). Il secondo gruppo di MACRO sono invece generali, modificando in qualche modo utile  i dati in input.
 <dl>
-<dt></dt>
-<dd></dd>
+<dt>ISCONNECTED(device)</dt>
+<dd>Ritorna 'true' se il device è connessa. <br>
+nota: il dato proviene dal Cloud, può differire dal valore locale mostrato da SmartLife. </dd>
 
-<dt></dt>
-<dd></dd>
+<dt>GET(device, property)</dt>
+<dd>Ritorna il valore di 'property' (i nomi originali mostrati nel tooltip) di device (nome o ID)</dd>
 
-<dt></dt>
-<dd></dd>
+<dt>DATALOG(name, value)</dt>
+<dd>Aggiunge un nuovo 'value' al file di log dati, con il 'name' indicato.</dd>
 
-<dt></dt>
-<dd></dd>
+<dt>ALERTLOG(name, message)</dt>
+<dd>Aggiunge il 'message' al registro delle allerte, identificato da 'name'</dd>
+<dt>BEEP()</dt>
+<dd>Segnale di allerta.</dd>
+<dt> POP(device, message)</dt>
+<dd>Segnale di allerta</dd>
+<dt>XURL(url)</dt>
+<dd>Segnale di allerta</dd>
+<dt>VOICE(message)</dt>
+<dd>Segnale di allerta</dd>
+<dt>SCENA(scenaNome) </dt>
+<dd>Esegue un tap-to-Run, presente nell'elenco letto dal Cloud.</dd>
 
 </dl>
 
@@ -403,7 +414,7 @@ Naturalmente i valori 'val' e 'time' devono essere presenti a coppie, tanti quan
 Usi: profili di temperatura giornalieri, eventi ad orario o abilitazione per intervalli di tempo, etc.
  </dd>
 <dt>  WEEKMAP(map) </dt>
-<dd> 'map' è una stringa di sette caratteri qualsiasi, uno per giorno, partendo dalla Domenica. Solo se il carattere è '-' (trattino) ritorna 'false' altrimenti torna 'true'. <br> Esempio: WEEKMAP("DLMM-VS") è falso solo il Giovedì. </dd>
+<dd> 'map' è una stringa di sette caratteri qualsiasi, uno per giorno, partendo dalla Domenica (e.g.: 'DLMMGVS' o 'SMTWTFS' o '1234567'). Solo se il carattere corrispondente ad oggi è '-' (trattino) ritorna 'false' altrimenti torna 'true'. <br> Esempio: WEEKMAP("DLMM-VS") è falso solo il Giovedì. </dd>
  <dt> AVG(value, n) </dt>
 <dd> Media mobile degli ultimi 'n' valori: torna una stringa con 2 decimali.<br>
 'n' è in numero di loop, in tempo: tempo = n x tuyaInterval (definito in 'config.js' file).</dd>
@@ -427,10 +438,9 @@ Usi: profili di temperatura giornalieri, eventi ad orario o abilitazione per int
      oppure un numero intero con zeri ('pos' < 0) <br>
      Esempi: 'ROUND (123.567, 2)' = "123.57";  'ROUND(123.567, 0)'  = "124";  'ROUND(123.567, -2)'  = "100"; 
 </dd>
-
-
 </dl>
 <hr>
+      
 Progetto OpenSource, Licenza MIT, (c)2024 marco sillano
 
 _Questo progetto è un work-in-progress: viene fornito "così com'è", senza garanzie di alcun tipo, implicite o esplicite._
