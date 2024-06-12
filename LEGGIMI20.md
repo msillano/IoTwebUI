@@ -85,9 +85,9 @@ La modalità EXPERT offre un controllo totale sulla personalizzazione di IoTwebU
 
 Nei tooltip, per default, sono presentate tutte le proprietà incluse nello 'status' del device, con i nomi e i valori usati da Tuya Cloud. Alcuni valori possono essere codificati. <br>
 Alcune piccole icone informano l'utente (vedi figure sopra):
-   - `tuya_bridge.switch_1` è interessato da un 'alert'
-   - `tuya_bridge.switch_inching` è un esempio di valore codificato (AAAC). <br> _nota: Se siete interessati alla decodifica, molte funzioni sono presenti in tuyaDAEMON (vedi 'core_device', node 'ENCODE/DECODE user library')._ 
-   - `temperatura studio.va_temperature` è salvato sul datafile
+   - `tuya_bridge.switch_1` è sotto osservazione per un 'alert'
+   - `tuya_bridge.switch_inching` è un esempio di valore codificato (AAAC). <br> _nota: Se siete interessati alla decodifica, molte funzioni sono state sviluppate per tuyaDAEMON (vedi 'core_device', node 'ENCODE/DECODE user library')._ 
+   - `temperatura studio.va_temperature` è salvato sul datafile, insieme agli altri dati in `logList`.
    -  Per il device `temperatura soggiorno` è scattato l'Alert (icona speciale)
    - `temperatura soggiorno.va _humidity`  è la causa dell'Alert, ed è anche indicata la condizione (>40)
    - Il tooltip `termo studio` è customizzato,  per presentare le temperature con i corretti decimali. (nota: solo nel tooltip: Alert e RULE usano sempre il valore fornito da Tuya Cloud, i.e. 222 e 190).
@@ -365,7 +365,7 @@ _Questa automazione non è realizzabile con Smartlife_, nè con Alexa o Google, 
    - si possono fare confronti solo con costanti,
    - non esistono tap-to-run parametrici od almeno con nomi dinamici.
  
-Chiedo troppo? Un sistema 'open' deve permetterlo: infatti con le RULE _si può fare_! <br>
+Chiedo troppo? Un sistema 'open' devrebbe permettere queste automazioni. O no? infatti con le RULE _si può fare_! <br>
 _Alcune precondizioni: la mia termovalvola ('Termo letto')  ha le proprietà 'temp_set' e 'temp_current'.
 Per semplicità ho utilizzato come temperatura Target solo i valori 16, 20, 21 °C: in questo modo mi occorrono solo 3 tap-to-run chiamati Tletto16, Tletto20 e Tletto21, per accendere ed impostare il clima._
 ```
@@ -391,7 +391,9 @@ nota: il dato proviene dal Cloud, può differire dal valore locale mostrato da S
 <dd>Ritorna il valore di 'property' (i nomi originali mostrati nel tooltip) del device (nome o ID)</dd>
 
 <dt>DATALOG(name, value)</dt>
-<dd>Aggiunge un nuovo 'value' al file di log dati, con il 'name' indicato.</dd>
+<dd>Aggiunge un nuovo 'value' al file di log dati, con il 'name' indicato.<br>
+_nota: il salvataggio dati durante un test inizia subito, ma, in formato CSV, la prima riga con i nomi non è aggiornata. Eventualmente salvare il file di log per avere il nuovo file aggiornato. Questo solo in fase di test: con le RULE  in <i>uso</i> dall'avvio non c'è problema._
+</dd>
 
 <dt>ALERTLOG(name, message)</dt>
 <dd>Aggiunge il 'message' al registro degli avvisi, identificato da 'name'</dd>
