@@ -63,7 +63,7 @@ La modalità EXPERT offre un controllo totale sulla personalizzazione di IoTwebU
 
 <hr>
 
-## Note di implementazione
+## Note di implementazione ed uso
 
 - IoTwebUI deriva da un'interfaccia analoga progettata per [TuyaDAEMON](https://github.com/msillano/tuyaDEAMON-applications/tree/main/daemon.visUI.widget).
 - La scelta della libreria di visualizzazione è caduta su [Vis-Network](https://visjs.github.io/vis-network/docs/network/) per la buona flessibilità unita a semplicità di uso.
@@ -365,6 +365,7 @@ if (_nowClima) SCENA("TLetto" + ROUND(_Ttarget. 0) ), ALERTLOG("RULE Tletto", "a
 
 ### RULE - MACRO
 Possiamo dividerle in due gruppi: il primo che gestisce le interazioni con le risorse disponibili in **IoTwebUI** (una sorta di API interna). Il secondo gruppo di MACRO sono invece generali, modificando in qualche modo utile  i dati in input.
+#### MACRO per risorse
 <dl>
 <dt>ISCONNECTED(device)</dt>
 <dd>Ritorna 'true' se il device è connessa. <br>
@@ -379,18 +380,19 @@ nota: il dato proviene dal Cloud, può differire dal valore locale mostrato da S
 <dt>ALERTLOG(name, message)</dt>
 <dd>Aggiunge il 'message' al registro delle allerte, identificato da 'name'</dd>
 <dt>BEEP()</dt>
-<dd>Segnale di allerta.</dd>
+<dd>Segnale di avviso.</dd>
 <dt> POP(device, message)</dt>
-<dd>Segnale di allerta</dd>
+<dd>Segnale di avviso.</dd>
 <dt>XURL(url)</dt>
-<dd>Segnale di allerta</dd>
+<dd>Segnale di avviso.</dd>
 <dt>VOICE(message)</dt>
-<dd>Segnale di allerta</dd>
+<dd>Segnale di avviso.</dd>
 <dt>SCENA(scenaNome) </dt>
-<dd>Esegue un tap-to-Run, presente nell'elenco letto dal Cloud.</dd>
+<dd>Esegue un _tap-to-Run_, presente nell'elenco letto dal Cloud.</dd>
 
 </dl>
 
+#### MACRO funzionali
 <dl>
 <dt>  ISTRIGGERH(condition) </dt>
 <dd> Ritorna 'true' solo al passaggio della "condizione" da 'false a true', evita che la "condizione" 'true' agisca ad ogni run (come le condizioni delle automazioni Tuya). </dd>
