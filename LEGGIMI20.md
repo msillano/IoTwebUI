@@ -377,6 +377,8 @@ if (_nowClima) SCENA("TLetto" + ROUND(_Ttarget. 0) ), ALERTLOG("RULE Tletto", "a
 
 ### RULE - MACRO
 Possiamo dividere le MACRO in due gruppi: il primo che gestisce le interazioni con le risorse disponibili in **IoTwebUI** (una sorta di API interna). Il secondo gruppo di MACRO sono invece generali, modificando in qualche modo utile  i dati in input.
+<hr>
+
 #### MACRO per risorse
 <dl>
 <dt>ISCONNECTED(device)</dt>
@@ -402,6 +404,7 @@ nota: il dato proviene dal Cloud, può differire dal valore locale mostrato da S
 <dt>SCENA(scenaNome) </dt>
 <dd>Esegue un _tap-to-Run_, presente nell'elenco letto dal Cloud.</dd>
 </dl>
+<hr>
 
 #### MACRO funzionali
 <dl>
@@ -415,6 +418,8 @@ time = "hh:mm:ss" oppure "mm:ss" oppure "ss"</dd>
 <dt>  CONFIRML(condition, time) </dt>
 <dd> Ritorna 'true' solo se la "condizione" rimane 'false' per almeno il tempo 'time'  (inverso  di CONFIRMH).<BR>
 `time` = costante nei formati "hh:mm:ss" oppure "mm:ss" oppure "ss"</dd>
+<dt>HYSTERESIS(value, test, delta)</dt>
+ <dd> Confronta 'value' con 'test', usando come intervallo di isteresi 'delta': L'output diventa 'true' se 'value &gt; test + delta/2',  oppure 'false' se 'value &lt; test - delta/2'. </dd>
 <dt>  EVERY(n)</dt>
 <dd>  Semplice timer: ritorna 'true' solo dopo "n" esecuzioni, ciclico <br>
       'n' è in numero di loop, in tempo: tempo = n x tuyaInterval (definito in 'config.js' file). </dd>
