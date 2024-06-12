@@ -309,16 +309,16 @@ E' un array di array contenenti le singole misure (oggetti).
 
 ### RULE - sintassi
 Il particolare ambiente in cui sono valutate le RULE comporta qualche limite alla sintassi js standard:
-- importante: il codice è eseguito una riga alla volta, non è possibile scrivere blocchi js che occuppino più righe!
-  Per contenere la lunghezza delle righe, usare delle variabili intermedie.
-- definire le variabili sempre con la sintassi `var _pippo =...`
-- usare sempre un underscore  `_` come primo carattere nel _nome delle variabili_: si evitano così interferenze con altre variabili.
-- Le operazioni js più utili sono quelle aritmetiche (+, -, *, /), quelle logiche (&& -and, || -or, ! -negazione) e i confronti ( &gt;, =, &lt;, &gt;=, &lt;=); la concatenazione delle stringhe è fatta semplicemente con il + ("ore " + "10:30").
-- In costrutto js più utile nelle RULE è l'IF (esecuzione condizionale), che assume varie forme:<br>
+- **importante**: il codice è eseguito una riga alla volta, non è possibile scrivere blocchi js che occuppino più righe!  Per contenere la lunghezza delle righe, usare delle variabili intermedie (vedi esempi).
+- definire le variabili sempre con la sintassi: **var** _pippo **=**...`
+- usare sempre un underscore **_** come primo carattere nel _nome delle variabili_: si evitano così interferenze con altre variabili.
+- Le operazioni js più utili sono quelle aritmetiche (**+, -, *, /**), quelle logiche (**&&** -and, **||** -or, **!** -negazione) e i confronti ( **&gt;**, **=**, **&lt;**, **&gt;=**, **&lt;=**); la concatenazione delle stringhe è fatta semplicemente con il **+** ("ore " **+** "10:30").
+- attenzione al '+': in `a + b`, se `a` e `b` sono numeri, fa la somma, ma se uno dei due è una stringa, automaticamente anche l'altro è convertito in stringa. E la conversione `numero => stringa` può portare a sorprese quando non sono numeri interi! Usare sempre ROUND() quando dovete usare dei numeri nelle stringhe (vedi esempi).
+- Il costrutto js più utile nelle RULE è l'**if** (esecuzione condizionale), che assume varie forme:<br>
    **if(** `condizione` **)** `azione;` <br>
-   **if(** `condiz1 && condiz2` **)** `azione1, azione2;` <br>
-   `if (condizione) azione1 else azione2; ` <br>
-- le RULE sono eseguite immediatamente dopo un aggiornamento dei dati Tuya. Molte funzioni devono quindi conservare lo stato tra un run ed il successivo. Le MACRO si occupano di ciò e semplificano la scrittura di RULE complesse.
+   **if(** `condiz1 && condiz2` **)** `azione1`**,** `azione2;` <br>
+   **if (** `condizione` **)** `azione1` **else** `azione2`; ` <br>
+- le RULE sono eseguite ad ogni loop, dopo un aggiornamento dei dati Tuya. Molte funzioni devono quindi conservare lo stato tra un run ed il successivo. Le MACRO si occupano di ciò e semplificano la scrittura di RULE complesse.
   
 <hr>
 
