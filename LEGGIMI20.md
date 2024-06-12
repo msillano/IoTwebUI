@@ -320,7 +320,8 @@ Il particolare ambiente in cui sono valutate le RULE comporta qualche limite all
 - Il costrutto js più utile nelle RULE è l'**if** (esecuzione condizionale), che assume varie forme:<br>
    **if(** `condizione` **)** `azione;` <br>
    **if(** `condiz1 && condiz2` **)** `azione1`**,** `azione2;` <br>
-   **if (** `condizione` **)** `azione1` **else** `azione2`; ` <br>
+   **if (** `condizione` **)** `azione1` **else** `azione2;` <br>
+- **importante**: per come sono implementate, le MACRO che usano memoria (individuate da (*)) NON possono essere usate nella parte `azione` di un **if**. Per ragioni analoghe non sono ammessi **if  nidificati** (un **if** nella zona azione di un altro **if**). Sono vincoli che non pongono, però, serie limitazioni.
 - le RULE sono eseguite ad ogni loop, dopo un aggiornamento dei dati Tuya. Molte funzioni devono quindi conservare lo stato tra un run ed il successivo. Le MACRO si occupano di ciò e semplificano la scrittura di RULE complesse.
   
 <hr>
@@ -399,12 +400,12 @@ nota: il dato proviene dal Cloud, può differire dal valore locale mostrato da S
 <dt>GET(device, property)</dt>
 <dd>Ritorna il valore di 'property' (i nomi originali mostrati nel tooltip) del device (nome o ID)</dd>
 
-<dt>DATALOG(name, value)</dt>
+<dt>DATALOG(name, value) (*)</dt>
 <dd>Aggiunge un nuovo 'value' al file di log dati, con il 'name' indicato.<br>
 _nota: il salvataggio dati durante un test inizia subito, ma, in formato CSV, la prima riga con i nomi non è aggiornata. Eventualmente salvare il file di log per avere il nuovo file aggiornato. Questo solo in fase di test: con le RULE  in <i>uso</i> dall'avvio non c'è problema._
 </dd>
 
-<dt>ALERTLOG(name, message)</dt>
+<dt>ALERTLOG(name, message) </dt>
 <dd>Aggiunge il 'message' al registro degli avvisi, identificato da 'name'</dd>
 <dt>BEEP()</dt>
 <dd>Segnale di avviso.</dd>
@@ -421,19 +422,19 @@ _nota: il salvataggio dati durante un test inizia subito, ma, in formato CSV, la
 
 #### MACRO funzionali
 <dl>
-<dt>  ISTRIGGERH(condition) </dt>
+<dt>  ISTRIGGERH(condition) (*) </dt>
 <dd> Ritorna 'true' solo al passaggio della "condizione" da 'false a true', evita che la "condizione" 'true' agisca ad ogni run (come le condizioni delle automazioni Tuya). </dd>
-<dt>  ISTRIGGERL(condition) </dt>
+<dt>  ISTRIGGERL(condition) (*)</dt>
 <dd> Ritorna 'true' solo al passaggio della "condizione" da 'true a false'  (inverso  di ISTRIGGERH) </dd>
-<dt>  CONFIRMH(condition, time) </dt>
+<dt>  CONFIRMH(condition, time) (*) </dt>
 <dd> Ritorna 'true' solo se la "condizione" rimane 'true' per almeno il tempo 'time'. Caso tipico una porta aperta: vedi esempi.<BR>
 time = "hh:mm:ss" oppure "mm:ss" oppure "ss"</dd>
-<dt>  CONFIRML(condition, time) </dt>
+<dt>  CONFIRML(condition, time) (*) </dt>
 <dd> Ritorna 'true' solo se la "condizione" rimane 'false' per almeno il tempo 'time'  (inverso  di CONFIRMH).<BR>
 `time` = costante nei formati "hh:mm:ss" oppure "mm:ss" oppure "ss"</dd>
-<dt>HYSTERESIS(value, test, delta)</dt>
+<dt>HYSTERESIS (*)(value, test, delta)</dt>
  <dd> Confronta 'value' con 'test', usando come intervallo di isteresi 'delta': L'output diventa 'true' se 'value &gt; test + delta/2',  oppure 'false' se 'value &lt; test - delta/2'. </dd>
-<dt>  EVERY(n)</dt>
+<dt>  EVERY(n) (*)</dt>
 <dd>  Semplice timer: ritorna 'true' solo dopo "n" esecuzioni, ciclico <br>
       'n' è in numero di loop, in tempo: tempo = n x tuyaInterval (definito in 'config.js' file). </dd>
 <dt>  TIME(wath) </dt>
@@ -446,11 +447,11 @@ Usi: profili di temperatura giornalieri, eventi ad orario o abilitazione per int
  </dd>
 <dt>  WEEKMAP(map) </dt>
 <dd> 'map' è una stringa di sette caratteri qualsiasi, uno per giorno, partendo dalla Domenica (e.g.: 'DLMMGVS' o 'SMTWTFS' o '1234567'). Solo se il carattere corrispondente ad oggi è '-' (trattino) ritorna 'false' altrimenti torna 'true'. <br> Esempio: WEEKMAP("DLMM-VS") è falso solo il Giovedì. </dd>
- <dt> AVG(value, n) </dt>
+ <dt> AVG(value, n) (*) </dt>
 <dd> Media mobile degli ultimi 'n' valori: torna una stringa con 2 decimali.<br>
 'n' è in numero di loop, in tempo: tempo = n x tuyaInterval (definito in 'config.js' file).</dd>
 
- <dt> MAX(value, n) </dt>
+ <dt> MAX(value, n) (*) </dt>
 <dd>Ritorna il più grande  degli ultimi 'n' valori.<br>
 'n' è in numero di loop, in tempo: tempo = n x tuyaInterval (definito in config.js file).</dd>
 
@@ -460,7 +461,7 @@ Usi: profili di temperatura giornalieri, eventi ad orario o abilitazione per int
  Esempio: 'if(ISTRIGGERH(DAYMAP(false, '00:00:00', true, '00:20:00'))) ZEROMAX();'<br>
 
  </dd>
-<dt>ISCHANGED(value) </dt>
+<dt>ISCHANGED(value) (*) </dt>
 <dd> ritorna  'true'` ogni volta che   'value' cambia rispetto al valore precedente.</dd>
 
 <dt>ROUND(number, pos)</dt>
@@ -470,6 +471,7 @@ Usi: profili di temperatura giornalieri, eventi ad orario o abilitazione per int
      Esempi: 'ROUND (123.567, 2)' = "123.57";  'ROUND(123.567, 0)'  = "124";  'ROUND(123.567, -2)'  = "100"; 
 </dd>
 </dl>
+(*): identifica le MACRO che fanno uso di memoria per salvare lo stato.
       
 <hr>
       
