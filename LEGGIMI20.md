@@ -44,7 +44,7 @@ _Cosa puoi fare?_<br>
 
 #### RULE: Domanda di automazioni più potenti? IoTwebUI 2.0 ha la risposta!
 
- - Effettuare operazioni aritmetiche e utilizzare variabili per una flessibilità senza limiti.
+ - Effettuare operazioni logiche ed aritmetiche e utilizzare variabili per una flessibilità senza limiti.
  - Confrontare i valori di due proprietà diverse, per automazioni ancora più libere.
  - Eseguire azioni complesse, come attivare tap-to-run Tuya o inviare comandi ad altre applicazioni via REST.
  - Come funziona?
@@ -230,13 +230,13 @@ Nelle immagini: a sinistra avvio OK (Chrome, CORS disattivato) a destra in caso 
 
 ### Configurazione
 
-L'app **IoTwebUI** non è per utenti alle prime armi, pertanto è accettabile che la configurazione avvenga direttamente editando un file (`config`.js). _Le solite avvertenze: fare una copia del file prima di ogni modifica, usare un editor UTF8 (io uso Notepad-plusplus), e attenzione a NON ALTERARE niente altro (soprattutto virgole  ','  ed  apici '"')._
+L'app **IoTwebUI** non è per utenti alle prime armi, pertanto è accettabile che la configurazione avvenga direttamente editando un file (`config`.js). _Le solite avvertenze: fare una copia del file prima di ogni modifica, usare un editor UTF8 (io uso Notepad-plusplus), e attenzione a NON ALTERARE niente altro (soprattutto virgole  ','  ed  apici '"' e "`")._
 
  - I dati INDISPENSABILI da inserire sono le proprie `credenziali Tuya` per la 'platform.tuya'. <BR> Gli utenti di tuyaDAEMON, Homebridge, HA ed altri hub simili dovrebbero già averle, ma i nuovi utenti si devono iscrivere, ci sono molte guide nel web. [Questa](https://github.com/iRayanKhan/homebridge-tuya/wiki/Get-Local-Keys-for-your-devices) è una delle più chiare, altre sono [elencate qui](https://github.com/msillano/tuyaDAEMON/wiki/50.-Howto:-add-a-new-device-to-tuyaDAEMON#1-preconditions). Un vantaggio è che si ha accesso alla piattaforma Tuya, con molti dati sui propri device, ed alla documentazione tecnica.
 
-- Altre opzioni riguardano: timing (Cloud e log) e configurazione del log: il formato, l'autosave, i valori richiesti, oppure il look&feel, come la presenza dei bottoni di pan/zoom. <BR>Dalla versione 1.2 la possibilità di escludere alcune home, e dalla versione 2.0 quella di escludere alcuni tap-to-run ed anche gli 'alert', individuando evento e tipo di azione.
+- Altre opzioni riguardano: timing (Cloud e log) e configurazione del log: il formato, l'autosave, i valori richiesti, oppure il look&feel, come la presenza dei bottoni di pan/zoom. <BR>Dalla versione 1.2 la possibilità di escludere alcune home, e dalla versione 2.0 quella di escludere alcuni tap-to-run. Sono anche definiti gli 'alert', individuando evento e tipo di azione.
 
-. Dalla versione 2.0 le definizioni per 'dataLog', 'Alert' e RULE possono essere create nella APP, con semplici interfacce utente, e poi esportate per essere copiate nei rispettivi file.
+. Dalla versione 2.0 le definizioni per 'dataLog' (`logList`), 'Alert'(`testList`) e RULE (`usrRules`) possono essere create nella APP, con semplici interfacce utente, e poi esportate per essere copiate nei rispettivi file.
 
 - Aggiornare con i path del sistema ospite il file di lancio `run_me.bat`. 
 
@@ -259,6 +259,8 @@ Ma sono facilmente personalizzabili dall'utente: basta fornire un criterio di se
     - Se si desidera si possono anche aggiungere nuove informazioni per esempio derivandole da quelle del device (e.g. temperatura in °C ed anche in °F).
 
 - Per i 'tap-to-run' Tuya, è possibile personalizzare il colore dei pulsanti modificando `sceneColor(scene)` in `custom.js`.
+
+- Per le RULE, i più avventurosi possono aggiungere le loro MACRO personali nel file `usrrulesXX.X.js`.
   
 Queste customizzazioni NON sono necessarie, ma redono più utile e gradevole l'uso di TuyaUIweb.
 <hr>
