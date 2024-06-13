@@ -52,8 +52,8 @@ _What can you do?_<br>
   1. Create RULES at runtime with a user-friendly interface, even if you are not an experienced programmer.
   2. Use predefined MACROs for common and repetitive tasks, saving time and effort.
   3. Test your RULES in real time to be sure they work perfectly.
-  4. In case of an error during the test, a pop-up will indicate the line and type of error for a quick and precise resolution.
-  5. Export your RULES to include them in the configuration file and make them permanent.
+  4. In case of an error during the test, a pop-up will indicate the line and type of error for a quick and precise resolution.
+  5. Export your RULES to include them in the configuration file and make them permanent.
 
 #### EXPERT Mode: To Control Everything Controllable
 
