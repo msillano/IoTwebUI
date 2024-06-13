@@ -204,21 +204,21 @@ _DO NOT make it accessible from the outside or by third parties, otherwise all y
 ### Versions
 
 - 2.0 Major functional update.
- - Added the ability to activate Tuya's "Tap-to-Run" scenes from this APP.
- - Added 'Alerts': check values ​​and perform actions (options): beep, pop-up, voice message, open URL, tun 'Tap-to-Run'
- - Added "User RULES" (RULE) for unlimited user automations (requires basic js skills)
- - Added "Alert register" for alerts and rules
- - Added interface for defining the data to be recorded on the dataLog file, with export in the configuration, for easy maintenance
- - Added interface for defining alerts, with export to configuration, for easy maintenance
- - Added interface for editing and testing rules at run-time, with export to configuration, for easy maintenance
- - Redesigned interface with Bootstrap 5.3, smooth and with light/dark mode, for a better user experience
- - Dynamic disappearing menu, to have maximum space available for the graph.
+   - Added the ability to activate Tuya's "Tap-to-Run" scenes from this APP.
+   - Added 'Alerts': check values ​​and perform actions (options): beep, pop-up, voice message, open URL, tun 'Tap-to-Run'
+   - Added "User RULES" (RULE) for unlimited user automations (requires basic js skills)
+   - Added "Alert register" for alerts and rules
+   - Added interface for defining the data to be recorded on the dataLog file, with export in the configuration, for easy maintenance
+   - Added interface for defining alerts, with export to configuration, for easy maintenance
+   - Added interface for editing and testing rules at run-time, with export to configuration, for easy maintenance
+   - Redesigned interface with Bootstrap 5.3, smooth and with light/dark mode, for a better user experience
+   - Dynamic disappearing menu, to have maximum space available for the graph.
 
 - 1.2 Functional update.
- - Added the possibility to exclude some 'homes' in 'config'
- - Two modes introduced: normal | expert
- 1. DUMPing Tuya data in the console is only possible in expert mode
- 2. In 'expert' mode 3 new data are added to the tooltip (if available)
+   - Added the possibility to exclude some 'homes' in 'config'
+   - Two modes introduced: normal | expert
+   - DUMPing Tuya data in the console is only possible in expert mode
+   - In 'expert' mode 3 new data are added to the tooltip (if available)
 
 - 1.1 Bug fixes
 
