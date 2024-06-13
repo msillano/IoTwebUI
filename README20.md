@@ -57,10 +57,10 @@ _What can you do?_<br>
 
 #### EXPERT Mode: To Control Everything Controllable
 
-EXPERT mode offers total control over the customization of IoTwebUI.
-  - Access the configuration interfaces and make changes that will be valid only for that run.
-  - Copy the data from the "export pad" to the configuration files to make your choices stable.
-  - You can disable EXPERT mode in the configuration when you have finished customizing.
+EXPERT mode offers total control over the customization of IoTwebUI:
+- Access the configuration interfaces and make changes that will be valid only for that run.
+- Copy the data from the "export pad" to the configuration files to make your choices stable.
+- You can disable EXPERT mode in the configuration when you have finished customizing.
 
 <hr>
 
