@@ -189,8 +189,9 @@ Si possono gestire due insiemi di RULE: quelle in <i>uso</i>, inizialmente lette
 </TABLE>
 <HR>
 
-**NOTE sulla sicurezza**
-**_Per garantire la massima sicurezza, **IoTwebUI** opera esclusivamente in modalità di sola lettura, senza apportare alcuna modifica ai tuoi dati su Tuya Cloud._** <br>
+**NOTE sulla sicurezza**<br>
+
+**_Per garantire la massima sicurezza, IoTwebUI opera esclusivamente in modalità di sola lettura, senza apportare alcuna modifica ai tuoi dati su Tuya Cloud._** <br>
 
 _**Questa APP è totalmente aperta, priva di ogni protezione, e contiene nei file le vostre credenziali in chiaro!**_ <br>
 _NON rendetela accessibile dall'esterno o da terzi, altrimenti tutti i vostri dati, credenziali Tuya incluse, sono esposti!_
