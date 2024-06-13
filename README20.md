@@ -276,6 +276,7 @@ Some areas have been prioritized and the respective functions are in separate fi
 
 These customizations are NOT necessary, but they make the use of TuyaUIweb more useful and pleasant.
 <hr>
+
 ### CSV format
 
 This is an example of a log file in CSV format:
