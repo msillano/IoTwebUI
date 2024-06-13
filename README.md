@@ -9,8 +9,8 @@ _What can you do?_<br>
 ⏱️ Personalized alerts: Monitor every aspect of your home automation and receive real-time advice or fire action.<br>
 👌 Perfect integration: Combine devices, properties, RULEs, and Tuya tap-to-run for smooth and complete automation.
 
-[Version  2.0 - English](https://github.com/msillano/IoTwebUI/blob/main/README20.md)
-[Version  1.2 - English](https://github.com/msillano/IoTwebUI/blob/main/README12.md)
+😃 [Version  2.0 - English](https://github.com/msillano/IoTwebUI/blob/main/README20.md) <br>
+ ⬦ [Version  1.2 - English](https://github.com/msillano/IoTwebUI/blob/main/README12.md)
 
  ![aspetto della versione 2.0](https://github.com/msillano/IoTwebUI/blob/main/pics/ver20-look.png?raw=true)
 
@@ -24,7 +24,7 @@ _Cosa puoi fare?_<br>
 👌 Integrazione perfetta: Combina device, proprietà, RULE e Tuya tap-to-run per un'automazione fluida e completa.
 
 
-[Versione 2.0 - Italiano](https://github.com/msillano/IoTwebUI/blob/main/LEGGIMI20.md)
-[Versione 1.2 - Italiano](https://github.com/msillano/IoTwebUI/blob/main/LEGGIMI12.md)
+😃 [Versione 2.0 - Italiano](https://github.com/msillano/IoTwebUI/blob/main/LEGGIMI20.md) <br>
+ ⬦ [Versione 1.2 - Italiano](https://github.com/msillano/IoTwebUI/blob/main/LEGGIMI12.md)
 
 <hr>
