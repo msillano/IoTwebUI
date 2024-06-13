@@ -143,10 +143,13 @@ In modo EXPERT cliccando su un device si apre un dialogo che nella parte inferio
              <li> oppure è un URL ed allora è aperto nel browser
              <li> oppure è il nome di un 'tap-to-run' che è eseguito </ul>
          <li>  Azione: una o più a scelta tra 'beep' 'pop' e 'voice' (URL e tap-to-run sono automatiche) </li></ol>
- <i> nota: per avere, ad esempio, sia 'pop' che 'tap-to-run', creare due Alert con le stesse condizioni: in uno 'message' sarà il testo per il 'pop-up', nell'altro il nome del 'tap-to-run'.</i>
   </TD>
  </TR>
 </TABLE>
+ <i> nota: <br>
+ - Se non si sceglie nessuna azione e si lascia vuoto 'message', l'azione di default è il cambio dell'icona del device e l'aggiornamento del tooltip, sempre presenti.
+ - Per avere, ad esempio, sia 'pop' che 'tap-to-run', creare due Alert con le stesse condizioni: in uno 'message' sarà il testo per il 'pop-up', nell'altro il nome del 'tap-to-run'.</i>
+
 Bottoni:
  <ul>  
     <li>  <b> newTest </b>- aggiunge un nuovo Alert (solo per il  run corrente)
@@ -251,6 +254,8 @@ Ma sono facilmente personalizzabili dall'utente: basta fornire un criterio di se
    - i Termometri (device con nome 'Temp...').
    - le Valvole termostatiche (device con nome 'Termo...').
    - i Gateway (device con 'Gateway' nel nome).
+
+Anche l'icona speciale che indica un'alert è customizzabile: vedi `alertIcon` in 'config.js'.
      
  - Il contenuto dei tooltip, varia a seconda del device. E' un settore dove è utile la possibilità di personalizzazioni, il metodo scelto (un filtro) permette ogni libertà: <br>
     - Alcuni valori sono criptati: si può scegliere di non farli vedere  - oppure di decodificarli, il codice necessario è disponibile in TuyaDAEMON, ma ho scartato questa opzione per non avere tooltip troppo grandi.
