@@ -146,13 +146,15 @@ In modo EXPERT cliccando su un device si apre un dialogo che nella parte inferio
   </TD>
  </TR>
 </TABLE>
- _note:_ <br> 
+
+ _note:_
+ 
  - _Se non si sceglie nessuna azione e si lascia vuoto 'message', l'azione di default è il cambio dell'icona del device e l'aggiornamento del tooltip, sempre eseguiti._
  - _Gli 'alert' non hanno, per semplicità, un filtro a tempo: se definiti sono attivi 24/7. Se occorre qualche condizionamento, è possibile creare RULE ad hoc._ 
  - _Notare che 'connected' non è incluso nelle proprietà, e quindi non si possono definire 'Alert'. Ma è disponibile come MACRO nelle RULE._
- - _Per avere sia 'pop' che 'tap-to-run', creare due Alert con le stesse condizioni: in uno 'message' sarà il testo per il 'pop-up', nell'altro il nome del 'tap-to-run'._>
+ - _Per avere sia 'pop' che 'tap-to-run', creare due Alert con le stesse condizioni: in uno 'message' sarà il testo per il 'pop-up', nell'altro il nome del 'tap-to-run'._
 
-Bottoni:
+**Bottoni:**
  <ul>  
     <li>  <b> newTest </b>- aggiunge un nuovo Alert (solo per il  run corrente)
     <li>  <b>clear dev </b>- elimina tutti gli Alert del device (solo per il run corrente)
