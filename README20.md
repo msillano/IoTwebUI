@@ -50,6 +50,7 @@ _What can you do?_<br>
 - Perform complex actions, such as activating Tuya tap-to-runs or sending commands to other applications via REST.
 
  **How does it work?**
+ 
   1. Create RULES at runtime with a user-friendly interface, even if you are not an experienced programmer.
   2. Use predefined MACROs for common and repetitive tasks, saving time and effort.
   3. Test your RULES in real time to be sure they work perfectly.
