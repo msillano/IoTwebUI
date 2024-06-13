@@ -260,6 +260,8 @@ But they are easily customizable by the user: just provide a device selection cr
  - thermostatic valves (a device with the name 'Termo...').
  - Gateways (devices with 'Gateway' in the name).
 
+The special icon that indicates an alert is also customizable: see `alertIcon` in 'config.js'.
+
  - The content of the tooltips varies depending on the device. It is a sector where the possibility of customization is useful, the chosen method (a filter) allows every freedom: <br>
  - Some values ​​are encrypted: you can choose not to see them - or to decode them, the necessary code is available in TuyaDAEMON, but I discarded this option to avoid having tooltips that are too large.
  - In other cases, you can divide by 10 or 100 to obtain the value in SI units.
