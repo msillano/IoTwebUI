@@ -1,4 +1,4 @@
-## IoTwebUI 2.0: Open Extension for Tuya Web App
+## IoTwebUI 2.0: Tuya Web App open extension
 
 [versione italiana](https://github.com/msillano/IoTwebUI/blob/main/LEGGIMI20.md)
 
@@ -11,53 +11,52 @@ _What can you do?_<br>
 ⏱️ Personalized alerts: Monitor every aspect of your home automation and receive real-time notifications.<br>
 👌 Perfect integration: Combine devices, properties, RULES, and Tuya tap-to-run for smooth and complete automation.
 
-## Performance:
-
  ![aspetto della versione 2.0](https://github.com/msillano/IoTwebUI/blob/main/pics/ver20-look.png?raw=true)
 
-## Interface: A Feast for the Eyes and for Control
+#### Interface: A Feast for the Eyes and Control
 
-- **Choose between light or dark theme,** according to your preferences.
-- **Navigate through your devices and 'homes' with a draggable and zoomable tree,** perfect for keeping everything under control.
-- **Informative pop-ups with new icons** will keep you updated on the status of each property of a device, without missing a single detail.
-- **A drop-down menu with configuration information and dynamic options** will give you quick access to everything you need.
-- **And if you want to further customize,** unleash your creativity with icons, colors, and informative pop-ups of your choice.
+- Choose between the light or dark theme, according to your preferences.
+- Navigate through your devices and 'homes' with a draggable and zoomable tree, perfect for keeping everything under control.
+- Informative pop-ups with new icons will keep you updated on the status of each property of a device, without missing a single detail.
+- A drop-down menu with configuration information and dynamic options will give you quick access to everything you need.
+- And if you want to further customize, unleash your creativity with icons, colors, and informative pop-ups of your choice.
 
-## Data: Safe and Always at Hand
+#### Data: Safe and Always at Hand
 
-- **Record the data of the properties that interest you to files,** so you will always have a complete archive of your home automation.
-- **Calculate moving averages, decoded or normalized values** for an even more in-depth analysis.
-- **Choose automatic or manual saving,** with data format options (CSV or JSON), sampling period and saving frequency to suit your needs.
-- **Runtime management: unlimited flexibility**
+- Record the data of the properties that interest you to files, so you will always have a complete archive of your home automation.
+- Calculate moving averages, or decoded or normalized values for an even more in-depth analysis.
+- Choose automatic or manual saving, with data format options (CSV or JSON), sampling period, and saving frequency to suit your needs.
+- Runtime management: unlimited flexibility
 
-## Tap-to-run Tuya: Power at Your Fingertips
+#### Tap-to-run Tuya: Power at Your Fingertips
 
-- **A dedicated page with a tab for each "home"** allows you to have everything under control.
-- **Automatic loading at startup** for home automation that is always ready for action.
-- **Launch Tuya tap-to-runs with a simple click** and customize button colors for an even more intuitive experience.
-- **Exclude the tap-to-runs you don't need** for a clean and tidy interface.
+- A dedicated page with a tab for each "home" allows you to have everything under control.
+- Automatic loading at startup for home automation that is always ready for action.
+- Launch Tuya tap-to-runs with a simple click and customize button colors for an even more intuitive experience.
+- Exclude the tap-to-runs you don't need for a clean and tidy interface.
 
-## Alerts: Never Miss an Event Again
+#### Alerts: Never Miss an Event Again
 
-- **You can activate a control function on any property of the devices and choose the "greater than", "equal to" or "less than" tests** to monitor every aspect of your home automation.
-- **Same logic as Tuya conditions,** for a common and reliable language.
-- **Choose from different consequential actions:** beep, pop-up, voice message, URL launch or Tuya tap-to-run.
-- **Real Time, with an average guaranteed delay equal to 50% of the Tuya sampling period,** for a perfect balance between speed and precision.
-- **Alert definition at runtime: total control in real time**
+- You can activate a control function on any property of the devices and choose the "greater than", "equal to" or "less than" tests to monitor every aspect of your home automation.
+- Same logic as Tuya conditions, for a common and reliable language.
+- Choose from different consequential actions: beep, pop-up, voice message, URL launch, or Tuya tap-to-run.
+- Real-time, with an average delay equal to 50% of the Tuya sampling period, for a perfect balance between speed and precision.
+- Alert definition at runtime: total control in real-time
 
-## RULE: Thirst for More Powerful Automations? IoTwebUI 2.0 Has the Answer!
+#### RULE: Thirst for More Powerful Automations? IoTwebUI 2.0 Has the Answer!
 
-- **Perform logical and arithmetic operations and use variables** for unlimited flexibility.
-- **Compare the values of two different properties,** for even freer automations.
-- **Perform complex actions,** such as activating Tuya tap-to-runs or sending commands to other applications via REST.
-- **How does it work?**
+- Perform logical and arithmetic operations and use variables for unlimited flexibility.
+- Compare the values of two different properties, for even freer automations.
+- Perform complex actions, such as activating Tuya tap-to-runs or sending commands to other applications via REST.
+
+ **How does it work?**
   1. Create RULES at runtime with a user-friendly interface, even if you are not an experienced programmer.
   2. Use predefined MACROS for common and repetitive tasks, saving time and effort.
   3. Test your RULES in real time to make sure they work perfectly.
   4. In case of an error during the test, a pop-up will indicate the line and type of error for a quick and precise resolution.
   5. Export your RULES to include them in the configuration file and make them permanent.
 
-## EXPERT Mode: To Control Everything Controllable
+#### EXPERT Mode: To Control Everything Controllable
 
 EXPERT mode offers total control over the customization of IoTwebUI.
   - Access the configuration interfaces and make changes that will be valid only for that run.
@@ -68,102 +67,130 @@ EXPERT mode offers total control over the customization of IoTwebUI.
 
 ## Implementation and Usage Notes
 
-### Overview
+- IoTwebUI is a web-based application that provides a user-friendly interface for interacting with Tuya smart devices. It is derived from a similar interface designed for TuyaDAEMON and utilizes the Vis-Network library for its visualization capabilities.
 
-IoTwebUI is a web-based application that provides a user-friendly interface for interacting with Tuya smart devices. It is derived from a similar interface designed for TuyaDAEMON and utilizes the Vis-Network library for its visualization capabilities.
-
-### Implementation Details
-
-#### CORS Protocol
-
-Modern browsers implement the CORS (Cross-Origin Resource Sharing) security protocol, which restricts web applications from making requests to servers other than the one that served the web page. This poses a challenge for IoTwebUI, as it needs to access the Tuya Cloud to retrieve device data.
-
-To circumvent this restriction, the following steps are necessary:
-
-1. **Launch Chrome with the `--disable-web-security` flag:**
-
+- Modern browsers implement the CORS (Cross-Origin Resource Sharing) security protocol, which restricts web applications from making requests to servers other than the one that served the web page. This poses a challenge for IoTwebUI, as it needs to access the Tuya Cloud to retrieve device data. It is necessary to disable CORS when launching the browser ((see `run_me.bat` file):
 ```
 chrome.exe --user-data-dir="C://Chrome dev session" --disable-web-security
 ```
+As an alternative to the 'bat' file, the 'Cross Domains - CORS' extension can be used with some browsers, see [ISSUE4](https://github.com/msillano/IoTwebUI/issues/4).
 
-2. **Consider using the 'Cross Domains - CORS' browser extension:**
+- Tuya places limits on the frequency of cloud access. IoTwebUI takes this into account, and the initial phase (when it reads all the data from the Cloud) is blocking and not very short (3-5 s, depending on the number of devices). 
 
-This extension can be used as an alternative to disabling CORS for all websites.
+- A second problem is the impossibility of creating files directly from an HTML page, again for security reasons. To export the data I used a logging library on the `debugout.js` file. For this reason, control over the generated files is not complete, and small manual interventions are required on the exported files.
 
-#### Tuya Cloud Access Frequency Limitations
+- The datalog files are saved in the download directory, with the name tuyalog-hh-mm-ss.csv|json.
 
-Tuya Cloud imposes limits on the frequency of device data access. IoTwebUI takes this into account, and the initial phase of loading all device data may take a few seconds (3-5 seconds) depending on the number of devices.
+- For the same reason it is not possible to update the configuration files from the APP. I chose a compromise solution, which involves user intervention with a simple copy-paste.
 
-#### Data Export Limitations
+- Operation continues normally even with the browser window iconised.
 
-Due to security restrictions, it is not possible to directly create files from an HTML page. For data export, IoTwebUI utilizes the debugout.js file logging library. This means that the control over the generated files is not complete, and minor manual interventions are required on the exported files.
-
-Data logs are saved in the `download` directory with the filename `tuyalog-hh-mm-ss.csv|json`.
-
-#### Configuration File Updates
-
-For the same security reasons, it is not possible to update configuration files directly from the app. A workaround involves user intervention with a simple copy-and-paste operation.
 
 ### User Interface
 
 The user interface of IoTwebUI provides a clear and organized layout for managing Tuya smart devices. It features:
+![](https://github.com/msillano/IoTwebUI/blob/main/pics/tootip20.png?raw=true)
 
-- **Draggable and zoomable device tree:** This allows users to easily navigate through their devices and 'homes'.
+The tooltips, which open when you hover the mouse over a device icon, contain all the properties included in the 'status' of the device, with the names and values ​​used by Tuya Cloud. Some values ​​can be hardcoded. <br>
+Some small icons provide further information to the user (see figures above):
+ - `tuya_bridge.switch_1` is under observation for an 'alert'
+ - `tuya_bridge.switch_inching` is an example of an encoded value (AAAC). <br> _note: If you are interested in decoding Tuya values, many functions have been developed for tuyaDAEMON (see 'core_device', 'ENCODE/DECODE user library' node)._
+ - `temperature studio.va_temperature` is saved to the datafile, along with the other data in `logList`.
+ - The Alert (special icon) was triggered for the `living room temperature` device
+ - `living room temperature.va _humidity` is the cause of the Alert, and the condition is also indicated (>40)
+ - The `thermo studio` tooltip is customized to present temperatures with the correct decimals. (note: only in the tooltip: Alert and RULE always use the value provided by Tuya Cloud, i.e. 222 and 190).
+ - In EXPERT mode the following values ​​are added to the tooltips:
+ - `isa`: name of the Tuya 'type' of the device (in code it is `device.category`). In total around 600 types.
+ - `id`: `device.id`, required by some HUBs (e.g. TuyaDAEMON, Homebridge, HA, etc..).
+ - `key`: `device.local_key`, required by some HUBs
 
-- **Informative tooltips:** Hovering over a device icon reveals a tooltip containing detailed information about the device's properties and status.
+### tap-to_run Tuya
+The 'taps-to-run' are presented by 'home' (max 100) and in alphabetical order.
+Tap-to-run names can go two ways:
+ - Use prefixes to group related commands in IoTwebUI.
+ - Be easy to remember and recognize (if you use voice commands with Google or Alexa).<br>
 
-- **Customizable tooltips:** In EXPERT mode, tooltips include additional information such as device type, ID, and local key.
+### Logging and data  export
 
-- **Tap-to-run buttons:** These buttons allow users to quickly execute predefined actions associated with their devices.
+It is possible to export some data to a file: the user must only specify `device` and `status` (property) to identify the data of interest and these are saved at regular intervals (minimum 1 minute) in an internal buffer (max 5000 records - equal to 80h @1 rec/min), then exported to a file automatically or by user command.<br>
+The user can choose between two formats: `CSV` (suitable, for example, for DB and Excel-type spreadsheets) or `JSON` (for more complex processing with ad hoc programs) with very little editing on the files (see beyond formats).
+<TABLE width = "100%" >
+ <TR>
+ <TD>
+ In EXPERT mode, clicking on a device opens a dialogue, in the upper part it concerns the export of data to file:
+ <ul>
+ <li> <b> newLog </b>- add to the log (only for the current run)
+ <li> <b>clear dev </b>- deletes the device from the log, (all properties)
+ <li> <b> config </b>- opens pop-up to see current log definitions <br>
+ <i>Permanent 'logs' are in the `config.js` file: they can be edited directly or copied from the pop-up.</i>
+ <li> <b> cancel </b>- closes the dialog.</ul>
+ </TD>
+ <TD>
+ <img src="https://github.com/msillano/IoTwebUI/blob/main/pics/alert20.png?raw=true" />
+ </TD>
+ </TR>
+</TABLE>
 
-- **Device status monitoring:** IoTwebUI continuously monitors the status of connected devices and updates the interface accordingly.
+In EXPERT mode, a command is available in the menu to have the entire data structure obtained from Tuya Cloud in the console ('Dump data'): it can be explored at each level in the console pad or it can be copied with copy&paste in JSON format.
 
-### Logging and Data Export
+### Alerts and notices
+In EXPERT mode, clicking on a device opens a dialogue which in the lower part allows the definition of the 'Alerts':
+<TABLE width = "100%" >
+ <TR>
+ <TD width="200px">
+ <img src="https://github.com/msillano/IoTwebUI/blob/main/pics/alert21.png?raw=true" />
+ </TD>
+ <TD><ol>
+ <li> Choice of condition: 'greater', 'equal' or 'less'
+ <li> The comparison value, a number (24), or a string (e.g. true) without quotes (").
+ <li> Associated message: <ul> is used
+ <li> in Alerts with 'pop-up'
+ <li> is the text read in the 'voice' case
+ <li> or it is a URL and then it is open in the browser
+ <li> or is the name of a 'tap-to-run' that is executed </ul>
+ <li> Action: one or more of 'beep' 'pop' and 'voice' (URL and tap-to-run are automatic) </li></ol>
+ <i> note: to have, for example, both 'pop' and 'tap-to-run', create two Alerts with the same conditions: in one the 'message' will be the text for the 'pop-up', and the name of 'tap-to-run' is another.</i>
+ </TD>
+ </TR>
+</TABLE>
+Buttons:
+ <ul>
+ <li> <b> newTest </b>- adds a new Alert (only for the current run)
+ <li> <b>clear dev </b>- deletes all device alerts (only for the current run)
+ <li> <b> config </b> - opens pop-up to see current alert definitions. <br>
+ <i>Permanent 'Alerts' are in the `config.js` file: they can be edited directly or copied from the pop-up.</i>
+ <li> <b> cancel </b>- closes the dialog.</ul>
 
-IoTwebUI enables users to export device data to files. They can specify the desired device and properties, and the data is saved at regular intervals (minimum 1 minute) to an internal buffer. This buffer is then exported to a file automatically or upon user command.
+### RULE: no limits automations.
+ In EXPERT mode the menu presents the "RULE page" option which opens a page dedicated to managing the RULES:
+<TABLE width = "100%" >
+ <TR>
+ <TD>
+ An important part is dedicated to a RULE editing pad (for details see below).<br>
+<i>Note: if you prefer to use a more powerful external editor, you can certainly do so, with copy-paste.</i><br>
+Two sets of RULES can be managed: those in <i>use</i>, initially read from the `usrrulesXX.X.js` file, and the new ones, <i>in Edit</i> in the pad.
+<br>
 
-Users can choose between two export formats:
-
-- **CSV (Comma-Separated Values):** Suitable for databases and spreadsheets like Excel.
-
-- **JSON (JavaScript Object Notation):** Suitable for more complex processing with ad-hoc programs.
-
-### Alerts and Notifications
-
-IoTwebUI allows users to define alerts for specific device properties. These alerts can trigger notifications in various ways:
-
-- **Pop-up messages:** Display a pop-up window with the alert message.
-
-- **Voice announcements:** Use a text-to-speech engine to read the alert message aloud.
-
-- **URL opening:** Open a specified URL in the web browser.
-
-- **Tap-to-run execution:** Execute a predefined tap-to-run action.
-
-Users can define multiple actions for each alert.
-
-### RULE: Limitless Automations
-
-In EXPERT mode, IoTwebUI provides a RULE page for creating powerful automations. These RULEs can perform complex actions based on device conditions and user-defined logic.
-
-The RULE page features:
-
-- **RULE editing pad:** A text editor for writing RULE code.
-
-- **RULE management:** Load, replace, and export RULEs.
-
-- **RULE testing:** Test RULEs without affecting active RULEs.
-
-### Additional Notes
-
-- IoTwebUI continues to function even when the browser window is minimized.
-
-- The application is open-source and available on GitHub: [https://github.com/bengchet/Simple-IoT-Web-UI](https://github.com/bengchet/Simple-IoT-Web-UI)
-
+ The buttons present offer the following functions;
+ <ul>
+ <li> <b> Clear </b>- clears the edit area.
+ <li> <b> Load </b>- copies the RULES currently in use to Edit pad.
+ <li> <b> Replace </b>- the RULES currently in use are replaced by those in edit.
+ <li> <b> Export </b>- Creates a pop-up to see the definitions of the RULES in use. <br><i>The permanent RULES are in the 'usrrulesXX.X.js' file: they can be edited directly or copied from the pop-up.</i>
+ <li> <b> Test Start </b>- Start test of the RULES in Edit: the RULES in use are suspended.
+ <li> <b> Test End</b>- End the Test and restore the previous RULES (auto in case of error)
+ </ul>
+ </TD>
+ <TD>
+ <img src="https://github.com/msillano/IoTwebUI/blob/main/pics/rules20.png?raw=true" />
+ </TD>
+ </TR>
+</TABLE>
+<HR
 
 
 **Safety NOTES**
-**_To ensure maximum security, **IoTwebUI** operates exclusively in read-only mode, without making any changes to your data on Tuya Cloud._** <br>
+_To ensure maximum security, **IoTwebUI** operates exclusively in read-only mode, without making any changes to your data on Tuya Cloud._ <br>
 
 _**This APP is totally open, without any protection, and contains your credentials in clear text in the files!**_ <br>
 _DO NOT make it accessible from the outside or by third parties, otherwise all your data, including Tuya credentials, are exposed!_
