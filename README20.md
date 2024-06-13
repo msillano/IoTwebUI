@@ -48,14 +48,12 @@ _What can you do?_<br>
 - Perform logical and arithmetic operations and use variables for unlimited flexibility.
 - Compare the values of two different properties, for even freer automations.
 - Perform complex actions, such as activating Tuya tap-to-runs or sending commands to other applications via REST.
-
- **How does it work?**
- 
-  1. Create RULES at runtime with a user-friendly interface, even if you are not an experienced programmer.
-  2. Use predefined MACROs for common and repetitive tasks, saving time and effort.
-  3. Test your RULES in real time to be sure they work perfectly.
+- **How does it work?**
+  1. Create RULES at runtime with a user-friendly interface, even if you are not an experienced programmer.
+  2. Use predefined MACROs for common and repetitive tasks, saving time and effort.
+  3. Test your RULES in real time to be sure they work perfectly.
   4. In case of an error during the test, a pop-up will indicate the line and type of error for a quick and precise resolution.
-  5. Export your RULES to include them in the configuration file and make them permanent.
+  5. Export your RULES to include them in the configuration file and make them permanent.
 
 #### EXPERT Mode: To Control Everything Controllable
 
