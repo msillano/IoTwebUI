@@ -231,9 +231,12 @@ L'app **IoTwebUI** non è per utenti alle prime armi, pertanto è accettabile ch
 
  - I dati INDISPENSABILI da inserire sono le proprie `credenziali Tuya` per la 'platform.tuya'. <BR> Gli utenti di tuyaDAEMON, Homebridge, HA ed altri hub simili dovrebbero già averle, ma i nuovi utenti si devono iscrivere, ci sono molte guide nel web. [Questa](https://github.com/iRayanKhan/homebridge-tuya/wiki/Get-Local-Keys-for-your-devices) è una delle più chiare, altre sono [elencate qui](https://github.com/msillano/tuyaDAEMON/wiki/50.-Howto:-add-a-new-device-to-tuyaDAEMON#1-preconditions). Un vantaggio è che si ha accesso alla piattaforma Tuya, con molti dati sui propri device, ed alla documentazione tecnica.
 
-- Altre opzioni riguardano: timing (Cloud e log) e configurazione del log: il formato, l'autosave, i valori richiesti, oppure il look&feel, come la presenza dei bottoni di pan/zoom. <BR>Dalla versione 1.2 la possibilità di escludere alcune home, e dalla versione 2.0 quella di escludere alcuni tap-to-run. Sono anche definiti gli 'alert', individuando evento e tipo di azione.
+- Altre opzioni riguardano: timing (Cloud e log) e configurazione del log: il formato, l'autosave, i valori richiesti, oppure il look&feel, come la presenza dei bottoni di pan/zoom. <BR>Dalla versione 1.2 la possibilità di escludere alcune home (`hide_homes` array), e dalla versione 2.0 quella di escludere alcuni tap-to-run (`hide_scenes` array). 
 
-. Dalla versione 2.0 le definizioni per 'dataLog' (`logList`), 'Alert'(`testList`) e RULE (`usrRules`) possono essere create nella APP, con semplici interfacce utente, e poi esportate per essere copiate nei rispettivi file.
+- Sempre in `config.js`, la variabile  `expertModeEnabled = false` permette di disabilitare il modo 'EXPERT'.
+
+. Dalla versione 2.0 le definizioni per 'dataLog' (`logList`  in `config.js`), 'Alert'(`testList` in `config.js`) e RULE (`usrRules` in  `usrrulesXX.X.js`) possono essere create nella APP, con semplici interfacce utente, e poi esportate per essere copiate nei rispettivi file.
+
 
 - Aggiornare con i path del sistema ospite il file di lancio `run_me.bat`. 
 
@@ -399,7 +402,7 @@ nota: il dato proviene dal Cloud, può differire dal valore locale mostrato da S
 
 <dt>DATALOG(name, value) (*)</dt>
 <dd>Aggiunge un nuovo 'value' al file di log dati, con il 'name' indicato.<br>
-<i>nota: il salvataggio dati durante un test inizia subito, ma, nel formato CSV, la prima riga con i nomi non è aggiornata. Eventualmente salvare il file di log per avere il nuovo file aggiornato. Questo solo in fase di test: con le RULE  in <i>uso</i> dall'avvio non c'è problema.</i> 
+<i>nota: il salvataggio dati durante un test inizia subito, ma, nel formato CSV, la prima riga con i nomi non è aggiornata. Eventualmente salvare il file di log per avere un nuovo file aggiornato. Questo solo in fase di test: con le RULE  in <i>uso</i> dall'avvio non c'è problema.</i> 
 </dd>
 
 <dt>ALERTLOG(name, message) </dt>
@@ -428,23 +431,22 @@ nota: il dato proviene dal Cloud, può differire dal valore locale mostrato da S
 <dd> Ritorna 'true' solo al passaggio della "condizione" da 'false a true', evita che la "condizione" 'true' agisca ad ogni run (analogo alle condizioni delle automazioni Tuya). </dd>
  
 <dt>  ISTRIGGERL(condition) (*)</dt>
-<dd> Ritorna 'true' solo al passaggio della "condizione" da 'true a false'  (inverso  di ISTRIGGERH) </dd>
+<dd> Ritorna 'true' solo al passaggio della "condizione" da 'true a false'  (inverso  di ISTRIGGERH). </dd>
  
 <dt>  CONFIRMH(condition, time) (*) </dt>
 <dd> Ritorna 'true' solo se la "condizione" rimane 'true' per almeno il tempo 'time'. Poi resta 'true' fino a quando la 'condizione' è 'true'. Caso tipico una porta aperta: vedi esempi.<BR>
 time = costante nei formati "hh:mm:ss" oppure "mm:ss" oppure "ss". Deve essere maggiore di TuyaInterval.</dd>
  
 <dt>  CONFIRML(condition, time) (*) </dt>
-<dd> Ritorna 'true' solo se la "condizione" rimane 'false' per almeno il tempo 'time'  (inverso  di CONFIRMH).<BR>
-`time` = costante nei formati "hh:mm:ss" oppure "mm:ss" oppure "ss". Deve essere maggiore di TuyaInterval.</dd>
+<dd> Ritorna 'true' solo se la "condizione" rimane 'false' per almeno il tempo 'time'  (inverso  di CONFIRMH).</dd>
  
 <dt>HYSTERESIS (value, test, delta)  (*)</dt>
- <dd> Confronta 'value' con 'test', usando come intervallo di isteresi 'delta': L'output diventa 'true' se 'value &gt; test + delta/2',  oppure 'false' se 'value &lt; test - delta/2'. </dd>
+ <dd> Confronta 'value' con 'test', usando come intervallo di isteresi 'delta'. L'output diventa 'true' se 'value &gt; test + delta/2',  oppure 'false' se 'value &lt; test - delta/2'. </dd>
  
 <dt>  EVERY(n) (*)</dt>
 <dd>  Semplice timer: ritorna 'true' solo dopo "n" esecuzioni, ciclico <br>
-       E' garantito il valore 'true' solo per ogni n-simo loop (non richiede ISTRIGGERH()).
-      'n' è in numero di loop, in tempo: tempo = n x tuyaInterval (definito in 'config.js' file). </dd>
+       E' garantito un singolo valore 'true' per ogni n-simo loop (non richiede ISTRIGGERH()).
+      'n' è in numero di loop, in tempo: t = n x tuyaInterval (definito in 'config.js' file). </dd>
  
 <dt>  TIME(wath) </dt>
 <dd>  ritorna una stringa, "hh:mm:ss" oppure "mm:ss" oppure "ss" calcolata dall'ora attuale, a seconda di 'wath'.
@@ -454,7 +456,7 @@ time = costante nei formati "hh:mm:ss" oppure "mm:ss" oppure "ss". Deve essere m
 <dt>  DAYMAP(val1, time1, val2, time2, ... more) </dt>
 <dd> Ritorna: fino a 'time1' l'output è 'val1', da  'time1' a  'time2'  l'output è 'val2'... avanti così fino  all'ultimo 'time' dopo di che  l'output è di nuovo 'val1'.<br>
 Naturalmente i valori 'val' e 'time' devono essere presenti a coppie, tanti quanti ne servono. Tutti i 'time' in formato "hh:mm:ss".<br>
-Usi: profili di temperatura giornalieri, eventi ad orario o abilitazione per intervalli di tempo, etc., a seconda se 'val' è una temperatura, oppure 'buongiorno'/'buonasera', oppure true/false, etc..
+Usi: profili di temperatura giornalieri, eventi ad orario o abilitazione per intervalli di tempo, etc., a seconda se 'val' sono temperature, oppure 'buongiorno'/'buonasera', oppure true/false, etc..
  </dd>
  
 <dt>  WEEKMAP(map) </dt>
@@ -462,11 +464,11 @@ Usi: profili di temperatura giornalieri, eventi ad orario o abilitazione per int
  
 <dt> AVG(value, n) (*) </dt>
 <dd> Media mobile degli ultimi 'n' valori: torna una stringa con 2 decimali.<br>
-'n' è in numero di loop, in tempo: tempo = n x tuyaInterval (definito in 'config.js' file).</dd>
+'n' è in numero di loop, in tempo: t = n x tuyaInterval (definito in 'config.js' file).</dd>
 
 <dt> MAX(value, n) (*) </dt>
 <dd>Ritorna il più grande  degli ultimi 'n' valori.<br>
-'n' è in numero di loop, in tempo: tempo = n x tuyaInterval (definito in config.js file).</dd>
+'n' è in numero di loop, in tempo: t = n x tuyaInterval (definito in config.js file).</dd>
 
  <dt> ZEROMAX() </dt>
 <dd>Azzera tutti i MAX() presenti in caso di lunghi periodi, e.g. 24h.<br>
