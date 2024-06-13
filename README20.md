@@ -256,19 +256,19 @@ The **IoTwebUI** is OpenSource, in HTML+Javascript, and it is quite documented a
 Some areas have been prioritized and the respective functions are in separate files for simplicity - `custom.js` and `usrrulesXX.X.js` with detailed instructions and examples:
 
  - _Tuya no longer allows you to change the icons, due to a questionable interpretation of its legal advisors of current copyright laws._
-For this APP, however, I chose the `awesome4` icons, with a [very wide choice](https://fontawesome.com/v4/cheatsheet/) and free to use. By default, all devices have the same icon, a cube.<br>
-But they are easily customizable by the user: just provide a device selection criterion and the indication of the `awesome4` icon to use. As an example, they have special icons (see images):
- - Thermometers (a device with the name 'Temp...').
- - thermostatic valves (a device with the name 'Termo...').
- - Gateways (devices with 'Gateway' in the name).
+  For this APP, however, I chose the `awesome4` icons, with a [very wide choice](https://fontawesome.com/v4/cheatsheet/) and free to use. By default, all devices have the same icon, a cube.<br>
+  But they are easily customizable by the user: just provide a device selection criterion and the indication of the `awesome4` icon to use. As an example, they have special icons (see images):
+   - Thermometers (a device with the name 'Temp...').
+   - thermostatic valves (a device with the name 'Termo...').
+   - Gateways (devices with 'Gateway' in the name).
 
-The special icon that indicates an alert is also customizable: see `alertIcon` in 'config.js'.
+   The special icon that indicates an alert is also customizable: see `alertIcon` in 'config.js'.
 
- - The content of the tooltips varies depending on the device. It is a sector where the possibility of customization is useful, the chosen method (a filter) allows every freedom: <br>
- - Some values ​​are encrypted: you can choose not to see them - or to decode them, the necessary code is available in TuyaDAEMON, but I discarded this option to avoid having tooltips that are too large.
- - In other cases, you can divide by 10 or 100 to obtain the value in SI units.
- - As a developer, I prefer to have the original Tuya property names, but you can make them more friendly by translating them.
- - If you wish, you can also add new information, for example by deriving it from that of the device (e.g. temperature in °C and also in °F).
+- The content of the tooltips varies depending on the device. It is a sector where the possibility of customization is useful, the chosen method (a filter) allows every freedom: <br>
+    - Some values ​​are encrypted: you can choose not to see them - or to decode them, the necessary code is available in TuyaDAEMON, but I discarded this option to avoid having tooltips that are too large.
+    - In other cases, you can divide by 10 or 100 to obtain the value in SI units.
+    - As a developer, I prefer to have the original Tuya property names, but you can make them more friendly by translating them.
+    - If you wish, you can also add new information, for example by deriving it from that of the device (e.g. temperature in °C and also in °F).
 
 - For Tuya 'tap-to-run', you can customize the button color by editing `sceneColor(scene)` in `custom.js`.
 
