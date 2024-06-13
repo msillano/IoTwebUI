@@ -152,9 +152,13 @@ In EXPERT mode, clicking on a device opens a dialogue which in the lower part al
  </TD>
  </TR>
 </TABLE>
- <i> note: <br>
-   - If you do not choose actions and do not fill  the 'message', the default action is the change of icon on the diagram and in the tooltip.
-   - to have, for example, both 'pop' and 'tap-to-run', create two Alerts with the same conditions: in one the 'message' will be the text for the 'pop-up', and the name of 'tap-to-run' is another.</i>
+ _note:_ 
+
+- _If you do not choose actions and do not fill  the 'message', the default action is the change of icon on the diagram and in the tooltip._
+- _The 'alerts' do not, for simplicity, have a time filter: if defined they are active 24/7. If some conditioning is needed, it is possible to create an ad-hoc RULE._
+-  _The 'connected' is not included in the properties, and therefore 'Alert' cannot be defined. But it is available as MACRO in RULE._
+-  _To have both 'pop' and 'tap-to-run', create two Alerts with the same conditions: in one the 'message' will be the text for the 'pop-up', and the name of 'tap-to-run' is another._
+
 Buttons:
  <ul>
  <li> <b> newTest </b>- adds a new Alert (only for the current run)
