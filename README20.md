@@ -192,10 +192,9 @@ Two sets of RULES can be managed: those in <i>use</i>, initially read from the `
  </TD>
  </TR>
 </TABLE>
-<HR
+<HR>
 
-
-**Safety NOTES**
+**Safety NOTES**<br>
 _To ensure maximum security, **IoTwebUI** operates exclusively in read-only mode, without making any changes to your data on Tuya Cloud._ <br>
 
 _**This APP is totally open, without any protection, and contains your credentials in clear text in the files!**_ <br>
@@ -340,7 +339,8 @@ The particular environment in which the RULES are evaluated entails some limits 
 
 <hr>
 
-**EXAMPLE 1**: used to test MACROs, works with my devices (needs to be modified for yours). <BR>```
+**EXAMPLE 1**: used to test MACROs, works with my devices (needs to be modified for yours). <BR>
+```
 // -- various temperature calculations with popup and logging:
 //  using variables, and MACROS: GET() AVG() ROUND() EVERY() POP() DATALOG()
  var _tf = GET("TF_frigo","va_temperature"); // read temperature sensor
