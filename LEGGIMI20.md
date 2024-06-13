@@ -38,7 +38,7 @@ _Cosa puoi fare?_<br>
 
  - puoi attivare una funzione di controllo su qualsiasi proprietà dei dispositivi e sceglere i test "maggiore", "uguale" o "minore" per monitorare ogni aspetto della tua domotica.
  - Stessa logica delle condizioni Tuya, per un linguaggio comune ed affidabile.
- - Scegli tra diverse azioni conseguenziali: beep, pop-up, messaggio vocale, lancio di URL o tap-to-run Tuya.
+ - Scegli tra diverse azioni conseguenziali: silente, beep, pop-up, messaggio vocale, lancio di URL o tap-to-run Tuya.
  - Real Time, con un ritardo medio garantito pari al 50% del periodo di campionamento Tuya, per un equilibrio perfetto tra rapidità e precisione.
  - Definizione degli Alert al runtime: controllo totale in tempo reale
 
