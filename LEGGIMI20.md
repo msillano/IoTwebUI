@@ -341,7 +341,7 @@ Il particolare ambiente in cui sono valutate le RULE comporta qualche limite all
 // -- various temperature calculations with popup and logging:
 //  using variables, and MACROS: GET() AVG() ROUND() EVERY() POP() DATALOG()
  var _tf = GET("TF_frigo","va_temperature"); // read temperature sensor
- var _tm = AVG(_tf, 12);                     // get average from last 12 valus
+ var _tm = AVG(_tf, 12);                     // get average from last 12 values
  var _tr = ROUND( _tm/10,  -1);              // round to the nearest ten
  if(EVERY(8)) POP( "FRIGO", "Frigo: "+ _tf/10 + "°C, media: "+_tm/10 +"°C, round " + _tr +"°C");                   // divisions can get problems in numbers!
  DATALOG("frigo.media", _tm/10);            // saves average on file
