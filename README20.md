@@ -149,10 +149,12 @@ In EXPERT mode, clicking on a device opens a dialogue which in the lower part al
  <li> or it is a URL and then it is open in the browser
  <li> or is the name of a 'tap-to-run' that is executed </ul>
  <li> Action: one or more of 'beep' 'pop' and 'voice' (URL and tap-to-run are automatic) </li></ol>
- <i> note: to have, for example, both 'pop' and 'tap-to-run', create two Alerts with the same conditions: in one the 'message' will be the text for the 'pop-up', and the name of 'tap-to-run' is another.</i>
  </TD>
  </TR>
 </TABLE>
+ <i> note: <br>
+   - If you do not choose actions and do not fill  the 'message', the default action is the change of icon on the diagram and in the tooltip.
+   - to have, for example, both 'pop' and 'tap-to-run', create two Alerts with the same conditions: in one the 'message' will be the text for the 'pop-up', and the name of 'tap-to-run' is another.</i>
 Buttons:
  <ul>
  <li> <b> newTest </b>- adds a new Alert (only for the current run)
