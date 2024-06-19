@@ -11,7 +11,7 @@ _Cosa puoi fare?_<br>
 🎙  Comandi vocali: in locale, integrati con tap-to-run e RULE, in un'unica APP<br>
 👌 Integrazione perfetta: Combina device, proprietà, RULE e Tuya tap-to-run per un'automazione fluida e completa.
 
- ![aspetto della versione 2.1](https://github.com/msillano/IoTwebUI/blob/main/pics/ver20-look.png?raw=true)
+ ![aspetto della versione 2.1](https://github.com/msillano/IoTwebUI/blob/main/pics/wer21.png?raw=true)
 
 #### Interfaccia: un piacere per gli occhi e per il controllo
 
