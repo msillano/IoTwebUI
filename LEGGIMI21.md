@@ -58,9 +58,10 @@ _Cosa puoi fare?_<br>
     4. In caso di errore durante il test, un popup ti indicherà la riga e il tipo di errore per una risoluzione rapida e precisa.
     5. Esporta le tue RULE per inserirle nel file di configurazione e renderle permanenti.
 
-#### Voice recognition: comandi vocali locali customizzabili
+#### Voice recognition: comandi vocali customizzabili
  - Attiva ogni tap-to-run o RULE con "Hei Tuya, esegui ... "
  - Controlla la navigazione nell'APP IoTwebUI: "Hei Tuya, vai alle scene"
+ - Puoi disattivare la modalità 'voice recognition' nella configurazione 
 
 #### Modalità EXPERT: per controllare tutto il controllabile
 
@@ -345,10 +346,15 @@ Il particolare ambiente in cui sono valutate le RULE comporta qualche limite all
 - attenzione al '+': in `a + b`, se `a` e `b` sono numeri, fa la somma, ma se uno dei due è una stringa, automaticamente anche l'altro è convertito in stringa. E la conversione `numero => stringa` può portare a sorprese quando non sono numeri interi! Usare sempre ROUND() quando dovete usare dei numeri con la virgola nelle stringhe (vedi esempi).
 . importante è anche l'uso delle parentesi, "()", sempre a coppie. Parentesi servono dopo ogni MACRO - nota, anche se non ci sino parametri, e.g. `BEEP()` - e dopo un `if`, per la condizione. comunque usatele liberamente per raggruppare risultati intermedi nelle espressioni e.g. if((_a > 10) && (_b/2 == 0))....
 - le RULE sono eseguite ad ogni loop, dopo un aggiornamento dei dati Tuya. Molte MACRO devono quindi conservare lo stato tra un run ed il successivo, e sono individuate con (*). 
-- Il costrutto js più utile nelle RULE è l'**if** (esecuzione condizionale), che assume varie forme:<br>
-   **if(** `condizione` **)** `azione;` <br>
-   **if(** `condiz1 && condiz2` **)** `azione1`**,** `azione2;` <br>
-   **if (** `condizione` **)** `azione1` **else** `azione2;` <br>
+- Il costrutto js più utile nelle RULE è l'**if()** (esecuzione condizionale), che assume varie forme:<br>
+   **if(** `condizione` **)** `azione;`    `azione` _è eseguita ogni volta che `condizione` è vera_ <br>
+   **if(** `condizione` **)** `azione1`**,** `azione2;`  _due (o più) azioni, separate da ',' virgola._<br>
+   **if(** `condiz1 && condiz2` **)** `azione;`  _AND: 'tutte',_  `condiz1` _e_ `condiz2` _devono essere vere entrambe._<br>
+   **if(** `condiz1 || condiz2` **)** `azione;` _OR: 'almeno una',_ `condiz1` _oppure_ `condiz2` deve essere vera._<br>
+   **if (** `condizione` **)** `azione1` **else** `azione2;`  _esegue `azione1` (se vero) oppure `azione2` (se falso)._ <br>
+
+ - Se una `condizione` è vera a lungo, un `if()` sarà eseguito più volte, ad ogni ciclo. Per evitare questo le macro TRIGGER sono vere per un solo ciclo, il primo e poi sono false.
+
 - **importante**: per come sono implementate, le MACRO che usano memoria (*) NON possono essere usate nella parte `azione` di un **if**. Per ragioni analoghe non sono ammessi **if  nidificati** (un **if** nella zona azione di un altro **if**). Sono vincoli che non pongono, però, serie limitazioni.
   
 <hr>
@@ -446,6 +452,9 @@ nota: il dato proviene dal Cloud, può differire dal valore locale mostrato da S
 <dt>VOICE(message)</dt>
 <dd>Segnale di avviso.</dd>
 
+<dt>SOUND(url)</dt>
+<dd>Riproduce musica o messaggio audio: formato MP3 o WAV.</dd>
+
 <dt>SCENA(scenaNome) </dt>
 <dd>Esegue un _tap-to-Run_, presente nell'elenco letto dal Cloud.</dd>
 </dl>
@@ -453,27 +462,59 @@ nota: il dato proviene dal Cloud, può differire dal valore locale mostrato da S
 
 #### MACRO funzionali
 <dl>
-<dt>  ISTRIGGERH(condition) (*) </dt>
+<dt>TRIGBYNAME(name) </dt>
+<dd> Associa un 'nome' (max 3 parole) ad una RULE, permettendo di attivarla su comando utente (bottone o comando vocale).</dd>
+
+<dt>ISTRIGGERH(condition) (*) </dt>
 <dd> Ritorna 'true' solo al passaggio della "condizione" da 'false a true', evita che la "condizione" 'true' agisca ad ogni run (analogo alle condizioni delle automazioni Tuya). </dd>
  
-<dt>  ISTRIGGERL(condition) (*)</dt>
+<dt>ISTRIGGERL(condition) (*)</dt>
 <dd> Ritorna 'true' solo al passaggio della "condizione" da 'true a false'  (inverso  di ISTRIGGERH). </dd>
  
-<dt>  CONFIRMH(condition, time) (*) </dt>
+<dt>TRIGCHANGED(value) (*) </dt>
+<dd> ritorna 'true' ogni volta che 'value' cambia rispetto al valore precedente.</dd>
+
+<dt>TRIGEVERY(n) (*)</dt>
+<dd>  Semplice timer: ritorna 'true' solo dopo "n" esecuzioni, ciclico <br>
+       E' garantito un singolo valore 'true' per ogni n-simo loop (non richiede ISTRIGGERH()).
+      'n' è in numero di loop, in tempo: t <= n x tuyaInterval (definito in 'config.js' file). </dd>
+ 
+<dt>CONFIRMH(condition, time) (*) </dt>
 <dd> Ritorna 'true' solo se la "condizione" rimane 'true' per almeno il tempo 'time'. Poi resta 'true' fino a quando la 'condizione' è 'true'. Caso tipico una porta aperta: vedi esempi.<BR>
 time = costante nei formati "hh:mm:ss" oppure "mm:ss" oppure "ss". Deve essere maggiore di TuyaInterval.</dd>
  
-<dt>  CONFIRML(condition, time) (*) </dt>
+<dt>CONFIRML(condition, time) (*) </dt>
 <dd> Ritorna 'true' solo se la "condizione" rimane 'false' per almeno il tempo 'time'  (inverso  di CONFIRMH).</dd>
- 
+
+ <dt>ROUND(number, pos)</dt>
+<dd> Torna una stringa con 'pos' cifre decimali (se 'pos' >0) <br>
+     oppure un numero intero ('pos' = 0) <br>
+     oppure un numero intero con zeri ('pos' < 0) <br>
+     Esempi: 'ROUND (123.567, 2)' = "123.57";  'ROUND(123.567, 0)'  = "124";  'ROUND(123.567, -2)'  = "100"; 
+</dd>
+      
+<dt>ADDCOUNT(event, restart) (*) </dt>
+<dd> Ritorna il totale di volte che event è true, quando restart è true.
+Può  essere usato in due modi: se 'event' è un TRIGGER conta il numero di volte. Altrimenti valuta
+la durata dello stato vero (come il duty cycle).</dd>
+
 <dt>HYSTERESIS (value, test, delta)  (*)</dt>
  <dd> Confronta 'value' con 'test', usando come intervallo di isteresi 'delta'. L'output diventa 'true' se 'value &gt; test + delta/2',  oppure 'false' se 'value &lt; test - delta/2'. </dd>
  
-<dt>  EVERY(n) (*)</dt>
-<dd>  Semplice timer: ritorna 'true' solo dopo "n" esecuzioni, ciclico <br>
-       E' garantito un singolo valore 'true' per ogni n-simo loop (non richiede ISTRIGGERH()).
-      'n' è in numero di loop, in tempo: t = n x tuyaInterval (definito in 'config.js' file). </dd>
- 
+<dt>AVG(value, n) (*) </dt>
+<dd> Media mobile degli ultimi 'n' valori: torna una stringa con 2 decimali.<br>
+'n' è in numero di loop, in tempo: t = n x tuyaInterval (definito in 'config.js' file).</dd>
+
+<dt>MAX(value, n) (*) </dt>
+<dd>Ritorna il più grande  degli ultimi 'n' valori.<br>
+'n' è in numero di loop, in tempo: t = n x tuyaInterval (definito in config.js file).</dd>
+
+<dt> DERIVATIVE(value) (*) </dt>
+<dd>Ritorna la derivata (meglio: il rapporto incrementale) di value.</dd>
+
+<dt> INTEGRAL(value) (*) </dt>
+<dd>Ritorna l'integrale (meglio: la somma integrale) di value.</dd>
+
 <dt>  TIME(wath) </dt>
 <dd>  ritorna una stringa, "hh:mm:ss" oppure "mm:ss" oppure "ss" calcolata dall'ora attuale, a seconda di 'wath'.
   'wath': una delle costanti così definite: <i>hrs</i> = 11, <i>min</i> = 14, <i>sec</i> = 17 (senza apici, non sono stringhe).<br>
@@ -485,32 +526,12 @@ Naturalmente i valori 'val' e 'time' devono essere presenti a coppie, tanti quan
 Usi: profili di temperatura giornalieri, eventi ad orario o abilitazione per intervalli di tempo, etc., a seconda se 'val' sono temperature, oppure 'buongiorno'/'buonasera', oppure true/false, etc..
  </dd>
  
-<dt>  WEEKMAP(map) </dt>
+<dt>WEEKMAP(map) </dt>
 <dd> 'map' è una stringa di sette caratteri qualsiasi, uno per giorno della settimana, partendo dalla Domenica (e.g.: 'DLMMGVS' o 'SMTWTFS' o '1234567'). Solo se il carattere corrispondente ad oggi è '-' (trattino) ritorna 'false' altrimenti torna 'true'. <br> Esempio: WEEKMAP("DLMM-VS") è falso solo il Giovedì. </dd>
+
+<dt>YEARMAP(mese, giorno) </dt>
+<dd> 'mese' e 'giorno' sono due stringhe di 12 e 31 caratteri qualsiasi, per identificare mesi e giorni (e.g.: 'GFMAMGLASOND' o '1234567890123456789012345678901'). Solo se il mese e il giorno di oggi sono '-' (trattino) ritorna 'false' (per 24h) altrimenti torna 'true'.  </dd>
  
-<dt> AVG(value, n) (*) </dt>
-<dd> Media mobile degli ultimi 'n' valori: torna una stringa con 2 decimali.<br>
-'n' è in numero di loop, in tempo: t = n x tuyaInterval (definito in 'config.js' file).</dd>
-
-<dt> MAX(value, n) (*) </dt>
-<dd>Ritorna il più grande  degli ultimi 'n' valori.<br>
-'n' è in numero di loop, in tempo: t = n x tuyaInterval (definito in config.js file).</dd>
-
- <dt> ZEROMAX() </dt>
-<dd>Azzera tutti i MAX() presenti in caso di lunghi periodi, e.g. 24h.<br>
-<i>nota: deve essere posizionato dopo tutti i MAX() presenti.</i>
- Esempio: 'if(ISTRIGGERH(DAYMAP(false, '00:00:00', true, '00:20:00'))) ZEROMAX();'<br>
- </dd>
- 
-<dt>ISCHANGED(value) (*) </dt>
-<dd> ritorna 'true' ogni volta che 'value' cambia rispetto al valore precedente.</dd>
-
-<dt>ROUND(number, pos)</dt>
-<dd> Torna una stringa con 'pos' cifre decimali (se 'pos' >0) <br>
-     oppure un numero intero ('pos' = 0) <br>
-     oppure un numero intero con zeri ('pos' < 0) <br>
-     Esempi: 'ROUND (123.567, 2)' = "123.57";  'ROUND(123.567, 0)'  = "124";  'ROUND(123.567, -2)'  = "100"; 
-</dd>
 </dl>
 (*): identifica le MACRO che fanno uso di memoria per salvare lo stato.
       
