@@ -129,7 +129,7 @@ L'utente può scegliere in configurazione tra due formati: `CSV` (indicato, per 
     <li>  <b> cancel </b>- chiude il dialogo.</ul>
   </TD>
   <TD>
-   <img src="https://github.com/msillano/IoTwebUI/blob/main/pics/alert21.png?raw=true" />
+   <img src="https://github.com/msillano/IoTwebUI/blob/main/pics/alert20.png?raw=true" />
   </TD>
  </TR>
 </TABLE>
