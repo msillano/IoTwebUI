@@ -7,7 +7,7 @@ _What can you do?_<br>
 🔬 Data export: Save historical series for your analysis, in the most useful format<br>
 ⚡️ Powerful automation: Create complex automation with RULEs, beyond the limits of Tuya!<br>
 ⏱️ Personalized alerts: Monitor every aspect of your home automation and receive real-time advice or fire action.<br>
-🎙  Voice control: all controlled by voice, in a single APP
+🎙  Voice control: all controlled by voice, in a single APP<br>
 👌 Perfect integration: Combine devices, properties, RULEs, and Tuya tap-to-run for smooth and complete automation.
 
 😃 [Version  2.1 - English](https://github.com/msillano/IoTwebUI/blob/main/README21.md) <br>
