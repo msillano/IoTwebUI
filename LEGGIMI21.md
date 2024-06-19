@@ -8,7 +8,7 @@ _Cosa puoi fare?_<br>
 🔬 Esportazione dati: Salva le serie storiche per le tue analisi, nel formato più utile<br>
 ⚡️ Automazioni potenti: Crea automazioni complesse con tap-to-run e RULE, impossibili con SmartLife!<br>
 ⏱️ Alert personalizzati: Monitora ogni aspetto della tua domotica e ricevi avvisi realtime. <br>
-🎙  Comandi vocali: in locale, integrati con tap-to-run e RULE, in un'unica APP<br>
+🎙  Comandi vocali: integrati con tap-to-run e RULE, in un'unica APP<br>
 👌 Integrazione perfetta: Combina device, proprietà, RULE e Tuya tap-to-run per un'automazione fluida e completa.
 
  ![aspetto della versione 2.1](https://github.com/msillano/IoTwebUI/blob/main/pics/wer21.png?raw=true)
@@ -61,7 +61,7 @@ _Cosa puoi fare?_<br>
 #### Voice recognition: comandi vocali customizzabili
  - Attiva ogni tap-to-run o RULE con "Hei Tuya, esegui ... "
  - Controlla la navigazione nell'APP IoTwebUI: "Hei Tuya, vai alle scene"
- - Puoi disattivare la modalità 'voice recognition' nella configurazione 
+ - Puoi disattivare la modalità 'voice recognition' nella configurazione
 
 #### Modalità EXPERT: per controllare tutto il controllabile
 
@@ -86,8 +86,8 @@ La modalità EXPERT offre un controllo totale sulla personalizzazione di IoTwebU
 - Un secondo problema è l'impossibilità di creare file direttamente da una pagina HTML, sempre per motivi di sicurezza. Per l'export dei dati sono ricorso ad una libreria di logging su file [debugout.js](https://github.com/inorganik/debugout.js). Per questo motivo il controllo sui file generati non è completo e sono necessari piccoli  interventi manuali sui file esportati.
 - I file di datalog sono salvati nella dir `download`, con il nome  `tuyalog-hh-mm-ss.csv|json`.
 - Per lo stesso motivo non è possibile aggiornare dall'APP i file di configurazione. Ho scelto una soluzione di compromesso, che prevede l'intervento dell'utente con un semplice copia-incolla.
- 
 - Il funzionamento continua regolarmente anche con la finestra del browser iconizzata.
+- Usare una sola istanza dell'APP, altrimenti si hanno problemi con i token Tuya.
 
 ### Interfaccia utente
 ![](https://github.com/msillano/IoTwebUI/blob/main/pics/tootip20.png?raw=true)
@@ -107,11 +107,13 @@ Alcune piccole icone forniscono ulteriori informazioni all'utente (vedi figure s
          
 ### tap-to_run Tuya
 
- I 'tap-to-run sono presentati per 'home' (max 100) ed in ordine alfabetico.
+ I 'tap-to-run sono presentati per 'home' (max 100) nella apposita pagina, e poi in ordine alfabetico, come una serie di bottoni.
  I nomi dei 'tap-to-run' possono avere due vicoli:
   - Utilizare prefissi per raggruppare in IoTwebUI i comandi correlati.
-  - Essere facili da ricordare e da riconosere (se si usano i comandi vocali con Google o Alexa).<br>
-
+  - Essere facili da ricordare e da riconosere (se si usano i comandi vocali).<br>
+  
+ Un pad è dedicato alle 'user RULE' identificate con un nome: sono trattate come i 'tap-to-run': possono essere usate negli alert, oppure attivate con bottoni o tramite comando vocale.<br>
+_Naturalmente 'RULE' e 'tap-to-run' devono avere nomi unici per poter essere identificati._
 
 ### Logging ed esportazione dati
 
@@ -197,6 +199,27 @@ Si possono gestire due insiemi di RULE: quelle in <i>uso</i>, inizialmente lette
   </TD>
  </TR>
 </TABLE>
+
+### VoiceRecognition: maggiore libertà
+
+- La disponibilità di questa funzione dipende dal browser usato.
+- L'efficienza dipende da vari fattori, tra cui il microfono usato e le relative regolazioni. Nelle prove sono passato da oltre il 90% di riconoscimenti ad un pessimo 20%! 
+- Molto importante è altresì la scelta delle parole chiave e dei 'nomi': per esempio 'nome tr parole' è di difficile riconoscimento, mentre 'accendi la luce' è facilmente riconosciuto.<br> Ritengo che questo dipenda dai modelli linguistici usati: sono più riconoscibili frasi italiane corrette, con un significato comune, rispetto a parole isolate. Per esempio 'Tuya' è spesso confuso con 'Giulia'.
+- Il comando vocale è pertanto opzionale, e può essere disabilitato nella configurazione.
+- la grammatica di default è la seguente:
+    - 'Hey Tuya, esegui xxx (xxx (xxx))' => lancia un Tuya 'tap-to-run, nome max 3 parole
+    - 'Hey Tuya, regola xxx (xxx (xxx))' => esegue RULE, nome max 3 parole
+    - 'Hey Tuya, modo esperto' => apre EXPERT mode
+    - 'Hey Tuya, modo utente' => torna USER mode
+    - 'Hey Tuya, vai (alle) scene'  => navigazione alla pagina dei 'tap-to-run' e RULE
+    - 'Hey Tuya, vai (alle) regole'  =>  navigazione alla pagina edit RULE (se in EXPERT mode)
+    - 'Hey Tuya, vai (alla) home'  =>  navigazione alla pagina con albero device
+    - 'Hey Tuya, ritorna  =>  navigazione alla pagina con albero device
+    - 'Hey Tuya, home  =>  navigazione alla pagina con albero device
+      
+E' tollerata qualche imprecisione nel riconoscimento (e.g. 'Giulia' invece di 'Tuya', etc..) e questo può essere facilmente customizzato. Vedi file speech21.js.
+
+
 <HR>
 
 **NOTE sulla sicurezza**<br>
