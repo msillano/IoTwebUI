@@ -1,16 +1,17 @@
-# IoTwebUI 2.0: Tuya WEBAPP open extension #
-[english version](https://github.com/msillano/IoTwebUI/blob/main/README20.md)
+# IoTwebUI 2.1: Tuya WEBAPP open extension #
+[english version](https://github.com/msillano/IoTwebUI/blob/main/README21.md)
 
-**_Stanco delle limitazioni di SmartLife?  IoTwebUI 2.0 è arrivato per dare nuova linfa alla tua casa intelligente, con un arsenale di funzionalità che ti faranno dire "finalmente!". <br> La filosofia 'open' è nel DNA di questa APP, che esalta la customizzazione ed il controllo da parte dell'utente._** 
+**_Stanco delle limitazioni di SmartLife?  IoTwebUI 2.1 è arrivato per dare nuova linfa alla tua casa intelligente, con un arsenale di funzionalità che ti faranno dire "finalmente!". <br> La filosofia 'open' è nel DNA di questa APP, che esalta la customizzazione ed il controllo da parte dell'utente._** 
 
 _Cosa puoi fare?_<br>
 👀 Controlla tutto: Interfaccia intuitiva e personalizzabile, dati sempre a portata di mano, visualizzazione flessibile.<br>
 🔬 Esportazione dati: Salva le serie storiche per le tue analisi, nel formato più utile<br>
 ⚡️ Automazioni potenti: Crea automazioni complesse con tap-to-run e RULE, impossibili con SmartLife!<br>
 ⏱️ Alert personalizzati: Monitora ogni aspetto della tua domotica e ricevi avvisi realtime. <br>
+🎙  Comandi vocali: in locale, integrati con tap-to-run e RULE, in un'unica APP
 👌 Integrazione perfetta: Combina device, proprietà, RULE e Tuya tap-to-run per un'automazione fluida e completa.
 
- ![aspetto della versione 2.0](https://github.com/msillano/IoTwebUI/blob/main/pics/ver20-look.png?raw=true)
+ ![aspetto della versione 2.1](https://github.com/msillano/IoTwebUI/blob/main/pics/ver20-look.png?raw=true)
 
 #### Interfaccia: un piacere per gli occhi e per il controllo
 
@@ -42,7 +43,7 @@ _Cosa puoi fare?_<br>
  - Real Time, con un ritardo medio garantito pari al 50% del periodo di campionamento Tuya, per un equilibrio perfetto tra rapidità e precisione.
  - Definizione degli Alert al runtime: controllo totale in tempo reale
 
-#### RULE: Domanda di automazioni più potenti? IoTwebUI 2.0 ha la risposta!
+#### RULE: Domanda di automazioni più potenti? IoTwebUI 2.1 ha la risposta!
 
  - Effettuare operazioni logiche ed aritmetiche e utilizzare variabili per una flessibilità senza limiti.
  - Confrontare i valori di due proprietà diverse, per automazioni ancora più libere.
@@ -53,6 +54,11 @@ _Cosa puoi fare?_<br>
     3. Testa le tue RULE in tempo reale per assicurarti che funzionino perfettamente.
     4. In caso di errore durante il test, un popup ti indicherà la riga e il tipo di errore per una risoluzione rapida e precisa.
     5. Esporta le tue RULE per inserirle nel file di configurazione e renderle permanenti.
+
+#### Voice recognition: comandi vocali locali customizzabili
+
+ - Attiva ogni tap-to-run o RULE con "Hei Tuya, esegui ... "
+ - Controlla l'APP "Hei Tuya, vai alle scene"
 
 #### Modalità EXPERT: per controllare tutto il controllabile
 
@@ -199,7 +205,14 @@ _NON rendetela accessibile dall'esterno o da terzi, altrimenti tutti i vostri da
 <hr>
 
 ### Versioni
-
+- 2.1 Miglioramento dell'esperienza utente:
+  - Aggiunto SpeechRecognition (file speech21.js) customizzabile
+  - Aggiunte RULE con 'nome', attivabili con bottoni e comandi vocali
+  - Aggiunte nuove MACRO
+  - Migliorata la funzione 'test': al termine ripristina il contesto
+  - Fallback: se i pop-up sono bloccati, gli avvisi sono mostrati in una finestra. Nessun messaggio perso.
+  - Aggiunta data al nome dei file di datalog.
+  
 - 2.0 Importante aggiornamento funzionale.
   - Aggiunta la possibilità di attivare le scene "Tap-to-Run" di Tuya da questa APP.
   - Aggiunto 'Avvisi' (Alert): controlla valori ed eseguire azioni (opzioni): segnale acustico, pop-up, messaggio vocale, apertura URL, esecuzione 'Tap-to-Run'
