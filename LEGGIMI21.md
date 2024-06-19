@@ -164,13 +164,16 @@ In modo EXPERT cliccando su un device si apre un dialogo che nella parte inferio
  - _Se non si sceglie nessuna azione e si lascia vuoto 'message', l'azione di default è il cambio dell'icona del device e l'aggiornamento del tooltip, sempre eseguiti._
  - _Gli 'alert' non hanno, per semplicità, un filtro a tempo: se definiti sono attivi 24/7. Se occorre qualche condizionamento, è possibile creare RULE ad hoc._ 
  - _Notare che 'connected' non è incluso nelle proprietà, e quindi non si possono definire 'Alert'. Ma è disponibile come MACRO nelle RULE._
- - _Per avere sia 'pop' che 'tap-to-run', creare due Alert con le stesse condizioni: in uno 'message' sarà il testo per il 'pop-up', nell'altro il nome del 'tap-to-run'._
+ - _Avendo un solo messaggio, le regole di precedenza sono: SOUND() e URL (auto) sono esaminati per primi, poi Tap-to-run e RULE (auto), e solo per ultimo POP e VOICE (compatibili: lo stesso messagio può essere usato per entranbi); Beep è sempre utilizzabile._
+ - _Quindi, per avere sia 'pop' che 'tap-to-run', creare due Alert con le stesse condizioni: in uno 'message' sarà il testo per il 'pop-up', nell'altro il nome del 'tap-to-run'._
+ - _I pop-up possono dipendere dalla configurazione del browser: usando 'run_me.bat' si ha un aggiornamento della configurazione per la nuova istanza del browser. Azioni utente (e.g. bottoni) possono abilitare momentaneamente i pop-up._ <br>
+ _Comunque, per non perdere informazioni, se i pop-up sono disabilitati, il messaggio è presentato lo stesso in una finestra dell'APP: la differenza è che i pop-up possono essere molti, mentre la finestra è unica ed è riusata con un contatore._
 
-**Bottoni:**
+**Comandi:**
  <ul>  
     <li>  <b> newTest </b>- aggiunge un nuovo Alert (solo per il  run corrente)
     <li>  <b>clear dev </b>- elimina tutti gli Alert del device (solo per il run corrente)
-    <li>  <b> config </b>- apre pop-up per vedere le definizioni  degli alert attuali. <br>
+    <li>  <b> config </b>- apre pop-up per vedere le definizioni di tutti alert attuali. <br>
         <i> Gli 'Alert' permanenti sono nel file `config.js`: possono essere editati direttamente o copiati dal pop-up.</i>
     <li>  <b> cancel </b>- chiude il dialogo.</ul>
  
@@ -184,7 +187,7 @@ In modo EXPERT cliccando su un device si apre un dialogo che nella parte inferio
 Si possono gestire due insiemi di RULE: quelle in <i>uso</i>, inizialmente lette dal file `usrrulesXX.X.js`, e quelle nuove, <i>in Edit</i> nel pad.
 <br>
   
-   I bottoni presenti offrono le seguenti funzionalità;
+   I comandi presenti offrono le seguenti funzionalità;
    <ul>  
     <li>  <b> Clear </b>- pulisce l'area di edit
     <li>  <b> Load </b>- copia in Edit le RULE attualmente in uso
@@ -216,7 +219,9 @@ Si possono gestire due insiemi di RULE: quelle in <i>uso</i>, inizialmente lette
     - 'Hey Tuya, vai (alla) home'  =>  navigazione alla pagina con albero device
     - 'Hey Tuya, ritorna  =>  navigazione alla pagina con albero device
     - 'Hey Tuya, home  =>  navigazione alla pagina con albero device
-      
+ 
+- _nota: la navigazione tra pagine è analoga al menu: dalla 'home' si può  andare alle pagine 'tap-to-run' o 'edit RULE', ma da queste si può solo tornare alla 'home'._
+     
 E' tollerata qualche imprecisione nel riconoscimento (e.g. 'Giulia' invece di 'Tuya', etc..) e questo può essere facilmente customizzato. Vedi file speech21.js.
 
 
@@ -431,7 +436,7 @@ _Questa automazione non è realizzabile con Smartlife_, nè con Alexa o Google, 
    - si possono fare confronti solo con valori costanti,
    - non esistono tap-to-run parametrici od almeno con nomi dinamici.
  
-Chiedo troppo? Un sistema 'open' devrebbe permettere queste automazioni. O no? infatti con le RULE _si può fare_! <br>
+Chiedo troppo? Un sistema 'open' devrebbe permettere queste automazioni. O no? infatti con le RULE _si può fare! <br>
 _Alcune precondizioni: la mia termovalvola ('Termo letto')  ha le proprietà 'temp_set' e 'temp_current'.
 Per semplicità ho utilizzato come temperatura Target solo i valori 16, 20, 21 °C: in questo modo mi occorrono solo 3 tap-to-run chiamati Tletto16, Tletto20 e Tletto21, per accendere ed impostare il clima._
 ```
@@ -442,7 +447,7 @@ if (_nowClima) SCENA("TLetto" + ROUND( _Ttarget, 0) ), ALERTLOG("RULE Tletto", "
 ```
 
 ### RULE - MACRO
-Possiamo dividere le MACRO in due gruppi: il primo che gestisce le interazioni con le risorse disponibili in **IoTwebUI** (una sorta di API interna). Il secondo gruppo di MACRO sono invece generali, modificando in qualche modo utile  i dati in input.
+Possiamo dividere le MACRO in due gruppi: il primo che gestisce le interazioni con le risorse disponibili in **IoTwebUI** (una sorta di API interna). Il secondo gruppo di MACRO sono invece generali, modificando in qualche modo utile i dati in input.
 _nota: obiettivo delle MACRO non è quello di duplicare le funzionalità delle automazioni Tuya (anche se a volte c'è sovrapposizione) e.g. non esistono MACRO per 'meteo' o 'delay', quanto quello di fornire strumenti più avanzati di calcolo, per ottenere 'automazioni' fin'ora impossibili.   L'uso di device virtuali e di tap-to-run permette di suddividere i compiti tra scene Tuya (automazioni e tap-to-run) e RULE nel modo più efficiente._ <br>
 Ovviamente si possono sempre aggiungere nuove MACRO, o come customizzazione (se create nuove MACRO comunicatemelo) oppure in nuove release di **IoTwebUI**.
 <hr>
@@ -481,13 +486,19 @@ nota: il dato proviene dal Cloud, può differire dal valore locale mostrato da S
 
 <dt>SCENA(scenaNome) </dt>
 <dd>Esegue un _tap-to-Run_, presente nell'elenco letto dal Cloud.</dd>
+
+<dt>SCENA(scenaNome) </dt>
+<dd>Esegue un _tap-to-Run_, presente nell'elenco letto dal Cloud.</dd>
+
+<dt>TRIGRULE(name)</dt>
+<dd>Esegue un RULE individuato da un nome, nello stesso run (se precede TRIGBYNAME(name)), oppure al run successivo (se è dopo TRIGBYNAME(name)). </dd>
 </dl>
 <hr>
 
 #### MACRO funzionali
 <dl>
 <dt>TRIGBYNAME(name) </dt>
-<dd> Associa un 'nome' (max 3 parole) ad una RULE, permettendo di attivarla su comando utente (bottone o comando vocale).</dd>
+<dd> Associa un 'nome' (max 3 parole) ad una RULE, permettendo di attivarla con un comando utente (bottone o comando vocale) o con TRIGRULE().</dd>
 
 <dt>ISTRIGGERH(condition) (*) </dt>
 <dd> Ritorna 'true' solo al passaggio della "condizione" da 'false a true', evita che la "condizione" 'true' agisca ad ogni run (analogo alle condizioni delle automazioni Tuya). </dd>
@@ -533,13 +544,13 @@ la durata dello stato vero (come il duty cycle).</dd>
 <dd>Ritorna il più grande  degli ultimi 'n' valori.<br>
 'n' è in numero di loop, in tempo: t = n x tuyaInterval (definito in config.js file).</dd>
 
-<dt> DERIVATIVE(value) (*) </dt>
+<dt>DERIVATIVE(value) (*) </dt>
 <dd>Ritorna la derivata (meglio: il rapporto incrementale) di value.</dd>
 
-<dt> INTEGRAL(value) (*) </dt>
+<dt>INTEGRAL(value) (*) </dt>
 <dd>Ritorna l'integrale (meglio: la somma integrale) di value.</dd>
 
-<dt>  TIME(wath) </dt>
+<dt>TIME(wath) </dt>
 <dd>  ritorna una stringa, "hh:mm:ss" oppure "mm:ss" oppure "ss" calcolata dall'ora attuale, a seconda di 'wath'.
   'wath': una delle costanti così definite: <i>hrs</i> = 11, <i>min</i> = 14, <i>sec</i> = 17 (senza apici, non sono stringhe).<br>
    Esempio:  <i>"Alle ore " + TIME(hrs)</i> </dd>
