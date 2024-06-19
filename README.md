@@ -7,7 +7,7 @@ _What can you do?_<br>
 🔬 Data export: Save historical series for your analysis, in the most useful format<br>
 ⚡️ Powerful automation: Create complex automation with RULEs, beyond the limits of Tuya!<br>
 ⏱️ Personalized alerts: Monitor every aspect of your home automation and receive real-time advice or fire action.<br>
-🎙  Voice control: all controlled locally by voice, in a single APP
+🎙  Voice control: all controlled by voice, in a single APP
 👌 Perfect integration: Combine devices, properties, RULEs, and Tuya tap-to-run for smooth and complete automation.
 
 😃 [Version  2.1 - English](https://github.com/msillano/IoTwebUI/blob/main/README21.md) <br>
@@ -23,7 +23,7 @@ _Cosa puoi fare?_<br>
 🔬 Esportazione dati: Salva le serie storiche per le tue analisi, nel formato più utile<br>
 ⚡️ Automazioni potenti: Crea automazioni complesse con tap-to-run e RULE, impossibili con SmartLife!<br>
 ⏱️ Alert personalizzati: Monitora ogni aspetto della tua domotica e ricevi avvisi realtime. <br>
-🎙  Comando vocale: tutto controllato localmente con la voce, in un'unica APP
+🎙  Comando vocale: tutto controllato con la voce, in un'unica APP
 👌 Integrazione perfetta: Combina device, proprietà, RULE e Tuya tap-to-run per un'automazione fluida e completa.
 
 
