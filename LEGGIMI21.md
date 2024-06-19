@@ -8,7 +8,7 @@ _Cosa puoi fare?_<br>
 🔬 Esportazione dati: Salva le serie storiche per le tue analisi, nel formato più utile<br>
 ⚡️ Automazioni potenti: Crea automazioni complesse con tap-to-run e RULE, impossibili con SmartLife!<br>
 ⏱️ Alert personalizzati: Monitora ogni aspetto della tua domotica e ricevi avvisi realtime. <br>
-🎙  Comandi vocali: in locale, integrati con tap-to-run e RULE, in un'unica APP
+🎙  Comandi vocali: in locale, integrati con tap-to-run e RULE, in un'unica APP<br>
 👌 Integrazione perfetta: Combina device, proprietà, RULE e Tuya tap-to-run per un'automazione fluida e completa.
 
  ![aspetto della versione 2.1](https://github.com/msillano/IoTwebUI/blob/main/pics/ver20-look.png?raw=true)
@@ -19,6 +19,7 @@ _Cosa puoi fare?_<br>
  - Naviga tra i tuoi dispositivi e le 'home' con un albero trascinabile e zoommabile, perfetto per tenere tutto sotto controllo.
  - Popup informativi con nuove icone ti terranno aggiornato sullo stato di ogni proprietà di un device, senza perderti neanche un dettaglio.
  - Un menu a scomparsa con informazioni sulla configurazione e opzioni dinamiche ti darà accesso rapido a tutto ciò che ti serve.
+ - Navigazione vocale tra le varie pagine.
  - E se vuoi personalizzare ancora di più, libera la tua creatività con icone, colori e popup informativi a tua scelta.
 
 #### Dati: al sicuro e sempre a portata di mano
@@ -34,20 +35,22 @@ _Cosa puoi fare?_<br>
  - Caricamento automatico all'avvio per una domotica sempre pronta all'azione.
  - Lancia i tap-to-run Tuya con un semplice click e personalizza i colori dei pulsanti per un'esperienza ancora più intuitiva.
  - Escludi i tap-to-run che non ti servono per avere un'interfaccia pulita e ordinata.
+ - Un tab è dedicato alle RULE per poterle lanciare quando serve. 
 
 #### Alert: mai più un evento perso
 
- - puoi attivare una funzione di controllo su qualsiasi proprietà dei dispositivi e sceglere i test "maggiore", "uguale" o "minore" per monitorare ogni aspetto della tua domotica.
+ - puoi attivare una funzione di controllo su qualsiasi proprietà dei dispositivi e scegliere i test "maggiore", "uguale" o "minore" per monitorare ogni aspetto della tua domotica.
  - Stessa logica delle condizioni Tuya, per un linguaggio comune ed affidabile.
- - Scegli tra diverse azioni conseguenziali: silente, beep, pop-up, messaggio vocale, lancio di URL o tap-to-run Tuya.
- - Real Time, con un ritardo medio garantito pari al 50% del periodo di campionamento Tuya, per un equilibrio perfetto tra rapidità e precisione.
+ - Scegli tra diverse azioni conseguenziali: silente, beep, frase registrata, pop-up, messaggio vocale, lancio di URL o tap-to-run Tuya.
+ - Real Time, con un ritardo medio garantito pari al 50% del periodo di campionamento Tuya, per un equilibrio perfetto tra rapidità e precisione: sempre visualizzati con pop-up o finestra.
  - Definizione degli Alert al runtime: controllo totale in tempo reale
 
 #### RULE: Domanda di automazioni più potenti? IoTwebUI 2.1 ha la risposta!
 
  - Effettuare operazioni logiche ed aritmetiche e utilizzare variabili per una flessibilità senza limiti.
  - Confrontare i valori di due proprietà diverse, per automazioni ancora più libere.
- - Eseguire azioni complesse, come attivare tap-to-run Tuya o inviare comandi ad altre applicazioni via REST.
+ - Eseguire azioni complesse, come realizzare controlli PID, schedulare annualmente, o inviare comandi ad altre applicazioni via REST.
+ - Attivate in base a condizioni (come le 'Automazioni' Tuya, ma più flessibile) oppure su comando (come i 'tap-to-run' Tuya).
  - Come funziona?
     1. Crea le RULE al runtime con un'interfaccia user-friendly, anche se non sei un programmatore esperto.
     2. Utilizza MACRO predefinite per i compiti comuni e ripetitivi, risparmiando tempo e fatica.
@@ -56,9 +59,8 @@ _Cosa puoi fare?_<br>
     5. Esporta le tue RULE per inserirle nel file di configurazione e renderle permanenti.
 
 #### Voice recognition: comandi vocali locali customizzabili
-
  - Attiva ogni tap-to-run o RULE con "Hei Tuya, esegui ... "
- - Controlla l'APP "Hei Tuya, vai alle scene"
+ - Controlla la navigazione nell'APP IoTwebUI: "Hei Tuya, vai alle scene"
 
 #### Modalità EXPERT: per controllare tutto il controllabile
 
