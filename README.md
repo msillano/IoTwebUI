@@ -14,7 +14,7 @@ _What can you do?_<br>
  ⬦ [Version  2.0 - English](https://github.com/msillano/IoTwebUI/blob/main/README20.md) <br>
  ⬦ [Version  1.2 - English](https://github.com/msillano/IoTwebUI/blob/main/README12.md)
 
- ![aspetto della versione 2.0](https://github.com/msillano/IoTwebUI/blob/main/pics/ver20-look.png?raw=true)
+ ![aspetto della versione 2.1](https://github.com/msillano/IoTwebUI/blob/main/pics/ver20-look.png?raw=true)
 
 **_Stanco delle limitazioni di SmartLife?  IoTwebUI 2.1 è arrivato per dare nuova linfa alla tua casa intelligente, con un arsenale di funzionalità che ti faranno dire "finalmente!". <br> La filosofia 'open' è nel DNA di questa APP, che esalta la customizzazione ed il controllo da parte dell'utente._** 
 
@@ -23,12 +23,12 @@ _Cosa puoi fare?_<br>
 🔬 Esportazione dati: Salva le serie storiche per le tue analisi, nel formato più utile<br>
 ⚡️ Automazioni potenti: Crea automazioni complesse con tap-to-run e RULE, impossibili con SmartLife!<br>
 ⏱️ Alert personalizzati: Monitora ogni aspetto della tua domotica e ricevi avvisi realtime. <br>
-🎙  Comando vocale: tutto controllato con la voce, in un'unica APP
+🎙  Comandi vocali: tutto controllato con la voce, in un'unica APP
 👌 Integrazione perfetta: Combina device, proprietà, RULE e Tuya tap-to-run per un'automazione fluida e completa.
 
 
 😃 [Versione 2.1 - Italiano](https://github.com/msillano/IoTwebUI/blob/main/LEGGIMI21.md) <br>
 ⬦  [Versione 2.0 - Italiano](https://github.com/msillano/IoTwebUI/blob/main/LEGGIMI20.md) <br>
-⬦ [Versione 1.2 - Italiano](https://github.com/msillano/IoTwebUI/blob/main/LEGGIMI12.md)
+⬦  [Versione 1.2 - Italiano](https://github.com/msillano/IoTwebUI/blob/main/LEGGIMI12.md)
 
 <hr>
