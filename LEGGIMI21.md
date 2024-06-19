@@ -146,12 +146,13 @@ In modo EXPERT cliccando su un device si apre un dialogo che nella parte inferio
   <TD><ol>
         <li>  Scelta della condizione: 'maggiore', 'uguale' o 'minore'
         <li>  Il valore di confronto, un numero (24) o una stringa (e.g. true) senza apici (").
-        <li>  Messaggio associato: è usato <ul>
+        <li>  Messaggio associato: è usato: <ul>
              <li> negli Alert con 'pop-up'
              <li> è il testo letto nel caso 'voice'
+             <li> è un URL a un file MP3 o WAV nel caso 'sound'
              <li> oppure è un URL ed allora è aperto nel browser
-             <li> oppure è il nome di un 'tap-to-run' che è eseguito </ul>
-         <li>  Azione: una o più a scelta tra 'beep' 'pop' e 'voice' (URL e tap-to-run sono automatiche) </li></ol>
+             <li> oppure è il nome di un 'tap-to-run' o 'RULE' che è eseguito </ul>
+         <li>  Azione: una o più a scelta tra 'beep', 'pop', 'sound' e 'voice' (URL e tap-to-run sono automatiche) </li></ol>
   </TD>
  </TR>
 </TABLE>
