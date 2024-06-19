@@ -23,7 +23,7 @@ _Cosa puoi fare?_<br>
 🔬 Esportazione dati: Salva le serie storiche per le tue analisi, nel formato più utile<br>
 ⚡️ Automazioni potenti: Crea automazioni complesse con tap-to-run e RULE, impossibili con SmartLife!<br>
 ⏱️ Alert personalizzati: Monitora ogni aspetto della tua domotica e ricevi avvisi realtime. <br>
-🎙  Comandi vocali: tutto controllato con la voce, in un'unica APP
+🎙  Comandi vocali: tutto controllato con la voce, in un'unica APP<br>
 👌 Integrazione perfetta: Combina device, proprietà, RULE e Tuya tap-to-run per un'automazione fluida e completa.
 
 
