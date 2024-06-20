@@ -505,8 +505,8 @@ nota: il dato proviene dal Cloud, può differire dal valore locale mostrato da S
  <i>Esempio:</i>  <code>
   // see https://open-meteo.com/<br>
  var _meteo, _urlm ="https://api.open-meteo.com/v1/forecast?latitude=41.9030&longitude=12.4663&current=temperature_2m"; <br>
- if(TRIGBYNAME("meteo"))  _meteo  = RESTJSON(_urlm),  POP("ROMA", "temperatura = "  +_meteo .current.temperature_2m );  </code> <br>
-<i> nota: questa è la struttura completa dell'oggetto-risposta (<code>_meteo</code>), che si può vedere in console con <code>'console.log(_meteo)'</code>. Si è utilizzata solo la temperatura ( <code>_meteo.current.temperature_2m </code>): </i> <pre>
+ if(TRIGBYNAME("meteo")) _meteo = RESTJSON(_urlm), POP("ROMA", "temperatura = " + _meteo .current.temperature_2m );  </code> <br>
+<i> nota: questa è la struttura completa dell'oggetto-risposta (<code>_meteo</code>), che si può vedere in console con <code>'console.log(_meteo)'</code>. Si è utilizzata in POP() solo la temperatura ( <code>_meteo.current.temperature_2m </code>): </i> <pre>
 current: 
     interval: 900
     temperature_2m: 33.7
@@ -580,8 +580,7 @@ time = costante nei formati "hh:mm:ss" oppure "mm:ss" oppure "ss". Deve essere m
 <dd> Ritorna 'true' solo se la "condizione" rimane 'false' per almeno il tempo 'time'  (inverso  di CONFIRMH).<br>
 <i>Esempio:</i> <code>if(ISTRIGGERH(CONFIRML(ISCONNECTED("relay"), "02:30"))) VOICE("Allarme disconnessione");</code> </dd>
 
-
- <dt>ROUND(number, pos)</dt>
+<dt>ROUND(number, pos)</dt>
 <dd> Torna una stringa con 'pos' cifre decimali (se 'pos' >0) <br>
      oppure un numero intero ('pos' = 0) <br>
      oppure un numero intero con zeri ('pos' < 0) <br>
@@ -614,9 +613,11 @@ la durata dello stato vero (come il duty cycle).
 <dd>Ritorna la derivata (meglio: il rapporto incrementale) di value.<br>
 <i>Esempio:</i> <code>if (DERIVATIVE(GET("TF_frigo","va_temperature")) > 0) VOICE("Temperatura Frigo crescente");</code> </dd>
 
-<dt>INTEGRAL(value, zero) (*) </dt>
-<dd>Ritorna l'integrale (meglio: la somma integrale) di value.<br>
-<i>Esempio:</i> <code>var KWh = INTEGRAL(_tensione * _corrente, false) / 3600;</code>
+<dt>INTEGRAL(value, limite) (*) </dt>
+<dd>Ritorna l'integrale (meglio: la somma integrale) di value. Limito è opzionale, e riporta a 0 l'integrale quando è raggiunto.<br>
+<i>nota: E' possibile usare <code>INTEGRAL</code> per creare timer più precisi di <code>TRIGEVERY()</code> che si basa sul conteggio dei cicli, perchè talora sono aggiunti cicli extra, e.g. ad ogni <code>TRIGRULE()</code>. <br> L'integrale di una costante è una retta crescente: usando 1 come costante, e il <code>limite</code> (in secondi) si ha un'andamento a denti di sega. L'integrale torna a 0 ogni <code>limite</code> secondi (errore: 0..TuyaInterval) con ottima precisione. Questo esempio è un timer periodico di durata 1h:</i> 
+    <code> var _integ = INTEGRAL(1, 3600); <br>
+           if (_integ == 0) ...more...</code>
 </dd>
 
 <dt>TIME(wath) </dt>
