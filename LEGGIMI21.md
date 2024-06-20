@@ -492,7 +492,15 @@ nota: il dato proviene dal Cloud, può differire dal valore locale mostrato da S
 
 <dt>XURL(url)</dt>
 <dd>Segnale di avviso.<br>
-<i>Esempio:</i>  <code>XURL("https://api.open-meteo.com/v1/forecast?latitude=41.9030&longitude=12.4663&current=temperature_2m"); </code> </dd>
+<i>Esempio:</i>  <code>XURL("https://www.google.com/"); </code> </dd>
+
+<dt>RESTJSON(url)</dt>
+<dd> Per servizi web REST, ritorna la risposta come oggetto per semplificare l'uso.<br>
+ <i>Esempio:</i>  <code>
+  // see https://open-meteo.com/<br>
+  var _tmp ="https://api.open-meteo.com/v1/forecast?latitude=41.9030&longitude=12.4663&current=temperature_2m" ; <br>
+  var _meteo = null; <br>
+  if(TRIGBYNAME("meteo"))   _meteo = RESTJSON(_tmp), POP("ROMA", "temperatura = "  +  _meteo.current.temperature_2m );  <br>
 
 <dt>VOICE(message)</dt>
 <dd>Segnale di avviso.<br>
