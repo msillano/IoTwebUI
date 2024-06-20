@@ -376,11 +376,11 @@ Il particolare ambiente in cui sono valutate le RULE comporta qualche limite all
 . importante è anche l'uso delle parentesi, "()", sempre a coppie. Parentesi servono dopo ogni MACRO - nota, anche se non ci sino parametri, e.g. `BEEP()` - e dopo un `if`, per la condizione. comunque usatele liberamente per raggruppare risultati intermedi nelle espressioni e.g. if((_a > 10) && (_b/2 == 0))....
 - le RULE sono eseguite ad ogni loop, dopo un aggiornamento dei dati Tuya. Molte MACRO devono quindi conservare lo stato tra un run ed il successivo, e sono individuate con (*). 
 - Il costrutto js più utile nelle RULE è l'**if()** (esecuzione condizionale), che assume varie forme:<br>
-   **if(** `condizione` **)** `azione;`    `azione` _è eseguita ogni volta che `condizione` è vera_ <br>
-   **if(** `condizione` **)** `azione1`**,** `azione2;`  _due (o più) azioni, separate da ',' virgola._<br>
-   **if(** `condiz1 && condiz2` **)** `azione;`  _AND: 'tutte',_  `condiz1` _e_ `condiz2` _devono essere vere entrambe._<br>
-   **if(** `condiz1 || condiz2` **)** `azione;` _OR: 'almeno una',_ `condiz1` _oppure_ `condiz2` deve essere vera._<br>
-   **if (** `condizione` **)** `azione1` **else** `azione2;`  _esegue `azione1` (se vero) oppure `azione2` (se falso)._ <br>
+   **if(** `condizione` **)** `azione;`    // `azione` _è eseguita ogni volta che `condizione` è vera_ <br>
+   **if(** `condizione` **)** `azione1`**,** `azione2;` // _due (o più) azioni, separate da ',' virgola._<br>
+   **if(** `condiz1 && condiz2` **)** `azione;` //  _AND: 'tutte',_  `condiz1` _e_ `condiz2` _devono essere vere entrambe._<br>
+   **if(** `condiz1 || condiz2` **)** `azione;` //  _OR: 'almeno una',_  `condiz1` _oppure_ `condiz2` deve essere vera._<br>
+   **if (** `condizione` **)** `azione1` **else** `azione2;`  // _esegue `azione1` (se vero) oppure `azione2` (se falso)._ <br>
 
  - Se una `condizione` è vera a lungo, un `if()` sarà eseguito più volte, ad ogni ciclo. Per evitare questo le macro TRIGGER sono vere per un solo ciclo, il primo e poi sono false.
 
@@ -466,37 +466,37 @@ Ovviamente si possono sempre aggiungere nuove MACRO, o come customizzazione (se 
 <dt>ISCONNECTED(device)</dt>
 <dd>Ritorna 'true' se il device (nome o ID) è connesso. <br>
 nota: il dato proviene dal Cloud, può differire dal valore locale mostrato da SmartLife. <br>
-_Esempio:_ if (! ISCONNECTED("Tuya bridge")) VOICE ("Attenzione! 'tuya bridge' attualmente disconnesso")  </dd>
+<i>Esempio:</i> <code>if (! ISCONNECTED("Tuya bridge")) VOICE ("Attenzione! 'tuya bridge' attualmente disconnesso"); </code>  </dd>
 
 <dt>GET(device, property)</dt>
-<dd>Ritorna il valore di 'property' (i nomi originali mostrati nel tooltip) del device (nome o ID)<br> _Esempio:_ var _tf = GET("TF_frigo","va_temperature"); </dd>
+<dd>Ritorna il valore di 'property' (i nomi originali mostrati nel tooltip) del device (nome o ID)<br> <i>Esempio:</i> <code>var _tf = GET("TF_frigo","va_temperature");</code> </dd>
 
 <dt>DATALOG(name, value) (*)</dt>
 <dd>Aggiunge un nuovo 'value' al file di log dati, con il 'name' indicato.<br>
 <i>nota: il salvataggio dati durante un test inizia subito, ma, nel formato CSV, la prima riga con i nomi non è aggiornata. Eventualmente salvare il file di log per avere un nuovo file aggiornato. Questo solo in fase di test: con le RULE  in <i>uso</i> dall'avvio non c'è problema.<br> 
- _Esempio:_ DATALOG("Temperatura Frigo", GET("TF_frigo","va_temperature")/10);
+ <i>Esempio:</i> <code>DATALOG("Temperatura Frigo", GET("TF_frigo","va_temperature")/10);</code>
 </dd>
 
 <dt>ALERTLOG(name, message) </dt>
 <dd>Aggiunge il 'message' al registro degli avvisi, identificato da 'name'.<br>
-_Esempio:_ if(ISTRIGGERL(GET("tuya_bridge", "switch_1"))) ALERTLOG("tuya_bridge", "Aperto adesso")</dd>
+<i>Esempio:</i> <code>if(ISTRIGGERL(GET("tuya_bridge", "switch_1"))) ALERTLOG("tuya_bridge", "Aperto adesso");</code>></dd>
 
 <dt>BEEP()</dt>
 <dd>Segnale di avviso.<br>
-_Esempio:_ if(GET("TF_frigo","va_temperature") > 100) BEEP();
+<i>Esempio:</i> <pre>if(GET("TF_frigo","va_temperature") > 100) BEEP();
 </dd>
 
 <dt> POP(device, message)</dt>
 <dd>Segnale di avviso.<br>
-_Esempio:_ if(ISTRIGGERH(GET("TF_frigo","va_temperature") > 100)) POP("Frigo", "TEMPERATURA oltre 10°C" );</dd>
+<i>Esempio:</i> if(ISTRIGGERH(GET("TF_frigo","va_temperature") > 100)) POP("Frigo", "TEMPERATURA oltre 10°C" );</dd>
 
 <dt>XURL(url)</dt>
 <dd>Segnale di avviso.<br>
-_Esempio:_  XURL("https://api.open-meteo.com/v1/forecast?latitude=41.9030&longitude=12.4663&current=temperature_2m"); </dd>
+<i>Esempio:</i>  XURL("https://api.open-meteo.com/v1/forecast?latitude=41.9030&longitude=12.4663&current=temperature_2m"); </dd>
 
 <dt>VOICE(message)</dt>
 <dd>Segnale di avviso.<br>
- _Esempio:_ if (! ISCONNECTED("Tuya bridge")) VOICE ("Attenzione! 'tuya bridge' attualmente disconnesso") 
+<i>Esempio:</i> if (! ISCONNECTED("Tuya bridge")) VOICE ("Attenzione! 'tuya bridge' attualmente disconnesso") 
 </dd>
 
 <dt>SOUND(url)</dt>
@@ -506,12 +506,12 @@ _Esempio:_  XURL("https://api.open-meteo.com/v1/forecast?latitude=41.9030&longit
 
 <dt>SCENA(scenaNome) </dt>
 <dd>Esegue un _tap-to-Run_, presente nell'elenco letto dal Cloud.<br>
- _Esempio:_ if(ISTRIGGERH(_alarm)) SCENA('sirena suona'); </dd>
+ <i>Esempio:</i> if(ISTRIGGERH(_alarm)) SCENA('sirena suona'); </dd>
 
 
 <dt>TRIGRULE(name)</dt>
 <dd>Esegue un RULE individuato da un nome, nello stesso run (se precede TRIGBYNAME(name)), oppure al run successivo (se è dopo TRIGBYNAME(name)). <br>
- _Esempio:_ if(ISTRIGGERH(_alarm)) TRIGRULE('sirena'); </dd>
+ <i>Esempio:</i> if(ISTRIGGERH(_alarm)) TRIGRULE('sirena'); </dd>
 </dl>
 <hr>
 
@@ -520,49 +520,49 @@ _Esempio:_  XURL("https://api.open-meteo.com/v1/forecast?latitude=41.9030&longit
 <dt>TRIGBYNAME(name) </dt>
 <dd> Associa un 'nome' (max 3 parole) ad una RULE, permettendo di attivarla con un comando utente (bottone o comando vocale) o con TRIGRULE() (analogo ai 'tap-to-run' Tuya).<br>
 Torna true quando deveessere eseguita. <br>
- _Esempio:_ if (TRIGBYNAME('spegni la luce')) VOICE (" Hai attivato: 'spegni la luce'")</dd>
+<i>Esempio:</i> if (TRIGBYNAME('spegni la luce')) VOICE (" Hai attivato: 'spegni la luce'")</dd>
 
 <dt>ISTRIGGERH(condition) (*) </dt>
 <dd> Ritorna 'true' solo al passaggio della "condizione" da 'false a true', evita che la "condizione" 'true' agisca ad ogni run (analogo alle condizioni delle automazioni Tuya). Ovvero trasforma un livello true in TRIGGER. <br>
-_Esempio:_ if(ISTRIGGERH(GET("TF_frigo","va_temperature") > 100)) POP("Frigo", "TEMPERATURA oltre 10°C" );</dd>
+<i>Esempio:</i> if(ISTRIGGERH(GET("TF_frigo","va_temperature") > 100)) POP("Frigo", "TEMPERATURA oltre 10°C" );</dd>
  
 <dt>ISTRIGGERL(condition) (*)</dt>
 <dd> Ritorna 'true' solo al passaggio della "condizione" da 'true a false'  (inverso  di ISTRIGGERH).<br>
-_Esempio:_ if(ISTRIGGERL(GET("tuya_bridge", "switch_1"))) ALERTLOG("tuya_bridge", "Aperto adesso") </dd>
+<i>Esempio:</i> if(ISTRIGGERL(GET("tuya_bridge", "switch_1"))) ALERTLOG("tuya_bridge", "Aperto adesso") </dd>
  
 <dt>TRIGCHANGED(value) (*) </dt>
 <dd> ritorna 'true' ogni volta che 'value' cambia rispetto al valore precedente.<br>
-_Esempio:_ if(ISCHANGED(_tf)) VOICE(_annonce); </dd>
+<i>Esempio:</i> if(ISCHANGED(_tf)) VOICE(_annonce); </dd>
 
 <dt>TRIGEVERY(n) (*)</dt>
 <dd>  Semplice timer: ritorna 'true' solo dopo "n" esecuzioni, ciclico <br>
   E' garantito un singolo valore 'true' per ogni n-simo loop (non richiede ISTRIGGERH()). 'n' è in numero di loop, in tempo: t <= n x tuyaInterval (definito in 'config.js' file).<br>
- _Esempio:_ if(TRIGEVERY(8)) POP( "FRIGO", "Temperatura interna: "+ ROUND(_tf/10, 1) + "°C"); </dd>
+<i>Esempio:</i> if(TRIGEVERY(8)) POP( "FRIGO", "Temperatura interna: "+ ROUND(_tf/10, 1) + "°C"); </dd>
  
 <dt>CONFIRMH(condition, time) (*) </dt>
 <dd> Ritorna 'true' solo se la "condizione" rimane 'true' per almeno il tempo 'time'. Poi resta 'true' fino a quando la 'condizione' è 'true'. Caso tipico una porta aperta: vedi esempi.<BR>
 time = costante nei formati "hh:mm:ss" oppure "mm:ss" oppure "ss". Deve essere maggiore di TuyaInterval.<br>
-_Esempio:_ <br>
+<i>Esempio:</i> <br>
    var _doorev = GET("Sensore porta", "doorcontact_state") ;   // true a porta aperta
    if(ISTRIGGERH( CONFIRMH(_doorev, "01:20"))) VOICE("chiudere la porta, grazie");</dd>
  
 <dt>CONFIRML(condition, time) (*) </dt>
 <dd> Ritorna 'true' solo se la "condizione" rimane 'false' per almeno il tempo 'time'  (inverso  di CONFIRMH).<br>
- _Esempio:_ if(ISTRIGGERH(CONFIRML(ISCONNECTED("relay"), "02:30"))) VOICE("Allarme disconnessione");</dd>
+<i>Esempio:</i> if(ISTRIGGERH(CONFIRML(ISCONNECTED("relay"), "02:30"))) VOICE("Allarme disconnessione");</dd>
 
 
  <dt>ROUND(number, pos)</dt>
 <dd> Torna una stringa con 'pos' cifre decimali (se 'pos' >0) <br>
      oppure un numero intero ('pos' = 0) <br>
      oppure un numero intero con zeri ('pos' < 0) <br>
-    _Esempi:_ 'ROUND (123.567, 2)' => "123.57";  'ROUND(123.567, 0)'  => "124";  'ROUND(123.567, -2)'  => "100"; 
+  <i>Esempi:</i> 'ROUND (123.567, 2)' => "123.57";  'ROUND(123.567, 0)'  => "124";  'ROUND(123.567, -2)'  => "100"; 
 </dd>
       
 <dt>ADDCOUNT(event, restart) (*) </dt>
 <dd> Ritorna il totale di volte che event è true, quando restart è true.
 Può  essere usato in due modi: se 'event' è un TRIGGER conta il numero di volte. Altrimenti valuta
 la durata dello stato vero (come il duty cycle).
- _Esempio:_ 
+ <i>Esempio:</i> 
  var _tot = ADDCOUNT(ISCONNECTED("HUB_zigbee"), TRIGEVERY(100)); <br>
  if (_tot) POP("Affidabilità", "L'HUB Zigbee è stato connesso il "+ _tot +"% del tempo"):
 </dd>
@@ -575,17 +575,17 @@ la durata dello stato vero (come il duty cycle).
 <dt>AVG(value, n) (*) </dt>
 <dd> Media mobile degli ultimi 'n' valori: torna una stringa con 2 decimali.<br>
 'n' è in numero di loop, in tempo: t = n x tuyaInterval (definito in 'config.js' file).<br>
- _Esempio:_ DATALOG("Temperatura media Frigo", AVG(GET("TF_frigo","va_temperature")/10, 20));
+ <i>Esempio:</i> DATALOG("Temperatura media Frigo", AVG(GET("TF_frigo","va_temperature")/10, 20));
 </dd>
 
 <dt>MAX(value, n) (*) </dt>
 <dd>Ritorna il più grande  degli ultimi 'n' valori.<br>
 'n' è in numero di loop, in tempo: t = n x tuyaInterval (definito in config.js file).<br>
- _Esempio:_ var _Tmax = MAX(GET("TF_frigo","va_temperature")/10, 1440);  (24h = 1440 min) </dd>
+<i>Esempio:</i> var _Tmax = MAX(GET("TF_frigo","va_temperature")/10, 1440);  (24h = 1440 min) </dd>
 
 <dt>DERIVATIVE(value) (*) </dt>
 <dd>Ritorna la derivata (meglio: il rapporto incrementale) di value.<br>
- _Esempio:_ if (DERIVATIVE(GET("TF_frigo","va_temperature")) > 0) VOICE("Temperatura Frigo crescente") </dd>
+<i>Esempio:</i> if (DERIVATIVE(GET("TF_frigo","va_temperature")) > 0) VOICE("Temperatura Frigo crescente") </dd>
 
 <dt>INTEGRAL(value, zero) (*) </dt>
 <dd>Ritorna l'integrale (meglio: la somma integrale) di value.<br>
@@ -595,22 +595,22 @@ la durata dello stato vero (come il duty cycle).
 <dt>TIME(wath) </dt>
 <dd>  ritorna una stringa, "hh:mm:ss" oppure "mm:ss" oppure "ss" calcolata dall'ora attuale, a seconda di 'wath'.
   'wath': una delle costanti così definite: <i>hrs</i> = 11, <i>min</i> = 14, <i>sec</i> = 17 (senza apici, non sono stringhe).<br>
-   _Esempio:_ var message = "Alle ore " + TIME(hrs); </dd>
+  <i>Esempio:</i> var message = "Alle ore " + TIME(hrs); </dd>
  
 <dt>  DAYMAP(val1, time1, val2, time2, ... more) </dt>
 <dd> Ritorna: fino a 'time1' l'output è 'val1', da  'time1' a  'time2'  l'output è 'val2'... avanti così fino  all'ultimo 'time' dopo di che  l'output è di nuovo 'val1'.<br>
 Naturalmente i valori 'val' e 'time' devono essere presenti a coppie, tanti quanti ne servono. Tutti i 'time' in formato "hh:mm:ss".<br>
 Usi: profili di temperatura giornalieri, eventi ad orario o abilitazione per intervalli di tempo, etc., a seconda se 'val' sono temperature, oppure 'buongiorno'/'buonasera', oppure true/false, etc..<br>
-  _Esempio:_  if(DAYMAP(false,"12:30", true, "14:00")) BEEP();
+ <i>Esempio:</i> if(DAYMAP(false,"12:30", true, "14:00")) BEEP();
  </dd>
  
 <dt>WEEKMAP(map) </dt>
 <dd> 'map' è una stringa di sette caratteri qualsiasi, uno per giorno della settimana, partendo dalla Domenica (e.g.: 'DLMMGVS' o 'SMTWTFS' o '1234567'). Solo se il carattere corrispondente ad oggi è '-' (trattino) ritorna 'false' altrimenti torna 'true'. <br>
- _Esempio:_  WEEKMAP("DLMM-VS") è falso solo il Giovedì. </dd>
+ <i>Esempio:</i>  WEEKMAP("DLMM-VS") è falso solo il Giovedì. </dd>
 
 <dt>YEARMAP(mese, giorno) </dt>
 <dd> 'mese' e 'giorno' sono due stringhe di 12 e 31 caratteri qualsiasi, per identificare mesi e giorni (e.g.: 'GFMAMGLASOND' o '1234567890123456789012345678901'). Solo se il mese e il giorno di oggi sono '-' (trattino) ritorna 'false' (per 24h) altrimenti torna 'true'. <br>
-  _Esempio:_  YEARMAP( 'GFMAMGLASON-', '12345678901234567890123-5678901') è false solo a Natale.
+ <i>Esempio:</i>  YEARMAP( 'GFMAMGLASON-', '12345678901234567890123-5678901') è false solo a Natale.
   </dd>
  
 </dl>
