@@ -501,12 +501,12 @@ nota: il dato proviene dal Cloud, può differire dal valore locale mostrato da S
  if(TRIGBYNAME("my IP"))  POP( "My IP", REST("https://api.ipify.org/?format=txt"));   </code> <br>
  
 <dt>RESTJSON(url)</dt>
-<dd> Per servizi web REST (GET), che forniscono la risposta in formato JSON (la maggior parte). Questa funzione restituisce,per semplificare l'uso, un oggetto.<br>
+<dd> Per servizi web REST (GET), che forniscono la risposta in formato JSON (la maggior parte). Questa funzione restituisce, per semplificare l'uso, direttamente un oggetto.<br>
  <i>Esempio:</i>  <code>
   // see https://open-meteo.com/<br>
  var _meteo, _urlm ="https://api.open-meteo.com/v1/forecast?latitude=41.9030&longitude=12.4663&current=temperature_2m"; <br>
  if(TRIGBYNAME("meteo"))  _meteo  = RESTJSON(_urlm),  POP("ROMA", "temperatura = "  +_meteo .current.temperature_2m );  </code> <br>
-<i> Questa è la struttura completa dell'oggetto-risposta, si può vedere in console con 'console.log(_meteo)': </i> <pre>
+<i> nota: questa è la struttura completa dell'oggetto-risposta (<code>_meteo</code>), che si può vedere in console con <code>'console.log(_meteo)'</code>. Si è utilizzata solo la temperatura ( <code>_meteo.current.temperature_2m </code>): </i> <pre>
 current: 
     interval: 900
     temperature_2m: 33.7
@@ -522,9 +522,7 @@ longitude: 12.469999
 timezone: "GMT"
 timezone_abbreviation:"GMT"
 utc_offset_seconds: 0
-</pre>
-
-
+</pre></dd>
 
 <dt>VOICE(message)</dt>
 <dd>Segnale di avviso.<br>
