@@ -207,7 +207,7 @@ Si possono gestire due insiemi di RULE: quelle in <i>uso</i>, inizialmente lette
 
 - La disponibilità di questa funzione dipende dal browser usato.
 - L'efficienza dipende da vari fattori, tra cui il microfono usato e le relative regolazioni. Nelle prove sono passato da oltre il 90% di riconoscimenti ad un pessimo 20%! 
-- Molto importante è altresì la scelta delle parole chiave e dei 'nomi': per esempio 'nome tr parole' è di difficile riconoscimento, mentre 'accendi la luce' è facilmente riconosciuto.<br> Ritengo che questo dipenda dai modelli linguistici usati: sono più riconoscibili frasi italiane corrette, con un significato comune, rispetto a parole isolate. Per esempio 'Tuya' è spesso confuso con 'Giulia'.
+- Molto importante è altresì la scelta delle parole chiave e dei 'nomi': per esempio 'nome tre parole' è di difficile riconoscimento, mentre 'accendi la luce' è facilmente riconosciuto.<br> Ritengo che questo dipenda dai modelli linguistici usati: sono più riconoscibili frasi italiane corrette, con un significato comune, rispetto a parole isolate. Per esempio 'Tuya' è spesso confuso con 'Giulia'.
 - Il comando vocale è pertanto opzionale, e può essere disabilitato nella configurazione.
 - la grammatica di default è la seguente:
     - 'Hey Tuya, esegui xxx (xxx (xxx))' => lancia un Tuya 'tap-to-run, nome max 3 parole
@@ -220,7 +220,7 @@ Si possono gestire due insiemi di RULE: quelle in <i>uso</i>, inizialmente lette
     - 'Hey Tuya, ritorna  =>  navigazione alla pagina con albero device
     - 'Hey Tuya, home  =>  navigazione alla pagina con albero device
  
-- _nota: la navigazione tra pagine è analoga al menu: dalla 'home' si può  andare alle pagine 'tap-to-run' o 'edit RULE', ma da queste si può solo tornare alla 'home'._
+- _nota: la navigazione tra pagine è analoga al menu: dalla 'home' si può  andare alle pagine 'tap-to-run' o 'edit RULE' (in modo EXPERT), ma da queste si può solo tornare alla 'home'._
      
 E' tollerata qualche imprecisione nel riconoscimento (e.g. 'Giulia' invece di 'Tuya', etc..) e questo può essere facilmente customizzato. Vedi file speech21.js.
 
@@ -241,7 +241,7 @@ _NON rendetela accessibile dall'esterno o da terzi, altrimenti tutti i vostri da
   - Aggiunto SpeechRecognition (file speech21.js) customizzabile
   - Aggiunte RULE con 'nome', attivabili con bottoni e comandi vocali
   - Aggiunte nuove MACRO
-  - Migliorata la funzione 'test': al termine ripristina il contesto
+  - Migliorata la funzione 'test': al termine ripristina il contesto in uso.
   - Fallback: se i pop-up sono bloccati, gli avvisi sono mostrati in una finestra. Nessun messaggio perso.
   - Aggiunta data al nome dei file di datalog.
   
@@ -369,11 +369,19 @@ Il particolare ambiente in cui sono valutate le RULE comporta qualche limite all
 - **importante**: il codice è eseguito una riga alla volta, non è possibile scrivere blocchi js che occuppino più righe!  Per contenere la lunghezza delle righe, usare delle variabili intermedie (vedi esempi).
 - definire le variabili sempre con la sintassi: **var** `_pippo` **=**...
 - usare sempre un underscore **_** come primo carattere nel _nome delle variabili_: si evitano così interferenze con altre variabili.
-- Volori predefiniti:`true` e `false` per le condizioni; le costanti numeriche sono con il punto, all'inglese (`3.14`), e tutte le stringhe vogliono gli apici (`"oggi "`);
+- _Valori predefiniti:_ `true` e `false` per le condizioni; le costanti numeriche sono con il punto, all'inglese (`3.14`), e tutte le stringhe vogliono gli apici (`"oggi "`);
 - Usare **//** per i commenti, continuano fino a fine riga
 - Le operazioni js più utili sono quelle aritmetiche (**+, -, *, /**), quelle logiche per le condizioni: (**&&** -and, **||** -or, **!** -negazione) e le operazioni di confronto ( **&gt;**, **==**, **!=**, **&lt;**, **&gt;=**, **&lt;=**); la concatenazione delle stringhe è fatta semplicemente con il **+** ("ore " **+** "10:30").
-- attenzione al '+': in `a + b`, se `a` e `b` sono numeri, fa la somma, ma se uno dei due è una stringa, automaticamente anche l'altro è convertito in stringa. E la conversione `numero => stringa` può portare a sorprese quando non sono numeri interi! Usare sempre ROUND() quando dovete usare dei numeri con la virgola nelle stringhe (vedi esempi).
-. importante è anche l'uso delle parentesi, "()", sempre a coppie. Parentesi servono dopo ogni MACRO - nota, anche se non ci sino parametri, e.g. `BEEP()` - e dopo un `if`, per la condizione. comunque usatele liberamente per raggruppare risultati intermedi nelle espressioni e.g. if((_a > 10) && (_b/2 == 0))....
+- attenzione al '+': in `a + b`, se `a` e `b` sono numeri, fa la somma, ma se uno dei due è una stringa, automaticamente anche l'altro è convertito in stringa. E la conversione `numero => stringa` può portare a sorprese quando non sono numeri interi! Usare sempre ROUND() quando dovete usare dei numeri con la virgola nelle stringhe Esempio:
+```
+ var _tf = GET("TF_frigo","va_temperature");  // read temperature sensor
+ var _tm = AVG(_tf, 12);                      // get average from last 12 values
+ var _tr = ROUND( _tm/10,  -1);               // round to the nearest ten
+ if(TRIGEVERY(8)) POP( "FRIGO", "Frigo: "+ ROUND(_tf/10, 1) + "°C, media: "+ ROUND(_tm/10, 2) +"°C, round: " + _tr +"°C");
+                                              // note: use ROUND() to convert to string
+ DATALOG("frigo.media", _tm/10);              // saves average on file
+ ```
+. importante è anche l'uso delle parentesi, "()", sempre a coppie. Parentesi servono dopo ogni MACRO - nota, anche se non ci sino parametri, e.g. `BEEP()` - e dopo un `if`, per la condizione. Comunque usatele liberamente per raggruppare i risultati intermedi nelle espressioni e.g. if((_a > 10) && (_b/2 == 0))....
 - le RULE sono eseguite ad ogni loop, dopo un aggiornamento dei dati Tuya. Molte MACRO devono quindi conservare lo stato tra un run ed il successivo, e sono individuate con (*). 
 - Il costrutto js più utile nelle RULE è l'**if()** (esecuzione condizionale), che assume varie forme:<br>
    **if(** `condizione` **)** `azione;`    // `azione` _è eseguita ogni volta che `condizione` è vera_ <br>
@@ -382,7 +390,7 @@ Il particolare ambiente in cui sono valutate le RULE comporta qualche limite all
    **if(** `condiz1 || condiz2` **)** `azione;` //  _OR: 'almeno una',_  `condiz1` _oppure_ `condiz2` deve essere vera._<br>
    **if (** `condizione` **)** `azione1` **else** `azione2;`  // _esegue `azione1` (se vero) oppure `azione2` (se falso)._ <br>
 
- - Se una `condizione` è vera a lungo, un `if()` sarà eseguito più volte, ad ogni ciclo. Per evitare questo le macro TRIGGER sono vere per un solo ciclo, il primo e poi sono false.
+ - Se una `condizione` è vera a lungo (livello), un `if()` sarà eseguito più volte, ad ogni ciclo. Per evitare questo le macro TRIGGER sono vere per un solo ciclo, il primo e poi sono false.
 
 - **importante**: per come sono implementate, le MACRO che usano memoria (*) NON possono essere usate nella parte `azione` di un **if**. Per ragioni analoghe non sono ammessi **if  nidificati** (un **if** nella zona azione di un altro **if**). Sono vincoli che non pongono, però, serie limitazioni.
   
@@ -395,7 +403,7 @@ Il particolare ambiente in cui sono valutate le RULE comporta qualche limite all
  var _tf = GET("TF_frigo","va_temperature"); // read temperature sensor
  var _tm = AVG(_tf, 12);                     // get average from last 12 values
  var _tr = ROUND( _tm/10,  -1);              // round to the nearest ten
- if(EVERY(8)) POP( "FRIGO", "Frigo: "+ _tf/10 + "°C, media: "+_tm/10 +"°C, round " + _tr +"°C");                   // divisions can get problems in numbers!
+ if(EVERY(8)) POP( "FRIGO", "Frigo: "+ ROUND(_tf/10, 1) + "°C, media: "+_tm/10 +"°C, round " + _tr +"°C");                   // divisions can get problems in numbers!
  DATALOG("frigo.media", _tm/10);            // saves average on file
  
 // using again _tf, and MACROS: ISCONNECTED() ISCHANGED()  TIME() VOICE() ROUND()
