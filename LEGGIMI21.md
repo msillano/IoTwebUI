@@ -84,7 +84,7 @@ La modalità EXPERT offre un controllo totale sulla personalizzazione di IoTwebU
 - Tuya pone dei limiti alla frequenza degli accessi al cloud. _IoTwebUI_ ne tiene conto, e la fase iniziale (quando legge tutti i dati dal Cloud) è bloccante e non brevissima (3-5 s, in funzione del numero di device). Come anche in SmartLife.
 
 - Un secondo problema è l'impossibilità di creare file direttamente da una pagina HTML, sempre per motivi di sicurezza. Per l'export dei dati sono ricorso ad una libreria di logging su file [debugout.js](https://github.com/inorganik/debugout.js). Per questo motivo il controllo sui file generati non è completo e sono necessari piccoli  interventi manuali sui file esportati.
-- I file di datalog sono salvati nella dir `download`, con il nome  `tuyalog-hh-mm-ss.csv|json`.
+- I file di datalog sono salvati nella dir `download`, con il nome  `tuyalogDYYYYMMGGThhmmss.csv|json.txt`.
 - Per lo stesso motivo non è possibile aggiornare dall'APP i file di configurazione. Ho scelto una soluzione di compromesso, che prevede l'intervento dell'utente con un semplice copia-incolla.
 - Il funzionamento continua regolarmente anche con la finestra del browser iconizzata.
 - Usare una sola istanza dell'APP, altrimenti si hanno problemi con i token Tuya.
@@ -166,7 +166,7 @@ In modo EXPERT cliccando su un device si apre un dialogo che nella parte inferio
  - _Notare che 'connected' non è incluso nelle proprietà, e quindi non si possono definire 'Alert'. Ma è disponibile come MACRO nelle RULE._
  - _Avendo un solo messaggio, le regole di precedenza sono: SOUND() e URL (auto) sono esaminati per primi, poi Tap-to-run e RULE (auto), e solo per ultimo POP e VOICE (compatibili: lo stesso messagio può essere usato per entranbi); Beep è sempre utilizzabile._
  - _Quindi, per avere sia 'pop' che 'tap-to-run', creare due Alert con le stesse condizioni: in uno 'message' sarà il testo per il 'pop-up', nell'altro il nome del 'tap-to-run'._
- - _I pop-up possono dipendere dalla configurazione del browser: usando 'run_me.bat' si ha un aggiornamento della configurazione per la nuova istanza del browser. Azioni utente (e.g. bottoni) possono abilitare momentaneamente i pop-up._ <br>
+ - _I pop-up possono dipendere dalla configurazione del browser: usando 'run_me.bat' si ha un aggiornamento automatico della configurazione per la nuova istanza del browser. Azioni utente (e.g. bottoni) possono abilitare momentaneamente i pop-up._ <br>
  _Comunque, per non perdere informazioni, se i pop-up sono disabilitati, il messaggio è presentato lo stesso in una finestra dell'APP: la differenza è che i pop-up possono essere molti, mentre la finestra è unica ed è riusata con un contatore._
 
 **Comandi:**
@@ -207,7 +207,7 @@ Si possono gestire due insiemi di RULE: quelle in <i>uso</i>, inizialmente lette
 
 - La disponibilità di questa funzione dipende dal browser usato.
 - L'efficienza dipende da vari fattori, tra cui il microfono usato e le relative regolazioni. Nelle prove sono passato da oltre il 90% di riconoscimenti ad un pessimo 20%! 
-- Molto importante è altresì la scelta delle parole chiave e dei 'nomi': per esempio 'nome tre parole' è di difficile riconoscimento, mentre 'accendi la luce' è facilmente riconosciuto.<br> Ritengo che questo dipenda dai modelli linguistici usati: sono più riconoscibili frasi italiane corrette, con un significato comune, rispetto a parole isolate. Per esempio 'Tuya' è spesso confuso con 'Giulia'.
+- Molto importante è altresì la scelta delle parole chiave e dei nomi per 'tap-to-run' e 'RULE': per esempio 'nome tre parole' è di difficile riconoscimento, mentre 'accendi la luce' è facilmente riconosciuto.<br> Ritengo che questo dipenda dai modelli linguistici usati: sono più riconoscibili frasi italiane corrette, con un significato comune, rispetto a parole isolate. Per esempio 'Tuya' è spesso confuso con 'Giulia'.
 - Il comando vocale è pertanto opzionale, e può essere disabilitato nella configurazione.
 - la grammatica di default è la seguente:
     - 'Hey Tuya, esegui xxx (xxx (xxx))' => lancia un Tuya 'tap-to-run, nome max 3 parole
@@ -457,12 +457,12 @@ if (_nowClima) SCENA("TLetto" + ROUND( _Ttarget, 0) ), ALERTLOG("RULE Tletto", "
 ### RULE - MACRO
 le MACRO rispondono a varie esigenze:
  1. Fornire accesso alle risorse e funzionalità di IoTwebUI, per poterle usare nelle RULE
- 2. L'ambiente (run ripetuti ad intervalli reglari) e i suoi limiti (codice in una sola riga) rendono più ardua la scrittura di funzioni complesse. 
+ 2. L'ambiente (run ripetuti ad intervalli reglari) e i suoi limiti (codice in una sola riga) rendono più ardua la scrittura di funzioni complesse: le MACRO semplificano il compito dell'utente. 
  3. Alcune operazioni richiedo la memorizzazione di informzioni tra un run ed il successivo, e le MACRO risolvono questo problema in un modo trasparente per l'utente.
- 4. Importante la distinzione tra un livello -lo stesso valore (e.g. true) uguale per più run- e un TRIGGER - vero per un solo run, quando inizia o finisce un evento-. <br>
+ 4. Importante è la distinzione tra un **livello** -lo stesso valore (e.g. true) uguale per più run- e un **TRIGGER** - vero per un solo run, quando inizia o finisce un evento-. <br>
   _Le macro con TRIG nel nome generano TRIGGER, le altre LIVELLI_.
  5. Alcune funzioni (e.g. temporizzazioni, planning settimanale etc.) sono di uso comune.<br>
-    _nota: questa selezione iniziale di MACRO si basa su mie preferenze: in questo settore il contributo di altri utenti è prezioso._
+    _nota: questa selezione iniziale di MACRO si basa sulle mie preferenze: in questo settore il contributo di altri utenti è prezioso._
 
 Possiamo dividere le MACRO in due gruppi: il primo che gestisce le interazioni con le risorse disponibili in **IoTwebUI** (una sorta di API interna). Il secondo gruppo di MACRO sono invece generali, modificando in qualche modo utile i dati in input o fornendo utili output.
 _nota: obiettivo delle MACRO non è quello di duplicare le funzionalità delle automazioni Tuya (anche se a volte c'è sovrapposizione) e.g. non esistono MACRO per 'meteo' o 'delay', quanto quello di fornire strumenti più avanzati di calcolo, per ottenere 'automazioni' fin'ora impossibili.   L'uso di device virtuali e di tap-to-run permette di suddividere i compiti tra scene Tuya (automazioni e tap-to-run) e RULE nel modo più efficiente._ <br>
@@ -622,10 +622,10 @@ la durata dello stato vero (come il duty cycle).
 <i>Esempio:</i> <code>if (DERIVATIVE(GET("TF_frigo","va_temperature")) > 0) VOICE("Temperatura Frigo crescente");</code> </dd>
 
 <dt>INTEGRAL(value, limite) (*) </dt>
-<dd>Ritorna l'integrale (meglio: la somma integrale) di value. Limito è opzionale, e riporta a 0 l'integrale quando è raggiunto.<br>
-<i>nota: E' possibile usare <code>INTEGRAL</code> per creare timer più precisi di <code>TRIGEVERY()</code> che si basa sul conteggio dei cicli, perchè talora sono aggiunti cicli extra, e.g. ad ogni <code>TRIGRULE()</code>. <br> L'integrale di una costante è una retta crescente: usando 1 come costante, e il <code>limite</code> (in secondi) si ha un'andamento a denti di sega. L'integrale torna a 0 ogni <code>limite</code> secondi (errore: 0..TuyaInterval) con ottima precisione. Questo esempio è un timer periodico di durata 1h:</i> 
-    <code> var _integ = INTEGRAL(1, 3600); <br>
-           if (_integ == 0) ...more...</code>
+<dd>Ritorna l'integrale (meglio: la somma integrale) di value. Limite è opzionale, e riporta a 0 l'integrale quando è raggiunto.<br>
+<i>nota: E' possibile usare <code>INTEGRAL</code> per creare timer più precisi di <code>TRIGEVERY()</code> che si basa sul conteggio dei cicli, perchè talora sono aggiunti cicli extra, e.g. ad ogni <code>TRIGRULE()</code>. <br> L'integrale di una costante è una retta crescente: usando 1 come costante, e un <code>limite</code> in secondi, si ha un'andamento a denti di sega. L'integrale vale 0 all'avvio e poi ogni <code>limite</code> secondi (errore: 0..+TuyaInterval) con ottima precisione. Questo esempio è un timer periodico di durata 1h:</i> <pre>
+           var _integ = INTEGRAL(1, 3600); 
+           if (_integ == 0) ...more...</pre>
 </dd>
 
 <dt>TIME(wath) </dt>
@@ -646,7 +646,7 @@ Usi: profili di temperatura giornalieri, eventi ad orario o abilitazione per int
 
 <dt>YEARMAP(mese, giorno) </dt>
 <dd> 'mese' e 'giorno' sono due stringhe di 12 e 31 caratteri qualsiasi, per identificare mesi e giorni (e.g.: 'GFMAMGLASOND' o '1234567890123456789012345678901'). Solo se il mese e il giorno di oggi sono '-' (trattino) ritorna 'false' (per 24h) altrimenti torna 'true'. <br>
- <i>Esempio:</i>  <code>YEARMAP( 'GFMAMGLASON-', '12345678901234567890123-5678901') </code> è false solo a Natale.
+ <i>Esempio:</i>  <code>YEARMAP( 'GFMAMGLASON-', '12345678901234567890123-5678901') </code> è falso solo a Natale.
   </dd>
  
 </dl>
