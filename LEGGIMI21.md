@@ -395,45 +395,7 @@ Il particolare ambiente in cui sono valutate le RULE comporta qualche limite all
 - **importante**: per come sono implementate, le MACRO che usano memoria (*) NON possono essere usate nella parte `azione` di un **if**. Per ragioni analoghe non sono ammessi **if  nidificati** (un **if** nella zona azione di un altro **if**). Sono vincoli che non pongono, però, serie limitazioni.
   
 <hr>
-
-**ESEMPIO 1**: usato per testare le MACRO, funziona con i miei device (deve essere modificato per i vostri). <BR>
-```
-// -- various temperature calculations with popup and logging:
-//  using variables, and MACROS: GET() AVG() ROUND() EVERY() POP() DATALOG()
- var _tf = GET("TF_frigo","va_temperature"); // read temperature sensor
- var _tm = AVG(_tf, 12);                     // get average from last 12 values
- var _tr = ROUND( _tm/10,  -1);              // round to the nearest ten
- if(EVERY(8)) POP( "FRIGO", "Frigo: "+ ROUND(_tf/10, 1) + "°C, media: "+_tm/10 +"°C, round " + _tr +"°C");                   // divisions can get problems in numbers!
- DATALOG("frigo.media", _tm/10);            // saves average on file
- 
-// using again _tf, and MACROS: ISCONNECTED() ISCHANGED()  TIME() VOICE() ROUND()
-// note: the delay is a function of the Tuya polling interval and  the device data period.
-// In strings, ROUND can be used to cut a number. 
-
- var _annonce = "Alle ore " + TIME(hrs)+" la temperatura è cambiata. Il frigo è a " + ROUND(_tf/10, 1) + " gradi";
- if(ISCONNECTED("TF_frigo") && ISCHANGED(_tf)) VOICE(_annonce);    
-
-// -- more functions (testing purpose):
-// using MACROS: WEEKMAP() BEEP()
-
- if ( WEEKMAP("DLMM-VS")) BEEP();  // stupid beep every Tuya polling, but not Thursday
-
-// using variables, and MACROS: ISTRIGGERL() DAYMAP() SCENA()
-
- var _trgl = ISTRIGGERL(GET("tuya_bridge", "switch_1"));
- if(DAYMAP(false,"08:30", true, "22:00") && _trgl) SCENA('sirena2');
-
-// Voice message if someone keeps the door open
-// using variables and MACROS: CONFIRMH() ALERTLOG()
-// note: this example shows how to debug RULES, using single functions per line and 'console.log()' to see the values of variables.
-// note: after an if()  you can use a comma ',' to execute more than one action. 
-
-var _doorev = GET("Sensore porta", "doorcontact_state") ;   //event: true if door open
-var _dooropen = CONFIRMH(_doorev, "01:20");         // true only after 1:20
-if(ISTRIGGERH(_dooropen)) VOICE("chiudere la porta, grazie"), ALERTLOG("ingresso", "porta aperta") ;
-console.log("DOOR", _doorev, _dooropen);
-```
-**ESEMPIO 2** - Un caso concreto di controllo del riscaldamento <br>
+**ESEMPIO** - Un caso concreto di controllo del riscaldamento <br>
 _Ho il riscaldamento centralizzato, con valvole termostatiche su ogni radiatore: ogni stanza ha il suo profilo di temperatura desiderato (Ttarget). Tutto funziona molto bene, tranne in casi eccezionali (esempio, impianto spento per manutezione)._ <br>
  Vorrei implementare con Tuya una strategia di questo tipo: _se la temperatura ambiente è minore di un 'tot' rispetto a Ttarget, accendere il condizionatore come pompa di calore con lo stesso Ttarget._ Cioè:
 
@@ -453,19 +415,20 @@ var _Ttarget =  GET("Termo letto", "temp_set") ;
 var _nowClima = ISTRIGGERH( ( _Ttarget -  GET("Termo letto", "temp_set") ) > _tot);
 if (_nowClima) SCENA("TLetto" + ROUND( _Ttarget, 0) ), ALERTLOG("RULE Tletto", "acceso clima") ;
 ```
+<hr>
 
 ### RULE - MACRO
 le MACRO rispondono a varie esigenze:
  1. Fornire accesso alle risorse e funzionalità di IoTwebUI, per poterle usare nelle RULE
  2. L'ambiente (run ripetuti ad intervalli reglari) e i suoi limiti (codice in una sola riga) rendono più ardua la scrittura di funzioni complesse: le MACRO semplificano il compito dell'utente. 
  3. Alcune operazioni richiedo la memorizzazione di informzioni tra un run ed il successivo, e le MACRO risolvono questo problema in un modo trasparente per l'utente.
- 4. Importante è la distinzione tra un **livello** -lo stesso valore (e.g. true) uguale per più run- e un **TRIGGER** - vero per un solo run, quando inizia o finisce un evento-. <br>
-  _Le macro con TRIG nel nome generano TRIGGER, le altre LIVELLI_.
- 5. Alcune funzioni (e.g. temporizzazioni, planning settimanale etc.) sono di uso comune.<br>
-    _nota: questa selezione iniziale di MACRO si basa sulle mie preferenze: in questo settore il contributo di altri utenti è prezioso._
+ 4. Importante è la distinzione tra un **livello** -lo stesso valore (e.g. true) uguale per più run- e un **TRIGGER** -vero per un solo run, quando inizia o finisce un evento-. <br>
+  _Le macro con TRIG nel nome generano TRIGGER, le altre LIVELLI_.<br>
+  
+  _nota: questa selezione iniziale di MACRO si basa sulle mie preferenze: in questo settore il contributo di altri utenti è prezioso._
 
 Possiamo dividere le MACRO in due gruppi: il primo che gestisce le interazioni con le risorse disponibili in **IoTwebUI** (una sorta di API interna). Il secondo gruppo di MACRO sono invece generali, modificando in qualche modo utile i dati in input o fornendo utili output.
-_nota: obiettivo delle MACRO non è quello di duplicare le funzionalità delle automazioni Tuya (anche se a volte c'è sovrapposizione) e.g. non esistono MACRO per 'meteo' o 'delay', quanto quello di fornire strumenti più avanzati di calcolo, per ottenere 'automazioni' fin'ora impossibili.   L'uso di device virtuali e di tap-to-run permette di suddividere i compiti tra scene Tuya (automazioni e tap-to-run) e RULE nel modo più efficiente._ <br>
+_nota: obiettivo delle MACRO non è quello di duplicare le funzionalità delle automazioni Tuya (anche se a volte c'è sovrapposizione), quanto quello di fornire strumenti più avanzati di calcolo, per ottenere 'automazioni' fin'ora impossibili.   L'uso di device virtuali e di tap-to-run permette di suddividere i compiti tra scene Tuya (automazioni e tap-to-run) e RULE nel modo più efficiente._ <br>
 Ovviamente si possono sempre aggiungere nuove MACRO, o come customizzazione (se create nuove MACRO comunicatemelo) oppure in nuove release di **IoTwebUI**.
 <hr>
 
@@ -480,7 +443,7 @@ nota: il dato proviene dal Cloud, può differire dal valore locale mostrato da S
 <dd>Ritorna il valore di 'property' (i nomi originali mostrati nel tooltip) del device (nome o ID)<br> <i>Esempio:</i> <code>var _tf = GET("TF_frigo","va_temperature");</code> </dd>
 
 <dt>DATALOG(name, value) (*)</dt>
-<dd>Aggiunge un nuovo 'value' al file di log dati, con il 'name' indicato.<br>
+<dd>Aggiunge un nuovo 'value' al file di log dati, con il 'name' indicato. Utile per salvare risultati di elaborazioni (e.g. medie).<br>
 <i>nota: il salvataggio dati durante un test inizia subito, ma, nel formato CSV, la prima riga con i nomi non è aggiornata. Eventualmente salvare il file di log per avere un nuovo file aggiornato. Questo solo in fase di test: con le RULE  in <i>uso</i> dall'avvio non c'è problema.<br> 
  <i>Esempio:</i> <code>DATALOG("Temperatura Frigo", GET("TF_frigo","va_temperature")/10);</code>
 </dd>
@@ -548,16 +511,17 @@ utc_offset_seconds: 0
 
 
 <dt>TRIGRULE(name)</dt>
-<dd>Esegue un RULE individuato da un nome, nello stesso run (se precede TRIGBYNAME(name)), oppure al run successivo (se è dopo TRIGBYNAME(name)). <br>
- <i>Esempio:</i> <code>if(ISTRIGGERH(_alarm)) TRIGRULE('sirena');</code> </dd>
+<dd>Esegue un RULE individuato da un nome. <br>
+ <i>Esempio:</i> <code>  if (TRIGBYNAME("pippo")) VOICE (" Trovato pippo"); <br>
+                  if (TRIGBYNAME("chiama")) TRIGRULE("pippo"), VOICE("chiamo pippo")</code> </dd>
 </dl>
 <hr>
 
 #### MACRO funzionali
 <dl>
 <dt>TRIGBYNAME(name) </dt>
-<dd> Associa un 'nome' (max 3 parole) ad una RULE, permettendo di attivarla con un comando utente (bottone o comando vocale) o con TRIGRULE() (analogo ai 'tap-to-run' Tuya).<br>
-Torna true quando deveessere eseguita. <br>
+<dd> Associa un 'nome' (max 3 parole) ad un RULE, permettendo di attivarlo con un comando utente (bottone o comando vocale) o con TRIGRULE() (analogo ai 'tap-to-run' Tuya).<br>
+Torna true quando deve essere eseguita. <br>
 <i>Esempio:</i> <code>if (TRIGBYNAME('spegni la luce')) VOICE (" Hai attivato: 'spegni la luce'") </code> </dd>
 
 <dt>ISTRIGGERH(condition) (*) </dt>
@@ -570,15 +534,17 @@ Torna true quando deveessere eseguita. <br>
  
 <dt>TRIGCHANGED(value) (*) </dt>
 <dd> ritorna 'true' ogni volta che 'value' cambia rispetto al valore precedente.<br>
-<i>Esempio:</i> <code>if(ISCHANGED(_tf)) VOICE(_annonce); </code></dd>
+<i>Esempio:</i> <code> var _tf = GET("TF_frigo","va_temperature"); <br>
+ var _annonce = "Alle ore " + TIME(hrs)+" la temperatura è cambiata. Il frigo è a " + ROUND(_tf/10, 1) + " gradi";<br>
+ if(ISCHANGED(_tf)) VOICE(_annonce); </code></dd>
 
 <dt>TRIGEVERY(n) (*)</dt>
-<dd>  Semplice timer: ritorna 'true' solo dopo "n" esecuzioni, ciclico <br>
-  E' garantito un singolo valore 'true' per ogni n-simo loop (non richiede ISTRIGGERH()). 'n' è in numero di loop, in tempo: t <= n x tuyaInterval (definito in 'config.js' file).<br>
+<dd>  Semplice timer: ritorna 'true' solo dopo "n" esecuzioni, ciclico. <br>
+  E' garantito un singolo valore 'true' per ogni n-simo loop, 'n' è in numero di loop, in tempo: t <= n x tuyaInterval (definito in 'config.js' file).<br>
 <i>Esempio:</i> <code>if(TRIGEVERY(8)) POP( "FRIGO", "Temperatura interna: "+ ROUND(_tf/10, 1) + "°C");</code> </dd>
  
 <dt>CONFIRMH(condition, time) (*) </dt>
-<dd> Ritorna 'true' solo se la "condizione" rimane 'true' per almeno il tempo 'time'. Poi resta 'true' fino a quando la 'condizione' è 'true'. Caso tipico una porta aperta: vedi esempi.<BR>
+<dd> Ritorna 'true' solo se la "condizione" rimane 'true' per almeno il tempo 'time'. Poi resta 'true' fino a quando la 'condizione' è 'true'. Caso tipico una porta aperta.<BR>
 time = costante nei formati "hh:mm:ss" oppure "mm:ss" oppure "ss". Deve essere maggiore di TuyaInterval.<br>
 <i>Esempio:</i> <br>
    <code>var _doorev = GET("Sensore porta", "doorcontact_state") ; </code>   // true a porta aperta
