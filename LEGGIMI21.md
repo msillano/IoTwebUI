@@ -365,7 +365,7 @@ Il risultato JSON corretto è il seguente, utilizzabile con parser JSON per ricr
 E' un array di array contenenti le singole misure (oggetti).
 
 ### RULE - sintassi
-Il particolare ambiente in cui sono valutate le RULE comporta qualche limite alla sintassi js standard:
+Il particolare ambiente in cui sono valutate le RULE comporta qualche limite alla sintassi JavaScript (js) standard:
 - **importante**: il codice è eseguito una riga alla volta, non è possibile scrivere blocchi js che occuppino più righe!  Per contenere la lunghezza delle righe, usare delle variabili intermedie (vedi esempi).
 - definire le variabili sempre con la sintassi: **var** `_pippo` **=**...
 - usare sempre un underscore **_** come primo carattere nel _nome delle variabili_: si evitano così interferenze con altre variabili.
