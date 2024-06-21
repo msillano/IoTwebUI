@@ -210,20 +210,20 @@ Si possono gestire due insiemi di RULE: quelle in <i>uso</i>, inizialmente lette
 - Molto importante è altresì la scelta delle parole chiave e dei nomi per 'tap-to-run' e 'RULE': per esempio 'nome tre parole' è di difficile riconoscimento, mentre 'accendi la luce' è facilmente riconosciuto.<br> Ritengo che questo dipenda dai modelli linguistici usati: sono più riconoscibili frasi italiane corrette, con un significato comune, rispetto a parole isolate. Per esempio 'Tuya' è spesso confuso con 'Giulia'.
 - Il comando vocale è pertanto opzionale, e può essere disabilitato nella configurazione.
 - la grammatica di default è la seguente:
-    - 'Hey Tuya, esegui xxx (xxx (xxx))' => lancia un Tuya 'tap-to-run, nome max 3 parole
-    - 'Hey Tuya, regola xxx (xxx (xxx))' => esegue RULE, nome max 3 parole
-    - 'Hey Tuya, modo esperto' => apre EXPERT mode
-    - 'Hey Tuya, modo utente' => torna USER mode
-    - 'Hey Tuya, vai (alle) scene'  => navigazione alla pagina dei 'tap-to-run' e RULE
-    - 'Hey Tuya, vai (alle) regole'  =>  navigazione alla pagina edit RULE (se in EXPERT mode)
-    - 'Hey Tuya, vai (alla) home'  =>  navigazione alla pagina con albero device
+    - 'Hey Tuya, esegui|attiva (la|un) xxx (xxx (xxx))' => lancia 'tap-to-run' o RULE, nome max 3 parole
+    - 'Hey Tuya, (in|al) modo esperto'=> apre EXPERT mode
+    - 'Hey Tuya, (in|al) modo utente' => torna in USER mode
+    - 'Hey Tuya, vai (alle) scene'    => navigazione alla pagina dei 'tap-to-run' e RULE
+    - 'Hey Tuya, vai (alle) regole'   =>  navigazione alla pagina edit RULE (se in EXPERT mode)
+    - 'Hey Tuya, vai (ad) home'  =>  navigazione alla pagina con albero device
     - 'Hey Tuya, ritorna  =>  navigazione alla pagina con albero device
     - 'Hey Tuya, home  =>  navigazione alla pagina con albero device
  
 - _nota: la navigazione tra pagine è analoga al menu: dalla 'home' si può  andare alle pagine 'tap-to-run' o 'edit RULE' (in modo EXPERT), ma da queste si può solo tornare alla 'home'._
      
-E' tollerata qualche imprecisione nel riconoscimento (e.g. 'Giulia' invece di 'Tuya', etc..) e questo può essere facilmente customizzato. Vedi file speech21.js.
+L'implementazione tollera qualche imprecisione nel riconoscimento (e.g. 'Giulia' invece di 'Tuya', etc..) e qualche libertà negli articoli e preposizioni: questo può essere facilmente customizzato. Vedi file speech21.js.
 
+_nota: il consenso all'uso del microfono dipende dal browser e dalla configurazione: usando 'run_me.bat' non dovrebbero esserci richieste._
 
 <HR>
 
@@ -286,12 +286,15 @@ L'app **IoTwebUI** non è per utenti alle prime armi, pertanto è accettabile ch
 
 - Altre opzioni riguardano: timing (Cloud e log) e configurazione del log: il formato, l'autosave, i valori richiesti, oppure il look&feel, come la presenza dei bottoni di pan/zoom. <BR>Dalla versione 1.2 la possibilità di escludere alcune home (`hide_homes` array), e dalla versione 2.0 quella di escludere alcuni tap-to-run (`hide_scenes` array). 
 
-- Sempre in `config.js`, la variabile  `expertModeEnabled = false` permette di disabilitare il modo 'EXPERT'.
+- Le opzioni disponibili per il riconoscimento vocale sono (sempre in config.js):
+    1) se vi funziona male, potete disabilitarlo del tutto (SpeechRecognitionEnabled = false)
+    2) se invece vi funziona bene, potete eliminare la necessità di premere il pulsante ogni volta: (SpeechRecognitionNeverEnds = true).
 
-. Dalla versione 2.0 le definizioni per 'dataLog' (`logList`  in `config.js`), 'Alert'(`testList` in `config.js`) e RULE (`usrRules` in  `usrrulesXX.X.js`) possono essere create nella APP, con semplici interfacce utente, e poi esportate per essere copiate nei rispettivi file.
+- Ancora in `config.js`, la variabile  `expertModeEnabled = false` permette di disabilitare il modo 'EXPERT'.
 
+- Dalla versione 2.0 le definizioni per 'dataLog' (`logList`  in `config.js`), 'Alert'(`testList` in `config.js`) e RULE (`usrRules` in  `usrrulesXX.X.js`) possono essere create nella APP, con semplici interfacce utente, e poi esportate per essere copiate nei rispettivi file.
 
-- Aggiornare con i path del sistema ospite il file di lancio `run_me.bat`. 
+- Aggiornare con i path del sistema ospite il file di lancio `run_me.bat`, per lanciare Chrome con una configurazione ottimizzata. 
 
 ## Customizzazioni
 
