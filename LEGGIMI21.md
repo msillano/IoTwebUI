@@ -127,7 +127,7 @@ L'utente può scegliere in configurazione tra due formati: `CSV` (indicato, per 
     <li>  <b> newLog </b>- aggiunge al log (solo per il run corrente)
     <li>  <b>clear dev </b>-  elimina il device dal log, (tutte le proprietà)
     <li>  <b> config </b>- apre pop-up per vedere le definizioni del log attuale <br>
-        <i> I 'log' permanenti sono nel file `config.js`: possono essere editati direttamente o copiati dal pop-up.</i>
+        <i> I 'log' permanenti sono nel file `config.js`: possono essere editati direttamente oppure copiati da questo pop-up.</i>
     <li>  <b> cancel </b>- chiude il dialogo.</ul>
   </TD>
   <TD>
@@ -148,12 +148,13 @@ In modo EXPERT cliccando su un device si apre un dialogo che nella parte inferio
   <TD><ol>
         <li>  Scelta della condizione: 'maggiore', 'uguale' o 'minore'
         <li>  Il valore di confronto, un numero (24) o una stringa (e.g. true) senza apici (").
-        <li>  Messaggio associato: è usato: <ul>
-             <li> negli Alert con 'pop-up'
-             <li> è il testo letto nel caso 'voice'
+        <li>  Messaggio associato, che ha vari usi: <ul>
              <li> è un URL a un file MP3 o WAV nel caso 'sound'
              <li> oppure è un URL ed allora è aperto nel browser
-             <li> oppure è il nome di un 'tap-to-run' o 'RULE' che è eseguito </ul>
+             <li> oppure è il nome di un 'tap-to-run' o 'RULE' che viene eseguito 
+             <li> oppure appare come testo im un 'pop-up'
+             <li> oppure è il testo letto nel caso 'voice'
+            </ul>
          <li>  Azione: una o più a scelta tra 'beep', 'pop', 'sound' e 'voice' (URL e tap-to-run sono automatiche) </li></ol>
   </TD>
  </TR>
@@ -165,16 +166,16 @@ In modo EXPERT cliccando su un device si apre un dialogo che nella parte inferio
  - _Gli 'alert' non hanno, per semplicità, un filtro a tempo: se definiti sono attivi 24/7. Se occorre qualche condizionamento, è possibile creare RULE ad hoc._ 
  - _Notare che 'connected' non è incluso nelle proprietà, e quindi non si possono definire 'Alert'. Ma è disponibile come MACRO nelle RULE._
  - _Avendo un solo messaggio, le regole di precedenza sono: SOUND() e URL (auto) sono esaminati per primi, poi Tap-to-run e RULE (auto), e solo per ultimo POP e VOICE (compatibili: lo stesso messagio può essere usato per entranbi); Beep è sempre utilizzabile._
- - _Quindi, per avere sia 'pop' che 'tap-to-run', creare due Alert con le stesse condizioni: in uno 'message' sarà il testo per il 'pop-up', nell'altro il nome del 'tap-to-run'._
- - _I pop-up possono dipendere dalla configurazione del browser: usando 'run_me.bat' si ha un aggiornamento automatico della configurazione per la nuova istanza del browser. Azioni utente (e.g. bottoni) possono abilitare momentaneamente i pop-up._ <br>
- _Comunque, per non perdere informazioni, se i pop-up sono disabilitati, il messaggio è presentato lo stesso in una finestra dell'APP: la differenza è che i pop-up possono essere molti, mentre la finestra è unica ed è riusata con un contatore._
+ - _Quindi, per avere sia 'pop' che 'tap-to-run', occerre creare due Alert con le stesse condizioni: in uno 'message' sarà il testo per il 'pop-up', nell'altro il nome del 'tap-to-run'._
+ - _La visualizzazione dei pop-up può dipendere dalla configurazione del browser: usando 'run_me.bat' si ha un aggiornamento automatico della configurazione per la nuova istanza del browser. Azioni utente (e.g. bottoni) possono abilitare momentaneamente i pop-up._ <br>
+ _Comunque, per non perdere informazioni, se i pop-up sono disabilitati, il messaggio è presentato lo stesso in una finestra dell'APP: la differenza è che i pop-up possono essere molti, mentre la finestra è unica e viene riusata con un contatore._
 
 **Comandi:**
  <ul>  
     <li>  <b> newTest </b>- aggiunge un nuovo Alert (solo per il  run corrente)
     <li>  <b>clear dev </b>- elimina tutti gli Alert del device (solo per il run corrente)
     <li>  <b> config </b>- apre pop-up per vedere le definizioni di tutti alert attuali. <br>
-        <i> Gli 'Alert' permanenti sono nel file `config.js`: possono essere editati direttamente o copiati dal pop-up.</i>
+        <i> Gli 'Alert' permanenti sono nel file `config.js`: possono essere editati direttamente oppure copiati da questo pop-up.</i>
     <li>  <b> cancel </b>- chiude il dialogo.</ul>
  
 ### RULE: automazioni no limits.
@@ -206,7 +207,7 @@ Si possono gestire due insiemi di RULE: quelle in <i>uso</i>, inizialmente lette
 ### VoiceRecognition: maggiore libertà
 
 - La disponibilità di questa funzione dipende dal browser usato.
-- L'efficienza dipende da vari fattori, tra cui il microfono usato e le relative regolazioni. Nelle prove sono passato da oltre il 90% di riconoscimenti ad un pessimo 20%! 
+- Non è facile raggiungere l'efficienza che si ha con HW specializzato (Google, Alexa), perchè il risultato dipende da vari fattori, tra cui il microfono usato e le relative regolazioni. Nelle prove sono passato da oltre il 90% di riconoscimenti ad un pessimo 20%! 
 - Molto importante è altresì la scelta delle parole chiave e dei nomi per 'tap-to-run' e 'RULE': per esempio 'nome tre parole' è di difficile riconoscimento, mentre 'accendi la luce' è facilmente riconosciuto.<br> Ritengo che questo dipenda dai modelli linguistici usati: sono più riconoscibili frasi italiane corrette, con un significato comune, rispetto a parole isolate. Per esempio 'Tuya' è spesso confuso con 'Giulia'.
 - Il comando vocale è pertanto opzionale, e può essere disabilitato nella configurazione.
 - la grammatica di default è la seguente:
