@@ -209,20 +209,29 @@ Si possono gestire due insiemi di RULE: quelle in <i>uso</i>, inizialmente lette
 - La disponibilità di questa funzione dipende dal browser usato.
 - Non è facile raggiungere l'efficienza che si ha con HW specializzato (Google, Alexa), perchè il risultato dipende da vari fattori, tra cui il microfono usato e le relative regolazioni. Nelle prove sono passato da oltre il 90% di riconoscimenti ad un pessimo 20%! 
 - Molto importante è altresì la scelta delle parole chiave e dei nomi per 'tap-to-run' e 'RULE': per esempio 'nome tre parole' è di difficile riconoscimento, mentre 'accendi la luce' è facilmente riconosciuto.<br> Ritengo che questo dipenda dai modelli linguistici usati: sono più riconoscibili frasi italiane corrette, con un significato comune, rispetto a parole isolate. Per esempio 'Tuya' è spesso confuso con 'Giulia'.
-- Il comando vocale è pertanto opzionale, e può essere disabilitato nella configurazione.
-- la grammatica di default è la seguente:
+- La presenza di articoli e/o congiunzioni facilita il riconoscimento.
+- Il comando vocale è opzionale, e può essere disabilitato nella configurazione.
+-  Se abilitato, voiceRecognition può essere usata in due modi, o continuo oppure premendo un pulsante. Il modo di default è impostato in configurazione, ma può essere cambiato con comandi vocali.
+- la grammatica di default è la seguente - tra parentesi (alle): opzionale; barra verticale a|su: alternative-:
+- 
     - 'Hey Tuya, esegui|attiva (la|un) xxx (xxx (xxx))' => lancia 'tap-to-run' o RULE, nome max 3 parole
+
     - 'Hey Tuya, (in|al) modo esperto'=> apre EXPERT mode
     - 'Hey Tuya, (in|al) modo utente' => torna in USER mode
     - 'Hey Tuya, vai (alle) scene'    => navigazione alla pagina dei 'tap-to-run' e RULE
     - 'Hey Tuya, vai (alle) regole'   =>  navigazione alla pagina edit RULE (se in EXPERT mode)
-    - 'Hey Tuya, vai (ad) home'  =>  navigazione alla pagina con albero device
-    - 'Hey Tuya, ritorna  =>  navigazione alla pagina con albero device
-    - 'Hey Tuya, home  =>  navigazione alla pagina con albero device
+    - 'Hey Tuya, vai (alla) home'  =>  navigazione alla pagina con albero device
+    - 'Hey Tuya, ritorna|home'  =>  navigazione alla pagina con albero device
+
+    - 'Hey Tuya, modo (della) voce continuo' => start del modo riconoscimento senza soste.
+    - 'Hey Tuya, basta voce' => stop del modo riconoscimento senza soste.
+    - 'Hey Tuya, modo (della) voce a|su richiesta|domanda' => start del modo riconoscimento con bottone.
+   
+. nota: Per una migliore comprensione, le frasi possono essere divise in due: "Ehi Tuya" + pausa: appare il feedback 'Hei Tuya...' che conferma la comprensione della prima parte; ora può essere detta la seconda parte.
  
 - _nota: la navigazione tra pagine è analoga al menu: dalla 'home' si può  andare alle pagine 'tap-to-run' o 'edit RULE' (in modo EXPERT), ma da queste si può solo tornare alla 'home'._
      
-L'implementazione tollera qualche imprecisione nel riconoscimento (e.g. 'Giulia' invece di 'Tuya', etc..) e qualche libertà negli articoli e preposizioni: questo può essere facilmente customizzato. Vedi file speech21.js.
+- _nota: L'implementazione tollera qualche imprecisione nel riconoscimento (e.g. 'Giulia' invece di 'Tuya', etc..) e qualche libertà negli articoli e preposizioni: questo può essere facilmente customizzato. Vedi file speech21.js._
 
 _nota: il consenso all'uso del microfono dipende dal browser e dalla configurazione: usando 'run_me.bat' non dovrebbero esserci richieste._
 
