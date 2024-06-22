@@ -61,7 +61,7 @@ _Cosa puoi fare?_<br>
 #### Voice recognition: comandi vocali customizzabili
  - Attiva ogni tap-to-run con "Hei Tuya, esegui ... "
  - Controlla la navigazione nell'APP IoTwebUI: "Hei Tuya, vai alle scene"
- - Puoi disattivare la modalità 'voice recognition' nella configurazione
+ - Puoi rnederlo continuo oppure disattivarlo nella configurazione
 
 #### Modalità EXPERT: per controllare tutto il controllabile
 
@@ -405,18 +405,19 @@ _Ho il riscaldamento centralizzato, con valvole termostatiche su ogni radiatore:
 
    <code>`Se  (( Ttarget - Tambiente ) > tot) => clima.warm( Ttarget )` </code>
  
-_Questa automazione non è realizzabile con Smartlife_, nè con Alexa o Google, perchè:
+_Questa automazione NON è realizzabile con Smartlife_, nè con Alexa o Google, per vari motivi:
    - non si possono usare operazioni aritmetiche,
    - si possono fare confronti solo con valori costanti,
    - non esistono tap-to-run parametrici od almeno con nomi dinamici.
  
-Chiedo troppo? Un sistema 'open' devrebbe permettere queste automazioni. O no? infatti con le RULE _si può fare!_ <br>
+Chiedo troppo? Un sistema 'open' devrebbe permettere queste automazioni. O no? Infatti con IoTwebUI e le RULE _si può fare!_ <br>
 Alcune precondizioni: la mia termovalvola ('Termo letto')  ha le proprietà 'temp_set' e 'temp_current'.
-Per semplicità ho utilizzato come temperatura Target solo i valori 16, 20, 21 °C: in questo modo mi occorrono solo 3 tap-to-run chiamati Tletto16, Tletto20 e Tletto21, per accendere ed impostare il clima.
+Per semplicità ho utilizzato come temperatura Target solo i valori 16, 20, 21 °C: in questo modo mi occorrono solo 3 tap-to-run chiamati Tletto16, Tletto20 e Tletto21, per accendere ed impostare il climatizzatore alla temperatura voluta.
+Ecco le RULE necessarie, uso alcune variabili per ridurre la complessità. La macro ISTRIGGERH() è vera una sola volta, quando la condizione passa da falso a vero (vedi oltre), ROUND() arrotonda un numero e lo trasforma in testo, per formare 'TLetto21'... il nome del 'tap-to-run', che così dipende da Ttarget.
 ```
 var _tot = 2.3;  // da tarare il prossimo inverno
 var _Ttarget =  GET("Termo letto", "temp_set") ;
-var _nowClima = ISTRIGGERH( ( _Ttarget -  GET("Termo letto", "temp_set") ) > _tot);
+var _nowClima = ISTRIGGERH( ( _Ttarget -  GET("Termo letto", "temp_current") ) > _tot);
 if (_nowClima) SCENA("TLetto" + ROUND( _Ttarget, 0) ), ALERTLOG("RULE Tletto", "acceso clima") ;
 ```
 <hr>
@@ -426,7 +427,7 @@ le MACRO rispondono a varie esigenze:
  1. Fornire accesso alle risorse e funzionalità di IoTwebUI, per poterle usare nelle RULE
  2. L'ambiente (run ripetuti ad intervalli reglari) e i suoi limiti (codice in una sola riga) rendono più ardua la scrittura di funzioni complesse: le MACRO semplificano il compito dell'utente. 
  3. Alcune operazioni richiedo la memorizzazione di informzioni tra un run ed il successivo, e le MACRO risolvono questo problema in un modo trasparente per l'utente.
- 4. Importante è la distinzione tra un **livello** -lo stesso valore (e.g. true) uguale per più run- e un **TRIGGER** -vero per un solo run, quando inizia o finisce un evento-. <br>
+ 4. Importante è la distinzione tra un **livello** - lo stesso valore (e.g. true) uguale per più run - e un **TRIGGER** - vero per un solo run, quando inizia o finisce un evento -. <br>
   _Le macro con TRIG nel nome generano TRIGGER, le altre LIVELLI_.<br>
   
   _nota: questa selezione iniziale di MACRO si basa sulle mie preferenze: in questo settore il contributo di altri utenti è prezioso._
@@ -632,7 +633,7 @@ _Questo progetto è un work-in-progress: viene fornito "così com'è", senza gar
 - _Per problemi riguardanti il codice ed il funzionamento di IoTwebUI, aprite un 'issue' qui ([github](https://github.com/msillano/IoTwebUI/issues))._
 - _Per problemi più generali riguardanti  Tuya, SmartLife (Tuya smart) e IoTwebUI, che possono interessare anche altri utenti, postate pure nel gruppo [Tuya e Smart Life Italia](https://www.facebook.com/groups/tuyaitalia)_
 
-Grazie per l'interesse <ms>
+Grazie per l'interesse <br>
 m.s.
 
 <hr>
