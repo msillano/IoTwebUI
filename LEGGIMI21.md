@@ -164,7 +164,7 @@ In modo EXPERT cliccando su un device si apre un dialogo che nella parte inferio
              <li> oppure appare come testo im un 'pop-up'
              <li> oppure è il testo letto nel caso 'voice'
             </ul>
-         <li>  Azione: una o più a scelta tra 'beep', 'pop', 'sound' e 'voice' (URL e tap-to-run sono automatiche) </li></ol>
+         <li>  Azione: una o più a scelta tra 'beep', 'pop', 'sound' e 'voice' (URL e tap-to-run|RULE sono automatici) </li></ol>
   </TD>
  </TR>
 </TABLE>
