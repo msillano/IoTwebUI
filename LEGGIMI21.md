@@ -97,7 +97,7 @@ La modalità EXPERT offre un controllo totale sulla personalizzazione di IoTwebU
 Nei tooltip, che si aprono al passaggio del mouse su un'icona di device, sono presenti tutte le proprietà incluse nello 'status' del device, con i nomi ed i valori usati da Tuya Cloud. Alcuni valori possono essere codificati. <br>
 Alcune piccole icone forniscono ulteriori informazioni all'utente.Esempi (vedi figure sopra):
    - `tuya_bridge.switch_1` è sotto osservazione per un 'alert'
-   - `tuya_bridge.switch_inching` è un esempio di valore codificato (`AAAC`). Decodificato è un oggetto:
+   - `tuya_bridge.switch_inching` è un esempio di valore codificato ('`AAAC`'). Decodificato è un oggetto:
       ````
       {
       "inching": false,
@@ -334,7 +334,7 @@ Ma sono facilmente personalizzabili dall'utente: basta fornire un criterio di se
 Anche l'icona speciale che indica un'alert è customizzabile: vedi `alertIcon` in 'config.js'.
      
  - Il contenuto dei tooltip, varia a seconda del device. E' un settore dove è utile la possibilità di personalizzazioni, il metodo scelto (un filtro) permette ogni libertà: <br>
-    - Alcuni valori sono criptati: si può scegliere di non farli vedere  - oppure di decodificarli, il codice necessario è disponibile in TuyaDAEMON, ma ho scartato questa opzione per non avere tooltip troppo grandi.
+    - Alcuni valori sono criptati: si può scegliere di non farli vedere  - oppure di decodificarli; il codice necessario è disponibile in TuyaDAEMON, ma ho scartato questa opzione sia perchè sono di solito dati di configurazione gestiti da SmartLife, sia per non avere tooltip troppo grandi.
     - In altri casi occorre dividere per 10 o 100 per avere il valore in unità SI.   
     - Come sviluppatore preferisco avere i nomi delle proprietà originali Tuya, ma si possono rendere più frendly traducendoli.
     - Se si desidera si possono anche aggiungere nuove informazioni per esempio derivandole da quelle del device (e.g. temperatura in °C ed anche in °F).
