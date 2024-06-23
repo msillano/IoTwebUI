@@ -7,9 +7,9 @@ _Cosa puoi fare?_<br>
 👀 Controlla tutto: Interfaccia intuitiva e personalizzabile, dati sempre a portata di mano, visualizzazione flessibile.<br>
 🔬 Esportazione dati: Salva le serie storiche per le tue analisi, nel formato più utile<br>
 ⚡️ Automazioni potenti: Crea automazioni complesse con tap-to-run e RULE, impossibili con SmartLife!<br>
-⏱️ Alert personalizzati: Monitora ogni aspetto della tua domotica e ricevi avvisi realtime. <br>
+⏱️ Alert personalizzati: Monitora ogni aspetto della tua domotica e ricevi avvisi realtime, anche vocali.<br>
 🎙  Comandi vocali: integrati con tap-to-run e RULE, in un'unica APP<br>
-👌 Integrazione perfetta: Combina device, proprietà, RULE e Tuya tap-to-run per un'automazione fluida e completa.
+👌 Integrazione perfetta: Combina device, proprietà, voce, RULE e Tuya tap-to-run per un'automazione fluida e completa.
 
  ![aspetto della versione 2.1](https://github.com/msillano/IoTwebUI/blob/main/pics/wer21.png?raw=true)
 
@@ -41,7 +41,7 @@ _Cosa puoi fare?_<br>
 
  - puoi attivare una funzione di controllo su qualsiasi proprietà dei dispositivi e scegliere i test "maggiore", "uguale" o "minore" per monitorare ogni aspetto della tua domotica.
  - Stessa logica delle condizioni Tuya, per un linguaggio comune ed affidabile.
- - Scegli tra diverse azioni conseguenziali: silente, beep, frase registrata, pop-up, messaggio vocale, lancio di URL o tap-to-run Tuya.
+ - Scegli tra diverse azioni conseguenziali: silente, beep, frase registrata, pop-up, messaggio vocale, lancio di URL o  RULE|tap-to-run Tuya.
  - Real Time, con un ritardo medio garantito pari al 50% del periodo di campionamento Tuya, per un equilibrio perfetto tra rapidità e precisione: sempre visualizzati con pop-up o finestra.
  - Definizione degli Alert al runtime: controllo totale in tempo reale
 
@@ -59,9 +59,10 @@ _Cosa puoi fare?_<br>
     5. Esporta le tue RULE per inserirle nel file di configurazione e renderle permanenti.
 
 #### Voice recognition: comandi vocali customizzabili
- - Attiva ogni tap-to-run con "Hei Tuya, esegui ... "
- - Controlla la navigazione nell'APP IoTwebUI: "Hei Tuya, vai alle scene"
- - Puoi rnederlo continuo oppure disattivarlo nella configurazione
+
+ - Attiva ogni tap-to-run o RULE con "Ehi Tuya, esegui ... "
+ - Controlla la navigazione nell'APP IoTwebUI: "Ehi Tuya, vai alle scene"
+ - Controlla la voce con la voce: puoi attivare il riconoscimento continuo oppure disattivarlo. 
 
 #### Modalità EXPERT: per controllare tutto il controllabile
 
@@ -86,6 +87,7 @@ La modalità EXPERT offre un controllo totale sulla personalizzazione di IoTwebU
 - Un secondo problema è l'impossibilità di creare file direttamente da una pagina HTML, sempre per motivi di sicurezza. Per l'export dei dati sono ricorso ad una libreria di logging su file [debugout.js](https://github.com/inorganik/debugout.js). Per questo motivo il controllo sui file generati non è completo e sono necessari piccoli  interventi manuali sui file esportati.
 - I file di datalog sono salvati nella dir `download`, con il nome  `tuyalogDYYYYMMGGThhmmss.csv|json.txt`.
 - Per lo stesso motivo non è possibile aggiornare dall'APP i file di configurazione. Ho scelto una soluzione di compromesso, che prevede l'intervento dell'utente con un semplice copia-incolla.
+- Sempre per problemi di sicurezza, può venire richiesta l'autorizzazione all'uso del microfono ogni volta. Dipende dal browsser e dalla configurazione, ma `run-me.bat` evita l'inconveniente.
 - Il funzionamento continua regolarmente anche con la finestra del browser iconizzata.
 - Usare una sola istanza dell'APP, altrimenti si hanno problemi con i token Tuya.
 
@@ -93,9 +95,9 @@ La modalità EXPERT offre un controllo totale sulla personalizzazione di IoTwebU
 ![](https://github.com/msillano/IoTwebUI/blob/main/pics/tootip20.png?raw=true)
 
 Nei tooltip, che si aprono al passaggio del mouse su un'icona di device, sono presenti tutte le proprietà incluse nello 'status' del device, con i nomi ed i valori usati da Tuya Cloud. Alcuni valori possono essere codificati. <br>
-Alcune piccole icone forniscono ulteriori informazioni all'utente (vedi figure sopra):
+Alcune piccole icone forniscono ulteriori informazioni all'utente.Esempi (vedi figure sopra):
    - `tuya_bridge.switch_1` è sotto osservazione per un 'alert'
-   - `tuya_bridge.switch_inching` è un esempio di valore codificato (AAAC). <br> _nota: Se siete interessati alla decodifica dei valori Tuya, molte funzioni sono state sviluppate per tuyaDAEMON (vedi 'core_device', nodo 'ENCODE/DECODE user library')._ 
+   - `tuya_bridge.switch_inching` è un esempio di valore codificato (`AAAC`). <br> _nota: Se siete interessati alla decodifica dei valori Tuya, molte funzioni sono state sviluppate per tuyaDAEMON (vedi 'core_device', nodo 'ENCODE/DECODE user library')._ 
    - `temperatura studio.va_temperature` è salvato sul datafile, insieme agli altri dati in `logList`.
    -  Per il device `temperatura soggiorno` è scattato l'Alert (icona speciale)
    - `temperatura soggiorno.va _humidity`  è la causa dell'Alert, ed è anche indicata la condizione (>40)
@@ -112,7 +114,7 @@ Alcune piccole icone forniscono ulteriori informazioni all'utente (vedi figure s
   - Utilizare prefissi per raggruppare in IoTwebUI i comandi correlati.
   - Essere facili da ricordare e da riconosere (se si usano i comandi vocali).<br>
   
- Un pad è dedicato alle 'user RULE' identificate con un nome: sono trattate come i 'tap-to-run': possono essere usate negli alert, oppure attivate con bottoni o tramite comando vocale.<br>
+ Un pad è dedicato alle 'user RULE' identificate con un nome: sono trattate come i 'tap-to-run': possono essere usate negli alert, oppure attivate con bottoni o tramite comando vocale, oppure lanciate da un altro RULE.<br>
 _Naturalmente 'RULE' e 'tap-to-run' devono avere nomi unici per poter essere identificati._
 
 ### Logging ed esportazione dati
