@@ -104,10 +104,10 @@ Alcune piccole icone forniscono ulteriori informazioni all'utente.Esempi (vedi f
       "delay": 2
       }
       ````
-     _nota: Se siete interessati alla decodifica dei valori Tuya, molte funzioni sono state sviluppate per tuyaDAEMON (vedi 'core_device', nodo 'ENCODE/DECODE user library')._ 
+       _nota: Se siete interessati alla decodifica dei valori Tuya, molte funzioni sono state sviluppate per tuyaDAEMON (vedi 'core_device', nodo 'ENCODE/DECODE user library')._ 
    - `temperatura studio.va_temperature` è salvato sul datafile, insieme agli altri dati in `logList`.
    -  Per il device `temperatura soggiorno` è scattato l'Alert (icona speciale)
-   - `temperatura soggiorno.va _humidity`  è la causa dell'Alert, ed è anche indicata la condizione (>40)
+   - `temperatura soggiorno.va _humidity`  è la causa dell'Alert, ed è anche indicata la condizione (>40) che lo ha causato.
    - Il tooltip `termo studio` è customizzato,  per presentare le temperature con i corretti decimali. (nota: solo nel tooltip: Alert e RULE usano sempre il valore fornito da Tuya Cloud, i.e. 222 e 190).
    - In modo EXPERT sono aggiunti nei tooltip i seguenti valori:
        - `isa`:  nome del 'tipo' Tuya del device (in codice è `device.category`). In totale circa 600 tipi.
@@ -178,6 +178,7 @@ In modo EXPERT cliccando su un device si apre un dialogo che nella parte inferio
  - _Quindi, per avere sia 'pop' che 'tap-to-run', occerre creare due Alert con le stesse condizioni: in uno 'message' sarà il testo per il 'pop-up', nell'altro il nome del 'tap-to-run'._
  - _La visualizzazione dei pop-up può dipendere dalla configurazione del browser: usando 'run_me.bat' si ha un aggiornamento automatico della configurazione per la nuova istanza del browser. Azioni utente (e.g. bottoni) possono abilitare momentaneamente i pop-up._ <br>
  _Comunque, per non perdere informazioni, se i pop-up sono disabilitati, il messaggio è presentato lo stesso in una finestra dell'APP: la differenza è che i pop-up possono essere molti, mentre la finestra è unica e viene riusata con un contatore._
+- Tutti gli Alert sono memorizzati e visibili nel 'registro Alert', dal menu principale.
 
 **Comandi:**
  <ul>  
@@ -188,7 +189,7 @@ In modo EXPERT cliccando su un device si apre un dialogo che nella parte inferio
     <li>  <b> cancel </b>- chiude il dialogo.</ul>
  
 ### RULE: automazioni no limits.
-  In modo EXPERT il menu presenta l'opzione "RULE page" che apre una pagina dedicata alla gestione delle RULE: 
+  In modo EXPERT il menu presenta l'opzione "RULE page" che apre una pagina dedicata alla [gestione delle RULE](#rule---sintassi): 
 <TABLE width = "100%" >
  <TR>
   <TD>
