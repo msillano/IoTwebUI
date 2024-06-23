@@ -161,7 +161,7 @@ In modo EXPERT cliccando su un device si apre un dialogo che nella parte inferio
              <li> è un URL a un file MP3 o WAV nel caso 'sound'
              <li> oppure è un URL ed allora è aperto nel browser
              <li> oppure è il nome di un 'tap-to-run' o 'RULE' che viene eseguito 
-             <li> oppure appare come testo im un 'pop-up'
+             <li> oppure appare come testo in un 'pop-up'
              <li> oppure è il testo letto nel caso 'voice'
             </ul>
          <li>  Azione: una o più a scelta tra 'beep', 'pop', 'sound' e 'voice' (URL e tap-to-run|RULE sono automatici) </li></ol>
