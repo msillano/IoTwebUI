@@ -178,7 +178,7 @@ In modo EXPERT cliccando su un device si apre un dialogo che nella parte inferio
  - _Quindi, per avere sia 'pop' che 'tap-to-run', occerre creare due Alert con le stesse condizioni: in uno 'message' sarà il testo per il 'pop-up', nell'altro il nome del 'tap-to-run'._
  - _La visualizzazione dei pop-up può dipendere dalla configurazione del browser: usando 'run_me.bat' si ha un aggiornamento automatico della configurazione per la nuova istanza del browser. Azioni utente (e.g. bottoni) possono abilitare momentaneamente i pop-up._ <br>
  _Comunque, per non perdere informazioni, se i pop-up sono disabilitati, il messaggio è presentato lo stesso in una finestra dell'APP: la differenza è che i pop-up possono essere molti, mentre la finestra è unica e viene riusata con un contatore._
-- Tutti gli Alert sono memorizzati e visibili nel 'registro Alert', dal menu principale.
+- _Tutti gli Alert sono memorizzati e visibili nel 'registro Alert', dal menu principale._
 
 **Comandi:**
  <ul>  
