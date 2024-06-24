@@ -42,7 +42,7 @@ _Cosa puoi fare?_<br>
  - puoi attivare una funzione di controllo su qualsiasi proprietà dei dispositivi e scegliere i test "maggiore", "uguale" o "minore" per monitorare ogni aspetto della tua domotica.
  - Stessa logica delle condizioni Tuya, per un linguaggio comune ed affidabile.
  - Scegli tra diverse azioni conseguenziali: silente, beep, frase registrata, pop-up, messaggio vocale, lancio di URL o  RULE|tap-to-run Tuya.
- - Real Time, con un ritardo medio garantito pari al 50% del periodo di campionamento Tuya, per un equilibrio perfetto tra rapidità e precisione: sempre visualizzati con pop-up o finestra.
+ - Real Time, con un ritardo medio pari al 50% del periodo di campionamento Tuya, per un equilibrio perfetto tra rapidità e precisione: sempre visualizzati con pop-up o finestra.
  - Definizione degli Alert al runtime: controllo totale in tempo reale
 
 #### RULE: Domanda di automazioni più potenti? IoTwebUI 2.1 ha la risposta!
@@ -217,9 +217,9 @@ Si possono gestire due insiemi di RULE: quelle in <i>uso</i>, inizialmente lette
 ### VoiceRecognition: maggiore libertà
 
 - La disponibilità di questa funzione dipende dal browser usato.
-- Non è facile raggiungere l'efficienza che si ha con HW specializzato (Google, Alexa), perchè il risultato dipende da vari fattori, tra cui il microfono usato e le relative regolazioni. Nelle prove sono passato da oltre il 90% di riconoscimenti ad un pessimo 20%! 
+- Non è facile raggiungere l'efficienza che si ha con HW specializzato (smart speakers: Google, Alexa), perché il risultato dipende da vari fattori, tra cui il microfono usato, le relative regolazioni, la riduzione dei rumori di fondo. Nelle prove sono passato da oltre il 90% di riconoscimenti ad un pessimo 20%! 
 - Molto importante è altresì la scelta delle parole chiave e dei nomi per 'tap-to-run' e 'RULE': per esempio 'nome tre parole' è di difficile riconoscimento, mentre 'accendi la luce' è facilmente riconosciuto.<br> Ritengo che questo dipenda dai modelli linguistici usati: sono più riconoscibili frasi italiane corrette, con un significato comune, rispetto a parole isolate. Per esempio 'Tuya' è spesso confuso con 'Giulia'.
-- La presenza di articoli e/o preposizini facilita il riconoscimento.
+- La presenza di articoli e/o preposizioni facilita il riconoscimento.
 - Il comando vocale è opzionale, e può essere disabilitato nella configurazione.
 - Se abilitato, voiceRecognition può essere usata in due modi, o continuo oppure premendo un pulsante. Il modo di default è impostato in configurazione, ma può essere cambiato con comandi vocali.
 - la grammatica di default è la seguente - tra parentesi (alle): parole opzionali; barra verticale a|su: parole alternative-:
@@ -238,9 +238,9 @@ Si possono gestire due insiemi di RULE: quelle in <i>uso</i>, inizialmente lette
     - 'Hey Tuya, modo (della*) voce a|su richiesta|domanda' => start del modo riconoscimento con bottone.
    
 
- -(*) _la lista di preposizioni ed articoli accettati in terza posizione è molto lunga_: `'il', 'lo', 'la', 'le', 'a', 'ad', 'ai', 'al', 'all', 'allo', 'alla', 'alle', 'di', 'del', 'della', 'dei','un', 'una', 'con', 'colla'`: _scegliete quelle che facilitano il riconoscimento_. 
+ (*) nota: _la lista di preposizioni ed articoli accettati in terza posizione è molto lunga_: `'il', 'lo', 'la', 'le', 'a', 'ad', 'ai', 'al', 'all', 'allo', 'alla', 'alle', 'di', 'del', 'della', 'dei','un', 'una', 'con', 'colla'`: _scegliete quelle che facilitano il riconoscimento_. 
  
-- _nota: L'implementazione tollera anche qualche imprecisione nel riconoscimento (e.g. 'Giulia' invece di 'Tuya', etc..) : questo può essere facilmente customizzato. Vedi file speech21.js._
+- _nota: L'implementazione tollera anche qualche imprecisione nel riconoscimento (e.g. 'Giulia' invece di 'Tuya', etc..): questo può essere facilmente customizzato. Vedi file speech21.js._
  
  - nota: Per una migliore comprensione, le frasi possono essere divise in due: "Ehi Tuya" + pausa: appare il feedback 'Hei Tuya...' che conferma la comprensione della prima parte; ora può essere detta la seconda parte.
  
