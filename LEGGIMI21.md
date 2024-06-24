@@ -242,7 +242,7 @@ Si possono gestire due insiemi di RULE: quelle in <i>uso</i>, inizialmente lette
  
 - _nota: L'implementazione tollera anche qualche imprecisione nel riconoscimento (e.g. 'Giulia' invece di 'Tuya', etc..): questo può essere facilmente customizzato. Vedi file speech21.js._
  
- - nota: Per una migliore comprensione, le frasi possono essere divise in due: "Ehi Tuya" + pausa: appare il feedback 'Hei Tuya...' che conferma la comprensione della prima parte; ora può essere detta la seconda parte.
+ - nota: Per una migliore comprensione, le frasi possono essere divise in due: "Ehi Tuya" + pausa: appare il feedback 'Ehi Tuya...' che conferma la comprensione della prima parte; ora può essere detta la seconda parte.
  
 - _nota: la navigazione tra pagine è analoga al menu: dalla 'home' si può  andare alle pagine 'tap-to-run' o 'edit RULE' (in modo EXPERT), ma da queste si può solo tornare alla 'home'._
      
