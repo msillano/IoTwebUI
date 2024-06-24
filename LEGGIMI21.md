@@ -421,7 +421,7 @@ Il particolare ambiente in cui sono valutate le RULE comporta qualche limite all
 
  - Se una `condizione` è vera a lungo (livello), un `if()` sarà eseguito più volte, ad ogni ciclo. Per evitare questo le macro TRIGGER sono vere per un solo ciclo, il primo, e poi sono false.
 
-. nota sui messaggi di errore: Non sempre i messaggi di errore identificano la VERA causa del problema. Esempio, una variabile mal scritta è trovata subito come 'non definita', ma una parentesi non chiusa, ad esempio, può portare a messaggi poco chiari righe dopo, quando il compilatore trova problemi! Quindi attenzione! 
+ - nota sui messaggi di errore: Non sempre i messaggi di errore identificano la VERA causa del problema. Esempio, una variabile mal scritta è trovata subito come 'non definita', ma una parentesi non chiusa, ad esempio, può portare a messaggi poco chiari righe dopo, quando il compilatore trova problemi! Quindi attenzione! 
 
 - **importante**: per come sono implementate, le MACRO che usano memoria (*) devono essere eseguite ad ogni run: quindi NON possono essere presenti nella parte `azione` di un **if**. Per ragioni analoghe non sono ammessi **if  nidificati** (un **if** nella zona azione di un altro **if**: non potrebbe usare le MACRO (*)). Sono vincoli che non pongono, però, serie limitazioni.
   
@@ -437,7 +437,7 @@ _Questa strategia NON è realizzabile con le 'automazioni' di Smartlife_, nè co
    - i confronti, nelle automazioni, si possono fare solo con valori costanti,
    - non esistono tap-to-run parametrici od almeno con nomi dinamici.
  
-Chiedo troppo? Un sistema 'open' devrebbe permettere queste automazioni. O no? Infatti con IoTwebUI e le RULE _si può fare!_ <br>
+Chiedo troppo? Un sistema 'open' dovrebbe permettere queste automazioni. O no? Infatti con IoTwebUI e le RULE _si può fare!_ <br>
 Vediamo come l'ho realizzata. Alcune precondizioni: la mia termovalvola ('Termo letto')  ha le proprietà 'temp_set' e 'temp_current'.
 Per semplicità ho utilizzato come temperatura Target solo i valori 16, 20, 21 °C: in questo modo mi occorrono solo 3 tap-to-run chiamati Tletto16, Tletto20 e Tletto21, per accendere ed impostare il climatizzatore alla temperatura voluta.
 Ecco le RULE necessarie, dove uso alcune variabili per ridurre la complessità. La macro ISTRIGGERH() è vera una sola volta, quando la condizione passa da falso a vero (vedi oltre), ROUND() arrotonda un numero e lo trasforma in testo, per formare 'TLetto21'... cioè il nome del 'tap-to-run', che così ora dipende da Ttarget. L'azione è anche memorizzata nel 'registro degli Alert'.
@@ -468,7 +468,7 @@ Ovviamente si possono sempre aggiungere nuove MACRO, o come customizzazione (se 
 <dl>
 <dt>ISCONNECTED(device)</dt>
 <dd>Ritorna 'true' se il device (nome o ID) è connesso. <br>
-nota: il dato proviene dal Cloud, può differire dal valore locale mostrato da SmartLife. <br>
+<i>nota: il dato proviene dal Cloud, può differire dal valore locale mostrato da SmartLife.</i><br>
 <i>Esempio:</i> <code>if (! ISCONNECTED("Tuya bridge")) VOICE ("Attenzione! 'tuya bridge' attualmente disconnesso"); </code>  </dd>
 
 <dt>GET(device, property)</dt>
@@ -476,7 +476,7 @@ nota: il dato proviene dal Cloud, può differire dal valore locale mostrato da S
 
 <dt>DATALOG(name, value) (*)</dt>
 <dd>Aggiunge un nuovo 'value' al file di log dati, con il 'name' indicato. Utile per salvare risultati di elaborazioni (e.g. medie).<br>
-<i>nota: il salvataggio dati durante un test inizia subito, ma, nel formato CSV, la prima riga con i nomi non è aggiornata. Eventualmente salvare il file di log per avere un nuovo file aggiornato. Questo solo in fase di test: con le RULE  in <i>uso</i> dall'avvio non c'è problema.<br> 
+<i>nota: il salvataggio dati durante un test inizia subito, ma, nel formato CSV, la prima riga con i nomi non è aggiornata. Eventualmente salvare il file di log per avere un nuovo file aggiornato. Questo solo in fase di test: con le RULE  in </i>uso <i> dall'avvio non c'è problema.</i><br> 
  <i>Esempio:</i> <code>DATALOG("Temperatura Frigo", GET("TF_frigo","va_temperature")/10);</code>
 </dd>
 
@@ -498,13 +498,13 @@ nota: il dato proviene dal Cloud, può differire dal valore locale mostrato da S
 <i>Esempio:</i>  <code>XURL("https://www.google.com/"); </code> </dd>
 
 <dt>REST(url)</dt>
-<dd> Per servizi web REST (GET) che tornano come risposta un testo semplice.<br>
+<dd> Per servizi web API REST (GET) che tornano come risposta un testo semplice.<br>
  <i>Esempio:</i>  <code>
   // see https://www.ipify.org/ <br>
  if(TRIGBYNAME("my IP"))  POP( "My IP", REST("https://api.ipify.org/?format=txt"));   </code> <br>
  
 <dt>RESTJSON(url)</dt>
-<dd> Per servizi web REST (GET), che forniscono la risposta in formato JSON (la maggior parte). Questa funzione restituisce, per semplificare l'uso, direttamente un oggetto.<br>
+<dd> Per servizi web API REST (GET), che forniscono la risposta in formato JSON (la maggior parte). Questa funzione restituisce, per semplificare l'uso, direttamente un oggetto.<br>
  <i>Esempio:</i>  <code>
   // see https://open-meteo.com/<br>
  var _meteo, _urlm ="https://api.open-meteo.com/v1/forecast?latitude=41.9030&longitude=12.4663&current=temperature_2m"; <br>
