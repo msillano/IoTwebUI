@@ -51,10 +51,11 @@ _Cosa puoi fare?_<br>
  - Confrontare i valori di due proprietà diverse, per automazioni ancora più libere.
  - Eseguire azioni complesse, come realizzare controlli PID, schedulare annualmente, o inviare comandi ad altre applicazioni via REST.
  - Attivate in base a condizioni (come le 'Automazioni' Tuya, ma più flessibile) oppure su comando (come i 'tap-to-run' Tuya).
+ - Più potenza espressiva vuol dire per l'utente concentrarsi su 'che cosa si vuol fare' e non 'su come farlo'!
  - Come funziona?
     1. Crea le RULE al runtime con un'interfaccia user-friendly, anche se non sei un programmatore esperto.
     2. Utilizza MACRO predefinite per i compiti comuni e ripetitivi, risparmiando tempo e fatica.
-    3. Testa le tue RULE in tempo reale per assicurarti che funzionino perfettamente.
+    3. Provare le tue RULE in tempo reale per assicurarti che funzionino perfettamente.
     4. In caso di errore durante il test, un popup ti indicherà la riga e il tipo di errore per una risoluzione rapida e precisa.
     5. Esporta le tue RULE per inserirle nel file di configurazione e renderle permanenti.
 
