@@ -412,9 +412,9 @@ Il particolare ambiente in cui sono valutate le RULE comporta qualche limite all
 - le RULE sono eseguite ad ogni loop, dopo un aggiornamento dei dati Tuya. Molte MACRO devono quindi conservare lo stato tra un run ed il successivo, e sono individuate con (*). 
 - Il costrutto js più utile nelle RULE è l'**if()** (esecuzione condizionale), che assume varie forme:<br>
    **if(** `condizione` **)** `azione;`    // `azione` _è eseguita ogni volta che `condizione` è vera_ <br>
-   **if(** `condizione` **)** `azione1`**,** `azione2;` // _due (o più) azioni, separate da ',' virgola._<br>
+   **if(** `condizione` **)** `azione1`**,** `azione2;` // _due (o più) azioni, separate da_ ',' _virgola._<br>
    **if(** `condiz1 && condiz2 && ...` **)** `azione;` //  _AND: 'tutte',_  `condiz1` _e_ `condiz2` _e_ ... _devono essere vere contemporaneamente._<br>
-   **if(** `condiz1 || condiz2 || ...` **)** `azione;` //  _OR: 'almeno una',_  `condiz1` _oppure_ `condiz2`, _oppure_ ...` deve essere vera._<br>
+   **if(** `condiz1 || condiz2 || ...` **)** `azione;` //  _OR: 'almeno una',_  `condiz1` _oppure_ `condiz2`, _oppure_ ... _deve essere vera._<br>
    **if (** `condizione` **)** `azione1` **else** `azione2;`  // _esegue `azione1` (se vero) oppure `azione2` (se falso)._ <br>
 
  - Se una `condizione` è vera a lungo (livello), un `if()` sarà eseguito più volte, ad ogni ciclo. Per evitare questo le macro TRIGGER sono vere per un solo ciclo, il primo, e poi sono false.
