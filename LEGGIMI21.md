@@ -399,7 +399,7 @@ Il particolare ambiente in cui sono valutate le RULE comporta qualche limite all
 - _Valori predefiniti:_ `true` e `false` per le condizioni; le costanti numeriche sono con il punto, all'inglese (`3.14`), e tutte le stringhe vogliono gli apici (`"oggi "` oppure `'domani '`);
 - Usare **//** per i commenti, continuano fino a fine riga
 - Le operazioni js più utili sono quelle aritmetiche (**+, -, *, /**), quelle logiche per le condizioni: (**&&** -and, **||** -or, **!** -negazione) e le operazioni di confronto ( **&gt;**, **==**, **!=**, **&lt;**, **&gt;=**, **&lt;=**); la concatenazione delle stringhe è fatta semplicemente con il **+** ("ore " **+** "10:30").
-- Attenzione al '+'. In `a + b`, se `a` e `b` sono numeri, fa la somma, ma se uno dei due è una stringa, automaticamente anche l'altro è convertito in stringa. E la conversione `numero => stringa` può portare a sorprese (cioèa  molte cifre decimali) quando non sono numeri interi! Usare sempre ROUND() quando dovete usare dei numeri con la virgola nelle stringhe Esempio:
+- Attenzione al '+'. In `a + b`, se `a` e `b` sono numeri, fa la somma, ma se uno dei due è una stringa, automaticamente anche l'altro è convertito in stringa. E la conversione `numero => stringa` può portare a sorprese (cioè a molte cifre decimali) quando non sono numeri interi! Usare sempre ROUND() quando dovete usare dei numeri con la virgola nelle stringhe Esempio:
 ```
  var _tf = GET("TF_frigo","va_temperature");  // read temperature sensor
  var _tm = AVG(_tf, 12);                      // get average from last 12 values
@@ -419,6 +419,8 @@ Il particolare ambiente in cui sono valutate le RULE comporta qualche limite all
 
  - Se una `condizione` è vera a lungo (livello), un `if()` sarà eseguito più volte, ad ogni ciclo. Per evitare questo le macro TRIGGER sono vere per un solo ciclo, il primo, e poi sono false.
 
+. nota sui messaggi di errore: Non sempre i messaggi di errore identificano la VERA causa del problema. Esempio, una variabile mal scritta è trovata subito come 'non definita', ma una parentesi non chiusa, ad esempio, può portare a messaggi poco chiari righe dopo, quando il compilatore trova problemi! Quindi attenzione! 
+
 - **importante**: per come sono implementate, le MACRO che usano memoria (*) devono essere eseguite ad ogni run: quindi NON possono essere presenti nella parte `azione` di un **if**. Per ragioni analoghe non sono ammessi **if  nidificati** (un **if** nella zona azione di un altro **if**: non potrebbe usare le MACRO (*)). Sono vincoli che non pongono, però, serie limitazioni.
   
 <hr>
@@ -436,7 +438,7 @@ _Questa automazione NON è realizzabile con Smartlife_, nè con Alexa o Google, 
 Chiedo troppo? Un sistema 'open' devrebbe permettere queste automazioni. O no? Infatti con IoTwebUI e le RULE _si può fare!_ <br>
 Vediamo come l'ho realizzata. Alcune precondizioni: la mia termovalvola ('Termo letto')  ha le proprietà 'temp_set' e 'temp_current'.
 Per semplicità ho utilizzato come temperatura Target solo i valori 16, 20, 21 °C: in questo modo mi occorrono solo 3 tap-to-run chiamati Tletto16, Tletto20 e Tletto21, per accendere ed impostare il climatizzatore alla temperatura voluta.
-Ecco le RULE necessarie, uso alcune variabili per ridurre la complessità. La macro ISTRIGGERH() è vera una sola volta, quando la condizione passa da falso a vero (vedi oltre), ROUND() arrotonda un numero e lo trasforma in testo, per formare 'TLetto21'... il nome del 'tap-to-run', che così ora dipende da Ttarget. Il tutto anche memorizzato nel 'registro degli Alert'.
+Ecco le RULE necessarie, uso alcune variabili per ridurre la complessità. La macro ISTRIGGERH() è vera una sola volta, quando la condizione passa da falso a vero (vedi oltre), ROUND() arrotonda un numero e lo trasforma in testo, per formare 'TLetto21'... il nome del 'tap-to-run', che così ora dipende da Ttarget. L'azione è anche memorizzata nel 'registro degli Alert'.
 ```
 var _tot = 2.3;  // da tarare il prossimo inverno
 var _Ttarget =  GET("Termo letto", "temp_set") ;       // varia a seconda dell'orario
