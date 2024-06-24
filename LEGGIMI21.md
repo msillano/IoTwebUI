@@ -397,6 +397,7 @@ Il particolare ambiente in cui sono valutate le RULE comporta qualche limite all
 - Definire le variabili sempre con la sintassi: **var** `_pippo` **=**...
 - E' anche possibile definire più variabili contemporaneamente, Esempio `var _var1, _var2 = 0;` sia _var1 che _var2 sono inizializzate a 0.
 - Usare sempre un underscore **"_"** come primo carattere nel _nome delle variabili_: si evitano così interferenze con altre variabili.
+- Js è 'case sensitive', cioè distingue tra Maiuscole e minuscole, quindi attenzione a scrivere le variabili sempre nello stesso modo (consiglio tutte minuscole, oppure la tecnica 'Camel' per i nomi composti: `_variabilePocoUsata`) per distinguerle a colpo d'occhio dalle MACRO.
 - _Valori predefiniti:_ `true` e `false` per le condizioni; le costanti numeriche sono con il punto, all'inglese (`3.14`), e tutte le stringhe vogliono gli apici (`"oggi "` oppure `'domani '`);
 - Usare **//** per i commenti, continuano fino a fine riga
 - Le operazioni js più utili sono quelle aritmetiche (**+, -, *, /**), quelle logiche per le condizioni: (**&&** -and, **||** -or, **!** -negazione) e le operazioni di confronto ( **&gt;**, **==**, **!=**, **&lt;**, **&gt;=**, **&lt;=**); la concatenazione delle stringhe è fatta semplicemente con il **+** ("ore " **+** "10:30").
@@ -431,7 +432,7 @@ Vorrei implementare con Tuya una strategia di questo tipo: _se la temperatura am
 
    <code>`Se  (( Ttarget - Tambiente ) > tot) => clima.warm( Ttarget )` </code>
  
-_Questa automazione NON è realizzabile con Smartlife_, nè con Alexa o Google, per vari motivi:
+_Questa strategia NON è realizzabile con le 'automazioni' di Smartlife_, nè con Alexa o Google, per vari motivi:
    - nelle automazioni non si possono usare operazioni aritmetiche,
    - i confronti, nelle automazioni, si possono fare solo con valori costanti,
    - non esistono tap-to-run parametrici od almeno con nomi dinamici.
@@ -439,7 +440,7 @@ _Questa automazione NON è realizzabile con Smartlife_, nè con Alexa o Google, 
 Chiedo troppo? Un sistema 'open' devrebbe permettere queste automazioni. O no? Infatti con IoTwebUI e le RULE _si può fare!_ <br>
 Vediamo come l'ho realizzata. Alcune precondizioni: la mia termovalvola ('Termo letto')  ha le proprietà 'temp_set' e 'temp_current'.
 Per semplicità ho utilizzato come temperatura Target solo i valori 16, 20, 21 °C: in questo modo mi occorrono solo 3 tap-to-run chiamati Tletto16, Tletto20 e Tletto21, per accendere ed impostare il climatizzatore alla temperatura voluta.
-Ecco le RULE necessarie, uso alcune variabili per ridurre la complessità. La macro ISTRIGGERH() è vera una sola volta, quando la condizione passa da falso a vero (vedi oltre), ROUND() arrotonda un numero e lo trasforma in testo, per formare 'TLetto21'... il nome del 'tap-to-run', che così ora dipende da Ttarget. L'azione è anche memorizzata nel 'registro degli Alert'.
+Ecco le RULE necessarie, dove uso alcune variabili per ridurre la complessità. La macro ISTRIGGERH() è vera una sola volta, quando la condizione passa da falso a vero (vedi oltre), ROUND() arrotonda un numero e lo trasforma in testo, per formare 'TLetto21'... cioè il nome del 'tap-to-run', che così ora dipende da Ttarget. L'azione è anche memorizzata nel 'registro degli Alert'.
 ```
 var _tot = 2.3;  // da tarare il prossimo inverno
 var _Ttarget =  GET("Termo letto", "temp_set") ;       // varia a seconda dell'orario
@@ -543,8 +544,9 @@ utc_offset_seconds: 0
 
 <dt>TRIGRULE(name)</dt>
 <dd>Esegue un RULE individuato da un nome. <br>
- <i>Esempio:</i> <code>  if (TRIGBYNAME("pippo")) VOICE (" Trovato pippo"); <br>
-                  if (TRIGBYNAME("chiama")) TRIGRULE("pippo"), VOICE("chiamo pippo")</code> </dd>
+ <i>Esempio:</i> <code>  if (TRIGBYNAME("pippo")) VOICE (" Trovato pippo"); <br>  // RULE 'pippo'
+     if (TRIGBYNAME("chiama pippo")) TRIGRULE("pippo"), VOICE("chiamo pippo")    // RULE 'chiama pippo'
+ </code> </dd>
 </dl>
 <hr>
 
@@ -560,7 +562,7 @@ Torna true quando deve essere eseguita. <br>
 <i>Esempio:</i> <code>if(ISTRIGGERH(GET("TF_frigo","va_temperature") > 100)) POP("Frigo", "TEMPERATURA oltre 10°C" );</code> </dd>
  
 <dt>ISTRIGGERL(condition) (*)</dt>
-<dd> Ritorna 'true' solo al passaggio della "condizione" da 'true a false'  (inverso  di ISTRIGGERH).<br>
+<dd> Ritorna 'true' solo al passaggio della "condizione" da 'true a false'  (inverso  di ISTRIGGERH):  trasforma un livello false in TRIGGER. <br>Nota: l'uscita è invertita rispetto a 'condizione'.<br>
 <i>Esempio:</i> <code>if(ISTRIGGERL(GET("tuya_bridge", "switch_1"))) ALERTLOG("tuya_bridge", "Aperto adesso"); </code>  </dd>
  
 <dt>TRIGCHANGED(value) (*) </dt>
@@ -575,14 +577,14 @@ Torna true quando deve essere eseguita. <br>
 <i>Esempio:</i> <code>if(TRIGEVERY(8)) POP( "FRIGO", "Temperatura interna: "+ ROUND(_tf/10, 1) + "°C");</code> </dd>
  
 <dt>CONFIRMH(condition, time) (*) </dt>
-<dd> Ritorna 'true' solo se la "condizione" rimane 'true' per almeno il tempo 'time'. Poi resta 'true' fino a quando la 'condizione' è 'true'. Caso tipico una porta aperta.<BR>
-time = costante nei formati "hh:mm:ss" oppure "mm:ss" oppure "ss". Deve essere maggiore di TuyaInterval.<br>
+<dd> Ritorna 'true' solo se la "condizione" rimane 'true' per almeno il tempo 'time'. Poi resta 'true' fino a quando la 'condizione' è 'true'. Caso tipico una porta aperta. Serve a filtrare 'livelli' true di breve durata che non interessano.<BR>
+time = costante nei formati "hh:mm:ss" oppure "mm:ss" oppure "ss". Lmite inferiore: TuyaInterval.<br>
 <i>Esempio:</i> <br>
    <code>var _doorev = GET("Sensore porta", "doorcontact_state") ; </code>   // true a porta aperta
    <code>if(ISTRIGGERH( CONFIRMH(_doorev, "01:20"))) VOICE("chiudere la porta, grazie"); </code> </dd>
  
 <dt>CONFIRML(condition, time) (*) </dt>
-<dd> Ritorna 'true' solo se la "condizione" rimane 'false' per almeno il tempo 'time'  (inverso  di CONFIRMH).<br>
+<dd> Ritorna 'true' solo se la "condizione" rimane 'false' per almeno il tempo 'time'  (inverso  di CONFIRMH): Serve a filtrare 'livelli' false di breve durata che non interessano.<br>Nota: l'uscita è invertita rispetto a 'condizione'.<br>
 <i>Esempio:</i> <code>if(ISTRIGGERH(CONFIRML(ISCONNECTED("relay"), "02:30"))) VOICE("Allarme disconnessione");</code> </dd>
 
 <dt>ROUND(number, pos)</dt>
@@ -631,18 +633,18 @@ la durata dello stato vero (come il duty cycle).
   <i>Esempio:</i> <code>var _message = "Alle ore " + TIME(hrs); </code> </dd>
  
 <dt>  DAYMAP(val1, time1, val2, time2, ... more) </dt>
-<dd> Ritorna: fino a 'time1' l'output è 'val1', da  'time1' a  'time2'  l'output è 'val2'... avanti così fino  all'ultimo 'time' dopo di che  l'output è di nuovo 'val1'.<br>
+<dd> Programmazione giornaliera, ritorna un valore che varia nel tempo: fino a 'time1' l'output è 'val1', da  'time1' a  'time2'  l'output è 'val2'... avanti così fino  all'ultimo 'time' dopo di che  l'output è di nuovo 'val1'.<br>
 Naturalmente i valori 'val' e 'time' devono essere presenti a coppie, tanti quanti ne servono. Tutti i 'time' in formato "hh:mm:ss".<br>
 Usi: profili di temperatura giornalieri, eventi ad orario o abilitazione per intervalli di tempo, etc., a seconda se 'val' sono temperature, oppure 'buongiorno'/'buonasera', oppure true/false, etc..<br>
  <i>Esempio:</i> <code>if(DAYMAP(false,"12:30", true, "14:00")) BEEP(); </code>
  </dd>
  
 <dt>WEEKMAP(map) </dt>
-<dd> 'map' è una stringa di sette caratteri qualsiasi, uno per giorno della settimana, partendo dalla Domenica (e.g.: 'DLMMGVS' o 'SMTWTFS' o '1234567'). Solo se il carattere corrispondente ad oggi è '-' (trattino) ritorna 'false' altrimenti torna 'true'. <br>
+<dd>Programmazione settimanale: 'map' è una stringa di sette caratteri qualsiasi, uno per giorno della settimana, partendo dalla Domenica (e.g.: 'DLMMGVS' o 'SMTWTFS' o '1234567'). Solo se il carattere corrispondente ad oggi è '-' (trattino) ritorna 'false' altrimenti torna 'true'. <br>
  <i>Esempio:</i>  <code>WEEKMAP("DLMM-VS") </code> è falso solo ogni Giovedì. </dd>
 
 <dt>YEARMAP(mese, giorno) </dt>
-<dd> 'mese' e 'giorno' sono due stringhe di 12 e 31 caratteri qualsiasi, per identificare mesi e giorni (e.g.: 'GFMAMGLASOND' e '1234567890123456789012345678901'). Solo se il mese e il giorno di oggi sono '-' (trattino) ritorna 'false' (per 24h) altrimenti torna 'true'. <br>
+<dd>Programmazione annuale: 'mese' e 'giorno' sono due stringhe di 12 e 31 caratteri qualsiasi, per identificare mesi e giorni (e.g.: 'GFMAMGLASOND' e '1234567890123456789012345678901'). Solo se il mese e il giorno di oggi sono '-' (trattino) ritorna 'false' (per 24h) altrimenti torna 'true'. <br>
  <i>Esempio:</i>  <code>YEARMAP( 'GFMAMGLASON-', '12345678901234567890123-5678901') </code> è falso solo a Natale.
   </dd>
  
