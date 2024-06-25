@@ -224,7 +224,7 @@ Si possono gestire due insiemi di RULE: quelle in <i>uso</i>, inizialmente lette
 - Il comando vocale è opzionale, e può essere disabilitato nella configurazione.
 - Se abilitato, voiceRecognition può essere usata in due modi, o continuo oppure premendo un pulsante. Il modo di default è impostato in configurazione, ma può essere cambiato con comandi vocali.
 - la grammatica di default è la seguente - tra parentesi (alle): parole opzionali; barra verticale a|su: parole alternative-:
-    - 'Hey Tuya, esegui|attiva (la|un*) xxx (xxx (xxx))' => lancia 'tap-to-run' o RULE, nome max 3 parole
+    - _'Hey Tuya, esegui|attiva (la|un*) xxx (xxx (xxx))'_ => lancia 'tap-to-run' o RULE, nome max 3 parole
 
     - `'Hey Tuya, (in|al) modo esperto'`=> apre EXPERT mode
     - `'Hey Tuya, (in|al) modo utente'` => torna in USER mode
