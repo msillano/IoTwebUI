@@ -628,7 +628,12 @@ la durata dello stato vero (come il duty cycle).
 
 <dt>DERIVATIVE(value) (*) </dt>
 <dd>Ritorna la derivata (meglio: il rapporto incrementale) di value.<br>
-<i>Esempio:</i> <code>if (DERIVATIVE(GET("TF_frigo","va_temperature")) > 0) VOICE("Temperatura Frigo crescente");</code> </dd>
+<i>Esempio:</i> <code>if (DERIVATIVE(GET("TF_frigo","va_temperature")) > 0) VOICE("Temperatura Frigo crescente");</code> <br>
+<i>Esempio: per valutare la bontà dei calcoli</i> <pre>
+  var _integ = INTEGRAL(1,  300); 
+  var _deriv = DERIVATIVE(_integ); 
+  console.log ( _integ , _deriv); </pre>
+</dd>
 
 <dt>INTEGRAL(value, limite) (*) </dt>
 <dd>Ritorna l'integrale (meglio: la somma integrale) di value. Limite è opzionale, e riporta a 0 l'integrale quando è raggiunto.<br>
