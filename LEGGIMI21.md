@@ -397,7 +397,7 @@ Il particolare ambiente in cui sono valutate le RULE comporta qualche limite all
 - Definire le variabili sempre con la sintassi: **var** `_pippo` **=**...
 - E' anche possibile definire più variabili contemporaneamente, Esempio `var _var1, _var2 = 0;` sia _var1 che _var2 sono inizializzate a 0.
 - Usare sempre un underscore **"_"** come primo carattere nel _nome delle variabili_: si evitano così interferenze con altre variabili.
-- Js è 'case sensitive', cioè distingue tra Maiuscole e minuscole, quindi attenzione a scrivere le variabili sempre nello stesso modo (consiglio tutte minuscole, oppure la tecnica 'Camel' per i nomi composti: `_variabilePocoUsata`) per distinguerle a colpo d'occhio dalle MACRO.
+- JavaScript è 'case sensitive', cioè distingue tra Maiuscole e minuscole, quindi attenzione a scrivere le variabili sempre nello stesso modo (consiglio tutte minuscole, oppure la tecnica 'Camel' per i nomi composti: `_variabilePocoUsata`) per distinguerle a colpo d'occhio dalle MACRO.
 - _Valori predefiniti:_ `true` e `false` per le condizioni; le costanti numeriche sono con il punto, all'inglese (`3.14`), e tutte le stringhe vogliono gli apici (`"oggi "` oppure `'domani '`);
 - Usare **//** per i commenti, continuano fino a fine riga
 - Le operazioni js più utili sono quelle aritmetiche (**+, -, *, /**), quelle logiche per le condizioni: (**&&** -and, **||** -or, **!** -negazione) e le operazioni di confronto ( **&gt;**, **==**, **!=**, **&lt;**, **&gt;=**, **&lt;=**); la concatenazione delle stringhe è fatta semplicemente con il **+** ("ore " **+** "10:30").
@@ -447,7 +447,18 @@ var _Ttarget =  GET("Termo letto", "temp_set") ;       // varia a seconda dell'o
 var _nowClima = ISTRIGGERH( ( _Ttarget -  GET("Termo letto", "temp_current") ) > _tot);
 if (_nowClima) SCENA("TLetto" + ROUND( _Ttarget, 0) ), ALERTLOG("RULE Tletto", "acceso clima") ;
 ```
-<hr>
+<br>
+
+#### RULE: Primi passi
+Volete fare delle prove ma non sapete da dove cominciare?
+Vi consiglio di copiare le seguenti 3 RULE nell'area di edit delle RULE (modo EXPERT), e poi premere TEST.
+1) Nella pagina tap-to-run, tab 'user RULE' trovate tre nuovi bottoni: 'spegni la luce'. 'pippo' e 'chiamata per pippo': potete verificare il funzionamento delle tre RULE.
+2) Attivate il 'comando vocale', e provate _"Ehi Tuya, esegui Pippo"_...
+```
+   if (TRIGBYNAME('spegni la luce')) VOICE ("Fatto: 'spegni la luce'");
+   if (TRIGBYNAME("Pippo")) VOICE ("Trovato Pippo");
+   if (TRIGBYNAME("chiamata per Pippo")) TRIGRULE("pippo"), VOICE("chiamo Pippo");
+```
 
 ### RULE - MACRO
 le MACRO rispondono a varie esigenze:
