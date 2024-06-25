@@ -410,7 +410,7 @@ Il particolare ambiente in cui sono valutate le RULE comporta qualche limite all
                                               // note: use ROUND() to convert to string
  DATALOG("frigo.media", _tm/10);              // saves average on file
  ```
-. importante è anche l'uso delle parentesi, "()", sempre a coppie. Parentesi servono dopo ogni MACRO - nota, anche se non ci sino parametri, e.g. `BEEP()` - e dopo un `if()`, per la condizione. Comunque usatele liberamente per raggruppare i risultati intermedi nelle espressioni e.g. `if((_a > 10) && (_b/2 == 0))...`
+ - importante è anche l'uso delle parentesi, "()", sempre a coppie. Parentesi servono dopo ogni MACRO - nota, anche se non ci sino parametri, e.g. `BEEP()` - e dopo un `if()`, per la condizione. Comunque usatele liberamente per raggruppare i risultati intermedi nelle espressioni e.g. `if((_a > 10) && (_b/2 == 0))...`
 - le RULE sono eseguite ad ogni loop, dopo un aggiornamento dei dati Tuya. Molte MACRO devono quindi conservare lo stato tra un run ed il successivo, e sono individuate con (*). 
 - Il costrutto js più utile nelle RULE è l'**if()** (esecuzione condizionale), che assume varie forme:<br>
    **if(** `condizione` **)** `azione;`    // `azione` _è eseguita ogni volta che `condizione` è vera_ <br>
@@ -424,8 +424,8 @@ Il particolare ambiente in cui sono valutate le RULE comporta qualche limite all
  - nota sui messaggi di errore: Non sempre i messaggi di errore identificano la VERA causa del problema. Esempio, una variabile mal scritta è trovata subito come 'non definita', ma una parentesi non chiusa, ad esempio, può portare a messaggi poco chiari righe dopo, quando il compilatore trova problemi! Quindi attenzione! 
 
 - **importante**: per come sono implementate, le MACRO che usano memoria (*) devono essere eseguite ad ogni run: quindi NON possono essere presenti nella parte `azione` di un **if**. Per ragioni analoghe non sono ammessi **if  nidificati** (un **if** nella zona azione di un altro **if**: non potrebbe usare le MACRO (*)). Sono vincoli che non pongono, però, serie limitazioni.
+  <hr>
   
-<hr>
 **ESEMPIO** - Un caso concreto di controllo del riscaldamento <br>
 _Ho il riscaldamento centralizzato, con valvole termostatiche su ogni radiatore: ogni stanza ha il suo profilo di temperatura desiderato (Ttarget). Tutto funziona molto bene, tranne in casi eccezionali (esempio, impianto spento per manutezione)._ <br>
 Vorrei implementare con Tuya una strategia di questo tipo: _se la temperatura ambiente è minore di un 'tot' rispetto a Ttarget, accendere il condizionatore come pompa di calore con lo stesso Ttarget._ Cioè:
