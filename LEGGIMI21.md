@@ -226,16 +226,16 @@ Si possono gestire due insiemi di RULE: quelle in <i>uso</i>, inizialmente lette
 - la grammatica di default è la seguente - tra parentesi (alle): parole opzionali; barra verticale a|su: parole alternative-:
     - _'Hey Tuya, esegui|attiva (la|un*) xxx (xxx (xxx))'_ => lancia 'tap-to-run' o RULE, nome max 3 parole
 
-    - `'Hey Tuya, (in|al) modo esperto'`=> apre EXPERT mode
-    - `'Hey Tuya, (in|al) modo utente'` => torna in USER mode
-    - 'Hey Tuya, vai (alle*) scene'    => navigazione alla pagina dei 'tap-to-run' e RULE
-    - 'Hey Tuya, vai (alle*) regole'   =>  navigazione alla pagina edit RULE (se in EXPERT mode)
-    - 'Hey Tuya, vai (alla*) home'  =>  navigazione alla pagina con albero device
-    - 'Hey Tuya, ritorna|home'  =>  navigazione alla pagina con albero device
+    - _'Hey Tuya, (in|al) modo esperto'_ => apre EXPERT mode
+    - _'Hey Tuya, (in|al) modo utente'_ => torna in USER mode
+    - _'Hey Tuya, vai (alle*) scene'_    => navigazione alla pagina dei 'tap-to-run' e RULE
+    - _'Hey Tuya, vai (alle*) regole'_   =>  navigazione alla pagina edit RULE (se in EXPERT mode)
+    - _'Hey Tuya, vai (alla*) home'_  =>  navigazione alla pagina con albero device
+    - _'Hey Tuya, ritorna|home'_  =>  navigazione alla pagina con albero device
 
-    - 'Hey Tuya, modo (della*) voce continuo' => start del modo riconoscimento senza soste.
-    - 'Hey Tuya, basta voce' => stop del modo riconoscimento senza soste.
-    - 'Hey Tuya, modo (della*) voce a|su richiesta|domanda' => start del modo riconoscimento con bottone.
+    - _'Hey Tuya, modo (della*) voce continuo'_ => start del modo riconoscimento senza soste.
+    - _'Hey Tuya, modo (della*) voce a|su richiesta|domanda'_ => start del modo riconoscimento con bottone.
+    - _'Hey Tuya, basta voce'_ => stop del modo riconoscimento senza soste.
    
 
  (*) nota: _la lista di preposizioni ed articoli accettati in terza posizione è molto lunga_: `'il', 'lo', 'la', 'le', 'a', 'ad', 'ai', 'al', 'all', 'allo', 'alla', 'alle', 'di', 'del', 'della', 'dei','un', 'una', 'con', 'colla'`: _scegliete quelle che facilitano il riconoscimento_. 
