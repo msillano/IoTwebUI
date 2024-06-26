@@ -342,6 +342,10 @@ Anche l'icona speciale che indica un'alert è customizzabile: vedi `alertIcon` i
 - Per i 'tap-to-run' Tuya, è possibile personalizzare il colore dei pulsanti modificando `sceneColor(scene)` in `custom.js`.
 
 - Per le RULE, i più avventurosi possono aggiungere le loro MACRO personali nel file `usrrulesXX.X.js`.
+
+- Per VoiceRecognition, nel file "speech0X.X.js" è semplice modificare le parole della grammatica proposta: esempio sostituire 'vai' con 'raggiungi'. L'obiettivo deve essere sempre quello di migliorare la comprensione dei comandi.<br>
+Un po' più complesso è aggiungere nuovi comandi vocali, non tanto per la definizione della grammatica (il codice attuale  può servire da esempio) quanto l'implementazione delle azioni, che spesso dipendono dal codice esitente.<br>
+Direi che per nuovi comandi vocali, la strada migliore è fare una proposta di implementazione nelle 'issue', e, in base al consenso ed alla fattibibilità, potrebbe essere implementata nella release successiva.
   
 Queste customizzazioni NON sono necessarie, ma redono più utile e gradevole l'uso di TuyaUIweb.
 <hr>
@@ -358,7 +362,7 @@ Questo è un esempio di file di log in formato CSV:
 La prima riga contiene l'intestazione delle colonne, le righe succesive i dati.
 Le operazioni da fare sono le seguenti (in un editor ASCII, ad esempio Notepad++, con 'global find&replace'):
 1) Eliminare la parentesi quadra '[' all'inizio di ogni riga.
-2) Sostituire la parentesi quadra finale con un punto e virgola ';'.
+2) Sostituire la parentesi quadra finale di ogni riga con un punto e virgola ';'.
    
 Il risultato CSV corretto è il seguente, importabile in molti DB e spreadsheet:
 ```
@@ -393,31 +397,36 @@ E' un array di array contenenti le singole misure (oggetti).
 ### RULE - sintassi
 Il particolare ambiente in cui sono valutate le RULE comporta qualche limite alla sintassi JavaScript (js) standard:
 - **importante**: il codice è eseguito una riga alla volta, non è possibile scrivere blocchi js che occuppino più righe!  Per contenere la lunghezza delle righe, usare delle variabili intermedie (vedi esempi).
-- Definire le variabili volatili (valide solo per un solo run delle RULE) sempre con la sintassi: **var** `_tizio` **=**...
+- Definire le variabili volatili (valide per un solo run delle RULE) sempre con la sintassi: **var** `_tizio` **=**... , poi possno essere usate liberamente.
 - E' anche possibile definire più variabili contemporaneamente, Esempio `var _var1, _var2 = 0;` sia _var1 che _var2 sono inizializzate a 0.
 - Per definire variabili permanenti (valide per tutti i run delle RULE) usare le MACRO: VSET(name, value) e VGET(name).
-- Usare sempre un underscore **"_"** come primo carattere nel _nome delle variabili_: si evitano così interferenze con altre variabili.
-- JavaScript è 'case sensitive', cioè distingue tra Maiuscole e minuscole, quindi attenzione a scrivere le variabili sempre nello stesso modo (consiglio tutte minuscole, oppure la tecnica 'camel' per i nomi composti: `_variabilePocoUsata`) per distinguerle a colpo d'occhio dalle MACRO.
-- _Valori predefiniti:_ `true` e `false` per le condizioni; le costanti numeriche sono con il punto, all'inglese (`3.14`), e tutte le stringhe vogliono gli apici (`"oggi "` oppure `'domani '`);
+- Usare sempre un underscore **"_"** come primo carattere nel _nome delle variabili_: si evitano così interferenze con altre variabili del programma. Non usare caratteri 'strani' nei nomi delle variabili: meglio limitarsi a [A..Za..z0..9] e '_'.
+- JavaScript è 'case sensitive', cioè distingue tra Maiuscole e minuscole, quindi attenzione a scrivere le variabili sempre nello stesso modo (consiglio tutte minuscole, oppure la tecnica 'camel' per i nomi compositi: `_variabilePocoUsata`) per distinguerle a colpo d'occhio dalle MACRO (sempre MAIUSCOLE).
+- _Valori predefiniti:_ `true` e `false` per le condizioni; le costanti numeriche sono con il punto, all'inglese (`3.14`), e tutte le stringhe vogliono gli apici (`"oggi "` oppure `'domani '`). Un apice può essere inserito in una stringa se si usa l'altro tipo di apice per tutta la stringa. Esempio: "All'alba " OK , 'Disse: "sono stanco"' OK, ma NON 'All'alba' !.
 - Usare **//** per i commenti, continuano fino a fine riga
 - Le operazioni js più utili sono quelle aritmetiche (**+, -, *, /**), quelle logiche per le condizioni: (**&&** -and, **||** -or, **!** -negazione) e le operazioni di confronto ( **&gt;**, **==**, **!=**, **&lt;**, **&gt;=**, **&lt;=**); la concatenazione delle stringhe è fatta semplicemente con il **+** ("ore " **+** "10:30").
-- Attenzione al '+'. In `a + b`, se `a` e `b` sono numeri, fa la somma, ma se uno dei due è una stringa, automaticamente anche l'altro è convertito in stringa. E la conversione `numero => stringa` può portare a sorprese (cioè a molte cifre decimali) quando non sono numeri interi! Usare sempre ROUND() quando dovete usare dei numeri con la virgola nelle stringhe Esempio:
+- Non confondere '=' (assegnazione - effetto: il contenuto dela variabile è modificata), con '==' (confronto - risultato: true (uguali) o false (diversi)).   _Esempio:_ `var _pippo = 32;` e `if (_pippo == 32)...` ( nota: `if(_pippo = 32)` è un errore comune ma insidioso, difficile da trovare e correggere) <br>
+- Nota:  La condizione opposta (negata) di 'uguale' (a == b) è 'diversi' (a != b). La condizione opposta (negata) di 'maggiore' (a > b) NON è 'minore' (a < b) bensì è 'minore o uguale' (a <= b)! Analogamente l'oppsto di (a < b) è (a >= b).
+- Attenzione al '+'. In `a + b`, se `a` e `b` sono numeri, fa la somma, ma se uno dei due è una stringa non convertibile in numero, automaticamente anche l'altro è convertito in stringa. E la conversione `numero => stringa` può portare a sorprese (cioè a molte cifre decimali) quando non sono numeri interi! Usare sempre ROUND() quando dovete aggiungere dei numeri con la virgola nelle stringhe Esempio:
 ```
  var _tf = GET("TF_frigo","va_temperature");  // read temperature sensor
- var _tm = AVG(_tf, 12);                      // get average from last 12 values
- var _tr = ROUND( _tm/10,  -1);               // round to the nearest ten
+ var _tm = AVG(_tf, 12);                      // get average from last 12 values (_tm is a string, see AVG())
+ var _tr = ROUND( _tm/10,  -1);               // round to the nearest ten, is a string 
  if(TRIGEVERY(8)) POP( "FRIGO", "Frigo: "+ ROUND(_tf/10, 1) + "°C, media: "+ ROUND(_tm/10, 2) +"°C, round: " + _tr +"°C");
-                                              // note: use ROUND() to convert to string
- DATALOG("frigo.media", _tm/10);              // saves average on file
+                                              // note: use ROUND() to convert to string, also for _tm/10 (again number)
+ DATALOG("frigo.media", _tm/10);              // saves average on file (saved as number).
  ```
+ - Come già detto, JavaScript è elastico a proposito delle conversioni dei valori: numeri in formato 'stringa' (cioè "3.14" invece di 3.14 o Math.PI) sono convertiti automaticamente in numeri in caso di operazioni aritmetiche. Ancora, numeri e stringhe sono convertiti in valoro logici quando serve (ad esempio se usati come condizione in un if()). Regole: zero (0) vale `false`, qualsiasi altro numero: `true`. Una stringa vuota ("") o `null`, o `undefined` valgono `false`, qualunque altra stringa vale `true`. Esempi: `if ("caio")` è true.  `var _test = null; if(_test)` è false. (nota. Meglio non abusare di questi automatismi del linguaggio, è preferibile scrivere sempre le condizioni estese, più chiare: `if (_test != null)`...)
  - importante è anche l'uso delle parentesi, "()", sempre a coppie. Parentesi servono dopo ogni MACRO - nota, anche se non ci sino parametri, e.g. `BEEP()` - e dopo un `if()`, per la condizione. Comunque usatele liberamente per raggruppare i risultati intermedi nelle espressioni e.g. `if((_a > 10) && (_b/2 == 0))...`
 - le RULE sono eseguite ad ogni loop, dopo un aggiornamento dei dati Tuya. Molte MACRO devono quindi conservare lo stato tra un run ed il successivo, e sono individuate con (*). 
 - Il costrutto js più utile nelle RULE è l'**if()** (esecuzione condizionale), che assume varie forme:<br>
-   **if(** `condizione` **)** `azione;`    // `azione` _è eseguita ogni volta che `condizione` è vera_ <br>
+   **if(** `condizione` **)** `azione;`    // `azione` _è eseguita solo se `condizione` è vera_ <br>
    **if(** `condizione` **)** `azione1`**,** `azione2;` // _due (o più) azioni, separate da_ ',' _virgola._<br>
    **if(** `condiz1 && condiz2 && ...` **)** `azione;` //  _AND: 'tutte',_  `condiz1` _e_ `condiz2` _e_ ... _devono essere vere contemporaneamente._<br>
    **if(** `condiz1 || condiz2 || ...` **)** `azione;` //  _OR: 'almeno una',_  `condiz1` _oppure_ `condiz2`, _oppure_ ... _deve essere vera._<br>
    **if (** `condizione` **)** `azione1` **else** `azione2;`  // _esegue `azione1` (se vero) oppure `azione2` (se falso)._ <br>
+nota: contrariamente alle automazioni Tuya, Google, Alexa,  che nelle condizioni permetto o solo AND (tutte) o solo OR (basta una) (e poi cercano di mitigare questo limite aggiungendo l'extra condizione 'ambito' - e.g. Tuya) nelle RULE si possono avere condizioni più complesse (miste) usando con cura le parentesi per indicare l'ordine di calcolo:
+esempio:  if ( (condiz1 || condiz2) && (condiz3 || condiz4) )  - a parole: "deve essere vera una tra (condiz1, condiz2) E anche una tra (condiz3, condiz4)".
 
  - Se una `condizione` è vera a lungo (livello), un `if()` sarà eseguito più volte, ad ogni ciclo. Per evitare questo le macro TRIGGER sono vere per un solo ciclo, il primo, e poi sono false.
 
@@ -428,7 +437,7 @@ Il particolare ambiente in cui sono valutate le RULE comporta qualche limite all
   
 **ESEMPIO** - Un caso concreto di controllo del riscaldamento <br>
 _Ho il riscaldamento centralizzato, con valvole termostatiche su ogni radiatore: ogni stanza ha il suo profilo di temperatura desiderato (Ttarget). Tutto funziona molto bene, tranne in casi eccezionali (esempio, impianto spento per manutezione)._ <br>
-Vorrei implementare con Tuya una strategia di questo tipo: _se la temperatura ambiente è minore di un 'tot' rispetto a Ttarget, accendere il condizionatore come pompa di calore con lo stesso Ttarget._ Cioè:
+Vorrei implementare con Tuya una strategia di questo tipo: _se la temperatura ambiente è minore di un 'tot' rispetto a Ttarget, accendere il condizionatore come pompa di calore impostando come temperatura proprio Ttarget._ Cioè:
 
    <code>`Se  (( Ttarget - Tambiente ) > tot) => clima.warm( Ttarget )` </code>
  
@@ -439,7 +448,7 @@ _Questa strategia NON è realizzabile con le 'automazioni' di Smartlife_, nè co
  
 Chiedo troppo? Un sistema 'open' dovrebbe permettere queste automazioni. O no? Infatti con IoTwebUI e le RULE _si può fare!_ <br>
 Vediamo come l'ho realizzata. Alcune precondizioni: la mia termovalvola ('Termo letto')  ha le proprietà 'temp_set' e 'temp_current'.
-Per semplicità ho utilizzato come temperatura Target solo i valori 16, 20, 21 °C: in questo modo mi occorrono solo 3 tap-to-run chiamati Tletto16, Tletto20 e Tletto21, per accendere ed impostare il climatizzatore alla temperatura voluta.
+Per semplicità ho utilizzato come temperatura Target solo i valori 16, 20, 21 °C: in questo modo mi occorrono solo 3 tap-to-run chiamati Tletto16, Tletto20 e Tletto21, per accendere ed impostare il climatizzatore alle temperature volute.
 Ecco le RULE necessarie, dove uso alcune variabili per ridurre la complessità. La macro ISTRIGGERH() è vera una sola volta, quando la condizione passa da falso a vero (vedi oltre), ROUND() arrotonda un numero e lo trasforma in testo, per formare 'TLetto21'... cioè il nome del 'tap-to-run', che così ora dipende da Ttarget. L'azione è anche memorizzata nel 'registro degli Alert'.
 ```
 var _tot = 2.3;  // da tarare il prossimo inverno
@@ -456,15 +465,15 @@ Vi consiglio di copiare le seguenti 3 RULE nell'area di edit delle RULE (modo EX
 2) Attivate il 'comando vocale', e provate _"Ehi Tuya, esegui Pippo"_...
 ```
    if (TRIGBYNAME('spegni la luce')) VOICE ("Fatto: 'spegni la luce'");
-   if (TRIGBYNAME("Pippo")) VOICE ("Trovato Pippo");
+   if (TRIGBYNAME("Pippo")) POP ("Trovato Pippo");
    if (TRIGBYNAME("chiamata per Pippo")) TRIGRULE("pippo"), VOICE("chiamo Pippo");
 ```
 
 ### RULE - MACRO
 le MACRO rispondono a varie esigenze:
  1. Fornire accesso alle risorse e funzionalità di IoTwebUI, per poterle usare nelle RULE
- 2. L'ambiente (run ripetuti ad intervalli reglari) e i suoi limiti (codice in una sola riga) rendono più ardua la scrittura di funzioni complesse: le MACRO semplificano il compito dell'utente. 
- 3. Alcune operazioni richiedo la memorizzazione di informzioni tra un run ed il successivo, e le MACRO risolvono questo problema.
+ 2. L'ambiente (run ripetuti ad intervalli regolari) e i suoi limiti (codice in una sola riga) rendono più ardua la scrittura di funzioni complesse: le MACRO semplificano il compito dell'utente. 
+ 3. Alcune operazioni richiedo la memorizzazione di informazioni tra un run ed il successivo, e le MACRO risolvono questo problema.
  4. Importante è la distinzione tra un **livello** - lo stesso valore (e.g. true) uguale per più run - e un **TRIGGER** - vero per un solo run, quando inizia o finisce un evento -. <br>
   _Le macro con TRIG nel nome generano TRIGGER, le altre LIVELLI_.<br>
   
@@ -472,7 +481,7 @@ le MACRO rispondono a varie esigenze:
 
 Possiamo dividere le MACRO in due gruppi: il primo che gestisce le interazioni con le risorse disponibili in **IoTwebUI** (una sorta di API interna). Il secondo gruppo di MACRO sono invece generali, modificando in qualche modo utile i dati in input o fornendo utili output.
 _nota: obiettivo delle MACRO non è quello di duplicare le funzionalità delle automazioni Tuya (anche se a volte c'è sovrapposizione), quanto quello di fornire strumenti più avanzati di calcolo, per ottenere 'automazioni' fin'ora impossibili.   L'uso di device virtuali e di tap-to-run permette di suddividere i compiti tra scene Tuya (automazioni e tap-to-run) e RULE nel modo più efficiente._ <br>
-Ovviamente si possono sempre aggiungere nuove MACRO, o come customizzazione (se create nuove MACRO comunicatemelo) oppure in nuove release di **IoTwebUI**.
+Ovviamente si possono sempre aggiungere nuove MACRO, o come customizzazione (se create nuove MACRO comunicatemelo) oppure in nuove release di **IoTwebUI** (segnalatemi le vostre esigenze su GitHub,  nelle [ISSUE](https://github.com/msillano/IoTwebUI/issues)).
 <hr>
 
 #### MACRO per risorse
@@ -569,8 +578,11 @@ Torna true quando deve essere eseguita. <br>
 <i>Esempio:</i> <code>if (TRIGBYNAME('spegni la luce')) VOICE (" Hai attivato: 'spegni la luce'") </code> </dd>
 
 <dt>ISTRIGGERH(condition) (*) </dt>
-<dd> Ritorna 'true' solo al passaggio della "condizione" da 'false a true', evita che la "condizione" 'true' agisca ad ogni run (analogo alle condizioni delle automazioni Tuya). Ovvero trasforma un livello true in TRIGGER. <br>
-<i>Esempio:</i> <code>if(ISTRIGGERH(GET("TF_frigo","va_temperature") > 100)) POP("Frigo", "TEMPERATURA oltre 10°C" );</code> </dd>
+<dd> Ritorna 'true' solo al passaggio della "condizione" da 'false a true', evita che la "condizione" 'true' agisca ad ogni run. Ovvero trasforma un livello true in TRIGGER. <br>
+<i>Esempio:</i> <code>if(ISTRIGGERH(GET("TF_frigo","va_temperature") > 100)) POP("Frigo", "TEMPERATURA oltre 10°C" );</code> <br>
+Nota: l'implementazione Tuya di più <i>condizioni (livelli) in AND (tutte)</i> in una automazione è come se fosse scritta così: <code>if( ISTRIGGERH(condiz1 && condiz2 && ...)) ... </code> cioè un'automazione scatta nel momento in cui TUTTE le condizioni diventano true. Analogamente con più condizioni in OR.<BR> 
+Nota: più <i>condizioni (livelli, AND/OR) + ambito (livello) </i> delle automazioni Tuya, può essere implementato nelle RULE così: <code>if( ISTRIGGERH(condiz1 ?? condiz2 ?? ...) && (ambito) )...</code>.  Ambito NON interviene nel TRIGGER ma deve essere vero!
+</dd>
  
 <dt>ISTRIGGERL(condition) (*)</dt>
 <dd> Ritorna 'true' solo al passaggio della "condizione" da 'true a false'  (inverso  di ISTRIGGERH):  trasforma un livello false in TRIGGER. <br>Nota: l'uscita è invertita rispetto a 'condizione'.<br>
