@@ -576,13 +576,13 @@ Torna true quando deve essere eseguita. <br>
 <dd> Ritorna 'true' solo al passaggio della "condizione" da 'true a false'  (inverso  di ISTRIGGERH):  trasforma un livello false in TRIGGER. <br>Nota: l'uscita è invertita rispetto a 'condizione'.<br>
 <i>Esempio:</i> <code>if(ISTRIGGERL(GET("tuya_bridge", "switch_1"))) ALERTLOG("tuya_bridge", "Aperto adesso"); </code>  </dd>
 
-<dt>VGET(name) (*)</dt>
-<dd>GET di una variabile permanente - conservata per tutti i run delle RULE.<br> Se la variabile <code>name</code> NON è stata inizializata con un VSET, ritorna <code>null</code>. <br>
-<i>Esempio:</i> <code>if (VGET('prova') == null) VSET('prova', 100); </code>  </dd>
+<dt>VGET(name) </dt>
+<dd>GET di una variabile permanente - conservata per tutti i run delle RULE.<br> Se la variabile <code>name</code> NON è stata inizializzata con un VSET, ritorna <code>null</code>. <br>
+<i>Esempio:</i> <code>if( VGET('inizio') == null ) VSET('inizio', TIME(hrs)); </code>  </dd>
 
-<dt>VSET(name, value) (*)</dt>
+<dt>VSET(name, value)</dt>
 <dd>SET di una variabile permanente - conservata per tutti i run delle RULE.<br>
-<i>Esempio:</i> <code>if(TRIGEVERY(10) ) VSET('prova', VGET('prova') + 2);</code>  </dd>
+<i>Esempio:</i> <code>if( TRIGEVERY(10) ) VSET('prova', VGET('prova') + 2);</code>  </dd>
  
 <dt>TRIGCHANGED(value) (*) </dt>
 <dd> ritorna 'true' ogni volta che 'value' cambia rispetto al valore precedente.<br>
