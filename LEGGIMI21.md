@@ -393,10 +393,11 @@ E' un array di array contenenti le singole misure (oggetti).
 ### RULE - sintassi
 Il particolare ambiente in cui sono valutate le RULE comporta qualche limite alla sintassi JavaScript (js) standard:
 - **importante**: il codice è eseguito una riga alla volta, non è possibile scrivere blocchi js che occuppino più righe!  Per contenere la lunghezza delle righe, usare delle variabili intermedie (vedi esempi).
-- Definire le variabili sempre con la sintassi: **var** `_pippo` **=**...
+- Definire le variabili volatili (valide solo per un solo run delle RULE) sempre con la sintassi: **var** `_tizio` **=**...
 - E' anche possibile definire più variabili contemporaneamente, Esempio `var _var1, _var2 = 0;` sia _var1 che _var2 sono inizializzate a 0.
+- Per definire variabili permanenti (valide per tutti i run delle RULE) usare le MACRO: VSET(name, value) e VGET(name).
 - Usare sempre un underscore **"_"** come primo carattere nel _nome delle variabili_: si evitano così interferenze con altre variabili.
-- JavaScript è 'case sensitive', cioè distingue tra Maiuscole e minuscole, quindi attenzione a scrivere le variabili sempre nello stesso modo (consiglio tutte minuscole, oppure la tecnica 'Camel' per i nomi composti: `_variabilePocoUsata`) per distinguerle a colpo d'occhio dalle MACRO.
+- JavaScript è 'case sensitive', cioè distingue tra Maiuscole e minuscole, quindi attenzione a scrivere le variabili sempre nello stesso modo (consiglio tutte minuscole, oppure la tecnica 'camel' per i nomi composti: `_variabilePocoUsata`) per distinguerle a colpo d'occhio dalle MACRO.
 - _Valori predefiniti:_ `true` e `false` per le condizioni; le costanti numeriche sono con il punto, all'inglese (`3.14`), e tutte le stringhe vogliono gli apici (`"oggi "` oppure `'domani '`);
 - Usare **//** per i commenti, continuano fino a fine riga
 - Le operazioni js più utili sono quelle aritmetiche (**+, -, *, /**), quelle logiche per le condizioni: (**&&** -and, **||** -or, **!** -negazione) e le operazioni di confronto ( **&gt;**, **==**, **!=**, **&lt;**, **&gt;=**, **&lt;=**); la concatenazione delle stringhe è fatta semplicemente con il **+** ("ore " **+** "10:30").
@@ -574,6 +575,14 @@ Torna true quando deve essere eseguita. <br>
 <dt>ISTRIGGERL(condition) (*)</dt>
 <dd> Ritorna 'true' solo al passaggio della "condizione" da 'true a false'  (inverso  di ISTRIGGERH):  trasforma un livello false in TRIGGER. <br>Nota: l'uscita è invertita rispetto a 'condizione'.<br>
 <i>Esempio:</i> <code>if(ISTRIGGERL(GET("tuya_bridge", "switch_1"))) ALERTLOG("tuya_bridge", "Aperto adesso"); </code>  </dd>
+
+<dt>VGET(name) (*)</dt>
+<dd>GET di una variabile permanente - conservata per tutti i run delle RULE.<br> Se la variabile <code>name</code> NON è stata inizializata con un VSET, ritorna <code>null</code>. <br>
+<i>Esempio:</i> <code>if (VGET('prova') == null) VSET('prova', 100); </code>  </dd>
+
+<dt>VSET(name, value) (*)</dt>
+<dd>SET di una variabile permanente - conservata per tutti i run delle RULE.<br>
+<i>Esempio:</i> <code>if(TRIGEVERY(10) ) VSET('prova', VGET('prova') + 2);</code>  </dd>
  
 <dt>TRIGCHANGED(value) (*) </dt>
 <dd> ritorna 'true' ogni volta che 'value' cambia rispetto al valore precedente.<br>
