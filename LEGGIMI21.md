@@ -310,8 +310,8 @@ L'app **IoTwebUI** non è per utenti alle prime armi, pertanto è accettabile ch
 - Altre opzioni riguardano: timing (Cloud e log) e configurazione del log: il formato, l'autosave, i valori richiesti, oppure il look&feel, come la presenza dei bottoni di pan/zoom. <BR>Dalla versione 1.2 la possibilità di escludere alcune home (`hide_homes` array), e dalla versione 2.0 quella di escludere alcuni tap-to-run (`hide_scenes` array). 
 
 - Le opzioni disponibili per il riconoscimento vocale sono (sempre in config.js):
-    1) se con il vostro HW vi funziona male, potete disabilitarlo del tutto (SpeechRecognitionEnabled = false)
-    2) se invece vi funziona bene, potete eliminare la necessità di premere il pulsante ogni volta: (SpeechRecognitionNeverEnds = true).
+    1) se con il vostro HW vi funziona male, potete disabilitarlo del tutto: `SpeechRecognitionEnabled = false;`
+   2) se invece vi funziona bene, potete eliminare la necessità di premere il pulsante ogni volta: `SpeechRecognitionNeverEnds = true;`.
 
 - Ancora in `config.js`, la variabile  `expertModeEnabled = false` permette di disabilitare il modo 'EXPERT'.
 
@@ -396,29 +396,30 @@ E' un array di array contenenti le singole misure (oggetti).
 
 ### RULE - sintassi
 Il particolare ambiente in cui sono valutate le RULE comporta qualche limite alla sintassi JavaScript (js) standard:
+
 - **importante**: il codice è eseguito una riga alla volta, non è possibile scrivere blocchi js che occuppino più righe!  Per contenere la lunghezza delle righe, usare delle variabili intermedie (vedi esempi).
 - Definire le variabili volatili (valide per un solo run delle RULE) sempre con la sintassi: **var** `_tizio` **=**... , poi possno essere usate liberamente.
 - E' anche possibile definire più variabili contemporaneamente, Esempio `var _var1, _var2 = 0;` sia _var1 che _var2 sono inizializzate a 0.
 - Per definire variabili permanenti (valide per tutti i run delle RULE) usare le MACRO: VSET(name, value) e VGET(name).
 - Usare sempre un underscore **"_"** come primo carattere nel _nome delle variabili_: si evitano così interferenze con altre variabili del programma. Non usare caratteri 'strani' nei nomi delle variabili: meglio limitarsi a [A..Za..z0..9] e '_'.
 - JavaScript è 'case sensitive', cioè distingue tra Maiuscole e minuscole, quindi attenzione a scrivere le variabili sempre nello stesso modo (consiglio tutte minuscole, oppure la tecnica 'camel' per i nomi compositi: `_variabilePocoUsata`) per distinguerle a colpo d'occhio dalle MACRO (sempre MAIUSCOLE).
-- _Valori predefiniti:_ `true` e `false` per le condizioni; le costanti numeriche sono con il punto, all'inglese (`3.14`), e tutte le stringhe vogliono gli apici (`"oggi "` oppure `'domani '`). Un apice può essere inserito in una stringa se si usa l'altro tipo di apice per tutta la stringa. Esempio: "All'alba " OK , 'Disse: "sono stanco"' OK, ma NON 'All'alba' !.
+- _Valori predefiniti:_ `true`(vero) e `false`(falso) per le condizioni; le costanti numeriche sono con il punto, all'inglese (`3.14`), e tutte le stringhe vogliono gli apici (`"oggi "` oppure `'domani '`). Un apice può essere inserito in una stringa se si usa l'altro tipo di apice per tutta la stringa. Esempio: "All'alba " OK , 'Disse: "sono stanco"' OK, ma NON 'All'alba' !.
 - Usare **//** per i commenti, continuano fino a fine riga
 - Le operazioni js più utili sono quelle aritmetiche (**+, -, *, /**), quelle logiche per le condizioni: (**&&** -and, **||** -or, **!** -negazione) e le operazioni di confronto ( **&gt;**, **==**, **!=**, **&lt;**, **&gt;=**, **&lt;=**); la concatenazione delle stringhe è fatta semplicemente con il **+** ("ore " **+** "10:30").
-- Non confondere '=' (assegnazione - effetto: il contenuto dela variabile è modificata), con '==' (confronto - risultato: true (uguali) o false (diversi)).   _Esempio:_ `var _pippo = 32;` e `if (_pippo == 32)...` ( nota: `if(_pippo = 32)` è un errore comune ma insidioso, difficile da trovare e correggere) <br>
-- Nota:  La condizione opposta (negata) di 'uguale' (a == b) è 'diversi' (a != b). La condizione opposta (negata) di 'maggiore' (a > b) NON è 'minore' (a < b) bensì è 'minore o uguale' (a <= b)! Analogamente l'oppsto di (a < b) è (a >= b).
-- Attenzione al '+'. In `a + b`, se `a` e `b` sono numeri, fa la somma, ma se uno dei due è una stringa non convertibile in numero, automaticamente anche l'altro è convertito in stringa. E la conversione `numero => stringa` può portare a sorprese (cioè a molte cifre decimali) quando non sono numeri interi! Usare sempre ROUND() quando dovete aggiungere dei numeri con la virgola nelle stringhe Esempio:
+- Non confondere '=' (assegnazione - effetto: il contenuto della variabile è modificata), con '==' (confronto - risultato: true (uguali) o false (diversi)).   _Esempio:_ `var _pippo = 32;` e `if (_pippo == 32)...` ( nota: `if(_pippo = 32)` è un errore comune ma insidioso, difficile da trovare e correggere) <br>
+- Nota:  La condizione opposta (negata) di 'uguale' (a == b) è 'diverso' (a != b). La condizione opposta (negata) di 'maggiore' (a > b) NON è 'minore' (a < b) bensì è 'minore o uguale' (a <= b)! Analogamente l'opposto di (a < b) è (a >= b).
+- **Attenzione al '+'**. In `a + b`, se `a` e `b` sono numeri, fa la somma, ma se uno dei due è una stringa non convertibile in numero, automaticamente anche l'altro è convertito in stringa. E la conversione `numero => stringa` può portare a sorprese (cioè a molte cifre decimali) quando non sono numeri interi! Usare sempre ROUND() quando dovete aggiungere dei numeri con la virgola nelle stringhe Esempio:
 ```
- var _tf = GET("TF_frigo","va_temperature");  // read temperature sensor
+ var _tf = GET("TF_frigo","va_temperature");  // read temperature sensor, saves it in _tf
  var _tm = AVG(_tf, 12);                      // get average from last 12 values (_tm is a string, see AVG())
- var _tr = ROUND( _tm/10,  -1);               // round to the nearest ten, is a string 
+ var _tr = ROUND( _tm/10,  -1);               // round to the nearest ten, _tr is a string 
  if(TRIGEVERY(8)) POP( "FRIGO", "Frigo: "+ ROUND(_tf/10, 1) + "°C, media: "+ ROUND(_tm/10, 2) +"°C, round: " + _tr +"°C");
-                                              // note: use ROUND() to convert to string, also for _tm/10 (again number)
+                                              // note: using ROUND() to convert to string, also for _tm/10 (again number)
  DATALOG("frigo.media", _tm/10);              // saves average on file (saved as number).
  ```
- - Come già detto, JavaScript è elastico a proposito delle conversioni dei valori: numeri in formato 'stringa' (cioè "3.14" invece di 3.14 o Math.PI) sono convertiti automaticamente in numeri in caso di operazioni aritmetiche. Ancora, numeri e stringhe sono convertiti in valoro logici quando serve (ad esempio se usati come condizione in un if()). Regole: zero (0) vale `false`, qualsiasi altro numero: `true`. Una stringa vuota ("") o `null`, o `undefined` valgono `false`, qualunque altra stringa vale `true`. Esempi: `if ("caio")` è true.  `var _test = null; if(_test)` è false. (nota. Meglio non abusare di questi automatismi del linguaggio, è preferibile scrivere sempre le condizioni estese, più chiare: `if (_test != null)`...)
- - importante è anche l'uso delle parentesi, "()", sempre a coppie. Parentesi servono dopo ogni MACRO - nota, anche se non ci sino parametri, e.g. `BEEP()` - e dopo un `if()`, per la condizione. Comunque usatele liberamente per raggruppare i risultati intermedi nelle espressioni e.g. `if((_a > 10) && (_b/2 == 0))...`
-- le RULE sono eseguite ad ogni loop, dopo un aggiornamento dei dati Tuya. Molte MACRO devono quindi conservare lo stato tra un run ed il successivo, e sono individuate con (*). 
+ - Come già detto, JavaScript è elastico a proposito delle conversioni dei valori: numeri in formato 'stringa' (cioè "3.14" invece di 3.14 o Math.PI) sono convertiti automaticamente in numeri in caso di operazioni aritmetiche. Ancora, numeri e stringhe sono convertiti in valori logici quando serve (ad esempio se usati come condizione in un if()). Regole: zero (0) vale `false`, qualsiasi altro numero: `true`. Una stringa vuota ("") o `null`, o `undefined` valgono `false`, qualunque altra stringa vale `true`. Esempi: `if ("caio")` è true.  `var _test = null; if(_test)` è false. (nota. Meglio non abusare di questi automatismi del linguaggio, è preferibile scrivere sempre le condizioni estese, più chiare: `if (_test != null)`...)
+ - importante è anche l'uso delle parentesi, "()", sempre a coppie. Parentesi sono obbligatorie dopo ogni MACRO - nota, anche se non ci sino parametri, e.g. `BEEP()` - e dopo un `if()`, per racchiudere la condizione. Comunque usatele liberamente per raggruppare i risultati intermedi nelle espressioni e.g. `if((_a > 10) && (_b/2 == 0))...`
+- le RULE sono eseguite ad ogni loop, dopo l'aggiornamento dei dati Tuya. Molte MACRO devono quindi conservare lo stato tra un run ed il successivo, e sono individuate con (*). 
 - Il costrutto js più utile nelle RULE è l'**if()** (esecuzione condizionale), che assume varie forme:<br>
    **if(** `condizione` **)** `azione;`    // `azione` _è eseguita solo se `condizione` è vera_ <br>
    **if(** `condizione` **)** `azione1`**,** `azione2;` // _due (o più) azioni, separate da_ ',' _virgola._<br>
@@ -426,7 +427,7 @@ Il particolare ambiente in cui sono valutate le RULE comporta qualche limite all
    **if(** `condiz1 || condiz2 || ...` **)** `azione;` //  _OR: 'almeno una',_  `condiz1` _oppure_ `condiz2`, _oppure_ ... _deve essere vera._<br>
    **if (** `condizione` **)** `azione1` **else** `azione2;`  // _esegue `azione1` (se vero) oppure `azione2` (se falso)._ <br>
 nota: contrariamente alle automazioni Tuya, Google, Alexa,  che nelle condizioni permetto o solo AND (tutte) o solo OR (basta una) (e poi cercano di mitigare questo limite aggiungendo l'extra condizione 'ambito' - e.g. Tuya) nelle RULE si possono avere condizioni più complesse (miste) usando con cura le parentesi per indicare l'ordine di calcolo:
-esempio:  if ( (condiz1 || condiz2) && (condiz3 || condiz4) )  - a parole: "deve essere vera una tra (condiz1, condiz2) E anche una tra (condiz3, condiz4)".
+esempio:  if ( (condiz1 || condiz2) && (condiz3 || condiz4) )  - a parole: "deve essere vera almeno una tra (condiz1, condiz2) E anche almeno una tra (condiz3, condiz4)".
 
  - Se una `condizione` è vera a lungo (livello), un `if()` sarà eseguito più volte, ad ogni ciclo. Per evitare questo le macro TRIGGER sono vere per un solo ciclo, il primo, e poi sono false.
 
@@ -437,7 +438,7 @@ esempio:  if ( (condiz1 || condiz2) && (condiz3 || condiz4) )  - a parole: "deve
   
 **ESEMPIO** - Un caso concreto di controllo del riscaldamento <br>
 _Ho il riscaldamento centralizzato, con valvole termostatiche su ogni radiatore: ogni stanza ha il suo profilo di temperatura desiderato (Ttarget). Tutto funziona molto bene, tranne in casi eccezionali (esempio, impianto spento per manutezione)._ <br>
-Vorrei implementare con Tuya una strategia di questo tipo: _se la temperatura ambiente è minore di un 'tot' rispetto a Ttarget, accendere il condizionatore come pompa di calore impostando come temperatura proprio Ttarget._ Cioè:
+Vorrei implementare con Tuya una strategia di questo tipo: _se la temperatura ambiente è minore di un 'tot' rispetto al Ttarget, accendere il condizionatore come pompa di calore impostando come temperatura proprio Ttarget._ Cioè:
 
    <code>`Se  (( Ttarget - Tambiente ) > tot) => clima.warm( Ttarget )` </code>
  
@@ -449,7 +450,7 @@ _Questa strategia NON è realizzabile con le 'automazioni' di Smartlife_, nè co
 Chiedo troppo? Un sistema 'open' dovrebbe permettere queste automazioni. O no? Infatti con IoTwebUI e le RULE _si può fare!_ <br>
 Vediamo come l'ho realizzata. Alcune precondizioni: la mia termovalvola ('Termo letto')  ha le proprietà 'temp_set' e 'temp_current'.
 Per semplicità ho utilizzato come temperatura Target solo i valori 16, 20, 21 °C: in questo modo mi occorrono solo 3 tap-to-run chiamati Tletto16, Tletto20 e Tletto21, per accendere ed impostare il climatizzatore alle temperature volute.
-Ecco le RULE necessarie, dove uso alcune variabili per ridurre la complessità. La macro ISTRIGGERH() è vera una sola volta, quando la condizione passa da falso a vero (vedi oltre), ROUND() arrotonda un numero e lo trasforma in testo, per formare 'TLetto21'... cioè il nome del 'tap-to-run', che così ora dipende da Ttarget. L'azione è anche memorizzata nel 'registro degli Alert'.
+Ecco le RULE necessarie, dove uso alcune variabili per ridurre la complessità. La macro ISTRIGGERH() è vera una sola volta, quando la condizione passa da falso a vero (vedi oltre), ROUND() arrotonda un numero e lo trasforma in testo, per formare 'TLetto16','TLetto20', ... cioè il nome del 'tap-to-run', che così ora dipende da Ttarget. L'azione è anche memorizzata nel 'registro degli Alert'.
 ```
 var _tot = 2.3;  // da tarare il prossimo inverno
 var _Ttarget =  GET("Termo letto", "temp_set") ;       // varia a seconda dell'orario
@@ -473,9 +474,8 @@ Vi consiglio di copiare le seguenti 3 RULE nell'area di edit delle RULE (modo EX
 le MACRO rispondono a varie esigenze:
  1. Fornire accesso alle risorse e funzionalità di IoTwebUI, per poterle usare nelle RULE
  2. L'ambiente (run ripetuti ad intervalli regolari) e i suoi limiti (codice in una sola riga) rendono più ardua la scrittura di funzioni complesse: le MACRO semplificano il compito dell'utente. 
- 3. Alcune operazioni richiedo la memorizzazione di informazioni tra un run ed il successivo, e le MACRO risolvono questo problema.
- 4. Importante è la distinzione tra un **livello** - lo stesso valore (e.g. true) uguale per più run - e un **TRIGGER** - vero per un solo run, quando inizia o finisce un evento -. <br>
-  _Le macro con TRIG nel nome generano TRIGGER, le altre LIVELLI_.<br>
+ 3. Alcune operazioni richiedono la memorizzazione di informazioni tra un run ed il successivo, e le MACRO risolvono questo problema.
+ 4. Importante è la distinzione tra un **livello** - lo stesso valore (e.g. true) uguale per più run - e un **TRIGGER** - vero per un solo run, quando inizia o finisce un evento -: _Le macro con TRIG nel nome generano TRIGGER, le altre generano LIVELLI_.<br>
   
   _nota: questa selezione iniziale di MACRO è naturalmente condizionata dalle mie abitudini ed interessi: in questo settore il contributo di altri utenti è prezioso._
 
@@ -495,7 +495,7 @@ Ovviamente si possono sempre aggiungere nuove MACRO, o come customizzazione (se 
 <dd>Ritorna il valore di 'property' (usare i nomi originali mostrati nei tooltip) del device (nome o ID)<br> <i>Esempio:</i> <code>var _tf = GET("TF_frigo","va_temperature");</code> </dd>
 
 <dt>DATALOG(name, value) (*)</dt>
-<dd>Aggiunge un nuovo 'value' al file di log dati, con il 'name' indicato. Utile per salvare risultati di elaborazioni (e.g. medie).<br>
+<dd>Aggiunge un nuovo 'value' al file di log dati, con il 'name' indicato. Utile per salvare risultati di elaborazioni (e.g. medie). Questa MACRO 'prenota' il salvataggio di un valore, ma il salvataggio avviene con i tempi e i modi impostati in config per il file log dati.<br>
 <i>nota: il salvataggio dati durante un test inizia subito, ma, nel formato CSV, la prima riga con i nomi non è aggiornata. Eventualmente salvare il file di log per avere un nuovo file aggiornato. Questo solo in fase di test: con le RULE  in </i>uso <i> dall'avvio non c'è problema.</i><br> 
  <i>Esempio:</i> <code>DATALOG("Temperatura Frigo", GET("TF_frigo","va_temperature")/10);</code>
 </dd>
