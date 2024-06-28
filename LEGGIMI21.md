@@ -398,9 +398,9 @@ E' un array di array contenenti le singole misure (oggetti).
 Il particolare ambiente in cui sono valutate le RULE comporta qualche limite alla sintassi JavaScript (js) standard:
 
 - **importante**: il codice è eseguito una riga alla volta, non è possibile scrivere blocchi js che occuppino più righe!  Per contenere la lunghezza delle righe, usare delle variabili intermedie (vedi esempi).
-- Definire le variabili volatili (valide per un solo run delle RULE) sempre con la sintassi: **var** `_tizio` **=**... , poi possno essere usate liberamente.
+- Definire le variabili volatili (valide per un solo run delle RULE) sempre con la sintassi: **var** `_tizio` **=**... , poi possono essere usate liberamente.
 - E' anche possibile definire più variabili contemporaneamente, Esempio `var _var1, _var2 = 0;` sia _var1 che _var2 sono inizializzate a 0.
-- Per definire variabili permanenti (valide per tutti i run delle RULE) usare le MACRO: VSET(name, value) e VGET(name).
+- Per definire variabili permanenti (valide per tutti i run dei RULE) usare le MACRO: VSET(name, value) e VGET(name).
 - Usare sempre un underscore **"_"** come primo carattere nel _nome delle variabili_: si evitano così interferenze con altre variabili del programma. Non usare caratteri 'strani' nei nomi delle variabili: meglio limitarsi a [A..Za..z0..9] e '_'.
 - JavaScript è 'case sensitive', cioè distingue tra Maiuscole e minuscole, quindi attenzione a scrivere le variabili sempre nello stesso modo (consiglio tutte minuscole, oppure la tecnica 'camel' per i nomi compositi: `_variabilePocoUsata`) per distinguerle a colpo d'occhio dalle MACRO (sempre MAIUSCOLE).
 - _Valori predefiniti:_ `true`(vero) e `false`(falso) per le condizioni; le costanti numeriche sono con il punto, all'inglese (`3.14`), e tutte le stringhe vogliono gli apici (`"oggi "` oppure `'domani '`). Un apice può essere inserito in una stringa se si usa l'altro tipo di apice per tutta la stringa. Esempio: "All'alba " OK , 'Disse: "sono stanco"' OK, ma NON 'All'alba' !.
@@ -466,7 +466,7 @@ Vi consiglio di copiare le seguenti 3 RULE nell'area di edit delle RULE (modo EX
 2) Attivate il 'comando vocale', e provate _"Ehi Tuya, esegui Pippo"_...
 ```
    if (TRIGBYNAME('spegni la luce')) VOICE ("Fatto: 'spegni la luce'");
-   if (TRIGBYNAME("Pippo")) POP ("Trovato Pippo");
+   if (TRIGBYNAME("Pippo")) POP ("Test", "Trovato Pippo");
    if (TRIGBYNAME("chiamata per Pippo")) TRIGRULE("pippo"), VOICE("chiamo Pippo");
 ```
 
@@ -475,7 +475,7 @@ le MACRO rispondono a varie esigenze:
  1. Fornire accesso alle risorse e funzionalità di IoTwebUI, per poterle usare nelle RULE
  2. L'ambiente (run ripetuti ad intervalli regolari) e i suoi limiti (codice in una sola riga) rendono più ardua la scrittura di funzioni complesse: le MACRO semplificano il compito dell'utente. 
  3. Alcune operazioni richiedono la memorizzazione di informazioni tra un run ed il successivo, e le MACRO risolvono questo problema.
- 4. Importante è la distinzione tra un **livello** - lo stesso valore (e.g. true) uguale per più run - e un **TRIGGER** - vero per un solo run, quando inizia o finisce un evento -: _Le macro con TRIG nel nome generano TRIGGER, le altre generano LIVELLI_.<br>
+ 4. Importante è la distinzione tra un **livello** - lo stesso valore (e.g. true) uguale per più run, generato, per esempio, da un confronto - e un **TRIGGER** - vero per un solo run, quando inizia o finisce un evento -: _Le macro con TRIG nel nome generano TRIGGER, le altre generano LIVELLI_.<br>
   
   _nota: questa selezione iniziale di MACRO è naturalmente condizionata dalle mie abitudini ed interessi: in questo settore il contributo di altri utenti è prezioso._
 
@@ -561,7 +561,6 @@ utc_offset_seconds: 0
 <dd>Esegue un _tap-to-Run_, presente nell'elenco letto dal Cloud.<br>
  <i>Esempio:</i> <code> if(ISTRIGGERH(_alarm)) SCENA('sirena suona'); </code></dd>
 
-
 <dt>TRIGRULE(name)</dt>
 <dd>Esegue un RULE individuato da un nome. <br>
  <i>Esempio:</i> <code>  if (TRIGBYNAME("pippo")) VOICE (" Trovato pippo"); <br>  // RULE 'pippo'
@@ -580,8 +579,8 @@ Torna true quando deve essere eseguita. <br>
 <dt>ISTRIGGERH(condition) (*) </dt>
 <dd> Ritorna 'true' solo al passaggio della "condizione" da 'false a true', evita che la "condizione" 'true' agisca ad ogni run. Ovvero trasforma un livello true in TRIGGER. <br>
 <i>Esempio:</i> <code>if(ISTRIGGERH(GET("TF_frigo","va_temperature") > 100)) POP("Frigo", "TEMPERATURA oltre 10°C" );</code> <br>
-Nota: l'implementazione Tuya di più <i>condizioni (livelli) in AND (tutte)</i> in una automazione è come se fosse scritta così: <code>if( ISTRIGGERH(condiz1 && condiz2 && ...)) ... </code> cioè un'automazione scatta nel momento in cui TUTTE le condizioni diventano true. Analogamente con più condizioni in OR.<BR> 
-Nota: più <i>condizioni (livelli, AND/OR) + ambito (livello) </i> delle automazioni Tuya, può essere implementato nelle RULE così: <code>if( ISTRIGGERH(condiz1 ?? condiz2 ?? ...) && (ambito) )...</code>.  Ambito NON interviene nel TRIGGER ma deve essere vero!
+Nota: l'implementazione Tuya di più <i>condizioni (livelli) in AND (tutte)</i> in una automazione è come se fosse scritta così:<brt> <code>if( ISTRIGGERH(condiz1 && condiz2 && ...)) ... </code> <br> cioè un'automazione Tuya scatta nel momento in cui TUTTE le condizioni diventano true. Analogamente con più condizioni in OR.<BR> 
+Nota: più <i>condizioni (livelli, AND/OR) + ambito (livello) </i> delle automazioni Tuya, può essere implementato nelle RULE così:<br> <code>if( ISTRIGGERH(condiz1 ?? condiz2 ?? ...) && (ambito) )...</code>. <br> <i>Ambito</i> NON interviene nel TRIGGER ma DEVE essere vero!
 </dd>
  
 <dt>ISTRIGGERL(condition) (*)</dt>
@@ -626,7 +625,7 @@ time = costante nei formati "hh:mm:ss" oppure "mm:ss" oppure "ss". Lmite inferio
 </dd>
       
 <dt>ADDCOUNT(event, restart) (*) </dt>
-<dd> Ritorna il totale di volte che event è true, quando restart è true.
+<dd>  Quando restart è true ritorna il totale di volte che event è stato true.
 Può  essere usato in due modi: se 'event' è un TRIGGER conta il numero di volte. Altrimenti valuta
 la durata dello stato vero (come il duty cycle).
  <i>Esempio:</i> 
@@ -635,7 +634,7 @@ la durata dello stato vero (come il duty cycle).
 
 <dt>HYSTERESIS (value, test, delta)  (*)</dt>
  <dd> Confronta 'value' con 'test', usando come intervallo di isteresi 'delta'. L'output diventa 'true' se 'value &gt; test + delta/2',  oppure 'false' se 'value &lt; test - delta/2'.<br>
- <i>Esempio:</i> <code>if(ISTRIGGERH(HYSTERESIS(GET("T_letto","va_temperature"), 250, 10))) SCENA("Condizionatore ON"); </code> </dd>
+ <i>Esempio:</i> <code>if(ISTRIGGERH(HYSTERESIS(GET("T_letto","va_temperature"), 320, 10))) SCENA("Condizionatore ON"); </code> </dd>
  
 <dt>AVG(value, n) (*) </dt>
 <dd> Media mobile degli ultimi 'n' valori: torna una stringa con 2 decimali.<br>
@@ -656,7 +655,7 @@ la durata dello stato vero (come il duty cycle).
   console.log ( _integ , _deriv); </pre>
 </dd>
 
-<dt>INTEGRAL(value, limite) (*) </dt>
+<dt>INTEGRAL(value, limite) o INTEGRAL(value)(*) </dt>
 <dd>Ritorna l'integrale (meglio: la somma integrale) di value. Limite è opzionale, e riporta a 0 l'integrale quando è raggiunto.<br>
 <i>nota: E' possibile usare <code>INTEGRAL</code> per creare timer più precisi di <code>TRIGEVERY()</code> che si basa sul conteggio dei cicli. <br> L'integrale di una costante è una retta crescente: usando 1 come costante, e un <code>limite</code> in secondi, si ha un'andamento a denti di sega. L'integrale vale 0 all'avvio e poi ogni <code>limite</code> secondi (errore: 0..+TuyaInterval) con ottima precisione. Questo esempio è un timer periodico di durata 1h:</i> <pre>
            var _integ = INTEGRAL(1, 3600); 
@@ -668,7 +667,7 @@ la durata dello stato vero (come il duty cycle).
   'wath': una delle costanti così definite: <i>hrs</i> = 11, <i>min</i> = 14, <i>sec</i> = 17 (senza apici, non sono stringhe).<br>
   <i>Esempio:</i> <code>var _message = "Alle ore " + TIME(hrs); </code> </dd>
  
-<dt>  DAYMAP(val1, time1, val2, time2, ... more) </dt>
+<dt>  DAYMAP(val1, time1, val2, time2, ... <i>more</i>) </dt>
 <dd> Programmazione giornaliera, ritorna un valore che varia nel tempo: fino a 'time1' l'output è 'val1', da  'time1' a  'time2'  l'output è 'val2'... avanti così fino  all'ultimo 'time' dopo di che  l'output è di nuovo 'val1'.<br>
 Naturalmente i valori 'val' e 'time' devono essere presenti a coppie, tanti quanti ne servono. Tutti i 'time' in formato "hh:mm:ss".<br>
 Usi: profili di temperatura giornalieri, eventi ad orario o abilitazione per intervalli di tempo, etc., a seconda se 'val' sono temperature, oppure 'buongiorno'/'buonasera', oppure true/false, etc..<br>
@@ -685,7 +684,8 @@ Usi: profili di temperatura giornalieri, eventi ad orario o abilitazione per int
   </dd>
  
 </dl>
-(*): identifica le MACRO che fanno uso di memoria per salvare lo stato.
+
+(*): identifica le MACRO che fanno uso di memoria per salvare lo stato: NON usarle nella parte _azione_ di un if())
       
 <hr>
       
