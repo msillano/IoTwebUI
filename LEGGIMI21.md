@@ -578,8 +578,8 @@ utc_offset_seconds: 0
 #### MACRO funzionali
 <dl>
 
-![TRIGGERS](https://github.com/msillano/IoTwebUI/blob/main/pics/macro02.png?raw=true)
-<i> input ed output di: ISTRIGGERH(evento), ISTRIGGERL(evento), CONFIRMH(evento, T), CONFIRML(evento, T)</i>
+![TRIGGERS](https://github.com/msillano/IoTwebUI/blob/main/pics/macro02.png?raw=true)<br>
+<i> input ed output di: <code>ISTRIGGERH(evento), ISTRIGGERL(evento), CONFIRMH(evento, T), CONFIRML(evento, T)</code></i>
 
 <dt>ISTRIGGERH(condition) (*) </dt>
 <dd> Ritorna 'true' solo al passaggio della "condizione" da 'false a true', evita che la "condizione" 'true' agisca ad ogni run. Ovvero trasforma un livello true in TRIGGER (vedi figura). <br>
