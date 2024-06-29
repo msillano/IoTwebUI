@@ -615,12 +615,13 @@ time = costante nei formati "hh:mm:ss" oppure "mm:ss" oppure "ss". Lmite inferio
 <i>Esempio:</i> <code>if(TRIGEVERY(8)) POP( "FRIGO", "Temperatura interna: "+ ROUND(_tf/10, 1) + "°C");</code> </dd>
    
 <dt>TRIGBYNAME(name) </dt>
-<dd> Associa un 'nome' (max 3 parole) ad un RULE, permettendo di attivarlo con un comando utente (bottone o comando vocale) o con TRIGRULE(name) (analogo ai 'tap-to-run' Tuya).<br>
+<dd> Associa un 'nome' (max 3 parole) ad un RULE, permettendo di attivarlo con un comando utente (bottone o comando vocale) o in caso di 'Alert', oppure con TRIGRULE(name) da un'altra RULE (analogo ai 'tap-to-run' Tuya).<br>
 Torna true quando deve essere eseguita. <br>
 <i>Esempio:</i> <code>if (TRIGBYNAME('spegni la luce')) VOICE (" Hai attivato: 'spegni la luce'") </code> </dd>
 
 <dt>VGET(name) </dt>
-<dd>GET di una variabile permanente - conservata per tutti i run delle RULE.<br> Se la variabile <code>name</code> NON è stata inizializzata con un VSET, ritorna <code>null</code>. <br>
+<dd>GET di una variabile permanente - conservata per tutti i run delle RULE.<br> 
+ Se la variabile <code>name</code> NON è stata inizializzata con un VSET, ritorna <code>null</code>. <br>
 <i>Esempio:</i> <code>if( VGET('inizio') == null ) VSET('inizio', TIME(hrs)); </code>  </dd>
 
 <dt>VSET(name, value)</dt>
@@ -635,8 +636,8 @@ Torna true quando deve essere eseguita. <br>
 </dd>
       
 <dt>ADDCOUNT(event, restart) (*) </dt>
-<dd>  Quando restart è true ritorna il totale di volte che event è stato true.
-Può  essere usato in due modi: se 'event' è un TRIGGER conta il numero di volte. Altrimenti valuta
+<dd>  Quando restart è true ritorna il totale di volte che event è stato true, altrimenti torna <code>null</code>,
+Può  essere usato in due modi: se 'event' è un TRIGGER conta il numero di volte. Altrimenti, se è un 'livello' valuta
 la durata dello stato vero (come il duty cycle).
  <i>Esempio:</i> 
  <code>var _tot = ADDCOUNT(ISCONNECTED("HUB_zigbee"), TRIGEVERY(100));</code> <br>
