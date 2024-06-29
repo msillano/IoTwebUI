@@ -437,7 +437,7 @@ esempio:  if ( (condiz1 || condiz2) && (condiz3 || condiz4) )  - a parole: "deve
 
  - nota sui messaggi di errore: Non sempre i messaggi di errore identificano la VERA causa del problema. Esempio, una variabile mal scritta è trovata subito come 'non definita', ma una parentesi non chiusa, può portare a messaggi poco chiari righe dopo, quando il compilatore trova un problema! Quindi attenzione! 
 
-- **importante**: per come sono implementate, le MACRO che usano memoria (*) devono essere eseguite ad ogni run: quindi NON possono essere presenti nella parte `azione` di un **if()**. Per ragioni analoghe non sono ammessi **if  nidificati** (un **if()** nella zona azione di un altro **if()**: non potrebbe usare le MACRO (*)). Sono vincoli che non pongono, però, serie limitazioni.
+- **importante**: per come sono implementate, le MACRO che usano memoria (\*) devono essere eseguite ad ogni run: quindi NON possono essere presenti nella parte `azione` di un **if()**. Per ragioni analoghe non sono ammessi **if  nidificati** (un **if()** nella zona azione di un altro **if()**: non potrebbe usare le MACRO (*)). Sono vincoli che non pongono, però, serie limitazioni.
   <hr>
   
 **ESEMPIO** - Un caso concreto di controllo del riscaldamento <br>
@@ -461,12 +461,12 @@ var _Ttarget =  GET("Termo letto", "temp_set") ;       // varia a seconda dell'o
 var _nowClima = ISTRIGGERH( ( _Ttarget -  GET("Termo letto", "temp_current") ) > _tot);
 if (_nowClima) SCENA("TLetto" + ROUND( _Ttarget, 0) ), ALERTLOG("RULE Tletto", "acceso clima") ;
 ```
-nota: i nomi dei tap-to-run come 'TLetto16' sono impossibili da usare con il riconoscimento vocale, ma a me servono così per poterli gestire dinamicamente. Se utile, basta creare dei 'tap-to-run' con nomi semplici come alias, tipo 'riscaldamento camera letto', che si limitano a utilizzare quelli con i nomi irriconoscibili.
+nota: i nomi dei tap-to-run come 'TLetto16' sono impossibili da usare con il riconoscimento vocale, ma servono così per poterli gestire dinamicamente. Se utile, basta creare dei 'tap-to-run' con nomi semplici come alias, tipo 'riscaldamento camera letto', che si limitano a utilizzare quelli con i nomi irriconoscibili.
 <br>
 
-#### RULE: Primi passi
+#### RULE - Primi passi
 Volete fare delle prove ma non sapete da dove cominciare?
-Vi consiglio di copiare le seguenti 3 RULE nell'area di edit delle RULE (modo EXPERT), e poi premere TEST.
+Consiglio di copiare le seguenti 3 RULE nell'area di edit delle RULE (modo EXPERT), e poi premere TEST.
 1) Nella pagina tap-to-run, tab 'user RULE' trovate tre nuovi bottoni: 'spegni la luce'. 'pippo' e 'chiamata per pippo': potete verificare il funzionamento delle tre RULE.
 2) Attivate il 'comando vocale', e provate _"Ehi Tuya, esegui Pippo"_...
 ```
@@ -479,7 +479,7 @@ Vi consiglio di copiare le seguenti 3 RULE nell'area di edit delle RULE (modo EX
 le MACRO rispondono a varie esigenze:
  1. Fornire accesso alle risorse e funzionalità di IoTwebUI, per poterle usare nelle RULE
  2. L'ambiente (run ripetuti ad intervalli regolari) e i suoi limiti (codice in una sola riga) rendono più ardua la scrittura di funzioni complesse: le MACRO semplificano il compito dell'utente. 
- 3. Alcune operazioni richiedono la memorizzazione di informazioni tra un run ed il successivo, e le MACRO risolvono questo problema.
+ 3. Alcune operazioni richiedono la memorizzazione di informazioni tra un run ed il successivo, e le MACRO (*) risolvono questo problema.
  4. Importante è la distinzione tra un **livello** - lo stesso valore (e.g. true) uguale per più run, generato, per esempio, da un confronto - e un **TRIGGER** - vero per un solo run, quando inizia o finisce un evento -: _Le macro con TRIG nel nome generano TRIGGER, le altre generano LIVELLI_.<br>
   
   _nota: questa selezione iniziale di MACRO è naturalmente condizionata dalle mie abitudini ed interessi: in questo settore il contributo di altri utenti è prezioso._
@@ -501,7 +501,7 @@ Ovviamente si possono sempre aggiungere nuove MACRO, o come customizzazione (se 
 
 <dt>DATALOG(name, value) (*)</dt>
 <dd>Aggiunge un nuovo 'value' al file di log dati, con il 'name' indicato. Utile per salvare risultati di elaborazioni (e.g. medie). Questa MACRO 'prenota' il salvataggio di un valore, ma il salvataggio avviene con i tempi e i modi impostati in config per il file log dati.<br>
-<i>nota: il salvataggio dati durante un test inizia subito, ma, nel formato CSV, la prima riga con i nomi non è aggiornata. Eventualmente salvare il file di log per avere un nuovo file aggiornato. Questo solo in fase di test: con le RULE  in </i>uso <i> dall'avvio non c'è problema.</i><br> 
+<i>nota: il salvataggio dati durante un test inizia subito, ma, nel formato CSV, la prima riga con i nomi è già stata creata e non è aggiornata. Eventualmente salvare il file di log per avere un nuovo file aggiornato. Questo solo in fase di test: con le RULE  in </i>uso <i> dall'avvio non c'è problema.</i><br> 
  <i>Esempio:</i> <code>DATALOG("Temperatura Frigo", GET("TF_frigo","va_temperature")/10);</code>
 </dd>
 
@@ -568,6 +568,7 @@ utc_offset_seconds: 0
 
 <dt>TRIGRULE(name)</dt>
 <dd>Esegue un RULE individuato da un nome. <br>
+ nota: Se la definizione TRIGBYNAME(name) precede l'uso di TRIGRULE(name), l'esecuzione non è immediata, ma avviene subito dopo il termine del run attuale delle RULE, in un run EXTRA. <br>                                              
  <i>Esempio:</i> <code>  if (TRIGBYNAME("pippo")) VOICE (" Trovato pippo"); <br>  // RULE 'pippo'
      if (TRIGBYNAME("chiama pippo")) TRIGRULE("pippo"), VOICE("chiamo pippo")    // RULE 'chiama pippo'
  </code> </dd>
@@ -577,7 +578,7 @@ utc_offset_seconds: 0
 #### MACRO funzionali
 <dl>
 <dt>TRIGBYNAME(name) </dt>
-<dd> Associa un 'nome' (max 3 parole) ad un RULE, permettendo di attivarlo con un comando utente (bottone o comando vocale) o con TRIGRULE() (analogo ai 'tap-to-run' Tuya).<br>
+<dd> Associa un 'nome' (max 3 parole) ad un RULE, permettendo di attivarlo con un comando utente (bottone o comando vocale) o con TRIGRULE(name) (analogo ai 'tap-to-run' Tuya).<br>
 Torna true quando deve essere eseguita. <br>
 <i>Esempio:</i> <code>if (TRIGBYNAME('spegni la luce')) VOICE (" Hai attivato: 'spegni la luce'") </code> </dd>
 
@@ -585,7 +586,7 @@ Torna true quando deve essere eseguita. <br>
 <dd> Ritorna 'true' solo al passaggio della "condizione" da 'false a true', evita che la "condizione" 'true' agisca ad ogni run. Ovvero trasforma un livello true in TRIGGER. <br>
 <i>Esempio:</i> <code>if(ISTRIGGERH(GET("TF_frigo","va_temperature") > 100)) POP("Frigo", "TEMPERATURA oltre 10°C" );</code> <br>
 Nota: l'implementazione Tuya di più <i>condizioni (livelli) in AND (tutte)</i> in una automazione è come se fosse scritta così:<brt> <code>if( ISTRIGGERH(condiz1 && condiz2 && ...)) ... </code> <br> cioè un'automazione Tuya scatta nel momento in cui TUTTE le condizioni diventano true. Analogamente con più condizioni in OR.<BR> 
-Nota: più <i>condizioni (livelli, AND/OR) + ambito (livello) </i> delle automazioni Tuya, può essere implementato nelle RULE così:<br> <code>if( ISTRIGGERH(condiz1 ?? condiz2 ?? ...) && (ambito) )...</code>. <br> <i>Ambito</i> NON interviene nel TRIGGER ma DEVE essere vero!
+Nota: più <i>condizioni (livelli, AND/OR) + ambito (livello) </i> delle automazioni Tuya, può essere implementato nelle RULE così:<br> <code>if( ISTRIGGERH(condiz1 ?? condiz2 ?? ...) && (ambito) )...</code>. <br> Si vede come <i>Ambito</i> NON intervenga nel TRIGGER ma che DEVE essere vero!
 </dd>
  
 <dt>ISTRIGGERL(condition) (*)</dt>
