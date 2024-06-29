@@ -42,7 +42,7 @@ _Cosa puoi fare?_<br>
  - puoi attivare una funzione di controllo su qualsiasi proprietà dei dispositivi e scegliere i test "maggiore", "uguale" o "minore" per monitorare ogni aspetto della tua domotica.
  - Stessa logica delle condizioni Tuya, per un linguaggio comune ed affidabile.
  - Scegli tra diverse azioni conseguenziali: silente, beep, frase registrata, pop-up, messaggio vocale, lancio di URL o  RULE|tap-to-run Tuya.
- - Real Time, con un ritardo medio pari al 50% del periodo di campionamento Tuya, per un equilibrio perfetto tra rapidità e precisione: sempre visualizzati con pop-up o finestra.
+ - Real Time, con un ritardo medio pari al 50% del periodo di campionamento Tuya, per un equilibrio perfetto tra rapidità e precisione: gli alert sempre visualizzati con pop-up o finestra.
  - Definizione degli Alert al runtime: controllo totale in tempo reale
 
 #### RULE: Domanda di automazioni più potenti? IoTwebUI 2.1 ha la risposta!
@@ -51,7 +51,8 @@ _Cosa puoi fare?_<br>
  - Confrontare i valori di due proprietà diverse, per automazioni ancora più libere.
  - Eseguire azioni complesse, come realizzare controlli PID, schedulare annualmente, o inviare comandi ad altre applicazioni via REST.
  - Attivate in base a condizioni (come le 'Automazioni' Tuya, ma più flessibile) oppure su comando (come i 'tap-to-run' Tuya).
- - Più potenza espressiva vuol dire per l'utente concentrarsi su 'che cosa si vuol fare' e non 'su come farlo'!
+ - Per i casi più semplici (una sola condizione) si possono usare gli 'alert' (possono attivare 'tap-to-run').
+ - Il linguaggio delle RULE soddisfa le condizioni Bohm/Jacopini e quindi è 'Turing equivalente'. Più potenza espressiva vuol dire per l'utente concentrarsi su 'che cosa si vuol fare' e non 'su come farlo'!
  - Come funziona?
     1. Crea le RULE al runtime con un'interfaccia user-friendly, anche se non sei un programmatore esperto.
     2. Utilizza MACRO predefinite per i compiti comuni e ripetitivi, risparmiando tempo e fatica.
@@ -87,6 +88,7 @@ La modalità EXPERT offre un controllo totale sulla personalizzazione di IoTwebU
 
 - Un secondo problema è l'impossibilità di creare file direttamente da una pagina HTML, sempre per motivi di sicurezza. Per l'export dei dati sono ricorso ad una libreria di logging su file [debugout.js](https://github.com/inorganik/debugout.js). Per questo motivo il controllo sui file generati non è completo e sono necessari piccoli  interventi manuali sui file esportati.
 - I file di datalog sono salvati nella dir `download`, con il nome  `tuyalogDYYYYMMGGThhmmss.csv|json.txt`.
+  
 - Per lo stesso motivo non è possibile aggiornare dall'APP i file di configurazione. Ho scelto una soluzione di compromesso, che prevede l'intervento dell'utente con un semplice copia-incolla.
 - Sempre per problemi di sicurezza, può venire richiesta ogni volta l'autorizzazione all'uso del microfono: dipende dal browser e dalla configurazione; ma `run-me.bat` evita l'inconveniente.
 - Il funzionamento continua regolarmente anche con la finestra del browser iconizzata.
@@ -109,7 +111,7 @@ Alcune piccole icone forniscono ulteriori informazioni all'utente.Esempi (vedi f
    - `temperatura studio.va_temperature` è salvato sul datafile, insieme agli altri dati in `logList`.
    -  Per il device `temperatura soggiorno` è scattato l'Alert (icona speciale)
    - `temperatura soggiorno.va _humidity`  è la causa dell'Alert, ed è anche indicata la condizione (>40) che lo ha causato.
-   - Il tooltip `termo studio` è customizzato,  per presentare le temperature con i corretti decimali. (nota: solo nel tooltip: Alert e RULE usano sempre il valore fornito da Tuya Cloud, i.e. 222 e 190).
+   - Il tooltip `termo studio` è customizzato,  per presentare le temperature con i corretti decimali e unità. (nota: solo nel tooltip: Alert e RULE usano sempre il valore fornito da Tuya Cloud, i.e. 222 e 190).
    - In modo EXPERT sono aggiunti nei tooltip i seguenti valori:
        - `isa`:  nome del 'tipo' Tuya del device (in codice è `device.category`). In totale circa 600 tipi.
        - `id`:  `device.id`, richiesto da alcuni HUB (e.g. TuyaDAEMON, Homebridge, HA, etc..).
@@ -118,7 +120,8 @@ Alcune piccole icone forniscono ulteriori informazioni all'utente.Esempi (vedi f
 ### tap-to_run Tuya
 
  I 'tap-to-run sono presentati per 'home' (max 100) nella apposita pagina, e poi in ordine alfabetico, come una serie di bottoni.
- I nomi dei 'tap-to-run' possono avere due vincoli:
+ I nomi dei 'tap-to-run' possono avere i seguenti vincoli:
+  - Limite di 3 parole se usati con i comandi vocali
   - Utilizare prefissi per raggruppare in IoTwebUI i comandi correlati.
   - Essere facili da ricordare e da riconosere (se si usano i comandi vocali).<br>
   
@@ -146,7 +149,7 @@ L'utente può scegliere in configurazione tra due formati: `CSV` (indicato, per 
  </TR>
 </TABLE>
 
-In modalità EXPERT è disponibile nel menu un comando per avere nella console l'intera struttura dati ottenuta da Tuya Cloud ('Dump data'): può essere esplorata a ogni livello nel pad della console oppure può essere copiata con copy&paste in formato JSON.
+extra: In modalità EXPERT è disponibile nel menu un comando per avere nella console l'intera struttura dati ottenuta da Tuya Cloud ('Dump data'): può essere esplorata a ogni livello nel pad della console oppure può essere copiata con copy&paste in formato JSON.
 
 ### Alert ed avvisi
 In modo EXPERT cliccando su un device si apre un dialogo che nella parte inferiore permette la definizione degli 'Alert':
@@ -173,12 +176,12 @@ In modo EXPERT cliccando su un device si apre un dialogo che nella parte inferio
  _note:_
  
  - _Se non si sceglie nessuna azione e si lascia vuoto 'message', l'azione di default è il cambio dell'icona del device e l'aggiornamento del tooltip, sempre eseguiti._
- - _Gli 'alert' non hanno, per semplicità, un filtro a tempo: se definiti sono attivi 24/7. Se occorre qualche condizionamento, è possibile creare RULE ad hoc._ 
- - _Notare che 'connected' non è incluso nelle proprietà, e quindi non si possono definire 'Alert'. Ma è disponibile come MACRO nelle RULE._
+ - _Gli 'alert' non hanno, per semplicità, un filtro a tempo: se definiti sono attivi 24/7. Se occorre qualche condizionamento, è possibile creare RULE ad hoc ed attivarle dall'alert (nota: le RULE possono attivare le stesse azioni attivate dagli 'alert')._ 
+ - _Notare che 'connected' non è mai incluso nelle proprietà Tuya, e quindi non si possono definire 'Alert'. Ma è disponibile come MACRO nelle RULE._
  - _Avendo un solo messaggio, le regole di precedenza sono: SOUND() e URL (auto) sono esaminati per primi, poi Tap-to-run e RULE (auto), e solo per ultimo POP e VOICE (compatibili: lo stesso messagio può essere usato per entranbi); Beep è sempre utilizzabile._
  - _Quindi, per avere sia 'pop' che 'tap-to-run', occerre creare due Alert con le stesse condizioni: in uno 'message' sarà il testo per il 'pop-up', nell'altro il nome del 'tap-to-run'._
  - _La visualizzazione dei pop-up può dipendere dalla configurazione del browser: usando 'run_me.bat' si ha un aggiornamento automatico della configurazione per la nuova istanza del browser. Azioni utente (e.g. bottoni) possono abilitare momentaneamente i pop-up._ <br>
- _Comunque, per non perdere informazioni, se i pop-up sono disabilitati, il messaggio è presentato lo stesso in una finestra dell'APP: la differenza è che i pop-up possono essere molti, mentre la finestra è unica e viene riusata con un contatore._
+ _Comunque, per non perdere informazioni, se i pop-up sono disabilitati per qualche motivo, il messaggio è presentato lo stesso in una finestra dell'APP: la differenza è che i pop-up possono essere molti, mentre la finestra è unica e viene riusata con un contatore._
 - _Tutti gli Alert sono memorizzati e visibili nel 'registro Alert', dal menu principale._
 
 **Comandi:**
@@ -218,7 +221,7 @@ Si possono gestire due insiemi di RULE: quelle in <i>uso</i>, inizialmente lette
 ### VoiceRecognition: maggiore libertà
 
 - La disponibilità di questa funzione dipende dal browser usato.
-- Non è facile raggiungere l'efficienza che si ha con HW specializzato (smart speakers: Google, Alexa), perché il risultato dipende da vari fattori, tra cui il microfono usato, le relative regolazioni, la riduzione dei rumori di fondo. Nelle prove sono passato da oltre il 90% di riconoscimenti ad un pessimo 20%! 
+- Non è facile raggiungere l'efficienza che si ha con HW specializzato (smart speakers: Google, Alexa), perché il risultato dipende da vari fattori, tra cui il microfono usato, le relative regolazioni, la riduzione dei rumori di fondo, etc... Nelle prove sono passato da oltre il 90% di riconoscimenti ad un pessimo 20%! 
 - Molto importante è altresì la scelta delle parole chiave e dei nomi per 'tap-to-run' e 'RULE': per esempio 'nome tre parole' è di difficile riconoscimento, mentre 'accendi la luce' è facilmente riconosciuto.<br> Ritengo che questo dipenda dai modelli linguistici usati: sono più riconoscibili frasi italiane corrette, con un significato comune, rispetto a parole isolate. Per esempio 'Tuya' è spesso confuso con 'Giulia'.
 - La presenza di articoli e/o preposizioni facilita il riconoscimento.
 - Il comando vocale è opzionale, e può essere disabilitato nella configurazione.
@@ -238,7 +241,7 @@ Si possono gestire due insiemi di RULE: quelle in <i>uso</i>, inizialmente lette
     - _'Hey Tuya, basta voce'_ => stop del modo riconoscimento senza soste.
    
 
- (*) nota: _la lista di preposizioni ed articoli accettati in terza posizione è molto lunga_: `'il', 'lo', 'la', 'le', 'a', 'ad', 'ai', 'al', 'all', 'allo', 'alla', 'alle', 'di', 'del', 'della', 'dei','un', 'una', 'con', 'colla'`: _scegliete quelle che facilitano il riconoscimento_. 
+ (*) nota: _la lista di preposizioni ed articoli accettati in terza posizione è molto lunga_: `'il','lo','la', 'le', 'a', 'ad', 'ai', 'al', 'all', 'allo', 'alla', 'alle', 'di', 'del', 'della', 'dei','un', 'una', 'con', 'colla'`: _scegliete quelle che facilitano il riconoscimento_. 
  
 - _nota: L'implementazione tollera anche qualche imprecisione nel riconoscimento (e.g. 'Giulia' invece di 'Tuya', etc..): questo può essere facilmente customizzato. Vedi file speech21.js._
  
@@ -246,7 +249,7 @@ Si possono gestire due insiemi di RULE: quelle in <i>uso</i>, inizialmente lette
  
 - _nota: la navigazione tra pagine è analoga al menu: dalla 'home' si può  andare alle pagine 'tap-to-run' o 'edit RULE' (in modo EXPERT), ma da queste si può solo tornare alla 'home'._
      
-_nota: il consenso all'uso del microfono dipende dal browser e dalla configurazione: usando 'run_me.bat' non dovrebbero esserci richieste._
+_nota: la richiesta di consenso all'uso del microfono dipende dal browser e dalla configurazione: usando 'run_me.bat' non dovrebbero esserci richieste._
 
 <HR>
 
@@ -292,9 +295,9 @@ _NON rendetela accessibile dall'esterno o da terzi, altrimenti tutti i vostri da
 ### Installazione
 
 1) Scaricare e dezippare il file `IoTwebUI.x.x.zip`  in una dir (con le autorizzazioni richieste dal S.O.).
-2) Eseguire le operazioni di configurazione
+2) Eseguire le operazioni di configurazione (vedi oltre).
 3) Il file principale è `IoTwebUI.html`.  NON è necessario un server WEB, in quanto il codice è tutto in javaScript, eseguito dal browser. Per lanciarlo vedi file `run_me.bat` (per Windows - Chrome). Per altri S.O. creare uno script analogo. (Ignorare il messaggio Chrome: "stai utilizzando una segnalazione della riga di comando non supportata: - disable-web-security...": non supportata ma funzionante).<br>
-nota: L'addon "Cross Domain - CORS" sembra risolvere il problema senza file BAT, vedi [ISSUE4](https://github.com/msillano/IoTwebUI/issues/4).
+nota: L'addon "Cross Domain - CORS" sembra risolvere il problema CORS senza file BAT, vedi [ISSUE4](https://github.com/msillano/IoTwebUI/issues/4).
 5) In fase di installazione e setup è utile la console (nel browser - strumenti per programmatori -, o menu contestuale 'ispeziona') perchè lì vanno i messaggi di informazione e di errore di IoTwebUI.<BR>
 Nelle immagini: a sinistra avvio OK (Chrome, CORS disattivato) a destra in caso di errore CORS (Opera):
 
@@ -305,15 +308,15 @@ Nelle immagini: a sinistra avvio OK (Chrome, CORS disattivato) a destra in caso 
 
 L'app **IoTwebUI** non è per utenti alle prime armi, pertanto è accettabile che la configurazione avvenga direttamente editando un file (`config`.js). _Le solite avvertenze: fare una copia del file prima di ogni modifica, usare un editor UTF8 (io uso Notepad-plusplus), e attenzione a NON ALTERARE niente altro (soprattutto virgole  ','  ed  apici '"' e "`")._
 
- - I dati INDISPENSABILI da inserire sono le proprie `credenziali Tuya` per la 'platform.tuya'. <BR> Gli utenti di tuyaDAEMON, Homebridge, HA ed altri hub simili dovrebbero già averle, ma i nuovi utenti si devono iscrivere, ci sono molte guide nel web. [Questa](https://github.com/iRayanKhan/homebridge-tuya/wiki/Get-Local-Keys-for-your-devices) è una delle più chiare, altre sono [elencate qui](https://github.com/msillano/tuyaDAEMON/wiki/50.-Howto:-add-a-new-device-to-tuyaDAEMON#1-preconditions). Un vantaggio è che si ha accesso alla piattaforma Tuya, con molti dati sui propri device, ed alla documentazione tecnica.
+ - I dati INDISPENSABILI da inserire sono le proprie `credenziali Tuya` per la 'platform.tuya'. <BR> Gli utenti di tuyaDAEMON, Homebridge, HA ed altri hub simili dovrebbero già averle, ma i nuovi utenti si devono iscrivere, ci sono molte guide nel web. [Questa](https://github.com/iRayanKhan/homebridge-tuya/wiki/Get-Local-Keys-for-your-devices) è una delle più chiare, altre sono [elencate qui](https://github.com/msillano/tuyaDAEMON/wiki/50.-Howto:-add-a-new-device-to-tuyaDAEMON#1-preconditions). Un vantaggio è che così si ha accesso alla piattaforma Tuya, con molti dati sui propri device, ed alla documentazione tecnica.
 
 - Altre opzioni riguardano: timing (Cloud e log) e configurazione del log: il formato, l'autosave, i valori richiesti, oppure il look&feel, come la presenza dei bottoni di pan/zoom. <BR>Dalla versione 1.2 la possibilità di escludere alcune home (`hide_homes` array), e dalla versione 2.0 quella di escludere alcuni tap-to-run (`hide_scenes` array). 
 
 - Le opzioni disponibili per il riconoscimento vocale sono (sempre in config.js):
-    1) se con il vostro HW vi funziona male, potete disabilitarlo del tutto: `SpeechRecognitionEnabled = false;`
+   1) se con il vostro HW funziona male, potete disabilitarlo del tutto: `SpeechRecognitionEnabled = false;`
    2) se invece vi funziona bene, potete eliminare la necessità di premere il pulsante ogni volta: `SpeechRecognitionNeverEnds = true;`.
 
-- Ancora in `config.js`, la variabile  `expertModeEnabled = false` permette di disabilitare il modo 'EXPERT'.
+- Ancora in `config.js`, la variabile  `expertModeEnabled = false` permette di disabilitare del tutto il modo 'EXPERT'.
 
 - Dalla versione 2.0 le definizioni per 'dataLog' (`logList`  in `config.js`), 'Alert'(`testList` in `config.js`) e RULE (`usrRules` in  `usrrulesXX.X.js`) possono essere create nella APP, con semplici interfacce utente, e poi esportate per essere copiate nei rispettivi file.
 
@@ -337,7 +340,7 @@ Anche l'icona speciale che indica un'alert è customizzabile: vedi `alertIcon` i
     - Alcuni valori sono criptati: si può scegliere di non farli vedere  - oppure di decodificarli; il codice necessario è disponibile in TuyaDAEMON, ma ho scartato questa opzione sia perchè sono di solito dati di configurazione gestiti da SmartLife, sia per non avere tooltip troppo grandi.
     - In altri casi occorre dividere per 10 o 100 per avere il valore in unità SI.   
     - Come sviluppatore preferisco avere i nomi delle proprietà originali Tuya, ma si possono rendere più frendly traducendoli.
-    - Se si desidera si possono anche aggiungere nuove informazioni per esempio derivandole da quelle del device (e.g. temperatura in °C ed anche in °F).
+    - Se si desidera si possono anche aggiungere nuove informazioni per esempio derivandole da quelle del device (e.g. temperatura sia in °C che in °F).
 
 - Per i 'tap-to-run' Tuya, è possibile personalizzare il colore dei pulsanti modificando `sceneColor(scene)` in `custom.js`.
 
@@ -345,7 +348,7 @@ Anche l'icona speciale che indica un'alert è customizzabile: vedi `alertIcon` i
 
 - Per VoiceRecognition, nel file "speech0X.X.js" è semplice modificare le parole della grammatica proposta: esempio sostituire 'vai' con 'raggiungi'. L'obiettivo deve essere sempre quello di migliorare la comprensione dei comandi.<br>
 Un po' più complesso è aggiungere nuovi comandi vocali, non tanto per la definizione della grammatica (il codice attuale  può servire da esempio) quanto l'implementazione delle azioni, che spesso dipendono dal codice esitente.<br>
-Direi che per nuovi comandi vocali, la strada migliore è fare una proposta di implementazione nelle 'issue', e, in base al consenso ed alla fattibibilità, potrebbe essere implementata nella release successiva.
+Direi che per nuovi comandi vocali, la strada migliore è fare una proposta di implementazione nelle ['issue'](https://github.com/msillano/IoTwebUI/issues), e, in base al consenso ed alla fattibibilità, potrebbe essere implementata nella release successiva.
   
 Queste customizzazioni NON sono necessarie, ma redono più utile e gradevole l'uso di TuyaUIweb.
 <hr>
@@ -397,27 +400,28 @@ E' un array di array contenenti le singole misure (oggetti).
 ### RULE - sintassi
 Il particolare ambiente in cui sono valutate le RULE comporta qualche limite alla sintassi JavaScript (js) standard:
 
-- **importante**: il codice è eseguito una riga alla volta, non è possibile scrivere blocchi js che occuppino più righe!  Per contenere la lunghezza delle righe, usare delle variabili intermedie (vedi esempi).
+- **importante**: il codice è eseguito una riga alla volta, non è possibile scrivere blocchi js che occuppino più righe!  Per contenere la lunghezza delle righe, usare delle variabili volatili intermedie (vedi esempi).
 - Definire le variabili volatili (valide per un solo run delle RULE) sempre con la sintassi: **var** `_tizio` **=**... , poi possono essere usate liberamente.
-- E' anche possibile definire più variabili contemporaneamente, Esempio `var _var1, _var2 = 0;` sia _var1 che _var2 sono inizializzate a 0.
+- E' anche possibile definire più variabili contemporaneamente, Esempio `var _var1, _var2 = 0;` sia `_var1` che `_var2` sono inizializzate a 0.
 - Per definire variabili permanenti (valide per tutti i run dei RULE) usare le MACRO: VSET(name, value) e VGET(name).
 - Usare sempre un underscore **"_"** come primo carattere nel _nome delle variabili_: si evitano così interferenze con altre variabili del programma. Non usare caratteri 'strani' nei nomi delle variabili: meglio limitarsi a [A..Za..z0..9] e '_'.
-- JavaScript è 'case sensitive', cioè distingue tra Maiuscole e minuscole, quindi attenzione a scrivere le variabili sempre nello stesso modo (consiglio tutte minuscole, oppure la tecnica 'camel' per i nomi compositi: `_variabilePocoUsata`) per distinguerle a colpo d'occhio dalle MACRO (sempre MAIUSCOLE).
-- _Valori predefiniti:_ `true`(vero) e `false`(falso) per le condizioni; le costanti numeriche sono con il punto, all'inglese (`3.14`), e tutte le stringhe vogliono gli apici (`"oggi "` oppure `'domani '`). Un apice può essere inserito in una stringa se si usa l'altro tipo di apice per tutta la stringa. Esempio: "All'alba " OK , 'Disse: "sono stanco"' OK, ma NON 'All'alba' !.
+- Il 'punto e virgola' **";"** finale è opzionale, ma consiglio vivamente di usarlo sempre.
+- JavaScript è 'case sensitive', cioè distingue tra Maiuscole e minuscole, quindi attenzione a scrivere le variabili sempre nello stesso modo (consiglio tutte minuscole, oppure la tecnica 'camel' per i nomi compositi: **`_variabilePocoUsata`**) per distinguerle a colpo d'occhio dalle MACRO (sempre MAIUSCOLE).
+- _Valori predefiniti:_ **`true`** (vero) e **`false`** (falso) per le condizioni; le costanti numeriche sono con il punto, all'inglese (**`3.14`**). Tutte le stringhe vogliono gli apici (**`"oggi "`** oppure **`'domani '`**). Un apice può essere inserito in una stringa se si usa l'altro tipo di apice per tutta la stringa. Esempio: `"All'alba "` OK , `'Disse: "sono stanco"'` OK, ma NON `'All'alba'` !.
 - Usare **//** per i commenti, continuano fino a fine riga
 - Le operazioni js più utili sono quelle aritmetiche (**+, -, *, /**), quelle logiche per le condizioni: (**&&** -and, **||** -or, **!** -negazione) e le operazioni di confronto ( **&gt;**, **==**, **!=**, **&lt;**, **&gt;=**, **&lt;=**); la concatenazione delle stringhe è fatta semplicemente con il **+** ("ore " **+** "10:30").
-- Non confondere '=' (assegnazione - effetto: il contenuto della variabile è modificata), con '==' (confronto - risultato: true (uguali) o false (diversi)).   _Esempio:_ `var _pippo = 32;` e `if (_pippo == 32)...` ( nota: `if(_pippo = 32)` è un errore comune ma insidioso, difficile da trovare e correggere) <br>
-- Nota:  La condizione opposta (negata) di 'uguale' (a == b) è 'diverso' (a != b). La condizione opposta (negata) di 'maggiore' (a > b) NON è 'minore' (a < b) bensì è 'minore o uguale' (a <= b)! Analogamente l'opposto di (a < b) è (a >= b).
-- **Attenzione al '+'**. In `a + b`, se `a` e `b` sono numeri, fa la somma, ma se uno dei due è una stringa non convertibile in numero, automaticamente anche l'altro è convertito in stringa. E la conversione `numero => stringa` può portare a sorprese (cioè a molte cifre decimali) quando non sono numeri interi! Usare sempre ROUND() quando dovete aggiungere dei numeri con la virgola nelle stringhe Esempio:
+- Non confondere **'='** (assegnazione - effetto: il contenuto della variabile è modificata), con **'=='** (confronto - risultato: true (uguali) o false (diversi)).   _Esempio:_ `var _pippo = 32;` e `if (_pippo == 32)...` ( NB: `if(_pippo = 32)` è un errore comune ma insidioso, difficile da trovare e correggere) <br>
+- Nota:  La condizione opposta (negata) di 'uguale' `(a == b)` è 'diverso' `(a != b)`. La condizione opposta (negata) di 'maggiore' `(a > b)` NON è 'minore' `(a < b)` bensì è 'minore o uguale' `(a <= b)`! Analogamente l'opposto di `(a < b)` è `(a >= b)`.
+- **Attenzione al '+'**. In `a + b`, se `a` e `b` sono numeri, fa la somma, ma se uno dei due è una stringa non convertibile in numero, automaticamente anche l'altro è convertito in stringa. E la conversione 'numero => stringa' può portare a sorprese (cioè a molte cifre decimali) quando non sono numeri interi! Usare sempre ROUND() quando dovete aggiungere dei numeri con la virgola nelle stringhe Esempio:
 ```
- var _tf = GET("TF_frigo","va_temperature");  // read temperature sensor, saves it in _tf
+ var _tf = GET("TF_frigo","va_temperature");  // read temperature sensor, saves it in _tf (number)
  var _tm = AVG(_tf, 12);                      // get average from last 12 values (_tm is a string, see AVG())
  var _tr = ROUND( _tm/10,  -1);               // round to the nearest ten, _tr is a string 
  if(TRIGEVERY(8)) POP( "FRIGO", "Frigo: "+ ROUND(_tf/10, 1) + "°C, media: "+ ROUND(_tm/10, 2) +"°C, round: " + _tr +"°C");
                                               // note: using ROUND() to convert to string, also for _tm/10 (again number)
  DATALOG("frigo.media", _tm/10);              // saves average on file (saved as number).
  ```
- - Come già detto, JavaScript è elastico a proposito delle conversioni dei valori: numeri in formato 'stringa' (cioè "3.14" invece di 3.14 o Math.PI) sono convertiti automaticamente in numeri in caso di operazioni aritmetiche. Ancora, numeri e stringhe sono convertiti in valori logici quando serve (ad esempio se usati come condizione in un if()). Regole: zero (0) vale `false`, qualsiasi altro numero: `true`. Una stringa vuota ("") o `null`, o `undefined` valgono `false`, qualunque altra stringa vale `true`. Esempi: `if ("caio")` è true.  `var _test = null; if(_test)` è false. (nota. Meglio non abusare di questi automatismi del linguaggio, è preferibile scrivere sempre le condizioni estese, più chiare: `if (_test != null)`...)
+ - Come già detto, JavaScript è elastico a proposito delle conversioni dei valori: numeri in formato 'stringa' (cioè "3.14" invece di 3.14 o Math.PI) sono convertiti automaticamente in numeri in caso di operazioni aritmetiche. Ancora, numeri e stringhe sono convertiti in valori logici quando serve (ad esempio se usati come condizione in un `if()` ). Regole: zero (0) vale `false`, qualsiasi altro numero: `true`. Una stringa vuota ("") o `null`, o `undefined` valgono `false`, qualunque altra stringa vale `true`. Esempi: `if ("caio")` è true.  `var _test = null; if(_test)` è false. (nota. Meglio non abusare di questi automatismi del linguaggio, è preferibile scrivere sempre le condizioni estese, più chiare: `if (_test != null)`...)
  - importante è anche l'uso delle parentesi, "()", sempre a coppie. Parentesi sono obbligatorie dopo ogni MACRO - nota, anche se non ci sino parametri, e.g. `BEEP()` - e dopo un `if()`, per racchiudere la condizione. Comunque usatele liberamente per raggruppare i risultati intermedi nelle espressioni e.g. `if((_a > 10) && (_b/2 == 0))...`
 - le RULE sono eseguite ad ogni loop, dopo l'aggiornamento dei dati Tuya. Molte MACRO devono quindi conservare lo stato tra un run ed il successivo, e sono individuate con (*). 
 - Il costrutto js più utile nelle RULE è l'**if()** (esecuzione condizionale), che assume varie forme:<br>
@@ -427,13 +431,13 @@ Il particolare ambiente in cui sono valutate le RULE comporta qualche limite all
    **if(** `condiz1 || condiz2 || ...` **)** `azione;` //  _OR: 'almeno una',_  `condiz1` _oppure_ `condiz2`, _oppure_ ... _deve essere vera._<br>
    **if (** `condizione` **)** `azione1` **else** `azione2;`  // _esegue `azione1` (se vero) oppure `azione2` (se falso)._ <br>
 nota: contrariamente alle automazioni Tuya, Google, Alexa,  che nelle condizioni permetto o solo AND (tutte) o solo OR (basta una) (e poi cercano di mitigare questo limite aggiungendo l'extra condizione 'ambito' - e.g. Tuya) nelle RULE si possono avere condizioni più complesse (miste) usando con cura le parentesi per indicare l'ordine di calcolo:
-esempio:  if ( (condiz1 || condiz2) && (condiz3 || condiz4) )  - a parole: "deve essere vera almeno una tra (condiz1, condiz2) E anche almeno una tra (condiz3, condiz4)".
+esempio:  if ( (condiz1 || condiz2) && (condiz3 || condiz4) )  - a parole: "deve essere vera almeno una tra (condiz1, condiz2) ED anche almeno una tra (condiz3, condiz4)".
 
  - Se una `condizione` è vera a lungo (livello), un `if()` sarà eseguito più volte, ad ogni ciclo. Per evitare questo le macro TRIGGER sono vere per un solo ciclo, il primo, e poi sono false.
 
- - nota sui messaggi di errore: Non sempre i messaggi di errore identificano la VERA causa del problema. Esempio, una variabile mal scritta è trovata subito come 'non definita', ma una parentesi non chiusa, ad esempio, può portare a messaggi poco chiari righe dopo, quando il compilatore trova problemi! Quindi attenzione! 
+ - nota sui messaggi di errore: Non sempre i messaggi di errore identificano la VERA causa del problema. Esempio, una variabile mal scritta è trovata subito come 'non definita', ma una parentesi non chiusa, può portare a messaggi poco chiari righe dopo, quando il compilatore trova un problema! Quindi attenzione! 
 
-- **importante**: per come sono implementate, le MACRO che usano memoria (*) devono essere eseguite ad ogni run: quindi NON possono essere presenti nella parte `azione` di un **if**. Per ragioni analoghe non sono ammessi **if  nidificati** (un **if** nella zona azione di un altro **if**: non potrebbe usare le MACRO (*)). Sono vincoli che non pongono, però, serie limitazioni.
+- **importante**: per come sono implementate, le MACRO che usano memoria (*) devono essere eseguite ad ogni run: quindi NON possono essere presenti nella parte `azione` di un **if()**. Per ragioni analoghe non sono ammessi **if  nidificati** (un **if()** nella zona azione di un altro **if()**: non potrebbe usare le MACRO (*)). Sono vincoli che non pongono, però, serie limitazioni.
   <hr>
   
 **ESEMPIO** - Un caso concreto di controllo del riscaldamento <br>
@@ -442,21 +446,22 @@ Vorrei implementare con Tuya una strategia di questo tipo: _se la temperatura am
 
    <code>`Se  (( Ttarget - Tambiente ) > tot) => clima.warm( Ttarget )` </code>
  
-_Questa strategia NON è realizzabile con le 'automazioni' di Smartlife_, nè con Alexa o Google, per vari motivi:
+_Questa strategia NON è realizzabile con le 'automazioni' di Smartlife_, nè con Alexa o Google, per diversi motivi:
    - nelle automazioni non si possono usare operazioni aritmetiche,
    - i confronti, nelle automazioni, si possono fare solo con valori costanti,
    - non esistono tap-to-run parametrici od almeno con nomi dinamici.
  
-Chiedo troppo? Un sistema 'open' dovrebbe permettere queste automazioni. O no? Infatti con IoTwebUI e le RULE _si può fare!_ <br>
+Chiedo troppo? Un sistema 'open' dovrebbe permettere queste automazioni. O no? Infatti con **IoTwebUI** e le RULE _si può fare!_ <br>
 Vediamo come l'ho realizzata. Alcune precondizioni: la mia termovalvola ('Termo letto')  ha le proprietà 'temp_set' e 'temp_current'.
 Per semplicità ho utilizzato come temperatura Target solo i valori 16, 20, 21 °C: in questo modo mi occorrono solo 3 tap-to-run chiamati Tletto16, Tletto20 e Tletto21, per accendere ed impostare il climatizzatore alle temperature volute.
-Ecco le RULE necessarie, dove uso alcune variabili per ridurre la complessità. La macro ISTRIGGERH() è vera una sola volta, quando la condizione passa da falso a vero (vedi oltre), ROUND() arrotonda un numero e lo trasforma in testo, per formare 'TLetto16','TLetto20', ... cioè il nome del 'tap-to-run', che così ora dipende da Ttarget. L'azione è anche memorizzata nel 'registro degli Alert'.
+Ecco le RULE necessarie, dove uso alcune variabili per ridurre la complessità. La macro ISTRIGGERH() è vera una sola volta, quando la condizione passa da falso a vero (vedi oltre), ROUND() arrotonda un numero e lo trasforma in testo, per formare 'TLetto16','TLetto20', ... cioè il nome del 'tap-to-run', che così ora dipende da Ttarget. L'accensione è anche memorizzata nel 'registro degli Alert'.
 ```
 var _tot = 2.3;  // da tarare il prossimo inverno
 var _Ttarget =  GET("Termo letto", "temp_set") ;       // varia a seconda dell'orario
 var _nowClima = ISTRIGGERH( ( _Ttarget -  GET("Termo letto", "temp_current") ) > _tot);
 if (_nowClima) SCENA("TLetto" + ROUND( _Ttarget, 0) ), ALERTLOG("RULE Tletto", "acceso clima") ;
 ```
+nota: i nomi dei tap-to-run come 'TLetto16' sono impossibili da usare con il riconoscimento vocale, ma a me servono così per poterli gestire dinamicamente. Se utile, basta creare dei 'tap-to-run' con nomi semplici come alias, tipo 'riscaldamento camera letto', che si limitano a utilizzare quelli con i nomi irriconoscibili.
 <br>
 
 #### RULE: Primi passi
