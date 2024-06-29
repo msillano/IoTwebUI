@@ -582,25 +582,30 @@ utc_offset_seconds: 0
 Torna true quando deve essere eseguita. <br>
 <i>Esempio:</i> <code>if (TRIGBYNAME('spegni la luce')) VOICE (" Hai attivato: 'spegni la luce'") </code> </dd>
 
+![TRIGGERS](https://github.com/msillano/IoTwebUI/blob/main/pics/macro02.png?raw=true)
+
 <dt>ISTRIGGERH(condition) (*) </dt>
-<dd> Ritorna 'true' solo al passaggio della "condizione" da 'false a true', evita che la "condizione" 'true' agisca ad ogni run. Ovvero trasforma un livello true in TRIGGER. <br>
+<dd> Ritorna 'true' solo al passaggio della "condizione" da 'false a true', evita che la "condizione" 'true' agisca ad ogni run. Ovvero trasforma un livello true in TRIGGER (vedi figura). <br>
 <i>Esempio:</i> <code>if(ISTRIGGERH(GET("TF_frigo","va_temperature") > 100)) POP("Frigo", "TEMPERATURA oltre 10°C" );</code> <br>
 Nota: l'implementazione Tuya di più <i>condizioni (livelli) in AND (tutte)</i> in una automazione è come se fosse scritta così:<brt> <code>if( ISTRIGGERH(condiz1 && condiz2 && ...)) ... </code> <br> cioè un'automazione Tuya scatta nel momento in cui TUTTE le condizioni diventano true. Analogamente con più condizioni in OR.<BR> 
 Nota: più <i>condizioni (livelli, AND/OR) + ambito (livello) </i> delle automazioni Tuya, può essere implementato nelle RULE così:<br> <code>if( ISTRIGGERH(condiz1 ?? condiz2 ?? ...) && (ambito) )...</code>. <br> Si vede come <i>Ambito</i> NON intervenga nel TRIGGER ma che DEVE essere vero!
 </dd>
  
 <dt>ISTRIGGERL(condition) (*)</dt>
-<dd> Ritorna 'true' solo al passaggio della "condizione" da 'true a false'  (inverso  di ISTRIGGERH):  trasforma un livello false in TRIGGER. <br>Nota: l'uscita è invertita rispetto a 'condizione'.<br>
+<dd> Ritorna 'true' solo al passaggio della "condizione" da 'true a false'  (inverso  di ISTRIGGERH):  trasforma un livello false in TRIGGER. <br>Nota: l'uscita è invertita rispetto a 'condizione'  (vedi figura).<br>
 <i>Esempio:</i> <code>if(ISTRIGGERL(GET("tuya_bridge", "switch_1"))) ALERTLOG("tuya_bridge", "Aperto adesso"); </code>  </dd>
 
-<dt>VGET(name) </dt>
-<dd>GET di una variabile permanente - conservata per tutti i run delle RULE.<br> Se la variabile <code>name</code> NON è stata inizializzata con un VSET, ritorna <code>null</code>. <br>
-<i>Esempio:</i> <code>if( VGET('inizio') == null ) VSET('inizio', TIME(hrs)); </code>  </dd>
-
-<dt>VSET(name, value)</dt>
-<dd>SET di una variabile permanente - conservata per tutti i run delle RULE.<br>
-<i>Esempio:</i> <code>if( TRIGEVERY(10) ) VSET('prova', VGET('prova') + 2);</code>  </dd>
+<dt>CONFIRMH(condition, time) (*) </dt>
+<dd> Ritorna 'true' solo se la "condizione" rimane 'true' per almeno il tempo 'time'. Poi resta 'true' fino a quando la 'condizione' è 'true'. Caso tipico una porta aperta. Serve a filtrare 'livelli' true di breve durata che non interessano  (vedi figura).<BR>
+time = costante nei formati "hh:mm:ss" oppure "mm:ss" oppure "ss". Lmite inferiore: TuyaInterval.<br>
+<i>Esempio:</i> <br>
+   <code>var _doorev = GET("Sensore porta", "doorcontact_state") ; </code>   // true a porta aperta
+   <code>if(ISTRIGGERH( CONFIRMH(_doorev, "01:20"))) VOICE("chiudere la porta, grazie"); </code> </dd>
  
+<dt>CONFIRML(condition, time) (*) </dt>
+<dd> Ritorna 'true' solo se la "condizione" rimane 'false' per almeno il tempo 'time'  (inverso  di CONFIRMH): Serve a filtrare 'livelli' false di breve durata che non interessano.<br>Nota: l'uscita è invertita rispetto a 'condizione'  (vedi figura).<br>
+<i>Esempio:</i> <code>if(ISTRIGGERH(CONFIRML(ISCONNECTED("relay"), "02:30"))) VOICE("Allarme disconnessione");</code> </dd>
+
 <dt>TRIGCHANGED(value) (*) </dt>
 <dd> ritorna 'true' ogni volta che 'value' cambia rispetto al valore precedente.<br>
 <i>Esempio:</i> <code> var _tf = GET("TF_frigo","va_temperature"); <br>
@@ -611,17 +616,14 @@ Nota: più <i>condizioni (livelli, AND/OR) + ambito (livello) </i> delle automaz
 <dd>  Semplice timer: ritorna 'true' solo dopo "n" esecuzioni, ciclico. <br>
   E' garantito un singolo valore 'true' per ogni n-simo loop, 'n' è in numero di loop, in tempo: t <= n x tuyaInterval (definito in 'config.js' file).<br>
 <i>Esempio:</i> <code>if(TRIGEVERY(8)) POP( "FRIGO", "Temperatura interna: "+ ROUND(_tf/10, 1) + "°C");</code> </dd>
- 
-<dt>CONFIRMH(condition, time) (*) </dt>
-<dd> Ritorna 'true' solo se la "condizione" rimane 'true' per almeno il tempo 'time'. Poi resta 'true' fino a quando la 'condizione' è 'true'. Caso tipico una porta aperta. Serve a filtrare 'livelli' true di breve durata che non interessano.<BR>
-time = costante nei formati "hh:mm:ss" oppure "mm:ss" oppure "ss". Lmite inferiore: TuyaInterval.<br>
-<i>Esempio:</i> <br>
-   <code>var _doorev = GET("Sensore porta", "doorcontact_state") ; </code>   // true a porta aperta
-   <code>if(ISTRIGGERH( CONFIRMH(_doorev, "01:20"))) VOICE("chiudere la porta, grazie"); </code> </dd>
- 
-<dt>CONFIRML(condition, time) (*) </dt>
-<dd> Ritorna 'true' solo se la "condizione" rimane 'false' per almeno il tempo 'time'  (inverso  di CONFIRMH): Serve a filtrare 'livelli' false di breve durata che non interessano.<br>Nota: l'uscita è invertita rispetto a 'condizione'.<br>
-<i>Esempio:</i> <code>if(ISTRIGGERH(CONFIRML(ISCONNECTED("relay"), "02:30"))) VOICE("Allarme disconnessione");</code> </dd>
+
+<dt>VGET(name) </dt>
+<dd>GET di una variabile permanente - conservata per tutti i run delle RULE.<br> Se la variabile <code>name</code> NON è stata inizializzata con un VSET, ritorna <code>null</code>. <br>
+<i>Esempio:</i> <code>if( VGET('inizio') == null ) VSET('inizio', TIME(hrs)); </code>  </dd>
+
+<dt>VSET(name, value)</dt>
+<dd>SET di una variabile permanente - conservata per tutti i run delle RULE.<br>
+<i>Esempio:</i> <code>if( TRIGEVERY(10) ) VSET('prova', VGET('prova') + 2);</code>  </dd>
 
 <dt>ROUND(number, pos)</dt>
 <dd> Torna una stringa con 'pos' cifre decimali (se 'pos' >0) <br>
