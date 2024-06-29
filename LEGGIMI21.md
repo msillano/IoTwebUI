@@ -577,12 +577,9 @@ utc_offset_seconds: 0
 
 #### MACRO funzionali
 <dl>
-<dt>TRIGBYNAME(name) </dt>
-<dd> Associa un 'nome' (max 3 parole) ad un RULE, permettendo di attivarlo con un comando utente (bottone o comando vocale) o con TRIGRULE(name) (analogo ai 'tap-to-run' Tuya).<br>
-Torna true quando deve essere eseguita. <br>
-<i>Esempio:</i> <code>if (TRIGBYNAME('spegni la luce')) VOICE (" Hai attivato: 'spegni la luce'") </code> </dd>
 
 ![TRIGGERS](https://github.com/msillano/IoTwebUI/blob/main/pics/macro02.png?raw=true)
+<i> input ed output di: ISTRIGGERH(evento), ISTRIGGERL(evento), CONFIRMH(evento, T), CONFIRML(evento, T)</i>
 
 <dt>ISTRIGGERH(condition) (*) </dt>
 <dd> Ritorna 'true' solo al passaggio della "condizione" da 'false a true', evita che la "condizione" 'true' agisca ad ogni run. Ovvero trasforma un livello true in TRIGGER (vedi figura). <br>
@@ -616,6 +613,11 @@ time = costante nei formati "hh:mm:ss" oppure "mm:ss" oppure "ss". Lmite inferio
 <dd>  Semplice timer: ritorna 'true' solo dopo "n" esecuzioni, ciclico. <br>
   E' garantito un singolo valore 'true' per ogni n-simo loop, 'n' è in numero di loop, in tempo: t <= n x tuyaInterval (definito in 'config.js' file).<br>
 <i>Esempio:</i> <code>if(TRIGEVERY(8)) POP( "FRIGO", "Temperatura interna: "+ ROUND(_tf/10, 1) + "°C");</code> </dd>
+   
+<dt>TRIGBYNAME(name) </dt>
+<dd> Associa un 'nome' (max 3 parole) ad un RULE, permettendo di attivarlo con un comando utente (bottone o comando vocale) o con TRIGRULE(name) (analogo ai 'tap-to-run' Tuya).<br>
+Torna true quando deve essere eseguita. <br>
+<i>Esempio:</i> <code>if (TRIGBYNAME('spegni la luce')) VOICE (" Hai attivato: 'spegni la luce'") </code> </dd>
 
 <dt>VGET(name) </dt>
 <dd>GET di una variabile permanente - conservata per tutti i run delle RULE.<br> Se la variabile <code>name</code> NON è stata inizializzata con un VSET, ritorna <code>null</code>. <br>
