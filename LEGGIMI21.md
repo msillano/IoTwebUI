@@ -446,7 +446,7 @@ Vorrei implementare con Tuya una strategia di questo tipo: _se la temperatura am
 
    <code>`Se  (( Ttarget - Tambiente ) > tot) => clima.warm( Ttarget )` </code>
  
-_Questa strategia NON è realizzabile con le 'automazioni' di Smartlife_, nè con Alexa o Google, per diversi motivi:
+_Questa strategia NON è realizzabile con le 'automazioni' di Smartlife_, nè con Alexa o Google o HomeKit..., per diversi motivi:
    - nelle automazioni non si possono usare operazioni aritmetiche,
    - i confronti, nelle automazioni, si possono fare solo con valori costanti,
    - non esistono tap-to-run parametrici od almeno con nomi dinamici.
@@ -454,7 +454,7 @@ _Questa strategia NON è realizzabile con le 'automazioni' di Smartlife_, nè co
 Chiedo troppo? Un sistema 'open' dovrebbe permettere queste automazioni. O no? Infatti con **IoTwebUI** e le RULE _si può fare!_ <br>
 Vediamo come l'ho realizzata. Alcune precondizioni: la mia termovalvola ('Termo letto')  ha le proprietà 'temp_set' e 'temp_current'.
 Per semplicità ho utilizzato come temperatura Target solo i valori 16, 20, 21 °C: in questo modo mi occorrono solo 3 tap-to-run chiamati Tletto16, Tletto20 e Tletto21, per accendere ed impostare il climatizzatore alle temperature volute.
-Ecco le RULE necessarie, dove uso alcune variabili per ridurre la complessità. La macro ISTRIGGERH() è vera una sola volta, quando la condizione passa da falso a vero (vedi oltre), ROUND() arrotonda un numero e lo trasforma in testo, per formare 'TLetto16','TLetto20', ... cioè il nome del 'tap-to-run', che così ora dipende da Ttarget. L'accensione è anche memorizzata nel 'registro degli Alert'.
+Ecco le RULE necessarie, dove uso alcune variabili per ridurre la complessità. La macro ISTRIGGERH() è vera una sola volta, quando la condizione passa da falso a vero (vedi oltre), ROUND() arrotonda un numero e lo trasforma in testo, per formare le stringhe "TLetto16","TLetto20",... cioè il nome del 'tap-to-run', che così ora dipende da Ttarget. L'accensione è anche memorizzata nel 'registro degli Alert'.
 ```
 var _tot = 2.3;  // da tarare il prossimo inverno
 var _Ttarget =  GET("Termo letto", "temp_set") ;       // varia a seconda dell'orario
