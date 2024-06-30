@@ -584,7 +584,7 @@ utc_offset_seconds: 0
 #### MACRO funzionali
 <dl>
 
-![TRIGGERS](https://github.com/msillano/IoTwebUI/blob/main/pics/macro02.png?raw=true)<br>
+![TRIGGERS](https://github.com/msillano/IoTwebUI/blob/main/pics/MACRO_01.png?raw=true)<br>
 <i> input ed output di: <code>ISTRIGGERH(evento), ISTRIGGERL(evento), CONFIRMH(evento, T), CONFIRML(evento, T)</code></i>
 
 <dt>ISTRIGGERH(condition) (*) </dt>
