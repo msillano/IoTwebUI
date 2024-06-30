@@ -485,7 +485,7 @@ Consiglio di copiare le seguenti 3 RULE nell'area di edit delle RULE (modo EXPER
 le MACRO rispondono a varie esigenze:
  1. Fornire accesso alle risorse e funzionalità di IoTwebUI, per poterle usare nelle RULE
  2. L'ambiente (run ripetuti ad intervalli regolari) e i suoi limiti (codice in una sola riga) rendono più ardua la scrittura di funzioni complesse: le MACRO semplificano il compito dell'utente. 
- 3. Alcune operazioni richiedono la memorizzazione di informazioni tra un run ed il successivo, e le MACRO (*) risolvono questo problema.
+ 3. Alcune operazioni richiedono la memorizzazione di informazioni tra un run ed il successivo, e le MACRO (*) risolvono questo problema, senza ricorrere esplicitamente a VSET() VGET().
  4. Importante è la distinzione tra un **livello** - lo stesso valore (e.g. true) uguale per più run, generato, per esempio, da un confronto - e un **TRIGGER** - vero per un solo run, quando inizia o finisce un evento -: _Le macro con TRIG nel nome generano TRIGGER, le altre generano LIVELLI_.<br>
   
   _nota: questa selezione iniziale di MACRO è naturalmente condizionata dalle mie abitudini ed interessi: in questo settore il contributo di altri utenti è prezioso._
