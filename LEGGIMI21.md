@@ -51,8 +51,8 @@ _Cosa puoi fare?_<br>
  - Confrontare i valori di due proprietà diverse, per automazioni ancora più libere.
  - Eseguire azioni complesse, come realizzare controlli PID, schedulare annualmente, o inviare comandi ad altre applicazioni via REST.
  - Attivate in base a condizioni (come le 'Automazioni' Tuya, ma più flessibile) oppure su comando (come i 'tap-to-run' Tuya).
- - Per i casi più semplici (una sola condizione) si possono usare gli 'alert' (possono attivare 'tap-to-run').
- - Il linguaggio delle RULE soddisfa le condizioni Bohm/Jacopini e quindi è 'Turing equivalente'. Più potenza espressiva vuol dire per l'utente concentrarsi su 'che cosa si vuol fare' e non 'su come farlo'!
+ - Per i casi più semplici (una sola condizione) si possono usare gli 'alert' (che possono attivare 'tap-to-run').
+ - Il linguaggio delle RULE soddisfa le condizioni Bohm/Jacopini e quindi è 'Turing completo'. Più potenza espressiva vuol dire per l'utente concentrarsi su 'che cosa si vuol fare' e non 'su come farlo'!
  - Come funziona?
     1. Crea le RULE al runtime con un'interfaccia user-friendly, anche se non sei un programmatore esperto.
     2. Utilizza MACRO predefinite per i compiti comuni e ripetitivi, risparmiando tempo e fatica.
@@ -400,17 +400,18 @@ E' un array di array contenenti le singole misure (oggetti).
 ### RULE - sintassi
 Il particolare ambiente in cui sono valutate le RULE comporta qualche limite alla sintassi JavaScript (js) standard:
 
+- Le RULE sono esegute ciclicamente, dopo ogni pollig di dati dal Cloud Tuya, quindi ogni `TuyaInterval` (vedi config.js). Talora si hanno delle esecuzione extra, per esempio in occasione di attivazioni per nome delle RULE.
 - **importante**: il codice è eseguito una riga alla volta, non è possibile scrivere blocchi js che occuppino più righe!  Per contenere la lunghezza delle righe, usare delle variabili volatili intermedie (vedi esempi).
 - Definire le variabili volatili (valide per un solo run delle RULE) sempre con la sintassi: **var** `_tizio` **=**... , poi possono essere usate liberamente.
-- E' anche possibile definire più variabili contemporaneamente, Esempio `var _var1, _var2 = 0;` sia `_var1` che `_var2` sono inizializzate a 0.
-- Per definire variabili permanenti (valide per tutti i run dei RULE) usare le MACRO: VSET(name, value) e VGET(name).
+- E' anche possibile definire più variabili contemporaneamente, Esempio `var _var1, _var2 = 0;`: sia `_var1` che `_var2` sono inizializzate a 0.
+- Per definire variabili permanenti (valide per tutti i run) usare le MACRO: VSET(name, value) e VGET(name).
 - Usare sempre un underscore **"_"** come primo carattere nel _nome delle variabili_: si evitano così interferenze con altre variabili del programma. Non usare caratteri 'strani' nei nomi delle variabili: meglio limitarsi a [A..Za..z0..9] e '_'.
-- Il 'punto e virgola' **";"** finale è opzionale, ma consiglio vivamente di usarlo sempre.
+- Il 'punto e virgola' **";"** a fine riga è opzionale, ma consiglio vivamente di usarlo sempre.
 - JavaScript è 'case sensitive', cioè distingue tra Maiuscole e minuscole, quindi attenzione a scrivere le variabili sempre nello stesso modo (consiglio tutte minuscole, oppure la tecnica 'camel' per i nomi compositi: **`_variabilePocoUsata`**) per distinguerle a colpo d'occhio dalle MACRO (sempre MAIUSCOLE).
 - _Valori predefiniti:_ **`true`** (vero) e **`false`** (falso) per le condizioni; le costanti numeriche sono con il punto, all'inglese (**`3.14`**). Tutte le stringhe vogliono gli apici (**`"oggi "`** oppure **`'domani '`**). Un apice può essere inserito in una stringa se si usa l'altro tipo di apice per tutta la stringa. Esempio: `"All'alba "` OK , `'Disse: "sono stanco"'` OK, ma NON `'All'alba'` !.
 - Usare **//** per i commenti, continuano fino a fine riga
 - Le operazioni js più utili sono quelle aritmetiche (**+, -, *, /**), quelle logiche per le condizioni: (**&&** -and, **||** -or, **!** -negazione) e le operazioni di confronto ( **&gt;**, **==**, **!=**, **&lt;**, **&gt;=**, **&lt;=**); la concatenazione delle stringhe è fatta semplicemente con il **+** ("ore " **+** "10:30").
-- Non confondere **'='** (assegnazione - effetto: il contenuto della variabile è modificata), con **'=='** (confronto - risultato: true (uguali) o false (diversi)).   _Esempio:_ `var _pippo = 32;` e `if (_pippo == 32)...` ( NB: `if(_pippo = 32)` è un errore comune ma insidioso, difficile da trovare e correggere) <br>
+- Non confondere **'='** (assegnazione - effetto: il contenuto della variabile a sx è modificata), con **'=='** (confronto - risultato: true (uguali) o false (diversi)).   _Esempio:_ `var _pippo = 32;` e `if (_pippo == 32)...` ( NB: `if(_pippo = 32)` è un errore comune ma insidioso, difficile da trovare e correggere) <br>
 - Nota:  La condizione opposta (negata) di 'uguale' `(a == b)` è 'diverso' `(a != b)`. La condizione opposta (negata) di 'maggiore' `(a > b)` NON è 'minore' `(a < b)` bensì è 'minore o uguale' `(a <= b)`! Analogamente l'opposto di `(a < b)` è `(a >= b)`.
 - **Attenzione al '+'**. In `a + b`, se `a` e `b` sono numeri, fa la somma, ma se uno dei due è una stringa non convertibile in numero, automaticamente anche l'altro è convertito in stringa. E la conversione 'numero => stringa' può portare a sorprese (cioè a molte cifre decimali) quando non sono numeri interi! Usare sempre ROUND() quando dovete aggiungere dei numeri con la virgola nelle stringhe Esempio:
 ```
@@ -421,16 +422,16 @@ Il particolare ambiente in cui sono valutate le RULE comporta qualche limite all
                                               // note: using ROUND() to convert to string, also for _tm/10 (again number)
  DATALOG("frigo.media", _tm/10);              // saves average on file (saved as number).
  ```
- - Come già detto, JavaScript è elastico a proposito delle conversioni dei valori: numeri in formato 'stringa' (cioè "3.14" invece di 3.14 o Math.PI) sono convertiti automaticamente in numeri in caso di operazioni aritmetiche. Ancora, numeri e stringhe sono convertiti in valori logici quando serve (ad esempio se usati come condizione in un `if()` ). Regole: zero (0) vale `false`, qualsiasi altro numero: `true`. Una stringa vuota ("") o `null`, o `undefined` valgono `false`, qualunque altra stringa vale `true`. Esempi: `if ("caio")` è true.  `var _test = null; if(_test)` è false. (nota. Meglio non abusare di questi automatismi del linguaggio, è preferibile scrivere sempre le condizioni estese, più chiare: `if (_test != null)`...)
+ - Come già detto, JavaScript è elastico a proposito delle conversioni dei valori: numeri in formato 'stringa' (cioè "3.14" invece di 3.14 o Math.PI) sono convertiti automaticamente in numeri in caso di operazioni aritmetiche. Ancora, numeri e stringhe sono convertiti in valori logici quando serve (ad esempio se usati come condizione in un `if()` ). Regole: zero (0) vale `false`, qualsiasi altro numero: `true`. Una stringa vuota ("") o `null`, o `undefined` valgono `false`, qualunque altra stringa vale `true`. Esempi: `if ("caio")...` è true.  `var _test = null; if(_test)...` è false. (nota. Meglio non abusare di questi automatismi del linguaggio, è preferibile scrivere sempre le condizioni estese, più chiare: `if (_test != null)`...)
  - importante è anche l'uso delle parentesi, "()", sempre a coppie. Parentesi sono obbligatorie dopo ogni MACRO - nota, anche se non ci sino parametri, e.g. `BEEP()` - e dopo un `if()`, per racchiudere la condizione. Comunque usatele liberamente per raggruppare i risultati intermedi nelle espressioni e.g. `if((_a > 10) && (_b/2 == 0))...`
-- le RULE sono eseguite ad ogni loop, dopo l'aggiornamento dei dati Tuya. Molte MACRO devono quindi conservare lo stato tra un run ed il successivo, e sono individuate con (*). 
+-  Molte MACRO devono conservare lo stato tra un run ed il successivo, (e.g AVG(), MAX() etc...) e sono individuate con (*). 
 - Il costrutto js più utile nelle RULE è l'**if()** (esecuzione condizionale), che assume varie forme:<br>
    **if(** `condizione` **)** `azione;`    // `azione` _è eseguita solo se `condizione` è vera_ <br>
    **if(** `condizione` **)** `azione1`**,** `azione2;` // _due (o più) azioni, separate da_ ',' _virgola._<br>
    **if(** `condiz1 && condiz2 && ...` **)** `azione;` //  _AND: 'tutte',_  `condiz1` _e_ `condiz2` _e_ ... _devono essere vere contemporaneamente._<br>
    **if(** `condiz1 || condiz2 || ...` **)** `azione;` //  _OR: 'almeno una',_  `condiz1` _oppure_ `condiz2`, _oppure_ ... _deve essere vera._<br>
    **if (** `condizione` **)** `azione1` **else** `azione2;`  // _esegue `azione1` (se vero) oppure `azione2` (se falso)._ <br>
-nota: contrariamente alle automazioni Tuya, Google, Alexa,  che nelle condizioni permetto o solo AND (tutte) o solo OR (basta una) (e poi cercano di mitigare questo limite aggiungendo l'extra condizione 'ambito' - e.g. Tuya) nelle RULE si possono avere condizioni più complesse (miste) usando con cura le parentesi per indicare l'ordine di calcolo:
+nota: contrariamente alle automazioni Tuya, Google, Alexa,  che nelle condizioni permettono o solo AND (tutte) o solo OR (basta una) (e poi cercano di mitigare questo limite aggiungendo l'extra condizione 'ambito' - e.g. Tuya) nelle RULE si possono avere condizioni più complesse (miste) usando con cura le parentesi per indicare l'ordine di calcolo:
 esempio:  if ( (condiz1 || condiz2) && (condiz3 || condiz4) )  - a parole: "deve essere vera almeno una tra (condiz1, condiz2) ED anche almeno una tra (condiz3, condiz4)".
 
  - Se una `condizione` è vera a lungo (livello), un `if()` sarà eseguito più volte, ad ogni ciclo. Per evitare questo le macro TRIGGER sono vere per un solo ciclo, il primo, e poi sono false.
@@ -454,14 +455,19 @@ _Questa strategia NON è realizzabile con le 'automazioni' di Smartlife_, nè co
 Chiedo troppo? Un sistema 'open' dovrebbe permettere queste automazioni. O no? Infatti con **IoTwebUI** e le RULE _si può fare!_ <br>
 Vediamo come l'ho realizzata. Alcune precondizioni: la mia termovalvola ('Termo letto')  ha le proprietà 'temp_set' e 'temp_current'.
 Per semplicità ho utilizzato come temperatura Target solo i valori 16, 20, 21 °C: in questo modo mi occorrono solo 3 tap-to-run chiamati Tletto16, Tletto20 e Tletto21, per accendere ed impostare il climatizzatore alle temperature volute.
-Ecco le RULE necessarie, dove uso alcune variabili per ridurre la complessità. La macro ISTRIGGERH() è vera una sola volta, quando la condizione passa da falso a vero (vedi oltre), ROUND() arrotonda un numero e lo trasforma in testo, per formare le stringhe "TLetto16","TLetto20",... cioè il nome del 'tap-to-run', che così ora dipende da Ttarget. L'accensione è anche memorizzata nel 'registro degli Alert'.
+Ecco le RULE necessarie, dove uso alcune variabili intermedie per ridurre la complessità. La macro ISTRIGGERH() è vera una sola volta, quando la condizione passa da falso a vero (vedi oltre), ROUND() arrotonda un numero e lo trasforma in testo, per formare le stringhe "TLetto16","TLetto20",... cioè il nome del 'tap-to-run', che così ora dipende da Ttarget. L'accensione è anche memorizzata nel 'registro degli Alert'.
 ```
-var _tot = 2.3;  // da tarare il prossimo inverno
+var _tot = 2.3;                                        // da tarare il prossimo inverno
 var _Ttarget =  GET("Termo letto", "temp_set") ;       // varia a seconda dell'orario
-var _nowClima = ISTRIGGERH( ( _Ttarget -  GET("Termo letto", "temp_current") ) > _tot);
-if (_nowClima) SCENA("TLetto" + ROUND( _Ttarget, 0) ), ALERTLOG("RULE Tletto", "acceso clima") ;
+var _nowClima = ISTRIGGERH( ( _Ttarget -  GET("Termo letto", "temp_current") ) > _tot);           // condizione
+if (_nowClima) SCENA("TLetto" + ROUND( _Ttarget, 0) ), ALERTLOG("RULE Tletto", "acceso clima") ;  // esecuzione
 ```
+
 nota: i nomi dei tap-to-run come 'TLetto16' sono impossibili da usare con il riconoscimento vocale, ma servono così per poterli gestire dinamicamente. Se utile, basta creare dei 'tap-to-run' con nomi semplici come alias, tipo 'riscaldamento camera letto', che si limitano a utilizzare quelli con i nomi irriconoscibili.
+
+_Tutto sommato semplice, nevvero? Secondo i progettisti di APP per domotica (tutti: si copiano l'un l'altro le prestazioni) noi utenti siamo solo in grado di gestire " Se ....  Poi ....". Che mancanza di fantasia e fiducia!._ 
+_Che poi, avere a disposizione strumenti sofisticati, non vuol dire essere obbligati ad usarli! Se non si devono usare, meglio. Ma quando servono le RULE sono lì, pronte a risolvere i nostri problemi._
+
 <br>
 
 #### RULE - Primi passi
@@ -607,7 +613,7 @@ time = costante nei formati "hh:mm:ss" oppure "mm:ss" oppure "ss". Lmite inferio
 <dd> ritorna 'true' ogni volta che 'value' cambia rispetto al valore precedente.<br>
 <i>Esempio:</i> <code> var _tf = GET("TF_frigo","va_temperature"); <br>
  var _annonce = "Alle ore " + TIME(hrs)+" la temperatura è cambiata. Il frigo è a " + ROUND(_tf/10, 1) + " gradi";<br>
- if(ISCHANGED(_tf)) VOICE(_annonce); </code></dd>
+ if(TRIGCHANGED(_tf)) VOICE(_annonce); </code></dd>
 
 <dt>TRIGEVERY(n) (*)</dt>
 <dd>  Semplice timer: ritorna 'true' solo dopo "n" esecuzioni, ciclico. <br>
