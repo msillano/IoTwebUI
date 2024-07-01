@@ -98,6 +98,7 @@ As an alternative to the 'bat' file, the 'Cross Domains - CORS' extension can be
 ### User Interface
 
 The user interface of IoTwebUI provides a clear and organized layout for managing Tuya smart devices. It features:
+
 ![](https://github.com/msillano/IoTwebUI/blob/main/pics/tootip20.png?raw=true)
 
 The tooltips, which open when you hover the mouse over a device icon, contain all the properties included in the 'status' of the device, with the names and values ​​used by Tuya Cloud. Some values ​​can be hardcoded. <br>
