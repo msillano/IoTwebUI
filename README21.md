@@ -113,10 +113,10 @@ Some small icons provide further information to the user (see figures above):
 ````
 
  _note: If you are interested in decoding Tuya values, many functions have been developed for tuyaDAEMON (see 'core_device', 'ENCODE/DECODE user library' node)._
- - `temperature studio.va_temperature` is saved to the 'datafile', along with the other data in `logList`.
- - The Alert (special icon) was triggered for the `living room temperature` device
- - `living room temperature.va _humidity` is the cause of the Alert, and the condition is also indicated (>40)
- - The `thermo studio` tooltip is customized to present temperatures with the correct decimals. (note: only in the tooltip: Alert and RULE always use the value provided by Tuya Cloud, i.e. 222 and 190).
+ - `Temperatura studio.va_temperature` is saved to the 'datafile', along with the other data in `logList`.
+ - The Alert (special icon) was triggered for the `Temperatura soggiorno` device
+ - `Temperatura soggiorno.va _humidity` is the cause of the Alert, and the condition is also indicated (>40)
+ - The `Termo studio` tooltip is customized to present temperatures with the correct decimals. (note: only in the tooltip: Alert and RULE always use the value provided by Tuya Cloud, i.e. 222 and 190).
  - In EXPERT mode the following values ​​are added to the tooltips:
      - `isa`: name of the Tuya 'type' of the device (in code it is `device.category`). In total around 600 types.
      - `id`: `device.id`, required by some HUBs (e.g. TuyaDAEMON, Homebridge, HA, etc..).
@@ -124,13 +124,13 @@ Some small icons provide further information to the user (see figures above):
 
 ### tap-to_run Tuya
 All 'taps-to-run' are presented by 'home' (max 100) and in alphabetical order.
-Tap-to-run names can go two ways:
+Tap-to-run names can have the following constraints:
  - 3 word limit when used with voice commands
  - Use prefixes to group related commands in IoTwebUI.
  - Be easy to remember and recognize (if you use voice commands with Google or Alexa).<br>
 
 A pad is dedicated to the 'user RULES' identified with a name. They are treated like 'tap-to-run': they can be used in alerts, activated with buttons or via voice command, or launched by another RULE.<br>
-_Of course 'RULES' and 'tap-to-run' must have unique names to be identified._
+_Of course 'RULES' and 'tap-to-run' must have unique names to be identified (but you can use also IDs)._
 
 ### Logging and data  export
 
@@ -165,12 +165,14 @@ In EXPERT mode, clicking on a device opens a dialogue which in the lower part al
  <TD><ol>
  <li> Choice of condition: 'greater', 'equal' or 'less'
  <li> The comparison value, a number (24), or a string (e.g. true) without quotes (").
- <li> Associated message: <ul> is used
- <li> in Alerts with 'pop-up'
- <li> is the text read in the 'voice' case
- <li> or it is a URL and then it is open in the browser
- <li> or is the name of a 'tap-to-run' that is executed </ul>
- <li> Action: one or more of 'beep', 'pop', 'soundV and 'voice' ('URL' and 'tap-to-run|RULES' are automatic) </li></ol>
+ <li> Associated message: <ul> 
+  <li> is a URL to an MP3 or WAV file, in the 'sound' case
+  <li> or it is a URL and then it is open in the browser
+  <li> or it is the name of a 'tap-to-run'|RULE that is executed
+  <li> used as Alerts text with 'pop-up'
+  <li> is the text read in the 'voice' case
+  </ul>
+ <li> Action: one or more of 'beep', 'pop', 'sound' and 'voice' ('URL' and 'tap-to-run|RULES' are automatic) </li></ol>
  </TD>
  </TR>
 </TABLE>
@@ -180,7 +182,7 @@ In EXPERT mode, clicking on a device opens a dialogue which in the lower part al
 - _The 'alerts' do not, for simplicity, have a time filter: if defined they are active 24/7. If some conditioning is needed, it is possible to create an ad-hoc RULE._
 -  _The 'connected' is not included in the properties, and therefore 'Alert' cannot be defined. But it is available as MACRO in RULE._
 . _Having only one message, the precedence rules are: SOUND() and URL (auto) are examined first, then Tap-to-run and RULES (auto), and POP and VOICE only last (compatible: the same message can be used for both); Beep is always usable._
-- _To have both 'pop' and 'tap-to-run', you need to create two Alerts with the same conditions: in one the 'message' will be the text for the 'pop-up', in the other the name of the 'tap' -to-run'._
+- _To have both 'pop' and 'tap-to-run', you need to create two Alerts with the same conditions: in one the 'message' will be the text for the 'pop-up', in the other the name of the 'tap-to-run'._
 - _The display of pop-ups may depend on your browser configuration; using 'run_me.bat' automatically updates the configuration for the new browser instance. User actions (e.g. buttons) can temporarily enable pop-ups.<br>
 However, in order not to lose information, if the pop-ups are disabled for some reason, the message is still presented in a window of the APP: the difference is that the pop-ups can be many, while the window is unique and is reused with a counter._
 - _All Alerts are stored in the 'Alert log', visible from the main menu.
@@ -219,42 +221,37 @@ Two sets of RULES can be managed: those in <i>use</i>, initially read from the `
  </TR>
 </TABLE>
 <HR>
-Having only one message, the precedence rules are: SOUND() and URL (auto) are examined first, then Tap-to-run and RULE (auto), and POP and VOICE only last (compatible: the same message can be used for both); Beep is always usable.
-So, to have both 'pop' and 'tap-to-run', you need to create two Alerts with the same conditions: in one the 'message' will be the text for the 'pop-up', in the other the name of the 'tap' -to-run'.
-The display of pop-ups may depend on your browser configuration: using 'run_me.bat' automatically updates the configuration for the new browser instance. User actions (e.g. buttons) can temporarily enable pop-ups.
-However, in order not to lose information, if the pop-ups are disabled for some reason, the message is still presented in a window of the APP: the difference is that the pop-ups can be many, while the window is unique and is reused with a counter.<br>
-All Alerts are stored and visible in the 'Alert log', from the main menu.
 
 #### VoiceRecognition: greater freedom
 - The availability of this function depends on the browser used.
-- It is not easy to achieve the efficiency achieved with specialized HW (smart speakers: Google, Alexa), because the result depends on various factors, including the microphone used, the related adjustments, the reduction of background noise, etc. In the tests, I went from over 90% recognition to a terrible 20%!
-- NB: Now it is optimized for the Italian language only. But easy to port to other languages (see file speech02.2.js).
+- It is not easy to achieve the efficiency of specialized HW (smart speakers: Google, Alexa), because the result depends on various factors, including the microphone used, the related adjustments, the reduction of background noise, etc. In the tests, I went from over 90% recognition to a terrible 20%!
+- **NB: Now it is optimized for the Italian language only**. But easy to port it to other languages (see file speech02.2.js, e.g. localized version: speech02.2.en.js).
 - The choice of keywords and names for 'tap-to-run' and 'RULE' is also important: for example 'name three words' is difficult to recognize, while 'fire the light' is easily recognized.
-- I believe that this depends on the linguistic models used: correct Italian sentences, with a common meaning, are more recognizable than isolated words. For example 'Tuya' is often confused with 'Giulia'. 
+- I believe that this depends on the linguistic models used: correct sentences, with a common meaning, are more recognizable than isolated words. For example 'Tuya' is often confused with 'Giulia'. 
 - The presence of articles and/or prepositions facilitates recognition.
- - Voice control is optional, and can be disabled in the configuration.
- - If enabled, voice-recognition can be used in two ways, either continuously or by pressing a button. The default mode is set in configuration but can be changed with voice commands.
- - the default grammar is as follows - in brackets (at): optional words; vertical bar to|up: alternative words-: <br>
+- Voice control is optional, and can be disabled in the configuration.
+- If enabled, voice-recognition can be used in two ways, either continuously or by pressing a button. The default mode is set in configuration but can be changed with voice commands.
+- the default grammar is as follows - in brackets (at): optional words; vertical bar to|up: alternative words-: <br>
  
-'Hey Tuya, run|activate (la|un*) xxx (xxx (xxx))' => launch 'tap-to-run' or RULE, name max 3 words
+'Hei Tuya, esegui|attiva (la|un*) xxx (xxx (xxx))' => launch 'tap-to-run' or RULE, name max 3 words
 
-'Hey Tuya, (in|to) expert mode' => opens EXPERT mode
+'Hei Tuya, (in|al) modo expert' => opens EXPERT mode
 
-'Hey Tuya, (in|to) user mode' => go back to USER mode
+'Hei Tuya, (in|al) modo utente' => go back to USER mode
 
-'Hey Tuya, go (to*) scenes' => navigation to the 'tap-to-run' page and RULE
+'Hei Tuya, vai (alle*) scene' => navigation to the 'tap-to-run' page and RULE
 
-'Hey Tuya, go (to*) rules' => navigation to the edit RULE page (if in EXPERT mode)
+'Hei Tuya, vai (alle*) rule' => navigation to the edit RULE page (if in EXPERT mode)
 
-'Hey Tuya, go (to*) home' => navigation to the page with the device tree
+'Hei Tuya, vai (alla*) home' => navigation to the page with the device tree
 
-'Hey Tuya, return|home' => navigation to the page with the device tree
+'Hei Tuya, ritorna|home' => navigation to the page with the device tree
 
-'Hey Tuya, continuous voice mode' => start non-stop recognition mode.
+'Hei Tuya, modo (della*) voce continuo' => start non-stop recognition mode.
 
-'Hey Tuya, voice mode to|on request|demand' => start recognition mode with the button.
+'Hei Tuya, modo (della*) voce a|su richiesta|domanda' => start recognition mode with the button.
 
-'Hey Tuya, stop talking' => stop the continuous recognition mode.
+'Hei Tuya, basta voce' => stop the continuous recognition mode.
 
 (*) note: the list of prepositions and articles accepted in the third position is very long: 'il','lo','la', 'le', 'a', 'ad', 'ai', 'al', 'all', 'allo', 'alla', 'alle', 'di', 'del', 'della', 'dei', 'un', 'una', 'con', 'colla': choose those that facilitate recognition.
 
@@ -408,14 +405,14 @@ It is an array of arrays containing the individual measurements (objects).
 
 ### RULE - syntax
 The particular environment in which the RULES are evaluated entails some limits to the standard js syntax:
-- The RULES are executed cyclically, after every poll of data from the Tuya Cloud, then every TuyaInterval (see config.js). Sometimes there are extra executions, for example during activations by the name of the RULES.
-- **Important**: the code is executed one line at a time, it is not possible to write js blocks that occupy multiple lines! To contain the length of the lines, use intermediate variables (see examples).
+- The RULES are executed cyclically, after every poll of data from the Tuya Cloud, i.e. every TuyaInterval (see config.js). Sometimes there are extra executions, for example during activations by the name of the RULES.
+- **Important**: the code is executed one line at a time, it is not possible to write js blocks that occupy multiple lines! To contain the length of the lines, use intermediate volatile variables (see examples).
 - Define volatile variables (valid for only one run of the RULE) with the syntax: **var** `_foo` **=**...
 - It is also possible to define multiple variables at the same time, Example `var _var1, _var2 = 0;` both `_var1` and `_var2` are initialized to 0.
 - To define permanent variables (valid for all runs) use the MACROS: `VSET(name, value)` and `VGET(name)`.
-- always use an underscore **_** as the first character in the _variable name_: this avoids interference with other variables.
+- Always use an underscore **_** as the first character in the _variable name_: this avoids interference with other variables.
 - The 'semicolon' ";" at the end of the line is optional, but I highly recommend using it always.
-- Default values: `true` and `false` for conditions; numeric constants are dotted, English style (`3.14`), and all strings need quotes (`"today "`);
+- Default values: `true` and `false` for conditions; numeric constants are dotted, English style (`3.14`), and all strings need quotes (`"today "`). Special jolly values are `null` and `undefined`. 
 - Use **//** for comments, they continue to the end of the line
 - The most useful js operations are the arithmetic ones (**+, -, *, /**), the logical ones for the conditions: (**&&** -and, **||** -or, **!** -negation) and comparison operations: ( **&gt;**, **==**, **!=**, **&lt;**, **&gt;=**, **&lt;=**); string concatenation is simply done with the **+** ("hours " **+** "10:30").
 - Do not confuse '=' (assignment - effect: the content of the variable on the left is modified), with '==' (comparison - result: true (same) or false (different)). Example: `var _foo = 32;` and `if (_foo == 32)...` (NB: `if(_foo = 32)` is a common but insidious error, difficult to find and correct).
@@ -429,19 +426,19 @@ Note: The opposite (negated) condition of 'same' (`a == b`) is 'different' (`a !
                                               // note: using ROUND() to convert to string, also for _tm/10 (again number)
  DATALOG("frigo.average", _tm/10);            // saves average on file (saved as number).
 ````
-- As already mentioned, JavaScript is elastic when it comes to value conversions: numbers in 'string' format (i.e. "3.14" instead of 3.14 or Math.PI) are automatically converted to numbers in case of arithmetic operations. Again, numbers and strings are converted into logical values ​​when needed (for example when used as a condition in an `if()` ). Rules: zero (0) is `false`, any other number is `true`. An empty string ("") or `null`, or `undefined` is `false`, any other string is `true`. Examples: `if ("caio")...` is `true`. `var _test = null; if(_test)...` is `false`. (note. It is better not to abuse these automatic mechanisms of the language, it is preferable to always write the extended, clearer conditions: `if (_test != null)...`)
+- As already mentioned, JavaScript is elastic when it comes to value conversions: numbers in 'string' format (i.e. "3.14" instead of 3.14 or Math.PI) are automatically converted to numbers in case of arithmetic operations. Again, numbers and strings are converted into logical values ​​when needed (for example when used as a condition in an `if()` ). Rules: zero (0) is `false`, any other number is `true`. An empty string ("") or `null`, or `undefined` are `false`, any other string is `true`. Examples: `if ("Caio")...` is `true`. `var _test = null; if(_test)...` is `false`. (note. It is better not to abuse these automatic mechanisms of the language, it is preferable to always write the extended, clearer conditions: `if (_test != null)...`)
 
-- the use of parentheses, "()", always in pairs, is also important. Parentheses are mandatory after each MACRO - note, even if there are no parameters, e.g. `BEEP()` - and after an `if()`, to enclose the condition. However, use them freely to group intermediate results into expressions e.g. `if((_a > 10) && (_b/2 == 0))...`
+- the use of parentheses, "()", always in pairs, is also important. Parentheses are mandatory after each MACRO - note, even if there are no parameters, e.g. `BEEP()` - and after an `if()`, to enclose the condition. However, use them freely to group intermediate results into expressions e.g. `if((_a > 10) && (_b/2 == 0))...` or `var _foo = ( _old + 5) * 2.3;`
 
 - Many MACROS must maintain state between one run and the next, (e.g. AVG(), MAX() etc...) and are identified with (*).
-- The most useful js construct in RULES is the **if** (conditional execution), which takes various forms:<br>
+- The most useful js construct in RULES is the **if()** (conditional execution), which takes various forms:<br>
  **if(** `condition` **)** `action;`   // _action is executed only if condition is true._ <br>
  **if(** `condition` **)** `action1`**,** `action2`**,** `...;`   // two or more actions, comma separated.  <br>
  **if(** `condition1 && condition2 && ...` **)** `action;` // AND: 'all', condition1 and condition2 and ... must be true at the same time. <br>
  **if(** `condition1 || condition2 || ...` **)** `action;` // OR: 'any', condition1 or condition2 or ... must be true. <br>
- **if(** `condition` **)** `action1` **else** `action2;` // execute action1 (if true) or action2 (if false). <br>
+ **if(** `condition` **)** `action1` **else** `action2;` // executes action1 (if true) or action2 (if false). <br>
 
-- note: unlike the Tuya, Google, Alexa automations, which in the conditions allow either only AND (all) or only OR (one is enough) (and then try to mitigate this limit by adding the extra 'scope' condition - e.g. Tuya) in the RULES you can have more complex (mixed) conditions by carefully using the brackets to indicate the order of calculation: example: `if ( (condition1 || condition2) && (condition3 || condition4) )...` - in words: "at least one must be true between (condition1, condition2) AND also at least one of (condition3, condition4)".
+- note: unlike the Tuya, Google, Alexa automation and routines, which in the conditions allow either only AND (all) or only OR (one is enough) (and then try to mitigate this limit by adding the extra 'scope' condition - e.g. Tuya) in the RULES you can have more complex (mixed) conditions by carefully using the brackets to indicate the order of calculation: example: `if ( (condition1 || condition2) && (condition3 || condition4) )...` - in words: "at least one must be true between (condition1, condition2) AND also at least one of (condition3, condition4)".
 
 - If a condition is true for a long time (level), an if() will be executed multiple times, at every loop. To avoid this, the TRIGGER macros are true for only one cycle, the first, and then they are false.
 
@@ -478,7 +475,7 @@ _All in all simple, right? According to the designers of APPs for home automatio
 Do you want to experiment but don't know where to start? I recommend:
  1. Copying the following 3 RULES into the RULE edit area (EXPERT mode) and then pressing TEST.
  2. On the tap-to-run page, tab 'user RULE' you will find three new buttons: 'fire the light'. 'Goofy' and 'call for Goofy': you can check the functioning of the three RULES.
- 3. Activate the 'voice command', and try "Hey Tuya, run Goofy".
+ 3. Activate the 'voice command', and try "Hey Tuya, esegui Goofy".
 ````
  if (TRIGBYNAME('fire the light')) VOICE ("Done: 'fired the light'");
  if (TRIGBYNAME("Goofy")) POP ("Test", "Found Goofy");
