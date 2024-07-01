@@ -112,7 +112,7 @@ Some small icons provide further information to the user (see figures above):
 }
 ````
 
-    _note: If you are interested in decoding Tuya values, many functions have been developed for tuyaDAEMON (see 'core_device', 'ENCODE/DECODE user library' node)._
+ _note: If you are interested in decoding Tuya values, many functions have been developed for tuyaDAEMON (see 'core_device', 'ENCODE/DECODE user library' node)._
  - `temperature studio.va_temperature` is saved to the 'datafile', along with the other data in `logList`.
  - The Alert (special icon) was triggered for the `living room temperature` device
  - `living room temperature.va _humidity` is the cause of the Alert, and the condition is also indicated (>40)
