@@ -585,10 +585,10 @@ utc_offset_seconds: 0
 <hr>
 
 #### Functional MACROS
-<dl>
+
 ![TRIGGERS](https://github.com/msillano/IoTwebUI/blob/main/pics/MACRO_01.png?raw=true)<br>
 <i> input ed output di: <code>ISTRIGGERH(evento), ISTRIGGERL(evento), CONFIRMH(evento, T), CONFIRML(evento, T)</code></i>
-
+<dl>
  <dt> ISTRIGGERH(condition) (*) </dt>
 <dd> Returns 'true' only when the "condition" passes from 'false to true', preventing the 'true' "condition" from acting at each run (similar to the conditions of Tuya automations).<br>
 <i>Example:</i> <code>if(ISTRIGGERH(GET("TF_fridge","va_temperature") > 100)) POP("Fridge", "TEMPERATURE above 10°C" );</code> < br>
