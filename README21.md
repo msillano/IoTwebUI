@@ -1,4 +1,4 @@
-## IoTwebUI 2.1: Tuya Web App open extension (work in progress... Not jet updated. see LEGGIMI21.md)
+## IoTwebUI 2.1: Tuya Web App open extension
 
 [versione italiana](https://github.com/msillano/IoTwebUI/blob/main/LEGGIMI21.md)
 
