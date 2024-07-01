@@ -591,9 +591,9 @@ utc_offset_seconds: 0
 <dl>
  <dt> ISTRIGGERH(condition) (*) </dt>
 <dd> Returns 'true' only when the "condition" passes from 'false to true', preventing the 'true' "condition" from acting at each run (similar to the conditions of Tuya automations).<br>
-<i>Example:</i> <code>if(ISTRIGGERH(GET("TF_fridge","va_temperature") > 100)) POP("Fridge", "TEMPERATURE above 10°C" );</code> < br>
+<i>Example:</i> <code>if(ISTRIGGERH(GET("TF_fridge","va_temperature") > 100)) POP("Fridge", "TEMPERATURE above 10°C" );</code> <br>
 Note: the Tuya implementation of multiple <i>conditions (levels) in AND (all)</i> in an automation is as if it were written like this:<brt> <code>if( ISTRIGGERH(condiz1 && condiz2 && .. .)) ... </code> <br> i.e. a Tuya automation is triggered when ALL conditions become true. Similarly with multiple conditions in OR.<BR>
-Note: multiple <i>conditions (levels, AND/OR) + scope (level) </i> of Tuya automations, can be implemented in RULES like this:<br> <code>if( ISTRIGGERH(condition1 ?? condition2 ?? ...) && (scope) )...</code>. <br> You can see how <i>scope</i> does NOT intervene in the TRIGGER but that it MUST be true anyway!
+Note: multiple <i>conditions (levels, AND/OR) + scope (level) + enabled </i> of Tuya automations, can be implemented in RULES like this:<br> <code>if( ISTRIGGERH(condition1 ?? condition2 ?? ...) && (scope) && enabled )...</code>. <br> You can see how <i>scope</i> does NOT intervene in the TRIGGER but that it MUST be true anyway!
 </dd>
 
 <dt> INSTRIGGERL(condition) (*)</dt>
