@@ -451,7 +451,7 @@ Note: The opposite (negated) condition of 'same' (`a == b`) is 'different' (`a !
 _I have central heating, with thermostatic valves on each radiator: each room has its desired temperature profile (Ttarget). Everything works very well, except in exceptional cases (for example, system shut down for maintenance)._ <br>
  I would like to implement a strategy of this type with Tuya: _if the bedroom temperature is 'a certain amount' (i.e. diff) lower than Ttarget, turn on the air conditioner as a heat pump with the same Ttarget._ That is:
 
- `If ​​(( Ttarget - Tambient ) > diff) => clima.warm( Ttarget )`
+ `if ​​(( Ttarget - Tambient ) > diff) => clima.warm( Ttarget )`
 
 _This automation cannot be achieved with Smartlife_, nor with Alexa or Google, because:
  - arithmetic operations cannot be used,
@@ -460,7 +460,8 @@ _This automation cannot be achieved with Smartlife_, nor with Alexa or Google, b
 
 Am I asking too much? An 'open' system should allow these automations. Or not? In fact, with RULES _it can be done_! <br>
 _Some preconditions: My thermo-valve ('Termo bed') has the properties 'temp_set' and 'temp_current'.
-For simplicity, I only used the values ​​16, 20, and 21 °C as the Target temperature: in this way I only need 3 taps-to-run called Tbedroom16, Tbedroom20, and Tbedroom21, to turn on and set the air conditioner._
+For simplicity, I only used the values ​​16, 20, and 21 °C as the Target temperature: in this way I only need 3 taps-to-run called Tbedroom16, Tbedroom20, and Tbedroom21, to turn on and set the air conditioner.<br>
+Here are the necessary RULES, where I use some intermediate variables to reduce complexity. The ISTRIGGERH() macro is true only once, when the condition goes from false to true (see below), ROUND() rounds a number and transforms it into text, to form the strings "TTbedroom16","TTbedroom20",.. . i.e. the name of the 'tap-to-run', which thus now depends on Ttarget. The clima turn-on is also stored in the 'Alert register'._
 ```
 var _diff = 2.3; // to be calibrated next winter
 var _Ttarget = GET("Termo bed", "temp_set") ;
