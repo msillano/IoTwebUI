@@ -587,64 +587,122 @@ utc_offset_seconds: 0
 
 #### Functional MACROS
 <dl>
-<dt> ISTRIGGERH(condition) (*) </dt>
-<dd> Returns 'true' only when the "condition" passes from 'false to true', preventing the 'true' "condition" from acting at each run (similar to the conditions of Tuya automations). </dd>
+![TRIGGERS](https://github.com/msillano/IoTwebUI/blob/main/pics/MACRO_01.png?raw=true)<br>
+<i> input ed output di: <code>ISTRIGGERH(evento), ISTRIGGERL(evento), CONFIRMH(evento, T), CONFIRML(evento, T)</code></i>
+
+ <dt> ISTRIGGERH(condition) (*) </dt>
+<dd> Returns 'true' only when the "condition" passes from 'false to true', preventing the 'true' "condition" from acting at each run (similar to the conditions of Tuya automations).<br>
+<i>Example:</i> <code>if(ISTRIGGERH(GET("TF_fridge","va_temperature") > 100)) POP("Fridge", "TEMPERATURE above 10°C" );</code> < br>
+Note: the Tuya implementation of multiple <i>conditions (levels) in AND (all)</i> in an automation is as if it were written like this:<brt> <code>if( ISTRIGGERH(condiz1 && condiz2 && .. .)) ... </code> <br> i.e. a Tuya automation is triggered when ALL conditions become true. Similarly with multiple conditions in OR.<BR>
+Note: multiple <i>conditions (levels, AND/OR) + scope (level) </i> of Tuya automations, can be implemented in RULES like this:<br> <code>if( ISTRIGGERH(condition1 ?? condition2 ?? ...) && (scope) )...</code>. <br> You can see how <i>scope</i> does NOT intervene in the TRIGGER but that it MUST be true anyway!
+</dd>
 
 <dt> INSTRIGGERL(condition) (*)</dt>
-<dd> Returns 'true' only when the "condition" passes from 'true to false' (inverse of ISTRIGGERH). </dd>
+<dd> Returns 'true' only when the "condition" passes from 'true to false' (inverse of ISTRIGGERH). Turns a false level into TRIGGER. <br>Note: the output is reversed compared to 'condition' (see figure).<br>
+<i>Example:</i> <code>if(ISTRIGGERL(GET("tuya_bridge", "switch_1"))) ALERTLOG("tuya_bridge", "Open Now"); </code> </dd>
 
 <dt> CONFIRMH(condition, time) (*) </dt>
-<dd> Returns 'true' only if the "condition" remains 'true' for at least 'time'. Then it stays 'true' as long as the 'condition' is 'true'. Typical case: an open door: see examples.<BR>
-time = constant in the formats "hh:mm:ss" or "mm:ss" or "ss". Must be greater than TuyaInterval.</dd>
+<dd> Returns 'true' only if the "condition" remains 'true' for at least 'time'. Then it stays 'true' as long as the 'condition' is 'true'. Typical case: an open door. It is used to filter short-lived true 'levels' that are not of interest (see figure).<BR>
+time = constant in the formats "hh:mm:ss" or "mm:ss" or "ss". Lower limit: TuyaInterval.<br>
+<i>Example:</i> <br>
+ <code>var _doorev = GET("Door sensor", "doorcontact_state") ; </code> // true with door open
+ <code>if(ISTRIGGERH( CONFIRMH(_doorev, "01:20"))) VOICE("close the door, thank you"); </code> </dd>
 
 <dt> CONFIRML(condition, time) (*) </dt>
-<dd> Returns 'true' only if the "condition" remains 'false' for at least 'time' (inverse of CONFIRMH).</dd>
+<dd> Returns 'true' only if the "condition" remains 'false' for at least the 'time' (inverse of CONFIRMH): It is used to filter out short-lived false 'levels' that are of no interest.<br>Note: l 'output is inverted with respect to 'condition' (see figure).<br>
+<i>Example:</i> <code>if(ISTRIGGERH(CONFIRML(ISCONNECTED("relay"), "02:30"))) VOICE("Disconnection alarm");</code> </dd>
 
-<dt>HYSTERESIS (value, test, delta) (*)</dt>
- <dd> Compare 'value' with 'test', using 'delta' as the hysteresis range. The output becomes 'true' if 'value &gt; test + delta/2', or 'false' if 'value &lt; test - delta/2'. </dd>
+<dt>TRIGCHANGED(value) (*) </dt>
+<dd> returns 'true' whenever 'value' changes from the previous value.<br>
+<i>Example:</i> <code> var _tf = GET("TF_fridge","va_temperature"); <br>
+ var _annonce = "At " + TIME(hrs)+" the temperature changed. The fridge is at " + ROUND(_tf/10, 1) + " degrees";<br>
+ if(TRIGCHANGED(_tf)) VOICE(_annonce); </code></dd>
 
-<dt> EVERY(n) (*)</dt>
-<dd> Simple timer: returns 'true' only after "n" executions, cyclic <br>
- A single 'true' value is guaranteed for every nth loop (does not require ISTRIGGERH()).
- 'n' is the number of loops; as time: t = n x tuyaInterval (defined in 'config.js' file). </dd>
+<dt>TRIGEVERY(n) (*)</dt>
+<dd> Simple timer: returns 'true' only after "n" executions, cyclical. <br>
+ A single 'true' value is guaranteed for every nth loop, 'n' is the number of loops, in time: t <= n x tuyaInterval (defined in 'config.js' file).<br>
+<i>Example:</i> <code>if(TRIGEVERY(8)) POP( "FRIDGE", "Internal temperature: "+ ROUND(_tf/10, 1) + "°C");</code> </dd>
 
-<dt> TIME(wath) </dt>
-<dd> returns a string, "hh:mm:ss" or "mm:ss" or "ss" calculated from the current time, depending on 'wath'.
- 'wath': one of the constants defined as follows: <i>hrs</i> = 11, <i>min</i> = 14, <i>sec</i> = 17 (without quotes, they are not strings) .<br>
- Example: <i>"At " + TIME(hrs)</i> </dd>
+<dt>TRIGBYNAME(name) </dt>
+<dd> Associates a 'name' (max 3 words) with a RULE, allowing it to be activated with a user command (button or voice command) or in the case of 'Alert', or with TRIGRULE(name) from another RULE ( analogous to the 'tap-to-run' Tuya).<br>
+Returns true when it should be executed. <br>
+<i>Example:</i> <code>if (TRIGBYNAME('fire the light')) VOICE ("You have activated: 'fire the light'") </code> </dd>
 
-<dt> DAYMAP(val1, time1, val2, time2, ... more) </dt>
-<dd> Returns: up to 'time1' the output is 'val1', from 'time1' to 'time2' the output is 'val2'... continue like this until the last 'time' after which the output is 'val1' again.<br>
-Naturally, the 'val' and 'time' values ​​must be present in pairs, as many as needed. All 'times' in "hh:mm:ss" format.<br>
-Uses: daily temperature profiles, timed events or enabling for time intervals, etc., depending on whether 'val's are temperatures, or 'good morning'/'good evening', or true/false, etc..
- </dd>
+<dt>VGET(name) </dt>
+<dd>GET of a permanent variable - preserved for all RULE runs.<br>
+ If the <code>name</code> variable was NOT initialized with a VSET, it returns <code>null</code>. <br>
+<i>Example:</i> <code>if( VGET('start') == null ) VSET('start', TIME(hrs)); </code> </dd>
 
-<dt> WEEKMAP(map) </dt>
-<dd> 'map' is a string of seven characters, one for each day of the week, starting from Sunday (e.g.: 'DLMMGVS' or 'SMTWTFS' or '1234567'). Only if the character corresponding to today is '-' (hyphen) does it return 'false' otherwise it returns 'true'. <br> Example: WEEKMAP("DLMM-VS") is false only on Thursday. </dd>
-
-<dt> AVG(value, n) (*) </dt>
-<dd> Moving average of the last 'n' values: returns a string with 2 decimals.<br>
-'n' is yhe number of loops; as time: t = n x tuyaInterval (defined in 'config.js' file).</dd>
-
-<dt> MAX(value, n) (*) </dt>
-<dd>Returns the largest of the last 'n' values.<br>
-'n' is the number of loops; as time: t = n x tuyaInterval (defined in config.js file).</dd>
-
- <dt> ZEROMAX() </dt>
-<dd>Resets all MAX() present in case of long periods, e.g. 24h.<br>
-<i>note: it must be placed after all MAX()s present.</i>
- Example: 'if(ISTRIGGERH(DAYMAP(false, '00:00:00', true, '00:20:00'))) ZEROMAX();'<br>
- </dd>
-
-<dt>ISCHANGED(value) (*) </dt>
-<dd> returns 'true' whenever the 'value' changes from the previous value.</dd>
+<dt>VSET(name, value)</dt>
+<dd>SET of a permanent variable - preserved for all RULE runs.<br>
+<i>Example:</i> <code>if( TRIGEVERY(10) ) VSET('try', VGET('try') + 2);</code> </dd>
 
 <dt>ROUND(number, pos)</dt>
 <dd> Returns a string with 'pos' decimal digits (if 'pos' >0) <br>
  or an integer ('pos' = 0) <br>
  or an integer with zeros ('pos' < 0) <br>
- Examples: 'ROUND (123.567, 2)' = "123.57"; 'ROUND(123.567, 0)' = "124"; 'ROUND(123.567, -2)' = "100";
+ <i>Examples:</i> <code>'ROUND (123.567, 2)' => "123.57"; 'ROUND(123.567, 0)' => "124"; 'ROUND(123.567, -2)' => "100";</code>
 </dd>
+
+<dt>ADDCOUNT(event, restart) (*) </dt>
+<dd> When the restart is true it returns the total times that event has been true otherwise, it returns <code>null</code>,
+It can be used in two ways: if 'event' is a TRIGGER count the number of times. Otherwise, if it is a 'level' rate
+the duration of the true state (such as the duty cycle).
+ <i>Example:</i>
+ <code>var _tot = ADDCOUNT(ISCONNECTED("HUB_zigbee"), TRIGEVERY(100));</code> <br>
+ <code>if (_tot) POP("Reliability", "The Zigbee HUB was connected "+ _tot +"% of the time"); </code> </dd>
+
+<dt>HYSTERESIS (value, test, delta) (*)</dt>
+ <dd> Compare 'value' with 'test', using 'delta' as the hysteresis range. The output becomes 'true' if 'value &gt; test + delta/2', or 'false' if 'value &lt; test - delta/2'.<br>
+ <i>Example:</i> <code>if(ISTRIGGERH(HYSTERESIS(GET("T_bed","va_temperature"), 320, 10))) SCENE("Air conditioner ON"); </code> </dd>
+
+<dt>AVG(value, n) (*) </dt>
+<dd> Moving average of the last 'n' values: returns a string with 2 decimals.<br>
+'n' is the number of loops, as time: t = n x tuyaInterval (defined in 'config.js' file).<br>
+ <i>Example:</i> <code>DATALOG("Average Fridge Temperature", AVG(GET("TF_fridge","va_temperature")/10, 20)); </code> </dd>
+
+<dt>MAX(value, n) (*) </dt>
+<dd>Returns the largest of the last 'n' values.<br>
+'n' is the number of loops, as time: t = n x tuyaInterval (defined in config.js file).<br>
+<i>Example:</i> <code>var _Tmax = MAX(GET("TF_fridge","va_temperature")/10, 1440);</code> (24h = 1440@1min/loop) </dd>
+
+<dt>DERIVATIVE(value) (*) </dt>
+<dd>Returns the derivative (better: the incremental ratio) of value.<br>
+<i>Example:</i> <code>if (DERIVATIVE(GET("TF_fridge","va_temperature")) > 0) VOICE("Increasing Fridge Temperature");</code> <br>
+<i>Example: to evaluate the validity of the calculations</i> <pre>
+ var _integ = INTEGRAL(1, 300);
+ var _deriv = DERIVATIVE(_integ);
+ console.log ( _integ , _deriv); </pre>
+</dd>
+
+<dt>INTEGRAL(value, limit) or INTEGRAL(value)(*) </dt>
+<dd>Returns the integral (better: the integral sum) of value. Limit is optional, and returns the integral to 0 when it is reached.<br>
+<i>note: You can use <code>INTEGRAL</code> to create more precise timers than <code>TRIGEVERY()</code> which is based on cycle counting. <br> The integral of a constant is an increasing straight line: using 1 as a constant, and a <code>limit</code> in seconds, we have a sawtooth trend. The integral is 0 at startup and then every <code>limit</code> seconds (error: 0..+TuyaInterval) with excellent precision. This example is a periodic timer lasting 1h:</i> <pre>
+ var _integ = INTEGRAL(1, 3600);
+ if (_integ == 0) ...more...</pre>
+</dd>
+
+<dt>TIME(wath) </dt>
+<dd> returns a string, "hh:mm:ss" or "mm:ss" or "ss" calculated from the current time, depending on 'wath'.
+ 'wath': one of the constants defined as follows: <i>hrs</i> = 11, <i>min</i> = 14, <i>sec</i> = 17 (without quotes, they are not strings) .<br>
+ <i>Example:</i> <code>var _message = "At " + TIME(hrs); </code> </dd>
+
+<dt> DAYMAP(val1, time1, val2, time2, ... <i>more</i>) </dt>
+<dd> Daily programming, returns a value that varies over time: up to 'time1' the output is 'val1', from 'time1' to 'time2' the output is 'val2'... continue like this until the last 'time' after which the output is 'val1' again.<br>
+Naturally, the 'val' and 'time' values ​​must be present in pairs, as many as needed. All 'times' in "hh:mm:ss" format.<br>
+Uses: daily temperature profiles, timed events or enabling for time intervals, etc., depending on whether 'val' are temperatures, or 'good morning'/'good evening', or true/false, etc..<br>
+ <i>Example:</i> <code>if(DAYMAP(false,"12:30", true, "2:00")) BEEP(); </code>
+ </dd>
+
+<dt>WEEKMAP(map) </dt>
+<dd>Weekly programming: 'map' is a string of any seven characters, one for each day of the week, starting from Sunday (e.g.: 'DLMMGVS' or 'SMTWTFS' or '1234567'). Only if the character corresponding to today is '-' (hyphen) does it return 'false' otherwise it returns 'true'. <br>
+ <i>Example:</i> <code>WEEKMAP("DLMM-VS") </code> is false only every Thursday. </dd>
+
+<dt>YEARMAP(month, day) </dt>
+<dd>Annual programming: 'month' and 'day' are two strings of any 12 and 31 characters, to identify months and days (e.g.: 'GFMAMGLASOND' and '1234567890123456789012345678901'). Only if today's month and day are '-' (hyphen) does it return 'false' (for 24h) otherwise it returns 'true'. <br>
+ <i>Example:</i> <code>YEARMAP( 'GFMAMGLASON-', '12345678901234567890123-5678901') </code> is false only on Christmas.
+ </dd>
+
 </dl>
 (*): identifies MACROS that use memory to save state.
 
