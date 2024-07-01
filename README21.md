@@ -111,6 +111,7 @@ Some small icons provide further information to the user (see figures above):
 "delay": 2
 }
 ````
+
     _note: If you are interested in decoding Tuya values, many functions have been developed for tuyaDAEMON (see 'core_device', 'ENCODE/DECODE user library' node)._
  - `temperature studio.va_temperature` is saved to the 'datafile', along with the other data in `logList`.
  - The Alert (special icon) was triggered for the `living room temperature` device
