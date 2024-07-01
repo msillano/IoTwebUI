@@ -42,7 +42,7 @@ _What can you do?_<br>
 
 - You can activate a control function on any property of the devices and choose the "greater than", "equal to" or "less than" tests to monitor every aspect of your home automation.
 - Same logic as Tuya conditions, for a common and reliable language.
-- Choose from different consequential actions: beep, pop-up, voice message, URL launch, or Tuya tap-to-run|RULES.
+- Choose from different consequential actions: beep, sound, pop-up, voice message, URL launch, or Tuya tap-to-run|RULES.
 - Real-time, with an average delay equal to 50% of the Tuya sampling period, for a perfect balance between speed and precision.
 - Alert definition at runtime: total control in real-time
 
