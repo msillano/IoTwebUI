@@ -534,7 +534,7 @@ Ovviamente si possono sempre aggiungere nuove MACRO, o come customizzazione (se 
 <dd> Per servizi web API REST (GET) che tornano come risposta un testo semplice.<br>
  <i>Esempio:</i>  <code>
   // see https://www.ipify.org/ <br>
- if(TRIGBYNAME("my IP"))  POP( "My IP", REST("https://api.ipify.org/?format=txt"));   </code> <br>
+ if(TRIGBYNAME("my IP"))  POP( "My IP", REST("https://api.ipify.org/?format=txt"));   </code> </dd>
  
 <dt>RESTJSON(url)</dt>
 <dd> Per servizi web API REST (GET), che forniscono la risposta in formato JSON (la maggior parte). Questa funzione restituisce, per semplificare l'uso, direttamente un oggetto.<br>
@@ -592,7 +592,7 @@ utc_offset_seconds: 0
 <dt>ISTRIGGERH(condition) (*) </dt>
 <dd> Ritorna 'true' solo al passaggio della "condizione" da 'false a true', evita che la "condizione" 'true' agisca ad ogni run. Ovvero trasforma un livello true in TRIGGER (vedi figura). <br>
 <i>Esempio:</i> <code>if(ISTRIGGERH(GET("TF_frigo","va_temperature") > 100)) POP("Frigo", "TEMPERATURA oltre 10°C" );</code> <br>
-Nota: l'implementazione Tuya di più <i>condizioni (livelli) in AND (tutte)</i> in una automazione è come se fosse scritta così:<brt> <code>if( ISTRIGGERH(condiz1 && condiz2 && ...)) ... </code> <br> cioè un'automazione Tuya scatta nel momento in cui TUTTE le condizioni diventano true. Analogamente con più condizioni in OR.<BR> 
+Nota: l'implementazione Tuya di più <i>condizioni (livelli) in AND (tutte)</i> in una automazione è come se fosse scritta così:<br> <code>if( ISTRIGGERH(condiz1 && condiz2 && ...)) ... </code> <br> cioè un'automazione Tuya scatta nel momento in cui TUTTE le condizioni diventano true. Analogamente con più condizioni in OR.<BR> 
 Nota: più <i>condizioni (livelli, AND/OR) + ambito (livello) </i> delle automazioni Tuya, può essere implementato nelle RULE così:<br> <code>if( ISTRIGGERH(condiz1 ?? condiz2 ?? ...) && (ambito) )...</code>. <br> Si vede come <i>Ambito</i> NON intervenga nel TRIGGER ma che comunque DEVE essere vero!
 </dd>
  
