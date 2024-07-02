@@ -181,7 +181,7 @@ In EXPERT mode, clicking on a device opens a dialogue which in the lower part al
 - _If you do not choose actions and do not fill  the 'message', the default action is always the change of icon on the diagram and in the tooltip._
 - _The 'alerts' do not, for simplicity, have a time filter: if defined they are active 24/7. If some conditioning is needed, it is possible to create an ad-hoc RULE._
 -  _The 'connected' is not included in the properties, and therefore 'Alert' cannot be defined. But it is available as MACRO in RULE._
-. _Having only one message, the precedence rules are: SOUND() and URL (auto) are examined first, then Tap-to-run and RULES (auto), and POP and VOICE only last (compatible: the same message can be used for both); Beep is always usable._
+- _Having only one message, the precedence rules are: SOUND() and URL (auto) are examined first, then Tap-to-run and RULES (auto), and POP and VOICE only last (compatible: the same message can be used for both); Beep is always usable._
 - _To have both 'pop' and 'tap-to-run', you need to create two Alerts with the same conditions: in one the 'message' will be the text for the 'pop-up', in the other the name of the 'tap-to-run'._
 - _The display of pop-ups may depend on your browser configuration; using 'run_me.bat' automatically updates the configuration for the new browser instance. User actions (e.g. buttons) can temporarily enable pop-ups.<br>
 However, in order not to lose information, if the pop-ups are disabled for some reason, the message is still presented in a window of the APP: the difference is that the pop-ups can be many, while the window is unique and is reused with a counter._
