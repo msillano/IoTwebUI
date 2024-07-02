@@ -349,7 +349,8 @@ Anche l'icona speciale che indica un'alert è customizzabile: vedi `alertIcon` i
 - Per le RULE, i più avventurosi possono aggiungere le loro MACRO personali nel file `usrrulesXX.X.js`.
 
 - Per VoiceRecognition, nel file "speech0X.X.js" è semplice modificare le parole della grammatica proposta: esempio sostituire 'vai' con 'raggiungi'. L'obiettivo deve essere sempre quello di migliorare la comprensione dei comandi.<br>
-Un po' più complesso è aggiungere nuovi comandi vocali, non tanto per la definizione della grammatica (il codice attuale  può servire da esempio) quanto l'implementazione delle azioni, che spesso dipendono dal codice esitente.<br>
+- L'adattamento del riconoscimento vocale ad altre lingue è complesso, e richiede profonda competenza della lingua sia nella grammatica che nel vocabolario.  Mi affido alla collaborazione di utenti volenterosi. Da parte mia  completerò l'intornazionalizzazione delle varie pagine dell'APP asap (ver. 2.2).
+- Un po' più complesso è aggiungere nuovi comandi vocali, non tanto per la definizione della grammatica (il codice attuale  può servire da esempio) quanto l'implementazione delle azioni, che spesso dipendono dal codice esitente.<br>
 Direi che per nuovi comandi vocali, la strada migliore è fare una proposta di implementazione nelle ['issue'](https://github.com/msillano/IoTwebUI/issues), e, in base al consenso ed alla fattibibilità, potrebbe essere implementata nella release successiva.
   
 Queste customizzazioni NON sono necessarie, ma redono più utile e gradevole l'uso di TuyaUIweb.
