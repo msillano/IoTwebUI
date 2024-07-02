@@ -200,7 +200,7 @@ Buttons:
 <TABLE width = "100%" >
  <TR>
  <TD>
- An important part is dedicated to a RULE editing pad (for details <a href="#rule---syntax">see below</a>A>).<br>
+ An important part is dedicated to a RULE editing pad (for details <a href="#rule---syntax">see below</a>).<br>
 <i>Note: if you prefer to use a more powerful external editor, you can certainly do so, with copy-paste.</i><br>
 Two sets of RULES can be managed: those in <i>use</i>, initially read from the `usrrulesXX.X.js` file, and the new ones, <i>in Edit</i> in the pad.
 <br>
