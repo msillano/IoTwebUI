@@ -408,7 +408,7 @@ It is an array of arrays containing the individual measurements (objects).
 
 ### RULE - syntax
 The particular environment in which the RULES are evaluated entails some limits to the standard js syntax:
-- The RULES are executed cyclically, after every poll of data from the Tuya Cloud, i.e. every TuyaInterval (see config.js). Sometimes there are extra executions, for example during activations by the name of the RULES.
+- The RULES are executed cyclically, after every poll of data from the Tuya Cloud, i.e. every `TuyaInterval` (see config.js). Sometimes there are extra executions, for example during activations by the name of the RULES.
 - **Important**: the code is executed one line at a time, it is not possible to write js blocks that occupy multiple lines! To contain the length of the lines, use intermediate volatile variables (see examples).
 - Define volatile variables (valid for only one run of the RULE) with the syntax: **var** `_foo` **=**...
 - It is also possible to define multiple variables at the same time, Example `var _var1, _var2 = 0;` both `_var1` and `_var2` are initialized to 0.
@@ -429,11 +429,11 @@ Note: The opposite (negated) condition of 'equal' (`a == b`) is 'different' (`a 
                                               // note: using ROUND() to convert to string, also for _tm/10 (again number)
  DATALOG("frigo.average", _tm/10);            // saves average on file (saved as number).
 ````
-- As already mentioned, JavaScript is elastic when it comes to value conversions: numbers in 'string' format (i.e. "3.14" instead of 3.14 or Math.PI) are automatically converted to numbers in case of arithmetic operations. Again, numbers and strings are converted into logical values ​​when needed (for example when used as a condition in an `if()` ). Rules: zero (0) is `false`, any other number is `true`. An empty string ("") or `null`, or `undefined` are `false`, any other string is `true`. Examples: `if ("Caio")...` is `true`. `var _test = null; if(_test)...` is `false`. (note. It is better not to abuse these automatic mechanisms of the language, it is preferable to always write the extended, clearer conditions: `if (_test != null)...`)
+- As already mentioned, JavaScript is elastic when it comes to value conversions: numbers in 'string' format (i.e. "3.14" instead of 3.14 or Math.PI) are automatically converted to numbers in case of arithmetic operations. Again, numbers and strings are converted into logical values ​​when needed (for example when used as a condition in an `if()` ). Rules: zero (0) is `false`, and any other number is `true`. An empty string ("") or `null`, or `undefined` is `false`, and any other string is `true`. Examples: `if ("Caio")...` is `true`. `var _test = null; if(_test)...` is `false`. (note. It is better not to abuse these automatic mechanisms of the language, it is preferable to always write the extended, clearer conditions: `if (_test != null)...`)
 
 - the use of parentheses, "()", always in pairs, is also important. Parentheses are mandatory after each MACRO - note, even if there are no parameters, e.g. `BEEP()` - and after an `if()`, to enclose the condition. However, use them freely to group intermediate results into expressions e.g. `if((_a > 10) && (_b/2 == 0))...` or `var _foo = ( _old + 5) * 2.3;`
 
-- Many MACROS must maintain state between one run and the next, (e.g. AVG(), MAX() etc...) and are identified with (*).
+- Many MACROS must maintain state between one run and the next, (e.g. AVG(), MAX(), etc...) and are identified with (*).
 - The most useful js construct in RULES is the **if()** (conditional execution), which takes various forms:<br>
  **if(** `condition` **)** `action;`   // _action is executed only if condition is true._ <br>
  **if(** `condition` **)** `action1`**,** `action2`**,** `...;`   // two or more actions, comma separated.  <br>
