@@ -1,4 +1,4 @@
-## IoTwebUI 2.1: Tuya Web App open extension
+ual## IoTwebUI 2.1: Tuya Web App open extension
 
 [versione italiana](https://github.com/msillano/IoTwebUI/blob/main/LEGGIMI21.md)
 
@@ -419,8 +419,8 @@ The particular environment in which the RULES are evaluated entails some limits 
 - Use **//** for comments, they continue to the end of the line
 - The most useful js operations are the arithmetic ones (**+, -, *, /**), the logical ones for the conditions: (**&&** -and, **||** -or, **!** -negation) and comparison operations: ( **&gt;**, **==**, **!=**, **&lt;**, **&gt;=**, **&lt;=**); string concatenation is simply done with the **+** ("hours " **+** "10:30").
 - Do not confuse '=' (assignment - effect: the content of the variable on the left is modified), with '==' (comparison - result: true (same) or false (different)). Example: `var _foo = 32;` and `if (_foo == 32)...` (NB: `if(_foo = 32)` is a common but insidious error, difficult to find and correct).
-Note: The opposite (negated) condition of 'same' (`a == b`) is 'different' (`a != b`). The opposite (negated) condition of 'greater' (`a > b`) is NOT 'less' (`a < b`) but is 'less than or equal' (`a <= b`)! Similarly, the opposite of (`a < b`) is (`a >= b`).
-- **Pay attention to the '+'**: in `a + b`, if `a` and `b` are both numbers, it adds, but if one of the two is a string not convertible into a number, the other is automatically converted to a string too. And the `number => string` conversion can lead to surprises when they are not integers! Always use the MACRO ROUND() when you need to use decimal numbers in strings. Example:
+Note: The opposite (negated) condition of 'equal' (`a == b`) is 'different' (`a != b`). The opposite (negated) condition of 'greater' (`a > b`) is NOT 'less' (`a < b`) but is 'less than or equal' (`a <= b`)! Similarly, the opposite of (`a < b`) is (`a >= b`).
+- **Pay attention to the '+'**: in `a + b`, if `a` and `b` are both numbers, it adds, but if one of the two is a string not convertible into a number, the other is automatically converted to a string too. And the `number => string` conversion can lead to surprises when they are not integers! Always use the MACRO ROUND() when using decimal numbers in strings. Example:
 ````
  var _tf = GET("TF_frigo","va_temperature");  // read temperature sensor, saves it in _tf (number)
  var _tm = AVG(_tf, 12);                      // get average from last 12 values (_tm is a string, see AVG())
