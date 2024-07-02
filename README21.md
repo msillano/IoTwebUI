@@ -261,6 +261,8 @@ note: For better understanding, the sentences can be divided into two: "Hey Tuya
 
 note: navigation between pages is similar to the menu: from 'home' you can go to the 'tap-to-run' or 'edit RULE' pages (in EXPERT mode); but from these, you can only return to 'home'.
 
+<hr>
+
 **Safety NOTES**<br>
 _To ensure maximum security, **IoTwebUI** operates exclusively in read-only mode, without making any changes to your data on Tuya Cloud._ <br>
 
