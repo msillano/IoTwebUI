@@ -572,8 +572,8 @@ utc_offset_seconds: 0
  _Example:_ <code>SOUND("https://assets.mixkit.co/active_storage/sfx/918/918.wav"); </code>
 </dd>
 
-<dt>SCENE(sceneName) </dt>
-<dd>Executes a _tap-to-Run_, present in the list read from the Cloud.<br>
+<dt>SCENA(sceneName) </dt>
+<dd>Executes a 'tap-to-Run', present in the list read from the Cloud.<br>
  <i>Example:</i> <code> if(ISTRIGGERH(_alarm)) SCENE('siren sounds'); </code></dd>
 
 <dt>TRIGRULE(name)</dt>
