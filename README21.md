@@ -51,6 +51,7 @@ _What can you do?_<br>
 - Perform logical and arithmetic operations and use variables for unlimited flexibility.
 - Compare the values of two different properties, for even freer automations.
 - Perform complex actions, such as activating Tuya tap-to-runs or sending commands to other applications via REST.
+- The RULE language satisfies the Bohm/Jacopini conditions and is therefore 'Turing complete'. More expressive power means for the user to focus on 'what you want to do' and not 'how to do it'!
 - **How does it work?**
   1. Create RULES with a user-friendly interface at runtime, even if you are not an experienced programmer.
   2. Use predefined MACROs for common and repetitive tasks, saving time and effort.
