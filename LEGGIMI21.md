@@ -263,7 +263,7 @@ _NON rendetela accessibile dall'esterno o da terzi, altrimenti tutti i vostri da
 <hr>
 
 ### Versioni
-- 2.1.1 Correzione [ISSUE10](https://github.com/msillano/IoTwebUI/issues/10): Token scaduto.
+- 2.1.1 Correzione bugs [ISSUE10](https://github.com/msillano/IoTwebUI/issues/10): Token scaduto. [ISSUE11](https://github.com/msillano/IoTwebUI/issues/11): refuso.
 
 - 2.1 Miglioramento dell'esperienza utente:
   - Aggiunto SpeechRecognition (file speech21.js) customizzabile
