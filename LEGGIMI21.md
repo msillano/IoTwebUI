@@ -593,8 +593,8 @@ utc_offset_seconds: 0
 <dt>ISTRIGGERH(condition) (*) </dt>
 <dd> Ritorna 'true' solo al passaggio della "condizione" da 'false a true', evita che la "condizione" 'true' agisca ad ogni run. Ovvero trasforma un livello true in TRIGGER (vedi figura). <br>
 <i>Esempio:</i> <code>if(ISTRIGGERH(GET("TF_frigo","va_temperature") > 100)) POP("Frigo", "TEMPERATURA oltre 10°C" );</code> <br>
-Nota: l'implementazione Tuya di più <i>condizioni (livelli) in AND (tutte)</i> in una automazione è come se fosse scritta così:<br> <code>if( ISTRIGGERH(condiz1 && condiz2 && ...)) ... </code> <br> cioè un'automazione Tuya scatta nel momento in cui TUTTE le condizioni diventano true. Con più condizioni in OR, basta UN trigger: <code>if( ISTRIGGERH(condiz1) || ISTRIGGERH(condiz2) || ...) ... </code>.<BR> 
-Nota: più <i>condizioni (livelli) + ambito (livello) + abilitazione </i> delle automazioni Tuya, può essere implementato nelle RULE così:<br> <code>if( (ISTRIGGERH(condiz1...) ...) && (ambito) && abilitata)...</code>. <br> Si vede come <i>Ambito</i> NON intervenga nel TRIGGER ma che comunque DEVE essere vero!
+Nota: l'implementazione Tuya di più <i>condizioni (livelli) in AND (tutte)</i> in una automazione è come se fosse scritta così:<br> <code>if( ISTRIGGERH(condiz1 && condiz2 && ...) ... </code> <br> cioè un'automazione Tuya scatta nel momento in cui TUTTE le condizioni diventano true. Con più condizioni in OR, basta UN trigger:<br> <code>if( ISTRIGGERH(condiz1) || ISTRIGGERH(condiz2) || ...) ... </code>.<BR> 
+Nota: più <i>condizioni (livelli) + ambito (livello) + abilitazione </i> delle automazioni Tuya, può essere implementato nelle RULE così:<br> <code>if( (ISTRIGGERH(condiz1...) ...) && (ambito...) && abilitata)...</code>. <br> Si vede come <i>Ambito</i> NON intervenga nel TRIGGER ma che comunque DEVE essere vero!
 </dd>
  
 <dt>ISTRIGGERL(condition) (*)</dt>
