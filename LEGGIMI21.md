@@ -121,7 +121,7 @@ Alcune piccole icone forniscono ulteriori informazioni all'utente.Esempi (vedi f
 
  I 'tap-to-run sono presentati per 'home' (max 100) nella apposita pagina, e poi in ordine alfabetico, come una serie di bottoni.
  I nomi dei 'tap-to-run' possono avere i seguenti vincoli:
-  - Limite di 3 parole se usati con i comandi vocali
+  - Limite di 3 parole se usati con i comandi vocali di IoTwebUI.
   - Utilizare prefissi per raggruppare in IoTwebUI i comandi correlati.
   - Essere facili da ricordare e da riconosere (se si usano i comandi vocali).<br>
   
