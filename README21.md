@@ -1,4 +1,4 @@
-ual## IoTwebUI 2.1: Tuya Web App open extension
+## IoTwebUI 2.1: Tuya Web App open extension
 
 [versione italiana](https://github.com/msillano/IoTwebUI/blob/main/LEGGIMI21.md)
 
