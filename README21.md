@@ -125,9 +125,9 @@ Some small icons provide further information to the user (see figures above):
 ### tap-to_run Tuya
 All 'taps-to-run' are presented by 'home' (max 100) and in alphabetical order.
 Tap-to-run names can have the following constraints:
- - 3 word limit when used with voice commands
+ - 3 word limit when used with IoTwebUI voice commands
  - Use prefixes to group related commands in IoTwebUI.
- - Be easy to remember and recognize (if you use voice commands with Google or Alexa).<br>
+ - Be easy to remember and recognize (if you use voice commands).<br>
 
 A pad is dedicated to the 'user RULES' identified with a name. They are treated like 'tap-to-run': they can be used in alerts, activated with buttons or via voice command, or launched by another RULE.<br>
 _Of course 'RULES' and 'tap-to-run' must have unique names to be identified (but you can use also IDs)._
