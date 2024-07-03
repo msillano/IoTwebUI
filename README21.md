@@ -273,7 +273,7 @@ _DO NOT make it accessible from the outside or by third parties: otherwise, all 
 
 ### Versions
 
- - 2.1.1 Fix [ISSUE10](https://github.com/msillano/IoTwebUI/issues/10): Token expired error.
+ - 2.1.1 Fix [ISSUE10](https://github.com/msillano/IoTwebUI/issues/10): Token expired error. [ISSUE11](https://github.com/msillano/IoTwebUI/issues/10): typo.
 
  - 2.1 Improved user experience:
      - Added customizable SpeechRecognition (speech21.js file).
