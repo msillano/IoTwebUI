@@ -356,9 +356,9 @@ Some areas have been prioritized and the respective functions are in separate fi
 - For RULES, the more adventurous can add their own MACROs in the `usrrulesXX.X.js` file.
 
 - For VoiceRecognition, in the "speech0X.X.js" file it is simple to modify the words of the proposed grammar: for example, replace 'go' with 'reach'. The goal must always be to improve understanding of the commands. <br>
- - Adapting speech recognition to other languages ​​is complex, requiring deep language proficiency in grammar and vocabulary. I rely on the collaboration of willing users. For my part, I will complete the internationalization of the various pages of the asap APP (ver. 2.2).
+ - Adapting speech recognition to other languages ​​is complex, requiring deep language proficiency in grammar and vocabulary. I rely on the collaboration of willing users. For my part, I will complete the internationalization of the various APP pages (ver. 2.2).
 - A little more complex is adding new voice commands, not so much for the definition of the grammar (the current code can serve as an example) but for the implementation of the actions, which often depend on the existing code.
-_For new voice commands, the best way is to make an implementation proposal in the 'issues', and, based on consensus and feasibility, it could be implemented in the next release.
+_For new voice commands, the best way is to make an implementation proposal in the ['issues'](https://github.com/msillano/IoTwebUI/issues), and, based on consensus and feasibility, it could be implemented in the next release.
 
 **All these customizations are unnecessary, but they make TuyaUIweb more personal, useful, and pleasant.**
 <hr>
