@@ -312,6 +312,9 @@ L'app **IoTwebUI** non è per utenti alle prime armi, pertanto è accettabile ch
 
  - I dati INDISPENSABILI da inserire sono le proprie `credenziali Tuya` per la 'platform.tuya'. <BR> Gli utenti di tuyaDAEMON, Homebridge, HA ed altri hub simili dovrebbero già averle, ma i nuovi utenti si devono iscrivere, ci sono molte guide nel web. [Questa](https://github.com/iRayanKhan/homebridge-tuya/wiki/Get-Local-Keys-for-your-devices) è una delle più chiare, altre sono [elencate qui](https://github.com/msillano/tuyaDAEMON/wiki/50.-Howto:-add-a-new-device-to-tuyaDAEMON#1-preconditions). Un vantaggio è che così si ha accesso alla piattaforma Tuya, con molti dati sui propri device, ed alla documentazione tecnica.
 
+- E' altresì INDISPENSABILE aggiornare la var 'data_center' in funzione di quello usato al momento di installazione di Tuya/SmatLife.  Su 'SmartLife/me/Configurare/Account e sicurezza' trovate la Regone (e.g, Italia), e in questa guida: [https://github.com/tuya/tuya-home-assistant/wiki/Countries-Regions-and-Tuya-Data-Center](https://github.com/tuya/tuya-home-assistant/wiki/Countries-Regions-and-Tuya-Data-Center) trovate l'URL corrispondente.
+Come alternativa potete accedere su `platform.tuya.com`, selezionare 'Cloud' e 'open project'. Ora selezionare il tab 'devices' e in alto a dx trovate il data-center che avete usato. Poi in: 'Tuya Developer Platform > Cloud Development > API Request > Request Structure': trovate l'elenco degli 'endpoints' (URLs).
+
 - Altre opzioni riguardano: timing (Cloud e log) e configurazione del log: il formato, l'autosave, i valori richiesti, oppure il look&feel, come la presenza dei bottoni di pan/zoom. <BR>Dalla versione 1.2 la possibilità di escludere alcune home (`hide_homes` array), e dalla versione 2.0 quella di escludere alcuni tap-to-run (`hide_scenes` array). 
 
 - Le opzioni disponibili per il riconoscimento vocale sono (sempre in config.js):
