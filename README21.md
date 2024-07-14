@@ -323,6 +323,9 @@ The **IoTwebUI** app is not for novice users, therefore it is acceptable to conf
 
  - The ESSENTIAL data to enter are your `Tuya credentials` for the 'platform.tuya'. <BR> Users of tuyaDAEMON, Homebridge, HA, and other similar hubs should already have them, but new users need to sign up, there are many guides on the web. [This](https://github.com/iRayanKhan/homebridge-tuya/wiki/Get-Local-Keys-for-your-devices) is one of the clearest, others are [listed here](https://github .com/msillano/tuyaDAEMON/wiki/50.-Howto:-add-a-new-device-to-tuyaDAEMON#1-preconditions). An advantage is that you have access to the Tuya platform, with a lot of data on your devices, and technical documentation.
 
+- It is also ESSENTIAL to update the 'data_center' var according to the one used at the time of installation of Tuya/SmatLife. On 'SmartLife/me/Configurare/Account and security' you will find the Region (e.g., Italy), and in this guide: [https://github.com/tuya/tuya-home-assistant/wiki/Countries-Regions-and -Tuya-Data-Center](https://github.com/tuya/tuya-home-assistant/wiki/Countries-Regions-and-Tuya-Data-Center) you can find the corresponding URL.
+Alternatively, you can log in to `platform.tuya.com`, select 'Cloud', and 'open project'. Now select the 'devices' tab:  at the top right, you will find the data center you used. Then in 'Tuya Documentation': ' Cloud Development > API Request > Request Structure': see the list of 'endpoints' (URLs).
+
 - Other options concern: timing (Cloud and log) and log configuration: the format, the autosave, the required values, or the look&feel, such as the presence of the pan/zoom buttons. <BR>From version 1.2 the possibility of excluding some homes (`hide_homes` array), and from version 2.0 the possibility of excluding some tap-to-run (`hide_scenes` array).
 
 - In `config.js`, the variable `expertModeEnabled = false` allows you to disable the 'EXPERT' mode.
