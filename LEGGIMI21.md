@@ -83,6 +83,9 @@ La modalità EXPERT offre un controllo totale sulla personalizzazione di IoTwebU
    `chrome.exe --user-data-dir="C://Chrome dev session" --disable-web-security`<br>
   (vedi file `run-me.bat`). Vale solo per questa istanza, le altre resteranno protette.<br>
   Come alternativa al file 'bat', con alcuni browser si può usare l'estensione 'Cross Domains - CORS', vedi [ISSUE4](https://github.com/msillano/IoTwebUI/issues/4).
+- Con un Mac (IOS 10.11.6) ha funzionato la seguente riga di comando:
+`xxx:~ yyyy$ open -n -a /Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome --args --user-data-dir="/tmp/chrome_dev_test" --disable-web-security  --disable-popup-blocking --auto-accept-camera-and-microphone-capture --app=file:///Applications/IoTwebUI/IoTwebUI.html ` 
+
 
 - Tuya pone dei limiti alla frequenza degli accessi al cloud. _IoTwebUI_ ne tiene conto, e la fase iniziale (quando legge tutti i dati dal Cloud) è bloccante e non brevissima (3-5 s, in funzione del numero di device). Come anche in SmartLife.
 
@@ -300,7 +303,7 @@ _NON rendetela accessibile dall'esterno o da terzi, altrimenti tutti i vostri da
 2) Eseguire le operazioni di configurazione (vedi oltre).
 3) Il file principale è `IoTwebUI.html`.  NON è necessario un server WEB, in quanto il codice è tutto in javaScript, eseguito dal browser. Per lanciarlo vedi file `run_me.bat` (per Windows - Chrome). Per altri S.O. creare uno script analogo. (Ignorare il messaggio Chrome: "stai utilizzando una segnalazione della riga di comando non supportata: - disable-web-security...": non supportata ma funzionante).<br>
 nota: L'addon "Cross Domain - CORS" sembra risolvere il problema CORS senza file BAT, vedi [ISSUE4](https://github.com/msillano/IoTwebUI/issues/4).
-5) In fase di installazione e setup è utile la console (nel browser - strumenti per programmatori -, o menu contestuale 'ispeziona') perchè lì vanno i messaggi di informazione e di errore di IoTwebUI.<BR>
+4) In fase di installazione e setup è utile la console (nel browser - strumenti per programmatori -, o menu contestuale 'ispeziona') perchè lì vanno i messaggi di informazione e di errore di IoTwebUI.<BR>
 Nelle immagini: a sinistra avvio OK (Chrome, CORS disattivato) a destra in caso di errore CORS (Opera):
 
 <div><img src="https://github.com/msillano/IoTwebUI/blob/main/pics/okconsole.png?raw=true" alt="normal start" width="300" />
