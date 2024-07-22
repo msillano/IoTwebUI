@@ -83,6 +83,11 @@ chrome.exe --user-data-dir="C://Chrome dev session" --disable-web-security
 ```
 As an alternative to the 'bat' file, the 'Cross Domains - CORS' extension can be used with some browsers, see [ISSUE4](https://github.com/msillano/IoTwebUI/issues/4).
 
+With an old Mac (OS 10.11.6) this worked: 
+```
+xxx:~ yyyy$ open -n -a /Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome --args --user-data-dir="/tmp/chrome_dev_test" --disable-web-security  --disable-popup-blocking --auto-accept-camera-and-microphone-capture --app=file:///Applications/IoTwebUI/IoTwebUI.html 
+```
+
 - Tuya sets limits on the frequency of cloud access. IoTwebUI takes this into account, and the initial phase (when it reads all the data from the Cloud) is blocking and not very short (3-5 s, depending on the number of devices). 
 
 - A second problem is the impossibility of creating files directly from an HTML page, again for security reasons. To export the data I used a logging library on the [`debugout.js`](https://github.com/inorganik/debugout.js) file. For this reason, control over the generated files is not complete, and small manual interventions are required on the exported files.
