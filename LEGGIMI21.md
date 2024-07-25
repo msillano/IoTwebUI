@@ -224,27 +224,27 @@ Si possono gestire due insiemi di RULE: quelle in <i>uso</i>, inizialmente lette
 ### VoiceRecognition: maggiore libertà
 
 - La disponibilità di questa funzione dipende dal browser usato.
-- Non è facile raggiungere l'efficienza che si ha con HW specializzato (smart speakers: Google, Alexa), perché il risultato dipende da vari fattori, tra cui il microfono usato, le relative regolazioni, la riduzione dei rumori di fondo, etc... Nelle prove sono passato da oltre il 90% di riconoscimenti ad un pessimo 20%! 
-- Molto importante è altresì la scelta delle parole chiave e dei nomi per 'tap-to-run' e 'RULE': per esempio 'nome tre parole' è di difficile riconoscimento, mentre 'accendi la luce' è facilmente riconosciuto.<br> Ritengo che questo dipenda dai modelli linguistici usati: sono più riconoscibili frasi italiane corrette, con un significato comune, rispetto a parole isolate. Per esempio 'Tuya' è spesso confuso con 'Giulia'.
+- Non è facile raggiungere l'efficienza che si ha con HW specializzato (smart speakers: Google, Alexa), perché il risultato dipende da vari fattori, tra cui ualità del microfono usato, le relative regolazioni, la riduzione dei rumori di fondo, etc... Nelle prove sono passato da oltre il 90% di riconoscimenti ad un pessimo 20%! 
+- Molto importante è altresì la scelta delle parole chiave e dei nomi per 'tap-to-run' e 'RULE': per esempio 'nome tre parole' è di difficile riconoscimento, mentre 'accendi la luce' è facilmente riconosciuto.<br> Ritengo che questo dipenda dai modelli linguistici usati: sono più riconoscibili frasi corrette, con un significato comune, rispetto a parole isolate. Per esempio 'Tuya' è spesso confuso con 'Giulia'.
 - La presenza di articoli e/o preposizioni facilita il riconoscimento.
 - Il comando vocale è opzionale, e può essere disabilitato nella configurazione.
 - Se abilitato, voiceRecognition può essere usata in due modi, o continuo oppure premendo un pulsante. Il modo di default è impostato in configurazione, ma può essere cambiato con comandi vocali.
-- la grammatica di default è la seguente - tra parentesi (alle): parole opzionali; barra verticale a|su: parole alternative-:
-    - _'Hey Tuya, esegui|attiva (la|un*) xxx (xxx (xxx))'_ => lancia 'tap-to-run' o RULE, nome max 3 parole
+- la grammatica (italiana) di default è la seguente - tra parentesi (alle): parole opzionali; barra verticale a|su: parole alternative-:
 
-    - _'Hey Tuya, (in|al) modo esperto'_ => apre EXPERT mode
-    - _'Hey Tuya, (in|al) modo utente'_ => torna in USER mode
-    - _'Hey Tuya, vai (alle*) scene'_    => navigazione alla pagina dei 'tap-to-run' e RULE
-    - _'Hey Tuya, vai (alle*) regole'_   =>  navigazione alla pagina edit RULE (se in EXPERT mode)
-    - _'Hey Tuya, vai (alla*) home'_  =>  navigazione alla pagina con albero device
-    - _'Hey Tuya, ritorna|home'_  =>  navigazione alla pagina con albero device
-
-    - _'Hey Tuya, modo (della*) voce continuo'_ => start del modo riconoscimento senza soste.
-    - _'Hey Tuya, modo (della*) voce a|su richiesta|domanda'_ => start del modo riconoscimento con bottone.
-    - _'Hey Tuya, basta voce'_ => stop del modo riconoscimento senza soste.
+    - _'Ehi Tuya, esegui|attiva (la|un*) xxx ((la|un*) xxx ((la|un*) xxx))'_ => lancia 'tap-to-run' o RULE, nome max 3 parole
+        nota sui nomi: parlando si possono aggiungere articoli o preposizioni (*) alle 3 parole, che quindi NON fanno parte del'nome' del 'tap-to-run' o 'RULE'. Esempio: "Hey Tuya, esegui accendi una luce" => nome: "ACCENDI LUCE"   
+    - _'Ehi Tuya, (in|al) modo esperto'_ => apre EXPERT mode
+    - _'Ehi Tuya, (in|al) modo utente'_ => torna in USER mode
+    - _'Ehi Tuya, vai (alle*) scene'_    => navigazione alla pagina dei 'tap-to-run' e RULE
+    - _'Ehi Tuya, vai (alle*) regole'_   =>  navigazione alla pagina edit RULE (se in EXPERT mode)
+    - _'Ehi Tuya, vai (alla*) home'_  =>  navigazione alla pagina con albero device
+    - _'Ehi Tuya, ritorna|home'_  =>  navigazione alla pagina con albero device
+    - _'Ehi Tuya, modo (della*) voce continuo'_ => start del modo riconoscimento senza soste.
+    - _'Ehi Tuya, modo (della*) voce a|su richiesta|domanda'_ => start del modo riconoscimento con bottone.
+    - _'Ehi Tuya, basta voce'_ => stop del modo riconoscimento senza soste.
    
 
- (*) nota: _la lista di preposizioni ed articoli accettati in terza posizione è molto lunga_: `'il','lo','la', 'le', 'a', 'ad', 'ai', 'al', 'all', 'allo', 'alla', 'alle', 'di', 'del', 'della', 'dei','un', 'una', 'con', 'colla'`: _scegliete quelle che facilitano il riconoscimento_. 
+ (*) nota: _la lista di preposizioni ed articoli accettati ed ignorati  in quarta e successive posizioni  è molto lunga_: `'il','lo','la', 'le', 'a', 'ad', 'ai', 'al', 'all', 'allo', 'alla', 'alle', 'di', 'del', 'della', 'dei','un', 'una', 'con', 'colla'`: _scegliete quelle che facilitano il riconoscimento_. 
  
 - _nota: L'implementazione tollera anche qualche imprecisione nel riconoscimento (e.g. 'Giulia' invece di 'Tuya', etc..): questo può essere facilmente customizzato. Vedi file speech21.js._
  
@@ -577,9 +577,9 @@ utc_offset_seconds: 0
  _Esempio:_  <code>SOUND("https://assets.mixkit.co/active_storage/sfx/918/918.wav"); </code>     
 </dd>
 
-<dt>SCENA(scenaNome) </dt>
+<dt>SCENE(scenaNome) </dt>
 <dd>Esegue un 'tap-to-Run', presente nell'elenco letto dal Cloud.<br>
- <i>Esempio:</i> <code> if(ISTRIGGERH(_alarm)) SCENA('sirena suona'); </code></dd>
+ <i>Esempio:</i> <code> if(ISTRIGGERH(_alarm)) SCENE('sirena suona'); </code></dd>
 
 <dt>TRIGRULE(name)</dt>
 <dd>Esegue un RULE individuato da un nome. <br>
