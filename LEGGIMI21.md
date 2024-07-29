@@ -484,12 +484,12 @@ _Che poi, avere a disposizione strumenti sofisticati, non vuol dire essere obbli
 #### RULE - Primi passi
 Volete fare delle prove ma non sapete da dove cominciare?
 Consiglio di copiare le seguenti 3 RULE nell'area di edit delle RULE (modo EXPERT), e poi premere TEST.
-1) Nella pagina tap-to-run, tab 'user RULE' trovate tre nuovi bottoni: 'spegni la luce'. 'pippo' e 'chiamata per pippo': potete verificare il funzionamento delle tre RULE.
-2) Attivate il 'comando vocale', e provate _"Ehi Tuya, esegui Pippo"_...
+1) Nella pagina tap-to-run, tab 'user RULE' trovate tre nuovi bottoni: 'spegni luce'. 'Pippo' e 'chiamata Pippo': potete verificare il funzionamento delle tre RULE.
+2) Attivate il 'comando vocale', e provate _"Ehi Tuya, esegui Pippo"_,  _"Ehi Tuya, esegui spegni la luce"_ _"Ehi Tuya, esegui una chiamata per Pippo"_...
 ```
-   if (TRIGBYNAME('spegni la luce')) VOICE ("Fatto: 'spegni la luce'");
+   if (TRIGBYNAME('spegni luce')) VOICE ("Fatto: 'spegni la luce'");
    if (TRIGBYNAME("Pippo")) POP ("Test", "Trovato Pippo");
-   if (TRIGBYNAME("chiamata per Pippo")) TRIGRULE("pippo"), VOICE("chiamo Pippo");
+   if (TRIGBYNAME("chiamata Pippo")) TRIGRULE("Pippo"), VOICE("chiamo Pippo");
 ```
 
 ### RULE - MACRO
