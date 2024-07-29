@@ -12,6 +12,8 @@ _What can you do?_<br>
 🎙 Voice control: all controlled by voice, in a single APP <br>
 👌 Perfect integration: Combine devices, properties, RULEs, and Tuya tap-to-run for smooth and complete automation.
 
+ - Portable, it can be installed anywhere: on a _smartphone or tablet_, as an alternative interface to SmartLife, for you and the other family members. On a _PC (Windows, Apple, Linux...)_ to have Tuya on these computers too. On an _Android top-box_, to use the TV as a Tuya interface.
+
  ![aspetto della versione 2.0](https://github.com/msillano/IoTwebUI/blob/main/pics/wer21.png?raw=true)
 
 #### Interface: A Feast for the Eyes and Control
