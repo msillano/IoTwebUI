@@ -11,6 +11,8 @@ _Cosa puoi fare?_<br>
 🎙  Comandi vocali: integrati con tap-to-run e RULE, in un'unica APP<br>
 👌 Integrazione perfetta: Combina device, proprietà, voce, RULE e Tuya tap-to-run per un'automazione fluida e completa.
 
+- Portabile, può essere installata ovunque: su uno _smartphone_ o _tablet_, come interfaccia alternativa a SmartLife, per voi e per gli altri componenti della famiglia. Su un _PC_ (Windows, Apple, Linux...) per avere Tuya anche su questi computer. Su un _top-box Android_, per usare la TV come interfaccia Tuya!.
+
  ![aspetto della versione 2.1](https://github.com/msillano/IoTwebUI/blob/main/pics/wer21.png?raw=true)
 
 #### Interfaccia: un piacere per gli occhi e per il controllo
