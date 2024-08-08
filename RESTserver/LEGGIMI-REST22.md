@@ -32,30 +32,45 @@ IOTrest si integra perfettamente con IoTwebUI e sfrutta le sue potenti funzional
 
 #### **Utilizzo**
 
-**Esempio di richiesta:**
-
-```bash
-POST http://tuo_server/tuyaREST/scenes/scene_id/activate
+**Esempi di richieste:**
+```Richiesta 
+  http://tuo_server/IOTrest/termometro/humidity
 ```
 
 **Risposta:**
 
-```json
+```30
+```
+
+```Richiesta
+  http://tuo_server/IOTrest/termometro/dstatus
+```
+**Risposta:**
+
+```js object
 {
-  "status": "success",
-  "message": "Scena attivata correttamente"
-}
+name:termometro,
+id:'ABC123456',
+online:true,
+status: [
+  0:{code: 'humidity', value: 30}
+  1:{code: 'temp_current', value: 284}
+  2:{code: 'temp_unit_convert', value: 'c'}
+  3:{code: 'battery_state', value: 'low'}
+  4:{code: 'battery_percentage', value: 10}
+]}
 ```
 
 #### **Considerazioni importanti**
 
 * **Sicurezza:** Per motivi di sicurezza, si consiglia di eseguire IOTrest su una rete locale e di non esporlo direttamente a Internet.
-* **Limiti:** Le prestazioni di IOTrest dipendono dalle risorse hardware del tuo sistema e dal numero di dispositivi Tuya connessi.
-* **Supporto:** IOTrest supporta tutti i dispositivi Tuya compatibili con IoTwebUI.
+* **Affidabilità:** IOTrest e IOTwebUI accedono  a Tuya Cloud solo in lettura. In NESSUN CASO i dati Tuya possono essere alterati.
+* **Limiti:** Le prestazioni di IOTrest dipendono dalle risorse hardware del tuo sistema e dal numero di dispositivi Tuya connessi. L'uso di WEBsochet lo rende molto veloce: Round Trip Time 5-6 ms (su PC con Mock).
+* **Supporto:** IOTrest supporta tutti i dispositivi Tuya compatibili: tutti i dati disponibili in Tuya Cloud sono accessibili.
 * **Errori:** IOTrest gestisce gli errori in modo robusto, fornendo messaggi di errore chiari e dettagliati.
 
 #### **Conclusioni**
 
-IOTrest è lo strumento ideale per chi desidera creare soluzioni personalizzate per la gestione dei propri dispositivi Tuya. Grazie alla sua flessibilità e alla sua facilità d'uso, TuyaREST ti permette di automatizzare le tue attività domestiche e di creare esperienze utente uniche.
+**IOTrest** è lo strumento ideale per chi desidera creare rapidamente soluzioni personalizzate per la gestione dei propri dispositivi Tuya. Grazie alla sua flessibilità e alla sua facilità d'uso, TuyaREST ti permette ineguagliabili automatizioni per le tue attività domestiche e di creare esperienze utente uniche.
 
 
