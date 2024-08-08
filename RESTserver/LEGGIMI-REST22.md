@@ -45,6 +45,7 @@ IOTrest si integra perfettamente con IoTwebUI e sfrutta le sue potenti funzional
 ```Richiesta
   http://tuo_server/IOTrest/termometro/dstatus
 ```
+
 **Risposta:**
 
 ```js object
