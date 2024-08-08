@@ -22,8 +22,8 @@ Il tempo di latenza (ritardo) medio tra un evento e la sua segnalazione in una W
 1. **Prerequisiti:**
    * Node.js installato sul tuo sistema.
        * Window, Linux, macOS: vedi https://nodejs.org/en/download/prebuilt-installer.
-       * Android: vedi https://nodered.org/docs/getting-started/android, fermandosi SENZA installare node-red:  `npm i -g --unsafe-perm node-red`
-                  Oppure se si vuole installare un server 24/7 con anche tuyaDAEMON (DB, Apache) vedi qui: https://github.com/msillano/tuyaDAEMON/wiki/80.-deployment:-android-server#2022-update  
+       * Android: vedi https://nodered.org/docs/getting-started/android, fermandosi SENZA installare node-red NON eseguendo:  `npm i -g --unsafe-perm node-red`<br>
+                  Oppure se si vuole installare un server 24/7 con anche tuyaDAEMON (DB Maria, Apache, Autostart etc...) vedi qui: [deployment Android](https://github.com/msillano/tuyaDAEMON/wiki/80.-deployment:-android-server#2022-update)  
    * IoTwebUI ver. 2.2 o superiore, configurato e funzionante: vedi https://github.com/msillano/IoTwebUI
 2. **Installazione:**
    * Clona il repository IOTrest da GitHub.
