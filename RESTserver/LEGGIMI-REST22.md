@@ -9,7 +9,7 @@
 * **Accesso ai dati:** Leggi i valori attuali dei sensori (temperatura, umidità, ecc.) e lo stato degli attuatori (luci, prese, ecc.).
 * **Automazione:** Invia richieste REST per attivare scene e regole preconfigurate in IoTwebUI e Tuya Smart/SmartLife.
 * **Avvisi:** Ricevi avvisi in tempo reale sugli eventi che si verificano sui tuoi dispositivi (allarmi, cambi di stato, ecc.).
-* **Semplicità d'uso:** Interfaccia REST intuitiva e ben documentata.
+* **Semplicità d'uso:** Interfaccia REST intuitiva e ben documentata. I risultati sono in formato testo oppure array od oggetti js.
 * **Flessibilità:** Personalizza le tue interazioni con i dispositivi grazie alle numerose opzioni di configurazione.
 
 #### **Architettura**
@@ -20,7 +20,10 @@ IOTrest si integra perfettamente con IoTwebUI e sfrutta le sue potenti funzional
 
 1. **Prerequisiti:**
    * Node.js installato sul tuo sistema.
-   * IoTwebUI configurato e funzionante.
+       * Window, Linux, macOS: vedi https://nodejs.org/en/download/prebuilt-installer.
+       * Android: vedi https://nodered.org/docs/getting-started/android, fermandosi SENZA installare node-red:  `npm i -g --unsafe-perm node-red`
+                  Oppure se si vuole installare un server 24/7 con anche tuyaDAEMON (DB, Apache) vedi qui: https://github.com/msillano/tuyaDAEMON/wiki/80.-deployment:-android-server#2022-update  
+   * IoTwebUI ver. 2.2 o superiore, configurato e funzionante: vedi https://github.com/msillano/IoTwebUI
 2. **Installazione:**
    * Clona il repository IOTrest da GitHub.
    * Esegui il comando di installazione delle dipendenze.
