@@ -2,7 +2,7 @@
 
 #### **Introduzione**
 
-**IOTrest** è un'estensione per **IoTwebUI** che trasforma i tuoi dispositivi Tuya in servizi web accessibili tramite semplici richieste HTTP. Oltre a consentire la lettura dei dati dei tuoi dispositivi, IOTrest ti permette di interagire con essi in modo avanzato, attivando scene, regole e ricevendo avvisi in tempo reale.
+**IOTrest** è un'estensione per **IoTwebUI** che trasforma i tuoi dispositivi Tuya in _**servizi web**_ accessibili tramite semplici richieste HTTP. Oltre a consentire la lettura dei dati dei tuoi dispositivi, IOTrest ti permette di interagire con essi in modo avanzato, attivando scene, regole e ricevendo avvisi in tempo reale.
 
 #### **Funzionalità principali**
 
