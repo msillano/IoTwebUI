@@ -8,7 +8,7 @@
 
 * **Accesso ai dati:** Leggi i valori attuali dei sensori (temperatura, umidità, ecc.) e lo stato degli attuatori (luci, prese, ecc.).
 * **Automazione:** Invia richieste REST per attivare scene e regole preconfigurate in IoTwebUI e Tuya Smart/SmartLife.
-* **Avvisi:** Ricevi avvisi in tempo reale sugli eventi che si verificano sui tuoi dispositivi (allarmi, cambi di stato, ecc.).
+* **Avvisi:** Verifica gli avvisi in tempo reale per gli eventi che si verificano sui tuoi dispositivi (allarmi, cambi di stato, ecc.).
 * **Semplicità d'uso:** Interfaccia REST intuitiva e ben documentata. I risultati sono in formato testo oppure array od oggetti js.
 * **Flessibilità:** Personalizza le tue interazioni con i dispositivi grazie alle numerose opzioni di configurazione.
 
@@ -32,6 +32,13 @@ Il tempo di latenza (ritardo) medio tra un evento e la sua segnalazione in un cl
    * Esegui il comando di installazione delle dipendenze.
 3. **Configurazione:**
    * Modifica il file di configurazione per specificare le credenziali di accesso a IoTwebUI e le impostazioni di rete.
+4. **Test e debug**
+   Sono presenti tre file principali.
+   * `server.js`: il file eseguibile con l'implementazione di IOTrest, da installare.
+   * `MockIOTweb.html`: una WEBAPP (si deve aprire in un browser) che può sostituire IOTwebUI: il funzionamento del _websocket_ è identico, solo che i dati utilizzati NON vengono dal 'Cloud' ma sono fittizzi.
+   * `client.html`: un'altra WEBAPP con funzione di _client REST per test_: permette di inviare a `IOTwebUI` ogni richiesta possibile, e di vederne la risposta.
+  Quindi l'insieme dei tre file è autosufficiente, non richiede `IOTwebUI`, e può essere usato come test. Quando tutto funziona come si deve, si chiude  **MockIOTweb** e si apre **IOTwebUI** e inizia il funzionamento con i device Tuya reali.<br>
+client.html può essere usato fino a quando non si hanno uno o più client REST su misura (applicazioni od interfacce utente). Se si vogliono realizzare interfacce WEB, il codice HTML/javascript di `client.html` può servire da modello.
 
 #### **Utilizzo**
 
