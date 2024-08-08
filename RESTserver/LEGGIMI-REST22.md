@@ -15,6 +15,7 @@
 #### **Architettura**
 
 IOTrest si integra perfettamente con IoTwebUI e sfrutta le sue potenti funzionalità di gestione dei dispositivi Tuya. Le richieste HTTP inviate a IOTrest vengono tradotte in comandi per IoTwebUI, che a sua volta interagisce con Tuya Cloud.
+Il tempo di latenza (ritardo) medio tra un evento e la sua segnalazione in una WEBAPP che usa IOTrest è la somma di 3 fattori: 0.5*(tempo tra due misure del device) + 0.5*(intervallo di polling di IOTwebUI) + 0.5*(intervallo tra due richiete REST della WEBAPP). Valori  tipici: 3', 1', 30"  => latenza media 2'15"
 
 #### **Installazione e configurazione**
 
@@ -33,24 +34,28 @@ IOTrest si integra perfettamente con IoTwebUI e sfrutta le sue potenti funzional
 #### **Utilizzo**
 
 **Esempi di richieste:**
-```Richiesta 
+```
+Richiesta di un valore:
   http://tuo_server/IOTrest/termometro/humidity
 ```
 
 **Risposta:**
 
-```30
+```
+  30
 ```
 
-```Richiesta
+```
+Richiesta dello stato:
   http://tuo_server/IOTrest/termometro/dstatus
 ```
 
 **Risposta:**
 
-```js object
+```
+js object:
 {
-name:termometro,
+name:'termometro',
 id:'ABC123456',
 online:true,
 status: [
