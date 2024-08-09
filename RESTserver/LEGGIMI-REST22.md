@@ -15,8 +15,9 @@
 #### **Architettura**
 ![](https://github.com/msillano/IoTwebUI/blob/main/pics/rest01.png?raw=true)
 
-_Una WEBAPP (come IOTwebUI) non può contenere un server, per cui IOTrest (server REST -HTPP) è un'applicazione autonoma in nodejs, che comunica via websocket (il metodo più rapido) con IOTwebUI._
-IOTrest si integra perfettamente con IoTwebUI e sfrutta le sue potenti funzionalità di gestione dei dispositivi Tuya. Le richieste REST-HTTP inviate a IOTrest vengono tradotte in comandi per IoTwebUI, che a sua volta interagisce con Tuya Cloud.
+_Una WEBAPP (come IOTwebUI) non può contenere un server HTPP, per cui IOTrest (un server REST-HTPP) è un'applicazione autonoma in nodejs, che comunica via websocket (il metodo più rapido) con IOTwebUI._
+
+IOTrest si integra perfettamente con IoTwebUI e sfrutta le sue potenti funzionalità di gestione dei dispositivi Tuya. Le richieste REST-HTTP inviate a IOTrest vengono tradotte in comandi per IoTwebUI, che a sua volta interagisce con Tuya Cloud.<br>
 Il tempo di latenza (ritardo) medio tra un evento e la sua segnalazione in un cliente WEB che usa IOTrest è la somma di 3 fattori: 0.5*(tempo tra due misure del device in Tuya Cloud) + 0.5*(intervallo di polling di IOTwebUI) + 0.5*(intervallo tra due richieste REST del client WEB). Valori  tipici: 3', 1', 30"  => latenza media 2'15"
 
 #### **Installazione e configurazione**
@@ -25,15 +26,16 @@ Il tempo di latenza (ritardo) medio tra un evento e la sua segnalazione in un cl
    * Node.js installato sul tuo sistema.
        * Window, Linux, macOS: vedi [nodejs-installer](https://nodejs.org/en/download/prebuilt-installer).
        * Android: vedi [node-red in Android](https://nodered.org/docs/getting-started/android), fermandosi SENZA installare _node-red_, cioè non eseguendo il comando:  `npm i -g --unsafe-perm node-red`<br>
-         Oppure se si vuole installare un server 24/7, con vari tool (FTP, DB Maria, Apache, Autostart etc...) vedi qui: [deployment Android](https://github.com/msillano/tuyaDAEMON/wiki/80.-deployment:-android-server#2022-update)  
-   * IoTwebUI ver. 2.2 o superiore, configurato e funzionante: vedi https://github.com/msillano/IoTwebUI
+         Oppure se si vuole installare un server Android 24/7, con vari tool (FTP, DB Maria, Apache, Autostart, etc...) vedi qui: [deployment Android](https://github.com/msillano/tuyaDAEMON/wiki/80.-deployment:-android-server#2022-update)  
+   * IoTwebUI ver. 2.2 o superiore, configurato e funzionante: vedi https://github.com/msillano/IoTwebUI, versione 2.2 o superiore.
 2. **Installazione:**
    * Clona il repository IOTrest da GitHub.
    * Esegui il comando di installazione delle dipendenze.
 3. **Configurazione:**
    * Modifica il file di configurazione per specificare le credenziali di accesso a IoTwebUI e le impostazioni di rete.
+   * Avviare prima `server.js`, poi caricare/ricaricare `IOTwebUI` nel browser, poi i client (anche più di uno).
 4. **Test e debug**
-   Sono presenti tre file principali.
+   Sono presenti tre file principali:
    * `server.js`: il file eseguibile con l'implementazione di IOTrest, da installare.
    * `MockIOTweb.html`: una WEBAPP (si deve aprire in un browser) che può sostituire IOTwebUI: il funzionamento del _websocket_ è identico, solo che i dati utilizzati NON vengono dal 'Cloud' ma sono fittizzi.
    * `client.html`: un'altra WEBAPP con funzione di _client REST per test_: permette di inviare a `IOTwebUI` ogni richiesta possibile, e di vederne la risposta.
@@ -78,11 +80,11 @@ status: [
 
 #### **Considerazioni importanti**
 
-* **Sicurezza:** Per motivi di sicurezza, si consiglia di eseguire IOTrest su una rete locale e di non esporlo direttamente a Internet.
-* **Affidabilità:** IOTrest e IOTwebUI accedono  a Tuya Cloud solo in lettura. In NESSUN CASO i dati Tuya possono essere alterati.
-* **Limiti:** Le prestazioni di IOTrest dipendono dalle risorse hardware del tuo sistema e dal numero di dispositivi Tuya connessi. L'uso di WEBsocket rende IOTrest molto veloce. Round Trip Time 5-6 ms (su PC con Mock).
-* **Supporto:** IOTrest supporta tutti i dispositivi Tuya compatibili: tutti i dati disponibili in Tuya Cloud sono accessibili.
-* **Errori:** IOTrest gestisce gli errori in modo robusto, fornendo messaggi di errore chiari e dettagliati.
+* **Sicurezza:** Per motivi di sicurezza, si consiglia di eseguire _IOTrest_ su una rete locale e di non esporlo direttamente a Internet.
+* **Affidabilità:** _IOTrest_ e _IOTwebUI_ accedono  a Tuya Cloud solo in lettura. **In NESSUN CASO i dati Tuya possono essere alterati.**
+* **Limiti:** Le prestazioni di _IOTrest_ dipendono dalle risorse hardware del tuo sistema e dal numero di dispositivi Tuya connessi. L'uso di WEBsocket rende _IOTrest_ molto veloce. Round Trip Time 5-6 ms (su PC con Mock).
+* **Supporto:** _IOTrest_ supporta tutti i dispositivi Tuya compatibili: tutti i dati disponibili in Tuya Cloud sono accessibili.
+* **Errori:** _IOTrest_ gestisce gli errori in modo robusto, fornendo messaggi di errore chiari e dettagliati.
 
 #### **Conclusioni**
 
