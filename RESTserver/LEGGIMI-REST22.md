@@ -77,6 +77,7 @@ status: [
   4:{code: 'battery_percentage', value: 10}
 ]}
 ```
+nota: se il path contiene '`list`' o '`dstatus`' oppure '`dinfo`', la risposta è un oggetto Js (anche in caso di errore), altrimenti la risposta è in puro testo (vedi esempi).
 
 #### **Considerazioni importanti**
 
