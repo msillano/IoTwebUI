@@ -77,7 +77,9 @@ status: [
   4:{code: 'battery_percentage', value: 10}
 ]}
 ```
-nota: se il path contiene '`list`' o '`dstatus`' oppure '`dinfo`', la risposta è un oggetto Js (anche in caso di errore), altrimenti la risposta è in puro testo (vedi esempi).
+note: 
+- Se il path contiene '`list`' o '`dstatus`' oppure '`dinfo`', la risposta è un oggetto Js (anche in caso di errore), altrimenti la risposta è in puro testo (vedi esempi). 
+- I dati sono come provengono da Tuya Cloud: possono aver bisogno di scaling o di decodifica (e.g. `'temp_current', value: 284` => 28.4 °C). In IOTwebUI scaling o decodifiche possono essere aggiunti come customizzazione, ma solo per la sua interfaccia utente, NON per il REST.
 
 #### **Considerazioni importanti**
 
