@@ -80,14 +80,11 @@ status: [
 
 **Errori:**
 
-TX: device/Temperatura soggiorno/_va_humidit_ 
-RX: **unk** in 4.699999988079071 ms
+TX: device/Temperatura soggiorno/_va_humidit_ => **unk** in 4.699999988079071 ms
 
-TX: device/_Temperatura soggiorn_/va_humidity
-RX: **unk** in 4.9000000059604645 ms
+TX: device/_Temperatura soggiorn_/va_humidity  =>  **unk** in 4.9000000059604645 ms
 
-TX: device/Temperatura soggiorno/
-RX: **err** in 4.899999976158142 ms
+TX: device/Temperatura soggiorno/  =>  **err** in 4.899999976158142 ms
 
 
 note: 
