@@ -50,7 +50,7 @@ Richiesta di un valore:
   http://tuo_server/IOTrest/Temperatura soggiorno/va_humidity
 ```
 
-**Risposta:**
+**Risposta:** (in 5.199999988079071 ms)
 
 ```
   44
@@ -61,7 +61,7 @@ Richiesta dello stato:
   http://tuo_server/IOTrest/Temperatura soggiorno/dstatus
 ```
 
-**Risposta:**
+**Risposta:** (in 5.299999982118607 ms)
 
 ```
 js object:
@@ -92,6 +92,7 @@ note:
 - I dati sono come provengono da Tuya Cloud: possono aver bisogno di scaling o di decodifica (e.g. `'temp_current', value: 284` => 28.4 °C). In IOTwebUI scaling o decodifiche possono essere aggiunti come customizzazione, ma solo per la sua interfaccia utente, NON per il REST.
 - **unk** o **[unk]** in caso di nomi errati (errori di scrittura).
 - **err** o **[err]** in caso di parti di path mancanti (errore di sintassi).
+- I tempi indicati sono i minimi richiesti dalle comunicazioni: possono aumentare in concomitanza di altre attivita di IOTwebUI (accesso al Cloud, scrittura file, etc..).
 
 #### **Considerazioni importanti**
 
