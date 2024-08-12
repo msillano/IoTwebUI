@@ -47,18 +47,18 @@ client.html può essere usato fino a quando non si hanno uno o più client REST 
 **Esempi di richieste:**
 ```
 Richiesta di un valore:
-  http://tuo_server/IOTrest/termometro/humidity
+  http://tuo_server/IOTrest/Temperatura soggiorno/va_humidity
 ```
 
 **Risposta:**
 
 ```
-  30
+  44
 ```
 
 ```
 Richiesta dello stato:
-  http://tuo_server/IOTrest/termometro/dstatus
+  http://tuo_server/IOTrest/Temperatura soggiorno/dstatus
 ```
 
 **Risposta:**
@@ -66,7 +66,7 @@ Richiesta dello stato:
 ```
 js object:
 {
-name:'termometro',
+name:'Temperatura soggiorno',
 id:'ABC123456',
 online:true,
 status: [
@@ -77,9 +77,24 @@ status: [
   4:{code: 'battery_percentage', value: 10}
 ]}
 ```
+
+**Errori:**
+
+TX: device/Temperatura soggiorno/_va_humidit_ 
+RX: **unk** in 4.699999988079071 ms
+
+TX: device/_Temperatura soggiorn_/va_humidity
+RX: **unk** in 4.9000000059604645 ms
+
+TX: device/Temperatura soggiorno/
+RX: **err** in 4.899999976158142 ms
+
+
 note: 
 - Se il path contiene '`list`' o '`dstatus`' oppure '`dinfo`', la risposta è un oggetto Js (anche in caso di errore), altrimenti la risposta è in puro testo (vedi esempi). 
 - I dati sono come provengono da Tuya Cloud: possono aver bisogno di scaling o di decodifica (e.g. `'temp_current', value: 284` => 28.4 °C). In IOTwebUI scaling o decodifiche possono essere aggiunti come customizzazione, ma solo per la sua interfaccia utente, NON per il REST.
+- **unk** o **[unk]** in caso di nomi errati (errori di scrittura).
+- **err** o **[err]** in caso di parti di path mancanti (errore di sintassi).
 
 #### **Considerazioni importanti**
 
