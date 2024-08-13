@@ -36,13 +36,17 @@ Il tempo di latenza (ritardo) medio tra un evento e la sua segnalazione in un cl
    * Avviare prima `server.js`, poi caricare/ricaricare `IOTwebUI` nel browser, poi i client (anche più di uno).
 4. **Test e debug**
    Sono presenti tre file principali:
-   * `server.js`: il file eseguibile con l'implementazione di IOTrest, da installare.
+   * `restIOT.js`: il file eseguibile con l'implementazione di IOTrest, da installare.
    * `MockIOTweb.html`: una WEBAPP (si deve aprire in un browser) che può sostituire IOTwebUI: il funzionamento del _websocket_ è identico, solo che i dati utilizzati NON vengono dal 'Cloud' ma sono fittizzi.
    * `client.html`: un'altra WEBAPP con funzione di _client REST per test_: permette di inviare a `IOTwebUI` ogni richiesta possibile, e di vederne la risposta.
   Quindi l'insieme dei tre file è autosufficiente, non richiede `IOTwebUI`, e può essere usato come test. Quando tutto funziona come si deve, si chiude  **MockIOTweb** e si apre **IOTwebUI** e inizia il funzionamento con i device Tuya reali.<br>
 client.html può essere usato fino a quando non si hanno uno o più client REST su misura (applicazioni od interfacce utente). Se si vogliono realizzare interfacce WEB, il codice HTML/javascript di `client.html` può servire da modello.
 
 #### **Utilizzo**
+
+* `IOTwebUI2.2` si lancia e funziona come al solito.
+* Se si vuole utilizzare il REST, lanciare prima `restIOT.js`, che resterà nascosto, e poi lanciare o ricaricare `IOTwebUI2.2`: un pop-up avvisa del collegamento a restIOT.
+* Ora i client (vostri o `client.html`) possono eseguire richieste REST
 
 **Esempi di richieste:**
 ```
@@ -71,7 +75,7 @@ js object:
              {"code":"va_battery","value":0},
              {"code":"va_temperature","value":32}]
 } (in 4.199999988079071 ms)
-
+```
 **Errori:**
 
 TX: device/Temperatura soggiorno/_va\_humidit_ => **unk** (in 4.699999988079071 ms)
@@ -87,24 +91,25 @@ note:
 - **unk** o **[unk]** in caso di nomi errati o non trovati (errori di scrittura).
 - **err** o **[err]** in caso di parti di path mancanti (errore di sintassi).
 - I tempi indicati sono i minimi richiesti dalle comunicazioni: possono aumentare in concomitanza di altre attivita di IOTwebUI (accesso al Cloud, scrittura file, etc..).
+- i device dono individuati dal nome o dall'ID: usando l'ID si è indipendenti dal nome che potete cambiare liberamente.
 
 #### dizionario REST
 generale: `http://localhost:3031/IOTrest/` + path <br>
 path:
-  **device/list[/_home_[/_room_]]** (e.g.: device/list, device/list/CASA  device/list/CASA/stanza da pranzo  
-  `device/_dev-name_|_dev-id_/dinfo|dstatus|_property_` (e.g.: device/luce01/switch, device/luce01/dinfo, device/luce01/dstatus ) 
-  `alert/list/_dev-name_|_dev-id_` (e.g. alert/list/luce01 )
-  scene/list[/room]
-  rule/list
-  execute/scene-name|rule-name
+*  **device/list[/_home_[/_room_]]** (device/list, device/list/CASA,  device/list/CASA/stanza da pranzo) 
+*  **device/_dev-name_|_dev-id_/dinfo|dstatus|_property_** (device/luce01/switch, device/luce01/dinfo, device/luce01/dstatus ) 
+*  **alert/list/_dev-name_|_dev-id_** (alert/list/luce01)
+*  **scene/list[/_room_]**  (scene/list, scene/list/CASA)
+*  **rule/list**  (rule/list)
+*  **execute/_scene-name_|_rule-name_** (execute/chiamata Pippo)
 
 #### **Considerazioni importanti**
 
 * **Sicurezza:** Per motivi di sicurezza, si consiglia di eseguire _IOTrest_ su una rete locale e di non esporlo direttamente a Internet.
 * **Affidabilità:** _IOTrest_ e _IOTwebUI_ accedono  a Tuya Cloud solo in lettura. **In NESSUN CASO i dati Tuya possono essere alterati.**
-* **Limiti:** Le prestazioni di _IOTrest_ dipendono dalle risorse hardware del tuo sistema e dal numero di dispositivi Tuya connessi. L'uso di WEBsocket rende _IOTrest_ molto veloce. Round Trip Time 5-6 ms (su PC con Mock).
-* **Supporto:** _IOTrest_ supporta tutti i dispositivi Tuya compatibili: tutti i dati disponibili in Tuya Cloud sono accessibili.
-* **Errori:** _IOTrest_ gestisce gli errori in modo robusto, fornendo messaggi di errore chiari e dettagliati.
+* **Limiti:** Le prestazioni di _IOTrest_ dipendono dalle risorse hardware del tuo sistema e dal numero di dispositivi Tuya connessi. L'uso di WEBsocket rende _IOTrest_ molto veloce. Round Trip Time 5-6 ms.
+* **Supporto:** _IOTrest_ supporta tutti i dispositivi Tuya compatibili: i dati principali disponibili in Tuya Cloud sono accessibili.
+* **Errori:** _IOTrest_ gestisce gli errori in modo robusto, fornendo messaggi di errore demplici e chiari.
 
 #### **Conclusioni**
 
