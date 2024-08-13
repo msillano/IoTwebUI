@@ -27,6 +27,7 @@ nota: _Portabile, può essere installato ovunque: su uno _smartphone_ o _tablet_
  - Un menu a scomparsa con informazioni sulla configurazione e opzioni dinamiche ti darà accesso rapido a tutto ciò che ti serve.
  - Comandi vocale e Navigazione vocale tra le varie pagine.
  - E se vuoi personalizzare ancora di più, libera la tua creatività con icone, colori e popup informativi a tua scelta.
+ - Tutti i testi usati sono raggruppati in un unico file, semplificando traduzioni e personalizzazioni.
 
 #### Dati: al sicuro e sempre a portata di mano
 
@@ -70,7 +71,8 @@ nota: _Portabile, può essere installato ovunque: su uno _smartphone_ o _tablet_
 
  - Attiva ogni tap-to-run o RULE con "Ehi Tuya, esegui ... "
  - Controlla la navigazione nell'APP IoTwebUI: "Ehi Tuya, vai alle scene"
- - Controlla la voce con la voce: puoi attivare il riconoscimento continuo oppure disattivarlo del tutto. 
+ - Controlla la voce con la voce: puoi attivare il riconoscimento continuo oppure disattivarlo del tutto.
+ - moduli ottimizzati per le varie lingue 
 
 #### Modalità EXPERT: per controllare tutto il controllabile
 
@@ -81,15 +83,11 @@ La modalità EXPERT offre un controllo totale sulla personalizzazione di IoTwebU
 
 #### Interfaccia REST: accesso semplice e standard a IoTwebUI
 
-Un'interfaccia REST in **IoTwebUI** ti offre un modo potente, flessibile e standardizzato per interagire con i tuoi dispositivi IoT, semplificando lo sviluppo e l'integrazione con applicazioni ed interfacce WEB.
+Un'interfaccia REST in **IoTwebUI** offre un modo potente, flessibile e standardizzato per interagire con i tuoi dispositivi IoT, semplificando lo sviluppo e l'integrazione con applicazioni ed interfacce WEB.
 * Semplicità: L'architettura REST è progettata per essere intuitiva
 * Flessibilità: Puoi accedere ai tuoi dispositivi IoT da qualsiasi dispositivo connesso a internet, utilizzando qualsiasi linguaggio di programmazione che supporti le richieste HTTP.
 * Standard: REST è uno standard ampiamente adottato, il che significa che ci sono molte librerie e strumenti disponibili per semplificare lo sviluppo.
 * Indipendenza: L'interfaccia REST separa l'interfaccia utente dal backend, permettendoti di aggiornare o modificare uno senza influenzare l'altro.
-
-#### Internazionalizzazione: maturità di un prodotto
-
-Un semplice sistema permette di tradurre e customizzare sia l'interfaccia utente di  **IoTwebUI** sia il modulo 'voice' per ottimizzarlo.
 
 <hr>
 
@@ -762,4 +760,8 @@ Tutti i marchi riportati appartengono ai legittimi proprietari.
 - https://fontawesome.com/v4/icons/
 - https://code.google.com/archive/p/crypto-js/
 - https://github.com/inorganik/debugout.js 
+- https://nodejs.org/en
+- https://hapi.dev/
+- https://github.com/rigon/hapi-url
+- https://github.com/websockets/ws/blob/master/doc/ws.md
 
