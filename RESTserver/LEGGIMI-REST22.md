@@ -2,7 +2,7 @@
 
 #### **Introduzione**
 
-**IOTrest** è un'estensione per **IoTwebUI** che trasforma i tuoi dispositivi Tuya in _**servizi web** accessibili tramite semplici richieste HTTP_. Oltre a consentire la lettura dei dati dei tuoi dispositivi, IOTrest ti permette di interagire con essi in modo avanzato, attivando scene, regole e ricevendo avvisi in tempo reale.
+**IOTrest** è un'estensione per **IoTwebUI** 2.2 che trasforma i tuoi dispositivi Tuya in _**servizi web** accessibili tramite semplici richieste HTTP_. Oltre a consentire la lettura dei dati dei tuoi dispositivi, IOTrest ti permette di interagire con essi in modo avanzato, attivando scene, regole e ricevendo avvisi in tempo reale.
 
 #### **Funzionalità principali**
 
@@ -29,24 +29,30 @@ Il tempo di latenza (ritardo) medio tra un evento e la sua segnalazione in un cl
          Oppure se si vuole installare un server Android 24/7, con vari tool (FTP, DB Maria, Apache, Autostart, etc...) vedi qui: [deployment Android](https://github.com/msillano/tuyaDAEMON/wiki/80.-deployment:-android-server#2022-update)  
    * IoTwebUI ver. 2.2 o superiore, configurato e funzionante: vedi https://github.com/msillano/IoTwebUI, versione 2.2 o superiore.
 2. **Installazione:**
-   * Clona il repository IOTrest da GitHub.
-   * Esegui il comando di installazione delle dipendenze.
+   * Aggiorna il path della tua installazione nel file `install_server.bat`
+   * Clikka su `install_server.bat`: installerà le dipendenze aggiornate nell dir 'node_modules'. 
 3. **Configurazione:**
-   * Modifica il file di configurazione per specificare le credenziali di accesso a IoTwebUI e le impostazioni di rete.
-   * Avviare prima `server.js`, poi caricare/ricaricare `IOTwebUI` nel browser, poi i client (anche più di uno).
+   * Aggiorna il path della tua installazione nel file `run_server.bat`
+      
 4. **Test e debug**
    Sono presenti tre file principali:
-   * `restIOT.js`: il file eseguibile con l'implementazione di IOTrest, da installare.
+   * `server.js`: il file eseguibile con l'implementazione di IOTrest, da installare.
    * `MockIOTweb.html`: una WEBAPP (si deve aprire in un browser) che può sostituire IOTwebUI: il funzionamento del _websocket_ è identico, solo che i dati utilizzati NON vengono dal 'Cloud' ma sono fittizzi.
    * `client.html`: un'altra WEBAPP con funzione di _client REST per test_: permette di inviare a `IOTwebUI` ogni richiesta possibile, e di vederne la risposta.
-  Quindi l'insieme dei tre file è autosufficiente, non richiede `IOTwebUI`, e può essere usato come test. Quando tutto funziona come si deve, si chiude  **MockIOTweb** e si apre **IOTwebUI** e inizia il funzionamento con i device Tuya reali.<br>
+     
+Quindi l'insieme dei tre file è autosufficiente, non richiede `IOTwebUI`, e può essere usato come test. Quando tutto funziona come si deve, si chiude  **MockIOTweb** e si apre **IOTwebUI** e inizia il funzionamento con i device Tuya reali.<br>
+
 client.html può essere usato fino a quando non si hanno uno o più client REST su misura (applicazioni od interfacce utente). Se si vogliono realizzare interfacce WEB, il codice HTML/javascript di `client.html` può servire da modello.
 
 #### **Utilizzo**
 
-* `IOTwebUI2.2` si lancia e funziona come al solito.
-* Se si vuole utilizzare il REST, lanciare prima `restIOT.js`, che resterà nascosto, e poi lanciare o ricaricare `IOTwebUI2.2`: un pop-up avvisa del collegamento a restIOT.
-* Ora i client (vostri o `client.html`) possono eseguire richieste REST
+4.  **Run**
+   1.  Avviare prima `server.js`con `run_server.bat`: se OK appare il messaggio "Server HAPI running on http://localhost:3031"
+   2.  Iconizzare il terminale. Apritelo per vedere i messaggi in caso di errore. Chiderlo al termine dell'uso.
+   3. caricare/ricaricare `IOTwebUI` nel browser, con "run_me.bat". Se OK appare un pop-up che informa dell'avvenuto collegamento
+   4. Usare IOTwebUI normalmente. Per accedere al REST usare o applicazioni/intefacce custom, oppure 'client.html' (anche più di uno).
+
+nota: se non utilizzate il REST, lanciare normalmente **IOTwebUI** (con "run_me.bat" o direttamente): funzionerà perfettamente (senza pop-up iniziale di conferma di collegamento).
 
 **Esempi di richieste:**
 ```
