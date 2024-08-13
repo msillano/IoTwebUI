@@ -49,10 +49,10 @@ client.html può essere usato fino a quando non si hanno uno o più client REST 
 #### **Utilizzo**
    1.  Avviare prima `server.js`con `run_server.bat`: se OK appare il messaggio "Server HAPI running on http://localhost:3031"
    2.  Iconizzare il terminale. Apritelo per vedere i messaggi in caso di errore. Chiderlo al termine dell'uso.
-   3. caricare/ricaricare `IOTwebUI` nel browser, con "run_me.bat". Se OK appare un pop-up che informa dell'avvenuto collegamento
-   4. Usare IOTwebUI normalmente. Per accedere al REST usare o applicazioni/intefacce custom, oppure 'client.html' (anche più di uno).
+   3. caricare/ricaricare `IOTwebUI` nel browser, con "run_me.bat" oppure direttamente. Se OK appare un pop-up che informa dell'avvenuto collegamento websocket con il server.
+   4. Usare `IOTwebUI` normalmente. Per accedere al REST usare o applicazioni/intefacce custom, oppure aprite 'client.html' nel browser (anche più di uno).
 
-nota: se non utilizzate il REST, lanciare normalmente **IOTwebUI** (con "run_me.bat" o direttamente): funzionerà perfettamente (senza pop-up iniziale di conferma di collegamento).
+nota: se non utilizzate il REST, non eseguite `server.js`, ma solo lanciare normalmente **IOTwebUI** (con "run_me.bat" o direttamente): funzionerà perfettamente (senza il pop-up iniziale di conferma di collegamento).
 
 **Esempi di richieste:**
 ```
