@@ -10,6 +10,7 @@ _Cosa puoi fare?_<br>
 ⏱️ Alert personalizzati: Monitora ogni aspetto della tua domotica e ricevi avvisi realtime, anche vocali.<br>
 🎙  Comandi vocali: integrati con tap-to-run e RULE, in un'unica APP<br>
 👌 Integrazione perfetta: Combina device, proprietà, voce, RULE e Tuya tap-to-run per un'automazione fluida e completa. <br>
+
 **_Nuovo, versione 2.2_**
 * _Interfaccia REST_: webservice per il semplice collegamento con applicazioni od interfacce custom.<br>
 * _Internazionalizzazione_: versioni multilingua dell'interfaccia utente e del modulo 'voce'.
