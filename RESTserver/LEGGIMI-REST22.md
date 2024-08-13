@@ -12,6 +12,8 @@
 * **Semplicità d'uso:** Interfaccia REST intuitiva e ben documentata. I risultati sono in formato testo oppure array od oggetti js.
 * **Flessibilità:** Personalizza le tue interazioni con i dispositivi grazie alle numerose opzioni di configurazione.
 
+**NB:** _Se non vi interessa utilizzare la funzione di REST, ignorate completamente 'installazione e configurazione', potrete farla in un secondo tempo. **IoTwebUI 2.2** funzionerà perfettamente!_
+
 #### **Architettura**
 ![](https://github.com/msillano/IoTwebUI/blob/main/pics/rest01.png?raw=true)
 
@@ -45,8 +47,6 @@ Quindi l'insieme dei tre file è autosufficiente, non richiede `IOTwebUI`, e pu�
 client.html può essere usato fino a quando non si hanno uno o più client REST su misura (applicazioni od interfacce utente). Se si vogliono realizzare interfacce WEB, il codice HTML/javascript di `client.html` può servire da modello.
 
 #### **Utilizzo**
-
-4.  **Run**
    1.  Avviare prima `server.js`con `run_server.bat`: se OK appare il messaggio "Server HAPI running on http://localhost:3031"
    2.  Iconizzare il terminale. Apritelo per vedere i messaggi in caso di errore. Chiderlo al termine dell'uso.
    3. caricare/ricaricare `IOTwebUI` nel browser, con "run_me.bat". Se OK appare un pop-up che informa dell'avvenuto collegamento
