@@ -14,7 +14,7 @@ _Cosa puoi fare?_<br>
 * _Interfaccia REST_: webservice per il semplice collegamento con applicazioni od interfacce custom.<br>
 * _Internazionalizzazione_: versioni multilingua dell'interfaccia utente e del modulo 'voce'.
 
-nota: Portabile, può essere installata ovunque: su uno _smartphone_ o _tablet_, come interfaccia alternativa a SmartLife, per voi e per gli altri componenti della famiglia. Su un _PC_ (Windows, Apple, Linux...) per avere Tuya anche su questi computer. Su un _top-box Android_, per usare la TV come interfaccia Tuya!.
+nota: _Portabile, può essere installato ovunque: su uno _smartphone_ o _tablet_, come interfaccia alternativa a SmartLife, per voi e per gli altri componenti della famiglia. Su un _PC_ (Windows, Apple, Linux...) per avere Tuya anche su questi computer. Su un _top-box Android_, per usare la TV come interfaccia Tuya!_.
 
  ![aspetto della versione 2.1](https://github.com/msillano/IoTwebUI/blob/main/pics/wer21.png?raw=true)
 
