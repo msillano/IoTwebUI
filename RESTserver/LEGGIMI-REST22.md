@@ -105,13 +105,14 @@ path:
 *  **device/list[/_home_[/_room_]]** (device/list, device/list/CASA,  device/list/CASA/stanza da pranzo) <br>
     Received `["SGS01","Temperatura soggiorno","Termo letto",...]`
 
-*  **device/_dev-name_|_dev-id_/dinfo|dstatus|_property_** (device/luce01/switch, device/luce01/dinfo, device/luce01/dstatus ) <br>
+*  **device/_dev-name_|_dev-id_/dinfo|dstatus|_code_** (device/luce01/switch, device/luce01/dinfo, device/luce01/dstatus ) <br>
      Received (va_temperature)  `"30"`<br>
      Received (dinfo) `{"name":"Temperatura studio","id":"bf542e7c64b816977796bc","product_name":"温湿度传感器","category":"wsdcg","model":null,"sub":true,"test":false}` <br>
      Received (dstatus) `{"name":"Temperatura studio", "online":true,"status":[{"code":"va_humidity","value":44},{"code":"va_battery","value":0},{"code":"va_temperature","value":30}]}`<br>
      note:<br>
         -  dinfo.test _estensione IOTwebUI_: `true` se esiste un allarme collegato al device.<br>
         -  dinfo.category : codice corrispondente ad `isa`  _estensione IOTwebUI_.
+        -  dstatus.code : nome di una proprietà/data-point di un device.
 
 *  **alert/list/_dev-name_|_dev-id_** (alert/list/luce01)<br>
    Received `{"name":"Temperatura soggiorno","alarms":[{"code":"va_humidity","trigger":true,"condition":"grt","value":"40","message":"","action":["beep"]}]}`<br>
