@@ -9,7 +9,7 @@ _Cosa puoi fare?_<br>
 ⚡️ Automazioni potenti: Crea automazioni complesse con tap-to-run e RULE, impossibili con SmartLife!<br>
 ⏱️ Alert personalizzati: Monitora ogni aspetto della tua domotica e ricevi avvisi realtime, anche vocali.<br>
 🎙  Comandi vocali: integrati con tap-to-run e RULE, in un'unica APP<br>
-👌 Integrazione perfetta: Combina device, proprietà, voce, RULE e Tuya tap-to-run per un'automazione fluida e completa. <br>
+👌 Integrazione perfetta: Combina device, proprietà, voce, RULE e Tuya tap-to-run per un'automazione fluida, completa ed affidabile. <br>
 
 **_Nuovo, versione 2.2_**
 * _Interfaccia REST_: webservice per il semplice collegamento con applicazioni od interfacce custom.<br>
@@ -83,11 +83,18 @@ La modalità EXPERT offre un controllo totale sulla personalizzazione di IoTwebU
 
 #### Interfaccia REST: accesso semplice e standard a IoTwebUI
 
-Un'interfaccia REST in **IoTwebUI** offre un modo potente, flessibile e standardizzato per interagire con i tuoi dispositivi IoT, semplificando lo sviluppo e l'integrazione con applicazioni ed interfacce WEB.
+Un'interfaccia REST server in **IoTwebUI** offre un modo potente, flessibile e standardizzato per interagire con i tuoi dispositivi IoT, semplificando lo sviluppo e l'integrazione con applicazioni ed interfacce WEB.
 * Semplicità: L'architettura REST è progettata per essere intuitiva
 * Flessibilità: Puoi accedere ai tuoi dispositivi IoT da qualsiasi dispositivo connesso a internet, utilizzando qualsiasi linguaggio di programmazione che supporti le richieste HTTP.
 * Standard: REST è uno standard ampiamente adottato, il che significa che ci sono molte librerie e strumenti disponibili per semplificare lo sviluppo.
 * Indipendenza: L'interfaccia REST separa l'interfaccia utente dal backend, permettendoti di aggiornare o modificare uno senza influenzare l'altro.
+
+#### Unica APP, una valanga di funzioni 
+
+* Singolo punto di controllo: Con un'unica APP, hai un solo punto da monitorare e gestire. Ciò semplifica la risoluzione di problemi e riduce il rischio di conflitti tra diverse applicazioni.
+* Minor dipendenza da terzi: Eliminando la dipendenza da più fornitori, riduci il rischio di interruzioni del servizio causate da problemi esterni, come malfunzionamenti dei server o modifiche alle politiche dei provider.
+Stabilità a lungo termine: Un'unica APP offre una soluzione più stabile nel lungo periodo, poiché non sei soggetto a cambiamenti nelle politiche dei fornitori o a interruzioni del servizio dovute a migrazioni o aggiornamenti.
+_In sintesi, un'unica APP offre un livello di affidabilità superiore grazie alla sua semplicità, al minor numero di dipendenze esterne e al maggiore controllo sui dati._
 
 <hr>
 
@@ -269,6 +276,13 @@ Si possono gestire due insiemi di RULE: quelle in <i>uso</i>, inizialmente lette
 - _nota: la navigazione tra pagine è analoga al menu: dalla 'home' si può  andare alle pagine 'tap-to-run' o 'edit RULE' (in modo EXPERT), ma da queste si può solo tornare alla 'home'._
      
 _nota: la richiesta di consenso all'uso del microfono dipende dal browser e dalla configurazione: usando 'run_me.bat' non dovrebbero esserci richieste._
+
+### REST: finestra sul mondo
+In IoTwebUI esistono 2 interfacce REST:
+a) _REST client_, implementato come MACRO, permette di importare dati esterni nelle REGOLE (RULE), da webservice o anche da device di terze parti che implementino un'interfaccia REST. Per device custom DIY REST vedi [esempio](https://github.com/msillano/tuyaDEAMON-applications/wiki/note-5:-Watchdog-for-IOT#watchdog03-esp01-relay--arduino)).
+b) _REST server_, per l'esportazione dei dati dei device Tuya, più controllo su automazioni e allarmi, verso applicazioni o interfacce custom.
+
+_Queste due strade permettono finalmente l'integrazione di Tuya in progetti verticali, senza alterare il funzionamento base di Tuya/Smartlife, ma arricchendolo di nuove potenzialità._
 
 <HR>
 
