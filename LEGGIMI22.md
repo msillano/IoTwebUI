@@ -49,7 +49,7 @@ nota: _Portabile, può essere installato ovunque: su uno _smartphone_ o _tablet_
  - puoi attivare una funzione di controllo su qualsiasi proprietà dei dispositivi e scegliere i test "maggiore", "uguale" o "minore" per monitorare ogni aspetto della tua domotica.
  - Stessa logica delle condizioni Tuya, per un linguaggio comune ed affidabile.
  - Scegli tra diverse azioni conseguenziali: silente, beep, frase registrata, pop-up, messaggio vocale, lancio di URL o  RULE|tap-to-run Tuya.
- - Real Time, con un ritardo medio pari al 50% del periodo di campionamento Tuya, per un equilibrio perfetto tra rapidità e precisione: gli alert sempre visualizzati con pop-up o finestra.
+ - Real Time, con un ritardo medio pari al 50% del periodo di campionamento Tuya, per un equilibrio perfetto tra rapidità e precisione: gli alert sempre visualizzati, con pop-up o finestra.
  - Definizione degli Alert al runtime: controllo totale in tempo reale
 
 #### RULE: Domanda di automazioni più potenti? IoTwebUI 2.1 ha la risposta!
@@ -83,7 +83,7 @@ La modalità EXPERT offre un controllo totale sulla personalizzazione di IoTwebU
 
 #### Interfaccia REST: accesso semplice e standard a IoTwebUI
 
-Un'interfaccia REST server in **IoTwebUI** offre un modo potente, flessibile e standardizzato per interagire con i tuoi dispositivi IoT, semplificando lo sviluppo e l'integrazione con applicazioni ed interfacce WEB. Vedi [documentazione](https://github.com/msillano/IoTwebUI/blob/main/RESTserver/LEGGIMI-REST22.md).
+Un'interfaccia _REST server_ in **IoTwebUI** offre un modo potente, flessibile e standardizzato per interagire con i tuoi dispositivi IoT, semplificando lo sviluppo e l'integrazione con applicazioni ed interfacce WEB. Vedi [documentazione](https://github.com/msillano/IoTwebUI/blob/main/RESTserver/LEGGIMI-REST22.md).
 * Semplicità: L'architettura REST è progettata per essere intuitiva
 * Flessibilità: Puoi accedere ai tuoi dispositivi IoT da qualsiasi dispositivo connesso a internet, utilizzando qualsiasi linguaggio di programmazione che supporti le richieste HTTP.
 * Standard: REST è uno standard ampiamente adottato, il che significa che ci sono molte librerie e strumenti disponibili per semplificare lo sviluppo.
