@@ -121,6 +121,7 @@ _In sintesi, un'unica APP offre un livello di affidabilità superiore grazie all
 - Il funzionamento continua regolarmente anche con la finestra del browser iconizzata.
 - Usare una sola istanza dell'APP, altrimenti si hanno problemi con i token Tuya.
 
+
 ### Interfaccia utente
 ![](https://github.com/msillano/IoTwebUI/blob/main/pics/tootip20.png?raw=true)
 
