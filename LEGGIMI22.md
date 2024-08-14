@@ -83,7 +83,7 @@ La modalità EXPERT offre un controllo totale sulla personalizzazione di IoTwebU
 
 #### Interfaccia REST: accesso semplice e standard a IoTwebUI
 
-Un'interfaccia REST server in **IoTwebUI** offre un modo potente, flessibile e standardizzato per interagire con i tuoi dispositivi IoT, semplificando lo sviluppo e l'integrazione con applicazioni ed interfacce WEB.
+Un'interfaccia REST server in **IoTwebUI** offre un modo potente, flessibile e standardizzato per interagire con i tuoi dispositivi IoT, semplificando lo sviluppo e l'integrazione con applicazioni ed interfacce WEB. Vedi [documentazione](https://github.com/msillano/IoTwebUI/blob/main/RESTserver/LEGGIMI-REST22.md).
 * Semplicità: L'architettura REST è progettata per essere intuitiva
 * Flessibilità: Puoi accedere ai tuoi dispositivi IoT da qualsiasi dispositivo connesso a internet, utilizzando qualsiasi linguaggio di programmazione che supporti le richieste HTTP.
 * Standard: REST è uno standard ampiamente adottato, il che significa che ci sono molte librerie e strumenti disponibili per semplificare lo sviluppo.
@@ -282,7 +282,7 @@ _nota: la richiesta di consenso all'uso del microfono dipende dal browser e dall
 In IoTwebUI esistono 2 interfacce REST:
 
 1. _REST client_, implementato come MACRO, permette di importare dati esterni nelle REGOLE (RULE), da webservice o anche da device di terze parti che implementino un'interfaccia REST. Per device custom DIY REST vedi [esempio](https://github.com/msillano/tuyaDEAMON-applications/wiki/note-5:-Watchdog-for-IOT#watchdog03-esp01-relay--arduino)).
-2. _REST server_, per l'esportazione dei dati dei device Tuya, più controllo su automazioni e allarmi, verso applicazioni o interfacce custom.
+2. _REST server_, per l'esportazione dei dati dei device Tuya, più controllo su automazioni e allarmi, verso applicazioni o interfacce custom. [Vedi qui](https://github.com/msillano/IoTwebUI/blob/main/RESTserver/LEGGIMI-REST22.md).
 
 _Queste due strade permettono finalmente l'integrazione di Tuya in progetti verticali, senza alterare il funzionamento base di Tuya/Smartlife, ma arricchendolo di nuove potenzialità._
 
@@ -298,7 +298,8 @@ _NON rendetela accessibile dall'esterno o da terzi, altrimenti tutti i vostri da
 <hr>
 
 ### Versioni
-- 2.2  Aggiunto server REST ed Internazionalizzazione (interfaccia utente e modulo speech) 
+- 2.2  Aggiunto server REST ed Internazionalizzazione per interfaccia utente e modulo speech.
+ 
 - 2.1.1 Correzione bugs [ISSUE10](https://github.com/msillano/IoTwebUI/issues/10): Token scaduto. [ISSUE11](https://github.com/msillano/IoTwebUI/issues/11): refuso.
 
 - 2.1 Miglioramento dell'esperienza utente:
