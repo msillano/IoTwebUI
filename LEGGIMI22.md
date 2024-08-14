@@ -280,8 +280,9 @@ _nota: la richiesta di consenso all'uso del microfono dipende dal browser e dall
 
 ### REST: finestra sul mondo
 In IoTwebUI esistono 2 interfacce REST:
-a) _REST client_, implementato come MACRO, permette di importare dati esterni nelle REGOLE (RULE), da webservice o anche da device di terze parti che implementino un'interfaccia REST. Per device custom DIY REST vedi [esempio](https://github.com/msillano/tuyaDEAMON-applications/wiki/note-5:-Watchdog-for-IOT#watchdog03-esp01-relay--arduino)).
-b) _REST server_, per l'esportazione dei dati dei device Tuya, più controllo su automazioni e allarmi, verso applicazioni o interfacce custom.
+
+1. _REST client_, implementato come MACRO, permette di importare dati esterni nelle REGOLE (RULE), da webservice o anche da device di terze parti che implementino un'interfaccia REST. Per device custom DIY REST vedi [esempio](https://github.com/msillano/tuyaDEAMON-applications/wiki/note-5:-Watchdog-for-IOT#watchdog03-esp01-relay--arduino)).
+2. _REST server_, per l'esportazione dei dati dei device Tuya, più controllo su automazioni e allarmi, verso applicazioni o interfacce custom.
 
 _Queste due strade permettono finalmente l'integrazione di Tuya in progetti verticali, senza alterare il funzionamento base di Tuya/Smartlife, ma arricchendolo di nuove potenzialità._
 
