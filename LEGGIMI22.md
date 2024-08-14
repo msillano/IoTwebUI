@@ -56,14 +56,14 @@ nota: _Portabile, può essere installato ovunque: su uno _smartphone_ o _tablet_
 
  - Effettuare operazioni logiche ed aritmetiche e utilizzare variabili per una flessibilità senza limiti.
  - Confrontare i valori di due proprietà diverse, per automazioni ancora più libere.
- - Eseguire azioni complesse, come realizzare controlli PID, schedulare annualmente, o inviare comandi ad altre applicazioni via REST.
- - Attivate in base a condizioni (come le 'Automazioni' Tuya, ma più flessibile) oppure su comando (come i 'tap-to-run' Tuya).
+ - Eseguire azioni complesse, come realizzare controlli PID, schedulare annualmente, o ricevere dati da altre applicazioni via REST.
+ - Attivate in base a condizioni (come le 'Automazioni' Tuya) oppure su comando (come i 'tap-to-run' Tuya).
  - Per i casi più semplici (una sola condizione) si possono usare gli 'alert' (che possono attivare 'tap-to-run').
  - Il linguaggio delle RULE soddisfa le condizioni Bohm/Jacopini e quindi è 'Turing completo'. Più potenza espressiva vuol dire per l'utente concentrarsi su 'che cosa si vuol fare' e non 'su come farlo'!
  - Come funziona?
     1. Crea le RULE al runtime con un'interfaccia user-friendly, anche se non sei un programmatore esperto.
     2. Utilizza MACRO predefinite per i compiti comuni e ripetitivi, risparmiando tempo e fatica.
-    3. Provare le tue RULE in tempo reale per assicurarti che funzionino perfettamente.
+    3. Prova le tue RULE in tempo reale per assicurarti che funzionino perfettamente.
     4. In caso di errore durante il test, un popup ti indicherà la riga e il tipo di errore per una risoluzione rapida e precisa.
     5. Esporta le tue RULE per inserirle nel file di configurazione e renderle permanenti.
 
@@ -117,7 +117,7 @@ _In sintesi, un'unica APP offre un livello di affidabilità superiore grazie all
 - I file di datalog sono salvati nella dir `download`, con il nome  `tuyalogDYYYYMMGGThhmmss.csv|json.txt`.
   
 - Per lo stesso motivo non è possibile aggiornare dall'APP i file di configurazione. Ho scelto una soluzione di compromesso, che prevede l'intervento dell'utente con un semplice copia-incolla.
-- Sempre per problemi di sicurezza, può venire richiesta ogni volta l'autorizzazione all'uso del microfono: dipende dal browser e dalla configurazione; ma `run-me.bat` evita l'inconveniente.
+- Sempre per problemi di sicurezza, può venire richiesta ogni volta l'autorizzazione all'uso del microfono: dipende dal browser e dalla configurazione; ma l'uso di `run-me.bat` può evitare l'inconveniente.
 - Il funzionamento continua regolarmente anche con la finestra del browser iconizzata.
 - Usare una sola istanza dell'APP, altrimenti si hanno problemi con i token Tuya.
 
@@ -268,9 +268,9 @@ Si possono gestire due insiemi di RULE: quelle in <i>uso</i>, inizialmente lette
     - _'Ehi Tuya, basta voce'_ => stop del modo riconoscimento senza soste.
    
 
- (*) nota: _la lista di preposizioni ed articoli accettati ed ignorati  in quarta e successive posizioni  è molto lunga_: `'il','lo','la', 'le', 'a', 'ad', 'ai', 'al', 'all', 'allo', 'alla', 'alle', 'di', 'del', 'della', 'dei','un', 'una', 'con', 'colla'`: _scegliete quelle che facilitano il riconoscimento_. 
+ (*) nota: _la lista di preposizioni ed articoli accettati ed ignorati  in quarta e successive posizioni  è molto lunga_: `'il', 'lo', 'la', 'le', 'i', 'gli', 'un', 'uno', 'una', 'a', 'ad', 'ai', 'al', 'all', 'allo', 'alla', 'alle', 'agli', 'da', 'dal', 'dallo', 'dalla', 'dalle', 'dai', 'dagli', 'di', 'del', 'dello', 'della', 'delle', 'dei', 'degli', 'con', 'col', 'coi', 'colla', 'in', 'nel', 'nello','nella', 'nei', 'negli', 'nelle', 'su', 'sul', 'sui', 'sullo', 'sulla', 'sulle', 'sugli', 'per', 'tra', 'fra'`: _scegliete quelle che facilitano il riconoscimento_. 
  
-- _nota: L'implementazione tollera anche qualche imprecisione nel riconoscimento (e.g. 'Giulia' invece di 'Tuya', etc..): questo può essere facilmente customizzato. Vedi file speech21.js._
+- _nota: L'implementazione tollera anche qualche imprecisione nel riconoscimento (e.g. 'Giulia' invece di 'Tuya', etc..): questo può essere facilmente customizzato. Vedi file i18n/speechX.X.it.js._
  
  - nota: Per una migliore comprensione, le frasi possono essere divise in due: "Ehi Tuya" + pausa: appare il feedback 'Ehi Tuya...' che conferma la comprensione della prima parte; ora può essere detta la seconda parte.
  
