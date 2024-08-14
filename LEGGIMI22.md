@@ -207,7 +207,8 @@ In modo EXPERT cliccando su un device si apre un dialogo che nella parte inferio
  - _Gli 'alert' non hanno, per semplicità, un filtro a tempo: se definiti sono attivi 24/7. Se occorre qualche condizionamento, è possibile creare RULE ad hoc ed attivarle dall'alert (nota: le RULE possono attivare le stesse azioni attivate dagli 'alert')._ 
  - _Notare che 'connected' non è mai incluso nelle proprietà Tuya, e quindi non si possono definire 'Alert'. Ma è disponibile come MACRO nelle RULE._
  - _Avendo un solo messaggio, le regole di precedenza sono: SOUND() e URL (auto) sono esaminati per primi, poi Tap-to-run e RULE (auto), e solo per ultimo POP e VOICE (compatibili: lo stesso messaggio può essere usato per entranbi); Beep è sempre utilizzabile._
- - _Quindi, per avere sia 'pop' che 'tap-to-run', occerre creare due Alert con le stesse condizioni: in uno 'message' sarà il testo per il 'pop-up', nell'altro il nome del 'tap-to-run'._
+ - _E' possibile definire contemporaneamente più azioni compatibili, e.g. 'beep' e 'pop-up' (con messaggio)._
+ - _Invece, per avere sia 'pop-up' che 'tap-to-run', occerre creare due Alert con le stesse condizioni: in uno 'message' sarà il testo per il 'pop-up', nell'altro il nome del 'tap-to-run' (auto)._
  - _La visualizzazione dei pop-up può dipendere dalla configurazione del browser: usando 'run_me.bat' si ha un aggiornamento automatico della configurazione per la nuova istanza del browser. Azioni utente (e.g. bottoni) possono abilitare momentaneamente i pop-up._ <br>
  _Comunque, per non perdere informazioni, se i pop-up sono disabilitati per qualche motivo, il messaggio è presentato lo stesso in una finestra dell'APP: la differenza è che i pop-up possono essere molti, mentre la finestra è unica e viene riusata con un contatore._
 - _Tutti gli Alert sono memorizzati e visibili nel 'registro Alert', dal menu principale._
