@@ -2,7 +2,7 @@
 
 #### **Introduzione**
 
-**IOTrest** è un'estensione per **IoTwebUI** 2.2 che trasforma i tuoi dispositivi Tuya in _**servizi web** accessibili tramite semplici richieste HTTP_. Oltre a consentire la lettura dei dati dei tuoi dispositivi, IOTrest ti permette di interagire con essi in modo avanzato, attivando scene, regole e ricevendo avvisi in tempo reale.
+**IOTrest** è un'estensione opzionale per **IoTwebUI** 2.2 che trasforma i tuoi dispositivi Tuya in _**servizi web** accessibili tramite semplici richieste HTTP_. Oltre a consentire la lettura dei dati dei tuoi dispositivi, IOTrest ti permette di interagire con essi in modo avanzato, attivando scene, regole e ricevendo avvisi in tempo reale.
 
 #### **Funzionalità principali**
 
@@ -38,8 +38,8 @@ Il tempo di latenza (ritardo) medio tra un evento e la sua segnalazione in un cl
       
 4. **Test e debug**
    Sono presenti tre file principali:
-   * `server.js`: il file eseguibile con l'implementazione di IOTrest, da installare.
-   * `MockIOTweb.html`: una WEBAPP (si deve aprire in un browser) che può sostituire IOTwebUI: il funzionamento del _websocket_ è identico, solo che i dati utilizzati NON vengono dal 'Cloud' ma sono fittizzi.
+   * `server.js`: il file eseguibile con l'implementazione di IOTrest, da lanciare in background.
+   * `MockIOTweb.html`: una WEBAPP (si deve aprire in un browser) che può sostituire `IOTwebUI`: il funzionamento del _websocket_ è identico, solo che i dati utilizzati NON vengono dal 'Cloud' ma sono fittizzi.
    * `client.html`: un'altra WEBAPP con funzione di _client REST per test_: permette di inviare a `IOTwebUI` ogni richiesta possibile, e di vederne la risposta.
      
 Quindi l'insieme dei tre file è autosufficiente, non richiede `IOTwebUI`, e può essere usato come test. Quando tutto funziona come si deve, si chiude  **MockIOTweb** e si apre **IOTwebUI** e inizia il funzionamento con i device Tuya reali.<br>
@@ -48,8 +48,8 @@ client.html può essere usato fino a quando non si hanno uno o più client REST 
 
 #### **Utilizzo**
    1.  Avviare prima `server.js`con `run_server.bat`: se OK appare il messaggio "Server HAPI running on http://localhost:3031"
-   2.  Iconizzare il terminale. Apritelo per vedere i messaggi in caso di errore. Chiderlo al termine dell'uso.
-   3. caricare/ricaricare `IOTwebUI` nel browser, con "run_me.bat" oppure direttamente. Se OK appare un pop-up che informa dell'avvenuto collegamento websocket con il server.
+   2.  Iconizzare il terminale. Potete riaprirlo in seguito per vedere i messaggi. Chiuderlo al termine dell'uso.
+   3. caricare/ricaricare `IOTwebUI` nel browser, con "run_me.bat" oppure direttamente. Se OK appare un pop-up che informa dell'avvenuto collegamento via websocket con il server.
    4. Usare `IOTwebUI` normalmente. Per accedere al REST usare o applicazioni/intefacce custom, oppure aprite 'client.html' nel browser (anche più di uno).
 
 nota: se non utilizzate il REST, non eseguite `server.js`, ma solo lanciare normalmente **IOTwebUI** (con "run_me.bat" o direttamente): funzionerà perfettamente (senza il pop-up iniziale di conferma di collegamento).
@@ -97,17 +97,35 @@ note:
 - **unk** o **[unk]** in caso di nomi errati o non trovati (errori di scrittura).
 - **err** o **[err]** in caso di parti di path mancanti (errore di sintassi).
 - I tempi indicati sono i minimi richiesti dalle comunicazioni: possono aumentare in concomitanza di altre attivita di IOTwebUI (accesso al Cloud, scrittura file, etc..).
-- i device dono individuati dal nome o dall'ID: usando l'ID si è indipendenti dal nome che potete cambiare liberamente.
+- I device sono individuati dal nome o dall'ID: usando l'ID si è indipendenti dal nome che potete cambiare liberamente.
 
 #### dizionario REST
 generale: `http://localhost:3031/IOTrest/` + path <br>
 path:
-*  **device/list[/_home_[/_room_]]** (device/list, device/list/CASA,  device/list/CASA/stanza da pranzo) 
-*  **device/_dev-name_|_dev-id_/dinfo|dstatus|_property_** (device/luce01/switch, device/luce01/dinfo, device/luce01/dstatus ) 
-*  **alert/list/_dev-name_|_dev-id_** (alert/list/luce01)
-*  **scene/list[/_room_]**  (scene/list, scene/list/CASA)
-*  **rule/list**  (rule/list)
-*  **execute/_scene-name_|_rule-name_** (execute/chiamata Pippo)
+*  **device/list[/_home_[/_room_]]** (device/list, device/list/CASA,  device/list/CASA/stanza da pranzo) <br>
+    Received `["SGS01","Temperatura soggiorno","Termo letto",...]`
+
+*  **device/_dev-name_|_dev-id_/dinfo|dstatus|_property_** (device/luce01/switch, device/luce01/dinfo, device/luce01/dstatus ) <br>
+     Received (va_temperature)  `"30"`<br>
+     Received (dinfo) `{"name":"Temperatura studio","id":"bf542e7c64b816977796bc","product_name":"温湿度传感器","category":"wsdcg","model":null,"sub":true,"test":false}` <br>
+     Received (dstatus) `{"name":"Temperatura studio", "online":true,"status":[{"code":"va_humidity","value":44},{"code":"va_battery","value":0},{"code":"va_temperature","value":30}]}`<br>
+     note:<br>
+        -  dinfo.test _estensione IOTwebUI_: `true` se esiste un allarme collegato al device.<br>
+        -  dinfo.category : codice corrispondente ad `isa`  _estensione IOTwebUI_.
+
+*  **alert/list/_dev-name_|_dev-id_** (alert/list/luce01)<br>
+   Received `{"name":"Temperatura soggiorno","alarms":[{"code":"va_humidity","trigger":true,"condition":"grt","value":"40","message":"","action":["beep"]}]}`<br>
+      note:<br>
+        - alarm.trigger _estensione IOTwebUI_: `true` in caso di allarme attivo.<br>
+
+*  **scene/list[/_room_]**  (scene/list, scene/list/CASA)<br>
+      Received `[{"name":"ALARM OFF","status":"enable","running_mode":"cloud"},{"name":"ALARM ON","status":"enable","running_mode":"cloud"},...]`
+
+*  **rule/list**  (rule/list)<br>
+      Received `["spegni luce","pippo","chiamata pippo"]`
+
+*  **execute/_scene-name_|_rule-name_** (execute/chiamata pippo)<br>
+      Received `done rule`
 
 #### **Considerazioni importanti**
 
