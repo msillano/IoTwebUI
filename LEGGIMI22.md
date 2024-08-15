@@ -1,7 +1,7 @@
 # IoTwebUI 2.2: Tuya WEBAPP open extension #
 [english version](https://github.com/msillano/IoTwebUI/blob/main/README22.md)
 
-**_Stanco delle limitazioni di SmartLife?  IoTwebUI 2.1 è arrivato per dare nuova linfa alla tua casa intelligente, con un arsenale di funzionalità che ti faranno dire "finalmente!". <br> La filosofia 'open' è nel DNA di questa APP, che esalta la customizzazione ed il controllo da parte dell'utente._** 
+**_Stanco delle limitazioni di SmartLife?  IoTwebUI 2.2 è arrivato per dare nuova linfa alla tua casa intelligente, con un arsenale di funzionalità che ti faranno dire "finalmente!". <br> La filosofia 'open' è nel DNA di questa APP, che esalta la customizzazione ed il controllo da parte dell'utente._** 
 
 _Cosa puoi fare?_<br>
 👀 Controlla tutto: Interfaccia intuitiva e personalizzabile, dati sempre a portata di mano, visualizzazione flessibile.<br>
@@ -110,7 +110,6 @@ _In sintesi, un'unica APP offre un livello di affidabilità superiore grazie all
 - Con un Mac (IOS 10.11.6) ha funzionato la seguente riga di comando:
 `xxx:~ yyyy$ open -n -a /Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome --args --user-data-dir="/tmp/chrome_dev_test" --disable-web-security  --disable-popup-blocking --auto-accept-camera-and-microphone-capture --app=file:///Applications/IoTwebUI/IoTwebUI.html ` 
 
-
 - Tuya pone dei limiti alla frequenza degli accessi al cloud. _IoTwebUI_ ne tiene conto, e la fase iniziale (quando legge tutti i dati dal Cloud) è bloccante e non brevissima (3-5 s, in funzione del numero di device). Come anche in SmartLife.
 
 - Un secondo problema è l'impossibilità di creare file direttamente da una pagina HTML, sempre per motivi di sicurezza. Per l'export dei dati sono ricorso ad una libreria di logging su file [debugout.js](https://github.com/inorganik/debugout.js). Per questo motivo il controllo sui file generati non è completo e sono necessari piccoli  interventi manuali sui file esportati.
@@ -141,7 +140,7 @@ Alcune piccole icone forniscono ulteriori informazioni all'utente.Esempi (vedi f
    - `temperatura soggiorno.va _humidity`  è la causa dell'Alert, ed è anche indicata la condizione (>40) che lo ha causato.
    - Il tooltip `termo studio` è customizzato,  per presentare le temperature con i corretti decimali e unità. (nota: solo nel tooltip: Alert e RULE usano sempre il valore fornito da Tuya Cloud, i.e. 222 e 190).
    - In modo EXPERT sono aggiunti nei tooltip i seguenti valori:
-       - `isa`:  nome del 'tipo' Tuya del device (in codice è `device.category`). In totale circa 600 tipi.
+       - `isa`:  nome del 'tipo' Tuya del device (in codice corrispondente è `device.category`). In totale circa 600 tipi.
        - `id`:  `device.id`, richiesto da alcuni HUB (e.g. TuyaDAEMON, Homebridge, HA, etc..).
        - `key`: `device.local_key`, richiesto da alcuni HUB
          
