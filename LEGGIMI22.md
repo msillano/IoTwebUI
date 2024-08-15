@@ -87,7 +87,7 @@ Un'interfaccia _REST server_ in **IoTwebUI** offre un modo potente, flessibile e
 * Semplicità: L'architettura REST è progettata per essere intuitiva
 * Flessibilità: Puoi accedere ai tuoi dispositivi IoT da qualsiasi dispositivo connesso a internet, utilizzando qualsiasi linguaggio di programmazione che supporti le richieste HTTP.
 * Standard: REST è uno standard ampiamente adottato, il che significa che ci sono molte librerie e strumenti disponibili per semplificare lo sviluppo.
-* Indipendenza: L'interfaccia REST separa l'interfaccia utente dal backend, permettendoti di aggiornare o modificare uno senza influenzare l'altro.
+* Indipendenza: L'interfaccia REST separa l'interfaccia utente dal backend, permettendoti di aggiornare o modificare l'uno senza influenzare l'altro.
 
 #### Unica APP, una valanga di funzioni 
 
@@ -107,8 +107,6 @@ _In sintesi, un'unica APP offre un livello di affidabilità superiore grazie all
    `chrome.exe --user-data-dir="C://Chrome dev session" --disable-web-security`<br>
   (vedi file `run-me.bat`). Vale solo per questa istanza, le altre resteranno protette.<br>
   Come alternativa al file 'bat', con alcuni browser si può usare l'estensione 'Cross Domains - CORS', vedi [ISSUE4](https://github.com/msillano/IoTwebUI/issues/4).
-- Con un Mac (IOS 10.11.6) ha funzionato la seguente riga di comando:
-`xxx:~ yyyy$ open -n -a /Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome --args --user-data-dir="/tmp/chrome_dev_test" --disable-web-security  --disable-popup-blocking --auto-accept-camera-and-microphone-capture --app=file:///Applications/IoTwebUI/IoTwebUI.html ` 
 
 - Tuya pone dei limiti alla frequenza degli accessi al cloud. _IoTwebUI_ ne tiene conto, e la fase iniziale (quando legge tutti i dati dal Cloud) è bloccante e non brevissima (3-5 s, in funzione del numero di device). Come anche in SmartLife.
 
@@ -283,7 +281,7 @@ _nota: la richiesta di consenso all'uso del microfono dipende dal browser e dall
 In IoTwebUI esistono 2 interfacce REST:
 
 1. _REST client_, implementato come MACRO, permette di importare dati esterni nelle REGOLE (RULE), da webservice o anche da device di terze parti che implementino un'interfaccia REST. Per device custom DIY REST vedi [esempio](https://github.com/msillano/tuyaDEAMON-applications/wiki/note-5:-Watchdog-for-IOT#watchdog03-esp01-relay--arduino)).
-2. _REST server_, per l'esportazione dei dati dei device Tuya, più controllo su automazioni e allarmi, verso applicazioni o interfacce custom. [Vedi qui](https://github.com/msillano/IoTwebUI/blob/main/RESTserver/LEGGIMI-REST22.md).
+2. _REST server_, per l'esportazione dei dati dei device Tuya, per il controllo su automazioni e allarmi, verso applicazioni o interfacce custom. [Vedi qui](https://github.com/msillano/IoTwebUI/blob/main/RESTserver/LEGGIMI-REST22.md).
 
 _Queste due strade permettono finalmente l'integrazione di Tuya in progetti verticali, senza alterare il funzionamento base di Tuya/Smartlife, ma arricchendolo di nuove potenzialità._
 
@@ -336,10 +334,13 @@ _NON rendetela accessibile dall'esterno o da terzi, altrimenti tutti i vostri da
 
 1) Scaricare e dezippare il file `IoTwebUI.x.x.zip`  in una dir (con le autorizzazioni richieste dal S.O.).
 2) Eseguire le operazioni di configurazione (vedi oltre).
-3) Per l'installazione del server REST, vedi dettaglihttps://github.com/msillano/IoTwebUI/blob/main/RESTserver/LEGGIMI-REST22.md.
+3) Per l'installazione del server REST (opzionale), vedi [dettagli qui](https://github.com/msillano/IoTwebUI/blob/main/RESTserver/LEGGIMI-REST22.md).
 4) Il file principale è `IoTwebUI.html`.  NON è necessario un server WEB, in quanto il codice è tutto in javaScript, eseguito dal browser. Per lanciarlo vedi file `run_me.bat` (per Windows - Chrome). Per altri S.O. creare uno script analogo. (Ignorare il messaggio Chrome: "stai utilizzando una segnalazione della riga di comando non supportata: - disable-web-security...": non supportata ma funzionante).<br>
+5) Con un Mac (IOS 10.11.6) ha funzionato la seguente riga di comando:
+`xxx:~ yyyy$ open -n -a /Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome --args --user-data-dir="/tmp/chrome_dev_test" --disable-web-security  --disable-popup-blocking --auto-accept-camera-and-microphone-capture --app=file:///Applications/IoTwebUI/IoTwebUI.html ` 
+
 nota: L'addon "Cross Domain - CORS" sembra risolvere il problema CORS senza file BAT, vedi [ISSUE4](https://github.com/msillano/IoTwebUI/issues/4).
-5) In fase di installazione e setup è utile la console (nel browser - strumenti per programmatori -, o menu contestuale 'ispeziona') perchè lì vanno i messaggi di informazione e di errore di IoTwebUI.<BR>
+6) In fase di installazione e setup è utile la console (nel browser - strumenti per programmatori -, o menu contestuale 'ispeziona') perchè lì vanno i messaggi di informazione e di errore di IoTwebUI.<BR>
 Nelle immagini: a sinistra avvio OK (Chrome, CORS disattivato) a destra in caso di errore CORS (Opera):
 
 <div><img src="https://github.com/msillano/IoTwebUI/blob/main/pics/okconsole.png?raw=true" alt="normal start" width="300" />
@@ -485,7 +486,7 @@ Il particolare ambiente in cui sono valutate le RULE comporta qualche limite all
 nota: contrariamente alle automazioni Tuya, Google, Alexa,  che nelle condizioni permettono o solo AND (tutte) o solo OR (basta una) (e poi cercano di mitigare questo limite aggiungendo l'extra condizione 'ambito' - e.g. Tuya) nelle RULE si possono avere condizioni più complesse (miste) usando con cura le parentesi per indicare l'ordine di calcolo:
 esempio:  if ( (condiz1 || condiz2) && (condiz3 || condiz4) )  - a parole: "deve essere vera almeno una tra (condiz1, condiz2) ED anche almeno una tra (condiz3, condiz4)".
 
- - Se una `condizione` è vera a lungo (livello), un `if()` sarà eseguito più volte, ad ogni ciclo. Per evitare questo le macro TRIGGER sono vere per un solo ciclo, il primo, e poi sono false.
+ - Se una `condizione` è vera a lungo (livello), un `if()` sarà eseguito più volte, ad ogni ciclo. Per evitare questo le macro TRIGGER sono vere per un solo ciclo, la PRIMA volta che la condizione è vera, e poi sono false.
 
  - nota sui messaggi di errore: Non sempre i messaggi di errore identificano la VERA causa del problema. Esempio, una variabile mal scritta è trovata subito come 'non definita', ma una parentesi non chiusa, può portare a messaggi poco chiari righe dopo, quando il compilatore trova un problema! Quindi attenzione! 
 
@@ -516,16 +517,16 @@ if (_nowClima) SCENA("TLetto" + ROUND( _Ttarget, 0) ), ALERTLOG("RULE Tletto", "
 
 nota: i nomi dei tap-to-run come 'TLetto16' sono impossibili da usare con il riconoscimento vocale, ma servono così per poterli gestire dinamicamente. Se utile, basta creare dei 'tap-to-run' con nomi semplici come alias, tipo 'riscaldamento camera letto', che si limitano a utilizzare quelli con i nomi irriconoscibili.
 
-_Tutto sommato semplice, nevvero? Secondo i progettisti di APP per domotica (tutti: si copiano l'un l'altro le prestazioni) noi utenti siamo solo in grado di gestire " Se ....  Poi ....". Che mancanza di fantasia e fiducia!._ 
+_Tutto sommato semplice, nevvero? Secondo i progettisti di APP per domotica (tutti: si copiano l'un l'altro le prestazioni) noi utenti siamo solo in grado di gestire " Se ....  Poi ....". Che mancanza di fantasia e di fiducia!._ 
 _Che poi, avere a disposizione strumenti sofisticati, non vuol dire essere obbligati ad usarli! Se non si devono usare, meglio. Ma quando servono le RULE sono lì, pronte a risolvere i nostri problemi._
 
 <br>
 
 #### RULE - Primi passi
-Volete fare delle prove ma non sapete da dove cominciare?
-Consiglio di copiare le seguenti 3 RULE nell'area di edit delle RULE (modo EXPERT), e poi premere TEST.
-1) Nella pagina tap-to-run, tab 'user RULE' trovate tre nuovi bottoni: 'spegni luce'. 'Pippo' e 'chiamata Pippo': potete verificare il funzionamento delle tre RULE.
-2) Attivate il 'comando vocale', e provate _"Ehi Tuya, esegui Pippo"_,  _"Ehi Tuya, esegui spegni la luce"_ _"Ehi Tuya, esegui una chiamata per Pippo"_...
+Volete fare delle prove ma non sapete da dove cominciare? Ecco tre RULE che non richiedono device, ma sono utili per fare le prime prove.
+1) copiare le seguenti 3 RULE nell'area di edit delle RULE (modo EXPERT), e poi premere TEST.
+2) Nella pagina tap-to-run, tab 'user RULE' trovate tre nuovi bottoni: 'spegni luce'. 'Pippo' e 'chiamata Pippo': potete verificare il funzionamento delle tre RULE.
+3) Attivate il 'comando vocale', e provate _"Ehi Tuya, esegui Pippo"_,  _"Ehi Tuya, esegui spegni la luce"_ _"Ehi Tuya, esegui una chiamata per Pippo"_...
 ```
    if (TRIGBYNAME('spegni luce')) VOICE ("Fatto: 'spegni la luce'");
    if (TRIGBYNAME("Pippo")) POP ("Test", "Trovato Pippo");
@@ -536,12 +537,12 @@ Consiglio di copiare le seguenti 3 RULE nell'area di edit delle RULE (modo EXPER
 le MACRO rispondono a varie esigenze:
  1. Fornire accesso alle risorse e funzionalità di IoTwebUI, per poterle usare nelle RULE
  2. L'ambiente (run ripetuti ad intervalli regolari) e i suoi limiti (codice in una sola riga) rendono più ardua la scrittura di funzioni complesse: le MACRO semplificano il compito dell'utente. 
- 3. Alcune operazioni richiedono la memorizzazione di informazioni tra un run ed il successivo, e le MACRO (*) risolvono questo problema, senza ricorrere esplicitamente a VSET() VGET().
- 4. Importante è la distinzione tra un **livello** - lo stesso valore (e.g. true) uguale per più run, generato, per esempio, da un confronto - e un **TRIGGER** - vero per un solo run, quando inizia o finisce un evento -: _Le macro con TRIG nel nome generano TRIGGER, le altre generano LIVELLI_.<br>
+ 3. Alcune operazioni richiedono la memorizzazione di informazioni tra un run ed il successivo, e le MACRO (*) risolvono questo problema, senza ricorrere esplicitamente a VSET() o VGET().
+ 4. Con gli eventi è importante la distinzione tra un **livello** - lo stesso valore (e.g. true) uguale per più run, generato, per esempio, da un confronto - e un **TRIGGER** - vero per un solo run, quando inizia o finisce un evento -: _Le macro con 'TRIG' nel nome generano TRIGGER, le altre generano LIVELLI_.<br>
   
   _nota: questa selezione iniziale di MACRO è naturalmente condizionata dalle mie abitudini ed interessi: in questo settore il contributo di altri utenti è prezioso._
 
-Possiamo dividere le MACRO in due gruppi: il primo che gestisce le interazioni con le risorse disponibili in **IoTwebUI** (una sorta di API interna). Il secondo gruppo di MACRO sono invece generali, modificando in qualche modo utile i dati in input o fornendo utili output.<br>
+Possiamo dividere le MACRO in due gruppi: il primo che gestisce le interazioni con le risorse disponibili in **IoTwebUI** (una sorta di API interna). Il secondo gruppo di MACRO sono invece più generali, modificando in qualche modo utile i dati in input o fornendo utili output.<br>
 _nota: obiettivo delle MACRO non è quello di duplicare le funzionalità delle automazioni Tuya (anche se a volte c'è sovrapposizione), quanto quello di fornire strumenti più avanzati di calcolo, per ottenere 'automazioni' fin'ora impossibili.   L'uso di device virtuali e di tap-to-run permette di suddividere i compiti tra scene Tuya (automazioni e tap-to-run) e RULE nel modo più efficiente._ <br>
 Ovviamente si possono sempre aggiungere nuove MACRO, o come customizzazione (se create nuove MACRO comunicatemelo) oppure in nuove release di **IoTwebUI** (segnalatemi le vostre esigenze su GitHub,  nelle [ISSUE](https://github.com/msillano/IoTwebUI/issues)).
 <hr>
@@ -615,13 +616,19 @@ utc_offset_seconds: 0
 </dd>
 
 <dt>SOUND(url)</dt>
-<dd>Riproduce musica o messaggio audio: formato MP3 o WAV.<br>
+<dd>Riproduce un file di musica o con messaggio audio: formato MP3 o WAV.<br>
+Locale o remoto.
  _Esempio:_  <code>SOUND("https://assets.mixkit.co/active_storage/sfx/918/918.wav"); </code>     
 </dd>
 
 <dt>SCENE(scenaNome) </dt>
 <dd>Esegue un 'tap-to-Run', presente nell'elenco letto dal Cloud.<br>
  <i>Esempio:</i> <code> if(ISTRIGGERH(_alarm)) SCENE('sirena suona'); </code></dd>
+ 
+<dt>TRIGBYNAME(name) </dt>
+<dd> Associa un 'nome' (max 3 parole) ad un RULE, permettendo di attivarlo con un comando utente (bottone o comando vocale) o in caso di 'Alert', oppure con TRIGRULE(name) da un'altra RULE (analogo ai 'tap-to-run' Tuya).<br>
+Torna true quando deve essere eseguita. <br>
+<i>Esempio:</i> <code>if (TRIGBYNAME('spegni la luce')) VOICE (" Hai attivato: 'spegni la luce'") </code> </dd>
 
 <dt>TRIGRULE(name)</dt>
 <dd>Esegue un RULE individuato da un nome. <br>
@@ -641,7 +648,7 @@ utc_offset_seconds: 0
 <dt>ISTRIGGERH(condition) (*) </dt>
 <dd> Ritorna 'true' solo al passaggio della "condizione" da 'false a true', evita che la "condizione" 'true' agisca ad ogni run. Ovvero trasforma un livello true in TRIGGER (vedi figura). <br>
 <i>Esempio:</i> <code>if(ISTRIGGERH(GET("TF_frigo","va_temperature") > 100)) POP("Frigo", "TEMPERATURA oltre 10°C" );</code> <br>
-Nota: l'implementazione Tuya di più <i>condizioni (livelli) in AND (tutte)</i> in una automazione è come se fosse scritta così:<br> <code>if( ISTRIGGERH(condiz1 && condiz2 && ...) ... </code> <br> cioè un'automazione Tuya scatta nel momento in cui TUTTE le condizioni diventano true. Con più condizioni in OR, basta UN trigger:<br> <code>if( ISTRIGGERH(condiz1) || ISTRIGGERH(condiz2) || ...) ... </code>.<BR> 
+Nota: l'implementazione Tuya di più <i>condizioni (livelli) in AND (tutte)</i> in una automazione è come se fosse scritta così:<br> <code>if( ISTRIGGERH(condiz1 && condiz2 && ...) ... </code> <br> cioè un'automazione Tuya scatta nel momento in cui TUTTE le condizioni diventano true. Con più condizioni in OR, basta UN solo trigger:<br> <code>if( ISTRIGGERH(condiz1) || ISTRIGGERH(condiz2) || ...) ... </code>.<BR> 
 Nota: più <i>condizioni (livelli) + ambito (livello) + abilitazione </i> delle automazioni Tuya, può essere implementato nelle RULE così:<br> <code>if( (ISTRIGGERH(condiz1...) ...) && (ambito...) && abilitata)...</code>. <br> Si vede come <i>Ambito</i> NON intervenga nel TRIGGER ma che comunque DEVE essere vero!
 </dd>
  
@@ -651,7 +658,7 @@ Nota: più <i>condizioni (livelli) + ambito (livello) + abilitazione </i> delle 
 
 <dt>CONFIRMH(condition, time) (*) </dt>
 <dd> Ritorna 'true' solo se la "condizione" rimane 'true' per almeno il tempo 'time'. Poi resta 'true' fino a quando la 'condizione' è 'true'. Caso tipico una porta aperta. Serve a filtrare 'livelli' true di breve durata che non interessano  (vedi figura).<BR>
-time = costante nei formati "hh:mm:ss" oppure "mm:ss" oppure "ss". Lmite inferiore: TuyaInterval.<br>
+time = costante nei formati "hh:mm:ss" oppure "mm:ss" oppure "ss". Limite inferiore: TuyaInterval.<br>
 <i>Esempio:</i> <br>
    <code>var _doorev = GET("Sensore porta", "doorcontact_state") ; </code>   // true a porta aperta
    <code>if(ISTRIGGERH( CONFIRMH(_doorev, "01:20"))) VOICE("chiudere la porta, grazie"); </code> </dd>
@@ -671,11 +678,6 @@ time = costante nei formati "hh:mm:ss" oppure "mm:ss" oppure "ss". Lmite inferio
   E' garantito un singolo valore 'true' per ogni n-simo loop, 'n' è in numero di loop, in tempo: t <= n x tuyaInterval (definito in 'config.js' file).<br>
 <i>Esempio:</i> <code>if(TRIGEVERY(8)) POP( "FRIGO", "Temperatura interna: "+ ROUND(_tf/10, 1) + "°C");</code> </dd>
    
-<dt>TRIGBYNAME(name) </dt>
-<dd> Associa un 'nome' (max 3 parole) ad un RULE, permettendo di attivarlo con un comando utente (bottone o comando vocale) o in caso di 'Alert', oppure con TRIGRULE(name) da un'altra RULE (analogo ai 'tap-to-run' Tuya).<br>
-Torna true quando deve essere eseguita. <br>
-<i>Esempio:</i> <code>if (TRIGBYNAME('spegni la luce')) VOICE (" Hai attivato: 'spegni la luce'") </code> </dd>
-
 <dt>VGET(name) </dt>
 <dd>GET di una variabile permanente - conservata per tutti i run delle RULE.<br> 
  Se la variabile <code>name</code> NON è stata inizializzata con un VSET, ritorna <code>null</code>. <br>
@@ -732,7 +734,7 @@ la durata dello stato vero (come il duty cycle).
 
 <dt>TIME(wath) </dt>
 <dd>  ritorna una stringa, "hh:mm:ss" oppure "mm:ss" oppure "ss" calcolata dall'ora attuale, a seconda di 'wath'.
-  'wath': una delle costanti così definite: <i>hrs</i> = 11, <i>min</i> = 14, <i>sec</i> = 17 (senza apici, non sono stringhe).<br>
+  'wath': una delle costanti così definite: <i>hrs</i> = 11, <i>min</i> = 14, <i>sec</i> = 17 (senza apici, non sono stringhe, ma costanti numeriche).<br>
   <i>Esempio:</i> <code>var _message = "Alle ore " + TIME(hrs); </code> </dd>
  
 <dt>  DAYMAP(val1, time1, val2, time2, ... <i>more</i>) </dt>
