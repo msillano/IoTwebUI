@@ -108,9 +108,9 @@ path:
                        ]}
  ```
   note:<br>
-  - `alarm.trigger` _estensione IOTwebUI_: `true` in caso di allarme attivo.<br>
-  - `alarm.conditon` valori: "grt", "equ", "lst" per ">", "=", "<"
-  - `alert.action` valori: "beep", "pop", "sound", "voice"
+      - `alarm.trigger` _estensione IOTwebUI_: `true` in caso di allarme attivo.<br>
+      - `alarm.conditon` valori: "grt", "equ", "lst" per ">", "=", "<"
+      - `alert.action` valori: "beep", "pop", "sound", "voice"
 
 *  **scene/list[/_room_]**  (scene/list, scene/list/ROMA)<br>
       Received 
@@ -128,9 +128,9 @@ path:
 *  **rule/list**  (e.g.: rule/list)<br>
       Received
    ```
-          ["spegni luce",
-           "pippo",
-           "chiamata pippo"]
+                ["spegni luce",
+                 "pippo",
+                 "chiamata pippo"]
    ```
 
 *  **execute/_scene-name_|_rule-name_** (e.g.: execute/chiamata pippo)<br>
@@ -139,11 +139,11 @@ path:
    
  **Errori:**
 
-TX: device/Temperatura soggiorno/_va\_humidit_ => **unk** (in 4.699999988079071 ms)
+TX: device/Temperatura soggiorno/_va\_humidit_ => **unk** 
 
-TX: device/_Temperatura soggiorn_/va\_humidity  =>  **unk** (in 4.9000000059604645 ms)
+TX: device/_Temperatura soggiorn_/va\_humidity  =>  **unk**
 
-TX: device/Temperatura soggiorno/  =>  **err** (in 4.899999976158142 ms)
+TX: device/Temperatura soggiorno/  =>  **err** 
 
 note: 
 - Se il path contiene '`list`' o '`dstatus`' oppure '`dinfo`', la risposta è un oggetto Js (anche in caso di errore), altrimenti la risposta è in puro testo (vedi esempi). 
@@ -157,7 +157,7 @@ note:
 
 * **Sicurezza:** Per motivi di sicurezza, eseguire _IOTrest_ su una rete locale e di non esporlo direttamente a Internet.
 * **Affidabilità:** _IOTrest_ e _IOTwebUI_ accedono  a Tuya Cloud solo in lettura. **In NESSUN CASO i dati Tuya possono essere alterati.**
-* **Limiti:** Le prestazioni di _IOTrest_ dipendono dalle risorse hardware del tuo sistema e dal numero di dispositivi Tuya connessi. L'uso di WEBsocket rende _IOTrest_ molto veloce. Round Trip Time 5-6 ms.
+* **Limiti:** Le prestazioni di _IOTrest_ dipendono dalle risorse hardware del tuo sistema e dal numero di dispositivi Tuya connessi. L'uso di WEBsocket rende _IOTrest_ molto veloce.
 * **Supporto:** _IOTrest_ supporta tutti i dispositivi Tuya compatibili: i dati principali disponibili in Tuya Cloud sono accessibili.
 * **Errori:** _IOTrest_ gestisce gli errori in modo robusto, fornendo messaggi di errore demplici e chiari, non bloccanti.
 * **Avvertenze:**
