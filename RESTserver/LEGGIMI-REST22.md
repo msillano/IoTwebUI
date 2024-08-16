@@ -54,34 +54,19 @@ client.html può essere usato fino a quando non si hanno uno o più client REST 
 
 nota: se non utilizzate il REST, non eseguite `server.js`, ma solo lanciare normalmente **IOTwebUI** (con "run_me.bat" o direttamente): funzionerà perfettamente (senza il pop-up iniziale di conferma di collegamento).
 
-**Errori:**
-
-TX: device/Temperatura soggiorno/_va\_humidit_ => **unk** (in 4.699999988079071 ms)
-
-TX: device/_Temperatura soggiorn_/va\_humidity  =>  **unk** (in 4.9000000059604645 ms)
-
-TX: device/Temperatura soggiorno/  =>  **err** (in 4.899999976158142 ms)
-
-
-note: 
-- Se il path contiene '`list`' o '`dstatus`' oppure '`dinfo`', la risposta è un oggetto Js (anche in caso di errore), altrimenti la risposta è in puro testo (vedi esempi). 
-- I dati sono come provengono da Tuya Cloud: possono aver bisogno di decodifica o di scaling (e.g. `'temp_current', value: 284` => 28.4 °C). In IOTwebUI scaling o decodifiche possono essere aggiunti come customizzazione, ma solo per la sua interfaccia utente, NON per il REST.
-- **unk** o **[unk]** in caso di nomi errati o non trovati (errori di scrittura).
-- **err** o **[err]** in caso di parti di path mancanti o fuori posto (errore di sintassi).
-- I tempi indicati sono i minimi richiesti dalle comunicazioni: possono aumentare in concomitanza di altre attivita di IOTwebUI (accesso al Cloud, scrittura file, etc..).
-- I device sono individuati dal nome o dall'ID: usando l'ID si è indipendenti dal nome che potete cambiare liberamente.
 
 #### dizionario REST
 generale: `http://localhost:3031/IOTrest/` + path <br>
 path:
+
 *  **device/list[/_home_[/_room_]]** (e.g.: device/list,  device/list/ROMA,  device/list/ROMA/Studio) <br>
     Received (ROMA/Studio)
  ```
             {"home":"ROMA",
              "room":"Studio",
              "devices":["Termo studio",
-                         "USBswitch",
-                         "Zigbee Gateway"]} 
+                        "USBswitch",
+                        "Zigbee Gateway"]} 
 ```
 *  **device/_dev-name_|_dev-id_/dinfo|dstatus|_code_** (e.g.:device/Temperatura studio/va_temperature, device/Temperatura studio/dinfo, device/Termo studio/dstatus ) <br>
 
@@ -98,7 +83,6 @@ path:
              "test":false}
 ```
  Received (dstatus)
-
 ```
             {"name":"Termo studio",
              "online":true,
@@ -107,22 +91,67 @@ path:
                        "temp_set":200}}
 ```
  note:<br>
-    -  dinfo.test _estensione IOTwebUI_: `true` se esiste un allarme IOTwebUI collegato al device.<br>
-    -  dinfo.category : codice corrispondente ad `isa` (nei pop-up)  _estensione IOTwebUI_.
+    -  `dinfo.test` _estensione IOTwebUI_: `true` se esiste un allarme IOTwebUI collegato al device.<br>
+    -  `dinfo.category` : codice corrispondente ad `isa` (nei pop-up)  _estensione IOTwebUI_.
         
-*  **alert/list/_dev-name_|_dev-id_** (alert/list/Temperatura soggiorno)<br>
-   Received `{"name":"Temperatura soggiorno","alarms":[{"code":"va_humidity","trigger":true,"condition":"grt","value":"40","message":"","action":["beep"]}]}`<br>
-      note:<br>
-        - alarm.trigger _estensione IOTwebUI_: `true` in caso di allarme attivo.<br>
+*  **alert/list/_dev-name_|_dev-id_** ( e.g.: alert/list/Temperatura soggiorno)<br>
+   Received
+```
+             {"name":"Temperatura soggiorno",
+              "alarms":[
+                     {"code":"va_humidity",
+                      "trigger":true,
+                      "condition":"grt",
+                      "value":"40",
+                      "message":"",
+                      "action":["beep"]},
+                       ]}
+ ```
+  note:<br>
+  - `alarm.trigger` _estensione IOTwebUI_: `true` in caso di allarme attivo.<br>
+  - `alarm.conditon` valori: "grt", "equ", "lst" per ">", "=", "<"
+  - `alert.action` valori: "beep", "pop", "sound", "voice"
 
-*  **scene/list[/_room_]**  (scene/list, scene/list/CASA)<br>
-      Received `[{"name":"ALARM OFF","status":"enable","running_mode":"cloud"},{"name":"ALARM ON","status":"enable","running_mode":"cloud"},...]`
+*  **scene/list[/_room_]**  (scene/list, scene/list/ROMA)<br>
+      Received 
+```
+             {"home":"ROMA". 
+              "scenes":[{"name":"ALARM OFF",
+                         "status":"enable",
+                         "running_mode":"cloud"},
+                        {"name":"ALARM ON",
+                         "status":"enable",
+                         "running_mode":"cloud"},
+                          ...}]
+               }
+```
+*  **rule/list**  (e.g.: rule/list)<br>
+      Received
+   ```
+          ["spegni luce",
+           "pippo",
+           "chiamata pippo"]
+   ```
 
-*  **rule/list**  (rule/list)<br>
-      Received `["spegni luce","pippo","chiamata pippo"]`
-
-*  **execute/_scene-name_|_rule-name_** (execute/chiamata pippo)<br>
+*  **execute/_scene-name_|_rule-name_** (e.g.: execute/chiamata pippo)<br>
       Received `done rule`
+
+   
+ **Errori:**
+
+TX: device/Temperatura soggiorno/_va\_humidit_ => **unk** (in 4.699999988079071 ms)
+
+TX: device/_Temperatura soggiorn_/va\_humidity  =>  **unk** (in 4.9000000059604645 ms)
+
+TX: device/Temperatura soggiorno/  =>  **err** (in 4.899999976158142 ms)
+
+note: 
+- Se il path contiene '`list`' o '`dstatus`' oppure '`dinfo`', la risposta è un oggetto Js (anche in caso di errore), altrimenti la risposta è in puro testo (vedi esempi). 
+- I dati sono come provengono da Tuya Cloud: possono aver bisogno di decodifica o di scaling (e.g. `'temp_current', value: 284` => 28.4 °C). In IOTwebUI scaling o decodifiche possono essere aggiunti come customizzazione, ma solo per la sua interfaccia utente, NON per il REST.
+- **unk** o **[unk]** in caso di nomi errati o non trovati (errori di scrittura).
+- **err** o **[err]** in caso di parti di path mancanti o fuori posto (errore di sintassi).
+- I device sono individuati dal nome o dall'ID: usando l'ID si è indipendenti dal nome che potete cambiare liberamente.
+
 
 #### **Considerazioni importanti**
 
