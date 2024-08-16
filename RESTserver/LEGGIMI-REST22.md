@@ -48,8 +48,8 @@ client.html può essere usato fino a quando non si hanno uno o più client REST 
 
 #### **Utilizzo**
    1.  Avviare prima `server.js`con `run_server.bat`: se OK appare il messaggio "Server HAPI running on http://localhost:3031"
-   2.  Iconizzare il terminale. Potete riaprirlo in seguito per vedere i messaggi. Chiuderlo al termine dell'uso.
-   3. caricare/ricaricare `IOTwebUI` nel browser, con "run_me.bat" oppure direttamente. Se OK appare un pop-up che informa dell'avvenuto collegamento via websocket con il server.
+   2.  Iconizzare il terminale. Potete riaprirlo in seguito per vedere i messaggi scambiati. Chiuderlo al termine dell'uso.
+   3. caricare/ricaricare `IOTwebUI` nel browser, con "run_me.bat" oppure direttamente. Se OK appare immediatamente un pop-up che informa dell'avvenuto collegamento via websocket con il server. nota: il collegamento websocket avviene solo all'avvio di `IOTwebUI`.
    4. Usare `IOTwebUI` normalmente. Per accedere al REST usare o applicazioni/intefacce custom, oppure aprite 'client.html' nel browser (anche più di uno).
 
 nota: se non utilizzate il REST, non eseguite `server.js`, ma solo lanciare normalmente **IOTwebUI** (con "run_me.bat" o direttamente): funzionerà perfettamente (senza il pop-up iniziale di conferma di collegamento).
@@ -95,7 +95,7 @@ note:
 - Se il path contiene '`list`' o '`dstatus`' oppure '`dinfo`', la risposta è un oggetto Js (anche in caso di errore), altrimenti la risposta è in puro testo (vedi esempi). 
 - I dati sono come provengono da Tuya Cloud: possono aver bisogno di decodifica o di scaling (e.g. `'temp_current', value: 284` => 28.4 °C). In IOTwebUI scaling o decodifiche possono essere aggiunti come customizzazione, ma solo per la sua interfaccia utente, NON per il REST.
 - **unk** o **[unk]** in caso di nomi errati o non trovati (errori di scrittura).
-- **err** o **[err]** in caso di parti di path mancanti (errore di sintassi).
+- **err** o **[err]** in caso di parti di path mancanti o fuori posto (errore di sintassi).
 - I tempi indicati sono i minimi richiesti dalle comunicazioni: possono aumentare in concomitanza di altre attivita di IOTwebUI (accesso al Cloud, scrittura file, etc..).
 - I device sono individuati dal nome o dall'ID: usando l'ID si è indipendenti dal nome che potete cambiare liberamente.
 
@@ -105,7 +105,7 @@ path:
 *  **device/list[/_home_[/_room_]]** (device/list, device/list/CASA,  device/list/CASA/stanza da pranzo) <br>
     Received `["SGS01","Temperatura soggiorno","Termo letto",...]`
 
-*  **device/_dev-name_|_dev-id_/dinfo|dstatus|_code_** (device/luce01/switch, device/luce01/dinfo, device/luce01/dstatus ) <br>
+*  **device/_dev-name_|_dev-id_/dinfo|dstatus|_code_** (device/Temperatura studio/va_temperature, device/Temperatura studio/dinfo, device/Temperatura studio/dstatus ) <br>
      Received (va_temperature)  `"30"`<br>
      Received (dinfo) `{"name":"Temperatura studio","id":"bf542e7c64b816977796bc","product_name":"温湿度传感器","category":"wsdcg","model":null,"sub":true,"test":false}` <br>
      Received (dstatus) `{"name":"Temperatura studio", "online":true,"status":[{"code":"va_humidity","value":44},{"code":"va_battery","value":0},{"code":"va_temperature","value":30}]}`<br>
@@ -114,7 +114,7 @@ path:
         -  dinfo.category : codice corrispondente ad `isa`  _estensione IOTwebUI_.
         -  dstatus.code : nome di una proprietà/data-point di un device.
 
-*  **alert/list/_dev-name_|_dev-id_** (alert/list/luce01)<br>
+*  **alert/list/_dev-name_|_dev-id_** (alert/list/Temperatura soggiorno)<br>
    Received `{"name":"Temperatura soggiorno","alarms":[{"code":"va_humidity","trigger":true,"condition":"grt","value":"40","message":"","action":["beep"]}]}`<br>
       note:<br>
         - alarm.trigger _estensione IOTwebUI_: `true` in caso di allarme attivo.<br>
@@ -130,7 +130,7 @@ path:
 
 #### **Considerazioni importanti**
 
-* **Sicurezza:** Per motivi di sicurezza, si consiglia di eseguire _IOTrest_ su una rete locale e di non esporlo direttamente a Internet.
+* **Sicurezza:** Per motivi di sicurezza, eseguire _IOTrest_ su una rete locale e di non esporlo direttamente a Internet.
 * **Affidabilità:** _IOTrest_ e _IOTwebUI_ accedono  a Tuya Cloud solo in lettura. **In NESSUN CASO i dati Tuya possono essere alterati.**
 * **Limiti:** Le prestazioni di _IOTrest_ dipendono dalle risorse hardware del tuo sistema e dal numero di dispositivi Tuya connessi. L'uso di WEBsocket rende _IOTrest_ molto veloce. Round Trip Time 5-6 ms.
 * **Supporto:** _IOTrest_ supporta tutti i dispositivi Tuya compatibili: i dati principali disponibili in Tuya Cloud sono accessibili.
