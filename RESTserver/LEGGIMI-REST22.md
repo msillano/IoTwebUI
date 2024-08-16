@@ -102,7 +102,7 @@ note:
 #### dizionario REST
 generale: `http://localhost:3031/IOTrest/` + path <br>
 path:
-*  **device/list[/_home_[/_room_]]** (e.g.: device/list, device/list/ROMA,  device/list/ROMA/Studio) <br>
+*  **device/list[/_home_[/_room_]]** (e.g.: device/list,  device/list/ROMA,  device/list/ROMA/Studio) <br>
     Received (ROMA/Studio)
    ```
             {"home":"ROMA",
@@ -112,9 +112,9 @@ path:
                          "Zigbee Gateway"]} 
   ```
 *  **device/_dev-name_|_dev-id_/dinfo|dstatus|_code_** (e.g.:device/Temperatura studio/va_temperature, device/Temperatura studio/dinfo, device/Termo studio/dstatus ) <br>
-     Received (va_temperature)  `"30"`    (unico caso testo) <br>
+  Received (va_temperature)  `"30"`    (unico caso testo) <br>
 
-     Received (dinfo) <br>
+  Received (dinfo) <br>
 ```
             {"name":"Temperatura studio",
              "id":"bf542e7c64b816977796bc",
@@ -124,7 +124,8 @@ path:
              "sub":true,
              "test":false}
 ```
-     Received (dstatus)
+ Received (dstatus)
+
 ```
             {"name":"Termo studio",
              "online":true,
@@ -132,9 +133,9 @@ path:
                        "temp_current":306,
                        "temp_set":200}}
 ```
-     note:<br>
-        -  dinfo.test _estensione IOTwebUI_: `true` se esiste un allarme IOTwebUI collegato al device.<br>
-        -  dinfo.category : codice corrispondente ad `isa` (nei pop-up)  _estensione IOTwebUI_.
+ note:<br>
+    -  dinfo.test _estensione IOTwebUI_: `true` se esiste un allarme IOTwebUI collegato al device.<br>
+    -  dinfo.category : codice corrispondente ad `isa` (nei pop-up)  _estensione IOTwebUI_.
         
 *  **alert/list/_dev-name_|_dev-id_** (alert/list/Temperatura soggiorno)<br>
    Received `{"name":"Temperatura soggiorno","alarms":[{"code":"va_humidity","trigger":true,"condition":"grt","value":"40","message":"","action":["beep"]}]}`<br>
