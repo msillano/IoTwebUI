@@ -54,34 +54,6 @@ client.html può essere usato fino a quando non si hanno uno o più client REST 
 
 nota: se non utilizzate il REST, non eseguite `server.js`, ma solo lanciare normalmente **IOTwebUI** (con "run_me.bat" o direttamente): funzionerà perfettamente (senza il pop-up iniziale di conferma di collegamento).
 
-**Esempi di richieste:**
-```
-Richiesta di un valore:
-  http://tuo_server/IOTrest/Temperatura soggiorno/va_humidity
-```
-
-**Risposta:** 
-
-```
-  44    (in 5.199999988079071 ms)
-```
-
-```
-Richiesta dello stato:
-  http://tuo_server/IOTrest/Temperatura soggiorno/dstatus
-```
-
-**Risposta:** 
-
-```
-js object:
-{  "name":"Temperatura soggiorno",
-   "online":true,
-   "status":[{"code":"va_humidity","value":58},
-             {"code":"va_battery","value":0},
-             {"code":"va_temperature","value":32}]
-} (in 4.199999988079071 ms)
-```
 **Errori:**
 
 TX: device/Temperatura soggiorno/_va\_humidit_ => **unk** (in 4.699999988079071 ms)
@@ -104,14 +76,15 @@ generale: `http://localhost:3031/IOTrest/` + path <br>
 path:
 *  **device/list[/_home_[/_room_]]** (e.g.: device/list,  device/list/ROMA,  device/list/ROMA/Studio) <br>
     Received (ROMA/Studio)
-   ```
+ ```
             {"home":"ROMA",
              "room":"Studio",
              "devices":["Termo studio",
                          "USBswitch",
                          "Zigbee Gateway"]} 
-  ```
+```
 *  **device/_dev-name_|_dev-id_/dinfo|dstatus|_code_** (e.g.:device/Temperatura studio/va_temperature, device/Temperatura studio/dinfo, device/Termo studio/dstatus ) <br>
+
   Received (va_temperature)  `"30"`    (unico caso testo) <br>
 
   Received (dinfo) <br>
