@@ -102,16 +102,39 @@ note:
 #### dizionario REST
 generale: `http://localhost:3031/IOTrest/` + path <br>
 path:
-*  **device/list[/_home_[/_room_]]** (device/list, device/list/CASA,  device/list/CASA/stanza da pranzo) <br>
-    Received `["SGS01","Temperatura soggiorno","Termo letto",...]`
+*  **device/list[/_home_[/_room_]]** (e.g.: device/list, device/list/ROMA,  device/list/ROMA/Studio) <br>
+    Received (ROMA/Studio)
+   ```
+            {"home":"ROMA",
+             "room":"Studio",
+             "devices":["Termo studio",
+                         "USBswitch",
+                         "Zigbee Gateway"]} 
+  ```
+*  **device/_dev-name_|_dev-id_/dinfo|dstatus|_code_** (e.g.:device/Temperatura studio/va_temperature, device/Temperatura studio/dinfo, device/Termo studio/dstatus ) <br>
+     Received (va_temperature)  `"30"`    (unico caso testo) <br>
 
-*  **device/_dev-name_|_dev-id_/dinfo|dstatus|_code_** (device/Temperatura studio/va_temperature, device/Temperatura studio/dinfo, device/Termo studio/dstatus ) <br>
-     Received (va_temperature)  `"30"`<br>
-     Received (dinfo) `{"name":"Temperatura studio","id":"bf542e7c64b816977796bc","product_name":"温湿度传感器","category":"wsdcg","model":null,"sub":true,"test":false}` <br>
-     Received (dstatus) `{"name":"Termo studio","online":true,"status":{"switch":true,"temp_current":294,"temp_set":190}}`<br>
+     Received (dinfo) <br>
+```
+            {"name":"Temperatura studio",
+             "id":"bf542e7c64b816977796bc",
+             "product_name":"温湿度传感器",
+             "model":null,
+             "category":"wsdcg",
+             "sub":true,
+             "test":false}
+```
+     Received (dstatus)
+```
+            {"name":"Termo studio",
+             "online":true,
+             "status":{"switch":true,
+                       "temp_current":306,
+                       "temp_set":200}}
+```
      note:<br>
-        -  dinfo.test _estensione IOTwebUI_: `true` se esiste un allarme collegato al device.<br>
-        -  dinfo.category : codice corrispondente ad `isa` nel popup  _estensione IOTwebUI_.
+        -  dinfo.test _estensione IOTwebUI_: `true` se esiste un allarme IOTwebUI collegato al device.<br>
+        -  dinfo.category : codice corrispondente ad `isa` (nei pop-up)  _estensione IOTwebUI_.
         
 *  **alert/list/_dev-name_|_dev-id_** (alert/list/Temperatura soggiorno)<br>
    Received `{"name":"Temperatura soggiorno","alarms":[{"code":"va_humidity","trigger":true,"condition":"grt","value":"40","message":"","action":["beep"]}]}`<br>
@@ -135,8 +158,8 @@ path:
 * **Supporto:** _IOTrest_ supporta tutti i dispositivi Tuya compatibili: i dati principali disponibili in Tuya Cloud sono accessibili.
 * **Errori:** _IOTrest_ gestisce gli errori in modo robusto, fornendo messaggi di errore demplici e chiari, non bloccanti.
 * **Avvertenze:**
-- il valore `online` fornito da Tuya Cloud può differire dal valore attuale mostrato in SmartLife.
-- Se un device risulta `online = false`, Tuya Cloud mantiene gli ultimi valori, per cui la richiesta `device/_dev-name_/_code_` può fornire dati non aggiornati.
+   - il valore `online` fornito da Tuya Cloud può differire dal valore attuale mostrato in SmartLife.
+   - Se un device risulta `online = false`, Tuya Cloud mantiene gli ultimi valori, per cui la richiesta `device/_dev-name_/_code_` può fornire dati non aggiornati.
 
 #### **Conclusioni**
 
