@@ -91,8 +91,9 @@ path:
                        "temp_set":200}}
 ```
  note:<br>
+    -  `dinfo.sub`  il device è un sub-device (i.e. usa un HUB)
     -  `dinfo.test` _estensione IOTwebUI_: `true` se esiste un allarme IOTwebUI collegato al device.<br>
-    -  `dinfo.category` : codice corrispondente ad `isa` (nei pop-up)  _estensione IOTwebUI_.
+    -  `dinfo.category` : codice corrispondente ad `isa` (nei pop-up, modo EXPERT)  _estensione IOTwebUI_.
         
 *  **alert/list/_dev-name_|_dev-id_** ( e.g.: alert/list/Temperatura soggiorno)<br>
    Received
@@ -108,9 +109,9 @@ path:
                        ]}
  ```
   note:<br>
-      - `alarm.trigger` _estensione IOTwebUI_: `true` in caso di allarme attivo.<br>
-      - `alarm.conditon` valori: "grt", "equ", "lst" per ">", "=", "<"
-      - `alert.action` valori: "beep", "pop", "sound", "voice"
+      - `alarms[x].trigger` _estensione IOTwebUI_: `true` in caso di allarme attivo.<br>
+      - `alarms[x].conditon` valori: "grt", "equ", "lst" per ">", "=", "<"
+      - `alarms[x].action[y]` valori: "beep", "pop", "sound", "voice" (URL e SCENA/RULE: auto)
 
 *  **scene/list[/_room_]**  (scene/list, scene/list/ROMA)<br>
       Received 
