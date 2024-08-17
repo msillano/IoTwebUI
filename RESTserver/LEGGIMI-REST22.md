@@ -43,11 +43,11 @@ Il tempo di latenza (ritardo) medio tra un evento e la sua segnalazione in un cl
      
 Quindi l'insieme dei tre file è autosufficiente, non richiede `IOTwebUI`, e può essere usato come test. Quando tutto funziona come si deve, si chiude  **MockIOTweb** e si apre **IOTwebUI** e inizia il funzionamento con i device Tuya reali.<br>
 
-client.html può essere usato fino a quando non si hanno uno o più client REST su misura (applicazioni od interfacce utente). Se si vogliono realizzare interfacce WEB, il codice HTML/javascript di `client.html` può servire da modello.
+`client.html` può essere usato fino a quando non si hanno uno o più client REST su misura (applicazioni od interfacce utente). Se si vogliono realizzare interfacce WEB, il codice HTML/javascript di `client.html` può servire da modello.
 
 #### **Utilizzo**
    1.  Avviare prima `server.js`con `run_server.bat`: se OK appare il messaggio "Server HAPI running on http://localhost:3031"
-   2.  Iconizzare il terminale. Potete riaprirlo in seguito per vedere i messaggi scambiati. Chiuderlo al termine dell'uso.
+   2.  Iconizzare il terminale. Potete riaprirlo per vedere i messaggi scambiati o i messaggi di errore. Chiuderlo al termine dell'uso.
    3. caricare/ricaricare `IOTwebUI` nel browser, con "run_me.bat" oppure direttamente. Se OK appare immediatamente un pop-up che informa dell'avvenuto collegamento via websocket con il server. nota: il collegamento websocket avviene solo all'avvio di `IOTwebUI`.
    4. Usare `IOTwebUI` normalmente. Per accedere al REST usare o applicazioni/intefacce custom, oppure aprite 'client.html' nel browser (anche più di uno).
 
@@ -90,7 +90,7 @@ path:
                        "temp_set":200}}
 ```
  note:<br>
-    -  `dinfo.sub`  il device è un sub-device (i.e. usa un HUB)
+    -  `dinfo.sub`  il device è un sub-device (i.e. usa un HUB) <br>
     -  `dinfo.test` _estensione IOTwebUI_: `true` se esiste un allarme IOTwebUI collegato al device.<br>
     -  `dinfo.category` : codice corrispondente ad `isa` (nei pop-up, modo EXPERT)  _estensione IOTwebUI_.
         
