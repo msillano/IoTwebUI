@@ -10,7 +10,6 @@
 * **Automazione:** Invia richieste REST per attivare scene e regole preconfigurate in IoTwebUI e Tuya Smart/SmartLife.
 * **Avvisi:** Verifica gli avvisi in tempo reale per gli eventi che si verificano sui tuoi dispositivi (allarmi, cambi di stato, ecc.).
 * **Semplicità d'uso:** Interfaccia REST intuitiva e ben documentata. I risultati sono in formato testo oppure array od oggetti js.
-* **Flessibilità:** Personalizza le tue interazioni con i dispositivi grazie alle numerose opzioni di configurazione.
 
 **NB:** _Se non vi interessa utilizzare la funzione di REST, ignorate completamente 'installazione e configurazione', potrete farla in un secondo tempo. **IoTwebUI 2.2** funzionerà perfettamente!_
 
