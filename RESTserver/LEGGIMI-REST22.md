@@ -37,9 +37,9 @@ Il tempo di latenza (ritardo) medio tra un evento e la sua segnalazione in un cl
       
 4. **Test e debug**
    Sono presenti tre file principali:
-   * `server.js`: il file eseguibile con l'implementazione di IOTrest, da lanciare in background.
+   * `server.js`: il file eseguibile con l'implementazione di IOTrest, da lanciare in un terminale o usando `run_server.bat`.
    * `MockIOTweb.html`: una WEBAPP (si deve aprire in un browser) che può sostituire `IOTwebUI`: il funzionamento del _websocket_ è identico, solo che i dati utilizzati NON vengono dal 'Cloud' ma sono fittizzi.
-   * `client.html`: un'altra WEBAPP con funzione di _client REST per test_: permette di inviare a `IOTwebUI` ogni richiesta possibile, e di vederne la risposta.
+   * `client.html`: un'altra WEBAPP con funzione di _client REST per test_: permette di inviare a `IOTwebUI` ogni possibile richiesta REST, e di vederne la risposta.
      
 Quindi l'insieme dei tre file è autosufficiente, non richiede `IOTwebUI`, e può essere usato come test. Quando tutto funziona come si deve, si chiude  **MockIOTweb** e si apre **IOTwebUI** e inizia il funzionamento con i device Tuya reali.<br>
 
