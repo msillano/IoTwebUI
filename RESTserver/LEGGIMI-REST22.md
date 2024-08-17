@@ -158,7 +158,7 @@ note:
 * **Sicurezza:** Per motivi di sicurezza, eseguire _IOTrest_ su una rete locale e di non esporlo direttamente a Internet.
 * **Affidabilità:** _IOTrest_ e _IOTwebUI_ accedono  a Tuya Cloud solo in lettura. **In NESSUN CASO i dati Tuya possono essere alterati.**
 * **Limiti:** Le prestazioni di _IOTrest_ dipendono dalle risorse hardware del tuo sistema e dal numero di dispositivi Tuya connessi. L'uso di WEBsocket rende _IOTrest_ molto veloce.
-* **Supporto:** _IOTrest_ supporta tutti i dispositivi Tuya compatibili: i dati principali disponibili in Tuya Cloud sono accessibili.
+* **Supporto:** _IOTrest_ supporta tutti i dispositivi Tuya compatibili, compresi device virtuali: i dati principali disponibili in Tuya Cloud sono accessibili.
 * **Errori:** _IOTrest_ gestisce gli errori in modo robusto, fornendo messaggi di errore demplici e chiari, non bloccanti.
 * **Avvertenze:**
    - il valore `online` fornito da Tuya Cloud può differire dal valore attuale mostrato in SmartLife.
