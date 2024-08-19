@@ -188,7 +188,7 @@ Questo breker-meter (
 <table>
 <tr>
 <td>
- <ing source="https://github.com/msillano/IoTwebUI/blob/main/pics/Screenshot_080106.png?raw=true">
+ <img src="https://github.com/msillano/IoTwebUI/blob/main/pics/Screenshot_080106.png?raw=true">
 </td>
 </tr>
 </table>
