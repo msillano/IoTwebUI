@@ -169,7 +169,7 @@ note:
 * **Limiti:** Le prestazioni di _IoTrest_ dipendono dalle risorse hardware del tuo sistema e dal numero di dispositivi Tuya connessi. L'uso di WEBsocket rende _IoTrest_ molto veloce.
 * **Supporto:**    _IoTrest_ supporta tutti i dispositivi Tuya compatibili, compresi i device virtuali: i dati principali disponibili in Tuya Cloud sono accessibili.
 * **Errori:** _IoTrest_ gestisce gli errori in modo robusto, fornendo messaggi di errore semplici e chiari, non bloccanti.
-* **Customizzazione:** Si possono trovare dati che necessitano di trasformazioni o decodifica.  Generalmente i dati codificati riguardano la configurazione, ma in qualche raro caso anche i dati real time. Se necessario è possibile intervenire in 'custom.js' con una decodifica custom, che può interessare sia il tooltip di IoTwebUI che i dati esportati via REST. Un esempio lo [trovate qui]()
+* **Customizzazione:** Si possono trovare dati che necessitano di trasformazioni o decodifica.  Generalmente i dati codificati riguardano la configurazione, ma in qualche raro caso anche i dati real time. Se necessario è possibile intervenire in 'custom.js' con una decodifica custom, che può interessare sia il tooltip di IoTwebUI che i dati esportati via REST. Un esempio lo [trovate qui](https://github.com/msillano/IoTwebUI/blob/main/RESTserver/LEGGIMI-REST22.md#customizzazioni)
 * **Avvertenze:**
    - il valore `online` fornito da Tuya Cloud può differire dal valore attuale mostrato in SmartLife.
    - Se un device risulta `online = false`, Tuya Cloud mantiene gli ultimi valori, per cui la richiesta `device/_dev-name_/_code_` può fornire dati non aggiornati.
@@ -184,7 +184,7 @@ note:
 Il segente esempio è presente nel file 'custom.js'.
 
 #### Il problema
-Questo breker-meter ([OPWTY-63](https://github.com/msillano/tuyaDAEMON/blob/main/devices/BreakerDIN/device_BreakerDIN.pdf), usato con il nome "Main AC", presenta nel Cloud i dati realtime (V, A, W, leack) non in chiaro, ma codificati in un 'phase_a', come vediamo nel primo tooltip di IoTwebUI.
+Questo breker-meter ([OPWTY-63](https://github.com/msillano/tuyaDAEMON/blob/main/devices/BreakerDIN/device_BreakerDIN.pdf)), usato con il nome "Main AC", presenta nel Cloud i dati realtime (V, A, W, leack) non in chiaro, ma codificati in un 'phase_a', come vediamo nel primo tooltip di IoTwebUI.
 <table>
 <tr>
 <td>
@@ -230,7 +230,7 @@ In questo caso avremo:
       addToStatus("Main AC","phase_a_decoded", vals) ;
   }
 ```
-nota:  `updateStatus()` è un'utility che si occupa dell'aggiornamento dei dati locali (usati da REST), aggiungendo il valore `phase_a_decoded`.
+nota:  `updateStatus()` è un'utility che si occupa dell'aggiornamento dei dati locali (usati da REST), aggiungendo in questo caso il valore `phase_a_decoded`.
 
 #### Risultati
 Le modifice effettute sono addittive: non alterano i dati esistenti.
@@ -245,4 +245,4 @@ La richiesta REST `device/Main AC/phase_a_decoded` ha come risultato:
                                  W: 154
               }}
 ```
-I vari quirk dei device Tuya richiedo a volte interventi ad hoc: l'obiettivo è quello di rendere più semplici possibili queste customizzazioni. 
+_I vari quirk dei device Tuya richiedo a volte interventi mirati: l'obiettivo è quello di rendere più semplici possibili queste customizzazioni. _
