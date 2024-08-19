@@ -37,7 +37,7 @@ Il tempo di latenza (ritardo) medio tra un evento e la sua segnalazione in un cl
       
 4. **Test e debug**
    Sono presenti tre file principali:
-   * `server.js`: il file eseguibile con l'implementazione di IOTrest, da lanciare in un terminale o usando `run_server.bat`.
+   * `server.js`: il file eseguibile con l'implementazione di IoTrest, da lanciare in un terminale o usando `run_server.bat`.
    * `MockIOTweb.html`: una WEBAPP (si deve aprire in un browser) che può sostituire `IoTwebUI`: il funzionamento del _websocket_ è identico, solo che i dati utilizzati NON vengono dal 'Cloud' ma sono fittizzi.
    * `client.html`: un'altra WEBAPP con funzione di _client REST per test_: permette di inviare a `IoTwebUI` ogni possibile richiesta REST, e di vederne la risposta.
      
@@ -183,7 +183,7 @@ note:
 Il seguente esempio è presente nel file 'custom.js', creato apposta per le eventuali customizzazioni utente.
 
 #### Il problema
-Questo breker-meter ([OPWTY-63](https://github.com/msillano/tuyaDAEMON/blob/main/devices/BreakerDIN/device_BreakerDIN.pdf)), usato con il nome "Main AC", presenta nel Cloud i dati realtime (V, A, W, leack) non in chiaro, ma codificati in un 'phase_a', come vediamo nel primo tooltip di IoTwebUI: `{code: 'phase_a', value: 'CRAAArwAAJYACg=='}`
+Questo breaker-meter ([OPWTY-63](https://github.com/msillano/tuyaDAEMON/blob/main/devices/BreakerDIN/device_BreakerDIN.pdf)), usato con il nome "Main AC", presenta nel Cloud i dati realtime (V, A, W, leack) non in chiaro, ma codificati in 'phase_a', come vediamo nel primo tooltip di IoTwebUI: `{code: 'phase_a', value: 'CRAAArwAAJYACg=='}`. Il motivo di questa scelta è che i dati sono inviati ogni secondo, e così si riduce il throughput.
 <table>
 <tr>
 <td>
