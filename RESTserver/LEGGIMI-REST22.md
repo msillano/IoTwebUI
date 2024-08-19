@@ -183,3 +183,12 @@ note:
 Il segente esenpio è presente nel file 'custom.js'.
 #### Il problema
 Questo breker-meter (
+
+
+<table>
+<tr>
+<td>
+ <ing source="https://github.com/msillano/IoTwebUI/blob/main/pics/Screenshot_080106.png?raw=true">
+</td>
+</tr>
+</table>
