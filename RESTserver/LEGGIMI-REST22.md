@@ -246,4 +246,5 @@ La richiesta REST `device/Main AC/phase_a_decoded` ha come risultato:
                                  W: 154
               }}
 ```
-_I vari quirk dei device Tuya richiedo a volte interventi mirati: l'obiettivo è quello di rendere più semplici possibili queste customizzazioni. _
+
+_I vari quirk dei device Tuya richiedo a volte interventi mirati: l'obiettivo è quello di rendere più semplici possibili queste customizzazioni._
