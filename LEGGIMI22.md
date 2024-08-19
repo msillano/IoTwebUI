@@ -286,7 +286,7 @@ In IoTwebUI esistono 2 interfacce REST:
 
 _Queste due strade permettono finalmente l'integrazione di Tuya in progetti verticali, senza alterare il funzionamento base di Tuya/Smartlife, ma arricchendolo di nuove potenzialità, con una strategia più semplice delle alternative preesistenti (e.g. tuyaDAEMON, HA, etc...)_
 
-<HR>
+<hr style="height:2px;border-width:0;color:gray;background-color:gray">
 
 **NOTE sulla sicurezza**<br>
 
@@ -449,6 +449,8 @@ Il risultato JSON corretto è il seguente, utilizzabile con parser JSON per ricr
 ]
 ```
 E' un array di array contenenti le singole misure (oggetti).
+
+<hr style="height:2px;border-width:0;color:gray;background-color:gray">
 
 ### RULE - sintassi
 Il particolare ambiente in cui sono valutate le RULE comporta qualche limite alla sintassi JavaScript (js) standard:
@@ -764,14 +766,12 @@ Progetto OpenSource, Licenza MIT, (c)2024 marco sillano
 
 _Questo progetto è un work-in-progress: viene fornito "così com'è", senza garanzie di alcun tipo, implicite o esplicite._
 
-- _Se sviluppate qualche estensione o applicazione interessante con IoTwebUI fatemelo sapere: possiamo inserirla qui, o nella prossima release._
+- _Se sviluppate qualche estensione o applicazione interessante con IoTwebUI o IoTrest fatemelo sapere: possiamo inserirla qui, o nella prossima release._
 - _Per problemi riguardanti il codice ed il funzionamento di IoTwebUI, aprite un 'issue' qui ([github](https://github.com/msillano/IoTwebUI/issues))._
 - _Per problemi più generali riguardanti  Tuya, SmartLife (Tuya smart) e IoTwebUI, che possono interessare anche altri utenti, postate pure nel gruppo [Tuya e Smart Life Italia](https://www.facebook.com/groups/tuyaitalia)_
 
 Grazie per l'interesse <br>
 m.s.
-
-<hr>
 
 ### Riconoscimenti
 Tutti i marchi riportati appartengono ai legittimi proprietari.
