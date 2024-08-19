@@ -12,7 +12,7 @@ _Cosa puoi fare?_<br>
 👌 Integrazione perfetta: Combina device, proprietà, voce, RULE e Tuya tap-to-run per un'automazione fluida, completa ed affidabile. <br>
 
 **_Nuovo, versione 2.2_**
-* _Interfaccia REST_: webservice per il semplice collegamento con applicazioni od interfacce custom.<br>
+* _Interfaccia REST_: webservice per il semplice collegamento con applicazioni od interfacce custom (documento [LEGGIMI-REST22](https://github.com/msillano/IoTwebUI/blob/main/RESTserver/LEGGIMI-REST22.md)).<br>
 * _Internazionalizzazione_: versioni multilingua dell'interfaccia utente e del modulo 'voce'.
 
 nota: _Portabile, può essere installato ovunque: su uno _smartphone_ o _tablet_, come interfaccia alternativa a SmartLife, per voi e per gli altri componenti della famiglia. Su un _PC_ (Windows, Apple, Linux...) per avere Tuya anche su questi computer. Su un _top-box Android_, per usare la TV come interfaccia Tuya!_.
@@ -83,7 +83,7 @@ La modalità EXPERT offre un controllo totale sulla personalizzazione di IoTwebU
 
 #### Interfaccia REST: accesso semplice e standard a IoTwebUI
 
-Un'interfaccia _REST server_ in **IoTwebUI** offre un modo potente, flessibile e standardizzato per interagire con i tuoi dispositivi IoT, semplificando lo sviluppo e l'integrazione con applicazioni ed interfacce WEB. Vedi [documentazione](https://github.com/msillano/IoTwebUI/blob/main/RESTserver/LEGGIMI-REST22.md).
+Un'interfaccia _REST server_ in **IoTwebUI** offre un modo potente, flessibile e standardizzato per interagire con i tuoi dispositivi IoT, semplificando lo sviluppo e l'integrazione con applicazioni ed interfacce WEB. Vedi [installazione e dettagli](https://github.com/msillano/IoTwebUI/blob/main/RESTserver/LEGGIMI-REST22.md).
 * Semplicità: L'architettura REST è progettata per essere intuitiva
 * Flessibilità: Puoi accedere ai tuoi dispositivi IoT da qualsiasi dispositivo connesso a internet, utilizzando qualsiasi linguaggio di programmazione che supporti le richieste HTTP.
 * Standard: REST è uno standard ampiamente adottato, il che significa che ci sono molte librerie e strumenti disponibili per semplificare lo sviluppo.
@@ -284,7 +284,7 @@ In IoTwebUI esistono 2 interfacce REST:
 1. _REST client_, implementato come MACRO, permette di importare dati esterni nelle REGOLE (RULE), da webservice o anche da device di terze parti che implementino un'interfaccia REST. Per device custom DIY REST vedi [esempio](https://github.com/msillano/tuyaDEAMON-applications/wiki/note-5:-Watchdog-for-IOT#watchdog03-esp01-relay--arduino)).
 2. _REST server_, per l'esportazione dei dati dei device Tuya, per il controllo su automazioni e allarmi, verso applicazioni o interfacce custom. [Vedi qui](https://github.com/msillano/IoTwebUI/blob/main/RESTserver/LEGGIMI-REST22.md).
 
-_Queste due strade permettono finalmente l'integrazione di Tuya in progetti verticali, senza alterare il funzionamento base di Tuya/Smartlife, ma arricchendolo di nuove potenzialità._
+_Queste due strade permettono finalmente l'integrazione di Tuya in progetti verticali, senza alterare il funzionamento base di Tuya/Smartlife, ma arricchendolo di nuove potenzialità, con una strategia più semplice delle alternative preesistenti (e.g. tuyaDAEMON, HA, etc...)_
 
 <HR>
 
