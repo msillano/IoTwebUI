@@ -227,7 +227,7 @@ In questo caso avremo:
       devData['phase_a_Leack'] = vals.Leack.toFixed(3);
       devData['phase_a_A']     = vals.A.toFixed(3);
       devData['phase_a_W']     = vals.W.toString();
- // MORE: To Export to IOTrest the decoded value, we add it to device.status 
+ // MORE: To Export via REST the decoded value, we add it to device.status 
       addToStatus("Main AC","phase_a_decoded", vals) ;
   }
 ```
