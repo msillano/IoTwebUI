@@ -179,4 +179,7 @@ note:
 **IoTrest** è lo strumento ideale per chi desidera creare rapidamente soluzioni personalizzate per la gestione dei propri dispositivi Tuya. Grazie alla sua flessibilità e alla sua facilità d'uso, TuyaREST ti permette ineguagliabili automatizioni per le tue attività domestiche e di creare esperienze utente uniche.
 
 <hr>
-
+### Customizzazioni
+Il segente esenpio è presente nel file 'custom.js'.
+#### Il problema
+Questo breker-meter (
