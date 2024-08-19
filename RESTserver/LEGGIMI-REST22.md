@@ -156,7 +156,7 @@ TX: device/Temperatura soggiorno/  =>   **{error: "malformed"}**
 
 note: 
 - La risposta è sempre un oggetto Js (anche in caso di errore).
-- I dati sono come provengono da Tuya Cloud: possono aver bisogno di decodifica o di scaling (e.g. `'temp_current', value: 284` => 28.4 °C). Vedi oltre .
+- I dati sono come provengono da Tuya Cloud: possono aver bisogno di decodifica o di scaling (e.g. `'temp_current', value: 284` => 28.4 °C).  [Vedi oltre](https://github.com/msillano/IoTwebUI/blob/main/RESTserver/LEGGIMI-REST22.md#customizzazioni).
 - **"unknown"** in caso di nomi errati o non trovati (errori di scrittura).
 - **"malformed"** in caso di parti di path mancanti o fuori posto (errore di sintassi).
 - I device sono individuati dal nome o dall'ID: usando l'ID si è indipendenti dal nome che potete cambiare liberamente.
@@ -169,8 +169,6 @@ note:
 * **Limiti:** Le prestazioni di _IoTrest_ dipendono dalle risorse hardware del tuo sistema e dal numero di dispositivi Tuya connessi. L'uso di WEBsocket rende _IoTrest_ molto veloce.
 * **Supporto:**    _IoTrest_ supporta tutti i dispositivi Tuya compatibili, compresi i device virtuali: i dati principali disponibili in Tuya Cloud sono accessibili.
 * **Errori:** _IoTrest_ gestisce gli errori in modo robusto, fornendo messaggi di errore semplici e chiari, non bloccanti.
-* **Customizzazione:** Si possono trovare dati che necessitano di trasformazioni o decodifica,
-queste sono possibili modificando il file `custom.js`.   Un esempio lo [trovate qui](https://github.com/msillano/IoTwebUI/blob/main/RESTserver/LEGGIMI-REST22.md#customizzazioni)
 * **Avvertenze:**
    - il valore `online` fornito da Tuya Cloud può differire dal valore attuale mostrato in SmartLife.
    - Se un device risulta `online = false`, Tuya Cloud mantiene gli ultimi valori, per cui la richiesta `device/_dev-name_/_code_` può fornire dati non aggiornati.
@@ -182,7 +180,7 @@ queste sono possibili modificando il file `custom.js`.   Un esempio lo [trovate 
 <hr>
 
 ### Customizzazioni
-Il segente esempio è presente nel file 'custom.js'.
+Il seguente esempio è presente nel file 'custom.js', creato apposta per le eventuali customizzazioni utente.
 
 #### Il problema
 Questo breker-meter ([OPWTY-63](https://github.com/msillano/tuyaDAEMON/blob/main/devices/BreakerDIN/device_BreakerDIN.pdf)), usato con il nome "Main AC", presenta nel Cloud i dati realtime (V, A, W, leack) non in chiaro, ma codificati in un 'phase_a', come vediamo nel primo tooltip di IoTwebUI: `{code: 'phase_a', value: 'CRAAArwAAJYACg=='}`
