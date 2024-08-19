@@ -132,13 +132,13 @@ Alcune piccole icone forniscono ulteriori informazioni all'utente.Esempi (vedi f
       "delay": 2
       }
       ````
-       _nota: Se siete interessati alla decodifica dei valori Tuya, molte funzioni sono state sviluppate per tuyaDAEMON (vedi 'core_device', nodo 'ENCODE/DECODE user library')._ 
+       _nota: Se siete interessati alla decodifica dei valori Tuya, molte funzioni sono state sviluppate per tuyaDAEMON, e possono servire da modello per `custom.js`. Vedi un [esempio comleto](https://github.com/msillano/IoTwebUI/blob/main/RESTserver/LEGGIMI-REST22.md#customizzazioni)._ 
    - `temperatura studio.va_temperature` è salvato sul datafile, insieme agli altri dati in `logList`.
    -  Per il device `temperatura soggiorno` è scattato l'Alert (icona speciale)
    - `temperatura soggiorno.va _humidity`  è la causa dell'Alert, ed è anche indicata la condizione (>40) che lo ha causato.
    - Il tooltip `termo studio` è customizzato,  per presentare le temperature con i corretti decimali e unità. (nota: solo nel tooltip: Alert e RULE usano sempre il valore fornito da Tuya Cloud, i.e. 222 e 190).
    - In modo EXPERT sono aggiunti nei tooltip i seguenti valori:
-       - `isa`:  nome del 'tipo' Tuya del device (in codice corrispondente è `device.category`). In totale circa 600 tipi.
+       - `is-a`:  nome del 'tipo' Tuya del device (in codice corrispondente è `device.category`). In totale circa 600 tipi.
        - `id`:  `device.id`, richiesto da alcuni HUB (e.g. TuyaDAEMON, Homebridge, HA, etc..).
        - `key`: `device.local_key`, richiesto da alcuni HUB
          
@@ -389,7 +389,7 @@ Ma sono facilmente personalizzabili dall'utente: basta fornire un criterio di se
 Anche l'icona speciale che indica un'alert è customizzabile: vedi `alertIcon` in 'config.js'.
      
  - Il contenuto dei tooltip, varia a seconda del device. E' un settore dove è utile la possibilità di personalizzazioni, il metodo scelto (un filtro) permette ogni libertà: <br>
-    - Alcuni valori sono criptati: si può scegliere di non farli vedere  - oppure di decodificarli; il codice necessario è disponibile in TuyaDAEMON, ma ho scartato questa opzione sia perchè sono di solito dati di configurazione gestiti da SmartLife, sia per non avere tooltip troppo grandi.
+    - Alcuni valori sono criptati: si può scegliere di non farli vedere  - oppure di decodificarli. In alcuni casi la decodifica è opportuna: vedi un [esempio comleto](https://github.com/msillano/IoTwebUI/blob/main/RESTserver/LEGGIMI-REST22.md#customizzazioni). 
     - In altri casi occorre dividere per 10 o 100 per avere il valore in unità SI.   
     - Come sviluppatore preferisco avere i nomi delle proprietà originali Tuya, ma si possono rendere più frendly traducendoli.
     - Se si desidera si possono anche aggiungere nuove informazioni per esempio derivandole da quelle del device (e.g. temperatura sia in °C che in °F).
