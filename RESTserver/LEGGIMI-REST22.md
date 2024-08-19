@@ -182,14 +182,15 @@ note:
 ### Customizzazioni
 Il segente esenpio è presente nel file 'custom.js'.
 #### Il problema
-Questo breker-meter (
-
-
+Questo breker-meter ([OPWTY-63](https://github.com/msillano/tuyaDAEMON/blob/main/devices/BreakerDIN/device_BreakerDIN.pdf) presenta i dati realtime (V, A, W, leack) non in chiaro, ma codificati in un 'phase_a', come vediamo nel primo tooltip di IoTwebUI.
 <table>
 <tr>
 <td>
 <img src="https://github.com/msillano/tuyaDAEMON/blob/main/pics/BreakerDIN.jpg?raw=true" height ="200px">
  <img src="https://github.com/msillano/IoTwebUI/blob/main/pics/Screenshot_080106.png?raw=true" height ="200px">
+<img src="https://github.com/msillano/IoTwebUI/blob/main/pics/popup01.png?raw=true" width ="150px" valign="top">
+<img src="https://github.com/msillano/IoTwebUI/blob/main/pics/popup002.png?raw=true" width ="150px" valign="top">
 </td>
 </tr>
 </table>
+Questo riduce molto l'utilità del device, sia in IoTvewUI che in IoTrest.
