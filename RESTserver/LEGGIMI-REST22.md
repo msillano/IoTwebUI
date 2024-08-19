@@ -66,7 +66,7 @@ nota: se non utilizzate il REST, non eseguite `server.js`, ma solo lanciare norm
 
 #### **Conclusioni**
 
-**IoTrest** è lo strumento ideale per chi desidera creare rapidamente soluzioni personalizzate per la gestione dei propri dispositivi Tuya. Grazie alla sua flessibilità e alla sua facilità d'uso, TuyaREST ti permette ineguagliabili automatizioni per le tue attività domestiche e di creare esperienze utente uniche.
+**IoTrest** è lo strumento ideale per chi desidera creare rapidamente soluzioni personalizzate per la gestione dei propri dispositivi Tuya. Grazie alla sua flessibilità e alla sua facilità d'uso, REST ti permette ineguagliabili automatizioni per le tue attività domestiche e di creare esperienze utente uniche.
 
 ![](https://github.com/msillano/IoTwebUI/blob/main/pics/screen02.png?raw=true)
 
