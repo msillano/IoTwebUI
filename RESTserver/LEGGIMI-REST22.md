@@ -7,7 +7,7 @@
 #### **Funzionalità principali**
 
 * **Accesso ai dati:** Leggi i valori attuali dei sensori (temperatura, umidità, ecc.) e lo stato degli attuatori (luci, prese, ecc.).
-* **Automazione:** Invia richieste REST per attivare scene e regole preconfigurate in IoTwebUI e Tuya Smart/SmartLife.
+* **Automazione:** Invia richieste REST per attivare `scene` e `regole` preconfigurate in  Tuya _Smart/SmartLife_ e in _IoTwebUI_.
 * **Avvisi:** Verifica gli avvisi in tempo reale per gli eventi che si verificano sui tuoi dispositivi (allarmi, cambi di stato, ecc.).
 * **Semplicità d'uso:** Interfaccia REST intuitiva e ben documentata. I risultati sono in formato testo oppure array od oggetti js.
 
@@ -48,7 +48,7 @@ Quindi l'insieme dei tre file è autosufficiente, non richiede `IoTwebUI`, e pu�
 #### **Utilizzo**
    1.  Avviare prima `server.js`con `run_server.bat`: se OK appare il messaggio "Server HAPI running on http://localhost:3031"
    2.  Iconizzare il terminale. Potete riaprirlo per vedere i messaggi scambiati o i messaggi di errore. Chiuderlo al termine dell'uso.
-   3. caricare/ricaricare `IoTwebUI` nel browser, con "run_me.bat" oppure direttamente. Se OK appare immediatamente un pop-up che informa dell'avvenuto collegamento via websocket con il server. nota: il collegamento websocket avviene solo all'avvio di `IoTwebUI`.
+   3.  Caricare/ricaricare `IoTwebUI` nel browser, con "run_me.bat" oppure direttamente. Se OK appare immediatamente un pop-up che informa dell'avvenuto collegamento via websocket con il server. nota: il collegamento websocket avviene solo all'avvio di `IoTwebUI`.
    4. Usare `IoTwebUI` normalmente. Per accedere al REST usare o applicazioni/intefacce custom, oppure aprite 'client.html' nel browser (anche più di uno).
 
 nota: se non utilizzate il REST, non eseguite `server.js`, ma solo lanciare normalmente **IoTwebUI** (con "run_me.bat" o direttamente): funzionerà perfettamente (senza il pop-up iniziale di conferma di collegamento).
@@ -59,7 +59,7 @@ nota: se non utilizzate il REST, non eseguite `server.js`, ma solo lanciare norm
 generale: `http://localhost:3031/IoTrest/` + path (vedi sotto) <br>
 
 **Risposta:** <br>
- Sempre un oggetto js, vedi singoli casi:
+ Sempre un oggetto js, vedi singoli casi.
 
 *  **device/list[/_home_[/_room_]]** (e.g.: device/list,  device/list/ROMA,  device/list/ROMA/Studio) <br>
     Received (ROMA/Studio)
@@ -119,7 +119,7 @@ generale: `http://localhost:3031/IoTrest/` + path (vedi sotto) <br>
   note:<br>
       - `alarms[x].trigger`: `true` in caso di allarme attivo.<br>
       - `alarms[x].conditon` valori: "grt", "equ", "lst" per ">", "=", "<"
-      - `alarms[x].action[y]` valori: "beep", "pop", "sound", "voice" (URL e SCENA/RULE: auto, based on `message`)
+      - `alarms[x].action[y]` valori: "beep", "pop", "sound", "voice" (URL e SCENA/RULE: auto, basati su `message`)
 
 *  **scene/list[/_room_]**  (scene/list, scene/list/ROMA)<br>
       Received 
@@ -157,8 +157,8 @@ TX: device/Temperatura soggiorno/  =>   **{error: "malformed"}**
 note: 
 - La risposta è sempre un oggetto Js (anche in caso di errore).
 - I dati sono come provengono da Tuya Cloud: possono aver bisogno di decodifica o di scaling (e.g. `'temp_current', value: 284` => 28.4 °C). Vedi oltre .
-- **unk** o **[unk]** in caso di nomi errati o non trovati (errori di scrittura).
-- **err** o **[err]** in caso di parti di path mancanti o fuori posto (errore di sintassi).
+- **"unknown"** in caso di nomi errati o non trovati (errori di scrittura).
+- **"malformed"** in caso di parti di path mancanti o fuori posto (errore di sintassi).
 - I device sono individuati dal nome o dall'ID: usando l'ID si è indipendenti dal nome che potete cambiare liberamente.
 
 
@@ -169,7 +169,8 @@ note:
 * **Limiti:** Le prestazioni di _IoTrest_ dipendono dalle risorse hardware del tuo sistema e dal numero di dispositivi Tuya connessi. L'uso di WEBsocket rende _IoTrest_ molto veloce.
 * **Supporto:**    _IoTrest_ supporta tutti i dispositivi Tuya compatibili, compresi i device virtuali: i dati principali disponibili in Tuya Cloud sono accessibili.
 * **Errori:** _IoTrest_ gestisce gli errori in modo robusto, fornendo messaggi di errore semplici e chiari, non bloccanti.
-* **Customizzazione:** Si possono trovare dati che necessitano di trasformazioni o decodifica.  Generalmente i dati codificati riguardano la configurazione, ma in qualche raro caso anche i dati real time. Se necessario è possibile intervenire in 'custom.js' con una decodifica custom, che può interessare sia il tooltip di IoTwebUI che i dati esportati via REST. Un esempio lo [trovate qui](https://github.com/msillano/IoTwebUI/blob/main/RESTserver/LEGGIMI-REST22.md#customizzazioni)
+* **Customizzazione:** Si possono trovare dati che necessitano di trasformazioni o decodifica,
+queste sono possibili modificando il file `custom.js`.   Un esempio lo [trovate qui](https://github.com/msillano/IoTwebUI/blob/main/RESTserver/LEGGIMI-REST22.md#customizzazioni)
 * **Avvertenze:**
    - il valore `online` fornito da Tuya Cloud può differire dal valore attuale mostrato in SmartLife.
    - Se un device risulta `online = false`, Tuya Cloud mantiene gli ultimi valori, per cui la richiesta `device/_dev-name_/_code_` può fornire dati non aggiornati.
@@ -184,7 +185,7 @@ note:
 Il segente esempio è presente nel file 'custom.js'.
 
 #### Il problema
-Questo breker-meter ([OPWTY-63](https://github.com/msillano/tuyaDAEMON/blob/main/devices/BreakerDIN/device_BreakerDIN.pdf)), usato con il nome "Main AC", presenta nel Cloud i dati realtime (V, A, W, leack) non in chiaro, ma codificati in un 'phase_a', come vediamo nel primo tooltip di IoTwebUI.
+Questo breker-meter ([OPWTY-63](https://github.com/msillano/tuyaDAEMON/blob/main/devices/BreakerDIN/device_BreakerDIN.pdf)), usato con il nome "Main AC", presenta nel Cloud i dati realtime (V, A, W, leack) non in chiaro, ma codificati in un 'phase_a', come vediamo nel primo tooltip di IoTwebUI: `{code: 'phase_a', value: 'CRAAArwAAJYACg=='}`
 <table>
 <tr>
 <td>
