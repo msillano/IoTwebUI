@@ -202,7 +202,7 @@ Questo breaker-meter ([OPWTY-63](https://github.com/msillano/tuyaDAEMON/blob/mai
 </td>
 </tr>
 </table>
-Questa scelta però riduce molto l'utilità del device, sia in IoTvewUI che in IoTrest.
+Questa scelta però riduce molto l'utilità del device, sia in IoTwebUI che in IoTrest.
 
 #### code
 E' possibile avere i valori RT in chiaro sia nel tooltip (vedi secondo tooltip)  che nei dati esportati da **IoTrest**, intervenendo nel file 'custom.js' come segue:
