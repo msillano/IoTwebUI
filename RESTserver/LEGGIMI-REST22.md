@@ -213,8 +213,8 @@ E' possibile avere i valori RT in chiaro sia nel tooltip (vedi secondo tooltip) 
   return (result);
 };
 ```
-2) La funzione hook `filterDP(res, devData)` è chiamata per ogni lettura dei dati dei device, e normalmente non fa nulla, ma è presente proprio per inserire elaborazioni custom.
-`res` è l'oggetto con idati completi del device, `devData` è un oggetto `{code1:value1, code2:value2...}` con i valori da visualizzare nel tooltip.
+2) La funzione hook `filterDP(res, devData)` è chiamata per ogni lettura dei dati dei device, e normalmente non fa nulla, ma è presente proprio per inserire elaborazioni custom sui valori.
+`res` è l'oggetto con i dati completi del device, `devData` è un oggetto `{code1:value1, code2:value2...}` con i valori da visualizzare nel tooltip.
 In questo caso avremo:
 
 ```
