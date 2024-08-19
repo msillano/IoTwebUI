@@ -84,8 +84,8 @@ generale: `http://localhost:3031/IoTrest/` + path (vedi sotto) <br>
             {home:"ROMA",
              room:"Studio",
              devices:["Termo studio",
-                        "USBswitch",
-                        "Zigbee Gateway"]} 
+                      "USBswitch",
+                      "Zigbee Gateway"]} 
 ```
 *  **device/_dev-name_|_dev-id_/dinfo|dstatus|_code_** (e.g.: device/Temperatura studio/va_temperature, device/Temperatura studio/dinfo, device/Termo studio/dstatus ) <br>
 
@@ -115,10 +115,10 @@ generale: `http://localhost:3031/IoTrest/` + path (vedi sotto) <br>
                        temp_set: 200}}
 ```
  note:<br>
-    -  `dinfo.sub`  il device è un sub-device (i.e. usa un HUB) <br>
+    -  `dinfo.sub`  `true` se il device è un sub-device (i.e. usa un HUB) <br>
     -  `dinfo.logged` _estensione IoTwebUI_: lista delle proprietà esportate da IoTwebUI su file.<br>
     -  `dinfo.test` _estensione IoTwebUI_: `true` se esiste un allarme IoTwebUI collegato al device.<br>
-    -  `dinfo.category` : codice corrispondente ad `isa` (nei pop-up, modo EXPERT)  _estensione IoTwebUI_.
+    -  `dinfo.category` : codice corrispondente ad `is-a` (nei pop-up, modo EXPERT).
         
 *  **alert/list/_dev-name_|_dev-id_** ( e.g.: alert/list/tuya_bridge)<br>
    Received
