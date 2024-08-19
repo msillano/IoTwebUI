@@ -188,7 +188,8 @@ Questo breker-meter (
 <table>
 <tr>
 <td>
- <img src="https://github.com/msillano/IoTwebUI/blob/main/pics/Screenshot_080106.png?raw=true">
+<img src="https://github.com/msillano/tuyaDAEMON/blob/main/pics/BreakerDIN.jpg?raw=true" height ="200px">
+ <img src="https://github.com/msillano/IoTwebUI/blob/main/pics/Screenshot_080106.png?raw=true" height ="200px">
 </td>
 </tr>
 </table>
