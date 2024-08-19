@@ -70,7 +70,7 @@ nota: se non utilizzate il REST, non eseguite `server.js`, ma solo lanciare norm
 
 ![](https://github.com/msillano/IoTwebUI/blob/main/pics/screen02.png?raw=true)
 
-Interfacce utente come queste, con immagini, bottoni, dati aggiornati, anche multipagina, si realizzano in HTML e (poco) js, aggiornate via REST.
+Interfacce utente come queste, con immagini, bottoni, dati aggiornati, anche multipagina, si realizzano in HTML e (poco) js, dinamicamente aggiornate via REST.
 
 ![](https://github.com/msillano/IoTwebUI/blob/main/pics/screen04.png?raw=true)
 
