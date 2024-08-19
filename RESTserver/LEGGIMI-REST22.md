@@ -53,9 +53,26 @@ Quindi l'insieme dei tre file è autosufficiente, non richiede `IoTwebUI`, e pu�
 
 nota: se non utilizzate il REST, non eseguite `server.js`, ma solo lanciare normalmente **IoTwebUI** (con "run_me.bat" o direttamente): funzionerà perfettamente (senza il pop-up iniziale di conferma di collegamento).
 
+#### **Considerazioni finali**
 
-#### dizionario REST
-**Richiesta:**<br>
+* **Sicurezza:** Per motivi di sicurezza, eseguire _IOTrest_ su una rete locale e di non esporlo direttamente a Internet.
+* **Affidabilità:** _IoTrest_ e _IoTwebUI_ accedono  a Tuya Cloud solo in lettura. **In NESSUN CASO i dati Tuya possono essere alterati.**
+* **Limiti:** Le prestazioni di _IoTrest_ dipendono dalle risorse hardware del tuo sistema e dal numero di dispositivi Tuya connessi. L'uso di WEBsocket rende _IoTrest_ molto veloce.
+* **Supporto:**    _IoTrest_ supporta tutti i dispositivi Tuya compatibili, compresi i device virtuali: tutti i dati principali disponibili in Tuya Cloud sono accessibili.
+* **Errori:** _IoTrest_ gestisce gli errori in modo robusto, fornendo messaggi di errore semplici e chiari, non bloccanti.
+* **Avvertenze:**
+   - il valore `online` fornito da Tuya Cloud può differire dal valore attuale mostrato in SmartLife.
+   - Se un device risulta `online = false`, Tuya Cloud mantiene gli ultimi valori, per cui la richiesta `device/_dev-name_/_code_` può fornire dati non aggiornati.
+
+#### **Conclusioni**
+
+**IoTrest** è lo strumento ideale per chi desidera creare rapidamente soluzioni personalizzate per la gestione dei propri dispositivi Tuya. Grazie alla sua flessibilità e alla sua facilità d'uso, TuyaREST ti permette ineguagliabili automatizioni per le tue attività domestiche e di creare esperienze utente uniche.
+
+<hr style="height:2px;border-width:0;color:gray;background-color:gray">
+
+#### Endpoint URI
+
+**Richiesta:** <br>
 generale: `http://localhost:3031/IoTrest/` + path (vedi sotto) <br>
 
 **Risposta:** <br>
@@ -162,25 +179,10 @@ note:
 - I device sono individuati dal nome o dall'ID: usando l'ID si è indipendenti dal nome che potete cambiare liberamente.
 
 
-#### **Considerazioni importanti**
-
-* **Sicurezza:** Per motivi di sicurezza, eseguire _IOTrest_ su una rete locale e di non esporlo direttamente a Internet.
-* **Affidabilità:** _IoTrest_ e _IoTwebUI_ accedono  a Tuya Cloud solo in lettura. **In NESSUN CASO i dati Tuya possono essere alterati.**
-* **Limiti:** Le prestazioni di _IoTrest_ dipendono dalle risorse hardware del tuo sistema e dal numero di dispositivi Tuya connessi. L'uso di WEBsocket rende _IoTrest_ molto veloce.
-* **Supporto:**    _IoTrest_ supporta tutti i dispositivi Tuya compatibili, compresi i device virtuali: i dati principali disponibili in Tuya Cloud sono accessibili.
-* **Errori:** _IoTrest_ gestisce gli errori in modo robusto, fornendo messaggi di errore semplici e chiari, non bloccanti.
-* **Avvertenze:**
-   - il valore `online` fornito da Tuya Cloud può differire dal valore attuale mostrato in SmartLife.
-   - Se un device risulta `online = false`, Tuya Cloud mantiene gli ultimi valori, per cui la richiesta `device/_dev-name_/_code_` può fornire dati non aggiornati.
-
-#### **Conclusioni**
-
-**IoTrest** è lo strumento ideale per chi desidera creare rapidamente soluzioni personalizzate per la gestione dei propri dispositivi Tuya. Grazie alla sua flessibilità e alla sua facilità d'uso, TuyaREST ti permette ineguagliabili automatizioni per le tue attività domestiche e di creare esperienze utente uniche.
-
-<hr>
+<hr style="height:2px;border-width:0;color:gray;background-color:gray">
 
 ### Customizzazioni
-Il seguente esempio è presente nel file 'custom.js', creato apposta per le eventuali customizzazioni utente.
+Il seguente esempio è presente nel file 'custom.js', creato apposta per agevolare le eventuali customizzazioni utente.
 
 #### Il problema
 Questo breaker-meter ([OPWTY-63](https://github.com/msillano/tuyaDAEMON/blob/main/devices/BreakerDIN/device_BreakerDIN.pdf)), usato con il nome "Main AC", presenta nel Cloud i dati realtime (V, A, W, leack) non in chiaro, ma codificati in 'phase_a', come vediamo nel primo tooltip di IoTwebUI: `{code: 'phase_a', value: 'CRAAArwAAJYACg=='}`. Il motivo di questa scelta è che i dati sono inviati ogni secondo, e così si riduce il throughput.
@@ -194,10 +196,10 @@ Questo breaker-meter ([OPWTY-63](https://github.com/msillano/tuyaDAEMON/blob/mai
 </td>
 </tr>
 </table>
-Questo riduce molto l'utilità del device, sia in IoTvewUI che in IoTrest.
+Questa scelta però riduce molto l'utilità del device, sia in IoTvewUI che in IoTrest.
 
 #### code
-E' possibile avere i valori RT in chiaro sia nel tooltip (vedi secondo tooltip)  che nei dati esportati da **IoTrest**. intervenendo nel file 'custom.js' come segue.
+E' possibile avere i valori RT in chiaro sia nel tooltip (vedi secondo tooltip)  che nei dati esportati da **IoTrest**, intervenendo nel file 'custom.js' come segue:
 
 1) L'algoritmo di decodifica è noto: è implementato nella funzione `context.global.datadecode.STRUCTELERT` presente nel nodo `*ENCODE/DECODE user library` di `tuyaDAEMON.CORE_devices`. Purtroppo, la funzione è in nodejs, e va riscritta per l'ambiente js del browser. La funzione è comunque abbastanza semplice:
 ```
@@ -214,12 +216,12 @@ E' possibile avere i valori RT in chiaro sia nel tooltip (vedi secondo tooltip) 
 };
 ```
 2) La funzione hook `filterDP(res, devData)` è chiamata per ogni lettura dei dati dei device, e normalmente non fa nulla, ma è presente proprio per inserire elaborazioni custom sui valori.
-`res` è l'oggetto con i dati completi del device, `devData` è un oggetto `{code1:value1, code2:value2...}` con i valori da visualizzare nel tooltip.
+Il parametro `res` è l'oggetto con i dati completi del device, mentre `devData` è un oggetto `{code1:value1, code2:value2...}` con i valori da visualizzare nel tooltip.
 In questo caso avremo:
 
 ```
  if (res.name == "Main AC") {   //Power meter 
-// decode for tooltip, adds new values
+// decode for tooltip, adds new values to devData
       const vals = datadecodeSTRUCTELERT(devData.phase_a);
       devData['phase_a_V']     = vals.V.toFixed(1);
       devData['phase_a_Leack'] = vals.Leack.toFixed(3);
@@ -229,7 +231,7 @@ In questo caso avremo:
       addToStatus("Main AC","phase_a_decoded", vals) ;
   }
 ```
-nota:  `updateStatus()` è un'utility che si occupa dell'aggiornamento dei dati locali (usati da REST), aggiungendo in questo caso il valore `phase_a_decoded`.
+nota:  `addToStatus()` è un'utility che si occupa dell'aggiornamento dei dati locali (usati da REST), aggiungendo in questo caso il valore `phase_a_decoded`.
 
 #### Risultati
 Le modifice effettute sono addittive: non alterano i dati esistenti.
