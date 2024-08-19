@@ -179,10 +179,12 @@ note:
 **IoTrest** è lo strumento ideale per chi desidera creare rapidamente soluzioni personalizzate per la gestione dei propri dispositivi Tuya. Grazie alla sua flessibilità e alla sua facilità d'uso, TuyaREST ti permette ineguagliabili automatizioni per le tue attività domestiche e di creare esperienze utente uniche.
 
 <hr>
+
 ### Customizzazioni
-Il segente esenpio è presente nel file 'custom.js'.
+Il segente esempio è presente nel file 'custom.js'.
+
 #### Il problema
-Questo breker-meter ([OPWTY-63](https://github.com/msillano/tuyaDAEMON/blob/main/devices/BreakerDIN/device_BreakerDIN.pdf) presenta i dati realtime (V, A, W, leack) non in chiaro, ma codificati in un 'phase_a', come vediamo nel primo tooltip di IoTwebUI.
+Questo breker-meter ([OPWTY-63](https://github.com/msillano/tuyaDAEMON/blob/main/devices/BreakerDIN/device_BreakerDIN.pdf), usato con il nome "Main AC", presenta nel Cloud i dati realtime (V, A, W, leack) non in chiaro, ma codificati in un 'phase_a', come vediamo nel primo tooltip di IoTwebUI.
 <table>
 <tr>
 <td>
@@ -194,3 +196,53 @@ Questo breker-meter ([OPWTY-63](https://github.com/msillano/tuyaDAEMON/blob/main
 </tr>
 </table>
 Questo riduce molto l'utilità del device, sia in IoTvewUI che in IoTrest.
+
+#### code
+E' possibile avere i valori RT in chiaro sia nel tooltip (vedi secondo tooltip)  che nei dati esportati da **IoTrest**. intervenendo nel file 'custom.js' come segue.
+
+1) L'algoritmo di decodifica è noto: è implementato nella funzione `context.global.datadecode.STRUCTELERT` presente nel nodo `*ENCODE/DECODE user library` di `tuyaDAEMON.CORE_devices`. Purtroppo, la funzione è in nodejs, e va riscritta per l'ambiente js del browser. La funzione è comunque abbastanza semplice:
+```
+ function datadecodeSTRUCTELERT(value) {
+   let result = {};
+// rewritten javascript version (Buffer not available in browser)
+	const decod = atob(value);  // ASCII string from code64
+// Int16BE conversions, scaling:
+	result["V"] =     (decod.charCodeAt(1) + 256*decod.charCodeAt(0)) / 10.0;    // V
+ 	result["Leack"] = (decod.charCodeAt(3) + 256*decod.charCodeAt(2)) / 1000.0;  // A
+ 	result["A"] =     (decod.charCodeAt(5) + 256*decod.charCodeAt(4)) / 10000.0; // A
+ 	result["W"] =     (decod.charCodeAt(7) + 256*decod.charCodeAt(6)) ;  // W
+  return (result);
+};
+```
+2) La funzione hook `filterDP(res, devData)` è chiamata per ogni lettura dei dati dei device, e normalmente non fa nulla, ma è presente proprio per inserire elaborazioni custom.
+`res` è l'oggetto con idati completi del device, `devData` è un oggetto `{code1:value1, code2:value2...}` con i valori da visualizzare nel tooltip.
+In questo caso avremo:
+
+```
+ if (res.name == "Main AC") {   //Power meter 
+// decode for tooltip, adds new values
+      const vals = datadecodeSTRUCTELERT(devData.phase_a);
+      devData['phase_a_V']     = vals.V.toFixed(1);
+      devData['phase_a_Leack'] = vals.Leack.toFixed(3);
+      devData['phase_a_A']     = vals.A.toFixed(3);
+      devData['phase_a_W']     = vals.W.toString();
+ // MORE: To Export to IOTrest the decoded value, we add it to device.status 
+      addToStatus("Main AC","phase_a_decoded", vals) ;
+  }
+```
+nota:  `updateStatus()` è un'utility che si occupa dell'aggiornamento dei dati locali (usati da REST), aggiungendo il valore `phase_a_decoded`.
+
+#### Risultati
+Le modifice effettute sono addittive: non alterano i dati esistenti.
+Il tooltip ora riporta i dati RT in chiaro (ultimo tooltip in figura).
+
+La richiesta REST `device/Main AC/phase_a_decoded` ha come risultato:
+```
+              {name: "Main AC",
+               phase_a_decoded: {V: 227,
+                                 Leack: 0.002,
+                                 A: 4.8128,
+                                 W: 154
+              }}
+```
+I vari quirk dei device Tuya richiedo a volte interventi ad hoc: l'obiettivo è quello di rendere più semplici possibili queste customizzazioni. 
