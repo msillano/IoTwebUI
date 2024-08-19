@@ -9,9 +9,9 @@
 * **Accesso ai dati:** Leggi i valori attuali dei sensori (temperatura, umidità, ecc.) e lo stato degli attuatori (luci, prese, ecc.).
 * **Automazione:** Invia richieste REST per attivare `scene` e `regole` preconfigurate in  Tuya _Smart/SmartLife_ e in _IoTwebUI_.
 * **Avvisi:** Verifica gli avvisi in tempo reale per gli eventi che si verificano sui tuoi dispositivi (allarmi, cambi di stato, ecc.).
-* **Semplicità d'uso:** Interfaccia REST intuitiva e ben documentata. I risultati sono in formato testo oppure array od oggetti js.
+* **Semplicità d'uso:** Interfaccia REST intuitiva e ben documentata. Per comodità d'uso i risultati ricevuti sono array od oggetti js.
 
-**NB:** _Se non vi interessa utilizzare la funzione di REST, ignorate completamente 'installazione e configurazione', potrete farla in un secondo tempo. **IoTwebUI 2.2** funzionerà perfettamente!_
+**NB:** _Se non vi interessa utilizzare la funzione di REST, ignorate completamente le fasi 'installazione e configurazione', potrete farle in un secondo tempo. **IoTwebUI 2.2** funzionerà perfettamente!_
 
 #### **Architettura**
 ![](https://github.com/msillano/IoTwebUI/blob/main/pics/rest01.png?raw=true)
