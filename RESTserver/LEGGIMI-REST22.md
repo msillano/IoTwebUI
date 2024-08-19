@@ -1,4 +1,4 @@
-### **IoTrest: Un ponte REST per i tuoi dispositivi Tuya**
+ault### **IoTrest: Un ponte REST per i tuoi dispositivi Tuya**
 
 #### **Introduzione**
 
@@ -222,12 +222,12 @@ E' possibile avere i valori RT in chiaro sia nel tooltip (vedi secondo tooltip) 
 };
 ```
 2) La funzione hook `filterDP(res, devData)` è chiamata per ogni lettura dei dati dei device, e normalmente non fa nulla, ma è presente proprio per inserire elaborazioni custom sui valori.
-Il parametro `res` è l'oggetto con i dati completi del device, mentre `devData` è un oggetto `{code1:value1, code2:value2...}` con i valori da visualizzare nel tooltip.
+Il parametro `res` è l'oggetto con i dati completi del device, mentre `devData` è un oggetto `{code1:value1, code2:value2...}` con i valori di default da visualizzare nel tooltip.
 In questo caso avremo:
 
 ```
  if (res.name == "Main AC") {   //Power meter 
-// decode for tooltip, adds new values to devData
+// decode for tooltip, adds extra values to devData
       const vals = datadecodeSTRUCTELERT(devData.phase_a);
       devData['phase_a_V']     = vals.V.toFixed(1);
       devData['phase_a_Leack'] = vals.Leack.toFixed(3);
