@@ -169,19 +169,19 @@ L'utente può scegliere in configurazione tra due formati: `CSV` (indicato, per 
     <li>  <b> cancel </b>- chiude il dialogo.</ul>
   </TD>
   <TD>
-   <img src="https://github.com/msillano/IoTwebUI/blob/main/pics/alert20.png?raw=true" />
+   <img src="https://github.com/msillano/IoTwebUI/blob/main/pics/alert22.png?raw=true" />
   </TD>
  </TR>
 </TABLE>
 
-extra: In modalità EXPERT è disponibile nel menu un comando per avere nella console l'intera struttura dati ottenuta da Tuya Cloud ('Dump data'): può essere esplorata a ogni livello nel pad della console oppure può essere copiata con copy&paste in formato JSON.
+extra: In modalità EXPERT è disponibile nel menu un comando per avere nella console l'intera struttura dati ottenuta da Tuya Cloud ('Oggetto-dati in console'): può essere esplorata a ogni livello nel pad della console oppure può essere copiata con copy&paste in formato JSON.
 
 ### Alert ed avvisi
 In modo EXPERT cliccando su un device si apre un dialogo che nella parte inferiore permette la definizione degli 'Alert':
 <TABLE width = "100%" >
  <TR>
   <TD  width = "200px">
-   <img src="https://github.com/msillano/IoTwebUI/blob/main/pics/alert21.png?raw=true" />
+   <img src="https://github.com/msillano/IoTwebUI/blob/main/pics/alert23.png?raw=true" />
   </TD>
   <TD><ol>
         <li>  Scelta della condizione: 'maggiore', 'uguale' o 'minore'
