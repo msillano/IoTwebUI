@@ -681,14 +681,14 @@ time = costante nei formati "hh:mm:ss" oppure "mm:ss" oppure "ss". Limite inferi
   E' garantito un singolo valore 'true' per ogni n-simo loop, 'n' è in numero di loop, in tempo: t <= n x tuyaInterval (definito in 'config.js' file).<br>
 <i>Esempio:</i> <code>if(TRIGEVERY(8)) POP( "FRIGO", "Temperatura interna: "+ ROUND(_tf/10, 1) + "°C");</code> </dd>
    
+<dt>VSET(name, value)</dt>
+<dd>SET di una variabile permanente - conservata per tutti i run delle RULE.<br>
+<i>Esempio:</i> <code>if( TRIGEVERY(10) ) VSET('prova', VGET('prova') + 2);</code>  </dd>
+
 <dt>VGET(name) </dt>
 <dd>GET di una variabile permanente - conservata per tutti i run delle RULE.<br> 
  Se la variabile <code>name</code> NON è stata inizializzata con un VSET, ritorna <code>null</code>. <br>
 <i>Esempio:</i> <code>if( VGET('inizio') == null ) VSET('inizio', TIME(hrs)); </code>  </dd>
-
-<dt>VSET(name, value)</dt>
-<dd>SET di una variabile permanente - conservata per tutti i run delle RULE.<br>
-<i>Esempio:</i> <code>if( TRIGEVERY(10) ) VSET('prova', VGET('prova') + 2);</code>  </dd>
 
 <dt>ROUND(number, pos)</dt>
 <dd> Torna una stringa con 'pos' cifre decimali (se 'pos' >0) <br>
