@@ -162,11 +162,11 @@ L'utente può scegliere in configurazione tra due formati: `CSV` (indicato, per 
   <TD>
   In modo EXPERT cliccando su un device si apre un dialogo, nella parte superiore interessa l'export dei dati su file:
    <ul>  
-    <li>  <b> newLog </b>- aggiunge al log (solo per il run corrente)
-    <li>  <b>clear dev </b>-  elimina il device dal log, (tutte le proprietà)
-    <li>  <b> config </b>- apre pop-up per vedere le definizioni del log attuale <br>
+    <li>  <b> log + </b>- aggiunge al log (solo per il run corrente)
+    <li>  <b> log - </b>-  elimina il device dal log, (tutte le proprietà)
+    <li>  <b> esporta </b>- apre pop-up per vedere le definizioni del log attuale <br>
         <i> I 'log' permanenti sono nel file `config.js`: possono essere editati direttamente oppure copiati da questo pop-up.</i>
-    <li>  <b> cancel </b>- chiude il dialogo.</ul>
+    <li>  <b> cancella </b>- chiude il dialogo.</ul>
   </TD>
   <TD>
    <img src="https://github.com/msillano/IoTwebUI/blob/main/pics/alert22.png?raw=true" />
@@ -176,8 +176,8 @@ L'utente può scegliere in configurazione tra due formati: `CSV` (indicato, per 
 
 extra: In modalità EXPERT è disponibile nel menu un comando per avere nella console l'intera struttura dati ottenuta da Tuya Cloud ('Oggetto-dati in console'): può essere esplorata a ogni livello nel pad della console oppure può essere copiata con copy&paste in formato JSON.
 
-### Alert ed avvisi
-In modo EXPERT cliccando su un device si apre un dialogo che nella parte inferiore permette la definizione degli 'Alert':
+### Allarmi ed avvisi
+In modo EXPERT cliccando su un device si apre un dialogo che nella parte inferiore permette la definizione degli 'Allarmi':
 <TABLE width = "100%" >
  <TR>
   <TD  width = "200px">
@@ -187,13 +187,13 @@ In modo EXPERT cliccando su un device si apre un dialogo che nella parte inferio
         <li>  Scelta della condizione: 'maggiore', 'uguale' o 'minore'
         <li>  Il valore di confronto, un numero (24) o una stringa (e.g. true) senza apici (").
         <li>  Messaggio associato, che ha vari usi: <ul>
-             <li> è un URL a un file MP3 o WAV nel caso 'sound'
+             <li> è un URL a un file MP3 o WAV nel caso 'suono'
              <li> oppure è un URL ed allora è aperto nel browser
              <li> oppure è il nome di un 'tap-to-run' o 'RULE' che viene eseguito 
              <li> oppure appare come testo in un 'pop-up'
-             <li> oppure è il testo letto nel caso 'voice'
+             <li> oppure è il testo letto nel caso 'voce'
             </ul>
-         <li>  Azione: una o più a scelta tra 'beep', 'pop', 'sound' e 'voice' (URL e tap-to-run|RULE sono automatici) </li></ol>
+         <li>  Azione: una o più a scelta tra 'beep', 'pop', 'suono' e 'voce' (URL e tap-to-run|RULE sono automatici) </li></ol>
   </TD>
  </TR>
 </TABLE>
@@ -203,39 +203,39 @@ In modo EXPERT cliccando su un device si apre un dialogo che nella parte inferio
  - _Se non si sceglie nessuna azione e si lascia vuoto 'message', l'azione di default è il cambio dell'icona del device e l'aggiornamento del tooltip, sempre eseguiti._
  - _Gli 'alert' non hanno, per semplicità, un filtro a tempo: se definiti sono attivi 24/7. Se occorre qualche condizionamento, è possibile creare RULE ad hoc ed attivarle dall'alert (nota: le RULE possono attivare le stesse azioni attivate dagli 'alert')._ 
  - _Notare che 'connected' non è mai incluso nelle proprietà Tuya, e quindi non si possono definire 'Alert'. Ma è disponibile come MACRO nelle RULE._
- - _Avendo un solo messaggio, le regole di precedenza sono: SOUND() e URL (auto) sono esaminati per primi, poi Tap-to-run e RULE (auto), e solo per ultimo POP e VOICE (compatibili: lo stesso messaggio può essere usato per entranbi); Beep è sempre utilizzabile._
+ - _Avendo un solo messaggio, le regole di precedenza sono: SUONO e URL (auto) sono esaminati per primi, poi Tap-to-run e RULE (auto), e solo per ultimo POP e VOCE (compatibili: lo stesso messaggio può essere usato per entranbi); BEEP è sempre utilizzabile._
  - _E' possibile definire contemporaneamente più azioni compatibili, e.g. 'beep' e 'pop-up' (con messaggio)._
  - _Invece, per avere sia 'pop-up' che 'tap-to-run', occerre creare due Alert con le stesse condizioni: in uno 'message' sarà il testo per il 'pop-up', nell'altro il nome del 'tap-to-run' (auto)._
  - _La visualizzazione dei pop-up può dipendere dalla configurazione del browser: usando 'run_me.bat' si ha un aggiornamento automatico della configurazione per la nuova istanza del browser. Azioni utente (e.g. bottoni) possono abilitare momentaneamente i pop-up._ <br>
  _Comunque, per non perdere informazioni, se i pop-up sono disabilitati per qualche motivo, il messaggio è presentato lo stesso in una finestra dell'APP: la differenza è che i pop-up possono essere molti, mentre la finestra è unica e viene riusata con un contatore._
-- _Gli **Alert** sono controllati ad ogni Tuya Cloud polling: gli eventi di breve durata, inferiore a `tuyaInterval` non possono essere rilevati._
-- _Tutti gli Alert sono memorizzati e visibili nel 'registro Alert', dal menu principale._
+- _Gli **Allarmi** sono controllati ad ogni Tuya Cloud polling: gli eventi di breve durata, inferiore a `tuyaInterval` non possono essere rilevati._
+- _Tutti gli Allarmi sono memorizzati e visibili nel 'registro Allarmi', dal menu principale._
 
 **Comandi:**
  <ul>  
-    <li>  <b> newTest </b>- aggiunge un nuovo Alert (solo per il  run corrente)
-    <li>  <b> clear dev </b>- elimina tutti gli Alert del device (solo per il run corrente)
-    <li>  <b> config </b>- apre pop-up per vedere le definizioni di tutti alert attuali. <br>
-        <i> Gli 'Alert' permanenti sono nel file `config.js`: possono essere editati direttamente oppure copiati da questo pop-up.</i>
-    <li>  <b> cancel </b>- chiude il dialogo.</ul>
+    <li>  <b> test + </b>- aggiunge un nuovo Allarme (solo per il  run corrente)
+    <li>  <b> test - </b>- elimina tutti gli Allarmi del device (solo per il run corrente)
+    <li>  <b> esporta </b>- apre pop-up per vedere le definizioni di tutti alert attuali. <br>
+        <i> Gli 'Allarmi' permanenti sono nel file `config.js`: possono essere editati direttamente oppure copiati da questo pop-up.</i>
+    <li>  <b> cancella </b>- chiude il dialogo.</ul>
  
-### RULE: automazioni no limits.
-  In modo EXPERT il menu presenta l'opzione "RULE page" che apre una pagina dedicata alla [gestione delle RULE](#rule---sintassi): 
+### REGOLE: automazioni no limits.
+  In modo EXPERT il menu presenta l'opzione "nuove REGOLE" che apre una pagina dedicata alla [gestione delle RULE](#rule---sintassi): 
 <TABLE width = "100%" >
  <TR>
   <TD>
-   Una parte importante è dedicata ad un pad di editing delle RULE (per dettagli vedi oltre).<br>
+   Una parte importante è dedicata ad un pad di editing delle REGOLE (per dettagli vedi oltre).<br>
 <i>Nota: se preferite usare un editor esterno più performante, potete certamente farlo, con copia-incolla.</i><br>
 Si possono gestire due insiemi di RULE: quelle in <i>uso</i>, inizialmente lette dal file `usrrulesXX.X.js`, e quelle nuove, <i>in Edit</i> nel pad.
 <br>
   
    I comandi presenti offrono le seguenti funzionalità;
    <ul>  
-    <li>  <b> Clear </b>- pulisce l'area di edit
-    <li>  <b> Load </b>- copia in Edit le RULE attualmente in uso
-    <li>  <b> Replace </b>- le RULE attualmente in uso sono sostitute da quelle in edit.
-    <li>  <b> Export </b>- Crea un pop-up per vedere le definizioni delle  RULE in uso. <i>Le RULE permanenti sono nel file 'usrrulesXX.X.js': possono essere editate direttamente o copiate dal pop-up.</i>
-    <li>  <b> Test Start </b>- Start test delle RULE in Edit: le RULE in uso sono sospese.
+    <li>  <b> Pulisci </b>- pulisce l'area di edit
+    <li>  <b> Carica </b>- copia in Edit le REGOLE attualmente in uso
+    <li>  <b> Sostituisci </b>- le REGOLE attualmente in uso sono sostitute da quelle in edit.
+    <li>  <b> Esporta </b>- Crea un pop-up per vedere le definizioni delle  RULE in uso. <i>Le RULE permanenti sono nel file 'usrrulesXX.X.js': possono essere editate direttamente o copiate dal pop-up.</i>
+    <li>  <b> Test Start </b>- Start test delle REGOLE in Edit: le REGOLE in uso sono sospese.
     <li>  <b> Test End</b>- Termina il Test e ripristina le RULE precedenti (auto in caso di errore)
     </ul>
  </TD>
