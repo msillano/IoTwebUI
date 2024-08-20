@@ -52,34 +52,34 @@ nota: _Portabile, può essere installato ovunque: su uno _smartphone_ o _tablet_
  - Real Time, con un ritardo medio pari al 50% del periodo di campionamento Tuya, per un equilibrio perfetto tra rapidità e precisione: gli alert sempre visualizzati, con pop-up o finestra.
  - Definizione degli Alert al runtime: controllo totale in tempo reale
 
-#### RULE: Domanda di automazioni più potenti? IoTwebUI 2.2 ha la risposta!
+#### REGOLE: Domanda di automazioni più potenti? IoTwebUI 2.2 ha la risposta!
 
  - Effettuare operazioni logiche ed aritmetiche e utilizzare variabili per una flessibilità senza limiti.
  - Confrontare i valori di due proprietà diverse, per automazioni ancora più libere.
  - Eseguire azioni complesse, come realizzare controlli PID, schedulare annualmente, o ricevere dati da altre applicazioni via REST.
  - Attivate in base a condizioni (come le 'Automazioni' Tuya) oppure su comando (come i 'tap-to-run' Tuya).
  - Per i casi più semplici (una sola condizione) si possono usare gli 'alert' (che possono attivare 'tap-to-run').
- - Il linguaggio delle RULE soddisfa le condizioni Bohm/Jacopini e quindi è 'Turing completo'. Più potenza espressiva vuol dire per l'utente concentrarsi su 'che cosa si vuol fare' e non 'su come farlo'!
+ - Il linguaggio delle REGOLE soddisfa le condizioni Bohm/Jacopini e quindi è 'Turing completo'. Più potenza espressiva vuol dire per l'utente concentrarsi su 'che cosa si vuol fare' e non 'su come farlo'!
  - Come funziona?
-    1. Crea le RULE al runtime con un'interfaccia user-friendly, anche se non sei un programmatore esperto.
+    1. Crea le REGOLE al runtime con un'interfaccia user-friendly, anche se non sei un programmatore esperto.
     2. Utilizza MACRO predefinite per i compiti comuni e ripetitivi, risparmiando tempo e fatica.
-    3. Prova le tue RULE in tempo reale per assicurarti che funzionino perfettamente.
+    3. Prova le tue REGOLE in tempo reale per assicurarti che funzionino perfettamente.
     4. In caso di errore durante il test, un popup ti indicherà la riga e il tipo di errore per una risoluzione rapida e precisa.
-    5. Esporta le tue RULE per inserirle nel file di configurazione e renderle permanenti.
+    5. Esporta le tue REGOLE per inserirle nel file di configurazione e renderle permanenti.
 
 #### Voice recognition: comandi vocali customizzabili
 
- - Attiva ogni tap-to-run o RULE con "Ehi Tuya, esegui ... "
+ - Attiva ogni tap-to-run o REGOLA con "Ehi Tuya, esegui ... "
  - Controlla la navigazione nell'APP IoTwebUI: "Ehi Tuya, vai alle scene"
  - Controlla la voce con la voce: puoi attivare il riconoscimento continuo oppure disattivarlo del tutto.
  - moduli ottimizzati per le varie lingue 
 
-#### Modalità EXPERT: per controllare tutto il controllabile
+#### Modalità ESPERTO: per controllare tutto il controllabile
 
-La modalità EXPERT offre un controllo totale sulla personalizzazione di IoTwebUI.
+La modalità ESPERTO offre un controllo totale sulla personalizzazione di IoTwebUI.
    - Accedi alle interfacce di configurazione e apporta modifiche che saranno valide solo per quel run.
    - Copia i dati dal "pad" di esportazione nei file di configurazione per rendere stabili le tue scelte.
-   - Puoi disattivare la modalità EXPERT nella configurazione quando hai finito di personalizzare.
+   - Puoi disattivare la modalità ESPERTO nella configurazione quando hai finito di personalizzare.
 
 #### Interfaccia REST: accesso semplice e standard a IoTwebUI
 
@@ -160,7 +160,7 @@ L'utente può scegliere in configurazione tra due formati: `CSV` (indicato, per 
 <TABLE width = "100%" >
  <TR>
   <TD>
-  In modo EXPERT cliccando su un device si apre un dialogo, nella parte superiore interessa l'export dei dati su file:
+  In modo ESPERTO cliccando su un device si apre un dialogo, nella parte superiore interessa l'export dei dati su file:
    <ul>  
     <li>  <b> log + </b>- aggiunge al log (solo per il run corrente)
     <li>  <b> log - </b>-  elimina il device dal log, (tutte le proprietà)
@@ -174,10 +174,10 @@ L'utente può scegliere in configurazione tra due formati: `CSV` (indicato, per 
  </TR>
 </TABLE>
 
-extra: In modalità EXPERT è disponibile nel menu un comando per avere nella console l'intera struttura dati ottenuta da Tuya Cloud ('Oggetto-dati in console'): può essere esplorata a ogni livello nel pad della console oppure può essere copiata con copy&paste in formato JSON.
+extra: In modalità ESPERTO è disponibile nel menu un comando per avere nella console l'intera struttura dati ottenuta da Tuya Cloud ('Oggetto-dati in console'): può essere esplorata a ogni livello nel pad della console oppure può essere copiata con copy&paste in formato JSON.
 
 ### Allarmi ed avvisi
-In modo EXPERT cliccando su un device si apre un dialogo che nella parte inferiore permette la definizione degli 'Allarmi':
+In modo ESPERTO cliccando su un device si apre un dialogo che nella parte inferiore permette la definizione degli 'Allarmi':
 <TABLE width = "100%" >
  <TR>
   <TD  width = "200px">
@@ -220,7 +220,7 @@ In modo EXPERT cliccando su un device si apre un dialogo che nella parte inferio
     <li>  <b> cancella </b>- chiude il dialogo.</ul>
  
 ### REGOLE: automazioni no limits.
-  In modo EXPERT il menu presenta l'opzione "nuove REGOLE" che apre una pagina dedicata alla [gestione delle RULE](#rule---sintassi): 
+  In modo ESPERTO il menu presenta l'opzione "nuove REGOLE" che apre una pagina dedicata alla [gestione delle RULE](#rule---sintassi): 
 <TABLE width = "100%" >
  <TR>
   <TD>
@@ -298,7 +298,7 @@ _NON rendetela accessibile dall'esterno o da terzi, altrimenti tutti i vostri da
 <hr>
 
 ### Versioni
-- 2.2  Aggiunto server REST ed Internazionalizzazione per interfaccia utente e modulo speech.
+- 2.2  Aggiunto server REST ed Internazionalizzazione (IT, EN) per interfaccia utente e modulo speech.
  
 - 2.1.1 Correzione bugs [ISSUE10](https://github.com/msillano/IoTwebUI/issues/10): Token scaduto. [ISSUE11](https://github.com/msillano/IoTwebUI/issues/11): refuso.
 
