@@ -44,13 +44,13 @@ nota: _Portabile, può essere installato ovunque: su uno _smartphone_ o _tablet_
  - Escludi i tap-to-run che non ti servono per avere un'interfaccia pulita e ordinata.
  - Un tab è dedicato alle RULE per poterle lanciare quando serve. 
 
-#### Alert: mai più un evento perso
+#### Allarmi: mai più un evento perso
 
  - puoi attivare una funzione di controllo su qualsiasi proprietà dei dispositivi e scegliere i test "maggiore", "uguale" o "minore" per monitorare ogni aspetto della tua domotica.
  - Stessa logica delle condizioni Tuya, per un linguaggio comune ed affidabile.
  - Scegli tra diverse azioni conseguenziali: silente, beep, frase registrata, pop-up, messaggio vocale, lancio di URL o  RULE|tap-to-run Tuya.
- - Real Time, con un ritardo medio pari al 50% del periodo di campionamento Tuya, per un equilibrio perfetto tra rapidità e precisione: gli alert sempre visualizzati, con pop-up o finestra.
- - Definizione degli Alert al runtime: controllo totale in tempo reale
+ - Real Time, con un ritardo medio pari al 50% del periodo di campionamento Tuya, per un equilibrio perfetto tra rapidità e precisione: gli Allarmi sempre visualizzati, con pop-up o finestra.
+ - Definizione degli Allarmi al runtime: controllo totale in tempo reale
 
 #### REGOLE: Domanda di automazioni più potenti? IoTwebUI 2.2 ha la risposta!
 
@@ -58,7 +58,7 @@ nota: _Portabile, può essere installato ovunque: su uno _smartphone_ o _tablet_
  - Confrontare i valori di due proprietà diverse, per automazioni ancora più libere.
  - Eseguire azioni complesse, come realizzare controlli PID, schedulare annualmente, o ricevere dati da altre applicazioni via REST.
  - Attivate in base a condizioni (come le 'Automazioni' Tuya) oppure su comando (come i 'tap-to-run' Tuya).
- - Per i casi più semplici (una sola condizione) si possono usare gli 'alert' (che possono attivare 'tap-to-run').
+ - Per i casi più semplici (una sola condizione) si possono usare gli 'Allarmi' (che possono attivare 'tap-to-run').
  - Il linguaggio delle REGOLE soddisfa le condizioni Bohm/Jacopini e quindi è 'Turing completo'. Più potenza espressiva vuol dire per l'utente concentrarsi su 'che cosa si vuol fare' e non 'su come farlo'!
  - Come funziona?
     1. Crea le REGOLE al runtime con un'interfaccia user-friendly, anche se non sei un programmatore esperto.
@@ -124,7 +124,7 @@ _In sintesi, un'unica APP offre un livello di affidabilità superiore grazie all
 
 Nei tooltip, che si aprono al passaggio del mouse su un'icona di device, sono presenti tutte le proprietà incluse nello 'status' del device, con i nomi ed i valori usati da Tuya Cloud. Alcuni valori possono essere codificati. <br>
 Alcune piccole icone forniscono ulteriori informazioni all'utente.Esempi (vedi figure sopra):
-   - `tuya_bridge.switch_1` è sotto osservazione per un 'alert'
+   - `tuya_bridge.switch_1` è sotto osservazione per un 'Allarme'
    - `tuya_bridge.switch_inching` è un esempio di valore codificato ('`AAAC`'). Decodificato è un oggetto:
       ````
       {
@@ -134,9 +134,9 @@ Alcune piccole icone forniscono ulteriori informazioni all'utente.Esempi (vedi f
       ````
        _nota: Se siete interessati alla decodifica dei valori Tuya, molte funzioni sono state sviluppate per tuyaDAEMON, e possono servire da modello per `custom.js`. Vedi un [esempio comleto](https://github.com/msillano/IoTwebUI/blob/main/RESTserver/LEGGIMI-REST22.md#customizzazioni)._ 
    - `temperatura studio.va_temperature` è salvato sul datafile, insieme agli altri dati in `logList`.
-   -  Per il device `temperatura soggiorno` è scattato l'Alert (icona speciale)
-   - `temperatura soggiorno.va _humidity`  è la causa dell'Alert, ed è anche indicata la condizione (>40) che lo ha causato.
-   - Il tooltip `termo studio` è customizzato,  per presentare le temperature con i corretti decimali e unità. (nota: solo nel tooltip: Alert e RULE usano sempre il valore fornito da Tuya Cloud, i.e. 222 e 190).
+   -  Per il device `temperatura soggiorno` è scattato l'Allarme (icona speciale)
+   - `temperatura soggiorno.va _humidity`  è la causa dell'Allarme, ed è anche indicata la condizione (>40) che lo ha causato.
+   - Il tooltip `termo studio` è customizzato,  per presentare le temperature con i corretti decimali e unità.
    - In modo EXPERT sono aggiunti nei tooltip i seguenti valori:
        - `is-a`:  nome del 'tipo' Tuya del device (in codice corrispondente è `device.category`). In totale circa 600 tipi.
        - `id`:  `device.id`, richiesto da alcuni HUB (e.g. TuyaDAEMON, Homebridge, HA, etc..).
@@ -144,14 +144,14 @@ Alcune piccole icone forniscono ulteriori informazioni all'utente.Esempi (vedi f
          
 ### tap-to_run Tuya
 
- I 'tap-to-run sono presentati per 'home' (max 100) nella apposita pagina, e poi in ordine alfabetico, come una serie di bottoni.
+ I 'tap-to-run'( 'scene' che iniziano con 'Esegui') sono presentati per 'home' (max 100) nella apposita pagina, e poi in ordine alfabetico, come una serie di bottoni.
  I nomi dei 'tap-to-run' possono avere i seguenti vincoli:
   - Limite di 3 parole se usati con i comandi vocali di IoTwebUI.
   - Utilizare prefissi per raggruppare in IoTwebUI i comandi correlati.
   - Essere facili da ricordare e da riconosere (se si usano i comandi vocali).<br>
   
- Un pad è dedicato alle 'user RULE' identificate con un nome: sono trattate come i 'tap-to-run': possono essere usate negli alert, oppure attivate con bottoni o tramite comando vocale, oppure lanciate da un altro RULE.<br>
-_Naturalmente 'RULE' e 'tap-to-run' devono avere nomi unici per poter essere identificati._
+ Un pad è dedicato alle 'user RULE' identificate con un nome: sono trattate come i 'tap-to-run': possono essere usate negli Allarmi, oppure attivate con bottoni o tramite comando vocale, oppure lanciate da un'altra REGOLA.<br>
+_Naturalmente 'REGOLE' e 'tap-to-run' devono avere nomi unici per poter essere identificati._
 
 ### Logging ed esportazione dati
 
@@ -201,11 +201,11 @@ In modo ESPERTO cliccando su un device si apre un dialogo che nella parte inferi
  _note:_
  
  - _Se non si sceglie nessuna azione e si lascia vuoto 'message', l'azione di default è il cambio dell'icona del device e l'aggiornamento del tooltip, sempre eseguiti._
- - _Gli 'alert' non hanno, per semplicità, un filtro a tempo: se definiti sono attivi 24/7. Se occorre qualche condizionamento, è possibile creare RULE ad hoc ed attivarle dall'alert (nota: le RULE possono attivare le stesse azioni attivate dagli 'alert')._ 
- - _Notare che 'connected' non è mai incluso nelle proprietà Tuya, e quindi non si possono definire 'Alert'. Ma è disponibile come MACRO nelle RULE._
+ - _Gli 'Allarmi' non hanno, per semplicità, un filtro a tempo: se definiti sono attivi 24/7. Se occorre qualche condizionamento, è possibile creare REGOLE ad hoc ed attivarle dall'alert (nota: le REGOLE possono attivare le stesse azioni attivate dagli 'Allarmi')._ 
+ - _Notare che 'connected' non è mai incluso nelle proprietà Tuya, e quindi non si possono definire 'Allarmi'. Ma è disponibile come MACRO nelle REGOLE._
  - _Avendo un solo messaggio, le regole di precedenza sono: SUONO e URL (auto) sono esaminati per primi, poi Tap-to-run e RULE (auto), e solo per ultimo POP e VOCE (compatibili: lo stesso messaggio può essere usato per entranbi); BEEP è sempre utilizzabile._
  - _E' possibile definire contemporaneamente più azioni compatibili, e.g. 'beep' e 'pop-up' (con messaggio)._
- - _Invece, per avere sia 'pop-up' che 'tap-to-run', occerre creare due Alert con le stesse condizioni: in uno 'message' sarà il testo per il 'pop-up', nell'altro il nome del 'tap-to-run' (auto)._
+ - _Invece, per avere sia 'pop-up' che 'tap-to-run', occerre creare due Allarmi con le stesse condizioni: in uno 'message' sarà il testo per il 'pop-up', nell'altro il nome del 'tap-to-run' (auto)._
  - _La visualizzazione dei pop-up può dipendere dalla configurazione del browser: usando 'run_me.bat' si ha un aggiornamento automatico della configurazione per la nuova istanza del browser. Azioni utente (e.g. bottoni) possono abilitare momentaneamente i pop-up._ <br>
  _Comunque, per non perdere informazioni, se i pop-up sono disabilitati per qualche motivo, il messaggio è presentato lo stesso in una finestra dell'APP: la differenza è che i pop-up possono essere molti, mentre la finestra è unica e viene riusata con un contatore._
 - _Gli **Allarmi** sono controllati ad ogni Tuya Cloud polling: gli eventi di breve durata, inferiore a `tuyaInterval` non possono essere rilevati._
@@ -215,7 +215,7 @@ In modo ESPERTO cliccando su un device si apre un dialogo che nella parte inferi
  <ul>  
     <li>  <b> test + </b>- aggiunge un nuovo Allarme (solo per il  run corrente)
     <li>  <b> test - </b>- elimina tutti gli Allarmi del device (solo per il run corrente)
-    <li>  <b> esporta </b>- apre pop-up per vedere le definizioni di tutti alert attuali. <br>
+    <li>  <b> esporta </b>- apre pop-up per vedere le definizioni di tutti Allarmi attuali. <br>
         <i> Gli 'Allarmi' permanenti sono nel file `config.js`: possono essere editati direttamente oppure copiati da questo pop-up.</i>
     <li>  <b> cancella </b>- chiude il dialogo.</ul>
  
@@ -234,9 +234,9 @@ Si possono gestire due insiemi di RULE: quelle in <i>uso</i>, inizialmente lette
     <li>  <b> Pulisci </b>- pulisce l'area di edit
     <li>  <b> Carica </b>- copia in Edit le REGOLE attualmente in uso
     <li>  <b> Sostituisci </b>- le REGOLE attualmente in uso sono sostitute da quelle in edit.
-    <li>  <b> Esporta </b>- Crea un pop-up per vedere le definizioni delle  RULE in uso. <i>Le RULE permanenti sono nel file 'usrrulesXX.X.js': possono essere editate direttamente o copiate dal pop-up.</i>
+    <li>  <b> Esporta </b>- Crea un pop-up per vedere le definizioni delle  REGOLE in uso. <i>Le REGOLE permanenti sono nel file 'usrrulesXX.X.js': possono essere editate direttamente o copiate dal pop-up.</i>
     <li>  <b> Test Start </b>- Start test delle REGOLE in Edit: le REGOLE in uso sono sospese.
-    <li>  <b> Test End</b>- Termina il Test e ripristina le RULE precedenti (auto in caso di errore)
+    <li>  <b> Test End</b>- Termina il Test e ripristina le REGOLE precedenti (auto in caso di errore)
     </ul>
  </TD>
   <TD>
@@ -248,12 +248,12 @@ Si possono gestire due insiemi di RULE: quelle in <i>uso</i>, inizialmente lette
 ### VoiceRecognition: maggiore libertà
 
 - La disponibilità di questa funzione dipende dal browser usato.
-- Non è facile raggiungere l'efficienza che si ha con HW specializzato (smart speakers: Google, Alexa), perché il risultato dipende da vari fattori, tra cui ualità del microfono usato, le relative regolazioni, la riduzione dei rumori di fondo, etc... Nelle prove sono passato da oltre il 90% di riconoscimenti ad un pessimo 20%! 
+- Non è facile raggiungere l'efficienza che si ha con HW specializzato (smart speakers: Google, Alexa), perché il risultato dipende da vari fattori, tra cui qualità del microfono usato, le relative regolazioni, la riduzione dei rumori di fondo, etc... Nelle prove sono passato da oltre il 90% di riconoscimenti ad un pessimo 20%! 
 - Molto importante è altresì la scelta delle parole chiave e dei nomi per 'tap-to-run' e 'RULE': per esempio 'nome tre parole' è di difficile riconoscimento, mentre 'accendi la luce' è facilmente riconosciuto.<br> Ritengo che questo dipenda dai modelli linguistici usati: sono più riconoscibili frasi corrette, con un significato comune, rispetto a parole isolate. Per esempio 'Tuya' è spesso confuso con 'Giulia'.
 - La presenza di articoli e/o preposizioni facilita il riconoscimento.
 - Il comando vocale è opzionale, e può essere disabilitato nella configurazione.
 - Se abilitato, voiceRecognition può essere usata in due modi, o continuo oppure premendo un pulsante. Il modo di default è impostato in configurazione, ma può essere cambiato con comandi vocali.
-- la grammatica (italiana) di default è la seguente - tra parentesi (alle): parole opzionali; barra verticale a|su: parole alternative-:
+- la grammatica (italiana) di default è la seguente - tra parentesi `(alle)`: parole opzionali; barra verticale `a|su`: parole alternative-:
 
     - _'Ehi Tuya, esegui|attiva (la|un*) xxx ((la|un*) xxx ((la|un*) xxx))'_ => lancia 'tap-to-run' o RULE, nome max 3 parole
         nota sui nomi: parlando si possono aggiungere articoli o preposizioni (*) alle 3 parole, che quindi NON fanno parte del'nome' del 'tap-to-run' o 'RULE'. Esempio: "Hey Tuya, esegui accendi una luce" => nome: "ACCENDI LUCE"   
@@ -274,7 +274,7 @@ Si possono gestire due insiemi di RULE: quelle in <i>uso</i>, inizialmente lette
  
  - nota: Per una migliore comprensione, le frasi possono essere divise in due: "Ehi Tuya" + pausa: appare il feedback 'Ehi Tuya...' che conferma la comprensione della prima parte; ora può essere detta la seconda parte.
  
-- _nota: la navigazione tra pagine è analoga al menu: dalla 'home' si può  andare alle pagine 'tap-to-run' o 'edit RULE' (in modo EXPERT), ma da queste si può solo tornare alla 'home'._
+- _nota: la navigazione tra pagine è analoga al menu: dalla 'home' si può  andare alle pagine 'tap-to-run' o 'nuove REGOLE' (in modo ESPERTO), ma da queste si può solo tornare alla 'home'._
      
 _nota: la richiesta di consenso all'uso del microfono dipende dal browser e dalla configurazione: usando 'run_me.bat' non dovrebbero esserci richieste._
 
