@@ -202,7 +202,8 @@ Questo breaker-meter ([OPWTY-63](https://github.com/msillano/tuyaDAEMON/blob/mai
 </td>
 </tr>
 </table>
-Questa scelta però riduce molto l'utilità del device, sia in IoTwebUI che in IoTrest.
+Questa scelta porta ad avere i valori  realtime (V, A, W, leack) presenti nell'interfaccia utente di SmartLife, ma NON nelle condizioni delle automazioni Smartlife !!
+Senza interventi custom,  i valori  realtime (V, A, W, leack) NON sono presenti in IoTwebUI.
 
 #### code
 E' possibile avere i valori RT in chiaro sia nel tooltip (vedi secondo tooltip)  che nei dati esportati da **IoTrest**, intervenendo nel file 'custom.js' come segue:
@@ -240,10 +241,13 @@ In questo caso avremo:
 nota:  `addToStatus()` è un'utility che si occupa dell'aggiornamento dei dati locali (usati da REST), aggiungendo in questo caso il valore `phase_a_decoded`.
 
 #### Risultati
-Le modifice effettute sono addittive: non alterano i dati esistenti.
-Il tooltip ora riporta i dati RT in chiaro (ultimo tooltip in figura).
+Le modifiche effettuate sono addittive: non alterano i dati esistenti.
 
-La richiesta REST `device/Main AC/phase_a_decoded` ha come risultato:
+- Il tooltip ora riporta i dati RT in chiaro (ultimo tooltip in figura).
+
+- Come ulteriore vantaggio i dati realtime (V, A, W, leack), non usabili con le automazioni Tuya/Smartlife, ora sono utilizzabili come condizioni nelle REGOLE IoTwebUI! Esempio:  `GET("Main AC","phase_a_decoded").V`
+
+- I dati possono essere esportati: la richiesta REST `device/Main AC/phase_a_decoded` ha come risultato:
 ```
               {name: "Main AC",
                phase_a_decoded: {V: 227,
