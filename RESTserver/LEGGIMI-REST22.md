@@ -6,8 +6,8 @@ ault### **IoTrest: Un ponte REST per i tuoi dispositivi Tuya**
 
 #### **Funzionalità principali**
 
-* **Accesso ai dati:** Leggi i valori attuali dei sensori (temperatura, umidità, ecc.) e lo stato degli attuatori (luci, prese, ecc.).
-* **Automazione:** Invia richieste REST per attivare `scene` e `regole` preconfigurate in  Tuya _Smart/SmartLife_ e in _IoTwebUI_.
+* **Accesso ai dati:** Leggi i valori attuali dei sensori (temperatura, umidità, ecc.) e lo stato degli attuatori (luci, prese, ecc.) con un URL.
+* **Automazione:** Invia richieste REST per attivare `scene` e `regole` preconfigurate in  Tuya _Smart/SmartLife_ e in _IoTwebUI_, per esempio con un bottone HTML.
 * **Avvisi:** Verifica gli avvisi in tempo reale per gli eventi che si verificano sui tuoi dispositivi (allarmi, cambi di stato, ecc.).
 * **Semplicità d'uso:** Interfaccia REST intuitiva e ben documentata. Per comodità d'uso i risultati ricevuti sono array od oggetti js.
 
@@ -70,7 +70,7 @@ nota: se non utilizzate il REST, non eseguite `server.js`, ma solo lanciare norm
 
 ![](https://github.com/msillano/IoTwebUI/blob/main/pics/screen02.png?raw=true)
 
-Interfacce utente come queste, con immagini, bottoni, gadgets, dati aggiornati, anche multipagina, si realizzano in HTML e (poco) js, dinamicamente aggiornate via REST.
+Interfacce utente come queste, con immagini, bottoni, gadgets, dati dei device, anche multipagina, si realizzano abbastanza facilmente in HTML e (poco) js, e sono dinamicamente aggiornate via REST.
 
 ![](https://github.com/msillano/IoTwebUI/blob/main/pics/screen04.png?raw=true)
 
@@ -217,7 +217,7 @@ E' possibile avere i valori RT in chiaro sia nel tooltip (vedi secondo tooltip) 
 // Int16BE conversions, scaling:
 	result["V"] =     (decod.charCodeAt(1) + 256*decod.charCodeAt(0)) / 10.0;    // V
  	result["Leack"] = (decod.charCodeAt(3) + 256*decod.charCodeAt(2)) / 1000.0;  // A
- 	result["A"] =     (decod.charCodeAt(5) + 256*decod.charCodeAt(4)) / 10000.0; // A
+ 	result["A"] =     (decod.charCodeAt(5) + 256*decod.charCodeAt(4)) / 40000.0; // A
  	result["W"] =     (decod.charCodeAt(7) + 256*decod.charCodeAt(6)) ;  // W
   return (result);
 };
@@ -252,9 +252,9 @@ Le modifiche effettuate sono addittive: non alterano i dati esistenti.
               {name: "Main AC",
                phase_a_decoded: {V: 227,
                                  Leack: 0.002,
-                                 A: 4.8128,
-                                 W: 154
+                                 A: 1.408,
+                                 W: 302
               }}
 ```
 
-_I vari quirk dei device Tuya richiedo a volte interventi mirati: l'obiettivo è quello di rendere più semplici possibili queste customizzazioni._
+_I vari quirk dei device Tuya richiedo a volte interventi mirati: l'obiettivo nell'implementare IoTwebUI è stato quello di rendere più semplici possibili queste customizzazioni._
