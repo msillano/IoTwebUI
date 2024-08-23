@@ -115,6 +115,7 @@ _In sintesi, un'unica APP offre un livello di affidabilità superiore grazie all
   
 - Per lo stesso motivo non è possibile aggiornare dall'APP i file di configurazione. Ho scelto una soluzione di compromesso, che prevede l'intervento dell'utente con un semplice copia-incolla.
 - Sempre per problemi di sicurezza, può venire richiesta ogni volta l'autorizzazione all'uso del microfono: dipende dal browser e dalla configurazione; ma l'uso di `run-me.bat` può evitare l'inconveniente.
+- IoTwebUI accede ai dati del Cloud ESCLUSIVAMENTE in lettura, per evitare qualunque rischio di operazioni errate. Ma questo non limita le funzionalità di IoTwebUI (e di IoTrest e delle applicazioni utente): è possibile infatti effettuare qualsiasi aggiornamento della configurazione dei device in maniera controllata, cioè attraverso un 'tap-to-run'. Con questa strategia si ha la massima libertà in totale sicurezza!
 - Il funzionamento continua regolarmente anche con la finestra del browser iconizzata.
 - Usare una sola istanza dell'APP, altrimenti si hanno problemi con i token Tuya.
 
@@ -132,7 +133,7 @@ Alcune piccole icone forniscono ulteriori informazioni all'utente.Esempi (vedi f
       "delay": 2
       }
       ````
-       _nota: Se siete interessati alla decodifica dei valori Tuya, molte funzioni sono state sviluppate per tuyaDAEMON, e possono servire da modello per `custom.js`. Vedi un [esempio comleto](https://github.com/msillano/IoTwebUI/blob/main/RESTserver/LEGGIMI-REST22.md#customizzazioni)._ 
+       _nota: Se siete interessati alla decodifica dei valori Tuya, vedi un [esempio comleto](https://github.com/msillano/IoTwebUI/blob/main/RESTserver/LEGGIMI-REST22.md#customizzazioni)._ 
    - `temperatura studio.va_temperature` è salvato sul datafile, insieme agli altri dati in `logList`.
    -  Per il device `temperatura soggiorno` è scattato l'Allarme (icona speciale)
    - `temperatura soggiorno.va _humidity`  è la causa dell'Allarme, ed è anche indicata la condizione (>40) che lo ha causato.
