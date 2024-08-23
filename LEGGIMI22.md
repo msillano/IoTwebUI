@@ -583,11 +583,11 @@ Ovviamente si possono sempre aggiungere nuove MACRO, o come customizzazione (se 
 <dd>Segnale di avviso.<br>
 <i>Esempio:</i> <code>if(ISTRIGGERH(GET("TF_frigo","va_temperature") > 100)) POP("Frigo", "TEMPERATURA oltre 10°C" ); </code> </dd>
 
-<dt>XURL(url)</dt>
-<dt>XURL(url, target)</dt>
+<dt>XURL(url)<br>
+ XURL(url, target)</dt>
 <dd>Apre un URL nel browser.<br>
 `target`: `_self`, `_blank` (default), `_parent`, `_top` (see `window:open` ) <br>
- nota: _self, _parent, _top possono terminare IoTwebUI.
+ nota: _self, _parent, _top possono terminare IoTwebUI.<br>
 <i>Esempio:</i>  <code>if (TRIGBYNAME("client REST")) XURL("rest02.2/client.html")</code> <br>
 Usando REST, questa MACRO può essere usata per attivare specifiche pagine WEB, come UI tematiche. <br>
 <i>Esempio:</i>  <code>if (GET("ALLARME", 'status') == 'Allarme') XURL("mypages/alarmmap.html")</code>
