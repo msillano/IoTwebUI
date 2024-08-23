@@ -538,7 +538,7 @@ Volete fare delle prove ma non sapete da dove cominciare? Ecco tre REGOLE che no
    if (TRIGBYNAME("chiamata Pippo")) TRIGRULE("Pippo"), VOICE("chiamo Pippo");
 ```
 
-### REGOLE - MACRO
+#### REGOLE - MACRO
 le MACRO rispondono a varie esigenze:
  1. Fornire accesso alle risorse e funzionalità di **IoTwebUI**, per poterle usare nelle REGOLE
  2. L'ambiente (run ripetuti ad intervalli regolari) e i suoi limiti (codice in una sola riga) rendono più ardua la scrittura di funzioni complesse: le MACRO semplificano il compito dell'utente. 
@@ -770,7 +770,8 @@ Usi: profili di temperatura giornalieri, eventi ad orario o abilitazione per int
 
 (*): identifica le MACRO che fanno uso di memoria per salvare lo stato: NON usarle nella parte _azione_ di un if())
       
-<hr>
+
+## Riconoscimenti
       
 Progetto OpenSource, Licenza MIT, (c)2024 marco sillano
 
@@ -783,9 +784,9 @@ _Questo progetto è un work-in-progress: viene fornito "così com'è", senza gar
 Grazie per l'interesse <br>
 m.s.
 
-## Riconoscimenti
+<hr>
 Tutti i marchi riportati appartengono ai legittimi proprietari.
-
+- https://www.tuya.com/
 - https://getbootstrap.com/docs/5.3/getting-started/introduction/
 - https://visjs.github.io/vis-network/docs/network
 - https://fontawesome.com/v4/icons/
