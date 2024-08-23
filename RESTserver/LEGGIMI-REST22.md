@@ -191,22 +191,22 @@ note:
 Il seguente esempio è presente nel file 'custom.js', creato apposta per agevolare le eventuali customizzazioni utente.
 
 #### Il problema
-Questo breaker-meter ([OPWTY-63](https://github.com/msillano/tuyaDAEMON/blob/main/devices/BreakerDIN/device_BreakerDIN.pdf)), usato con il nome "Main AC", presenta nel Cloud i dati realtime (V, A, W, leack) non in chiaro, ma codificati in 'phase_a', come vediamo nel primo tooltip di IoTwebUI: `{code: 'phase_a', value: 'CRAAArwAAJYACg=='}`. Il motivo di questa scelta è che i dati sono inviati ogni secondo, e così si riduce il throughput.
+Questo breaker-meter ([OPWTY-63](https://github.com/msillano/tuyaDAEMON/blob/main/devices/BreakerDIN/device_BreakerDIN.pdf)), usato con il nome "Main AC", presenta nel Cloud i dati realtime (V, A, W, leack) non in chiaro, ma codificati in 'phase_a', come vediamo nel primo tooltip di IoTwebUI: `{code: 'phase_a', value: 'CRAAArwAAJYACg=='}`. Il motivo di questa scelta di progetto è che i dati sono inviati dal device ogni secondo, e così si riduce il throughput.
 <table>
 <tr>
 <td>
 <img src="https://github.com/msillano/tuyaDAEMON/blob/main/pics/BreakerDIN.jpg?raw=true" height ="200px">
- <img src="https://github.com/msillano/IoTwebUI/blob/main/pics/Screenshot_080106.png?raw=true" height ="200px">
+<img src="https://github.com/msillano/IoTwebUI/blob/main/pics/Screenshot_080106.png?raw=true" height ="200px">
 <img src="https://github.com/msillano/IoTwebUI/blob/main/pics/popup01.png?raw=true" width ="150px" valign="top">
 <img src="https://github.com/msillano/IoTwebUI/blob/main/pics/popup002.png?raw=true" width ="150px" valign="top">
 </td>
 </tr>
 </table>
-Questa scelta porta ad avere i valori  realtime (V, A, W, leack) presenti nell'interfaccia utente di SmartLife, ma NON nelle condizioni delle automazioni Smartlife !!
+Come risultato si hanno i valori  realtime (V, A, W, leack) presenti solo nell'interfaccia utente di SmartLife, ma NON nelle condizioni delle automazioni Smartlife !!
 Senza interventi custom,  i valori  realtime (V, A, W, leack) NON sono presenti in IoTwebUI.
 
 #### code
-E' possibile avere i valori RT in chiaro sia nel tooltip (vedi secondo tooltip)  che nei dati esportati da **IoTrest**, intervenendo nel file 'custom.js' come segue:
+E' possibile avere i valori RT in chiaro sia nel tooltip di **IoTwebUI**  che nei dati esportati da **IoTrest**, intervenendo nel file 'custom.js' come segue:
 
 1) L'algoritmo di decodifica è noto: è implementato nella funzione `context.global.datadecode.STRUCTELERT` presente nel nodo `*ENCODE/DECODE user library` di `tuyaDAEMON.CORE_devices`. Purtroppo, la funzione è in nodejs, e va riscritta per l'ambiente js del browser. La funzione è comunque abbastanza semplice:
 ```
@@ -222,7 +222,7 @@ E' possibile avere i valori RT in chiaro sia nel tooltip (vedi secondo tooltip) 
   return (result);
 };
 ```
-2) La funzione hook `filterDP(res, devData)` è chiamata per ogni lettura dei dati dei device, e normalmente non fa nulla, ma è presente proprio per inserire elaborazioni custom sui valori.
+2) La funzione hook `filterDP(res, devData)` è chiamata per ogni lettura dei dati dal Cloud, e normalmente non fa nulla, ma è presente proprio per inserire elaborazioni custom sui valori.
 Il parametro `res` è l'oggetto con i dati completi del device, mentre `devData` è un oggetto `{code1:value1, code2:value2...}` con i valori di default da visualizzare nel tooltip.
 In questo caso avremo:
 
@@ -245,7 +245,7 @@ Le modifiche effettuate sono addittive: non alterano i dati esistenti.
 
 - Il tooltip ora riporta i dati RT in chiaro (ultimo tooltip in figura).
 
-- Come ulteriore vantaggio i dati realtime (V, A, W, leack), non usabili con le automazioni Tuya/Smartlife, ora sono utilizzabili come condizioni nelle REGOLE IoTwebUI! Esempio:  `GET("Main AC","phase_a_decoded").V`
+- Come ulteriore vantaggio i dati realtime (V, A, W, leack), non usabili con le automazioni Tuya/Smartlife, ora sono utilizzabili come condizioni nelle REGOLE IoTwebUI! Esempio:  `GET("Main AC","phase_a_decoded").W`
 
 - I dati possono essere esportati: la richiesta REST `device/Main AC/phase_a_decoded` ha come risultato:
 ```
@@ -257,4 +257,4 @@ Le modifiche effettuate sono addittive: non alterano i dati esistenti.
               }}
 ```
 
-_I vari quirk dei device Tuya richiedo a volte interventi mirati: l'obiettivo nell'implementare IoTwebUI è stato quello di rendere più semplici possibili queste customizzazioni._
+_I vari quirk dei device Tuya richiedono a volte interventi mirati: l'obiettivo nell'implementare IoTwebUI è stato quello di rendere più semplici possibili queste customizzazioni._
