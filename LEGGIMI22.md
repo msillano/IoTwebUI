@@ -455,16 +455,15 @@ E' un array di array contenenti le singole misure (oggetti).
 <hr style="height:2px;border-width:0;color:gray;background-color:gray">
 
 ### REGOLE - sintassi
-Il particolare ambiente in cui sono valutate le REGOLE comporta qualche limite alla sintassi JavaScript (js) standard:
+Le 'REGOLE' sono codificate in `JavaScript`. Il particolare ambiente in cui sono valutate le REGOLE comporta qualche limite alla sintassi JavaScript (js) standard, come veremo in queste note. Le REGOLE sono esegute ciclicamente, dopo ogni pollig di dati dal Cloud Tuya, quindi ogni `TuyaInterval` (vedi `config.js`). Talora si hanno delle esecuzione extra, per esempio in occasione di attivazioni per nome delle REGOLE.
 
-- Le REGOLE sono esegute ciclicamente, dopo ogni pollig di dati dal Cloud Tuya, quindi ogni `TuyaInterval` (vedi config.js). Talora si hanno delle esecuzione extra, per esempio in occasione di attivazioni per nome delle REGOLE.
 - **importante**: il codice è eseguito una riga alla volta, non è possibile scrivere blocchi js che occuppino più righe!  Per contenere la lunghezza delle righe, usare delle variabili volatili intermedie (vedi esempi).
 - Definire le variabili volatili (valide per un solo run delle REGOLE) sempre con la sintassi: **var** `_tizio` **=**... , poi possono essere usate liberamente.
 - E' anche possibile definire più variabili contemporaneamente, Esempio `var _var1, _var2 = 0;`: sia `_var1` che `_var2` sono inizializzate a 0.
 - Per definire variabili permanenti (valide per tutti i run) usare le MACRO: VSET(name, value) e VGET(name).
 - Usare sempre un underscore **"_"** come primo carattere nel _nome delle variabili_: si evitano così interferenze con altre variabili del programma. Non usare caratteri 'strani' nei nomi delle variabili: meglio limitarsi a [A..Za..z0..9] e '_'.
 - Il 'punto e virgola' **";"** a fine riga è opzionale, ma consiglio vivamente di usarlo sempre.
-- JavaScript è 'case sensitive', cioè distingue tra Maiuscole e minuscole, quindi attenzione a scrivere le variabili sempre nello stesso modo (consiglio tutte minuscole, oppure la tecnica 'camel' per i nomi compositi: **`_variabilePocoUsata`**) per distinguerle a colpo d'occhio dalle MACRO (sempre MAIUSCOLE).
+- JavaScript è un linguaggio 'case sensitive', cioè distingue tra MAIUSCOLE e minuscole, quindi attenzione a scrivere le variabili sempre nello stesso modo (consiglio tutte minuscole, oppure la tecnica 'camel' per i nomi compositi: **`_variabilePocoUsata`**) per distinguerle a colpo d'occhio dalle MACRO (sempre MAIUSCOLE).
 - _Valori predefiniti:_ **`true`** (vero) e **`false`** (falso) per le condizioni; le costanti numeriche sono con il punto, all'inglese (**`3.14`**). Tutte le stringhe vogliono gli apici (**`"oggi "`** oppure **`'domani '`**). Un apice può essere inserito in una stringa se si usa l'altro tipo di apice per tutta la stringa. Esempio: `"All'alba "` OK , `'Disse: "sono stanco"'` OK, ma NON `'All'alba'` !.
 - Usare **//** per i commenti, continuano fino a fine riga
 - Le operazioni js più utili sono quelle aritmetiche (**+, -, *, /**), quelle logiche per le condizioni: (**&&** -and, **||** -or, **!** -negazione) e le operazioni di confronto ( **&gt;**, **==**, **!=**, **&lt;**, **&gt;=**, **&lt;=**); la concatenazione delle stringhe è fatta semplicemente con il **+** ("ore " **+** "10:30").
