@@ -143,19 +143,8 @@ Alcune piccole icone forniscono ulteriori informazioni all'utente. Esempi (vedi 
        - `id`:  `device.id`, richiesto da alcuni HUB (e.g. TuyaDAEMON, Homebridge, HA, etc..) per accedere al Cloud.
        - `key`: `device.local_key`, richiesto da alcuni HUB che usano MQTT localmente.
          
-### tap-to_run Tuya
-
- I 'tap-to-run'( 'scene' che iniziano con 'Esegui') sono presentati suddivisi per 'home' nella apposita pagina (max 100) , e poi in ordine alfabetico, come una serie di bottoni.
- I nomi dei 'tap-to-run' possono avere i seguenti vincoli:
-  - Limite di 3 parole se usati con i comandi vocali di IoTwebUI.
-  - Utilizare prefissi per raggruppare in IoTwebUI i comandi correlati.
-  - Essere facili da ricordare e da riconosere (se si usano i comandi vocali).<br>
-  
- Un pad è dedicato alle 'user RULE' (REGOLE) identificate con un nome: sono trattate come i 'tap-to-run': possono essere usate negli Allarmi, oppure attivate con bottoni o tramite comando vocale, oppure lanciate da un'altra REGOLA.<br>
-_Naturalmente 'REGOLE' e 'tap-to-run' devono avere nomi unici per poter essere identificati._
 
 ### Logging ed esportazione dati
-
 E' possibile esportare su un file alcuni dati: l'utente deve specificare solo `device` e `status` (proprietà) per identificare i dati che interessano e questi sono salvati ad intervalli regolari (minimo 1 minuto) in un buffer interno (max 5000 records - pari a 80h @1 rec/min), esportato poi su file automaticamente o su comando utente.<br>
 L'utente può scegliere in configurazione tra due formati: `CSV` (indicato, per esempio, per DB e spreadsheet tipo Excel) oppure `JSON` (per elaborazioni più complesse con programmi ad hoc) con pochissimi interventi di editing sui file (vedi [oltre i formati](#formato-csv)).
 <TABLE width = "100%" >
@@ -219,6 +208,17 @@ In modo ESPERTO cliccando su un device si apre un dialogo che nella parte inferi
     <li>  <b> esporta </b>- apre pop-up per vedere le definizioni di tutti Allarmi attuali. <br>
         <i> Gli 'Allarmi' permanenti sono nel file `config.js`: possono essere editati direttamente oppure copiati da questo pop-up.</i>
     <li>  <b> cancella </b>- chiude il dialogo.</ul>
+
+### tap-to_run Tuya
+ I 'tap-to-run'( 'scene' che iniziano con 'Esegui') sono presentati suddivisi per 'home' nella apposita pagina (max 100) , e poi in ordine alfabetico, come una serie di bottoni.
+ I nomi dei 'tap-to-run' possono avere i seguenti vincoli:
+  - Limite di 3 parole se usati con i comandi vocali di IoTwebUI.
+  - Utilizare prefissi per raggruppare in IoTwebUI i comandi correlati.
+  - Essere facili da ricordare e da riconosere (se si usano i comandi vocali).<br>
+  
+ Un pad è dedicato alle 'user RULE' (REGOLE) identificate con un nome: sono trattate come i 'tap-to-run': possono essere usate negli Allarmi, oppure attivate con bottoni o tramite comando vocale, oppure lanciate da un'altra REGOLA.<br>
+_Naturalmente 'REGOLE' e 'tap-to-run' devono avere nomi unici per poter essere identificati._
+    
  
 ### REGOLE 
   In modo ESPERTO il menu presenta l'opzione "nuove REGOLE" che apre una pagina dedicata alla [gestione delle RULE](#regole---sintassi): 
@@ -289,15 +289,6 @@ _Queste due strade permettono finalmente l'integrazione di Tuya in progetti vert
 
 <hr style="height:2px;border-width:0;color:gray;background-color:gray">
 
-**NOTE sulla sicurezza**<br>
-
-**_Per garantire la massima sicurezza, IoTwebUI opera esclusivamente in modalità di sola lettura, senza apportare alcuna modifica ai tuoi dati su Tuya Cloud._** <br>
-
-_**Questa APP è totalmente aperta, priva di ogni protezione, e contiene nei file le vostre credenziali in chiaro!**_ <br>
-_NON rendetela accessibile dall'esterno o da terzi, altrimenti tutti i vostri dati, credenziali Tuya incluse, sono esposti!_
-
-<hr>
-
 ## Versioni
 - 2.2  Aggiunto server REST ed Internazionalizzazione (IT, EN) per interfaccia utente e modulo speech.
  
@@ -331,6 +322,17 @@ _NON rendetela accessibile dall'esterno o da terzi, altrimenti tutti i vostri da
 - 1.1  Correzione bugs
 
 - 1.0  Versione iniziale
+
+  <hr>
+  
+### NOTE sulla sicurezza
+
+**_Per garantire la massima sicurezza, IoTwebUI opera esclusivamente in modalità di sola lettura, senza apportare alcuna modifica ai tuoi dati su Tuya Cloud._** <br>
+
+_**Questa APP è totalmente aperta, priva di ogni protezione, e contiene nei file le vostre credenziali in chiaro!**_ <br>
+_NON rendetela accessibile dall'esterno o da terzi, altrimenti tutti i vostri dati, credenziali Tuya incluse, sono esposti!_
+
+<hr>
 
 ## Installazione
 
@@ -406,6 +408,7 @@ Anche l'icona speciale che indica un'alert è customizzabile: vedi `alertIcon` i
 Direi che per nuovi comandi vocali, la strada migliore è fare una proposta di implementazione nelle ['issue'](https://github.com/msillano/IoTwebUI/issues), e, in base al consenso ed alla fattibibilità, potrebbe essere implementata nella release successiva.
   
 Queste customizzazioni NON sono necessarie, ma redono più utile e gradevole l'uso di TuyaUIweb.
+
 <hr>
 
 ### formato CSV
