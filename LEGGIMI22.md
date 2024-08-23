@@ -6,10 +6,10 @@
 _Cosa puoi fare?_<br>
 👀 Controlla tutto: Interfaccia intuitiva e personalizzabile, dati sempre a portata di mano, visualizzazione flessibile.<br>
 🔬 Esportazione dati: Salva le serie storiche per le tue analisi, nel formato più utile<br>
-⚡️ Automazioni potenti: Crea automazioni complesse con tap-to-run e RULE, impossibili con SmartLife!<br>
+⚡️ Automazioni potenti: Crea automazioni complesse con tap-to-run e REGOLE, impossibili con SmartLife!<br>
 ⏱️ Alert personalizzati: Monitora ogni aspetto della tua domotica e ricevi avvisi realtime, anche vocali.<br>
-🎙  Comandi vocali: integrati con tap-to-run e RULE, in un'unica APP<br>
-👌 Integrazione perfetta: Combina device, proprietà, voce, RULE e Tuya tap-to-run per un'automazione fluida, completa ed affidabile. <br>
+🎙  Comandi vocali: integrati con tap-to-run e REGOLE, in un'unica APP<br>
+👌 Integrazione perfetta: Combina device, proprietà, voce, REGOLE e Tuya tap-to-run per un'automazione fluida, completa ed affidabile. <br>
 
 **_Nuovo, versione 2.2_**
 * _Interfaccia REST_: webservice per il semplice collegamento con applicazioni od interfacce custom (documento [LEGGIMI-REST22](https://github.com/msillano/IoTwebUI/blob/main/RESTserver/LEGGIMI-REST22.md)).<br>
@@ -401,6 +401,7 @@ Anche l'icona speciale che indica un'alert è customizzabile: vedi `alertIcon` i
 
 - Per VoiceRecognition, nel file "speech0X.X.js" è semplice modificare le parole della grammatica proposta: esempio sostituire 'vai' con 'raggiungi'. L'obiettivo deve essere sempre quello di migliorare la comprensione dei comandi.
 - L'adattamento del riconoscimento vocale ad altre lingue è complesso, e richiede profonda competenza della lingua sia nella grammatica che nel vocabolario.  Mi affido alla collaborazione di utenti volenterosi. Da parte mia  completerò l'intornazionalizzazione delle varie pagine dell'APP asap (ver. 2.2).
+  
 - Un po' più complesso è aggiungere nuovi comandi vocali, non tanto per la definizione della grammatica (il codice attuale  può servire da esempio) quanto l'implementazione delle azioni, che spesso dipendono dal codice esitente.<br>
 Direi che per nuovi comandi vocali, la strada migliore è fare una proposta di implementazione nelle ['issue'](https://github.com/msillano/IoTwebUI/issues), e, in base al consenso ed alla fattibibilità, potrebbe essere implementata nella release successiva.
   
@@ -440,7 +441,7 @@ Notare che tutti i dati identificativi sono aggiunti ad ogni misura, ottenendo u
 L'operazioni da fare è la seguente (in un editor ASCII, ad esempio Notepad++):
 1) Aggiungere una coppia di parentesi quadre '[]' per racchiudere tutto il contenuto.
    
-Il risultato JSON corretto è il seguente, utilizzabile con parser JSON per ricreare gli oggetti:
+Il risultato JSON corretto è il seguente, utilizzabile con parser JSON (e.g. Notepad++ + JSON Viewer) per ricreare gli oggetti:
 ```
 [
 [{"home":"ROMA","device":"TF_frigo","status":"va_temperature","result":70,"day":"2024-05-17","time":"19:37:51"},
@@ -453,12 +454,12 @@ E' un array di array contenenti le singole misure (oggetti).
 
 <hr style="height:2px;border-width:0;color:gray;background-color:gray">
 
-### RULE - sintassi
-Il particolare ambiente in cui sono valutate le RULE comporta qualche limite alla sintassi JavaScript (js) standard:
+### REGOLE - sintassi
+Il particolare ambiente in cui sono valutate le REGOLE comporta qualche limite alla sintassi JavaScript (js) standard:
 
-- Le RULE sono esegute ciclicamente, dopo ogni pollig di dati dal Cloud Tuya, quindi ogni `TuyaInterval` (vedi config.js). Talora si hanno delle esecuzione extra, per esempio in occasione di attivazioni per nome delle RULE.
+- Le REGOLE sono esegute ciclicamente, dopo ogni pollig di dati dal Cloud Tuya, quindi ogni `TuyaInterval` (vedi config.js). Talora si hanno delle esecuzione extra, per esempio in occasione di attivazioni per nome delle REGOLE.
 - **importante**: il codice è eseguito una riga alla volta, non è possibile scrivere blocchi js che occuppino più righe!  Per contenere la lunghezza delle righe, usare delle variabili volatili intermedie (vedi esempi).
-- Definire le variabili volatili (valide per un solo run delle RULE) sempre con la sintassi: **var** `_tizio` **=**... , poi possono essere usate liberamente.
+- Definire le variabili volatili (valide per un solo run delle REGOLE) sempre con la sintassi: **var** `_tizio` **=**... , poi possono essere usate liberamente.
 - E' anche possibile definire più variabili contemporaneamente, Esempio `var _var1, _var2 = 0;`: sia `_var1` che `_var2` sono inizializzate a 0.
 - Per definire variabili permanenti (valide per tutti i run) usare le MACRO: VSET(name, value) e VGET(name).
 - Usare sempre un underscore **"_"** come primo carattere nel _nome delle variabili_: si evitano così interferenze con altre variabili del programma. Non usare caratteri 'strani' nei nomi delle variabili: meglio limitarsi a [A..Za..z0..9] e '_'.
@@ -481,20 +482,20 @@ Il particolare ambiente in cui sono valutate le RULE comporta qualche limite all
  - Come già detto, JavaScript è elastico a proposito delle conversioni dei valori: numeri in formato 'stringa' (cioè "3.14" invece di 3.14 o Math.PI) sono convertiti automaticamente in numeri in caso di operazioni aritmetiche. Ancora, numeri e stringhe sono convertiti in valori logici quando serve (ad esempio se usati come condizione in un `if()` ). Regole: zero (0) vale `false`, qualsiasi altro numero: `true`. Una stringa vuota ("") o `null`, o `undefined` valgono `false`, qualunque altra stringa vale `true`. Esempi: `if ("caio")...` è true.  `var _test = null; if(_test)...` è false. (nota. Meglio non abusare di questi automatismi del linguaggio, è preferibile scrivere sempre le condizioni estese, più chiare: `if (_test != null)`...)
  - importante è anche l'uso delle parentesi, "()", sempre a coppie. Parentesi sono obbligatorie dopo ogni MACRO - nota, anche se non ci sino parametri, e.g. `BEEP()` - e dopo un `if()`, per racchiudere la condizione. Comunque usatele liberamente per raggruppare i risultati intermedi nelle espressioni e.g. `if((_a > 10) && (_b/2 == 0))...`
 -  Molte MACRO devono conservare lo stato tra un run ed il successivo, (e.g AVG(), MAX() etc...) e sono individuate con (*). 
-- Il costrutto js più utile nelle RULE è l'**if()** (esecuzione condizionale), che assume varie forme:<br>
+- Il costrutto js più utile nelle REGOLE è l'**if()** (esecuzione condizionale), che assume varie forme:<br>
    **if(** `condizione` **)** `azione;`    // `azione` _è eseguita solo se `condizione` è vera_ <br>
    **if(** `condizione` **)** `azione1`**,** `azione2;` // _due (o più) azioni, separate da_ ',' _virgola._<br>
    **if(** `condiz1 && condiz2 && ...` **)** `azione;` //  _AND: 'tutte',_  `condiz1` _e_ `condiz2` _e_ ... _devono essere vere contemporaneamente._<br>
    **if(** `condiz1 || condiz2 || ...` **)** `azione;` //  _OR: 'almeno una',_  `condiz1` _oppure_ `condiz2`, _oppure_ ... _deve essere vera._<br>
    **if (** `condizione` **)** `azione1` **else** `azione2;`  // _esegue `azione1` (se vero) oppure `azione2` (se falso)._ <br>
-nota: contrariamente alle automazioni Tuya, Google, Alexa,  che nelle condizioni permettono o solo AND (tutte) o solo OR (basta una) (e poi cercano di mitigare questo limite aggiungendo l'extra condizione 'ambito' - e.g. Tuya) nelle RULE si possono avere condizioni più complesse (miste) usando con cura le parentesi per indicare l'ordine di calcolo:
+nota: contrariamente alle automazioni Tuya, Google, Alexa,  che nelle condizioni permettono o solo AND (tutte) o solo OR (basta una) (e poi cercano di mitigare questo limite aggiungendo l'extra condizione 'ambito' - e.g. Tuya) nelle REGOLE si possono avere condizioni più complesse (miste) usando con cura le parentesi per indicare l'ordine di calcolo:
 esempio:  if ( (condiz1 || condiz2) && (condiz3 || condiz4) )  - a parole: "deve essere vera almeno una tra (condiz1, condiz2) ED anche almeno una tra (condiz3, condiz4)".
 
  - Se una `condizione` è vera a lungo (livello), un `if()` sarà eseguito più volte, ad ogni ciclo. Per evitare questo le macro TRIGGER sono vere per un solo ciclo, la PRIMA volta che la condizione è vera, e poi sono false.
 
  - nota sui messaggi di errore: Non sempre i messaggi di errore identificano la VERA causa del problema. Esempio, una variabile mal scritta è trovata subito come 'non definita', ma una parentesi non chiusa, può portare a messaggi poco chiari righe dopo, quando il compilatore trova un problema! Quindi attenzione! 
 
-- **importante**: per come sono implementate, le MACRO che usano memoria (\*) devono essere eseguite ad ogni run: quindi NON possono essere presenti nella parte `azione` di un **if()**. Per ragioni analoghe non sono ammessi **if  nidificati** (un **if()** nella zona azione di un altro **if()**: non potrebbe usare le MACRO (*)). Sono vincoli che non pongono, però, serie limitazioni.
+- **importante**: per come sono implementate, le MACRO che usano memoria (\*) devono essere eseguite ad ogni run: quindi NON possono essere presenti nella parte `azione` di un **if()**. Per ragioni analoghe non sono ammessi **if  nidificati** (un **if()** nella zona azione di un altro **if()**: non potrebbe usare le MACRO (\*)). Sono vincoli che non pongono, però, serie limitazioni.
   <hr>
   
 **ESEMPIO** - Un caso concreto di controllo del riscaldamento <br>
@@ -504,14 +505,14 @@ Vorrei implementare con Tuya una strategia di questo tipo: _se la temperatura am
    <code>`Se  (( Ttarget - Tambiente ) > tot) => clima.warm( Ttarget )` </code>
  
 _Questa strategia NON è realizzabile con le 'automazioni' di Smartlife_, nè con Alexa o Google o HomeKit..., per diversi motivi:
-   - nelle automazioni non si possono usare operazioni aritmetiche,
-   - i confronti, nelle automazioni, si possono fare solo con valori costanti,
-   - non esistono tap-to-run parametrici od almeno con nomi dinamici.
+   - nelle automazioni non si possono usare operazioni aritmetiche: `( Ttarget - Tambiente )`
+   - i confronti, nelle automazioni, si possono fare solo con valori predefiniti costanti: `( Tambiente < Ttarget - tot )`
+   - non esistono tap-to-run parametrici od almeno con nomi dinamici:  `clima.warm( Ttarget )`.
  
-Chiedo troppo? Un sistema 'open' dovrebbe permettere queste automazioni. O no? Infatti con **IoTwebUI** e le RULE _si può fare!_ <br>
+Chiedo troppo? Un sistema 'open' dovrebbe permettere queste automazioni. O no? Infatti con **IoTwebUI** e le REGOLE _si può fare!_ <br>
 Vediamo come l'ho realizzata. Alcune precondizioni: la mia termovalvola ('Termo letto')  ha le proprietà 'temp_set' e 'temp_current'.
-Per semplicità ho utilizzato come temperatura Target solo i valori 16, 20, 21 °C: in questo modo mi occorrono solo 3 tap-to-run chiamati Tletto16, Tletto20 e Tletto21, per accendere ed impostare il climatizzatore alle temperature volute.
-Ecco le RULE necessarie, dove uso alcune variabili intermedie per ridurre la complessità. La macro ISTRIGGERH() è vera una sola volta, quando la condizione passa da falso a vero (vedi oltre), ROUND() arrotonda un numero e lo trasforma in testo, per formare le stringhe "TLetto16","TLetto20",... cioè il nome del 'tap-to-run', che così ora dipende da Ttarget. L'accensione è anche memorizzata nel 'registro degli Alert'.
+Per ovviare alla mancanza di 'tap-to-run' parametrici, cioè con un valore definito dall'esterno al runtime, uso 'tap-to-run' con il nome dinamico: per semplicità ho utilizzato come temperatura Target solo i valori 16, 20, 21 °C: in questo modo mi occorrono solo 3 tap-to-run chiamati Tletto16, Tletto20 e Tletto21, per accendere ed impostare il climatizzatore alle temperature volute, in altre parole, il parametro è nel nome!
+Ecco le REGOLE necessarie, dove uso alcune variabili intermedie per ridurre la complessità. La macro ISTRIGGERH() è vera una sola volta, quando la condizione passa da falso a vero (vedi oltre), ROUND() arrotonda un numero e lo trasforma in testo, per formare le stringhe "TLetto16","TLetto20",... cioè il nome del 'tap-to-run', che così ora dipende da Ttarget. L'accensione è anche memorizzata nel 'registro degli Alert'.
 ```
 var _tot = 2.3;                                        // da tarare il prossimo inverno
 var _Ttarget =  GET("Termo letto", "temp_set") ;       // varia a seconda dell'orario
@@ -522,14 +523,14 @@ if (_nowClima) SCENA("TLetto" + ROUND( _Ttarget, 0) ), ALERTLOG("RULE Tletto", "
 nota: i nomi dei tap-to-run come 'TLetto16' sono impossibili da usare con il riconoscimento vocale, ma servono così per poterli gestire dinamicamente. Se utile, basta creare dei 'tap-to-run' con nomi semplici come alias, tipo 'riscaldamento camera letto', che si limitano a utilizzare quelli con i nomi irriconoscibili.
 
 _Tutto sommato semplice, nevvero? Secondo i progettisti di APP per domotica (tutti: si copiano l'un l'altro le prestazioni) noi utenti siamo solo in grado di gestire " Se ....  Poi ....". Che mancanza di fantasia e di fiducia!._ 
-_Che poi, avere a disposizione strumenti sofisticati, non vuol dire essere obbligati ad usarli! Se non si devono usare, meglio. Ma quando servono le RULE sono lì, pronte a risolvere i nostri problemi._
+_Che poi, avere a disposizione strumenti sofisticati, non vuol dire essere obbligati ad usarli! Se non si devono usare, meglio. Ma quando servono le REGOLE sono lì, pronte a risolvere i nostri problemi._
 
 <br>
 
-#### RULE - Primi passi
-Volete fare delle prove ma non sapete da dove cominciare? Ecco tre RULE che non richiedono device, ma sono utili per fare le prime prove.
-1) copiare le seguenti 3 RULE nell'area di edit delle RULE (modo EXPERT), e poi premere TEST.
-2) Nella pagina tap-to-run, tab 'user RULE' trovate tre nuovi bottoni: 'spegni luce'. 'Pippo' e 'chiamata Pippo': potete verificare il funzionamento delle tre RULE.
+#### REGOLE - Primi passi
+Volete fare delle prove ma non sapete da dove cominciare? Ecco tre REGOLE che non richiedono device, ma sono utili per fare le prime prove.
+1) copiare le seguenti 3 REGOLE nell'area di edit delle RULE (modo ESPERTO), e poi premere TEST.
+2) Nella pagina tap-to-run, tab 'user RULE' trovate tre nuovi bottoni: 'spegni luce'. 'Pippo' e 'chiamata Pippo': potete verificare il funzionamento delle tre REGOLE.
 3) Attivate il 'comando vocale', e provate _"Ehi Tuya, esegui Pippo"_,  _"Ehi Tuya, esegui spegni la luce"_ _"Ehi Tuya, esegui una chiamata per Pippo"_...
 ```
    if (TRIGBYNAME('spegni luce')) VOICE ("Fatto: 'spegni la luce'");
@@ -537,14 +538,16 @@ Volete fare delle prove ma non sapete da dove cominciare? Ecco tre RULE che non 
    if (TRIGBYNAME("chiamata Pippo")) TRIGRULE("Pippo"), VOICE("chiamo Pippo");
 ```
 
-### RULE - MACRO
+### REGOLE - MACRO
 le MACRO rispondono a varie esigenze:
- 1. Fornire accesso alle risorse e funzionalità di IoTwebUI, per poterle usare nelle RULE
+ 1. Fornire accesso alle risorse e funzionalità di **IoTwebUI**, per poterle usare nelle REGOLE
  2. L'ambiente (run ripetuti ad intervalli regolari) e i suoi limiti (codice in una sola riga) rendono più ardua la scrittura di funzioni complesse: le MACRO semplificano il compito dell'utente. 
  3. Alcune operazioni richiedono la memorizzazione di informazioni tra un run ed il successivo, e le MACRO (*) risolvono questo problema, senza ricorrere esplicitamente a VSET() o VGET().
  4. Con gli eventi è importante la distinzione tra un **livello** - lo stesso valore (e.g. true) uguale per più run, generato, per esempio, da un confronto - e un **TRIGGER** - vero per un solo run, quando inizia o finisce un evento -: _Le macro con 'TRIG' nel nome generano TRIGGER, le altre generano LIVELLI_.<br>
   
   _nota: questa selezione iniziale di MACRO è naturalmente condizionata dalle mie abitudini ed interessi: in questo settore il contributo di altri utenti è prezioso._
+
+_nota: per identificare un device potete usare indifferentemente il nome o l'ID (non mi piace imporre limiti non necessari!). Usare l'ID è un poco più complesso (potete trovarlo nei tooltip di IoTwebUI in modo ESPERTO) ma offre il vantaggio che potete rinominare il device in ogni momento!_
 
 Possiamo dividere le MACRO in due gruppi: il primo che gestisce le interazioni con le risorse disponibili in **IoTwebUI** (una sorta di API interna). Il secondo gruppo di MACRO sono invece più generali, modificando in qualche modo utile i dati in input o fornendo utili output.<br>
 _nota: obiettivo delle MACRO non è quello di duplicare le funzionalità delle automazioni Tuya (anche se a volte c'è sovrapposizione), quanto quello di fornire strumenti più avanzati di calcolo, per ottenere 'automazioni' fin'ora impossibili.   L'uso di device virtuali e di tap-to-run permette di suddividere i compiti tra scene Tuya (automazioni e tap-to-run) e RULE nel modo più efficiente._ <br>
@@ -563,7 +566,7 @@ Ovviamente si possono sempre aggiungere nuove MACRO, o come customizzazione (se 
 
 <dt>DATALOG(name, value) (*)</dt>
 <dd>Aggiunge un nuovo 'value' al file di log dati, con il 'name' indicato. Utile per salvare risultati di elaborazioni (e.g. medie). Questa MACRO 'prenota' il salvataggio di un valore, ma il salvataggio avviene con i tempi e i modi impostati in config per il file log dati.<br>
-<i>nota: il salvataggio dati durante un test inizia subito, ma, nel formato CSV, la prima riga con i nomi è già stata creata e non è aggiornata. Eventualmente salvare il file di log per avere un nuovo file aggiornato. Questo solo in fase di test: con le RULE  in </i>uso <i> dall'avvio non c'è problema.</i><br> 
+<i>nota: il salvataggio dati durante un test inizia subito, ma, nel formato CSV, la prima riga con i nomi è già stata creata e non è aggiornata. Eventualmente salvare il file di log per avere un nuovo file aggiornato. Questo solo in fase di test: con le REGOLE  in</i> uso <i>dall'avvio non c'è problema.</i><br> 
  <i>Esempio:</i> <code>DATALOG("Temperatura Frigo", GET("TF_frigo","va_temperature")/10);</code>
 </dd>
 
@@ -581,17 +584,23 @@ Ovviamente si possono sempre aggiungere nuove MACRO, o come customizzazione (se 
 <i>Esempio:</i> <code>if(ISTRIGGERH(GET("TF_frigo","va_temperature") > 100)) POP("Frigo", "TEMPERATURA oltre 10°C" ); </code> </dd>
 
 <dt>XURL(url)</dt>
+<dt>XURL(url, target)</dt>
 <dd>Apre un URL nel browser.<br>
-<i>Esempio:</i>  <code>XURL("https://www.google.com/"); </code> </dd>
+`target`: `_self`, `_blank` (default), `_parent`, `_top` (see `window:open` ) <br>
+ nota: _self, _parent, _top possono terminare IoTwebUI.
+<i>Esempio:</i>  <code>if (TRIGBYNAME("client REST")) XURL("rest02.2/client.html")</code> <br>
+Usando REST, questa MACRO può essere usata per attivare specifiche pagine WEB, come UI tematiche. <br>
+<i>Esempio:</i>  <code>if (GET("ALLARME", 'status') == 'Allarme') XURL("mypages/alarmmap.html")</code>
+</dd>
 
 <dt>REST(url)</dt>
-<dd> Per servizi web API REST (GET) che tornano come risposta un testo semplice.<br>
+<dd> Client REST, per servizi web API REST (GET) o device che tornano come risposta un testo semplice.<br>
  <i>Esempio:</i>  <code>
   // see https://www.ipify.org/ <br>
  if(TRIGBYNAME("my IP"))  POP( "My IP", REST("https://api.ipify.org/?format=txt"));   </code> </dd>
  
 <dt>RESTJSON(url)</dt>
-<dd> Per servizi web API REST (GET), che forniscono la risposta in formato JSON (la maggior parte). Questa funzione restituisce, per semplificare l'uso, direttamente un oggetto.<br>
+<dd> Client REST, per servizi web API REST (GET) o device che forniscono la risposta in formato JSON (la maggior parte). Questa funzione restituisce, per semplificare l'uso, direttamente un oggetto.<br>
  <i>Esempio:</i>  <code>
   // see https://open-meteo.com/<br>
  var _meteo, _urlm ="https://api.open-meteo.com/v1/forecast?latitude=41.9030&longitude=12.4663&current=temperature_2m"; <br>
