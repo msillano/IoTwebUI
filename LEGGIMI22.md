@@ -1,5 +1,28 @@
 # IoTwebUI 2.2: Tuya WEBAPP open extension (in sviluppo) #
-[english version](https://github.com/msillano/IoTwebUI/blob/main/README22.md)
+[english version](https://github.com/msillano/IoTwebUI/blob/main/README22.md)<br>
+[Note di implementazione ed uso]()
+   * [intefaccia utente]()
+   * ['Tap-to-run' Tuya]()
+   * [Logging ed esportazione dati]()
+   * [Allarmi e avvisi]()
+   * [REGOLE]()
+   * [Voice recognition]()
+   * [REST]()
+     
+[Versioni]()<br>
+[Installazione]()<br>
+[Configurazione]()<br>
+[Intenazionalizzazione]()<br>
+[Customizzazioni]()<br>
+[Formato CSV]()<br>
+[Formato JSON]()<br>
+[REGOLE: Sintassi]()
+   *  [Primi passi]()
+   *  [MACRO]()
+   *  [MACRO per risorse]()
+   *  [MACRO Funzionali]()
+
+
 
 **_Stanco delle limitazioni di SmartLife?  IoTwebUI 2.2 è arrivato per dare nuova linfa alla tua casa intelligente, con un arsenale di funzionalità che ti faranno dire "finalmente!". <br> La filosofia 'open' è nel DNA di questa APP, che esalta la customizzazione ed il controllo da parte dell'utente._** 
 
