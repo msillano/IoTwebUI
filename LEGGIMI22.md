@@ -115,7 +115,7 @@ _In sintesi, un'unica APP offre un livello di affidabilità superiore grazie all
   
 - Per lo stesso motivo non è possibile aggiornare dall'APP i file di configurazione. Ho scelto una soluzione di compromesso, che prevede l'intervento dell'utente con un semplice copia-incolla.
 - Sempre per problemi di sicurezza, può venire richiesta ogni volta l'autorizzazione all'uso del microfono: dipende dal browser e dalla configurazione; ma l'uso di `run-me.bat` può evitare l'inconveniente.
-- IoTwebUI accede ai dati del Cloud ESCLUSIVAMENTE in lettura, per evitare qualunque rischio di operazioni errate. Ma questo non limita le funzionalità di IoTwebUI (e di IoTrest e delle applicazioni utente): è possibile infatti effettuare qualsiasi aggiornamento della configurazione dei device in maniera controllata, cioè attraverso un 'tap-to-run'. Con questa strategia si ha la massima libertà in totale sicurezza!
+- **IoTwebUI** accede ai dati del Cloud ESCLUSIVAMENTE in lettura, per evitare qualunque rischio di operazioni errate. Ma questo non limita le funzionalità di **IoTwebUI** (e di IoTrest e delle applicazioni utente): è possibile infatti effettuare qualsiasi aggiornamento della configurazione dei device in _maniera controllata_, cioè attraverso un 'tap-to-run'. Con questa strategia si ha la massima libertà in totale sicurezza!
 - Il funzionamento continua regolarmente anche con la finestra del browser iconizzata.
 - Usare una sola istanza dell'APP, altrimenti si hanno problemi con i token Tuya.
 
@@ -123,8 +123,8 @@ _In sintesi, un'unica APP offre un livello di affidabilità superiore grazie all
 ### Interfaccia utente
 ![](https://github.com/msillano/IoTwebUI/blob/main/pics/tootip20.png?raw=true)
 
-Nei tooltip, che si aprono al passaggio del mouse su un'icona di device, sono presenti tutte le proprietà incluse nello 'status' del device, con i nomi ed i valori usati da Tuya Cloud. Alcuni valori possono essere codificati. <br>
-Alcune piccole icone forniscono ulteriori informazioni all'utente.Esempi (vedi figure sopra):
+Nei tooltip, che si aprono al passaggio del mouse sull'icona di un device, sono presenti tutte le proprietà incluse nello 'status' del device, con i nomi ed i valori usati da Tuya Cloud. Alcuni valori possono essere codificati. <br>
+Alcune piccole icone forniscono ulteriori informazioni all'utente. Esempi (vedi figure sopra):
    - `tuya_bridge.switch_1` è sotto osservazione per un 'Allarme'
    - `tuya_bridge.switch_inching` è un esempio di valore codificato ('`AAAC`'). Decodificato è un oggetto:
       ````
@@ -140,18 +140,18 @@ Alcune piccole icone forniscono ulteriori informazioni all'utente.Esempi (vedi f
    - Il tooltip `termo studio` è customizzato,  per presentare le temperature con i corretti decimali e unità.
    - In modo EXPERT sono aggiunti nei tooltip i seguenti valori:
        - `is-a`:  nome del 'tipo' Tuya del device (in codice corrispondente è `device.category`). In totale circa 600 tipi.
-       - `id`:  `device.id`, richiesto da alcuni HUB (e.g. TuyaDAEMON, Homebridge, HA, etc..).
-       - `key`: `device.local_key`, richiesto da alcuni HUB
+       - `id`:  `device.id`, richiesto da alcuni HUB (e.g. TuyaDAEMON, Homebridge, HA, etc..) per accedere al Cloud.
+       - `key`: `device.local_key`, richiesto da alcuni HUB che usano MQTT localmente.
          
 ### tap-to_run Tuya
 
- I 'tap-to-run'( 'scene' che iniziano con 'Esegui') sono presentati per 'home' (max 100) nella apposita pagina, e poi in ordine alfabetico, come una serie di bottoni.
+ I 'tap-to-run'( 'scene' che iniziano con 'Esegui') sono presentati suddivisi per 'home' nella apposita pagina (max 100) , e poi in ordine alfabetico, come una serie di bottoni.
  I nomi dei 'tap-to-run' possono avere i seguenti vincoli:
   - Limite di 3 parole se usati con i comandi vocali di IoTwebUI.
   - Utilizare prefissi per raggruppare in IoTwebUI i comandi correlati.
   - Essere facili da ricordare e da riconosere (se si usano i comandi vocali).<br>
   
- Un pad è dedicato alle 'user RULE' identificate con un nome: sono trattate come i 'tap-to-run': possono essere usate negli Allarmi, oppure attivate con bottoni o tramite comando vocale, oppure lanciate da un'altra REGOLA.<br>
+ Un pad è dedicato alle 'user RULE' (REGOLE) identificate con un nome: sono trattate come i 'tap-to-run': possono essere usate negli Allarmi, oppure attivate con bottoni o tramite comando vocale, oppure lanciate da un'altra REGOLA.<br>
 _Naturalmente 'REGOLE' e 'tap-to-run' devono avere nomi unici per poter essere identificati._
 
 ### Logging ed esportazione dati
