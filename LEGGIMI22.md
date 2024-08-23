@@ -517,7 +517,7 @@ Ecco le REGOLE necessarie, dove uso alcune variabili intermedie per ridurre la c
 var _tot = 2.3;                                        // da tarare il prossimo inverno
 var _Ttarget =  GET("Termo letto", "temp_set") ;       // varia a seconda dell'orario
 var _nowClima = ISTRIGGERH( ( _Ttarget -  GET("Termo letto", "temp_current") ) > _tot);           // condizione
-if (_nowClima) SCENA("TLetto" + ROUND( _Ttarget, 0) ), ALERTLOG("RULE Tletto", "acceso clima") ;  // esecuzione
+if (_nowClima) SCENE("TLetto" + ROUND( _Ttarget, 0) ), ALERTLOG("RULE Tletto", "acceso clima") ;  // esecuzione
 ```
 
 nota: i nomi dei tap-to-run come 'TLetto16' sono impossibili da usare con il riconoscimento vocale, ma servono così per poterli gestire dinamicamente. Se utile, basta creare dei 'tap-to-run' con nomi semplici come alias, tipo 'riscaldamento camera letto', che si limitano a utilizzare quelli con i nomi irriconoscibili.
@@ -604,7 +604,7 @@ Usando REST, questa MACRO può essere usata per attivare specifiche pagine WEB, 
  <i>Esempio:</i>  <code>
   // see https://open-meteo.com/<br>
  var _meteo, _urlm ="https://api.open-meteo.com/v1/forecast?latitude=41.9030&longitude=12.4663&current=temperature_2m"; <br>
- if(TRIGBYNAME("meteo")) _meteo = RESTJSON(_urlm), POP("ROMA", "temperatura = " + _meteo .current.temperature_2m );  </code> <br>
+ if(TRIGBYNAME("meteo")) _meteo = RESTJSON(_urlm), POP("ROMA", "temperatura = " + _meteo.current.temperature_2m );  </code> <br>
 <i> nota: questa è la struttura completa dell'oggetto-risposta (<code>_meteo</code>), che si può vedere in console con <code>'console.log(_meteo)'</code>. Si è utilizzata in POP() solo la temperatura ( <code>_meteo.current.temperature_2m </code>): </i> <pre>
 current: 
     interval: 900
@@ -619,7 +619,7 @@ generationtime_ms: 0.01800060272216797
 latitude: 41.9
 longitude: 12.469999
 timezone: "GMT"
-timezone_abbreviation:"GMT"
+timezone_abbreviation: "GMT"
 utc_offset_seconds: 0
 </pre></dd>
 
@@ -647,8 +647,8 @@ Torna true quando deve essere eseguita. <br>
 <dd>Esegue un RULE individuato da un nome. <br>
  nota: Se la definizione TRIGBYNAME(name) precede l'uso di TRIGRULE(name), l'esecuzione non è immediata, ma avviene subito dopo il termine del run attuale delle RULE, in un run EXTRA. <br>                                              
  <i>Esempio:</i> <code>  if (TRIGBYNAME("pippo")) VOICE (" Trovato pippo"); <br>  // RULE 'pippo'
-     if (TRIGBYNAME("chiama pippo")) TRIGRULE("pippo"), VOICE("chiamo pippo")    // RULE 'chiama pippo'
- </code> </dd>
+     if (TRIGBYNAME("chiama pippo")) TRIGRULE("pippo"), VOICE("chiamo pippo")    // RULE 'chiama pippo' 
+</code> </dd>
 </dl>
 <hr>
 
