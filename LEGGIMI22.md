@@ -323,7 +323,7 @@ _Queste due strade permettono finalmente l'integrazione di Tuya in progetti vert
 
 - 1.0  Versione iniziale
 
-  <hr>
+<hr style="height:2px;border-width:0;color:gray;background-color:gray">
   
 ### NOTE sulla sicurezza
 
@@ -332,7 +332,7 @@ _Queste due strade permettono finalmente l'integrazione di Tuya in progetti vert
 _**Questa APP è totalmente aperta, priva di ogni protezione, e contiene nei file le vostre credenziali in chiaro!**_ <br>
 _NON rendetela accessibile dall'esterno o da terzi, altrimenti tutti i vostri dati, credenziali Tuya incluse, sono esposti!_
 
-<hr>
+<hr style="height:2px;border-width:0;color:gray;background-color:gray">
 
 ## Installazione
 
@@ -409,7 +409,7 @@ Direi che per nuovi comandi vocali, la strada migliore è fare una proposta di i
   
 Queste customizzazioni NON sono necessarie, ma redono più utile e gradevole l'uso di TuyaUIweb.
 
-<hr>
+<hr style="height:2px;border-width:0;color:gray;background-color:gray">
 
 ### formato CSV
 
@@ -526,8 +526,6 @@ nota: i nomi dei tap-to-run come 'TLetto16' sono impossibili da usare con il ric
 
 _Tutto sommato semplice, nevvero? Secondo i progettisti di APP per domotica (tutti: si copiano l'un l'altro le prestazioni) noi utenti siamo solo in grado di gestire " Se ....  Poi ....". Che mancanza di fantasia e di fiducia!._ 
 _Che poi, avere a disposizione strumenti sofisticati, non vuol dire essere obbligati ad usarli! Se non si devono usare, meglio. Ma quando servono le REGOLE sono lì, pronte a risolvere i nostri problemi._
-
-<br>
 
 #### REGOLE - Primi passi
 Volete fare delle prove ma non sapete da dove cominciare? Ecco tre REGOLE che non richiedono device, ma sono utili per fare le prime prove.
