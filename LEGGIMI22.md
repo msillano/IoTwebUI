@@ -1,28 +1,5 @@
 # IoTwebUI 2.2: Tuya WEBAPP open extension (in sviluppo) #
 [english version](https://github.com/msillano/IoTwebUI/blob/main/README22.md)<br>
-[Note di implementazione ed uso]()
-   * [intefaccia utente]()
-   * ['Tap-to-run' Tuya]()
-   * [Logging ed esportazione dati]()
-   * [Allarmi e avvisi]()
-   * [REGOLE]()
-   * [Voice recognition]()
-   * [REST]()
-     
-[Versioni]()<br>
-[Installazione]()<br>
-[Configurazione]()<br>
-[Intenazionalizzazione]()<br>
-[Customizzazioni]()<br>
-[Formato CSV]()<br>
-[Formato JSON]()<br>
-[REGOLE: Sintassi]()
-   *  [Primi passi]()
-   *  [MACRO]()
-   *  [MACRO per risorse]()
-   *  [MACRO Funzionali]()
-
-
 
 **_Stanco delle limitazioni di SmartLife?  IoTwebUI 2.2 è arrivato per dare nuova linfa alla tua casa intelligente, con un arsenale di funzionalità che ti faranno dire "finalmente!". <br> La filosofia 'open' è nel DNA di questa APP, che esalta la customizzazione ed il controllo da parte dell'utente._** 
 
@@ -243,8 +220,8 @@ In modo ESPERTO cliccando su un device si apre un dialogo che nella parte inferi
         <i> Gli 'Allarmi' permanenti sono nel file `config.js`: possono essere editati direttamente oppure copiati da questo pop-up.</i>
     <li>  <b> cancella </b>- chiude il dialogo.</ul>
  
-### REGOLE: automazioni no limits.
-  In modo ESPERTO il menu presenta l'opzione "nuove REGOLE" che apre una pagina dedicata alla [gestione delle RULE](#rule---sintassi): 
+### REGOLE 
+  In modo ESPERTO il menu presenta l'opzione "nuove REGOLE" che apre una pagina dedicata alla [gestione delle RULE](#regole---sintassi): 
 <TABLE width = "100%" >
  <TR>
   <TD>
@@ -269,7 +246,7 @@ Si possono gestire due insiemi di RULE: quelle in <i>uso</i>, inizialmente lette
  </TR>
 </TABLE>
 
-### VoiceRecognition: maggiore libertà
+### VoiceRecognition
 
 - La disponibilità di questa funzione dipende dal browser usato.
 - Non è facile raggiungere l'efficienza che si ha con HW specializzato (smart speakers: Google, Alexa), perché il risultato dipende da vari fattori, tra cui qualità del microfono usato, le relative regolazioni, la riduzione dei rumori di fondo, etc... Nelle prove sono passato da oltre il 90% di riconoscimenti ad un pessimo 20%! 
@@ -302,7 +279,7 @@ Si possono gestire due insiemi di RULE: quelle in <i>uso</i>, inizialmente lette
      
 _nota: la richiesta di consenso all'uso del microfono dipende dal browser e dalla configurazione: usando 'run_me.bat' non dovrebbero esserci richieste._
 
-### REST: finestra sul mondo
+### REST: client e server
 In IoTwebUI esistono 2 interfacce REST:
 
 1. _REST client_, implementato come MACRO in due versioni: TXT e JSON, permette di importare dati esterni nelle REGOLE (RULE), da webservice o anche da device di terze parti o device DIY che implementino un'interfaccia REST. Per creare device custom REST vedi [esempio](https://github.com/msillano/tuyaDEAMON-applications/wiki/note-5:-Watchdog-for-IOT#watchdog03-esp01-relay--arduino).
@@ -321,7 +298,7 @@ _NON rendetela accessibile dall'esterno o da terzi, altrimenti tutti i vostri da
 
 <hr>
 
-### Versioni
+## Versioni
 - 2.2  Aggiunto server REST ed Internazionalizzazione (IT, EN) per interfaccia utente e modulo speech.
  
 - 2.1.1 Correzione bugs [ISSUE10](https://github.com/msillano/IoTwebUI/issues/10): Token scaduto. [ISSUE11](https://github.com/msillano/IoTwebUI/issues/11): refuso.
@@ -355,7 +332,7 @@ _NON rendetela accessibile dall'esterno o da terzi, altrimenti tutti i vostri da
 
 - 1.0  Versione iniziale
 
-### Installazione
+## Installazione
 
 1) Scaricare e dezippare il file `IoTwebUI.x.x.zip`  in una dir (con le autorizzazioni richieste dal S.O.).
 2) Eseguire le operazioni di configurazione (vedi oltre).
@@ -371,7 +348,7 @@ Nelle immagini: a sinistra avvio OK (Chrome, CORS disattivato) a destra in caso 
 <div><img src="https://github.com/msillano/IoTwebUI/blob/main/pics/okconsole.png?raw=true" alt="normal start" width="300" />
    <img src="https://github.com/msillano/IoTwebUI/blob/main/pics/CORSerror.png?raw=true" alt="CORS error" width="400" align="right" /></div>
 
-### Configurazione
+## Configurazione
 
 L'app **IoTwebUI** non è per utenti alle prime armi, pertanto è accettabile che la configurazione avvenga direttamente editando un file (`config`.js). _Le solite avvertenze: fare una copia del file prima di ogni modifica, usare un editor UTF8 (io uso Notepad-plusplus), e attenzione a NON ALTERARE niente altro (soprattutto virgole  ','  ed  apici '"' e "`")._
 
@@ -806,7 +783,7 @@ _Questo progetto è un work-in-progress: viene fornito "così com'è", senza gar
 Grazie per l'interesse <br>
 m.s.
 
-### Riconoscimenti
+## Riconoscimenti
 Tutti i marchi riportati appartengono ai legittimi proprietari.
 
 - https://getbootstrap.com/docs/5.3/getting-started/introduction/
