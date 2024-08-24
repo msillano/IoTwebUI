@@ -93,7 +93,8 @@ Un'interfaccia _REST server_ in **IoTwebUI** offre un modo potente, flessibile e
 
 * Singolo punto di controllo: Con un'unica APP, hai un solo punto da monitorare e gestire. Ciò semplifica la risoluzione di problemi e riduce il rischio di conflitti tra diverse applicazioni.
 * Minor dipendenza da terzi: Eliminando la dipendenza da più fornitori, riduci il rischio di interruzioni del servizio causate da problemi esterni, come malfunzionamenti dei server o modifiche alle politiche dei provider.
-* Stabilità a lungo termine: Un'unica APP offre una soluzione più stabile nel lungo periodo, poiché non sei soggetto a cambiamenti nelle politiche dei fornitori o a interruzioni del servizio dovute a migrazioni o aggiornamenti.
+* Maggiore prontezza: riducendo i passaggi tra APP, i tempi di latenza si riducono.
+* Stabilità a lungo termine: Un'unica APP offre una soluzione più stabile nel lungo periodo, poiché non sei soggetto a cambiamenti nelle politiche dei fornitori o a interruzioni del servizio dovute a migrazioni o aggiornamenti. Inoltre essendo OpenSource hai la garanzia di manutenzione a vita.
   
 _In sintesi, un'unica APP offre un livello di affidabilità superiore grazie alla sua semplicità, al minor numero di dipendenze esterne e al maggiore controllo sui dati._
 
