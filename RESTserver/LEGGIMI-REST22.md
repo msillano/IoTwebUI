@@ -1,7 +1,5 @@
 # **IoTrest: Un ponte REST per i tuoi dispositivi Tuya**
 
-
-
 **IoTrest** è un'estensione opzionale per **IoTwebUI** 2.2 che trasforma i tuoi dispositivi Tuya in _**servizi web** accessibili tramite semplici richieste HTTP_. Oltre a consentire la lettura dei dati dei tuoi dispositivi, IoTrest ti permette di interagire con essi in modo avanzato, attivando scene, regole e ricevendo avvisi in tempo reale.
 
 ### **Funzionalità principali**
@@ -34,7 +32,6 @@ Il tempo di latenza (ritardo) medio tra un evento e la sua segnalazione in un cl
    * Clikka su `install_server.bat`: installerà le dipendenze aggiornate nell dir 'node_modules'. 
 3. **Configurazione:**
    * Aggiorna il path della tua installazione nel file `run_server.bat`
-      
 4. **Test e debug**
    Sono presenti tre file principali:
    * `server.js`: il file eseguibile con l'implementazione di IoTrest, da lanciare in un terminale o usando `run_server.bat`.
@@ -67,10 +64,11 @@ nota: se non utilizzate il REST, non eseguite `server.js`, ma solo lanciare norm
 ### **Conclusioni**
 
 **IoTrest** è lo strumento ideale per chi desidera creare rapidamente soluzioni personalizzate per la gestione dei propri dispositivi Tuya. Grazie alla sua flessibilità e alla sua facilità d'uso, REST ti permette ineguagliabili automatizioni per le tue attività domestiche e di creare esperienze utente uniche.
+L'utente (o un'APP o una UI) può legge tutti i dati del Tuya Cloud filtrati, quando necessario, da decodifiche o elaborazioni. Tutte le operazioni possibili di configurazione e comando sono garantite dalla mediazione dei 'tap-to-run' Tuya: massima libertà con sicurezza totale!
 
 ![](https://github.com/msillano/IoTwebUI/blob/main/pics/screen02.png?raw=true)
 
-Interfacce utente come queste, con immagini, bottoni, gadgets, dati dei device, anche multipagina, si realizzano abbastanza facilmente in HTML e (poco) js, e sono dinamicamente aggiornate via REST.
+Interfacce utente come queste, con immagini, bottoni, gadgets, dati dei device, anche multipagina, si realizzano abbastanza facilmente in HTML e (poco) js, e sono totalmente interattive via REST.
 
 ![](https://github.com/msillano/IoTwebUI/blob/main/pics/screen04.png?raw=true)
 
@@ -124,7 +122,7 @@ generale: `http://localhost:3031/IoTrest/` + path (vedi sotto) <br>
     -  `dinfo.sub`  `true` se il device è un sub-device (i.e. usa un HUB) <br>
     -  `dinfo.logged` _estensione IoTwebUI_: lista delle proprietà esportate da IoTwebUI su file.<br>
     -  `dinfo.test` _estensione IoTwebUI_: `true` se esiste un allarme IoTwebUI collegato al device.<br>
-    -  `dinfo.category` : codice corrispondente ad `is-a` (nei pop-up, modo EXPERT).
+    -  `dinfo.category` : codice corrispondente ad `is-a` (nei pop-up, modo ESPERTO).
         
 *  **alert/list/_dev-name_|_dev-id_** ( e.g.: alert/list/tuya_bridge)<br>
    Received
@@ -173,7 +171,7 @@ generale: `http://localhost:3031/IoTrest/` + path (vedi sotto) <br>
 
 TX: device/Temperatura soggiorno/_va\_humidit_ =>  **{error: "unknown"}**
 
-TX: device/_Temperatura soggiorn_/va_humidity => **{error: "unknown"}**
+TX: device/_Temperatura soggiorn_/va\_humidity => **{error: "unknown"}**
 
 TX: device/Temperatura soggiorno/  =>   **{error: "malformed"}**  
 
@@ -229,13 +227,13 @@ In questo caso avremo:
 ```
  if (res.name == "Main AC") {   //Power meter 
 // decode for tooltip, adds extra values to devData
-      const vals = datadecodeSTRUCTELERT(devData.phase_a);
-      devData['phase_a_V']     = vals.V.toFixed(1);
+      const vals = datadecodeSTRUCTELERT(devData.phase_a);   // decodes 'phase_a'
+      devData['phase_a_V']     = vals.V.toFixed(1);          // explodes 'vals'
       devData['phase_a_Leack'] = vals.Leack.toFixed(3);
       devData['phase_a_A']     = vals.A.toFixed(3);
       devData['phase_a_W']     = vals.W.toString();
  // MORE: To Export via REST the decoded value, we add it to device.status 
-      addToStatus("Main AC","phase_a_decoded", vals) ;
+      addToStatus("Main AC","phase_a_decoded", vals) ;      
   }
 ```
 nota:  `addToStatus()` è un'utility che si occupa dell'aggiornamento dei dati locali (usati da REST), aggiungendo in questo caso il valore `phase_a_decoded`.
