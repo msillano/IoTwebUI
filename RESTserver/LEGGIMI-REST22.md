@@ -1,4 +1,4 @@
-ault### **IoTrest: Un ponte REST per i tuoi dispositivi Tuya**
+# **IoTrest: Un ponte REST per i tuoi dispositivi Tuya**
 
 #### **Introduzione**
 
