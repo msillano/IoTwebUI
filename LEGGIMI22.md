@@ -282,8 +282,8 @@ _nota: la richiesta di consenso all'uso del microfono dipende dal browser e dall
 ### REST: client e server
 In IoTwebUI esistono 2 interfacce REST:
 
-1. _REST client_, implementato come MACRO in due versioni: TXT e JSON, permette di importare dati esterni nelle REGOLE (RULE), da webservice o anche da device di terze parti o device DIY che implementino un'interfaccia REST. Per creare device custom REST vedi [esempio](https://github.com/msillano/tuyaDEAMON-applications/wiki/note-5:-Watchdog-for-IOT#watchdog03-esp01-relay--arduino).
-2. _REST server_, per l'esportazione dei dati dei device Tuya, per il controllo su automazioni e allarmi, verso applicazioni o interfacce custom. Per dettagli [vedi documentazione IoTrest](https://github.com/msillano/IoTwebUI/blob/main/RESTserver/LEGGIMI-REST22.md).
+1. _REST client_, implementato come MACRO in due versioni: TXT e JSON, permette di importare dati esterni nelle REGOLE, da webservice o anche da device di terze parti o device DIY che implementino un'interfaccia REST. _E' quindi possibile far interagire Tuya con device custom_: per creare device DIY con Arduino o ESP8266 vedi [esempio](https://github.com/msillano/tuyaDEAMON-applications/wiki/note-5:-Watchdog-for-IOT#watchdog03-esp01-relay--arduino).
+2. _REST server_, per l'esportazione dei dati dei device Tuya e per il controllo su automazioni e allarmi, verso applicazioni o interfacce custom. Per dettagli [vedi documentazione IoTrest](https://github.com/msillano/IoTwebUI/blob/main/RESTserver/LEGGIMI-REST22.md).
 
 _Queste due strade permettono finalmente l'integrazione di Tuya in progetti verticali, senza alterare il funzionamento base di Tuya/Smartlife, ma arricchendolo di nuove potenzialità, con una strategia più semplice delle alternative preesistenti (e.g. tuyaDAEMON, HA, etc...)_
 
@@ -380,11 +380,11 @@ Se realizzate dei file per una nuova lingua, inviatemelo (https://github.com/msi
 ## Customizzazioni
 
 Il **IoTwebUI** è OpenSource, in HTML+Javascript, è abbastanza documentato e modulare. Quindi è possibile ogni intervento. 
-Alcune aree sono state privilegiate e le rispettive funzioni poste per semplicità in file separati -`custom.js` e `usrrulesXX.X.js` con dettagliate istruzioni ed esempi:
+Alcune aree sono state privilegiate e le rispettive funzioni poste per semplicità in file separati -`custom.js`, `usrrulesXX.X.js`,  "i18n/speech0X.X.js",  "i18n/text0X.X.js" con dettagliate istruzioni ed esempi:
 
  - _Tuya non permette più di cambiare le icone, per una opinabile  interpretazione dei suoi consulenti legali delle attuali leggi sul copyright._  
 Per questa APP, invece, ho scelto le icone `awesome4`, con un'[ampissima scelta](https://fontawesome.com/v4/cheatsheet/) e  di libero uso. Di default tutti i device hanno la stessa icona, un cubo.<br>
-Ma sono facilmente personalizzabili dall'utente: basta fornire un criterio di selezione dei device e l'indicazione dell'icona `awesome4` da usare. Come esempio, hanno icone speciali (vedi immagini):
+Ma sono facilmente personalizzabili dall'utente: basta fornire un criterio di selezione dei device e l'indicazione dell'icona `awesome4` da usare. Come esempio, hanno icone speciali (vedi immagini e file `custom.js` ):
    - i Termometri (device con nome 'Temp...').
    - le Valvole termostatiche (device con nome 'Termo...').
    - i Gateway (device con 'Gateway' nel nome).
@@ -401,13 +401,13 @@ Anche l'icona speciale che indica un'alert è customizzabile: vedi `alertIcon` i
 
 - Per le RULE, i più avventurosi possono aggiungere le loro MACRO personali nel file `usrrulesXX.X.js`.
 
-- Per VoiceRecognition, nel file "speech0X.X.js" è semplice modificare le parole della grammatica proposta: esempio sostituire 'vai' con 'raggiungi'. L'obiettivo deve essere sempre quello di migliorare la comprensione dei comandi.
-- L'adattamento del riconoscimento vocale ad altre lingue è complesso, e richiede profonda competenza della lingua sia nella grammatica che nel vocabolario.  Mi affido alla collaborazione di utenti volenterosi. Da parte mia  completerò l'intornazionalizzazione delle varie pagine dell'APP asap (ver. 2.2).
-  
-- Un po' più complesso è aggiungere nuovi comandi vocali, non tanto per la definizione della grammatica (il codice attuale  può servire da esempio) quanto l'implementazione delle azioni, che spesso dipendono dal codice esitente.<br>
+- Tutti i testi usati nell'interfaccia utente sono nei file "i18n/text0X.X.js".
+- Per VoiceRecognition, nel file "i18n/speech0X.X.js" è semplice modificare le parole della grammatica proposta: esempio sostituire 'vai' con 'raggiungi'. L'obiettivo deve essere sempre quello di migliorare la comprensione dei comandi.
+- L'adattamento del riconoscimento vocale ad altre lingue è complesso, e richiede profonda competenza della lingua sia nella grammatica che nel vocabolario.  Mi affido alla collaborazione di utenti volenterosi. 
+- Un po' più complesso è aggiungere nuovi comandi vocali, non tanto per la definizione della grammatica (il codice attuale  può servire da esempio) quanto per l'implementazione delle azioni, che spesso dipendono dal codice esitente.<br>
 Direi che per nuovi comandi vocali, la strada migliore è fare una proposta di implementazione nelle ['issue'](https://github.com/msillano/IoTwebUI/issues), e, in base al consenso ed alla fattibibilità, potrebbe essere implementata nella release successiva.
   
-Queste customizzazioni NON sono necessarie, ma redono più utile e gradevole l'uso di TuyaUIweb.
+Queste customizzazioni NON SONO NECESSARIE, ma sono opzioni che redono più utile e personalizzato l'uso di TuyaUIweb.
 
 <hr style="height:2px;border-width:0;color:gray;background-color:gray">
 
