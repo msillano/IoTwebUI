@@ -4,7 +4,7 @@
 
 **IoTrest** è un'estensione opzionale per **IoTwebUI** 2.2 che trasforma i tuoi dispositivi Tuya in _**servizi web** accessibili tramite semplici richieste HTTP_. Oltre a consentire la lettura dei dati dei tuoi dispositivi, IoTrest ti permette di interagire con essi in modo avanzato, attivando scene, regole e ricevendo avvisi in tempo reale.
 
-#### **Funzionalità principali**
+### **Funzionalità principali**
 
 * **Accesso ai dati:** Leggi i valori attuali dei sensori (temperatura, umidità, ecc.) e lo stato degli attuatori (luci, prese, ecc.) con un URL.
 * **Automazione:** Invia richieste REST per attivare `scene` e `regole` preconfigurate in  Tuya _Smart/SmartLife_ e in _IoTwebUI_, per esempio con un bottone HTML.
@@ -13,7 +13,7 @@
 
 **NB:** _Se non vi interessa utilizzare la funzione di REST, ignorate completamente le fasi 'installazione e configurazione', potrete farle in un secondo tempo. **IoTwebUI 2.2** funzionerà perfettamente!_
 
-#### **Architettura**
+### **Architettura**
 ![](https://github.com/msillano/IoTwebUI/blob/main/pics/rest01.png?raw=true)
 
 _Una WEBAPP (come IoTwebUI) non può contenere un server HTPP, per cui IoTrest (un server REST-HTPP) è un'applicazione autonoma in nodejs, che comunica via websocket (il metodo più rapido) con IoTwebUI._
@@ -21,7 +21,7 @@ _Una WEBAPP (come IoTwebUI) non può contenere un server HTPP, per cui IoTrest (
 IoTrest si integra perfettamente con IoTwebUI e sfrutta le sue potenti funzionalità di gestione dei dispositivi Tuya. Le richieste REST-HTTP inviate a IoTrest vengono tradotte in comandi per IoTwebUI, che a sua volta interagisce con Tuya Cloud.<br>
 Il tempo di latenza (ritardo) medio tra un evento e la sua segnalazione in un cliente WEB che usa IoTrest è la somma di 3 fattori: 0.5*(tempo tra due misure del device in Tuya Cloud) + 0.5*(intervallo di polling di IoTwebUI) + 0.5*(intervallo tra due richieste REST del client WEB). Valori  tipici: 3', 2', 30"  => latenza media 2'65"
 
-#### **Installazione e configurazione**
+### **Installazione e configurazione**
 
 1. **Prerequisiti:**
    * Node.js installato sul tuo sistema.
@@ -45,7 +45,7 @@ Quindi l'insieme dei tre file è autosufficiente, non richiede `IoTwebUI`, e pu�
 
 `client.html` può essere usato fino a quando non si hanno uno o più client REST su misura (applicazioni od interfacce utente). Se si vogliono realizzare interfacce WEB, il codice HTML/javascript di `client.html` può servire da modello.
 
-#### **Utilizzo**
+## **Utilizzo**
    1.  Avviare prima `server.js`con `run_server.bat`: se OK appare il messaggio "Server HAPI running on http://localhost:3031"
    2.  Iconizzare il terminale. Potete riaprirlo per vedere i messaggi scambiati o i messaggi di errore. Chiuderlo al termine dell'uso.
    3.  Caricare/ricaricare `IoTwebUI` nel browser, con "run_me.bat" oppure direttamente. Se OK appare immediatamente un pop-up che informa dell'avvenuto collegamento via websocket con il server. nota: il collegamento websocket avviene solo all'avvio di `IoTwebUI`.
@@ -53,7 +53,7 @@ Quindi l'insieme dei tre file è autosufficiente, non richiede `IoTwebUI`, e pu�
 
 nota: se non utilizzate il REST, non eseguite `server.js`, ma solo lanciare normalmente **IoTwebUI** (con "run_me.bat" o direttamente): funzionerà perfettamente (senza il pop-up iniziale di conferma di collegamento).
 
-#### **Considerazioni finali**
+### **Considerazioni finali**
 
 * **Sicurezza:** Per motivi di sicurezza, eseguire _IOTrest_ su una rete locale e di non esporlo direttamente a Internet.
 * **Affidabilità:** _IoTrest_ e _IoTwebUI_ accedono  a Tuya Cloud solo in lettura. **In NESSUN CASO i dati Tuya possono essere alterati.**
@@ -64,7 +64,7 @@ nota: se non utilizzate il REST, non eseguite `server.js`, ma solo lanciare norm
    - il valore `online` fornito da Tuya Cloud può differire dal valore attuale mostrato in SmartLife.
    - Se un device risulta `online = false`, Tuya Cloud mantiene gli ultimi valori, per cui la richiesta `device/_dev-name_/_code_` può fornire dati non aggiornati.
 
-#### **Conclusioni**
+### **Conclusioni**
 
 **IoTrest** è lo strumento ideale per chi desidera creare rapidamente soluzioni personalizzate per la gestione dei propri dispositivi Tuya. Grazie alla sua flessibilità e alla sua facilità d'uso, REST ti permette ineguagliabili automatizioni per le tue attività domestiche e di creare esperienze utente uniche.
 
@@ -76,7 +76,7 @@ Interfacce utente come queste, con immagini, bottoni, gadgets, dati dei device, 
 
 <hr style="height:2px;border-width:0;color:gray;background-color:gray">
 
-#### Endpoint URI
+## Endpoint URI
 
 **Richiesta:** <br>
 generale: `http://localhost:3031/IoTrest/` + path (vedi sotto) <br>
