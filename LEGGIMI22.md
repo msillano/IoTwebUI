@@ -291,7 +291,9 @@ _Queste due strade permettono finalmente l'integrazione di Tuya in progetti vert
 <hr style="height:2px;border-width:0;color:gray;background-color:gray">
 
 ## Versioni
-- 2.2  Aggiunto server REST ed Internazionalizzazione (IT, EN) per interfaccia utente e modulo speech.
+- 2.2  Aggiunto server REST (IoTrest)
+  - Internazionalizzazione (IT, EN) per interfaccia utente e modulo speech.
+  - Modificate voci menu
  
 - 2.1.1 Correzione bugs [ISSUE10](https://github.com/msillano/IoTwebUI/issues/10): Token scaduto. [ISSUE11](https://github.com/msillano/IoTwebUI/issues/11): refuso.
 
