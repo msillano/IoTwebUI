@@ -493,8 +493,8 @@ Le 'REGOLE' sono codificate in `JavaScript`. Il particolare ambiente in cui sono
    **if(** `condiz1 && condiz2 && ...` **)** `azione;` //  _AND: 'tutte',_  `condiz1` _e_ `condiz2` _e_ ... _devono essere vere contemporaneamente._<br>
    **if(** `condiz1 || condiz2 || ...` **)** `azione;` //  _OR: 'almeno una',_  `condiz1` _oppure_ `condiz2`, _oppure_ ... _deve essere vera._<br>
    **if (** `condizione` **)** `azione1` **else** `azione2;`  // _esegue `azione1` (se vero) oppure `azione2` (se falso)._ <br>
-nota: contrariamente alle automazioni Tuya, Google, Alexa,  che nelle condizioni permettono o solo AND (tutte) o solo OR (basta una) (e poi cercano di mitigare questo limite aggiungendo l'extra condizione 'ambito' - e.g. Tuya) nelle REGOLE si possono avere condizioni più complesse (miste) usando con cura le parentesi per indicare l'ordine di calcolo:
-esempio:  if ( (condiz1 || condiz2) && (condiz3 || condiz4) )  - a parole: "deve essere vera almeno una tra (condiz1, condiz2) ED anche almeno una tra (condiz3, condiz4)".
+nota: Le automazioni Tuya (una o più condizioni, AND/OR), Google (un test + comando vocale, OR), Alexa (una sola condizione!) etc... nelle condizioni hanno pesanti vincoli. Le REGOLE veramente più elastiche: si possono avere quante condizioni si vuole in AND o OR, ma anche condizioni più complesse usando con cura le parentesi per indicare l'ordine di calcolo!
+esempio:  `if ( (condiz1 || condiz2) && (condiz3 || condiz4) )`  - a parole: "deve essere vera almeno una tra (condiz1, condiz2) ED anche almeno una tra (condiz3, condiz4)".
 
  - Se una `condizione` è vera a lungo (livello), un `if()` sarà eseguito più volte, ad ogni ciclo. Per evitare questo le macro TRIGGER sono vere per un solo ciclo, la PRIMA volta che la condizione è vera, e poi sono false.
 
