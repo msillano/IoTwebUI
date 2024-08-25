@@ -200,7 +200,7 @@ Questo breaker-meter ([OPWTY-63](https://github.com/msillano/tuyaDAEMON/blob/mai
 </td>
 </tr>
 </table>
-Come risultato si hanno i valori  realtime (V, A, W, leack) presenti solo nell'interfaccia utente di SmartLife, ma NON nelle condizioni delle automazioni Smartlife !!
+Come risultato si hanno i valori  realtime (V, A, W, leack) presenti solo nell'interfaccia utente di SmartLife, ma NON nelle condizioni delle automazioni Smartlife!<br>
 Senza interventi custom,  i valori  realtime (V, A, W, leack) NON sono presenti in IoTwebUI.
 
 #### code
