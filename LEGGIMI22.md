@@ -644,6 +644,7 @@ Locale o remoto.
 <dt>TRIGBYNAME(name) </dt>
 <dd> Associa un 'nome' (max 3 parole) ad un RULE, permettendo di attivarlo con un comando utente (bottone o comando vocale) o in caso di 'Alert', oppure con TRIGRULE(name) da un'altra RULE (analogo ai 'tap-to-run' Tuya).<br>
 Torna true quando deve essere eseguita. <br>
+nota: name deve essere unico (può essere usato una sola volta) ma l'azione può applicarsi su più REGOLE usando una var ausiliaria.
 <i>Esempio:</i> <code>if (TRIGBYNAME('spegni la luce')) VOICE (" Hai attivato: 'spegni la luce'") </code> </dd>
 
 <dt>TRIGRULE(name)</dt>
