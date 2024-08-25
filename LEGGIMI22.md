@@ -242,7 +242,7 @@ Si possono gestire due insiemi di RULE: quelle in <i>uso</i>, inizialmente lette
     </ul>
  </TD>
   <TD>
-   <img src="https://github.com/msillano/IoTwebUI/blob/main/pics/rules20.png?raw=true" />
+   <img src="https://github.com/msillano/IoTwebUI/blob/main/pics/rule01.png?raw=true" />
   </TD>
  </TR>
 </TABLE>
