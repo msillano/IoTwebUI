@@ -139,7 +139,7 @@ generale: `http://localhost:3031/IoTrest/` + path (vedi sotto) <br>
  ```
   note:<br>
       - `alarms[x].trigger`: `true` in caso di allarme attivo.<br>
-      - `alarms[x].conditon` valori: "grt", "equ", "lst" per ">", "=", "<"
+      - `alarms[x].conditon` valori: "grt", "equ", "lst" per ">", "=", "<" <br>
       - `alarms[x].action[y]` valori: "beep", "pop", "sound", "voice" (URL e SCENA/RULE: auto, basati su `message`)
 
 *  **scene/list[/_room_]**  (scene/list, scene/list/ROMA)<br>
