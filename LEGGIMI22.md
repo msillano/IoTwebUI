@@ -485,6 +485,9 @@ Le 'REGOLE' sono codificate in `JavaScript`. Il particolare ambiente in cui sono
  DATALOG("frigo.media", _tm/10);              // saves average on file (saved as number).
  ```
  - Come già detto, JavaScript è elastico a proposito delle conversioni dei valori: numeri in formato 'stringa' (cioè "3.14" invece di 3.14 o Math.PI) sono convertiti automaticamente in numeri in caso di operazioni aritmetiche. Ancora, numeri e stringhe sono convertiti in valori logici quando serve (ad esempio se usati come condizione in un `if()` ). Regole: zero (0) vale `false`, qualsiasi altro numero: `true`. Una stringa vuota ("") o `null`, o `undefined` valgono `false`, qualunque altra stringa vale `true`. Esempi: `if ("caio")...` è true.  `var _test = null; if(_test)...` è false. (nota. Meglio non abusare di questi automatismi del linguaggio, è preferibile scrivere sempre le condizioni estese, più chiare: `if (_test != null)`...)
+
+nota: le condizioni delle automazioni/routine (tutte: Alexa, Google, Tuya etc...) sono SEMPRE confronti con valori costanti predefiniti. Nelle REGOLE questo vincolo cade completamente: si possono paragonare due misure, oppure paragonare il risultato di calcoli (e.g. medie etc..), o con una variabile memorizzata etc. Libertà e semplicità.
+
  - importante è anche l'uso delle parentesi, "()", sempre a coppie. Parentesi sono obbligatorie dopo ogni MACRO - nota, anche se non ci sino parametri, e.g. `BEEP()` - e dopo un `if()`, per racchiudere la condizione. Comunque usatele liberamente per raggruppare i risultati intermedi nelle espressioni e.g. `if((_a > 10) && (_b/2 == 0))...`
 -  Molte MACRO devono conservare lo stato tra un run ed il successivo, (e.g AVG(), MAX() etc...) e sono individuate con (*). 
 - Il costrutto js più utile nelle REGOLE è l'**if()** (esecuzione condizionale), che assume varie forme:<br>
@@ -493,7 +496,7 @@ Le 'REGOLE' sono codificate in `JavaScript`. Il particolare ambiente in cui sono
    **if(** `condiz1 && condiz2 && ...` **)** `azione;` //  _AND: 'tutte',_  `condiz1` _e_ `condiz2` _e_ ... _devono essere vere contemporaneamente._<br>
    **if(** `condiz1 || condiz2 || ...` **)** `azione;` //  _OR: 'almeno una',_  `condiz1` _oppure_ `condiz2`, _oppure_ ... _deve essere vera._<br>
    **if (** `condizione` **)** `azione1` **else** `azione2;`  // _esegue `azione1` (se vero) oppure `azione2` (se falso)._ <br>
-nota: Le automazioni Tuya (una o più condizioni, AND/OR), Google (un test + comando vocale, OR), Alexa (una sola condizione!) etc... nelle condizioni hanno pesanti vincoli. Le REGOLE veramente più elastiche: si possono avere quante condizioni si vuole in AND o OR, ma anche condizioni più complesse usando con cura le parentesi per indicare l'ordine di calcolo!
+nota: Le automazioni Tuya (una o più condizioni, AND/OR), Google (un test + comando vocale, OR), Alexa (una sola condizione!) etc... nelle condizioni hanno pesanti vincoli. Le REGOLE sono veramente più elastiche: si possono avere quante condizioni si vuole in AND o OR, ma anche condizioni più complesse usando con cura le parentesi per indicare l'ordine di calcolo!
 esempio:  `if ( (condiz1 || condiz2) && (condiz3 || condiz4) )`  - a parole: "deve essere vera almeno una tra (condiz1, condiz2) ED anche almeno una tra (condiz3, condiz4)".
 
  - Se una `condizione` è vera a lungo (livello), un `if()` sarà eseguito più volte, ad ogni ciclo. Per evitare questo le macro TRIGGER sono vere per un solo ciclo, la PRIMA volta che la condizione è vera, e poi sono false.
