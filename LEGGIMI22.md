@@ -222,13 +222,13 @@ _Naturalmente 'REGOLE' e 'tap-to-run' devono avere nomi unici per poter essere i
     
  
 ### REGOLE 
-  In modo ESPERTO il menu presenta l'opzione "nuove REGOLE" che apre una pagina dedicata alla [gestione delle RULE](#regole---sintassi): 
+  In modo ESPERTO il menu presenta l'opzione "nuove REGOLE" che apre una pagina dedicata alla [gestione delle REGOLE](#regole---sintassi): 
 <TABLE width = "100%" >
  <TR>
   <TD>
-   Una parte importante è dedicata ad un pad di editing delle REGOLE (per dettagli vedi oltre).<br>
+   Una parte importante è dedicata ad un pad di editing delle REGOLE (o RULE) (per dettagli vedi oltre).<br>
 <i>Nota: se preferite usare un editor esterno più performante, potete certamente farlo, con copia-incolla.</i><br>
-Si possono gestire due insiemi di RULE: quelle in <i>uso</i>, inizialmente lette dal file `usrrulesXX.X.js`, e quelle nuove, <i>in Edit</i> nel pad.
+Si possono gestire due insiemi di REGOLE: quelle in <i>uso</i>, inizialmente lette dal file `usrrulesXX.X.js`, e quelle nuove, <i>in Edit</i> nel pad.
 <br>
   
    I comandi presenti offrono le seguenti funzionalità;
