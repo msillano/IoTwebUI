@@ -648,6 +648,7 @@ Torna true quando deve essere eseguita. <br>
 
 <dt>TRIGRULE(name)</dt>
 <dd>Esegue un RULE individuato da un nome. <br>
+ nota: non ricorsiva, max deep 1  <br>
  nota: Se la definizione TRIGBYNAME(name) precede l'uso di TRIGRULE(name), l'esecuzione non è immediata, ma avviene subito dopo il termine del run attuale delle RULE, in un run EXTRA. <br>                                              
  <i>Esempio:</i> <code>  if (TRIGBYNAME("pippo")) VOICE (" Trovato pippo"); <br>  // RULE 'pippo'
      if (TRIGBYNAME("chiama pippo")) TRIGRULE("pippo"), VOICE("chiamo pippo")    // RULE 'chiama pippo' 
