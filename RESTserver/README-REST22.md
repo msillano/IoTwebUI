@@ -202,10 +202,11 @@ function datadecodeSTRUCTELERT(value) {
 // rewritten javascript version (Buffer not available in browser)
     const decod = atob(value); // ASCII string from code64
 // Int16BE conversions, scaling:
-    result["V"] = (decod.charCodeAt(1) + 256*decod.charCodeAt(0)) / 10.0; // V
+    result["V"] = (decod.charCodeAt(1) + 256*decod.charCodeAt(0)) / 10.0;       // V
     result["Leack"] = (decod.charCodeAt(3) + 256*decod.charCodeAt(2)) / 1000.0; // A
-    result["A"] = (decod.charCodeAt(5) + 256*decod.charCodeAt(4)) / 40000.0; // A
-    result["W"] = (decod.charCodeAt(7) + 256*decod.charCodeAt(6)) ; // W return (result);
+    result["A"] = (decod.charCodeAt(5) + 256*decod.charCodeAt(4)) / 40000.0;    // A
+    result["W"] = (decod.charCodeAt(7) + 256*decod.charCodeAt(6)) ;             // W
+    return (result);
 };
 ```
 
@@ -215,7 +216,7 @@ In this case we will have:
 
 ```
    if (res.name == "Main AC") {                     //Power meter
-  // decode for tooltip, adds extra values ​​to devData
+  // decode for tooltip adds extra values ​​to devData
       const vals = datadecodeSTRUCTELERT(devData.phase_a); // decodes 'phase_a'
       devData['phase_a_V'] = vals.V.toFixed(1);     // explodes 'vals'
       devData['phase_a_Leack'] = vals.Leack.toFixed(3);
