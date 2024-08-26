@@ -164,7 +164,10 @@ generale: `http://localhost:3031/IoTrest/` + path (vedi sotto) <br>
    ```
 
 *  **execute/_scene-name_|_rule-name_** (e.g.: execute/chiamata pippo)<br>
-      Received `done rule`
+      Received 
+``` 
+               {done: "rule"]
+```
 
    
  **Errori:**
