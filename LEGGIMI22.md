@@ -247,7 +247,7 @@ Si possono gestire due insiemi di REGOLE: quelle in <i>uso</i>, inizialmente let
  </TR>
 </TABLE>
 
-### VoiceRecognition
+### VoiceRecognition (Italiano)
 
 - La disponibilità di questa funzione dipende dal browser usato.
 - Non è facile raggiungere l'efficienza che si ha con HW specializzato (smart speakers: Google, Alexa), perché il risultato dipende da vari fattori, tra cui qualità del microfono usato, le relative regolazioni, la riduzione dei rumori di fondo, etc... Nelle prove sono passato da oltre il 90% di riconoscimenti ad un pessimo 20%! 
@@ -275,8 +275,6 @@ Si possono gestire due insiemi di REGOLE: quelle in <i>uso</i>, inizialmente let
 - _nota: L'implementazione tollera anche qualche imprecisione nel riconoscimento (e.g. 'Giulia' invece di 'Tuya', etc..): questo può essere facilmente customizzato. Vedi file i18n/speechX.X.it.js._
  
  - nota: Per una migliore comprensione, le frasi possono essere divise in due: "Ehi Tuya" + pausa: appare il feedback 'Ehi Tuya...' che conferma la comprensione della prima parte; ora può essere detta la seconda parte.
- 
-- _nota: la navigazione tra pagine è analoga al menu: dalla 'home' si può  andare alle pagine 'tap-to-run' o 'nuove REGOLE' (in modo ESPERTO), ma da queste si può solo tornare alla 'home'._
      
 _nota: la richiesta di consenso all'uso del microfono dipende dal browser e dalla configurazione: usando 'run_me.bat' non dovrebbero esserci richieste._
 
@@ -480,7 +478,7 @@ Le 'REGOLE' sono codificate in `JavaScript`. Il particolare ambiente in cui sono
  var _tf = GET("TF_frigo","va_temperature");  // read temperature sensor, saves it in _tf (number)
  var _tm = AVG(_tf, 12);                      // get average from last 12 values (_tm is a string, see AVG())
  var _tr = ROUND( _tm/10,  -1);               // round to the nearest ten, _tr is a string 
- if(TRIGEVERY(8)) POP( "FRIGO", "Frigo: "+ ROUND(_tf/10, 1) + "°C, media: "+ ROUND(_tm/10, 2) +"°C, round: " + _tr +"°C");
+if(TRIGEVERY(8)) POP( "FRIGO", "Frigo: "+ ROUND(_tf/10, 1) + "°C, media: "+ ROUND(_tm/10, 2) +"°C, round: " + _tr +"°C");
                                               // note: using ROUND() to convert to string, also for _tm/10 (again number)
  DATALOG("frigo.media", _tm/10);              // saves average on file (saved as number).
  ```
