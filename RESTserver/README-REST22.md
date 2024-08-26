@@ -97,7 +97,7 @@ Received (va_temperature)
            {name:"Temperatura studio",
             va_temperature: 28}
 ```
-Received (dinfo) <br> 
+&nbsp;&nbsp;&nbsp;&nbsp;Received (dinfo) <br> 
 ```
            {name: "Temperatura studio",
             id: "xxxxxxxxxxxxxxxxxxxx",
@@ -108,7 +108,7 @@ Received (dinfo) <br>
             logged: ["va_temperature"],
             test: false}
 ```
-Received (dstatus) 
+&nbsp;&nbsp;&nbsp;&nbsp;Received (dstatus) 
 ``` 
            {name: "Termo studio",
             online: true,
