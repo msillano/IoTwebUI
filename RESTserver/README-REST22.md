@@ -161,7 +161,10 @@ Received
 ```
 
 * **execute/_scene-name_|_rule-name_** (e.g.: execute/call pippo)<br>
-Received `done rule`
+Received
+`` 
+          {done: "rule"]
+```
 
 **Errors:**
 
@@ -176,7 +179,7 @@ note:
 - The data is as it comes from Tuya Cloud: it may need decoding or scaling (e.g. `'temp_current', value: 284` => 28.4 °C). [See below](https://github.com/msillano/IoTwebUI/blob/main/RESTserver/LEGGIMI-REST22.md#customizzazioni).
 - **"unknown"** in case of incorrect or not found names (typing errors).
 - **"malformed"** in case of missing or misplaced path parts (syntax error).
-- Devices are identified by their name or ID: using the ID is independent from the name that you can freely change.
+- Devices are identified by their name or ID: using the ID is independent of the name that you can freely change.
 
 <hr style="height:2px;border-width:0;color:gray;background-color:gray">
 
