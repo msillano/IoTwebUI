@@ -117,10 +117,10 @@ Received (va_temperature)
                      temp_set: 200 }}
 ```
 note:<br>
-- `dinfo.sub` `true` if the device is a sub-device (i.e. use a HUB) <br>
-- `dinfo.logged` _IoTwebUI extension_: list of properties exported from IoTwebUI to file.<br>
-- `dinfo.test` _IoTwebUI extension_: `true` if there is an IoTwebUI alarm connected to the device.<br>
-- `dinfo.category` : code corresponding to `is-a` (in pop-ups, EXPERT mode).
+      - `dinfo.sub` `true` if the device is a sub-device (i.e. use a HUB) <br>
+      - `dinfo.logged` _IoTwebUI extension_: list of properties exported from IoTwebUI to file.<br>
+      - `dinfo.test` _IoTwebUI extension_: `true` if there is an IoTwebUI alarm connected to the device.<br>
+      - `dinfo.category` : code corresponding to `is-a` (in pop-ups, EXPERT mode).
 
 * **alert/list/_dev-name_|_dev-id_** ( e.g.: alert/list/tuya_bridge)<br>
 Received
@@ -135,10 +135,9 @@ Received
                          ]}
 ```
 notes:<br> 
-   - `alarms[x].trigger`: `true` in case of active alarm.<br>
-   - `alarms[x].conditon` values: "grt", "equ", "lst" for ">", "=", "<" <br>
-   - `alarms[x].action[y]` values: "beep", "pop", "sound", "voice" (URL and SCENE/RULE: auto, based on `message`)
-
+      - `alarms[x].trigger`: `true` in case of active alarm.<br>
+      - `alarms[x].conditon` values: "grt", "equ", "lst" for ">", "=", "<" <br>
+      - `alarms[x].action[y]` values: "beep", "pop", "sound", "voice" (URL and SCENE/RULE: auto, based on `message`)
 
 * **scene/list[/_room_]** (scene/list, scene/list/ROMA)<br>
   Received
