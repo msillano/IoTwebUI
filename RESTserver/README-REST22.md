@@ -22,21 +22,21 @@ The average latency (delay) between an event and its reporting in a WEB client u
 ### **Installation and configuration**
 
 1. **Prerequisites:**
-* Node.js installed on your system.
-* Window, Linux, macOS: see [nodejs-installer](https://nodejs.org/en/download/prebuilt-installer).
-* Android: see [node-red in Android](https://nodered.org/docs/getting-started/android), stopping WITHOUT installing _node-red_, i.e. not running the command: `npm i -g --unsafe-perm node-red`<br>
-Or if you want to install a 24/7 Android server, with various tools (FTP, DB Maria, Apache, Autostart, etc...) see here: [Android deployment](https://github.com/msillano/tuyaDAEMON/wiki/80.-deployment:-android-server#2022-update)
-* IoTwebUI ver. 2.2 or higher, configured and working: see https://github.com/msillano/IoTwebUI, version 2.2 or higher.
+    * Node.js installed on your system.
+       * Window, Linux, macOS: see [nodejs-installer](https://nodejs.org/en/download/prebuilt-installer).
+       * Android: see [node-red in Android](https://nodered.org/docs/getting-started/android), stopping WITHOUT installing _node-red_, i.e. not running the command: `npm i -g --unsafe-perm node-red`<br>
+       Or if you want to install a 24/7 Android server, with various tools (FTP, DB Maria, Apache, Autostart, etc...) see here: [Android deployment](https://github.com/msillano/tuyaDAEMON/wiki/80.-deployment:-android-server#2022-update)
+    * IoTwebUI ver. 2.2 or higher, configured and working: see https://github.com/msillano/IoTwebUI, version 2.2 or higher.
 2. **Installation:**
-* Update your installation path in the `install_server.bat` file
-* Click on `install_server.bat`: it will install the updated dependencies in the 'node_modules' dir.
+    * Update your installation path in the `install_server.bat` file
+    * Click on `install_server.bat`: it will install the updated dependencies in the 'node_modules' dir.
 3. **Configuration:**
-* Update your installation path in the `run_server.bat` file
+    * Update your installation path in the `run_server.bat` file
 4. **Testing and debugging**
 There are three main files:
-* `server.js`: the executable file with the IoTrest implementation, to be launched in a terminal or using `run_server.bat`.
-* `MockIOTweb.html`: a WEBAPP (must be opened in a browser) that can replace `IoTwebUI`: the _websocket_ operation is identical, only that the data used does NOT come from the 'Cloud' but is fake.
-* `client.html`: another WEBAPP with _REST client for testing_ function: it allows you to send to `IoTwebUI` every possible REST request, and see the response.
+    * `server.js`: the executable file with the IoTrest implementation, to be launched in a terminal or using `run_server.bat`.
+    * `MockIOTweb.html`: a WEBAPP (must be opened in a browser) that can replace `IoTwebUI`: the _websocket_ operation is identical, only that the data used does NOT come from the 'Cloud' but is fake.
+    * `client.html`: another WEBAPP with _REST client for testing_ function: it allows you to send to `IoTwebUI` every possible REST request, and see the response.
 
 So the set of three files is self-sufficient, does not require `IoTwebUI`, and can be used as a test. When everything works as it should, close **MockIOTweb** and open **IoTwebUI** and start working with real Tuya devices.<br>
 
@@ -58,8 +58,8 @@ note: if you do not use REST, do not run `server.js`, but just launch **IoTwebUI
 * **Support:** _IoTrest_ supports all compatible Tuya devices, including virtual devices: all the main data available in Tuya Cloud are accessible.
 * **Errors:** _IoTrest_ handles errors robustly, providing simple and clear, non-blocking error messages.
 * **Warnings:**
-- the `online` value provided by Tuya Cloud may differ from the actual value shown in SmartLife.
-- If a device is `online = false`, Tuya Cloud keeps the latest values, so the `device/_dev-name_/_code_` request may provide outdated data.
+    - the `online` value provided by Tuya Cloud may differ from the actual value shown in SmartLife.
+    - If a device is `online = false`, Tuya Cloud keeps the latest values, so the `device/_dev-name_/_code_` request may provide outdated data.
 
 ### **Conclusions**
 
@@ -82,20 +82,82 @@ general: `http://localhost:3031/IoTrest/` + path (see below) <br>
 **Response:** <br>
 Always a js object, see individual cases.
 
-* **device/list[/_home_[/_room_]]** (e.g.: device/list, device/list/ROMA, device/list/ROMA/Studio) <br> Received (ROMA/Studio) ``` {home:"ROMA", room:"Studio", devices:["Termo studio", "USBswitch", "Zigbee Gateway"]} ``` * **device/_dev-name_|_dev-id_/dinfo| dstatus|_code_** (e.g.: device/Temperatura studio/va_temperature, device/Temperatura studio/dinfo, device/Termo studio/dstatus ) <br> Received (va_temperature) ``` {name:"Temperatura studio", va_temperature: 28} ``` Received (dinfo) <br> ``` {name: "Temperatura studio", id: "xxxxxxxxxxxxxxxxxxxx", product_name: "温湿度传感器", model: null, category: "wsdcg", sub: true, logged: ["va_temperature"], test: false} ``` Received (dstatus) ``` {name: "Termo studio", online: true, status: {switch: true, temp_current: 306, temp_set: 200 }} ``` note:<br> - `dinfo.sub` `true` if the device is a sub-device (i.e. use a HUB) <br>
+* **device/list[/_home_[/_room_]]** (e.g.: device/list, device/list/ROMA, device/list/ROMA/Studio) <br>
+Received (ROMA/Studio)
+```
+          {home:"ROMA",
+           room:"Studio",
+           devices:["Termo studio",
+                    "USBswitch",
+                    "Zigbee Gateway"]}
+ ```
+* **device/_dev-name_|_dev-id_/dinfo| dstatus|_code_** (e.g.: device/Temperatura studio/va_temperature, device/Temperatura studio/dinfo, device/Termo studio/dstatus ) <br>
+Received (va_temperature)
+ ```
+           {name:"Temperatura studio",
+            va_temperature: 28}
+```
+Received (dinfo) <br> 
+```
+           {name: "Temperatura studio",
+            id: "xxxxxxxxxxxxxxxxxxxx",
+            product_name: "温湿度传感器",
+            model: null,
+            category: "wsdcg",
+            sub: true,
+            logged: ["va_temperature"],
+            test: false}
+```
+Received (dstatus) 
+``` 
+           {name: "Termo studio",
+            online: true,
+            status: {switch: true,
+                     temp_current: 306,
+                     temp_set: 200 }}
+```
+note:<br>
+- `dinfo.sub` `true` if the device is a sub-device (i.e. use a HUB) <br>
 - `dinfo.logged` _IoTwebUI extension_: list of properties exported from IoTwebUI to file.<br>
 - `dinfo.test` _IoTwebUI extension_: `true` if there is an IoTwebUI alarm connected to the device.<br>
 - `dinfo.category` : code corresponding to `is-a` (in pop-ups, EXPERT mode).
 
-* **alert/list/_dev-name_|_dev-id_** ( e.g.: alert/list/tuya_bridge)<br> Received ``` {"name":"tuya_bridge", "alarms":[ {"code": "switch_1", "trigger": true, "condition": "equ", "value": "true", "message": "I'm closed forever", "action":["pop", "beep", "voice" ]} ]} ``` notes:<br> - `alarms[x].trigger`: `true` in case of active alarm.<br> - `alarms[x].conditon` values: "grt", "equ", "lst" for ">", "=", "<" <br> - `alarms[x].action[y]` values: "beep", "pop", "sound", "voice" (URL and SCENE/RULE: auto, based on `message`)
-* * **scene/list[/_room_]** (scene/list, scene/list/ROMA)<br> Received ``` {home: "ROMA".
- scenes: [{name: "ALARM OFF", status: "enable", running_mode: "cloud"}, {name: "ALARM ON", status: "enable", running_mode: "cloud"}, ...] } ```
+* **alert/list/_dev-name_|_dev-id_** ( e.g.: alert/list/tuya_bridge)<br>
+Received
+```
+           {"name":"tuya_bridge",
+            "alarms":[ {"code": "switch_1",
+                        "trigger": true,
+                        "condition": "equ",
+                        "value": "true",
+                        "message": "I'm closed forever",
+                        "action":["pop", "beep", "voice" ]}
+                         ]}
+```
+notes:<br> 
+- `alarms[x].trigger`: `true` in case of active alarm.<br>
+- `alarms[x].conditon` values: "grt", "equ", "lst" for ">", "=", "<" <br>
+- `alarms[x].action[y]` values: "beep", "pop", "sound", "voice" (URL and SCENE/RULE: auto, based on `message`)
+  
+* * **scene/list[/_room_]** (scene/list, scene/list/ROMA)<br>
+  Received
+```
+           {home: "ROMA".
+            scenes: [{name: "ALARM OFF",
+                      status: "enable",
+                      running_mode: "cloud"},
+                     {name: "ALARM ON",
+                      status: "enable",
+                      running_mode: "cloud"},
+                       ...]
+                 }
+```
 * **rule/list** (e.g.: rule/list)<br>
 Received
 ```
-["turn off the light",
-"pippo",
-"call pippo"]
+          ["turn off light",
+           "pippo",
+           "call pippo"]
 ```
 
 * **execute/_scene-name_|_rule-name_** (e.g.: execute/call pippo)<br>
@@ -127,50 +189,59 @@ This breaker-meter ([OPWTY-63](https://github.com/msillano/tuyaDAEMON/blob/main/
 </td>
 </tr>
 </table>
-As a result, you have the realtime values ​​(V, A, W, leak) present only in the SmartLife user interface, but NOT in the Smartlife automation conditions!<br>
-Without custom interventions, the realtime values ​​(V, A, W, leak) are NOT present in IoTwebUI.
+As a result, you have the real-time values ​​(V, A, W, leak) present only in the SmartLife user interface, but NOT in the Smartlife automation conditions!<br>
+Without custom interventions, the real-time values ​​(V, A, W, leak) are NOT present in IoTwebUI.
 
 #### code
-It is possible to have the RT values ​​in clear both in the **IoTwebUI** tooltip and in the data exported from **IoTrest**, by intervening in the 'custom.js' file as follows:
+It is possible to have the RT values ​​clear both in the **IoTwebUI** tooltip and in the data exported from **IoTrest**, by intervening in the 'custom.js' file as follows:
 
-1) The decoding algorithm is known: it is implemented in the `context.global.datadecode.STRUCTELERT` function present in the `*ENCODE/DECODE user library` node of `tuyaDAEMON.CORE_devices`. Unfortunately, the function is in nodejs, and must be rewritten for the browser's js environment. The function is however quite simple: ``` function datadecodeSTRUCTELERT(value) { let result = {};
-// rewritten javascript version (Buffer not available in browser) const decod = atob(value); // ASCII string from code64 // Int16BE conversions, scaling: result["V"] = (decod.charCodeAt(1) + 256*decod.charCodeAt(0)) / 10.0; // V result["Leack"] = (decod.charCodeAt(3) + 256*decod.charCodeAt(2)) / 1000.0; // A result["A"] = (decod.charCodeAt(5) + 256*decod.charCodeAt(4)) / 40000.0; // A result["W"] = (decod.charCodeAt(7) + 256*decod.charCodeAt(6)) ; // W return (result);
+1) The decoding algorithm is known: it is implemented in the `context.global.datadecode.STRUCTELERT` function present in the `*ENCODE/DECODE user library` node of `tuyaDAEMON.CORE_devices`. Unfortunately, the function is in nodejs, and must be rewritten for the browser's js environment. The function is however quite simple:
+ ```
+function datadecodeSTRUCTELERT(value) {
+    let result = {};
+// rewritten javascript version (Buffer not available in browser)
+    const decod = atob(value); // ASCII string from code64
+// Int16BE conversions, scaling:
+    result["V"] = (decod.charCodeAt(1) + 256*decod.charCodeAt(0)) / 10.0; // V
+    result["Leack"] = (decod.charCodeAt(3) + 256*decod.charCodeAt(2)) / 1000.0; // A
+    result["A"] = (decod.charCodeAt(5) + 256*decod.charCodeAt(4)) / 40000.0; // A
+    result["W"] = (decod.charCodeAt(7) + 256*decod.charCodeAt(6)) ; // W return (result);
 };
 ```
 
-2) The hook function `filterDP(res, devData)` is called for each data read from the Cloud, and normally does nothing, but is present to insert custom processing on the values.
+2) The hook function `filterDP(res, devData)` is called for each device read from the Cloud, and normally does nothing, but is present to insert custom processing for the values.
 The `res` parameter is the object with the complete device data, while `devData` is a `{code1:value1, code2:value2...}` object with the default values ​​to display in the tooltip.
 In this case we will have:
 
 ```
-if (res.name == "Main AC") { //Power meter
-// decode for tooltip, adds extra values ​​to devData
-const vals = datadecodeSTRUCTELERT(devData.phase_a); // decodes 'phase_a'
-devData['phase_a_V'] = vals.V.toFixed(1); // explodes 'vals'
-devData['phase_a_Leack'] = vals.Leack.toFixed(3);
-devData['phase_a_A'] = vals.A.toFixed(3);
-devData['phase_a_W'] = vals.W.toString();
-// MORE: To Export via REST the decoded value, we add it to device.status
-addToStatus("Main AC","phase_a_decoded", vals) ;
+   if (res.name == "Main AC") {                     //Power meter
+  // decode for tooltip, adds extra values ​​to devData
+      const vals = datadecodeSTRUCTELERT(devData.phase_a); // decodes 'phase_a'
+      devData['phase_a_V'] = vals.V.toFixed(1);     // explodes 'vals'
+      devData['phase_a_Leack'] = vals.Leack.toFixed(3);
+      devData['phase_a_A'] = vals.A.toFixed(3);
+      devData['phase_a_W'] = vals.W.toString();
+  // MORE: To Export via REST the decoded value, we add it to device.status
+      addToStatus("Main AC","phase_a_decoded", vals) ;
 }
 ```
-note: `addToStatus()` is a utility that takes care of updating local data (used by REST), adding in this case the value `phase_a_decoded`.
+note: `addToStatus()` is a utility that updates local data (used by REST), adding, in this case, the value `phase_a_decoded`.
 
 #### Results
 The changes made are additive: they do not alter the existing data.
 
 - The tooltip now shows the RT data in clear (last tooltip in the figure).
 
-- As an additional benefit, realtime data (V, A, W, leak), not usable with Tuya/Smartlife automations, can now be used as conditions in IoTwebUI RULES! Example: `GET("Main AC","phase_a_decoded").W`
+- As an additional benefit, real-time data (V, A, W, leak), not usable with Tuya/Smartlife automation, can now be used as conditions in IoTwebUI RULES! Example: `GET("Main AC","phase_a_decoded").W`
 
 - Data can be exported: the REST request `device/Main AC/phase_a_decoded` results in:
 ```
-{name: "Main AC",
-phase_a_decoded: {V: 227,
-Leack: 0.002,
-A: 1.408,
-W: 302
-}}
+         {name: "Main AC",
+         phase_a_decoded: {V: 227,
+                           Leack: 0.002,
+                           A: 1.408,
+                           W: 302 }
+         }
 ```
 
 _The various quirks of Tuya devices sometimes require targeted interventions: the goal in implementing IoTwebUI was to make these customizations as simple as possible._
