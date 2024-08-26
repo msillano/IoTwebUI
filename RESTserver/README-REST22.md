@@ -135,9 +135,9 @@ Received
                          ]}
 ```
 notes:<br> 
-      - `alarms[x].trigger`: `true` in case of active alarm.<br>
-      - `alarms[x].conditon` values: "grt", "equ", "lst" for ">", "=", "<" <br>
-      - `alarms[x].action[y]` values: "beep", "pop", "sound", "voice" (URL and SCENE/RULE: auto, based on `message`)
+   - `alarms[x].trigger`: `true` in case of active alarm.<br>
+   - `alarms[x].conditon` values: "grt", "equ", "lst" for ">", "=", "<" <br>
+   - `alarms[x].action[y]` values: "beep", "pop", "sound", "voice" (URL and SCENE/RULE: auto, based on `message`)
 
 
 * **scene/list[/_room_]** (scene/list, scene/list/ROMA)<br>
