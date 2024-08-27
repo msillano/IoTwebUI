@@ -569,19 +569,19 @@ Ovviamente si possono sempre aggiungere nuove MACRO, o come customizzazione (se 
 <dd>Ritorna il valore di 'property' (usare i nomi originali mostrati nei tooltip) del device (nome o ID)<br> <i>Esempio:</i> <code>var _tf = GET("TF_frigo","va_temperature");</code> </dd>
 
 <dt>SETDEVICESTATUS(device, code, value)</dt>
-<dd> Permette la modifica dei valore letti o l'aggiunta di nuovi valori per i device in **IoTwebUI**.<br>
+<dd> Permette la modifica dei valori letti o l'aggiunta di nuovi valori per i device in **IoTwebUI**.<br>
 Può sostiture alcone customizzazioni più semplici, e.g. per i tooltip, ed aggiornare i dati di _x-device_, vedi MACRO ADDXDEVICE.<br>
-n.b. Sono cambiati solo i dati usati da **IoTwebUI**, non i dati nel device reale o in Tuya Cloud!
+n.b. Questa MACRO cambia solo i dati usati da <b>IoTwebUI<b>, non i dati nel device reale o in Tuya Cloud!<br>
  <i>Esempio:</i> <code>var _tf = GET("TF_frigo","va_temperature");</code> </dd>
 
 <dt>ADDXDEVICE(home, room, name)</dt>
 <dt>ADDXDEVICE(home, room, name, category)</dt>
- <dd> Aggiunge un nuovo _x-device_ in **IotwrbUI**, visualizzato nell'albero e con le stesse funzioni dei device Tuya: `Allarmi`, `Log`, `REST` etc.<br>
+ <dd> Aggiunge un nuovo <i>x-device</i> in <b>IotwrbUI</b>, visualizzato nell'albero e con le stesse funzioni dei device Tuya: 'Allarmi', 'Esportazione', 'REST' etc.<br>
  L'uso di _x-device_ è  stato pensato:
    1. Come proxy per device 'esterne' non Tuya,  con i dati letti via REST 
    2. Per gestire risultati di elaborazioni come se fossero device: e.g. 'temperatura media"<br>
 
-nota: la categoria di default è 'x-dev', `is-a` = 'x.device custom'. Si può specificare una categoria, per esempio per usare un'icona speciale, se così è previsto da customizzazoni basate su `category`.
+nota: la categoria di default è 'x-dev', `is-a` = 'x.device custom'. Si può specificare una categoria, per esempio per usare un'icona speciale, se così è previsto da customizzazoni basate su <code>category</code>.<br>
  <i>Esempio:</i> <code>var _tf = GET("TF_frigo","va_temperature");</code> </dd>
 
 <dt>REST(url)</dt>
