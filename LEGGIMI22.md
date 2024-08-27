@@ -568,34 +568,21 @@ Ovviamente si possono sempre aggiungere nuove MACRO, o come customizzazione (se 
 <dt>GET(device, property)</dt>
 <dd>Ritorna il valore di 'property' (usare i nomi originali mostrati nei tooltip) del device (nome o ID)<br> <i>Esempio:</i> <code>var _tf = GET("TF_frigo","va_temperature");</code> </dd>
 
-<dt>DATALOG(name, value) (*)</dt>
-<dd>Aggiunge un nuovo 'value' al file di log dati, con il 'name' indicato. Utile per salvare risultati di elaborazioni (e.g. medie). Questa MACRO 'prenota' il salvataggio di un valore, ma il salvataggio avviene con i tempi e i modi impostati in config per il file log dati.<br>
-<i>nota: il salvataggio dati durante un test inizia subito, ma, nel formato CSV, la prima riga con i nomi è già stata creata e non è aggiornata. Eventualmente salvare il file di log per avere un nuovo file aggiornato. Questo solo in fase di test: con le REGOLE  in</i> uso <i>dall'avvio non c'è problema.</i><br> 
- <i>Esempio:</i> <code>DATALOG("Temperatura Frigo", GET("TF_frigo","va_temperature")/10);</code>
-</dd>
+<dt>SETDEVICESTATUS(device, code, value)</dt>
+<dd> Permette la modifica dei valore letti o l'aggiunta di nuovi valori per i device in **IoTwebUI**.<br>
+Può sostiture alcone customizzazioni più semplici, e.g. per i tooltip, ed aggiornare i dati di _x-device_, vedi MACRO ADDXDEVICE.<br>
+n.b. Sono cambiati solo i dati usati da **IoTwebUI**, non i dati nel device reale o in Tuya Cloud!
+ <i>Esempio:</i> <code>var _tf = GET("TF_frigo","va_temperature");</code> </dd>
 
-<dt>ALERTLOG(name, message) </dt>
-<dd>Aggiunge il 'message' al registro degli avvisi, identificato da 'name'.<br>
-<i>Esempio:</i> <code>if(ISTRIGGERL(GET("tuya_bridge", "switch_1"))) ALERTLOG("tuya_bridge", "Aperto adesso");</code>></dd>
+<dt>ADDXDEVICE(home, room, name)</dt>
+<dt>ADDXDEVICE(home, room, name, category)</dt>
+ <dd> Aggiunge un nuovo _x-device_ in **IotwrbUI**, visualizzato nell'albero e con le stesse funzioni dei device Tuya: `Allarmi`, `Log`, `REST` etc.<br>
+ L'uso di _x-device_ è  stato pensato:
+   1. Come proxy per device 'esterne' non Tuya,  con i dati letti via REST 
+   2. Per gestire risultati di elaborazioni come se fossero device: e.g. 'temperatura media"<br>
 
-<dt>BEEP()</dt>
-<dd>Segnale di avviso.<br>
-<i>Esempio:</i> <code>if(GET("TF_frigo","va_temperature") > 100) BEEP(); </code>
-</dd>
-
-<dt> POP(device, message)</dt>
-<dd>Segnale di avviso.<br>
-<i>Esempio:</i> <code>if(ISTRIGGERH(GET("TF_frigo","va_temperature") > 100)) POP("Frigo", "TEMPERATURA oltre 10°C" ); </code> </dd>
-
-<dt>XURL(url)<br>
- XURL(url, target)</dt>
-<dd>Apre un URL nel browser.<br>
-`target`: `_self`, `_blank` (default), `_parent`, `_top` (see `window:open` ) <br>
- nota: _self, _parent, _top possono terminare IoTwebUI.<br>
-<i>Esempio:</i>  <code>if (TRIGBYNAME("client REST")) XURL("rest02.2/client.html")</code> <br>
-Usando REST, questa MACRO può essere usata per attivare specifiche pagine WEB, come UI tematiche. <br>
-<i>Esempio:</i>  <code>if (GET("ALLARME", 'status') == 'Allarme') XURL("mypages/alarmmap.html")</code>
-</dd>
+nota: la categoria di default è 'x-dev', `is-a` = 'x.device custom'. Si può specificare una categoria, per esempio per usare un'icona speciale, se così è previsto da customizzazoni basate su `category`.
+ <i>Esempio:</i> <code>var _tf = GET("TF_frigo","va_temperature");</code> </dd>
 
 <dt>REST(url)</dt>
 <dd> Client REST, per servizi web API REST (GET) o device che tornano come risposta un testo semplice.<br>
@@ -627,6 +614,37 @@ timezone_abbreviation: "GMT"
 utc_offset_seconds: 0
 </pre></dd>
 
+</dl>
+
+<dt>DATALOG(name, value) (*)</dt>
+<dd>Aggiunge un nuovo 'value' al file di log dati, con il 'name' indicato. Utile per salvare risultati di elaborazioni (e.g. medie). Questa MACRO 'prenota' il salvataggio di un valore, ma il salvataggio avviene con i tempi e i modi impostati in config per il file log dati.<br>
+<i>nota: il salvataggio dati durante un test inizia subito, ma, nel formato CSV, la prima riga con i nomi è già stata creata e non è aggiornata. Eventualmente salvare il file di log per avere un nuovo file aggiornato. Questo solo in fase di test: con le REGOLE  in</i> uso <i>dall'avvio non c'è problema.</i><br> 
+ <i>Esempio:</i> <code>DATALOG("Temperatura Frigo", GET("TF_frigo","va_temperature")/10);</code>
+</dd>
+
+<dt>ALERTLOG(name, message) </dt>
+<dd>Aggiunge il 'message' al registro degli avvisi, identificato da 'name'.<br>
+<i>Esempio:</i> <code>if(ISTRIGGERL(GET("tuya_bridge", "switch_1"))) ALERTLOG("tuya_bridge", "Aperto adesso");</code>></dd>
+
+<dt>BEEP()</dt>
+<dd>Segnale di avviso.<br>
+<i>Esempio:</i> <code>if(GET("TF_frigo","va_temperature") > 100) BEEP(); </code>
+</dd>
+
+<dt> POP(device, message)</dt>
+<dd>Segnale di avviso.<br>
+<i>Esempio:</i> <code>if(ISTRIGGERH(GET("TF_frigo","va_temperature") > 100)) POP("Frigo", "TEMPERATURA oltre 10°C" ); </code> </dd>
+
+<dt>XURL(url)<br>
+ XURL(url, target)</dt>
+<dd>Apre un URL nel browser.<br>
+`target`: `_self`, `_blank` (default), `_parent`, `_top` (see `window:open` ) <br>
+ nota: _self, _parent, _top possono terminare IoTwebUI.<br>
+<i>Esempio:</i>  <code>if (TRIGBYNAME("client REST")) XURL("rest02.2/client.html")</code> <br>
+Usando REST, questa MACRO può essere usata per attivare specifiche pagine WEB, come UI tematiche. <br>
+<i>Esempio:</i>  <code>if (GET("ALLARME", 'status') == 'Allarme') XURL("mypages/alarmmap.html")</code>
+</dd>
+
 <dt>VOICE(message)</dt>
 <dd>Segnale di avviso.<br>
 <i>Esempio:</i> <code>if (! ISCONNECTED("Tuya bridge")) VOICE ("Attenzione! 'tuya bridge' attualmente disconnesso") </code>
@@ -655,7 +673,8 @@ nota: name deve essere unico (può essere usato una sola volta) ma l'azione può
  <i>Esempio:</i> <code>  if (TRIGBYNAME("pippo")) VOICE (" Trovato pippo"); <br>  // RULE 'pippo'
      if (TRIGBYNAME("chiama pippo")) TRIGRULE("pippo"), VOICE("chiamo pippo")    // RULE 'chiama pippo' 
 </code> </dd>
-</dl>
+
+
 <hr>
 
 #### MACRO funzionali
