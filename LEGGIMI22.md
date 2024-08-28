@@ -595,22 +595,22 @@ n.b. Questa MACRO cambia solo i dati usati da <b>IoTwebUI<b>, non i dati nel dev
 <dt>ADDXDEVICE(home, room, name, category)</dt>
  <dd> Aggiunge un nuovo <i>x-device</i> in <b>IotwrbUI</b>, visualizzato nell'albero e con le stesse funzioni dei device Tuya: 'Allarmi', 'Esportazione', 'REST' etc.<br>
 nota: la categoria di default è 'x-dev', con `is-a` = 'x-device custom'. Si può specificare una categoria, per esempio per usare un'icona speciale, se così è previsto da customizzazoni basate su <code>category</code>.<br>
-nota: `room = null` associa il device alla `home` indicata.
+nota: `room = null` associa il device alla `home` indicata.<br>
  <i>Esempio:</i>
-```
-       // singleton run: adds a x-device
-       if(! VGET('$done')) VSET('$done', 1), ADDXDEVICE('ROMA', "Studio", "Temperatura media");
-```
+<pre>
+     // singleton run: adds a x-device
+     if(! VGET('$done')) VSET('$done', 1), ADDXDEVICE('ROMA', "Studio", "Temperatura media");
+</pre>
 </dd>
  
 <dt>SETXDEVICESTATUS(device, code, value)</dt>
 <dd> Permette l'aggiunta di nuovi valori od il loro aggiornamento nello 'status' di un _x-device_.<br>
 <i>Esempio:</i> 
-``` 
-//updates the x-device doing 2 devices average and then a smoothing average over the last 10 results
-var _tm = ( GET("Temperatura studio","va_temperature") + ( GET("Termo studio","temp_current") / 10)) /2;
-SETDEVICESTATUS( "Xtemperature", "media", AVG(_tm, 10));
-```
+<pre>
+    //updates the x-device doing 2 devices average and then a smoothing average over the last 10 results
+    var _tm = ( GET("Temperatura studio","va_temperature") + ( GET("Termo studio","temp_current") / 10)) /2;
+    SETDEVICESTATUS( "Xtemperature", "media", AVG(_tm, 10));
+</pre>
 </dd>
 
 <dt>REST(url)</dt>
