@@ -135,7 +135,7 @@ Alcune piccole icone forniscono ulteriori informazioni all'utente. Esempi (vedi 
       "delay": 2
       }
       ````
-       _nota: Se siete interessati alla decodifica dei valori Tuya, vedi un [esempio comleto](https://github.com/msillano/IoTwebUI/blob/main/RESTserver/LEGGIMI-REST22.md#customizzazioni)._ 
+       _nota: Se siete interessati alla decodifica dei valori Tuya, vedi un [esempio completo](https://github.com/msillano/IoTwebUI/blob/main/RESTserver/LEGGIMI-REST22.md#customizzazioni)._ 
    - `temperatura studio.va_temperature` è salvato sul datafile, insieme agli altri dati in `logList`.
    -  Per il device `temperatura soggiorno` è scattato l'Allarme (icona speciale)
    - `temperatura soggiorno.va _humidity`  è la causa dell'Allarme, ed è anche indicata la condizione (>40) che lo ha causato.
@@ -605,7 +605,13 @@ nota: `room = null` associa il device alla `home` indicata.
  
 <dt>SETXDEVICESTATUS(device, code, value)</dt>
 <dd> Permette l'aggiunta di nuovi valori od il loro aggiornamento nello 'status' di un _x-device_.<br>
-<i>Esempio:</i> <code>var _tf = GET("TF_frigo","va_temperature");</code> </dd>
+<i>Esempio:</i> 
+``` 
+//updates the x-device doing 2 devices average and then a smoothing average over the last 10 results
+var _tm = ( GET("Temperatura studio","va_temperature") + ( GET("Termo studio","temp_current") / 10)) /2;
+SETDEVICESTATUS( "Xtemperature", "media", AVG(_tm, 10));
+```
+</dd>
 
 <dt>REST(url)</dt>
 <dd> Client REST, per servizi web API REST (GET) o device che tornano come risposta un testo semplice.<br>
