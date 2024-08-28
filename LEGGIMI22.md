@@ -464,7 +464,7 @@ Le 'REGOLE' sono codificate in `JavaScript`. Il particolare ambiente in cui sono
 - **importante**: il codice è eseguito una riga alla volta, non è possibile scrivere blocchi js che occuppino più righe!  Per contenere la lunghezza delle righe, usare delle variabili volatili intermedie (vedi esempi).
 - Definire le variabili volatili (valide per un solo run delle REGOLE) sempre con la sintassi: **var** `_tizio` **=**... , poi possono essere usate liberamente.
 - E' anche possibile definire più variabili contemporaneamente, Esempio `var _var1, _var2 = 0;`: sia `_var1` che `_var2` sono inizializzate a 0.
-- Per definire variabili permanenti (valide per tutti i run) usare le MACRO: VSET(name, value) e VGET(name).
+- Per definire variabili permanenti (valide per tutti i run) usare le MACRO: VSET(name, value) e VGET(name). Si consiglia la convenzione '$variabile' per i nomi, così sono immediatamente riconoscibili.
 - Usare sempre un underscore **"_"** come primo carattere nel _nome delle variabili_: si evitano così interferenze con altre variabili del programma. Non usare caratteri 'strani' nei nomi delle variabili: meglio limitarsi a [A..Za..z0..9] e '_'.
 - Il 'punto e virgola' **";"** a fine riga è opzionale, ma consiglio vivamente di usarlo sempre.
 - JavaScript è un linguaggio 'case sensitive', cioè distingue tra MAIUSCOLE e minuscole, quindi attenzione a scrivere le variabili sempre nello stesso modo (consiglio tutte minuscole, oppure la tecnica 'camel' per i nomi compositi: **`_variabilePocoUsata`**) per distinguerle a colpo d'occhio dalle MACRO (sempre MAIUSCOLE).
@@ -555,7 +555,22 @@ _nota: per identificare un device potete usare indifferentemente il nome o l'ID 
 
 Possiamo dividere le MACRO in due gruppi: il primo che gestisce le interazioni con le risorse disponibili in **IoTwebUI** (una sorta di API interna). Il secondo gruppo di MACRO sono invece più generali, modificando in qualche modo utile i dati in input o fornendo utili output.<br>
 _nota: obiettivo delle MACRO non è quello di duplicare le funzionalità delle automazioni Tuya (anche se a volte c'è sovrapposizione), quanto quello di fornire strumenti più avanzati di calcolo, per ottenere 'automazioni' fin'ora impossibili.   L'uso di device virtuali e di tap-to-run permette di suddividere i compiti tra scene Tuya (automazioni e tap-to-run) e RULE nel modo più efficiente._ <br>
-Ovviamente si possono sempre aggiungere nuove MACRO, o come customizzazione (se create nuove MACRO comunicatemelo) oppure in nuove release di **IoTwebUI** (segnalatemi le vostre esigenze su GitHub,  nelle [ISSUE](https://github.com/msillano/IoTwebUI/issues)).
+Ovviamente si possono sempre aggiungere nuove MACRO, o come customizzazione (se create nuove MACRO comunicatemelo) oppure in nuove release di **IoTwebUI** (segnalatemi le vostre esigenze su GitHub,  nelle [ISSUE](https://github.com/msillano/IoTwebUI/issues)).<
+
+#### MACRO - x-device
+
+A partire dalla ver. 2.2 si possono create e gestire, tramite MACRO e REGOLE le **x-device**, cioè dei 'device virtuali' per **IoTwebUI**. Il grande vantaggio è che hanno prestazioni anologhe ai device reali Tuya: appaiono nell'alberto dei device, nella casa e stanza assegnata, hanno tooltip aggiornati, log, alarm etc...<br>
+
+Gli **x-device** introducono in  **IoTwebUI** un concetto di _composizione ricorsiva_: un _x-device_ può essere un device di base (primo livello, come i device Tuya) ma anche un device 'astratto' di livello superiore, che riunisce e sintetizza i dati e le azioni di più device di livello inferiore, come fanno, ad esempio, i 'Gruppi' Tuya.<br>
+A differenza dei 'Gruppi' (unica possibilità di aggregazione con Tuya) gli _x-device_ sono, a tutti gli effetti, ancora dei device, e quindi la composizione è ricorsiva. Inoltre le funzioni di aggregazione sono libere, sotto controllo dell'utente e non stereotipate in 'ON/OFF'. Ancora, essendo gli **x-device** dei devive, si possono definire Alert e Automazioni basate selle loro proprietà, cosa NON possibile con i 'Gruppi'!
+Gli **x-device**, oltre alla presentazione dei dati, possono anche gestire 'azioni', che trasferiscono al livello inferiore utilizzando REGOLE (e Automazioni o REST-client).
+
+**_Scenari d'uso per x-device:_**
+
+1. Ho un device 'non Tuya' che riesco a controllare via REST (client): associando a questo device un _x-device_, ed aggornandone i valori a specchio, ho il device visibile ed utilizzabile  in _IoTwebUI_ come un device Tuya nativo!
+2. Varie device contribuiscono a formare dei 'sistemi', e.g. Riscaldamento, antifurto, consumi etc... Una _x-device_ 'di sistema' che presenta i dati elaborati consuntivi del sistema stesso, è utile e facilmente consultabile.
+3. Pagine HTML possono fare da interfaccia: chiedono i dati aggiornati a varie device via REST-server. Usando un _x-device_, che riunisca tutti i dati necessari alla interfaccia HTML, si deve semplicemente consultare un'unico device. Inoltre si ha la possibilità di monitorare il sistema da _IoTwebUI_ e si separa l'elaborazione dati dalla interfaccia di visualizzazione,  semplificandone la realizzazione._
+
 <hr>
 
 #### MACRO per risorse
@@ -568,21 +583,26 @@ Ovviamente si possono sempre aggiungere nuove MACRO, o come customizzazione (se 
 <dt>GET(device, property)</dt>
 <dd>Ritorna il valore di 'property' (usare i nomi originali mostrati nei tooltip) del device (nome o ID)<br> <i>Esempio:</i> <code>var _tf = GET("TF_frigo","va_temperature");</code> </dd>
 
-<dt>SETDEVICESTATUS(device, code, value)</dt>
-<dd> Permette la modifica dei valori letti o l'aggiunta di nuovi valori per i device in **IoTwebUI**.<br>
-Può sostiture alcone customizzazioni più semplici, e.g. per i tooltip, ed aggiornare i dati di _x-device_, vedi MACRO ADDXDEVICE.<br>
+<dt>SETXDEVICESTATUS(device, code, value)</dt>
+<dd> Permette l'aggiunta di nuovi valorio il loro aggiornamento per gli _x-device_ in **IoTwebUI**.<br>
 n.b. Questa MACRO cambia solo i dati usati da <b>IoTwebUI<b>, non i dati nel device reale o in Tuya Cloud!<br>
  <i>Esempio:</i> <code>var _tf = GET("TF_frigo","va_temperature");</code> </dd>
 
 <dt>ADDXDEVICE(home, room, name)</dt>
 <dt>ADDXDEVICE(home, room, name, category)</dt>
  <dd> Aggiunge un nuovo <i>x-device</i> in <b>IotwrbUI</b>, visualizzato nell'albero e con le stesse funzioni dei device Tuya: 'Allarmi', 'Esportazione', 'REST' etc.<br>
- L'uso di _x-device_ è  stato pensato:
-   1. Come proxy per device 'esterne' non Tuya,  con i dati letti via REST 
-   2. Per gestire risultati di elaborazioni come se fossero device: e.g. 'temperatura media"<br>
-
-nota: la categoria di default è 'x-dev', `is-a` = 'x.device custom'. Si può specificare una categoria, per esempio per usare un'icona speciale, se così è previsto da customizzazoni basate su <code>category</code>.<br>
- <i>Esempio:</i> <code>var _tf = GET("TF_frigo","va_temperature");</code> </dd>
+nota: la categoria di default è 'x-dev', con `is-a` = 'x-device custom'. Si può specificare una categoria, per esempio per usare un'icona speciale, se così è previsto da customizzazoni basate su <code>category</code>.<br>
+nota: `room = null` associa il device alla `home` indicata.
+ <i>Esempio:</i>
+```
+       // singleton run: adds a x-device
+       if(! VGET('$done')) VSET('$done', 1), ADDXDEVICE('ROMA', "Studio", "Temperatura media");
+```
+</dd>
+ 
+<dt>SETXDEVICESTATUS(device, code, value)</dt>
+<dd> Permette l'aggiunta di nuovi valori od il loro aggiornamento nello 'status' di un _x-device_.<br>
+<i>Esempio:</i> <code>var _tf = GET("TF_frigo","va_temperature");</code> </dd>
 
 <dt>REST(url)</dt>
 <dd> Client REST, per servizi web API REST (GET) o device che tornano come risposta un testo semplice.<br>
@@ -669,7 +689,7 @@ nota: name deve essere unico (può essere usato una sola volta) ma l'azione può
 <dt>TRIGRULE(name)</dt>
 <dd>Esegue un RULE individuato da un nome. <br>
  nota: non ricorsiva, max deep 1  <br>
- nota: Se la definizione TRIGBYNAME(name) precede l'uso di TRIGRULE(name), l'esecuzione non è immediata, ma avviene subito dopo il termine del run attuale delle RULE, in un run EXTRA. <br>                                              
+ nota: Se la definizione TRIGBYNAME(name) precede l'uso di TRIGRULE(name), l'esecuzione non è immediata, ma avviene subito dopo il termine del run attuale delle RULE, in un run EXTRA. <br>                                             
  <i>Esempio:</i> <code>  if (TRIGBYNAME("pippo")) VOICE (" Trovato pippo"); <br>  // RULE 'pippo'
      if (TRIGBYNAME("chiama pippo")) TRIGRULE("pippo"), VOICE("chiamo pippo")    // RULE 'chiama pippo' 
 </code> </dd>
