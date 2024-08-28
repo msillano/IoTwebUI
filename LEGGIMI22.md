@@ -59,7 +59,8 @@ nota: _Portabile, può essere installato ovunque: su uno _smartphone_ o _tablet_
  - Eseguire azioni complesse, come realizzare controlli PID, schedulare annualmente, o ricevere dati da altre applicazioni via REST.
  - Attivate in base a condizioni (come le 'Automazioni' Tuya) oppure su comando (come i 'tap-to-run' Tuya).
  - Per i casi più semplici (una sola condizione) si possono usare gli 'Allarmi' (che possono attivare 'tap-to-run').
- - Il linguaggio delle REGOLE soddisfa le condizioni Bohm/Jacopini e quindi è 'Turing completo'. Più potenza espressiva vuol dire per l'utente concentrarsi su 'che cosa si vuol fare' e non 'su come farlo'!
+ - Il linguaggio delle REGOLE soddisfa le condizioni Bohm/Jacopini e quindi è 'Turing completo'. Più potenza espressiva vuol dire per l'utente concentrarsi su 'che cosa si vuol fare' e non 'su come farlo' (pensiamo alle acrobazie a cui ci costringono talora le automazioni Tuya).
+ - Così potente da poter creare ricorsivamente nuove **x-device** in _IoTwebUI_,
  - Come funziona?
     1. Crea le REGOLE al runtime con un'interfaccia user-friendly, anche se non sei un programmatore esperto.
     2. Utilizza MACRO predefinite per i compiti comuni e ripetitivi, risparmiando tempo e fatica.
@@ -292,6 +293,8 @@ _Queste due strade permettono finalmente l'integrazione di Tuya in progetti vert
 - 2.2  Aggiunto server REST (IoTrest)
   - Internazionalizzazione (IT, EN) per interfaccia utente e modulo speech.
   - Modificate voci menu
+  - Evidenziate nell'albero i device 'virtuali' e gli 'x-device'
+  - nuove MACRO per _x-device_ ricorsive
  
 - 2.1.1 Correzione bugs [ISSUE10](https://github.com/msillano/IoTwebUI/issues/10): Token scaduto. [ISSUE11](https://github.com/msillano/IoTwebUI/issues/11): refuso.
 
