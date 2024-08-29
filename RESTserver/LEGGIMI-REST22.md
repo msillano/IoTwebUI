@@ -108,7 +108,8 @@ generale: `http://localhost:3031/IoTrest/` + path (vedi sotto) <br>
              category: "wsdcg",
              sub: true,
              logged: ["va_temperature"],
-             test: false}
+             test: [],
+             alarm: []}
 ```
  Received (dstatus)
 ```
@@ -117,6 +118,7 @@ generale: `http://localhost:3031/IoTrest/` + path (vedi sotto) <br>
               status: {switch: true,
                        temp_current: 306,
                        temp_set: 200},
+              alarm: [],
               icon:{code:61874,
                     color:"HotPink" },
               tooltip":"%3Ci%20class=%22fa%20fa-database%22%20style=%22color..."
@@ -125,12 +127,13 @@ generale: `http://localhost:3031/IoTrest/` + path (vedi sotto) <br>
  note:<br>
     -  `dinfo.sub`  `true` se il device è un sub-device (i.e. usa un HUB) <br>
     -  `dinfo.logged` _estensione IoTwebUI_: lista delle proprietà esportate da IoTwebUI su file.<br>
-    -  `dinfo.test` _estensione IoTwebUI_: `true` se esiste un allarme IoTwebUI collegato al device.<br>
+    -  `dinfo.test` _estensione IoTwebUI_: lista delle proprietà controllate da IoTwebUI per un allarme.<br>
     -  `dinfo.category` : codice corrispondente ad `is-a` (nei pop-up, modo ESPERTO).<br>
+    -  `dstatus.alarm` _estensione IoTwebUI_: lista delle proprietà con un un allarme.<br>
 
-note: `icon` and `tooltip` (dstatus) <br>
-    Questi due valori sono stati pensati per semplificare le interfacce custom HTML grafiche. Infatti forniscono gli stessi dati usati nell'albero di **IoTwebUI** per poterli usare facilmente in una nuova pagina HTML. Alcuni sono codificati per facilitare la trasmissione ( icon.code, tooltip ) e devono esseere decoficati per usarli.<br>
-Nel file 'client.js' trovate un esempio d'uso, applicato in caso di una richiesta `dstatus`. E' definita la funzione `getDeviceHTML(data)` che fornisce un frammento HTML pronto all'uso. Questa funzione deve essere usata insieme ai font _Awesome_ e ad alcuni _stili CSS_, come indicato in `client.js`. Ovviamente potete modificare molti dettagli per ottenere l'aspetto desiderato: quello fornito è un esempio di base.
+note: `dstatus.icon` and `dstatus.tooltip`<br>
+   - Questi due valori sono stati pensati per semplificare le interfacce custom HTML grafiche. Infatti forniscono gli stessi dati usati nell'albero di **IoTwebUI** per poterli usare facilmente in una nuova pagina HTML. Alcuni sono codificati per facilitare la trasmissione ( icon.code, tooltip ) e devono esseere decoficati per usarli.<br>
+  - Uso: Nel file 'client.js' trovate un esempio d'uso, applicato in caso di una richiesta `dstatus`. E' definita la funzione `getDeviceHTML(data)` che fornisce un frammento HTML pronto all'uso. Questa funzione deve essere usata insieme ai font _Awesome_ e ad alcuni _stili CSS_, come indicato in `client.js`. Ovviamente potete modificare molti dettagli per ottenere l'aspetto desiderato: quello fornito è un esempio di base.
 
         
 *  **alert/list/_dev-name_|_dev-id_** ( e.g.: alert/list/tuya_bridge)<br>
