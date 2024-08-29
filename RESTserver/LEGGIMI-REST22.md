@@ -131,7 +131,7 @@ generale: `http://localhost:3031/IoTrest/` + path (vedi sotto) <br>
 
 note: `dstatus.icon` and `dstatus.tooltip`<br>
 - Questi due valori sono stati pensati per semplificare le interfacce custom HTML grafiche. Infatti forniscono gli stessi dati usati nell'albero di **IoTwebUI** per poterli usare facilmente in una nuova pagina HTML. Alcuni sono codificati per facilitare la trasmissione ( icon.code, tooltip ) e devono esseere decoficati per usarli.<br>
- - Uso: Nel file 'client.js' trovate un esempio d'uso, applicato in caso di una richiesta `dstatus`. E' definita la funzione `getDeviceHTML(data)` che fornisce un frammento HTML pronto all'uso. Questa funzione deve essere usata insieme ai font _Awesome_ e ad alcuni _stili CSS_, come indicato in `client.js`. Ovviamente potete modificare molti dettagli per ottenere l'aspetto desiderato: quello fornito è un esempio di base, il risultao in figura:
+ - Uso: Nel file 'client.js' trovate un esempio d'uso, applicato in caso di una richiesta `dstatus`. E' definita la funzione `getDeviceHTML(data)` che fornisce un frammento HTML pronto all'uso. Questa funzione deve essere usata insieme ai font _Awesome_ e ad alcuni _stili CSS_, come indicato in `client.js`. Ovviamente potete modificare molti dettagli per ottenere l'aspetto desiderato: quello fornito è un esempio di base, il risultato in figura:
 
 ![custom tooltip](https://github.com/msillano/IoTwebUI/blob/main/pics/tooltip01.png?raw=true)
 
