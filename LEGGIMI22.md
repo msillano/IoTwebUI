@@ -743,7 +743,8 @@ time = costante nei formati "hh:mm:ss" oppure "mm:ss" oppure "ss". Limite inferi
 <i>Esempio:</i> <code>if(ISTRIGGERH(CONFIRML(ISCONNECTED("relay"), "02:30"))) VOICE("Allarme disconnessione");</code> </dd>
 
 <dt>TRIGCHANGED(value) (*) </dt>
-<dd> ritorna 'true' ogni volta che 'value' cambia rispetto al valore precedente.<br>
+<dd> ritorna 'true' ogni volta che 'value' cambia rispetto al valore immediatamente precedente.<br>
+nota: il primo valore NON genera trigger.
 <i>Esempio:</i> <code> var _tf = GET("TF_frigo","va_temperature"); <br>
  var _annonce = "Alle ore " + TIME(hrs)+" la temperatura è cambiata. Il frigo è a " + ROUND(_tf/10, 1) + " gradi";<br>
  if(TRIGCHANGED(_tf)) VOICE(_annonce); </code></dd>
