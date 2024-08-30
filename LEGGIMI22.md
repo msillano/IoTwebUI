@@ -283,18 +283,18 @@ _nota: la richiesta di consenso all'uso del microfono dipende dal browser e dall
 In IoTwebUI esistono 2 interfacce REST:
 
 1. _REST client_, implementato come MACRO in due versioni: TXT e JSON, permette di importare dati esterni nelle REGOLE, da webservice o anche da device di terze parti o device DIY che implementino un'interfaccia REST. _E' quindi possibile far interagire Tuya con device custom_: per creare device DIY con Arduino o ESP8266 vedi [esempio](https://github.com/msillano/tuyaDEAMON-applications/wiki/note-5:-Watchdog-for-IOT#watchdog03-esp01-relay--arduino).
-2. _REST server_, per l'esportazione dei dati dei device Tuya e per il controllo su automazioni e allarmi, verso applicazioni o interfacce custom. Per dettagli [vedi documentazione IoTrest](https://github.com/msillano/IoTwebUI/blob/main/RESTserver/LEGGIMI-REST22.md).
+2. _REST server_, per l'esportazione dei dati dei device Tuya e per il controllo su automazioni e allarmi, verso client in applicazioni o interfacce custom. Per dettagli [vedi documentazione IoTrest](https://github.com/msillano/IoTwebUI/blob/main/RESTserver/LEGGIMI-REST22.md).
 
 _Queste due strade permettono finalmente l'integrazione di Tuya in progetti verticali, senza alterare il funzionamento base di Tuya/Smartlife, ma arricchendolo di nuove potenzialità, con una strategia più semplice delle alternative preesistenti (e.g. tuyaDAEMON, HA, etc...)_
 
 <hr style="height:2px;border-width:0;color:gray;background-color:gray">
 
 ## Versioni
-- 2.2  Aggiunto server REST (IoTrest)
-  - Internazionalizzazione (IT, EN) per interfaccia utente e modulo speech.
+- 2.2  Aggiunto server REST [IoTrest](https://github.com/msillano/IoTwebUI/tree/main/RESTserver)
+  - [Internazionalizzazione](#internazionalizzazione) (IT, EN) per interfaccia utente e modulo speech.
   - Modificate voci menu
   - Evidenziate nell'albero i device 'virtuali' e gli 'x-device'
-  - nuove MACRO per _x-device_ ricorsive
+  - [nuove MACRO per]() _x-device_ , device list etc.
  
 - 2.1.1 Correzione bugs [ISSUE10](https://github.com/msillano/IoTwebUI/issues/10): Token scaduto. [ISSUE11](https://github.com/msillano/IoTwebUI/issues/11): refuso.
 
@@ -565,7 +565,7 @@ Ovviamente si possono sempre aggiungere nuove MACRO, o come customizzazione (se 
 A partire dalla ver. 2.2 si possono create e gestire, tramite MACRO e REGOLE le **x-device**, cioè dei 'device virtuali' per **IoTwebUI**. Il grande vantaggio è che hanno prestazioni anologhe ai device reali Tuya: appaiono nell'alberto dei device, nella casa e stanza assegnata, hanno tooltip aggiornati, log, alarm etc...<br>
 
 Gli **x-device** introducono in  **IoTwebUI** un concetto di _composizione ricorsiva_: un _x-device_ può essere un device di base (primo livello, come i device Tuya) ma anche un device 'astratto' di livello superiore, che riunisce e sintetizza i dati e le azioni di più device di livello inferiore, come fanno, ad esempio, i 'Gruppi' Tuya.<br>
-A differenza dei 'Gruppi' (unica possibilità di aggregazione con Tuya) gli _x-device_ sono, a tutti gli effetti, ancora dei device, e quindi la composizione è ricorsiva. Inoltre le funzioni di aggregazione sono libere, sotto controllo dell'utente e non stereotipate in 'ON/OFF'. Ancora, essendo gli **x-device** dei devive, si possono definire Alert e Automazioni basate selle loro proprietà, cosa NON possibile con i 'Gruppi'!
+A differenza dei 'Gruppi' (unica possibilità di aggregazione con Tuya) gli _x-device_ sono, a tutti gli effetti, ancora dei device, e quindi la composizione è ricorsiva. Inoltre le funzioni di aggregazione sono libere, sotto controllo dell'utente e non stereotipate in 'ON/OFF'. Ancora, essendo gli **x-device** dei device, si possono definire Alert e Automazioni basate selle loro proprietà, cosa NON possibile con i 'Gruppi'!<br>
 Gli **x-device**, oltre alla presentazione dei dati, possono anche gestire 'azioni', che trasferiscono al livello inferiore utilizzando REGOLE (e Automazioni o REST-client).
 
 **_Scenari d'uso per x-device:_**
@@ -584,14 +584,25 @@ Gli **x-device**, oltre alla presentazione dei dati, possono anche gestire 'azio
 <i>Esempio:</i> <code>if (! ISCONNECTED("Tuya bridge")) VOICE ("Attenzione! 'tuya bridge' attualmente disconnesso"); </code>  </dd>
 
 <dt>GET(device, property)</dt>
-<dd>Ritorna il valore di 'property' (usare i nomi originali mostrati nei tooltip) del device (nome o ID)<br> <i>Esempio:</i> <code>var _tf = GET("TF_frigo","va_temperature");</code> </dd>
+<dt>GET(device, property, strict)</dt>
+<dd>Ritorna il valore di 'property' (usare i nomi originali mostrati nei tooltip) del device (nome o ID)<br>
+Errore in caso di 'device' non trovata, mentre se non trova 'property' dà errore se <code>strict == true</code> (default), altrimenti torna "none". <br>
+ <i>Esempio:</i> <code>var _tf = GET("TF_frigo","va_temperature");</code> </dd>
+
+<dt>GETIDLIST()</dt>
+<dt>GETIDLIST(home)</dt>
+<dt>GETIDLIST(home, room)</dt>
+<dd>Ritorna un array di device ID.<br>
+ <i>Esempio:</i> <code></code> </dd>
 
 <dt>ADDXDEVICE(home, room, name)</dt>
-<dt>ADDXDEVICE(home, room, name, category)</dt>
+<dt>ADDXDEVICE(home, room, name, init)</dt>
+<dt>ADDXDEVICE(home, room, name, init, category)</dt>
  <dd> Aggiunge un nuovo <i>x-device</i> in <b>IotwebUI</b>, visualizzato nell'albero e con le stesse funzioni dei device Tuya: 'Allarmi', 'Esportazione', 'REST' etc.<br>
-nota: la categoria di default è 'x-dev', con `is-a` = 'x-device custom'. Si può specificare una categoria, per esempio per usare un'icona speciale, se così è previsto da customizzazoni basate su <code>category</code>.<br>
-nota: `room = null` associa il device alla `home` indicata.<br>
-nota: se un x-device esiste, `ADDXDEVICE()` provoca la cancellazione di tutti i dati in 'status'.<br>
+nota: init: (default = []) array di valori iniziali come oggetti. e.g.: <code>{code: 'brightness_max_1', value: 891}</code>code>.
+nota: la categoria di default è 'x-dev', con <code>is-a</code> => 'x-device custom'. Si può specificare una diversa categoria (tra le esistenti), per esempio per usare un'icona speciale, se così è previsto da customizzazioni basate su <code>category</code>.<br>
+nota: <code>room == null</code> associa il device alla 'home' indicata.<br>
+nota: se il x-device esiste, ADDXDEVICE() provoca la sostituzione dei dati in 'status' con 'init'.<br>
  <i>Esempio:</i>
 <pre>
      // singleton run: adds a x-device
@@ -603,7 +614,7 @@ nota: se un x-device esiste, `ADDXDEVICE()` provoca la cancellazione di tutti i 
 <dd> Permette l'aggiunta di nuovi valori od il loro aggiornamento nello 'status' di un _x-device_.<br>
 <i>Esempio:</i> 
 <pre>
-    //updates the x-device doing 2 devices average and then a smoothing average over the last 10 results
+    //updates the x-device doing 2 devices average and then a mobile average over the last 10 results
     var _tm = ( GET("Temperatura studio","va_temperature") + ( GET("Termo studio","temp_current") / 10)) /2;
     SETDEVICESTATUS( "Xtemperature", "media", AVG(_tm, 10));
 </pre>
@@ -621,7 +632,7 @@ nota: se un x-device esiste, `ADDXDEVICE()` provoca la cancellazione di tutti i 
   // see https://open-meteo.com/<br>
  var _meteo, _urlm ="https://api.open-meteo.com/v1/forecast?latitude=41.9030&longitude=12.4663&current=temperature_2m"; <br>
  if(TRIGBYNAME("meteo")) _meteo = RESTJSON(_urlm), POP("ROMA", "temperatura = " + _meteo.current.temperature_2m );  </code> <br>
-<i> nota: questa è la struttura completa dell'oggetto-risposta (<code>_meteo</code>), che si può vedere in console con <code>'console.log(_meteo)'</code>. Si è utilizzata in POP() solo la temperatura ( <code>_meteo.current.temperature_2m </code>): </i> <pre>
+<i> nota: questa è la struttura completa dell'oggetto-risposta (<code>_meteo</code>) REST, che si può vedere in console con <code>'console.log(_meteo)'</code>. Si è utilizzata in POP() solo la temperatura ( <code>_meteo.current.temperature_2m </code>): </i> <pre>
 current: 
     interval: 900
     temperature_2m: 33.7
@@ -690,8 +701,10 @@ nota: name deve essere unico (può essere usato una sola volta) ma l'azione può
 <i>Esempio:</i> <code>if (TRIGBYNAME('spegni la luce')) VOICE (" Hai attivato: 'spegni la luce'") </code> </dd>
 
 <dt>TRIGRULE(name)</dt>
+<dt>TRIGRULE(name, parameter)</dt>
 <dd>Esegue un RULE individuato da un nome. <br>
- nota: non ricorsiva, max deep 1  <br>
+<code>parameter</code> (opzionale) è reso disponibile nella var <code>_ruleParam`</code> (altrimenti `null`). Potendo essere 'parameter' un oggetto, non ci sono limiti ai dati passati con questo meccanismo.
+ nota: TRIGRULE non è ricorsiva; max 1 'parameter' attivo per non sovrascrivere _ruleParam (statico). <br>
  nota: Se la definizione TRIGBYNAME(name) precede l'uso di TRIGRULE(name), l'esecuzione non è immediata, ma avviene subito dopo il termine del run attuale delle RULE, in un run EXTRA. <br>                                             
  <i>Esempio:</i> <code>  if (TRIGBYNAME("pippo")) VOICE (" Trovato pippo"); <br>  // RULE 'pippo'
      if (TRIGBYNAME("chiama pippo")) TRIGRULE("pippo"), VOICE("chiamo pippo")    // RULE 'chiama pippo' 
