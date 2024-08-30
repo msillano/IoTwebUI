@@ -586,16 +586,12 @@ Gli **x-device**, oltre alla presentazione dei dati, possono anche gestire 'azio
 <dt>GET(device, property)</dt>
 <dd>Ritorna il valore di 'property' (usare i nomi originali mostrati nei tooltip) del device (nome o ID)<br> <i>Esempio:</i> <code>var _tf = GET("TF_frigo","va_temperature");</code> </dd>
 
-<dt>SETXDEVICESTATUS(device, code, value)</dt>
-<dd> Permette l'aggiunta di nuovi valorio il loro aggiornamento per gli _x-device_ in **IoTwebUI**.<br>
-n.b. Questa MACRO cambia solo i dati usati da <b>IoTwebUI<b>, non i dati nel device reale o in Tuya Cloud!<br>
- <i>Esempio:</i> <code>var _tf = GET("TF_frigo","va_temperature");</code> </dd>
-
 <dt>ADDXDEVICE(home, room, name)</dt>
 <dt>ADDXDEVICE(home, room, name, category)</dt>
- <dd> Aggiunge un nuovo <i>x-device</i> in <b>IotwrbUI</b>, visualizzato nell'albero e con le stesse funzioni dei device Tuya: 'Allarmi', 'Esportazione', 'REST' etc.<br>
+ <dd> Aggiunge un nuovo <i>x-device</i> in <b>IotwebUI</b>, visualizzato nell'albero e con le stesse funzioni dei device Tuya: 'Allarmi', 'Esportazione', 'REST' etc.<br>
 nota: la categoria di default è 'x-dev', con `is-a` = 'x-device custom'. Si può specificare una categoria, per esempio per usare un'icona speciale, se così è previsto da customizzazoni basate su <code>category</code>.<br>
 nota: `room = null` associa il device alla `home` indicata.<br>
+nota: se un x-device esiste, `ADDXDEVICE()` provoca la cancellazione di tutti i dati in 'status'.<br>
  <i>Esempio:</i>
 <pre>
      // singleton run: adds a x-device
@@ -642,8 +638,6 @@ timezone: "GMT"
 timezone_abbreviation: "GMT"
 utc_offset_seconds: 0
 </pre></dd>
-
-</dl>
 
 <dt>DATALOG(name, value) (*)</dt>
 <dd>Aggiunge un nuovo 'value' al file di log dati, con il 'name' indicato. Utile per salvare risultati di elaborazioni (e.g. medie). Questa MACRO 'prenota' il salvataggio di un valore, ma il salvataggio avviene con i tempi e i modi impostati in config per il file log dati.<br>
@@ -702,7 +696,7 @@ nota: name deve essere unico (può essere usato una sola volta) ma l'azione può
  <i>Esempio:</i> <code>  if (TRIGBYNAME("pippo")) VOICE (" Trovato pippo"); <br>  // RULE 'pippo'
      if (TRIGBYNAME("chiama pippo")) TRIGRULE("pippo"), VOICE("chiamo pippo")    // RULE 'chiama pippo' 
 </code> </dd>
-
+</dl>
 
 <hr>
 
