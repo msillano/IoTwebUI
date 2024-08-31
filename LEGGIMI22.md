@@ -570,36 +570,42 @@ Gli **x-device**, oltre alla presentazione dei dati, possono anche gestire 'azio
 
 **_Scenari d'uso per x-device:_**
 
-1. Ho un device 'non Tuya' che riesco a controllare via REST (client): associando a questo device un _x-device_, ed aggornandone i valori a specchio, ho il device visibile ed utilizzabile  in _IoTwebUI_ come un device Tuya nativo!
+1. Ho un device 'non Tuya' che riesco a controllare via REST (client): associando a questo device un _x-device_ 'alias', ed aggornandone i valori a specchio, ho il device visibile ed utilizzabile  in _IoTwebUI_ come un device Tuya nativo!
 2. Varie device contribuiscono a formare dei 'sistemi', e.g. Riscaldamento, antifurto, consumi etc... Una _x-device_ 'di sistema' che presenta i dati elaborati consuntivi del sistema stesso, è utile e facilmente consultabile.
-3. Pagine HTML possono fare da interfaccia: chiedono i dati aggiornati a varie device via REST-server. Usando un _x-device_, che riunisca tutti i dati necessari alla interfaccia HTML, si deve semplicemente consultare un'unico device. Inoltre si ha la possibilità di monitorare il sistema da _IoTwebUI_ e si separa l'elaborazione dati dalla interfaccia di visualizzazione,  semplificandone la realizzazione._
+3. Pagine HTML possono fare da interfaccia: chiedono i dati aggiornati a varie device via REST-server. Usando un _x-device_, 'di sintesi' che riunisca tutti i dati necessari alla interfaccia HTML, si deve semplicemente consultare un'unico device. Inoltre si ha la possibilità di monitorare il sistema da _IoTwebUI_ e si separa l'elaborazione dati dalla interfaccia di visualizzazione,  semplificandone la realizzazione._
 
 <hr>
 
 #### MACRO per risorse
 <dl>
+
+<dt>GET(device, property)</dt>
+<dt>GET(device, property, strict)</dt>
+<dd>Ritorna il valore di una 'property' (usare i nomi originali mostrati nei tooltip) presente nello 'status' del device (nome o ID)<br>
+Genera un errore in caso di 'device' non trovata, mentre se non trova 'property' dà errore se <code>strict == true</code> (default), altrimenti torna "none". <br>
+ <i>Esempio:</i> <code>var _tf = GET("TF_frigo","va_temperature");</code> </dd>
+
+<dt>GETATTRIBUTE(device, attribute)</dt>
+<dd>Ritorna il valore di un 'attributo' del device (nome o ID). I più utili sono 'name', 'id', 'online', etc... <br>
+Genera errore in caso di 'device' o 'attribute' non trovati. <br>
+ <i>Esempio:</i> <code>var _name = GETATTRIBUTE(_devid, 'name');</code> </dd>
+ 
 <dt>ISCONNECTED(device)</dt>
 <dd>Ritorna 'true' se il device (nome o ID) è connesso. <br>
 <i>nota: il dato proviene dal Cloud, può differire dal valore locale mostrato da SmartLife.</i><br>
 <i>Esempio:</i> <code>if (! ISCONNECTED("Tuya bridge")) VOICE ("Attenzione! 'tuya bridge' attualmente disconnesso"); </code>  </dd>
 
-<dt>GET(device, property)</dt>
-<dt>GET(device, property, strict)</dt>
-<dd>Ritorna il valore di 'property' (usare i nomi originali mostrati nei tooltip) del device (nome o ID)<br>
-Errore in caso di 'device' non trovata, mentre se non trova 'property' dà errore se <code>strict == true</code> (default), altrimenti torna "none". <br>
- <i>Esempio:</i> <code>var _tf = GET("TF_frigo","va_temperature");</code> </dd>
-
 <dt>GETIDLIST()</dt>
 <dt>GETIDLIST(home)</dt>
 <dt>GETIDLIST(home, room)</dt>
 <dd>Ritorna un array di device ID.<br>
- <i>Esempio:</i> <code></code> </dd>
+ <i>Esempio:</i> <code> GETIDLIST('ROMA').forEach((devid) => {...}); </code> </dd>
 
-<dt>ADDXDEVICE(home, room, name)</dt>
-<dt>ADDXDEVICE(home, room, name, init)</dt>
-<dt>ADDXDEVICE(home, room, name, init, category)</dt>
+<dt>ADDXDEVICE(home, room|null, name)</dt>
+<dt>ADDXDEVICE(home, room|null, name, init)</dt>
+<dt>ADDXDEVICE(home, room|null, name, init, category)</dt>
  <dd> Aggiunge un nuovo <i>x-device</i> in <b>IotwebUI</b>, visualizzato nell'albero e con le stesse funzioni dei device Tuya: 'Allarmi', 'Esportazione', 'REST' etc.<br>
-nota: init: (default = []) array di valori iniziali come oggetti. e.g.: <code>{code: 'brightness_max_1', value: 891}</code>code>.
+nota: init: (default = []) array di valori iniziali come oggetti. e.g.: <code>{code: 'brightness_max_1', value: 891}</code>.
 nota: la categoria di default è 'x-dev', con <code>is-a</code> => 'x-device custom'. Si può specificare una diversa categoria (tra le esistenti), per esempio per usare un'icona speciale, se così è previsto da customizzazioni basate su <code>category</code>.<br>
 nota: <code>room == null</code> associa il device alla 'home' indicata.<br>
 nota: se il x-device esiste, ADDXDEVICE() provoca la sostituzione dei dati in 'status' con 'init'.<br>
@@ -711,6 +717,13 @@ nota: name deve essere unico (può essere usato una sola volta) ma l'azione può
 </code> </dd>
 </dl>
 
+<dt>REFRESH() </dt>
+<dt>REFRESH('cloud') </dt>
+<dd>Molte operazioni sono sincronizzate sul loop di polling: questo può rallentare troppo la risposta alle azioni utente.<br>
+REFRESH() causa un extra ciclo di analisi delle REGOLE, mentre REFRESH('cloud') causa un extra polling dei dati e rinfresco della UI.<BR>
+ N.B. NON usarle in REGOLE processate ad ogni loop: si creerebbe una 'race condition' bloccante! Usarle solo in REGOLE processate una tantum, in risposta ad azioni utente, e solo se necessario!
+</dd>
+
 <hr>
 
 #### MACRO funzionali
@@ -745,9 +758,11 @@ time = costante nei formati "hh:mm:ss" oppure "mm:ss" oppure "ss". Limite inferi
 <dt>TRIGCHANGED(value) (*) </dt>
 <dd> ritorna 'true' ogni volta che 'value' cambia rispetto al valore immediatamente precedente.<br>
 nota: il primo valore NON genera trigger.
-<i>Esempio:</i> <code> var _tf = GET("TF_frigo","va_temperature"); <br>
- var _annonce = "Alle ore " + TIME(hrs)+" la temperatura è cambiata. Il frigo è a " + ROUND(_tf/10, 1) + " gradi";<br>
- if(TRIGCHANGED(_tf)) VOICE(_annonce); </code></dd>
+<i>Esempio:</i> <pre> 
+      var _tf = GET("TF_frigo","va_temperature"); 
+      var _annonce = "Alle ore " + TIME(hrs)+" la temperatura è cambiata. Il frigo è a " + ROUND(_tf/10, 1) + " gradi";
+      if(TRIGCHANGED(_tf)) VOICE(_annonce); 
+</pre></dd>
 
 <dt>TRIGEVERY(n) (*)</dt>
 <dd>  Semplice timer: ritorna 'true' solo dopo "n" esecuzioni, ciclico. <br>
