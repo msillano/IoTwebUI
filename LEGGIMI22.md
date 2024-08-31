@@ -466,7 +466,6 @@ Le 'REGOLE' sono codificate in `JavaScript`. Il particolare ambiente in cui sono
 
 - **importante**: il codice è eseguito una riga alla volta, non è possibile scrivere blocchi js che occuppino più righe!  Per contenere la lunghezza delle righe, usare delle variabili volatili intermedie (vedi esempi).
 - Definire le variabili volatili (valide per un solo run delle REGOLE) sempre con la sintassi: **var** `_tizio` **=**... , poi possono essere usate liberamente.
-- E' anche possibile definire più variabili contemporaneamente, Esempio `var _var1, _var2 = 0;`: sia `_var1` che `_var2` sono inizializzate a 0.
 - Per definire variabili permanenti (valide per tutti i run) usare le MACRO: VSET(name, value) e VGET(name). Si consiglia la convenzione '$variabile' per i nomi, così sono immediatamente riconoscibili.
 - Usare sempre un underscore **"_"** come primo carattere nel _nome delle variabili_: si evitano così interferenze con altre variabili del programma. Non usare caratteri 'strani' nei nomi delle variabili: meglio limitarsi a [A..Za..z0..9] e '_'.
 - Il 'punto e virgola' **";"** a fine riga è opzionale, ma consiglio vivamente di usarlo sempre.
