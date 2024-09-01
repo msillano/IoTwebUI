@@ -10,7 +10,12 @@ _What can you do?_<br>
 🎙  Voice control: all controlled by voice, in a single APP<br>
 👌 Perfect integration: Combine devices, properties, voice, RULEs, and Tuya tap-to-run for smooth and complete automation.
 
-😃 [Version  2.1 - English](https://github.com/msillano/IoTwebUI/blob/main/README21.md) <br>
+_**New: in ver 2.2 for 'power users':**_
+- **Server REST** for custom APP and interfaces<br>
+- **Addon** and virtual **x-device** with recursive composition
+
+😃 [Version  2.2 - English](https://github.com/msillano/IoTwebUI/blob/main/README22.md) <br>
+ ⬦ [Version  2.1 - English](https://github.com/msillano/IoTwebUI/blob/main/README21.md) <br>
  ⬦ [Version  2.0 - English](https://github.com/msillano/IoTwebUI/blob/main/README20.md) <br>
  ⬦ [Version  1.2 - English](https://github.com/msillano/IoTwebUI/blob/main/README12.md)
 
@@ -26,8 +31,13 @@ _Cosa puoi fare?_<br>
 🎙  Comandi vocali: tutto controllato con la voce, in un'unica APP<br>
 👌 Integrazione perfetta: Combina device, proprietà, voce, RULE e Tuya tap-to-run per un'automazione fluida e completa.
 
+_**New: nella ver 2.2 per 'power users':**_
+- **Server REST** per APP ed interfacce utente personalizzate<br>
+- **Addon** e **x-device** virtuali ricorsive!
 
-😃 [Versione 2.1 - Italiano](https://github.com/msillano/IoTwebUI/blob/main/LEGGIMI21.md) <br>
+
+😃 [Versione 2.2 - Italiano](https://github.com/msillano/IoTwebUI/blob/main/LEGGIMI22.md) <br>
+⬦  [Versione 2.1 - Italiano](https://github.com/msillano/IoTwebUI/blob/main/LEGGIMI21.md) <br>
 ⬦  [Versione 2.0 - Italiano](https://github.com/msillano/IoTwebUI/blob/main/LEGGIMI20.md) <br>
 ⬦  [Versione 1.2 - Italiano](https://github.com/msillano/IoTwebUI/blob/main/LEGGIMI12.md)
 
