@@ -23,5 +23,5 @@ Ver. 1.0 20/08/2024  (c)marco.sillano@gmail.com
 ### Installazione
 - Aggiornare la vostra _'home'_ nel codice
 - Creare/mantenere un elenco di TUTTI i device da testare.
-- (opzionale) cambiare nome, icone, colore all'**x-device**
+- (opzionale) cambiare nome, icona, colore a questa **x-device**
 
