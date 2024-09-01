@@ -4,11 +4,12 @@ Contains user data and options
 ------------------------------
 License MIT
 (C)2024 marco.sillano@gmail.com
+ver 1.0 20/08/2024
 per IOTwebUI version 2.2 10/08/2024
  */
 // =====================  x-device BATTERY01
 // This addon implements a x-device, BATTERY01, to test device battery in many HOMES. Weak auto-discovery devices
-// note: CUSTOMIZATION: set your default 'home' name, update command RULE for more than one home!
+// note: CUSTOMIZATION: set your default 'home' name, and update command RULE for more than one home!
 
 // =====================  USE AS NEW MACRO 
 // 0) This file (updated) must be in the 'addons' directory of your IoTwebUI installation
@@ -65,12 +66,12 @@ function BATTERY01() {
             ]),  VOICE("Aggiorno la lista dei device");
 
     // ====== SET or REFRESH status properties
-    // in my devices I found only 2 properties for pecentages: 'battery_percentage', 'va_battery'..
+    //I found only 2 properties for percentages in my devices: 'battery_percentage', 'va_battery'..
     GETIDLIST(_xhome).forEach((devid) => {
         let _t1 = GET(devid, 'battery_percentage', false);
         if (_t1 == "none")
             _t1 = GET(devid, 'va_battery', false);
-        // for more properties, duplicate previous 2 lines...
+        //For more properties, duplicate the previous 2 lines...
         if ((_t1 != "none") && (_t1 < _lowPerc))
             _lowD.push(GETATTRIBUTE(devid, 'name'));
         });
