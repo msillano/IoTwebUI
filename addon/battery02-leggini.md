@@ -7,7 +7,7 @@ Questo test è preciso e fornire informazioni anche sulle batterie necessarie.<b
 Ha le proprietà visibili in figura.
 - La proprietà `home` è RO: è predefinita nel codice.
 - Le altre proprietà sono RO.
-- Funzionamento utilizza un elenco aggiornato dei device.
+- Funzionamento: utilizza un elenco aggiornato dei device.
 
 Ver. 1.0 20/08/2024  (c)marco.sillano@gmail.com 
 
@@ -15,9 +15,9 @@ Ver. 1.0 20/08/2024  (c)marco.sillano@gmail.com
 - Assenza di errori
 - Informazioni aggiuntive solle batterie necessarie
 - Livello minimo ottimizzabile per ogni device
-- 
+
 #### Contro
-- Senza Auto-discovery, necessità di creare/mantenere un elenco di TUTTI i device da testare
+- Senza Auto-discovery, c'è la necessità di creare/mantenere un elenco di TUTTI i device da testare
 - La 'Home' è definita nel codice: quella a cui si riferisce l'elenco.
 
 ### Installazione
