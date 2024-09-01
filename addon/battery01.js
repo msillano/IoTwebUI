@@ -9,7 +9,7 @@ per IOTwebUI version 2.2 10/08/2024
  */
 // =====================  x-device BATTERY01
 // This addon implements a x-device, BATTERY01, to test device battery in many HOMES. Weak auto-discovery devices
-// note: CUSTOMIZATION: set your default 'home' name, and update command RULE for more than one home!
+// note: CUSTOMIZATION: set your default 'home' name, and update command RULE for more than one home! Optional: add more device properties.
 
 // =====================  USE AS NEW MACRO 
 // 0) This file (updated) must be in the 'addons' directory of your IoTwebUI installation
