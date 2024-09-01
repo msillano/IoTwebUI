@@ -3,7 +3,7 @@
 ### Descrizione
 ![](https://github.com/msillano/IoTwebUI/blob/main/pics/battery02.png?raw=true)
 
-Questo test è preciso e fornire informazioni anche sulle batterie necessarie.<br>
+Questo test è preciso e fornirnisce informazioni anche sulle batterie necessarie.<br>
 Ha le proprietà visibili in figura.
 - La proprietà `home` è RO: è predefinita nel codice.
 - Le altre proprietà sono RO.
@@ -12,8 +12,8 @@ Ha le proprietà visibili in figura.
 Ver. 1.0 20/08/2024  (c)marco.sillano@gmail.com 
 
 #### Pro
-- Assenza di errori
-- Informazioni aggiuntive solle batterie necessarie
+- Assenza di errori nell'individuare i device
+- Informazioni aggiuntive sulle batterie necessarie
 - Livello minimo ottimizzabile per ogni device
 
 #### Contro
