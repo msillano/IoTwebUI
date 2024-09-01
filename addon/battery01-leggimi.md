@@ -1,4 +1,4 @@
-# BATTERY01 - x-device: battery status auto-test#
+# BATTERY01 - x-device: battery status auto-test
 
 ### Descrizione
 
