@@ -1,4 +1,4 @@
-# BATTERY02 - x-device: battery status test
+# BATTERY02 - x-device: deep battery status test
 
 ### Descrizione
 ![](https://github.com/msillano/IoTwebUI/blob/main/pics/battery02.png?raw=true)
