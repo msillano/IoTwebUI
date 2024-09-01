@@ -8,7 +8,7 @@ Ha le proprietà visibili in figura.
 - Le altre proprietà sono RO.
 - Funzionamento in auto-discovery dei device Tuya, basato sulle loro proprietà.
 
-Ver. 1.0 30/08/2024  (c)marco.sillano@gmail.com 
+Ver. 1.0 20/08/2024  (c)marco.sillano@gmail.com 
 
 #### Pro
 - semplicità d'uso, praticamente NON richiede interventi di customizzazione
