@@ -18,8 +18,8 @@ Ver. 1.0 20/08/2024  (c)marco.sillano@gmail.com
 - Mancano dettagli sulle batterie necessarie
 - auto-discovery può fare errori: in figura device `'low8'`  è virtuale, cioè senza batterie, ma il suo status riporta batteria a 0.
 
-### Customizzazioni
+### Installazione
 - aggiungere altre _proprietà al test_, se richiesto dai vostri device
 - Usare la vostra _'home'_ come default
-- (opzionale) cambiare nome, icone, colore all'**x-device**
+- (opzionale) cambiare nome, icona, colore a questa '**x-device**
 
