@@ -1,8 +1,9 @@
 # BATTERY01 - x-device: battery status auto-test
 
-### Descrizione
+
 ![](https://github.com/msillano/IoTwebUI/blob/main/pics/battery01.png?raw=true)
 
+### Descrizione
 Auto-discovery dei device con batterie scariche, per ogni HOME.<br>
 Ha le proprietà visibili in figura.
 - La proprietà `home` è RW: se viene cambiata, aggiorna i device.
