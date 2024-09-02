@@ -610,6 +610,7 @@ nota: la categoria di default è 'x-dev', con <code>is-a</code> => 'x-device cus
 nota: <code>room == null</code> associa il device alla 'home' indicata.<br>
 nota: se il x-device esiste, ADDXDEVICE() provoca la sostituzione dei dati in 'status' con 'init'.<br>
  <i>Esempio:</i>
+nota: ADDXDEVICE() inizia 'online' con false: solo dopo aver completato tutti i calcoli (possono richiedere tempo) può essere messo a 'true' con SETXDEVICEONLINE(), per avere un feedback visivo dello stato dell'x-device.-
 <pre>
      // singleton run: adds a x-device
      if(! VGET('$done')) VSET('$done', 1), ADDXDEVICE('ROMA', "Studio", "Temperatura media");
@@ -625,6 +626,12 @@ nota: se il x-device esiste, ADDXDEVICE() provoca la sostituzione dei dati in 's
     SETDEVICESTATUS( "Xtemperature", "media", AVG(_tm, 10));
 </pre>
 </dd>
+
+<dt>SETXDEVICEONLINE(device, online)</dt>
+<dd> Permette il controllo dell'attributo 'online' per gli x-device<br>
+<i>Esempio:</i> 
+</dd>
+
 
 <dt>REST(url)</dt>
 <dd> Client REST, per servizi web API REST (GET) o device che tornano come risposta un testo semplice.<br>
