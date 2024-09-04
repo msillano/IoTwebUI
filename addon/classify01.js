@@ -149,13 +149,6 @@ if (ISTRIGGERH( _clDev.length > 0)){
 //   Minified version of CLASSIFY01 for RULE-pad: 4 lines only!  (using Notepad++ + plugin JSTool).
 //   On the RULE-pad you can cut long lines in many rows, and use 'continue' char (\) as last char for any row.
 
-if(!VGET('$done'))VSET('$done',1),ADDXDEVICE('ROMA',null,"Battery test",[{code:'home',value:'ROMA'},{code:'low level',value:10}]);
-
-var _xhome=GET("Battery test",'home');var _lowPerc=GET("Battery test",'low level');var _lowD=[];if(TRIGCHANGED(_xhome)) ADDXDEVICE('ROMA',null,"Battery test",[{code:'home',value:_xhome},{code:'low level',value:_lowPerc}]),VOICE("Aggiorno la lista dei device");
-
-GETIDLIST(_xhome).forEach((devid)=>{let _t1=GET(devid,'battery_percentage',false);if(_t1=="none")_t1=GET(devid,'va_battery',false);if((_t1!="none")&&(_t1<_lowPerc))_lowD.push(GETATTRIBUTE(devid,'name'));});
-
-SETXDEVICESTATUS("Battery test", "count", _lowD.length);_lowD.forEach((dev,pos)=>{SETXDEVICESTATUS("Battery test","low"+(pos+1),dev)});
 
 // end minified
 */
