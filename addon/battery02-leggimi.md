@@ -19,6 +19,7 @@ Ver. 1.0 20/08/2024  (c)marco.sillano@gmail.com
 #### Contro
 - Senza Auto-discovery, c'è la necessità di creare/mantenere un elenco di TUTTI i device da testare
 - La 'Home' è definita nel codice: quella a cui si riferisce l'elenco.
+- Ho provato alternative più efficienti, ad esempio usare le 'category' per raggruppare i device, nell'ipotesi che 'category' uguali comportino le stesse proprietà, ma purtroppo così non è, come ho controllato usando CLASSIFY01.  
 
 ### Installazione
 - Aggiornare la vostra _'home'_ nel codice
