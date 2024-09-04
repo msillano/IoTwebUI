@@ -1,11 +1,11 @@
-# CLASSIFY01 - x-device: diceve list by category
+# CLASSIFY01 - x-device: device list by category
 
 ![](https://github.com/msillano/IoTwebUI/blob/main/pics/Schermata9-04.jpg?raw=true)
 
 ### Descrizione
-Fornisce un elenco delle device presenti, suddivise per categoria (is-a)<br>
+Fornisce un elenco dei device presenti in un HOME o in tutte, suddivisi per categoria (is-a)<br>
 Ha le proprietà visibili in figura.
-- La proprietà `home` è RW: se viene cambiata, aggiorna i device (null=tutte).
+- La proprietà `home` è RW: se viene cambiata, aggiorna automaticamente i device (null=tutte).
 - La proprietà `mode` è RW, valori: 'all'|'online'|'offline'. Se viene cambiata, aggiorna i device.
 - Le altre proprietà sono RO.
 
