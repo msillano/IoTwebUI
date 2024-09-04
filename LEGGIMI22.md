@@ -857,8 +857,10 @@ Usi: profili di temperatura giornalieri, eventi ad orario o abilitazione per int
  
 </dl>
 
-(*): identifica le MACRO che fanno uso di memoria per salvare lo stato: NON usarle nella parte _azione_ di un if())
-      
+(*) - IMPORTANTE: identifica le MACRO che fanno uso di memoria per salvare lo stato, DEVONO essere eseguite ad ogni RUN delle regole!
+    1. NON usarle quindi nella parte _azione_ di un IF: <code> if(condizione){ qui_NO }  </code><br>
+    2. NON usarle nemmeno come seconda condizione dopo || o &&: <code>if(cond1 &&  qui_NO){azione}</code><br>
+ Workaround: usare una var di appoggio prima dell'IF:  <code> var _test2 = MACRO(*); if(cond1 && _test2){azione}</code>    
 
 ## Riconoscimenti
       
