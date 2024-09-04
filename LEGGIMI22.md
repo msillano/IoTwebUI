@@ -588,13 +588,16 @@ Genera un errore in caso di 'device' non trovata, mentre se non trova 'property'
 <dt>GETATTRIBUTE(device, attribute, strict)</dt>
 <dd>Ritorna il valore di un 'attributo' del device (nome o ID). I più utili sono 'name', 'id', 'online', etc... <br>
 Genera un errore in caso di 'device' non trovata, mentre se non trova 'property' dà errore se <code>strict == true</code> (default), altrimenti torna "none". <br>
-
  <i>Esempio:</i> <code>var _name = GETATTRIBUTE(_devid, 'name');</code> </dd>
  
 <dt>ISCONNECTED(device)</dt>
 <dd>Ritorna 'true' se il device (nome o ID) è connesso. <br>
 <i>nota: il dato proviene dal Cloud, può differire dal valore locale mostrato da SmartLife.</i><br>
 <i>Esempio:</i> <code>if (! ISCONNECTED("Tuya bridge")) VOICE ("Attenzione! 'tuya bridge' attualmente disconnesso"); </code>  </dd>
+
+<dt>GETHOMELIST()</dt>
+<dd>Ritorna un array con i nomi di tutte le HOME.<br>
+<i>Esempio:</i> <code></code> </dd>
 
 <dt>GETIDLIST()</dt>
 <dt>GETIDLIST(home)</dt>
