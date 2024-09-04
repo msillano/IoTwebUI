@@ -585,9 +585,10 @@ Gli **x-device**, oltre alla presentazione dei dati, possono anche gestire 'azio
 Genera un errore in caso di 'device' non trovata, mentre se non trova 'property' dà errore se <code>strict == true</code> (default), altrimenti torna "none". <br>
  <i>Esempio:</i> <code>var _tf = GET("TF_frigo","va_temperature");</code> </dd>
 
-<dt>GETATTRIBUTE(device, attribute)</dt>
+<dt>GETATTRIBUTE(device, attribute, strict)</dt>
 <dd>Ritorna il valore di un 'attributo' del device (nome o ID). I più utili sono 'name', 'id', 'online', etc... <br>
-Genera errore in caso di 'device' o 'attribute' non trovati. <br>
+Genera un errore in caso di 'device' non trovata, mentre se non trova 'property' dà errore se <code>strict == true</code> (default), altrimenti torna "none". <br>
+
  <i>Esempio:</i> <code>var _name = GETATTRIBUTE(_devid, 'name');</code> </dd>
  
 <dt>ISCONNECTED(device)</dt>
@@ -608,7 +609,7 @@ Genera errore in caso di 'device' o 'attribute' non trovati. <br>
 nota: init: (default = []) array di valori iniziali come oggetti. e.g.: <code>{code: 'brightness_max_1', value: 891}</code>.
 nota: la categoria di default è 'x-dev', con <code>is-a</code> => 'x-device custom'. Si può specificare una diversa categoria (tra le esistenti), per esempio per usare un'icona speciale, se così è previsto da customizzazioni basate su <code>category</code>.<br>
 nota: <code>room == null</code> associa il device alla 'home' indicata.<br>
-nota: se il x-device esiste, ADDXDEVICE() provoca la sostituzione dei dati in 'status' con 'init'.<br>
+nota: se il x-device esiste, ADDXDEVICE() re-inizializza con la sostituzione dei dati in 'status' con 'init'.<br>
  <i>Esempio:</i>
 nota: ADDXDEVICE() inizia 'online' con false: solo dopo aver completato tutti i calcoli (possono richiedere tempo) può essere messo a 'true' con SETXDEVICEONLINE(), per avere un feedback visivo dello stato dell'x-device.-
 <pre>
