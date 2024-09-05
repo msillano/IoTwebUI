@@ -194,7 +194,7 @@ In modo ESPERTO cliccando su un device si apre un dialogo che nella parte inferi
  _note:_
  
  - _Se non si sceglie nessuna azione e si lascia vuoto 'message', l'azione di default è il cambio dell'icona del device e l'aggiornamento del tooltip, sempre eseguiti._
- - _Gli 'Allarmi' non hanno, per semplicità, un filtro a tempo: se definiti sono attivi 24/7. Se occorre qualche condizionamento, è possibile creare REGOLE ad hoc ed attivarle dall'alert (nota: le REGOLE possono attivare le stesse azioni attivate dagli 'Allarmi')._ 
+ - _Gli 'Allarmi' non hanno, per semplicità, un filtro a tempo: se definiti sono attivi 24/7. Se occorre qualche condizionamento, è possibile creare REGOLE ad hoc ed attivarle dall'alert (nota: un 'Allarme' può attivare una REGOLA, e le REGOLE possono attivare le stesse azioni dagli 'Allarmi')._ 
  - _Notare che 'connected' non è mai incluso nelle proprietà Tuya, e quindi non si possono definire 'Allarmi'. Ma è disponibile come MACRO nelle REGOLE._
  - _Avendo un solo messaggio, le regole di precedenza sono: SUONO e URL (auto) sono esaminati per primi, poi Tap-to-run e RULE (auto), e solo per ultimo POP e VOCE (compatibili: lo stesso messaggio può essere usato per entranbi); BEEP è sempre utilizzabile._
  - _E' possibile definire contemporaneamente più azioni compatibili, e.g. 'beep' e 'pop-up' (con messaggio)._
