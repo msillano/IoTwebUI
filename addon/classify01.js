@@ -8,13 +8,13 @@ per IOTwebUI version 2.2 10/08/2024
  */
 // =====================  x-device CLASSIFY01
 // This addon implements CLASSIFY01. This get a device list (all(default), only online, only offline) from one/all(default) HOMES.
-// The code is executed only one time, at startup or after a change of device's velues: 'home', 'mode'
-// note: CUSTOMIZATION: on the firt line you can set where put the new x-devoce. HOME/(ROOM)
-// Calling parameter: device_name, target ROOM_name|All (null), and Mode: 'all'|'online'|'offline'
+// The code is executed only one time, at startup or after a change of device's values: 'home', 'mode'
+// note: CUSTOMIZATION: on the first line you can set where put the new x-devoce. HOME/(ROOM)
+// Calling parameter: CLASSIFY01(name, room, mode): device_name, target ROOM_name|All (null), mode: 'all'|'online'|'offline'
 
 // =====================  USE AS NEW MACRO
 // 0) This file (updated) must be in the 'addons' directory of your IoTwebUI installation
-// 1) Include THIS file in the main file ( IoTwebUI.html ) at the end, adding:
+// 1) Include THIS file in the main file ( IoTwebUI.html ) at the end, adding the line:
 //       <script type="text/javascript" src="addons/CLASSIFY01.js"></script >
 // 2-A) Copy the 'RULES for CLASSIFY01' in the RULE-pad at run time (temporary)
 // 2-B) Or copy the 'RULES for CLASSIFY01' in the 'var usrrules' in the usrrulesXX.X.js file (permanent).
