@@ -62,43 +62,43 @@ function CLASSIFY01(_clName = "Device list", _clStartHome = null, _clStartMode =
        }
 
 // ====== METHOD: check a cleanup is triggered when the home/mode properties changes
-    var _clXhome = GET(_clName, 'home'); // user can change home at runtime
-    var _clXmode = GET(_clName, 'mode'); // user can change mode at runtime
-    var _clDev = []; // temp device names array
+    var _clXhome = GET(_clName, 'home');  // user can change home anytime
+    var _clXmode = GET(_clName, 'mode');  // user can change mode anytime
+    var _clDev = [];     // temp device names array
 
     if (TRIGCHANGED(_clXhome + _clXmode)) {    // to use a single TRIGCHANGED()
-   	      ADDXDEVICE(_clHome, _clRoom, _clName, [{
+       ADDXDEVICE(_clHome, _clRoom, _clName, [{     // ADDXDEVICE  resets status data 
                     code: 'home',
-                    value: _clXhome
+                    value: _clXhome       //  actual value
                 }, {
-                    code:  'mode',  // all|online|offline
-                    value: _clXmode
+                    code:  'mode',  
+                    value: _clXmode       //  actual value 
                 }, {
                     code:  'count',
-                    value:  0
+                    value:  0             // reset
                 }] );
-      SETXDEVICEONLINE(_clName, false);  // offline
-      console.log("cl_phase A - update");
-    	VOICE("Aggiorno la lista dei device");
-		  }
+       SETXDEVICEONLINE(_clName, false);  // offline
+       console.log("cl_phase A - update");
+       VOICE("Aggiorno la lista dei device");
+       }
 
-// ========  B_PHASE  wait for 2 loops to coplete device processing
+// ========  B_PHASE  wait for 2 loops to complete device processing
     if((TRIGEVERY(2) && GET(_clName, 'count', false) == 0)) {
       var _clAHomes = (_clXhome == null) ? GETHOMELIST():[_clXhome];
       _clAHomes.forEach ((xhome) => {
-         GETIDLIST(xhome).forEach((devid) => {
+           GETIDLIST(xhome).forEach((devid) => {
            let online = GETATTRIBUTE(devid, 'online');
            if ( (_clXmode == 'all') || ((_clXmode == 'online') && online) || ((_clXmode == 'offline') && !online)){
-    	   	   let device ={};
+    	   	 let device ={};
     	     	 device.name = GETATTRIBUTE(devid, 'name');
-    		     device.category = GETATTRIBUTE(devid, 'category', false);
-    		     device.is_a		= GETATTRIBUTE(devid, 'is-a', false);
-    		     _clDev.push( device); };
+    		 device.category = GETATTRIBUTE(devid, 'category', false);
+    		 device.is_a		= GETATTRIBUTE(devid, 'is-a', false);
+    		 _clDev.push( device); };
         });}), console.log("cl_phase B - array done");
      }
 
 // ========  C_PHASE: fills status properties
-  function dynamicSort(properties) {    // local function
+  function dynamicSort(properties) {    // local sort function
      return function(a, b) {
         for (let i = 0; i < properties.length; i++) {
             let prop = properties[i];
@@ -112,13 +112,13 @@ function CLASSIFY01(_clName = "Device list", _clStartHome = null, _clStartMode =
 if (ISTRIGGERH( _clDev.length > 0)){
     _clDev = _clDev.sort(dynamicSort(['category','name']));
     SETXDEVICESTATUS(_clName, "count", _clDev.length);
-	  let _clC = ''; let i =1;
-    _clDev.forEach((dev, pos) => {
+	  let _clC = ''; let i =1;         // locals
+          _clDev.forEach((dev, pos) => {
 	      if(_clC != dev.category){
-           SETXDEVICESTATUS(_clName,  '<b>'+dev.category, dev.is_a +'</b>');
-		       _clC = dev.category
-	         }
-        SETXDEVICESTATUS(_clName, '---- ' + i++, dev.name);
+                   SETXDEVICESTATUS(_clName,  '<b>'+dev.category, dev.is_a +'</b>'); // add category
+		   _clC = dev.category
+	           }
+              SETXDEVICESTATUS(_clName, '---- ' + i++, dev.name);  // add device
 	      });
     console.log("cl_phase C - status ready");
     }
@@ -126,9 +126,9 @@ if (ISTRIGGERH( _clDev.length > 0)){
  // ====== D_PHASE: if done, set online and refresh
   if (ISTRIGGERH(_clDev.length > 0)) {
 	    SETXDEVICEONLINE(_clName);  // done: online
-		  console.log("** done classify01");
-		  REFRESH('cloud');                 // to update tooltip asap
-      VOICE("Device "+_clName+" aggiornato");
+	    console.log("** done classify01");
+	    REFRESH('cloud');                 // to update tooltip asap
+            VOICE("Device "+_clName+" aggiornato");
       };
 
 } // end  CLASSIFY01 code
