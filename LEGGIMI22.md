@@ -372,7 +372,7 @@ Come alternativa potete accedere su `platform.tuya.com`, selezionare 'Cloud' e '
 
 - Ancora in `config.js`, la variabile  `expertModeEnabled = false` permette di disabilitare del tutto il modo 'EXPERT'.
 
-- Dalla versione 2.0 le definizioni per 'dataLog' (`logList`  in `config.js`), 'Alert'(`testList` in `config.js`) e RULE (`usrRules` in  `usrrulesXX.X.js`) possono essere create nella APP, con semplici interfacce utente, e poi esportate per essere copiate nei rispettivi file.
+- Dalla versione 2.0 le definizioni per 'dataLog' (`logList`  in `config.js`), ALLARMI (`testList` in `config.js`) e REGOLE (`usrRules` in  `usrrulesXX.X.js`) possono essere create nella APP, con semplici interfacce utente, e poi esportate per essere copiate nei rispettivi file.
 
 - Aggiornare con i path del sistema ospite il file di lancio `run_me.bat`, per lanciare Chrome con una configurazione ottimizzata.
   
@@ -393,6 +393,7 @@ Ma sono facilmente personalizzabili dall'utente: basta fornire un criterio di se
    - i Termometri (device con nome 'Temp...').
    - le Valvole termostatiche (device con nome 'Termo...').
    - i Gateway (device con 'Gateway' nel nome).
+   - gli **x-device**  
 
 Anche l'icona speciale che indica un'alert è customizzabile: vedi `alertIcon` in 'config.js'.
      
