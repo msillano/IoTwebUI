@@ -149,6 +149,7 @@ if (ISTRIGGERH( _clDev.length > 0)){
 //   Minified version of CLASSIFY01 for RULE-pad: 4 lines only!  (using Notepad++ + plugin JSTool).
 //   On the RULE-pad you can cut long lines in many rows, and use 'continue' char (\) as last char for any row.
 
+// not available
 
 // end minified
 */
