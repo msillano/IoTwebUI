@@ -575,6 +575,10 @@ Gli **x-device**, oltre alla presentazione dei dati, possono anche gestire 'azio
 2. Varie device contribuiscono a formare dei 'sistemi', e.g. Riscaldamento, antifurto, consumi etc... Una _x-device_ 'di sistema' che presenta i dati elaborati consuntivi del sistema stesso, è utile e facilmente consultabile.
 3. Pagine HTML possono fare da interfaccia: chiedono i dati aggiornati a varie device via REST-server. Usando un _x-device_, 'di sintesi' che riunisca tutti i dati necessari alla interfaccia HTML, si deve semplicemente consultare un'unico device. Inoltre si ha la possibilità di monitorare il sistema da _IoTwebUI_ e si separa l'elaborazione dati dalla interfaccia di visualizzazione,  semplificandone la realizzazione._
 
+**_Limiti per x-device_**
+
+1. Attenzione all'uso di multiple istanze di un **x-device**. E' possibile solo se l'**x-device** è implementato come una funzione (MACRO) ed usa variabili con scopo locale (`let`) e non globale (`var`). Se invece è implementato come REGOLA, occorre ripetere il codice per ogni istanza, ed allora é possibile cambiare i nomi alle `var` presenti.  
+
 <hr>
 
 #### MACRO per risorse
