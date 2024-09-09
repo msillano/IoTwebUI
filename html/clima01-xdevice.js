@@ -8,7 +8,7 @@ per IOTwebUI version 2.2 10/08/2024
  */
 // =====================  x-device CLIMA01
 // This addon implements a x-device, CLIMA01, plaing the role of middleware between Tuya devices and the CLIMA01 web page.
-// Trensforms the Tuya temperature value e.g. 284  to a string used by the UI: "28,4°C" 
+// Transforms the Tuya temperature value e.g. 284  to a string used by the UI: "28,4°C" 
 
 // =====================  USE AS NEW MACRO
 // 0) This file (updated) must be in the 'addons' directory of your IoTwebUI installation
@@ -41,10 +41,10 @@ function CLIMA01() {
     if (!VGET('$clima01'))
         VSET('$clima01', 1), ADDXDEVICE('ADMIN', "tools", "temperaturedata");
     // formats values from  all used devices
-    SETXDEVICESTATUS("temperaturedata", "soggiorno", ROUND(GET("bfd2eac1e5cb7bf6a4ll4z", "va_temperature")/10, 1)+"°C");                
-    SETXDEVICESTATUS("temperaturedata", "letto",     ROUND(GET("bfc5451737cbfe54ecme4o", "va_temperature")/10, 1)+"°C");    
-    SETXDEVICESTATUS("temperaturedata", "ospiti",    ROUND(GET("bf931b4999e2384f95pnwu", "va_temperature")/10, 1)+"°C");     
-    SETXDEVICESTATUS("temperaturedata", "esterno",   ROUND(GET("bf37d9e44c94789d14tqef", "va_temperature")/10, 1)+"°C");  
+    SETXDEVICESTATUS("temperaturedata", "soggiorno", ROUND(GET("bfd2eac1xxxxxxxxxxxxxx", "va_temperature")/10, 1)+"°C");                
+    SETXDEVICESTATUS("temperaturedata", "letto",     ROUND(GET("bfc54517xxxxxxxxxxxxxx", "va_temperature")/10, 1)+"°C");    
+    SETXDEVICESTATUS("temperaturedata", "ospiti",    ROUND(GET("bf931b49xxxxxxxxxxxxxx", "va_temperature")/10, 1)+"°C");     
+    SETXDEVICESTATUS("temperaturedata", "esterno",   ROUND(GET("bf37d9e4xxxxxxxxxxxxxx", "va_temperature")/10, 1)+"°C");  
     SETXDEVICEONLINE("temperaturedata",true);                                      
  }
 
@@ -63,10 +63,10 @@ function CLIMA01() {
 //   On the RULE-pad you can cut long lines in many rows, and use 'continue' char (\) as last char for any row.
 
     if (!VGET('$clima01')) VSET('$clima01', 1), ADDXDEVICE('ADMIN', "tools", "temperaturedata");
-    SETXDEVICESTATUS("temperaturedata", "soggiorno", ROUND(GET("bfd2eac1e5cb7bf6a4ll4z", "va_temperature")/10, 1)+"°C");                
-    SETXDEVICESTATUS("temperaturedata", "letto",     ROUND(GET("bfc5451737cbfe54ecme4o", "va_temperature")/10, 1)+"°C");    
-    SETXDEVICESTATUS("temperaturedata", "ospiti",    ROUND(GET("bf931b4999e2384f95pnwu", "va_temperature")/10, 1)+"°C");     
-    SETXDEVICESTATUS("temperaturedata", "esterno",   ROUND(GET("bf37d9e44c94789d14tqef", "va_temperature")/10, 1)+"°C");  
+    SETXDEVICESTATUS("temperaturedata", "soggiorno", ROUND(GET("bfd2eac1xxxxxxxxxxxxxx", "va_temperature")/10, 1)+"°C");                
+    SETXDEVICESTATUS("temperaturedata", "letto",     ROUND(GET("bfc54173xxxxxxxxxxxxxx", "va_temperature")/10, 1)+"°C");    
+    SETXDEVICESTATUS("temperaturedata", "ospiti",    ROUND(GET("bf931b49xxxxxxxxxxxxxx", "va_temperature")/10, 1)+"°C");     
+    SETXDEVICESTATUS("temperaturedata", "esterno",   ROUND(GET("bf37d9e4xxxxxxxxxxxxxx", "va_temperature")/10, 1)+"°C");  
     SETXDEVICEONLINE("temperaturedata",true);                                      
 
 // end minified
