@@ -24,5 +24,5 @@ _Occorre solo un po' di pazienza e qualche tentativo per ottimizzare la posizion
 Per rendere l'interfaccia utente indipendente dai dati forniti dai device Tuya, si è utilizzata un **x-device**
 con funzione di middleware.
 
-Trasforma un valore fornito dai device ('va_temperature: 284') in una stringa usabile nell'interfaccia: "28,4°C".
+Trasforma un valore fornito dai device (e.g. 'va_temperature: 284') in una stringa usabile nell'interfaccia: "28,4°C".
 Ovviamente è un esempio, da adattare ai device in uso.
