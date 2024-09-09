@@ -1,0 +1,68 @@
+/*
+This file is part of IoTwebUI project (https://github.com/msillano/IoTwebUI)
+ CSS for widget01
+ ------------------------------
+License MIT
+(C)2024 marco.sillano@gmail.com
+version 2.0 30/05/2024
+*/
+/*   TOOLTIP
+use:  <div class='hover'> clickable <div class = 'tooltip'> tooltip text </div></div>	// div or span
+*/
+.hover {
+    position: relative;
+    display: inline-block;
+    cursor: pointer;
+    }
+
+.hover .tooltip {
+ 	top:20px;
+    padding: 5px;
+    visibility: hidden;
+    position: absolute;
+    white-space: nowrap;
+    z-index: 1;
+    
+    /* customizable */
+    border-radius: 5px;
+	padding: 5px;
+ 	font: 10px Arial, sans-serif;
+ 	background-color: black;
+    color: #fff;
+   }
+
+.hover:hover .tooltip {
+   visibility: visible;
+   }
+/* iotwidget01  defaults */
+	    :root {
+            --button-width: 150px; 
+            --button-height: 50px; 
+            }
+		.value {
+			font-family:Arial; 
+			color:black;
+			font-size:14px;	
+			}
+	    .bigvalue {
+			font-family:Arial; 
+			color:Blue;
+			font-size:22px;	
+			}
+		.bigbutton {	
+			width:  var(--button-width); 
+			height: var(--button-height);
+			border-radius:5px;
+			cursor: pointer;
+			}
+		.imgbutton {	
+		    width: var(--button-width);
+		    height: var(--button-height);
+		    border-radius:5px;
+            border: none;
+            cursor: pointer;
+            }
+		.imgbutton span {
+            color: white;
+           }
+
