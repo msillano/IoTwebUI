@@ -1,6 +1,6 @@
-## IoTwebUI 2.1: Tuya WebApp open extension
+## IoTwebUI: Tuya WebApp open extension
 
-**_Tired of SmartLife's limitations? IoTwebUI 2.1 is here to breathe new life into your smart home, with features that will make you say "Finally!". The 'open' philosophy is in this APP's DNA, enhancing customization and user control._**
+**_Tired of SmartLife's limitations? IoTwebUI is here to breathe new life into your smart home, with features that will make you say "Finally!". The 'open' philosophy is in this APP's DNA, enhancing customization and user control._**
 
 _What can you do?_<br>
  👀 Control everything: Intuitive and customizable interface, data always at hand, flexible management.<br>
@@ -12,6 +12,7 @@ _What can you do?_<br>
 
 _**New: in ver 2.2 for 'power users':**_
 - **Server REST** for custom APP and interfaces<br>
+- **clima01** interactive WEB custom page<br>
 - **Addon** and virtual **x-device** with recursive composition
 
 😃 [Version  2.2 - English](https://github.com/msillano/IoTwebUI/blob/main/README22.md) <br>
@@ -21,7 +22,7 @@ _**New: in ver 2.2 for 'power users':**_
 
  ![aspetto della versione 2.1](https://github.com/msillano/IoTwebUI/blob/main/pics/ver20-look.png?raw=true)
 
-**_Stanco delle limitazioni di SmartLife?  IoTwebUI 2.1 è arrivato per dare nuova linfa alla tua casa intelligente, con un arsenale di funzionalità che ti faranno dire "finalmente!". <br> La filosofia 'open' è nel DNA di questa APP, che esalta la customizzazione ed il controllo da parte dell'utente._** 
+**_Stanco delle limitazioni di SmartLife?  IoTwebUI è arrivato per dare nuova linfa alla tua casa intelligente, con un arsenale di funzionalità che ti faranno dire "finalmente!". <br> La filosofia 'open' è nel DNA di questa APP, che esalta la customizzazione ed il controllo da parte dell'utente._** 
 
 _Cosa puoi fare?_<br>
 👀 Controlla tutto: Interfaccia intuitiva e personalizzabile, dati sempre a portata di mano, visualizzazione flessibile.<br>
@@ -33,6 +34,7 @@ _Cosa puoi fare?_<br>
 
 _**New: nella ver 2.2 per 'power users':**_
 - **Server REST** per APP ed interfacce utente personalizzate<br>
+- **clima01** pagina WEB dinamica ed interattiva custom <br>
 - **Addon** e **x-device** virtuali ricorsive!
 
 
