@@ -286,7 +286,7 @@ In IoTwebUI esistono 2 interfacce REST:
 1. _REST client_, implementato come MACRO in due versioni: TXT e JSON, permette di importare dati esterni nelle REGOLE, da webservice o anche da device di terze parti o device DIY che implementino un'interfaccia REST. _E' quindi possibile far interagire Tuya con device custom_: per creare device DIY con Arduino o ESP8266 vedi [esempio](https://github.com/msillano/tuyaDEAMON-applications/wiki/note-5:-Watchdog-for-IOT#watchdog03-esp01-relay--arduino).
 2. _REST server_, per l'esportazione dei dati dei device Tuya e per il controllo su automazioni e allarmi, verso client in applicazioni o interfacce custom. Per dettagli [vedi documentazione IoTrest](https://github.com/msillano/IoTwebUI/blob/main/RESTserver/LEGGIMI-REST22.md).
 
-_Queste due strade permettono finalmente l'integrazione di Tuya in progetti verticali, senza alterare il funzionamento base di Tuya/Smartlife, ma arricchendolo di nuove potenzialità, con una strategia più semplice delle alternative preesistenti (e.g. tuyaDAEMON, HA, etc...) Vedi [clima01](https://github.com/msillano/IoTwebUI/blob/main/html/clima01-leggimi.md), una UI WEB custom.
+_Queste due strade permettono finalmente l'integrazione di Tuya in progetti verticali, senza alterare il funzionamento base di Tuya/Smartlife, ma arricchendolo di nuove potenzialità, con una strategia più semplice delle alternative preesistenti (e.g. tuyaDAEMON, HA, etc...) Vedi [clima01](https://github.com/msillano/IoTwebUI/blob/main/html/clima01-leggimi.md), esempio di semplice UI WEB custom.
 
 <hr style="height:2px;border-width:0;color:gray;background-color:gray">
 
