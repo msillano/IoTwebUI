@@ -12,11 +12,11 @@ _Cosa puoi fare?_<br>
 👌 Integrazione perfetta: Combina device, proprietà, voce, REGOLE e Tuya tap-to-run per un'automazione fluida, completa ed affidabile. <br>
 
 **_Nuovo, versione 2.2_**
-* _Interfaccia REST_: webservice per il semplice collegamento con applicazioni od interfacce custom (documento [LEGGIMI-REST22](https://github.com/msillano/IoTwebUI/blob/main/RESTserver/LEGGIMI-REST22.md)).<br>
+* _Interfaccia REST (server)_: webservice per il semplice collegamento con applicazioni od interfacce custom (documento [LEGGIMI-REST22](https://github.com/msillano/IoTwebUI/blob/main/RESTserver/LEGGIMI-REST22.md)).<br>
 * _x-device_: device virtuali IoTwebUI, ricorsive, e meccanismo di cooperazione [addon](https://github.com/msillano/IoTwebUI/tree/main/addon).
 * _Internazionalizzazione_: versioni multilingua dell'interfaccia utente e del modulo 'voce'.
 
- ![](https://github.com/msillano/IoTwebUI/blob/main/pics/useschema.png?raw=true)
+ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;![](https://github.com/msillano/IoTwebUI/blob/main/pics/useschema.png?raw=true)
 
 nota: _Portabile, può essere installato ovunque: su uno _smartphone_ o _tablet_, come interfaccia alternativa a SmartLife, per voi e per gli altri componenti della famiglia. Su un _PC_ (Windows, Apple, Linux...) per avere Tuya anche su questi computer. Su un _top-box Android_, per usare la TV come interfaccia Tuya!_.
 
