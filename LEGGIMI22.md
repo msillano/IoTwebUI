@@ -16,7 +16,7 @@ _Cosa puoi fare?_<br>
 * _x-device_: device virtuali IoTwebUI, ricorsive, e meccanismo di cooperazione [addon](https://github.com/msillano/IoTwebUI/tree/main/addon).
 * _Internazionalizzazione_: versioni multilingua dell'interfaccia utente e del modulo 'voce'.
 
- ![](https://github.com/msillano/IoTwebUI/blob/main/pics/Schermata%202024-09-14%20alle%2017.36.23.png?raw=true)
+ ![](https://github.com/msillano/IoTwebUI/blob/main/pics/useschema.png?raw=true)
 
 nota: _Portabile, può essere installato ovunque: su uno _smartphone_ o _tablet_, come interfaccia alternativa a SmartLife, per voi e per gli altri componenti della famiglia. Su un _PC_ (Windows, Apple, Linux...) per avere Tuya anche su questi computer. Su un _top-box Android_, per usare la TV come interfaccia Tuya!_.
 
