@@ -1,17 +1,16 @@
 # test02 - iotwidget02 - docuentation
 test02.html presenta la seconda libreria di widget per IoTwbUI.
 
-![](https://github.com/msillano/IoTwebUI/blob/main/pics/clima01.png?raw=true)
+![](https://github.com/msillano/IoTwebUI/blob/main/pics/test02.png?raw=true)
 
-Sono pagine costitute da uno sfondo e dei 'widget' (13 in questo caso) disposti liberamente in ogni punto della pagina.
 Gli iotwidget sono aggiornati al runtime via REST da IoTwebUI ad intervalli regolari.<br>
-**Clima01.html** è un template per creare pagine simili, semplicemente cambiando il file di sfondo ed i widget usati: senza dover modificare il codice `js` o `html`. 
+**test02.html** è un odello di uso dei nuovi widget02. 
 
-## library iotwidget01
+## library iotwidget02
 E' una collezione di widget da usare con **IOTrest** per avere pagine web dinamiche ed interattive.
-Son disponibili 6 widget specializzati in questa collezione: icon, icotip,  value, bigvalue, bigbutton, imgbutton.
+Son disponibili 5 widget specializzati in questa collezione: signal, switch,  gauge, linechart, areachart.
 
-* **icon** Presenta l'icona di un device, la stessa usata in IoTwebUI. Con un tooltip limitato al nome del device. <br>
+* **signal** Presenta una spia a due colori, verde/rosso (OFF/ON). <br>
 _parametri_: device ID (o nome nel caso di x-device)
 
 * **icotip** Presenta l'icona di un device, la stessa usata in IoTwebUI. Nel tooltip oltre al nome del device, sono presenti tutti i dati come nei Tooltip di IoTwebUI. <br>
