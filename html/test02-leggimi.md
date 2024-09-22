@@ -11,12 +11,12 @@ E' una collezione di widget da usare con **IOTrest** per avere pagine WEB dinami
 Sono disponibili 5 widget specializzati in questa collezione: signal, switch,  gauge, linechart, areachart.
 
 * **signal** Presenta una spia a due colori, verde/rosso (OFF/ON). <br>
-nota: in questo widget è seplice cambiare il look usando due immagini.<br> 
+nota: in questo widget è seplice cambiare il look usando due immagini custom.<br> 
 _parametri_: device ID (o nome nel caso di x-device), code, images.
 
 * **switch** Presenta uno switch, nelle due posizioni ON/OFF ed attiva due scene/regole.<br>
 L'azione è immediata, ma l'immagine si aggiorna con un certo ritardo (LOOPINTERVAL).<br>
- nota: in questo widget è seplice cambiare il look usando due immagini.<br>
+ nota: in questo widget è semplice cambiare il look usando due immagini custom.<br>
 _parametri_: device ID (o nome nel caso di x-device), code, scene/regole, images.
 
 I widget seguenti sono ricavati dalla libreria [Google grafici](https://developers.google.com/chart/interactive/docs?hl=it), che contiene decine di ottimi grafici parametrici.<br>
@@ -25,14 +25,15 @@ nota: in funzione della visibilità della pagina e del carico, il browser può r
 
 * **gauge** Presenta uno strumento di misura grafico realtime con un valore letto da un device. <br>
 nota. la struttura 'options' contiene i valori per customizzare il grafico: vedi documentazione Google.<br>
-_parametri_: device ID (o nome nel caso di x-device), code
+_parametri_: device ID (o nome nel caso di x-device), code, options.
 
 * **linechart** Presenta il grafico realtime di un valore letto da un device. <br>
 nota. la struttura 'options' contiene i valori per customizzare il grafico: vedi documentazione Google.<br>
-_parametri_: device ID (o nome nel caso di x-device), code
+_parametri_: device ID (o nome nel caso di x-device), code, options.
 
 * **areachart** Presenta due valori, in un grafico ad area. <br>
-_parametri_: device ID (o nome nel caso di x-device), code
+nota. la struttura 'options' contiene i valori per customizzare il grafico: vedi documentazione Google.<br>
+_parametri_: due x device ID (o nome nel caso di x-device), code, options.
 
 _L'utente crea un array di oggetti con le caratteristiche desiderate, e il SW gestisce i widget._ 
 _Occorre solo un po' di pazienza e qualche tentativo per ottimizzare la posizione di ogni widget nella pagina._
