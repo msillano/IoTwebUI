@@ -1,32 +1,38 @@
-# test02 - iotwidget02 - docuentation
+# test02 - iotwidget02 - documentation
 test02.html presenta la seconda libreria di widget per IoTwbUI.
 
 ![](https://github.com/msillano/IoTwebUI/blob/main/pics/test02.png?raw=true)
 
 Gli iotwidget sono aggiornati al runtime via REST da IoTwebUI ad intervalli regolari.<br>
-**test02.html** è un odello di uso dei nuovi widget02. 
+**test02.html** è un modello di uso dei nuovi widget02. 
 
 ## library iotwidget02
-E' una collezione di widget da usare con **IOTrest** per avere pagine web dinamiche ed interattive.
-Son disponibili 5 widget specializzati in questa collezione: signal, switch,  gauge, linechart, areachart.
+E' una collezione di widget da usare con **IOTrest** per avere pagine WEB dinamiche ed interattive.
+Sono disponibili 5 widget specializzati in questa collezione: signal, switch,  gauge, linechart, areachart.
 
 * **signal** Presenta una spia a due colori, verde/rosso (OFF/ON). <br>
-_parametri_: device ID (o nome nel caso di x-device)
+nota: in questo widget è seplice cambiare il look usando due immagini.<br> 
+_parametri_: device ID (o nome nel caso di x-device), code, images.
 
-* **icotip** Presenta l'icona di un device, la stessa usata in IoTwebUI. Nel tooltip oltre al nome del device, sono presenti tutti i dati come nei Tooltip di IoTwebUI. <br>
-_parametri_: device ID (o nome nel caso di x-device)
+* **switch** Presenta uno switch, nelle due posizioni ON/OFF ed attiva due scene/regole.<br>
+L'azione è immediata, ma l'immagine si aggiorna con un certo ritardo (LOOPINTERVAL).<br>
+ nota: in questo widget è seplice cambiare il look usando due immagini.<br>
+_parametri_: device ID (o nome nel caso di x-device), code, scene/regole, images.
 
-* **value** Presenta un valore letto da un device. <br>
-_parametri_: device ID (o nome nel caso di x-device), code, color (opzionale)
+I widget seguenti sono ricavati dalla libreria [Google grafici](https://developers.google.com/chart/interactive/docs?hl=it), che contiene decine di ottimi grafici parametrici.<br>
+Usarli con giudizio perchè sono pesanti e richiedono molte risorse (usare RESTINTERVAL di almeno 5 secondi).<br>
+nota: in funzione della visibilità della pagina e del carico, il browser può ridurre i loop di aggiornamento, quindi non sono garantite tutte le letture. 
 
-* **bigvalue** Come _**value**_, usando un font di dimensioni maggiori. <br>
-_parametri_: device ID (o nome nel caso di x-device), code, color (opzionale)
+* **gauge** Presenta uno strumento di misura grafico realtime con un valore letto da un device. <br>
+nota. la struttura 'options' contiene i valori per customizzare il grafico: vedi documentazione Google.<br>
+_parametri_: device ID (o nome nel caso di x-device), code
 
-* **bigbutton** Bottone totalmente parametrico, lancia un **'tap-to-run**' Tuya oppure una **REGOLA** IoTwebUI. <br>
-_parametri_: text, scenerule, background (opzionale), color (opzionale)
+* **linechart** Presenta il grafico realtime di un valore letto da un device. <br>
+nota. la struttura 'options' contiene i valori per customizzare il grafico: vedi documentazione Google.<br>
+_parametri_: device ID (o nome nel caso di x-device), code
 
-* **imgbutton** Bottone con sfondo grafico. <br>
-_parametri_: image, text, scenerule, background (opzionale), color (opzionale)
+* **areachart** Presenta due valori, in un grafico ad area. <br>
+_parametri_: device ID (o nome nel caso di x-device), code
 
 _L'utente crea un array di oggetti con le caratteristiche desiderate, e il SW gestisce i widget._ 
 _Occorre solo un po' di pazienza e qualche tentativo per ottimizzare la posizione di ogni widget nella pagina._
