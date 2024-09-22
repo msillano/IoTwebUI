@@ -3,8 +3,8 @@ test02.html presenta la seconda libreria di widget per IoTwbUI.
 
 ![](https://github.com/msillano/IoTwebUI/blob/main/pics/test02.png?raw=true)
 
-Gli iotwidget sono aggiornati al runtime via REST da IoTwebUI ad intervalli regolari.<br>
-**test02.html** è un modello di uso dei nuovi widget02. 
+Gli iotwidget sono aggiornati al runtime via REST da IoTwebUI ad intervalli regolari (LOOPINTERVAL).<br>
+**test02.html** è un esempio di uso dei nuovi widget02. 
 
 ## library iotwidget02
 E' una collezione di widget da usare con **IOTrest** per avere pagine WEB dinamiche ed interattive.
@@ -38,6 +38,3 @@ _parametri_: due x device ID (o nome nel caso di x-device), code, options.
 _L'utente crea un array di oggetti con le caratteristiche desiderate, e il SW gestisce i widget._ 
 _Occorre solo un po' di pazienza e qualche tentativo per ottimizzare la posizione di ogni widget nella pagina._
 
-## x-device clima01
-Per rendere l'interfaccia utente indipendente dai dati forniti dai device Tuya, si è utilizzata un **x-device**
-con funzione di middleware.
