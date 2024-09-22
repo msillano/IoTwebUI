@@ -21,7 +21,7 @@ _parametri_: device ID (o nome nel caso di x-device), code, scene/regole, images
 
 I widget seguenti sono ricavati dalla libreria [Google grafici](https://developers.google.com/chart/interactive/docs?hl=it), che contiene decine di ottimi grafici parametrici.<br>
 Usarli con giudizio perchè sono pesanti e richiedono molte risorse (usare RESTINTERVAL di almeno 5 secondi).<br>
-nota: in funzione della visibilità della pagina e del carico, il browser può ridurre i loop di aggiornamento, quindi non sono garantite tutte le letture. 
+nota: in funzione della visibilità della pagina e del carico, il browser può ridurre i loop di aggiornamento, quindi non sono garantite tutte le letture nei grafici. 
 
 * **gauge** Presenta uno strumento di misura grafico realtime con un valore letto da un device. <br>
 nota. la struttura 'options' contiene i valori per customizzare il grafico: vedi documentazione Google.<br>
