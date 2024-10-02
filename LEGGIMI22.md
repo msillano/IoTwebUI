@@ -589,12 +589,13 @@ Gli **x-device**, oltre alla presentazione dei dati, possono anche gestire 'azio
 <dt>GET(device, property)</dt>
 <dt>GET(device, property, strict)</dt>
 <dd>Ritorna il valore di una 'property' (usare i nomi originali mostrati nei tooltip) presente nello 'status' del device (nome o ID)<br>
-Genera un errore in caso di 'device' non trovata, mentre se non trova 'property' dà errore se <code>strict == true</code> (default), altrimenti torna "none". <br>
+Se non trova 'device' o 'property' dà errore se <code>strict == true</code> (default), altrimenti torna "null". <br>
  <i>Esempio:</i> <code>var _tf = GET("TF_frigo","va_temperature");</code> </dd>
 
+<dt>GETATTRIBUTE(device, attribute)</dt>
 <dt>GETATTRIBUTE(device, attribute, strict)</dt>
 <dd>Ritorna il valore di un 'attributo' del device (nome o ID). I più utili sono 'name', 'id', 'online', etc... <br>
-Genera un errore in caso di 'device' non trovata, mentre se non trova 'property' dà errore se <code>strict == true</code> (default), altrimenti torna "none". <br>
+Se non trova 'device' o 'property' dà errore se <code>strict == true</code> (default), altrimenti torna "null". <br>
  <i>Esempio:</i> <code>var _name = GETATTRIBUTE(_devid, 'name');</code> </dd>
  
 <dt>ISCONNECTED(device)</dt>
