@@ -46,9 +46,9 @@ Quindi l'insieme dei tre file è autosufficiente, non richiede `IoTwebUI`, e pu�
    1.  Avviare prima `server.js`con `run_server.bat`: se OK appare il messaggio "Server HAPI running on http://localhost:3031"
    2.  Iconizzare il terminale. Potete riaprirlo per vedere i messaggi scambiati o i messaggi di errore. Chiuderlo al termine dell'uso.
    3.  Caricare/ricaricare **IoTwebUI** nel browser, con `run_me.bat` oppure direttamente. Se OK appare immediatamente un pop-up che informa dell'avvenuto collegamento via websocket con il server. nota: il collegamento websocket avviene solo all'avvio di `IoTwebUI`.
-   4. Usare `IoTwebUI` normalmente. Per accedere al REST usare o applicazioni/intefacce custom, oppure aprite `client.html` nel browser (anche più di uno).
+   4. Usare `IoTwebUI` normalmente. Per accedere al REST usare o applicazioni/intefacce custom (e.g. clima01.bat, test02.html), oppure aprite `client.html` nel browser (anche più di uno).
 
-nota: se non utilizzate il REST, non eseguite `server.js`, ma solo lanciare normalmente **IoTwebUI** (con `run_me.bat` o direttamente): funzionerà perfettamente (senza il pop-up iniziale di conferma di collegamento).
+nota: se non utilizzate il REST, potete non eseguite step 1 `run_server.bat`, ma lanciare normalmente **IoTwebUI** (con `run_me.bat` o direttamente): funzionerà perfettamente (senza il pop-up iniziale di conferma di collegamento).
 
 ### **Considerazioni finali**
 
