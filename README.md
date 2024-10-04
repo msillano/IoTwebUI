@@ -11,9 +11,9 @@ _What can you do?_<br>
 👌 Perfect integration: Combine devices, properties, voice, RULEs, and Tuya tap-to-run for smooth and complete automation.
 
 _**New: in ver 2.2 for 'power users':**_
-- **Server REST** for custom APP and interfaces<br>
-- **clima01** interactive WEB custom page<br>
-- **Addon** and virtual **x-device** with recursive composition
+- **Server REST** for custom APP and interfaces - see **/IoTrest** <br>
+- **clima01** interactive WEB custom page - see **/html**<br>
+- **Addon** and virtual **x-device** with recursive composition - see **/addon**
 
 😃 [Version  2.2 - English](https://github.com/msillano/IoTwebUI/blob/main/README22.md) <br>
  ⬦ [Version  2.1 - English](https://github.com/msillano/IoTwebUI/blob/main/README21.md) <br>
@@ -33,9 +33,9 @@ _Cosa puoi fare?_<br>
 👌 Integrazione perfetta: Combina device, proprietà, voce, RULE e Tuya tap-to-run per un'automazione fluida e completa.
 
 _**New: nella ver 2.2 per 'power users':**_
-- **Server REST** per APP ed interfacce utente personalizzate<br>
-- **clima01** pagina WEB dinamica ed interattiva custom <br>
-- **Addon** e **x-device** virtuali ricorsive!
+- **Server REST** per APP ed interfacce utente personalizzate - vedi **/IoTrest**<br>
+- **clima01** pagina WEB dinamica ed interattiva custom - vedi **/html**<br>
+- **Addon** e **x-device** virtuali ricorsive! - vedi **/addon**
 
 
 😃 [Versione 2.2 - Italiano](https://github.com/msillano/IoTwebUI/blob/main/LEGGIMI22.md) <br>
