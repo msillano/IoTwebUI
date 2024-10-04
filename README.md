@@ -11,7 +11,7 @@ _What can you do?_<br>
 👌 Perfect integration: Combine devices, properties, voice, RULEs, and Tuya tap-to-run for smooth and complete automation.
 
 _**New: in ver 2.2 for 'power users':**_
-- **Server REST** for custom APP and interfaces - see **/IoTrest** <br>
+- **Server REST** for custom APP and interfaces - see **/RESTserver** <br>
 - **clima01** interactive WEB custom page - see **/html**<br>
 - **Addon** and virtual **x-device** with recursive composition - see **/addon**
 
@@ -33,7 +33,7 @@ _Cosa puoi fare?_<br>
 👌 Integrazione perfetta: Combina device, proprietà, voce, RULE e Tuya tap-to-run per un'automazione fluida e completa.
 
 _**New: nella ver 2.2 per 'power users':**_
-- **Server REST** per APP ed interfacce utente personalizzate - vedi **/IoTrest**<br>
+- **Server REST** per APP ed interfacce utente personalizzate - vedi **/RESTserver**<br>
 - **clima01** pagina WEB dinamica ed interattiva custom - vedi **/html**<br>
 - **Addon** e **x-device** virtuali ricorsive! - vedi **/addon**
 
