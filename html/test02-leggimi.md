@@ -33,7 +33,7 @@ _parametri_: device ID (o nome nel caso di x-device), code, options.
 
 * **multichart** Presenta il grafico realtime di tutti i valori letti da un device. <br>
 nota: la struttura 'options' contiene i valori per customizzare il grafico: vedi documentazione Google.<br>
-nota: richiede una x-device per formattare e riunire i dati da visualizzare.
+nota: richiede una x-device per formattare e riunire i dati da visualizzare.<br>
 _parametri_: device ID (o nome nel caso di x-device), options.
 
 * **areachart** Presenta due valori, in un grafico ad area. <br>
