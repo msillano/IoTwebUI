@@ -8,7 +8,7 @@ Gli iotwidget sono aggiornati al runtime via REST da IoTwebUI ad intervalli rego
 
 ## library iotwidget02
 E' una collezione di widget da usare con **IOTrest** per avere pagine WEB dinamiche ed interattive.
-Sono disponibili 6 widget specializzati in questa collezione: signal, switch,  gauge, linechart, multichart, areachart.
+Sono disponibili 6 widget specializzati in questa collezione: _signal, switch,  gauge, linechart, multichart, areachart_.
 
 * **signal** Presenta una spia a due colori, verde/rosso (OFF/ON). <br>
 nota: in questo widget è seplice cambiare il look usando due immagini custom.<br> 
