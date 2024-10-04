@@ -7,7 +7,7 @@ License MIT
 version 1.0 09/09/2024
  */
 
-/*  add to  main (see exaple test02.htl)
+/*  add to  main (see exaple test02.html)
 <script type="text/javascript" src="inc/restget.js"> </script >
 // REQUIRED by iotwidget02
 <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
@@ -20,36 +20,36 @@ version 1.0 09/09/2024
   google.charts.load('current', {'packages':['corechart']});
 
   const meteroptions = {
-	       width:  200,
-    	   height: 200,
+	 width:  200,
+    	 height: 200,
          minorTicks: 5,
          min : 0,
          max :100
         };
 
   const linechartoptions = {
-	       width:  600,
-    	   height: 300,
-//     	  curveType: 'function',
-//        hAxis:{textPosition: "none"},
+	 width:  600,
+    	 height: 300,
+//     	 curveType: 'function',
+//       hAxis:{textPosition: "none"},
          legend:{position:"none"},
          backgroundColor: "#DBD396",
          pointSize: 3
         };
 
   const multichartoptions = {
-	      width:  600,
-    	  height: 300,
-        backgroundColor: "#DBD396",
+	 width:  600,
+    	 weight: 300,
+         backgroundColor: "#DBD396",
         };
 
   const areachartoptions = {
-	      width:  600,
+	  width:  600,
     	  height: 300,
 //     	  curveType: 'function',
 //        hAxis:{textPosition: "none"},
-        backgroundColor: "#DBD396",
-        pointSize: 3,
+          backgroundColor: "#DBD396",
+          pointSize: 3,
         };
 
 
