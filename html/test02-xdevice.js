@@ -51,10 +51,10 @@ function MULTIDATA01() {             //  MACRO name
   // groups and format data from many real devices
   // Formats values like "21.3 °C" so useful as label and as number (space required).
   // Multichart uses numbers, parsing the string.
-  SETXDEVICESTATUS(_mcName, "soggiorno", ROUND(GET("bf3d00a6c2658b48793rtr", "va_temperature")/10, 1)+" °C");
-  SETXDEVICESTATUS(_mcName, "letto",     ROUND(GET("bfc5451737cbfe54ecme4o", "va_temperature")/10, 1)+" °C");
-  SETXDEVICESTATUS(_mcName, "ospiti",    ROUND(GET("bf931b4999e2384f95pnwu", "va_temperature")/10, 1)+" °C");
-  SETXDEVICESTATUS(_mcName, "esterno",   ROUND(GET("bf37d9e44c94789d14tqef", "va_temperature")/10, 1)+" °C");
+  SETXDEVICESTATUS(_mcName, "soggiorno", ROUND(GET("bf3d003xxxxxxxx8793rtr", "va_temperature")/10, 1)+" °C");
+  SETXDEVICESTATUS(_mcName, "letto",     ROUND(GET("bfc54xxxxxxxxxxxxxme4o", "va_temperature")/10, 1)+" °C");
+  SETXDEVICESTATUS(_mcName, "ospiti",    ROUND(GET("bf931bxxxxxxxxxxx5pnwu", "va_temperature")/10, 1)+" °C");
+  SETXDEVICESTATUS(_mcName, "esterno",   ROUND(GET("bf37d9xxxxxxxxxx14tqef", "va_temperature")/10, 1)+" °C");
 } // end  MULTIDATA01 code
 
 // =========== RULES for TEMPERATUREDATA01: use this in RULE-pad
@@ -71,10 +71,10 @@ function MULTIDATA01() {             //  MACRO name
 
   if (!GET("temperaturedata", "soggiorno", false)) ADDXDEVICE('ADMIN', "System", "temperaturedata"), SETXDEVICEONLINE("temperaturedata", true);
 
-  SETXDEVICESTATUS("temperaturedata", "soggiorno", ROUND(GET("bf3d00a6c2658b48793rtr", "va_temperature")/10, 1)+" °C");
-  SETXDEVICESTATUS("temperaturedata", "letto",     ROUND(GET("bfc5451737cbfe54ecme4o", "va_temperature")/10, 1)+" °C");
-  SETXDEVICESTATUS("temperaturedata", "ospiti",    ROUND(GET("bf931b4999e2384f95pnwu", "va_temperature")/10, 1)+" °C");
-  SETXDEVICESTATUS("temperaturedata", "esterno",   ROUND(GET("bf37d9e44c94789d14tqef", "va_temperature")/10, 1)+" °C");
+  SETXDEVICESTATUS("temperaturedata", "soggiorno", ROUND(GET("bf3d00xxxxxxxx342rtr", "va_temperature")/10, 1)+" °C");
+  SETXDEVICESTATUS("temperaturedata", "letto",     ROUND(GET("bfc545xxxxxxxx4cme4o", "va_temperature")/10, 1)+" °C");
+  SETXDEVICESTATUS("temperaturedata", "ospiti",    ROUND(GET("bf931bxxxxxxxx4fpnwu", "va_temperature")/10, 1)+" °C");
+  SETXDEVICESTATUS("temperaturedata", "esterno",   ROUND(GET("bf37dxxxxxxxx426tqef", "va_temperature")/10, 1)+" °C");
 
 // end minified
 */
