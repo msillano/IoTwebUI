@@ -13,6 +13,7 @@ _Cosa puoi fare?_<br>
 
 **_Nuovo, versione 2.2_**
 * _Interfaccia REST (server)_: webservice per il semplice collegamento con applicazioni od interfacce custom (documento [LEGGIMI-REST22](https://github.com/msillano/IoTwebUI/blob/main/RESTserver/LEGGIMI-REST22.md)).<br>
+* Esempi di pagine custom html, librerie di widget: vedi dir [html](https://github.com/msillano/IoTwebUI/tree/main/html).
 * _x-device_: device virtuali IoTwebUI, ricorsive, e meccanismo di cooperazione [addon](https://github.com/msillano/IoTwebUI/tree/main/addon).
 * _Internazionalizzazione_: versioni multilingua dell'interfaccia utente e del modulo 'voce'.
 
