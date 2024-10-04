@@ -6,7 +6,13 @@ License MIT
 (C)2024 marco.sillano@gmail.com
 version 2.0 30/05/2024
 */
+/*
+In the caller html file is REQUIRED:
 
+const baseURL = 'http://localhost:3031/IoTrest/';
+const RESTINTERVAL =  3001;      // (prime)
+const LOOPINTERVAL = 30000;
+*/
 // REST simple client for IOTwebUI
 // DO NOT CHANGE: see https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API/Using_Fetch
 function RESTget(url) {
