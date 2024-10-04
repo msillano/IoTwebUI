@@ -1,33 +1,39 @@
 <html>
+<!--
+html test page for iotwidget01
+-->
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!-- REQUIRED all javascript procedures to handle widgets -->
     <script type="text/javascript" src="inc/restget.js"> </script >
     <script type="text/javascript" src="inc/iotwidget01.js"> </script >
 
-   <!-- REQUIRED to use same icons as IoTwebUI	-->
-	<link rel = "stylesheet" href ="http://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" >
 
+<!-- REQUIRED Stylesheet by iotwidget01 and to use same icons as IoTwebUI	-->
+	<link rel = "stylesheet" href ="http://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" >
 	<link rel = "stylesheet" href ="inc/iotwidget01.css" >
 
   <style>
 /* ======= USER PAGE DEFAULTS */
+   :root {
+      --button-width: 150px;
+      --button-height: 50px;
+      }
    .butzone {
 	    width:   var(--button-width);
 	    }
    table {
-        border-collapse: collapse;
-        border: none;
-        }
+      border-collapse: collapse;
+      border: none;
+      }
 
 /* defaults from iotwidget01.css: customizable look for this page
    note: colors custumizable also in widget definition
 */
-  :root {
-     --button-width: 150px;
-     --button-height: 50px;
-    }
 
+ /* for iotwidget01 */
   .hover .tooltip {
     border-radius: 5px;
 	padding: 5px;
@@ -52,39 +58,42 @@
     border-radius:5px;
     }
 
-</style>
+ </style>
 
 <script type="text/javascript">
 
 // =====   THIS PAGE WIDGET DEFINITIONS
 
 const baseURL = 'http://localhost:3031/IoTrest/';
+const RESTINTERVAL =  1001;      // (prime)
+const LOOPINTERVAL = 20000;
 
-// nota: widget[x].id  must be uniue!
+// nota: widget[x].id  must be unique!
 
 const widgets = [
 	 { id :1,
 	   xpos : 135,         // verticale
 	   ypos : 400,         // orizzontale
 	   type	: "bigvalue",  // icon, icotip,  value, bigvalue, bigbutton, imgbutton
-	   // nota: x-device, usare il  nome, l'ID varia ogni run  
+
 	   devId: "temperaturedata",    // for value, bigvalue: device ID
 	   code : "soggiorno",          // for value, bigvalue: status code
      },
      { id : "1B",
-	   xpos : 170,      // verticale
+	   xpos : 80,      // verticale
 	   ypos : 360,      // orizzontale
 	   type	: "icon",   // icon, icotip,  value, bigvalue, bigbutton, imgbutton
-	   devId: "bfd2eac1exxxxxxxxxx",   // for icon, icotip: device ID
+	   devId: "bf3d00a6c2658b48793rtr",   // for icon, icotip: device ID
      },
+
 	 { id :2,
 	   xpos : 145,        // verticale
 	   ypos : 200,        // orizzontale
 	   type	: "icotip",   // icon, icotip,  value, bigvalue, bigbutton, imgbutton
-	   devId: "bfd2eac1exxxxxxxxxx",  // for icon, icotip: device ID
+	   devId: "bf95d298216862e0efwd8v",  // for icon, icotip: device ID
      } ,
-     { id :3,
-	   xpos :  20,       // verticale
+   { id :3,
+	   xpos : 20,       // verticale
 	   ypos : 400,       // orizzontale
 	   type	: "bigvalue",   // icon, icotip,  value, bigvalue, bigbutton, imgbutton
 
@@ -92,13 +101,13 @@ const widgets = [
 	   code : "esterno",          // for value, bigvalue: status code
        color : "Green",                  // for value, bigvalue: optional, default in CSS
      } ,
-     { id : "3B",
+   { id : "3B",
 	   xpos : 11,        // verticale
 	   ypos : 360,       // orizzontale
 	   type	: "icotip",  // icon, icotip,  value, bigvalue, bigbutton, imgbutton
-	   devId: "bfd2eac1exxxxxxxxxx",  // for icon, icotip: device ID
+	   devId: "bf37d9e44c94789d14tqef",  // for icon, icotip: device ID
      },
-     { id :4,
+   { id :4,
 	   xpos : 75,       // verticale
 	   ypos : 48,       // orizzontale
 	   type	: "bigvalue",  // icon, icotip,  value, bigvalue, bigbutton, imgbutton
@@ -106,11 +115,11 @@ const widgets = [
 	   devId: "temperaturedata",  // for value, bigvalue: device ID
 	   code : "letto",            // for value, bigvalue: status code
      },
-     { id : "4B",
+   { id : "4B",
 	   xpos : 108,     // verticale
 	   ypos : 80,      // orizzontale
 	   type	: "icon",  // icon, icotip,  value, bigvalue, bigbutton, imgbutton
-	   devId: "bfd2eac1exxxxxxxxxx",  // for icon, icotip: device ID
+	   devId: "bfc5451737cbfe54ecme4o",  // for icon, icotip: device ID
      },
 	 { id :5,
 	   xpos : 75,          // verticale
@@ -120,16 +129,16 @@ const widgets = [
 	   devId: "temperaturedata",    // for value, bigvalue: device ID
 	   code : "ospiti",             // for value, bigvalue: status code
      },
-     { id : "5B",
+   { id : "5B",
 	   xpos : 108,      // verticale
 	   ypos : 184,      // orizzontale
 	   type	: "icon",   // icon, icotip,  value, bigvalue, bigbutton
-	   devId: "bfd2eac1exxxxxxxxxx",  // for icon, icotip: device ID
+	   devId: "bf931b4999e2384f95pnwu",  // for icon, icotip: device ID
      },
 
      // note. in next widgets "s1" and "s2" are the names of two test Tuya 'tap-to-run'
 
-     { id : "BUT01",
+   { id : "BUT01",
 	   xpos : 20,            // verticale
 	   ypos : 514,           // orizzontale
 	   type	: "imgbutton",   // icon, icotip,  value, bigvalue, bigbutton, imgbutton
@@ -140,7 +149,7 @@ const widgets = [
 
 	   color: 'Blue',        // for imgbutton, bigbutton: optional, default in CSS
      },
-     { id :"BUT02",
+   { id :"BUT02",
 	   xpos : 76,            // verticale
 	   ypos : 514,           // orizzontale
 	   type	: "bigbutton",   // icon, icotip,  value, bigvalue, bigbutton, imgbutton
@@ -151,7 +160,7 @@ const widgets = [
 	   background: "#AFEEEE",// for bigbutton: optional,  default in CSS
 	   color: "Red",         // for imgbutton, bigbutton: optional, default in CSS
      },
-     { id :"BUT03",
+   { id :"BUT03",
 	   xpos : 132,           // verticale
 	   ypos : 514,           // orizzontale
 	   type	: "imgbutton",   // icon, icotip,  value, bigvalue, bigbutton, imgbutton
@@ -160,7 +169,7 @@ const widgets = [
 	   text : "TERMO ON",    // for imgbutton, bigbutton: button text
 	   scenerule: "s1"       // for imgbutton, bigbutton: scene|rule name
      },
-     { id :"BUT04",
+   { id :"BUT04",
 	   xpos : 188,           // verticale
 	   ypos : 514,           // orizzontale
 	   type	: "bigbutton",   // icon, icotip,  value, bigvalue, bigbutton, imgbutton
@@ -168,42 +177,7 @@ const widgets = [
 	   text : "TERMO OFF",   // for imgbutton, bigbutton: button text
 	   scenerule: "s2"       // for imgbutton, bigbutton: scene|rule name
      },
-
 ]
-</script>
-
-<script type="text/javascript">
-// code to handle the page stuff - do not change
-
-function  placeWidget(data) {
-    return ("<div  style= 'position:absolute; top:"+data.xpos+"px; left:" +data.ypos+"px;' id='item"+data.id+"' ></div>");
-}
-
-function dynamicPage() {
-     const outputDiv = document.getElementById('dynamic');
-     widgets.forEach((item) => {
-	     outputDiv.innerHTML += placeWidget(item);
-     });
-}
-
-
-function widgetUpdate(pos = 0) {
-	 if (pos >= widgets.length) return;
-     const item = widgets[pos];
-     doIotwidget01(item) ;
-     setTimeout(widgetUpdate, 500, ++pos);    // 500 ms interval between REST call
-     }
-
-
-// ===========  START FUNCTION
-
-function startup() {
-  dynamicPage();
-  widgetUpdate();
-  // data refresh
-  setInterval(widgetUpdate, 60000);     // 60 s refresh interval
-}
-
 </script>
 
 <!-- =============  PAGE =============  -->

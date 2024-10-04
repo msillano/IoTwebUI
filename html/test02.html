@@ -1,0 +1,219 @@
+<html>
+<!--
+html test page for iotwidget02
+-->
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!-- REQUIRED all javascript procedures to handle widgets -->
+    <script type="text/javascript" src="inc/restget.js"> </script >
+
+<!-- REQUIRED by iotwidget02 -->
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript" src="inc/iotwidget02.js"> </script >
+    
+  <style>
+/* ======= USER PAGE DEFAULTS */
+   table {
+        border-collapse: collapse;
+        border: none;
+        }
+ /* for iotwidget02 - extra local style */
+  .signal{
+    width:  32px;
+    height: 32px;
+    background-color: transparent;
+    border: none ;
+    }
+  .switch{
+    width:  80px;
+    height: 40px;
+    background-color: transparent;
+    border: none ;
+    }
+
+</style>
+
+<script type="text/javascript">
+
+// =====   THIS PAGE WIDGET DEFINITIONS
+
+const baseURL = 'http://localhost:3031/IoTrest/';
+const RESTINTERVAL =  3001;      // (prime)
+const LOOPINTERVAL = 30000;
+
+// nota: widget[x].id  must be uniue!
+
+const widgets = [
+ 	 { id : "X1",
+     xpos : 50,         // verticale
+     ypos : 100,         // orizzontale
+     type	: "signal",
+     devId: "Luce esterna",    // for value, bigvalue: device ID
+     code : "switch_1",          // for value, bigvalue: status code
+     on: {
+     image:"red_light_32x32.png",
+     },
+     off: {
+     image:"green_light_32x32.png",
+     },
+   },
+
+   { id : "X2",
+     xpos : 150,         // verticale
+     ypos : 100,         // orizzontale
+     type	: "switch",
+     devId: "Luce esterna",    //  device ID
+     code : "switch_1",          //  status code
+     on: {
+     image:"switchon02.png",
+     scenerule:"s2",
+     },
+     off: {
+     image:"switchoff02.png",
+     scenerule:"s1",
+     },
+   },
+
+   { id :"METER",
+     xpos : 300,           // verticale
+     ypos : 100,           // orizzontale
+     type	: "gauge",   // icon, icotip,  value, bigvalue, bigbutton, imgbutton
+     label: "In °C",
+     devId: "temperaturedata",    // for value, bigvalue: device ID
+     code : "soggiorno",                  // for value, bigvalue: status code
+     // instance options are merged with default optons in iotwidget02
+     // for info https://developers.google.com/chart/interactive/docs/gallery/gauge (english version)
+     options: {
+  		   width: 120,
+    	   height: 120,
+         min  : 10,
+         max  : 40,
+         majorTicks :["10","20","30","40"],
+         minorTicks: 5,
+         yellowFrom:18,
+         yellowTo: 24,
+         yellowColor: "#20B2AA",
+         },
+  	  },
+
+      { id :"OUTEMP",
+        xpos : 300,           // verticale
+        ypos : 250,           // orizzontale
+        type : "gauge",   // icon, icotip,  value, bigvalue, bigbutton, imgbutton
+        label : "Out °C",
+        devId: "temperaturedata",
+        code : "esterno",
+     // instance options are merged with default optons in iotwidget02
+     // for info https://developers.google.com/chart/interactive/docs/gallery/linechart (english version)
+      options: {
+  		   width: 120,
+    	   height: 120,
+         min  : -10,
+         max  : 50,
+         majorTicks :["-10","0","10","20","30","40", "50"],
+         minorTicks: 5,
+  		   },
+  	  },
+
+ 	  /*
+      { id :"RETE",
+     xpos : 200,           // verticale
+     ypos : 100,           // orizzontale
+     type	: "linechart",
+       devId: "XMain AC",
+     code : "phase_a_decoded",
+     field: "W",
+       tiplabel: 'power',
+       maxPoint: 120,
+       // instance options are merged with default options in iotwidget02
+     // for info https://developers.google.com/chart/interactive/docs/gallery/linechart (english version)
+     options: {
+        vAxis:{minValue: 0},
+          title: 'Total power [W]',
+          },
+       },
+       */
+
+     { id :"W1",
+     xpos : 500,           // verticale
+     ypos : 700,           // orizzontale
+     type	: "multichart",
+     devId: "temperaturedata",
+     maxPoint: 120,
+     // instance options are merged with default options in iotwidget02
+     // for info https://developers.google.com/chart/interactive/docs/gallery/linechart (english version)
+     options: {
+          vAxis:{minValue: 20},
+          title: 'Temperature [°C]',
+          },
+     },
+
+     { id :"W2",
+     xpos : 500,           // verticale
+     ypos : 50,           // orizzontale
+     type	: "linechart",
+     devId: "XMain AC",
+     code : "FRpower",
+     tiplabel: 'power',
+     maxPoint: 120,
+
+     // instance options are merged with default options in iotwidget02
+     // for info https://developers.google.com/chart/interactive/docs/gallery/linechart (english version)
+     options: {
+          vAxis:{minValue: 0},
+          title: 'Frigo power [W]',
+          },
+     },
+/*
+     { id :"W3",
+     xpos : 1100,           // verticale
+     ypos : 100,           // orizzontale
+     type	: "linechart",
+       devId: "bf71942651672f784cf2gh",
+     code : "cur_power",
+       tiplabel: 'power',
+       maxPoint: 120,
+
+  	   // instance options are merged with default options in iotwidget02
+     // for info https://developers.google.com/chart/interactive/docs/gallery/linechart (english version)
+     options: {
+          vAxis:{minValue: 0},
+          title: 'Oven power [W]',
+          },
+       },
+ */
+     { id :"green",
+     xpos : 800,           // verticale
+     ypos : 50,           // orizzontale
+     type	: "areachart",
+     maxPoint: 120,
+     devId1: "XMain AC",
+     code1 : "PVpower",
+     tiplabel1: 'PV',
+     devId2: "XMain AC",
+     code2 : "phase_a_decoded",
+     field2: "W",
+     tiplabel2: 'grid',
+  	   // instance options are merged with default options in iotwidget02
+     // for info https://developers.google.com/chart/interactive/docs/gallery/linechart (english version)
+     options: {
+     //     vAxis:{minValue: 0},
+          title: 'Global power [W]',
+          isStacked: true,
+          colors:['green','blue'],
+          },
+     },
+   ]
+</script>
+
+<!-- =============  html PAGE =============  -->
+
+  </head>
+  <body bgcolor="#DBD396" onload="startup()">        <!-- background color -->
+  	 <hr>
+     <div id="dynamic"> </div>      <!-- dynamic widget division -->
+     <div id="output"> </div>       <!-- only for tests -->
+
+  </body>
+</html>
