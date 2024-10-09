@@ -122,7 +122,6 @@ _In sintesi, un'unica APP offre un livello di affidabilità superiore grazie all
 - Per lo stesso motivo non è possibile aggiornare dall'APP i file di configurazione. Ho scelto una soluzione di compromesso, che prevede l'intervento dell'utente con un semplice copia-incolla.
 - Sempre per problemi di sicurezza, può venire richiesta ogni volta l'autorizzazione all'uso del microfono: dipende dal browser e dalla configurazione; ma l'uso di `run-me.bat` può evitare l'inconveniente.
 - **IoTwebUI** accede ai dati del Cloud ESCLUSIVAMENTE in lettura, per evitare qualunque rischio di operazioni errate. Ma questo non limita le funzionalità di **IoTwebUI** (e di IoTrest e delle applicazioni utente): è possibile infatti effettuare qualsiasi aggiornamento della configurazione dei device in _maniera controllata_, cioè attraverso un 'tap-to-run'. Con questa strategia si ha la massima libertà in totale sicurezza!
-- Il funzionamento continua regolarmente anche con la finestra del browser iconizzata.
 - Usare una sola istanza dell'APP, altrimenti si hanno problemi con i token Tuya.
 
 
@@ -199,9 +198,9 @@ In modo ESPERTO cliccando su un device si apre un dialogo che nella parte inferi
  - _Se non si sceglie nessuna azione e si lascia vuoto 'message', l'azione di default è il cambio dell'icona del device e l'aggiornamento del tooltip, sempre eseguiti._
  - _Gli 'Allarmi' non hanno, per semplicità, un filtro a tempo: se definiti sono attivi 24/7. Se occorre qualche condizionamento, è possibile creare REGOLE ad hoc ed attivarle dall'alert (nota: un 'Allarme' può attivare una REGOLA, e le REGOLE possono attivare le stesse azioni dagli 'Allarmi')._ 
  - _Notare che 'connected' non è mai incluso nelle proprietà Tuya, e quindi non si possono definire 'Allarmi'. Ma è disponibile come MACRO nelle REGOLE._
- - _Avendo un solo messaggio, le regole di precedenza sono: SUONO e URL (auto) sono esaminati per primi, poi Tap-to-run e RULE (auto), e solo per ultimo POP e VOCE (compatibili: lo stesso messaggio può essere usato per entranbi); BEEP è sempre utilizzabile._
+ - _Avendo un solo messaggio, le regole di precedenza sono: SUONO e URL (auto) sono esaminati per primi, poi Tap-to-run e RULE (auto), e solo per ultimo POP e VOCE (compatibili: lo stesso messaggio può essere usato per entrambi); BEEP è sempre utilizzabile._
  - _E' possibile definire contemporaneamente più azioni compatibili, e.g. 'beep' e 'pop-up' (con messaggio)._
- - _Invece, per avere sia 'pop-up' che 'tap-to-run', occerre creare due Allarmi con le stesse condizioni: in uno 'message' sarà il testo per il 'pop-up', nell'altro il nome del 'tap-to-run' (auto)._
+ - _Invece, per avere sia 'pop-up' che 'tap-to-run', occorre creare due Allarmi con le stesse condizioni: in uno 'message' sarà il testo per il 'pop-up', nell'altro il nome del 'tap-to-run' (auto)._
  - _La visualizzazione dei pop-up può dipendere dalla configurazione del browser: usando 'run_me.bat' si ha un aggiornamento automatico della configurazione per la nuova istanza del browser. Azioni utente (e.g. bottoni) possono abilitare momentaneamente i pop-up._ <br>
  _Comunque, per non perdere informazioni, se i pop-up sono disabilitati per qualche motivo, il messaggio è presentato lo stesso in una finestra dell'APP: la differenza è che i pop-up possono essere molti, mentre la finestra è unica e viene riusata con un contatore._
 - _Gli **Allarmi** sono controllati ad ogni Tuya Cloud polling: gli eventi di breve durata, inferiore a `tuyaInterval` non possono essere rilevati._
@@ -347,7 +346,7 @@ _NON rendetela accessibile dall'esterno o da terzi, altrimenti tutti i vostri da
 1) Scaricare e dezippare il file `IoTwebUI.x.x.zip`  in una dir (con le autorizzazioni richieste dal S.O.).
 2) Eseguire le operazioni di configurazione (vedi oltre).
 3) Per l'installazione del server REST (opzionale), vedi [dettagli qui](https://github.com/msillano/IoTwebUI/blob/main/RESTserver/LEGGIMI-REST22.md).
-4) Il file principale è `IoTwebUI.html`.  NON è necessario un server WEB, in quanto il codice è tutto in javaScript, eseguito dal browser, ovviamente con JavaScript abilita. Per lanciarlo vedi file `run_me.bat` (per Windows - Chrome). Per altri S.O. creare uno script analogo. (Ignorare il messaggio Chrome: "stai utilizzando una segnalazione della riga di comando non supportata: - disable-web-security...": non supportata ma funzionante).<br>
+4) Il file principale è `IoTwebUI.html`.  NON è necessario un server WEB, in quanto il codice è tutto in javaScript, eseguito dal browser, ovviamente con JavaScript abilitato. Per lanciarlo vedi il file `run_me.bat` (per Windows - Chrome). Per altri S.O. creare uno script analogo. (Ignorare il messaggio Chrome: "stai utilizzando una segnalazione della riga di comando non supportata: - disable-web-security...": non supportata ma funzionante).<br>
 5) Con un Mac (IOS 10.11.6) ha funzionato la seguente riga di comando:
 `xxx:~ yyyy$ open -n -a /Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome --args --user-data-dir="/tmp/chrome_dev_test" --disable-web-security  --disable-popup-blocking --auto-accept-camera-and-microphone-capture --app=file:///Applications/IoTwebUI/IoTwebUI.html ` 
 
@@ -473,8 +472,8 @@ Le 'REGOLE' sono codificate in `JavaScript`. Il particolare ambiente in cui sono
 - Definire le variabili volatili (valide per un solo run delle REGOLE) sempre con la sintassi: **var** `_tizio` **=**... , poi possono essere usate liberamente.
 - Per definire variabili permanenti (valide per tutti i run) usare le MACRO: VSET(name, value) e VGET(name). Si consiglia la convenzione '$variabile' per i nomi, così sono immediatamente riconoscibili.
 - Usare sempre un underscore **"_"** come primo carattere nel _nome delle variabili_: si evitano così interferenze con altre variabili del programma. Non usare caratteri 'strani' nei nomi delle variabili: meglio limitarsi a [A..Za..z0..9] e '_'.
-- Il 'punto e virgola' **";"** a fine riga è opzionale, ma consiglio vivamente di usarlo sempre.
 - JavaScript è un linguaggio 'case sensitive', cioè distingue tra MAIUSCOLE e minuscole, quindi attenzione a scrivere le variabili sempre nello stesso modo (consiglio tutte minuscole, oppure la tecnica 'camel' per i nomi compositi: **`_variabilePocoUsata`**) per distinguerle a colpo d'occhio dalle MACRO (sempre MAIUSCOLE).
+- Il 'punto e virgola' **";"** a fine riga è opzionale, ma consiglio vivamente di usarlo sempre.
 - _Valori predefiniti:_ **`true`** (vero) e **`false`** (falso) per le condizioni; le costanti numeriche sono con il punto, all'inglese (**`3.14`**). Tutte le stringhe vogliono gli apici (**`"oggi "`** oppure **`'domani '`**). Un apice può essere inserito in una stringa se si usa l'altro tipo di apice per tutta la stringa. Esempio: `"All'alba "` OK , `'Disse: "sono stanco"'` OK, ma NON `'All'alba'` !.
 - Usare **//** per i commenti, continuano fino a fine riga
 - Le operazioni js più utili sono quelle aritmetiche (**+, -, *, /**), quelle logiche per le condizioni: (**&&** -and, **||** -or, **!** -negazione) e le operazioni di confronto ( **&gt;**, **==**, **!=**, **&lt;**, **&gt;=**, **&lt;=**); la concatenazione delle stringhe è fatta semplicemente con il **+** ("ore " **+** "10:30").
