@@ -293,10 +293,14 @@ _Queste due strade permettono finalmente l'integrazione di Tuya in progetti vert
 <hr style="height:2px;border-width:0;color:gray;background-color:gray">
 
 ## Versioni
+- 2.2.1  correzione Bugs
+  - Aggiunti widget per interfacce web: iotwidget01 e iotwidget02 in html/inc/
+  - User interface web (esempi) clima01.html e tes02.html in html/
+
 - 2.2  Aggiunto server REST [IoTrest](https://github.com/msillano/IoTwebUI/tree/main/RESTserver)
   - [Internazionalizzazione](#internazionalizzazione) (IT, EN) per interfaccia utente e modulo speech.
   - Modificate voci menu
-  - Evidenziate nell'albero i device 'virtuali' e gli 'x-device'
+  - Evidenziati nell'albero i device 'virtuali' e gli 'x-device'
   - [nuove MACRO per]() _x-device_ , device list etc.
  
 - 2.1.1 Correzione bugs [ISSUE10](https://github.com/msillano/IoTwebUI/issues/10): Token scaduto. [ISSUE11](https://github.com/msillano/IoTwebUI/issues/11): refuso.
