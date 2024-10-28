@@ -4,6 +4,10 @@ This file is part of IoTwebUI project (https://github.com/msillano/IoTwebUI)
 License MIT
 (C)2024 marco.sillano@gmail.com
 per IOTwebUI version 2.2 10/08/2024
+  28/10/2024 bug: changed _t1 test (row 68).
+
+ TODO:
+ 1. Change the function interface (see cloner01()) for easier use. 
 */
 // =====================  x-device BATTERY02
 // This addon implements a x-device, BATTERY02, to do a detaild test of device battery in a HOME. no auto-discovery.
