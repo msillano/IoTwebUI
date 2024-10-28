@@ -9,7 +9,7 @@ per IOTwebUI version 2.2 10/08/2024
     28/10/2024  bug: modified _t1 test (rows 77, 80)
 
  TODO:
- 1. Change the function's interface (see cloner01()) for easier use. 
+ 1. Change the function interface (see cloner01()) for easier use. 
  */
 // =====================  x-device BATTERY01
 // This addon implements a x-device, BATTERY01, to test device battery in many HOMES. Weak auto-discovery devices
