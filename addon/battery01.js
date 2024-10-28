@@ -69,10 +69,10 @@ function BATTERY01() {
     //I found only 2 properties for percentages in my devices: 'battery_percentage', 'va_battery'..
     GETIDLIST(_xhome).forEach((devid) => {
         let _t1 = GET(devid, 'battery_percentage', false);
-        if (_t1 == "none")
+        if (_t1 === null)
             _t1 = GET(devid, 'va_battery', false);
         //For more properties, duplicate the previous 2 lines...
-        if ((_t1 != "none") && (_t1 < _lowPerc))
+        if ((_t1 !== null) && (_t1 < _lowPerc))
             _lowD.push(GETATTRIBUTE(devid, 'name'));
         });
   // from _lowD to Battery test.status		
