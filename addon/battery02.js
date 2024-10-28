@@ -34,22 +34,22 @@ per IOTwebUI version 2.2 10/08/2024
 function BATTERY02() {
 	// USER UPDATE HERE with used batteries:
     var _power = [ {name: "alcalina_AA", count:0},    //  powID:0
-	               {name: "alcalina_AAA", count:0},   //  powID:1
-				   {name: "Ni-MH_AA", count:0},       //  powID:2
-				   {name: "Ni-MH_AAA", count:0},      //  powID:3
-				   {name: "litio_cr2032", count:0},   //  powID:4
-				   {name: "litio_cr123A", count:0},   //  powID:5
-	                  ];
+	           {name: "alcalina_AAA", count:0},   //  powID:1
+		   {name: "Ni-MH_AA", count:0},       //  powID:2
+		   {name: "Ni-MH_AAA", count:0},      //  powID:3
+		   {name: "litio_cr2032", count:0},   //  powID:4
+		   {name: "litio_cr123A", count:0},   //  powID:5
+	  ];
 	var _dl =[];
     var _devices = [
 	// dettaglio di tutti i dispositivi a batteria sotto controllo
 	// USER Update this with all battery device
-    // record:	[id, status.code, min, powID, number, 0-flag]
-	          ["42027807d8bfc0c5831e", "BatteryStatus", 2, 2, 2, 0], 
-              ["bfbd7ad4258e404d4cux8n", "battery_percentage", 10, 1, 2, 0], 
-              ["bf542e7c64b816977796bc", "va_battery", 2, 4, 1, 0], 
-              ["bfcd95a64bdd983fadstau", "va_battery", 2, 4, 1, 0], 
-              ["bf3445cec64be01415ds3g", "battery_percentage", 10, 1, 2, 0], 
+        // record:	[id, status.code, min%, powID, number, 0-flag]
+	      ["42027807d8bfxxxxxxxx", "BatteryStatus", 2, 2, 2, 0], 
+              ["bfbd7ad42xxxxxxxx", "battery_percentage", 10, 1, 2, 0], 
+              ["bf542e7c6xxxxxxxx", "va_battery", 2, 4, 1, 0], 
+              ["bfcd95a6xxxxxxxx", "va_battery", 2, 4, 1, 0], 
+              ["bf3445cexxxxxxxx", "battery_percentage", 10, 1, 2, 0], 
               ];
  
  // ====  builds or clear device at any run
@@ -57,11 +57,11 @@ function BATTERY02() {
                     code: 'home',
                     value: 'ROMA'   // actual home (RO)
                 } ]);
-
+// non è prevista la modifica di home al runtime perchè dovrebbe variare di conseguenza anche  _devices[] 
 	// ==========  data collection		
 		_devices.forEach((dev, pos) => {
  			let _t1 = GET(dev[0], dev[1], false);
-			if ((_t1 != "none") && (_t1 < dev[2])){
+			if ((_t1 !== null) && (_t1 < dev[2])){
 				dev[5] = 1;
 				_power[dev[3]].count += dev[4];
 				_dl.push(GETATTRIBUTE(dev[0], 'name'));
