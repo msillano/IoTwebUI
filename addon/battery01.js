@@ -6,6 +6,10 @@ License MIT
 (C)2024 marco.sillano@gmail.com
 ver 1.0 20/08/2024
 per IOTwebUI version 2.2 10/08/2024
+    28/10/2024  bug: modified _t1 test (rows 77, 80)
+
+ TODO:
+ 1. Change the function's interface (see cloner01()) for easier use. 
  */
 // =====================  x-device BATTERY01
 // This addon implements a x-device, BATTERY01, to test device battery in many HOMES. Weak auto-discovery devices
@@ -38,6 +42,7 @@ per IOTwebUI version 2.2 10/08/2024
 // =================== BATTERY01 CODE
 // WARNING: the TRIGBYNAME() MACRO works only on RULE-pad.
 // EXAMPLE: This MACRO creates the x-device 'Battery test' for device control
+
 function BATTERY01() {
      // ======= singleton CONSTRUCTOR
     if (!VGET('$done'))
