@@ -9,7 +9,7 @@ Ha le proprietà visibili in figura.
 - Le altre proprietà sono dinamicamente calcolate (RO).
 - Funzionamento: utilizza un elenco aggiornato dei device.
 
-Ver. 1.0 20/08/2024  (c)marco.sillano@gmail.com 
+Ver. 1.0 20/08/2024  (c)marco.sillano@gmail.com <br>
  28/10/24 - I also added a test for equal to a text value (e.g. 'low')
           - The numerical test is now  'device.status.code <= min%'
 
