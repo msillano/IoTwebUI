@@ -13,7 +13,7 @@ Ha le proprietà visibili in figura.
 - Funzionamento in _auto-discovery_ dei device Tuya, basato sulle proprietà dei device.
 - Come esempio è fornito il codice di REGOLE per cambiare al RT sia  `home` che `low level`.
 
-Ver. 1.0 20/08/2024  (c)marco.sillano@gmail.com 
+Ver. 1.0 20/08/2024  (c)marco.sillano@gmail.com <br>
        28/10/24 - I also added a test for 'low' value.
 
 #### Pro
