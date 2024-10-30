@@ -21,16 +21,16 @@ per IOTwebUI version 2.2 10/08/2024
 // 2-A) Copy the 'RULES for CLONER01' in the RULE-pad at run time (temporary)
 // 2-B) Or copy the 'RULES for CLONER01' in the 'var usrrules' in the usrrulesXX.X.js file (permanent).
 // 3) optional: update 'custom.js' to set icon and color for this x-devices
-// You can use 'CLONER01( dev_id, xname [, room, home])' as new MACRO in RULE-pad.
-// note: [, room, home] are optional, because default are defined in code (row 47). You can change the defaults.  
+// You can use 'CLONER01( dev_id, xname [, xroom, xhome])' as new MACRO in RULE-pad.
+// note: [, xroom, xhome] are optional because the code defines the default (row 47). You can change the defaults.  
 
 // =====================  USE AS NEW MACRO - ALTERNATIVE
 // 1) Copy just 'CLONER01' function CODE (updated) in the 'CUSTOM USER MACROS' section of usrrulesXX.X.js file
 // 2-A) Copy the 'RULES for CLONER01' in the RULE-pad at run time (temporary)
 // 2-B) Or copy the 'RULES for CLONER01' in the 'var usrrules' in the usrrulesXX.X.js file (permanent).
 // 3) optional: update 'custom.js' to set icon and color for this x-devices
-// You can use 'CLONER01( dev_id, xname [, room, home])' as new MACRO in RULE-pad.
-// note: [, room, home] are optional, because default are defined in code. You can change the defaults.  
+// You can use 'CLONER01( dev_id, xname [, xroom, xhome])' as new MACRO in RULE-pad.
+// note: [, xroom, xhome] are optional because the code defines the default. You can change the defaults.  
 
 // =====================  USE AS RULE (no MACRO)
 // 1) Use the 'minified' version, as RULE (UPDATE the code if required!)
@@ -44,12 +44,12 @@ per IOTwebUI version 2.2 10/08/2024
 
 // CUSTOM parameter. You can UPDATE the default params to meet your structure in the next line:
 
-function CLONER01( dev_id, xname, room = "Test", home = 'ADMIN') {             // default params
+function CLONER01( dev_id, xname, xroom = "Test", xhome = 'ADMIN') {             // default params
     
 // ====== Use callAPI() to get fresh data
        const api_url = "/v2.0/cloud/thing/"+dev_id+"/shadow/properties";
        const x = callAPI('GET', api_url); 
-	   console.log(x);  // for debug only
+//	   console.log(x);  // for debug only
 // ====== Format data for the device 'status' as [{code, value},...]
 	   let _clStatus =[];
 	   x.properties.forEach( (p) => {   
@@ -59,9 +59,9 @@ function CLONER01( dev_id, xname, room = "Test", home = 'ADMIN') {             /
 				 };
         		 _clStatus.push( item); 
 				 });
-	   console.log(_clStatus);   // for debug only
+//	   console.log(_clStatus);   // for debug only
 // ====== Create/refresh the x-device
-       ADDXDEVICE(home, room, xname, _clStatus );
+       ADDXDEVICE(xhome, xroom, xname, _clStatus );
 	   SETXDEVICEONLINE(xname, true);  // set it online
   
 }
@@ -70,7 +70,7 @@ function CLONER01( dev_id, xname, room = "Test", home = 'ADMIN') {             /
 
 // =========== RULES for CLONER01: use this in RULE-pad
 // This is an example only, use real values
-// note: if you use CLONER01() many times, to buil many x-devices, take care to performances.
+// note: if you use CLONER01() many times, to build many x-devices, take care of performances.
 
 /*
   CLONER01("df123456xwyz876543xxww", "xtest");                //  MACRO call
@@ -79,7 +79,7 @@ function CLONER01( dev_id, xname, room = "Test", home = 'ADMIN') {             /
 /*
 // =============================  minified CLONER01
 //   Minified version of CLONER01 for RULE-pad: 2 lines only!  (using Notepad++ + plugin JSTool).
-//   On the RULE-pad you can cut long lines in many rows, and use 'continue' char (\) as last char for any row.
+//   On the RULE-pad you can cut long lines in many rows, and use 'continue' char (\) as the last char for any row.
 // You MUST update values to meet your structure in the next row:
 
 var _cldev_id='xxxyyyzzz',_clxname='xtest',_clroom="Test",_clhome='ADMIN';const api_url="/v2.0/cloud/thing/"+_cldev_id+"/shadow/properties";var  _clx=callAPI('GET',api_url);
