@@ -6,13 +6,15 @@ License MIT
 per IOTwebUI version 2.2 10/08/2024
   28/10/2024 bug: changed _t1 test (row 68).
   30/10/2024 bug: changed _t1 test, added == test, so it works also with 'low' (row 68).
+   30/10/2024  bug: added set online
 
  TODO:
  1. Change the function interface (see cloner01()) for easier use. 
+ 2, To save resources, update only on demand (now every loop).
 */
 // =====================  x-device BATTERY02
-// This addon implements a x-device, BATTERY02, to do a detaild test of device battery in a HOME. no auto-discovery.
-// USER MUST update 2 arrays: battery data and device data. The 'min' value can be set on device / code basis.
+// This addon implements an x-device, BATTERY02, to do a detailed test of the device's batteries in a HOME. no auto-discovery.
+// USER MUST update 2 arrays: battery data and device data. The 'min' value can be set on a device/code basis.
 
 // =====================  USE AS NEW MACRO 
 // 0) This file is in 'addons' directory of your IoTwebUI installation
@@ -76,8 +78,10 @@ function BATTERY02() {
 		 SETXDEVICESTATUS("ROMA power", "count", _dl.length);
 		 _dl.forEach((dev, pos) => {
                  SETXDEVICESTATUS("ROMA power", "low" + (pos + 1), dev)});
-         _power.forEach((pila) => {
+                 _power.forEach((pila) => {
 	        	 if (pila.count > 0) SETXDEVICESTATUS("ROMA power", pila.name, pila.count)});
+	         SETXDEVICEONLINE("ROMA power");  // done: online
+}
   }
 
 // end  BATTERY02 code
