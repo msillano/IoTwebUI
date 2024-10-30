@@ -12,6 +12,7 @@ per IOTwebUI version 2.2 10/08/2024
 
  TODO:
  1. Change defaults and the function interface (see cloner01()) for easier use. 
+ 2.To save resources, update only when parameters change (now every loop). 
  */
 
 // =====================  x-device BATTERY01
