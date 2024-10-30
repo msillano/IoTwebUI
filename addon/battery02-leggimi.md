@@ -10,6 +10,8 @@ Ha le proprietà visibili in figura.
 - Funzionamento: utilizza un elenco aggiornato dei device.
 
 Ver. 1.0 20/08/2024  (c)marco.sillano@gmail.com 
+ 28/10/24 - I also added a test for equal to a text value (e.g. 'low')
+          - The numerical test is now  'device.status.code <= min%'
 
 #### Pro
 - Assenza di errori nell'individuare i device
@@ -18,7 +20,7 @@ Ver. 1.0 20/08/2024  (c)marco.sillano@gmail.com
 
 #### Contro
 - Senza Auto-discovery, c'è la necessità di creare/mantenere un elenco di TUTTI i device da testare
-- La 'Home' è definita nel codice: quella a cui si riferisce l'elenco.
+- La 'Home' non è definita al rum-time, ma nel codice: è quella a cui si riferisce l'elenco.
 - Ho provato alternative più efficienti, ad esempio usare le 'category' per raggruppare i device, nell'ipotesi che 'category' uguali comportino le stesse proprietà, ma purtroppo così non è, come ho controllato usando CLASSIFY01.  
 
 ### Installazione
