@@ -24,6 +24,7 @@ Ver. 1.0 20/08/2024  (c)marco.sillano@gmail.com <br>
 - Ho provato alternative più efficienti, ad esempio usare le 'category' per raggruppare i device, nell'ipotesi che 'category' uguali comportino le stesse proprietà, ma purtroppo così non è, come ho controllato usando CLASSIFY01.  
 
 ### Installazione
+- Aggiornare dove creare l'x-device: home, room, nome (e.g.:'ADMIN', 'maintenance', 'Battery test2')
 - Aggiornare la vostra _'home'_ nel codice
 - Creare/mantenere un elenco di TUTTI i device da testare.
 - (opzionale) cambiare nome, icona, colore a questa **x-device**
