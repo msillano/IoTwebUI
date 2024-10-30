@@ -57,10 +57,10 @@ function BATTERY02() {
               ["bf3445cexxxxxxxx", "battery_percentage", 10, 1, 2, 0], 
               ];
  
- // ====  builds or clear device at any run
+ // ====  builds or clear device at any run - AGGIORNARE x-device: home, room|null, name!
          ADDXDEVICE('ROMA', null, "ROMA power", [{
                     code: 'home',
-                    value: 'ROMA'   // actual home (RO)
+                    value: 'ROMA'   // actual home (RO) Aggiornare!
                 } ]);
 // non è prevista la modifica di home al runtime perchè dovrebbe variare di conseguenza anche  _devices[] 
 	// ==========  data collection		
