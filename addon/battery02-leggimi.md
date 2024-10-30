@@ -6,7 +6,7 @@
 Questo test è preciso e fornirnisce informazioni anche sulle batterie necessarie.<br>
 Ha le proprietà visibili in figura.
 - La proprietà `home` è RO: è predefinita nel codice.
-- Le altre proprietà sono RO.
+- Le altre proprietà sono dinamicamente calcolate (RO).
 - Funzionamento: utilizza un elenco aggiornato dei device.
 
 Ver. 1.0 20/08/2024  (c)marco.sillano@gmail.com 
