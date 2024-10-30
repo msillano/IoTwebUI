@@ -117,7 +117,7 @@ if(!VGET('$done'))VSET('$done',1),ADDXDEVICE('ROMA',null,"Battery test",[{code:'
 
 var _xhome=GET("Battery test",'home');var _lowPerc=GET("Battery test",'low level');var _lowD=[];if(TRIGCHANGED(_xhome)) ADDXDEVICE('ROMA',null,"Battery test",[{code:'home',value:_xhome},{code:'low level',value:_lowPerc}]),VOICE("Aggiorno la lista dei device");
 
-GETIDLIST(_xhome).forEach((devid)=>{let _t1=GET(devid,'battery_percentage',false);if(_t1=="none")_t1=GET(devid,'va_battery',false);if(_t1=="none")_t1=GET(devid,'battery_state',false);if((_t1!="none")&&((_t1<_lowPerc)||(_t1=="low")))_lowD.push(GETATTRIBUTE(devid,'name'));});
+GETIDLIST(_xhome).forEach((devid)=>{let _t1=GET(devid,'battery_percentage',false);if(_t1=="none")_t1=GET(devid,'va_battery',false);if(_t1=="none")_t1=GET(devid,'battery_state',false);if((_t1!==null)&&((_t1<_lowPerc)||(_t1=="low")))_lowD.push(GETATTRIBUTE(devid,'name'));});
 
 SETXDEVICESTATUS("Battery test", "count", _lowD.length);_lowD.forEach((dev,pos)=>{SETXDEVICESTATUS("Battery test","low"+(pos+1),dev)});
 
