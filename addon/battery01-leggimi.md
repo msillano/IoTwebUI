@@ -14,6 +14,7 @@ Ha le proprietà visibili in figura.
 - Come esempio è fornito il codice di REGOLE per cambiare al RT sia  `home` che `low level`.
 
 Ver. 1.0 20/08/2024  (c)marco.sillano@gmail.com 
+       28/10/24 - I also added a test for 'low' value.
 
 #### Pro
 - semplicità d'uso, praticamente NON richiede interventi di customizzazione
