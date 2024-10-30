@@ -5,6 +5,7 @@ License MIT
 (C)2024 marco.sillano@gmail.com
 per IOTwebUI version 2.2 10/08/2024
   28/10/2024 bug: changed _t1 test (row 68).
+  30/10/2024 bug: changed _t1 test, added == test, so it works also with 'low' (row 68).
 
  TODO:
  1. Change the function interface (see cloner01()) for easier use. 
@@ -48,7 +49,7 @@ function BATTERY02() {
     var _devices = [
 	// dettaglio di tutti i dispositivi a batteria sotto controllo
 	// USER Update this with all battery device
-        // record:	[id, status.code, min%, powID, number, 0-flag]
+        // record:	[id, status.code, min%|'low', powID, number, 0-flag]
 	      ["42027807d8bfxxxxxxxx", "BatteryStatus", 2, 2, 2, 0], 
               ["bfbd7ad42xxxxxxxx", "battery_percentage", 10, 1, 2, 0], 
               ["bf542e7c6xxxxxxxx", "va_battery", 2, 4, 1, 0], 
@@ -65,7 +66,7 @@ function BATTERY02() {
 	// ==========  data collection		
 		_devices.forEach((dev, pos) => {
  			let _t1 = GET(dev[0], dev[1], false);
-			if ((_t1 !== null) && (_t1 < dev[2])){
+			if ((_t1 !== null) && ((_t1 < dev[2])||(_t1 == dev[2]))){
 				dev[5] = 1;
 				_power[dev[3]].count += dev[4];
 				_dl.push(GETATTRIBUTE(dev[0], 'name'));
@@ -97,7 +98,7 @@ var _power=[{name:"alcalina_AA",count:0},{name:"alcalina_AAA",count:0},{name:"Ni
 
 var _dl=[];var _devices=[["4202xxxxxx","BatteryStatus",2,2,2,0],["bfbxxxxxxxx",","battery_percentage",10,1,2,0],["bf542xxxxxxx",","va_battery",2,4,1,0],["bfcd9xxxxxxx",","va_battery",2,4,1,0],["bf3445xxxxxxx",","battery_percentage",10,1,2,0],];
 
-ADDXDEVICE('ROMA',null,"ROMA power",[{code:'home',value:'ROMA'}]);_devices.forEach((dev,pos)=>{let _t1=GET(dev[0],dev[1],false);if((_t1!="none")&&(_t1<dev[2])){dev[5]=1;_power[dev[3]].count+=dev[4];_dl.push(GETATTRIBUTE(dev[0],'name'));}});
+ADDXDEVICE('ROMA',null,"ROMA power",[{code:'home',value:'ROMA'}]);_devices.forEach((dev,pos)=>{let _t1=GET(dev[0],dev[1],false);if((_t1!==null)&&((_t1<dev[2])||(_t1 == dev[2]))){dev[5]=1;_power[dev[3]].count+=dev[4];_dl.push(GETATTRIBUTE(dev[0],'name'));}});
 
 SETXDEVICESTATUS("ROMA power","count",_dl.length);_dl.forEach((dev,pos)=>{SETXDEVICESTATUS("ROMA power","low"+(pos+1),dev)});_power.forEach((pila)=>{if(pila.count>0)SETXDEVICESTATUS("ROMA power",pila.name,pila.count)});
 
