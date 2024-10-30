@@ -13,27 +13,27 @@ per IOTwebUI version 2.2 10/08/2024
  */
 
 // =====================  x-device BATTERY01
-// This addon implements a x-device, BATTERY01, to test device battery in many HOMES. Weak auto-discovery devices
-// note: CUSTOMIZATION: set your default 'home' name, and update command RULE for more than one home! Optional: add more device properties.
+// This addon implements a x-device, BATTERY01, to test device battery in many HOMES. Weak auto-discovery devices.
+// note: CUSTOMIZATION: set home, room, name of the x-device, set your default 'home' name, and update example RULEs! Optional: add more device properties.
 
 // =====================  ADDON INSTALL: USE AS EXTERNAL MACRO (preferred)
 // 0) This file (updated) must be in the 'addons' directory of your IoTwebUI installation
 // 1) Include THIS file in the main file ( IoTwebUI.html ) at the end, adding:
 //       <script type="text/javascript" src="addons/battery01.js"></script >
-// 2-A) Copy the 'RULES for BATTERY01' in the RULE-pad at run time (temporary) 
-// 2-B) Or copy the 'RULES for BATTERY01' in the 'var usrrules' in the usrrulesXX.X.js file (permanent).
+// 2-A) Copy the 'RULES for BATTERY01'  (updated) in the RULE-pad at run time (temporary) 
+// 2-B) Or copy the 'RULES for BATTERY01'  (updated) in the 'var usrrules' in the usrrulesXX.X.js file (permanent).
 // 3) optional: update 'custom.js' to set icon and color for this x-devices
 
 // ======================  INSTALL ALTERNATIVE 1: USE AS USER MACRO (only code)
 // 1) Copy just 'BATTERY01' function CODE in the 'CUSTOM USER MACROS' section of usrrulesXX.X.js file
-// 2-A) Copy the 'RULES for BATTERY01' in the RULE-pad at run time (temporary) 
-// 2-B) Or copy the 'RULES for BATTERY01' in the 'var usrrules' in the usrrulesXX.X.js file (permanent).
+// 2-A) Copy the 'RULES for BATTERY01' (updated) in the RULE-pad at run time (temporary) 
+// 2-B) Or copy the 'RULES for BATTERY01' (updated) in the 'var usrrules' in the usrrulesXX.X.js file (permanent).
 // 3) optional: update 'custom.js' to set icon and color for this x-devices
 
 // =======================  INSTALL ALTERNATIVE 2: USE AS RULE (no MACRO)
 // 1) Uses the 'minified' version, as RULE (UPDATE the code if required!).
-// 1-A) Copy the 'minified BATTERY01' + 'RULES for BATTERY01' (excluding the MACRO call) in the RULE-pad at run time (temporary) 
-// 2-B) Copy the 'minified BATTERY01' + 'RULES for BATTERY01' (excluding the MACRO call) in the 'var usrrules' in the usrrulesXX.X.js file (permanent).
+// 1-A) Copy the 'minified BATTERY01' + 'RULES for BATTERY01' (updated - excluding the MACRO call) in the RULE-pad at run time (temporary) 
+// 2-B) Copy the 'minified BATTERY01' + 'RULES for BATTERY01' (updated - excluding the MACRO call) in the 'var usrrules' in the usrrulesXX.X.js file (permanent).
 // 3) optional: update 'custom.js' to set icon and color for this x-devices
 
 // ==== end use instructions
