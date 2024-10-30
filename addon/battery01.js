@@ -8,6 +8,8 @@ ver 1.0 20/08/2024
 per IOTwebUI version 2.2 10/08/2024
     28/10/2024  bug: modified _t1 test (rows 77, 80)
     29/10/2024  added test for battery_state: high/medium/low
+    30/10/2024  bug: added set online
+
  TODO:
  1. Change defaults and the function interface (see cloner01()) for easier use. 
  */
@@ -89,7 +91,8 @@ function BATTERY01() {
   // from _lowD to Battery test.status		
    SETXDEVICESTATUS("Battery test", "count", _lowD.length);
    _lowD.forEach((dev, pos) => {
-    SETXDEVICESTATUS("Battery test", "low" + (pos + 1), dev)});
+        SETXDEVICESTATUS("Battery test", "low" + (pos + 1), dev)});
+    SETXDEVICEONLINE("Battery test");  // done: online
 }
 // end  BATTERY01 code
 
@@ -119,7 +122,7 @@ var _xhome=GET("Battery test",'home');var _lowPerc=GET("Battery test",'low level
 
 GETIDLIST(_xhome).forEach((devid)=>{let _t1=GET(devid,'battery_percentage',false);if(_t1=="none")_t1=GET(devid,'va_battery',false);if(_t1=="none")_t1=GET(devid,'battery_state',false);if((_t1!==null)&&((_t1<_lowPerc)||(_t1=="low")))_lowD.push(GETATTRIBUTE(devid,'name'));});
 
-SETXDEVICESTATUS("Battery test", "count", _lowD.length);_lowD.forEach((dev,pos)=>{SETXDEVICESTATUS("Battery test","low"+(pos+1),dev)});
+SETXDEVICESTATUS("Battery test", "count", _lowD.length);_lowD.forEach((dev,pos)=>{SETXDEVICESTATUS("Battery test","low"+(pos+1),dev)});SETXDEVICEONLINE("Battery test");
 
 // end minified
 */
