@@ -47,7 +47,7 @@ function BATTERY02() {
 		   {name: "litio_cr2032", count:0},   //  powID:4
 		   {name: "litio_cr123A", count:0},   //  powID:5
 	  ];
-	var _dl =[];
+    var _dl =[];
     var _devices = [
 	// dettaglio di tutti i dispositivi a batteria sotto controllo
 	// USER Update this with all battery device
@@ -81,7 +81,6 @@ function BATTERY02() {
                  _power.forEach((pila) => {
 	        	 if (pila.count > 0) SETXDEVICESTATUS("ROMA power", pila.name, pila.count)});
 	         SETXDEVICEONLINE("ROMA power");  // done: online
-}
   }
 
 // end  BATTERY02 code
@@ -104,7 +103,7 @@ var _dl=[];var _devices=[["4202xxxxxx","BatteryStatus",2,2,2,0],["bfbxxxxxxxx","
 
 ADDXDEVICE('ROMA',null,"ROMA power",[{code:'home',value:'ROMA'}]);_devices.forEach((dev,pos)=>{let _t1=GET(dev[0],dev[1],false);if((_t1!==null)&&((_t1<dev[2])||(_t1 == dev[2]))){dev[5]=1;_power[dev[3]].count+=dev[4];_dl.push(GETATTRIBUTE(dev[0],'name'));}});
 
-SETXDEVICESTATUS("ROMA power","count",_dl.length);_dl.forEach((dev,pos)=>{SETXDEVICESTATUS("ROMA power","low"+(pos+1),dev)});_power.forEach((pila)=>{if(pila.count>0)SETXDEVICESTATUS("ROMA power",pila.name,pila.count)});
+SETXDEVICESTATUS("ROMA power","count",_dl.length);_dl.forEach((dev,pos)=>{SETXDEVICESTATUS("ROMA power","low"+(pos+1),dev)});_power.forEach((pila)=>{if(pila.count>0)SETXDEVICESTATUS("ROMA power",pila.name,pila.count)});SETXDEVICEONLINE("ROMA power");
 
 // end minified
 */
