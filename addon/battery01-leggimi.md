@@ -5,7 +5,6 @@
 
 ### Descrizione
 Auto-discovery dei device con batterie scariche, per ogni HOME. <br>
-Per risparmiare risorse, la verifica è effettuata solo all'avvio oppure RT al cambio di una delle proprietà.<br>
 Ha le proprietà visibili in figura.
 - La proprietà `home` è RW: se viene cambiata, aggiorna i device.
 - La proprietà `low level` è anch'essa RW: se viene cambiata, aggiorna i device.
