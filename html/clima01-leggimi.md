@@ -40,6 +40,7 @@ Trasforma un valore fornito dai device (e.g. 'va_temperature: 284') in una strin
 Ovviamente è un esempio, da adattare ai device in uso.
 
 <hr>
+
 ## Pattern MVP
 Questo pattern è il più naturale per realizzare interfacce utente custom per Tuya utilizzando IoTwebUI + IoTrest, ed è usato negli esempi proposti:
 
