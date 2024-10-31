@@ -39,17 +39,17 @@ con funzione di middleware.
 Trasforma un valore fornito dai device (e.g. 'va_temperature: 284') in una stringa usabile nell'interfaccia: "28,4°C".
 Ovviamente è un esempio, da adattare ai device in uso.
 
-======
+<hr>
 ## Pattern MVP
 Questo pattern è il più naturale per realizzare interfacce utente custom per Tuya utilizzando IoTwebUI + IoTrest, ed è usato negli esempi proposti:
 
 ![Screenshot 2024-10-31 174424](https://github.com/user-attachments/assets/d302ea3d-598f-4790-9457-cdd9485aa31d)
 
-* **MODEL**: Tuya (smartLife) + device rappresentano l'orogine dei dati. Le 'scene' Tuya implementano la business logic automatica necessaria al funzionamento.
-* **PRESENTER**: (middleware) si occupa della raccolta, trasformazione, formattazione dei dati. Inoltre distribuisce i comandi utente ai device, validandoli e mantenendo la sincronizzazione. Implementato da una o più **x-device**
-* **VIEW**: User interface stupida, si occupa solo della visualizzazione, implementata usualmente in HTML + JavaScript
+* **MODEL**: Tuya (smartLife) + device rappresentano l'orogine dei dati. Le 'scene' Tuya, eventualmente estese con REGOLE, implementano la business logic automatica necessaria al funzionamento.
+* **PRESENTER**: (middleware) funge da 'adattatore di impedenza': si occupa della raccolta, trasformazione, formattazione dei dati. Inoltre distribuisce i comandi utente ai device, validandoli e mantenendo la sincronizzazione. Implementato da uno o più **x-device**
+* **VIEW**: User interface stupida, si occupa solo della visualizzazione. Implementata usualmente in HTML + JavaScript
 
-nota: l'interfaccia VP è definita in P e coincide con la definizione dello 'status' (proprietà) di una o più **x-device**
+nota: l'interfaccia V-P è definita in P e coincide con la definizione dello 'status' (proprietà) di una o più **x-device**
 
-_Negli esempi, quindi, un'interfaccia utente si compone di almeno due parti: una pagina WEB ed un x-device. La customizzazione più semplice consiste nell'adattamento del **x-device** ai device fisici Tuya disponibili, mentre il suo 'status', che definisce l'interfaccia verso VIEW, deve rimane inalterato._
+_Negli esempi, quindi, un'interfaccia utente si compone di almeno due parti: una pagina WEB ed un x-device. La customizzazione più semplice consiste nell'adattamento del **x-device** ai device fisici Tuya disponibili, mentre il suo 'status' deve rimane inalterato._
 
