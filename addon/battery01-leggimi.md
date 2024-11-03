@@ -14,7 +14,10 @@ Ha le proprietà visibili in figura.
 
 Ver. 1.0 20/08/2024  (c)marco.sillano@gmail.com <br>
        28/10/24 - I also added a test for 'low' value.
-
+Ver. 1.1 03/11/2024 breaking update
+- Added parameters to MACRO
+- In EXPERT mode added device's IDs
+- 
 #### Pro
 - semplicità d'uso, praticamente NON richiede interventi di customizzazione
 
@@ -23,8 +26,9 @@ Ver. 1.0 20/08/2024  (c)marco.sillano@gmail.com <br>
 - auto-discovery può fare errori: in figura device `'low8'`  è virtuale, cioè senza batterie, ma il suo status riporta batteria a 0.
 
 ### Installazione
-- Aggiungere altre _proprietà al test_, se richiesto dai vostri device
+- Istruzioni dettagliate nel file BATTERY01.X.js
 - Aggiornare dove creare l'x-device: home, room, nome (e.g.:'ADMIN', 'maintenance', 'Battery test')
-- Usare una vostra _'home'_ esistente come default
-- (opzionale) cambiare icona, colore a questa '**x-device**
+- Usare una vostra _'home'_ esistente come default (e.g. 'ROMA')
+- (opzionale) Aggiungere altre _proprietà al test_, se richiesto dai vostri device
+- (opzionale) Cambiare icona e/o colore a questa '**x-device**
 
