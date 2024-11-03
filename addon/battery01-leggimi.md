@@ -13,11 +13,11 @@ Ha le proprietà visibili in figura.
 - Come esempio è fornito il codice di REGOLE per cambiare al RT sia  `home` che `low level`.
 
 Ver. 1.0 20/08/2024  (c)marco.sillano@gmail.com <br>
-       28/10/24 - I also added a test for 'low' value.
+       28/10/24 - I also added a test for 'low' value.<br>
 Ver. 1.1 03/11/2024 breaking update
-- Added parameters to MACRO
+- Added parameters to MACRO to allow multiple instances
 - In EXPERT mode added device's IDs
-- 
+ 
 #### Pro
 - semplicità d'uso, praticamente NON richiede interventi di customizzazione
 
@@ -27,7 +27,7 @@ Ver. 1.1 03/11/2024 breaking update
 
 ### Installazione
 - Istruzioni dettagliate nel file BATTERY01.X.js
-- Aggiornare dove creare l'x-device: home, room, nome (e.g.:'ADMIN', 'maintenance', 'Battery test')
+- Aggiornare la posizione dell'x-device: home, room, nome (e.g.:'ADMIN', 'maintenance', 'Battery test')
 - Usare una vostra _'home'_ esistente come default (e.g. 'ROMA')
 - (opzionale) Aggiungere altre _proprietà al test_, se richiesto dai vostri device
 - (opzionale) Cambiare icona e/o colore a questa '**x-device**
