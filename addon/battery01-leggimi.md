@@ -14,6 +14,7 @@ Ha le proprietà visibili in figura.
 
 Ver. 1.0 20/08/2024  (c)marco.sillano@gmail.com <br>
        28/10/24 - I also added a test for 'low' value.<br>
+       
 Ver. 1.1 03/11/2024 breaking update
 - Added parameters to MACRO to allow multiple instances
 - In EXPERT mode added device's IDs
