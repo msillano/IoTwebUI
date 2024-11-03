@@ -147,7 +147,9 @@ Alcune piccole icone forniscono ulteriori informazioni all'utente. Esempi (vedi 
        - `is-a`:  nome del 'tipo' Tuya del device (in codice corrispondente è `device.category`). In totale circa 600 tipi.
        - `id`:  `device.id`, richiesto da alcuni HUB (e.g. TuyaDAEMON, Homebridge, HA, etc..) per accedere al Cloud.
        - `key`: `device.local_key`, richiesto da alcuni HUB che usano MQTT localmente.
-         
+
+[da ver. 2.2.2] E' possibile 'esportare' i tooltip con [Ctrl] + [click]. Inoltre il formato dei tooltip è CSV compatibile, usando ':' come separatore di campi. Quindi i dati di un tooltip sono facilmente importabili in uno spreadsheet (e.g. Excel) per ulteriori usi. 
+<br> Le versioni aggiornate dei x-device di esempio (in GitHub, /addon) sono ottimizzate anche per l'esportazione.
 
 ### Logging ed esportazione dati
 E' possibile esportare su un file alcuni dati: l'utente deve specificare solo `device` e `status` (proprietà) per identificare i dati che interessano e questi sono salvati ad intervalli regolari (minimo 1 minuto) in un buffer interno (max 5000 records - pari a 80h @1 rec/min), esportato poi su file automaticamente o su comando utente.<br>
