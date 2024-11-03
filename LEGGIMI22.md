@@ -584,7 +584,8 @@ Gli **x-device**, oltre alla presentazione dei dati, possono anche gestire 'azio
 
 **_Limiti per x-device_**
 
-1. Attenzione all'uso di multiple istanze di un **x-device**. E' possibile solo se l'**x-device** è implementato come una funzione (MACRO) ed usa variabili con scopo locale (`let`) e non globale (`var`). Se invece è implementato come REGOLA, occorre ripetere il codice per ogni istanza, ed allora é possibile cambiare i nomi alle `var` presenti.  
+1. Attenzione all'uso di multiple istanze di un **x-device**. E' possibile solo se l'**x-device** è implementato come una funzione (MACRO). Se invece è implementato come REGOLA, occorre ripetere il codice per ogni istanza, ed allora é possibile cambiare i valori assegnati.  
+2. Contrariamente ai _device Tuya_, identificati univocamente dall'ID, gli **x-device** devono essere identificati esclusivamente dal _nome_, perchè l'ID cambia ad ogni run.
 
 <hr>
 
@@ -604,7 +605,7 @@ Se non trova 'device' o 'property' dà errore se <code>strict == true</code> (de
  <i>Esempio:</i> <code>var _name = GETATTRIBUTE(_devid, 'name');</code> </dd>
  
 <dt>ISCONNECTED(device)</dt>
-<dd>Ritorna 'true' se il device (nome o ID) è connesso. <br>
+<dd>Ritorna 'true' se il device (nome o ID) è connesso. Equivalente a <code>GETATTRIBUTE(device, 'onlime', false)</code> <br>
 <i>nota: il dato proviene dal Cloud, può differire dal valore locale mostrato da SmartLife.</i><br>
 <i>Esempio:</i> <code>if (! ISCONNECTED("Tuya bridge")) VOICE ("Attenzione! 'tuya bridge' attualmente disconnesso"); </code>  </dd>
 
@@ -626,11 +627,11 @@ nota: init: (default = []) array di valori iniziali come oggetti. e.g.: <code>{c
 nota: la categoria di default è 'x-dev', con <code>is-a</code> => 'x-device custom'. Si può specificare una diversa categoria (tra le esistenti), per esempio per usare un'icona speciale, se così è previsto da customizzazioni basate su <code>category</code>.<br>
 nota: <code>room == null</code> associa il device alla 'home' indicata.<br>
 nota: se il x-device esiste, ADDXDEVICE() re-inizializza con la sostituzione dei dati in 'status' con 'init'.<br>
+nota: ADDXDEVICE() inizia 'online' con false: solo dopo aver completato tutti i calcoli (possono richiedere tempo) può essere messo a 'true' con SETXDEVICEONLINE(), per avere un feedback visivo dello stato dell'x-device.<br>
  <i>Esempio:</i>
-nota: ADDXDEVICE() inizia 'online' con false: solo dopo aver completato tutti i calcoli (possono richiedere tempo) può essere messo a 'true' con SETXDEVICEONLINE(), per avere un feedback visivo dello stato dell'x-device.-
 <pre>
-     // singleton run: adds a x-device
-     if(! VGET('$done')) VSET('$done', 1), ADDXDEVICE('ROMA', "Studio", "Temperatura media");
+     // singleton run: adds a x-device after the existence test
+     if(!GETATTRIBUTE("Temperatura media","name",false)) ADDXDEVICE('ROMA', "Studio", "Temperatura media");
 </pre>
 </dd>
  
@@ -638,17 +639,17 @@ nota: ADDXDEVICE() inizia 'online' con false: solo dopo aver completato tutti i 
 <dd> Permette l'aggiunta di nuovi valori od il loro aggiornamento nello 'status' di un _x-device_.<br>
 <i>Esempio:</i> 
 <pre>
-    //updates the x-device doing 2 devices average and then a mobile average over the last 10 results
+    //updates the x-device doing a 2 devices average and then a mobile average over the last 10 results
     var _tm = ( GET("Temperatura studio","va_temperature") + ( GET("Termo studio","temp_current") / 10)) /2;
-    SETDEVICESTATUS( "Xtemperature", "media", AVG(_tm, 10));
+    SETDEVICESTATUS( "Temperatura media", "media", AVG(_tm, 10));
 </pre>
 </dd>
 
+<dt>SETXDEVICEONLINE(device)</dt>
 <dt>SETXDEVICEONLINE(device, online)</dt>
-<dd> Permette il controllo dell'attributo 'online' per gli x-device<br>
+<dd> Permette il controllo dell'attributo 'online' (default 'true') per gli x-device<br>
 <i>Esempio:</i> 
 </dd>
-
 
 <dt>REST(url)</dt>
 <dd> Client REST, per servizi web API REST (GET) o device che tornano come risposta un testo semplice.<br>
