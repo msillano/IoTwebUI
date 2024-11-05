@@ -1,6 +1,6 @@
 # BATTERY02 - x-device: deep battery status test
 
-![](https://github.com/msillano/IoTwebUI/blob/main/pics/battery02.png?raw=true)
+![](https://github.com/msillano/IoTwebUI/blob/main/pics/battery021.png?raw=true)
 
 ### Descrizione
 Questo test è preciso e fornirnisce informazioni anche sulle batterie necessarie.<br>
