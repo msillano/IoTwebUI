@@ -6,67 +6,85 @@ License MIT
 per IOTwebUI version 2.2 10/08/2024
   28/10/2024 bug: changed _t1 test (row 68).
   30/10/2024 bug: changed _t1 test, added == test, so it works also with 'low' (row 68).
-   30/10/2024  bug: added set online
+  30/10/2024  bug: added set online
 
- TODO:
- 1. Change the function interface (see cloner01()) for easier use. 
- 2, To save resources, update only on demand (now every loop).
+Ver 20.1 03/11/2024
+per IOTwebUI version 2.2.2
+   changed defaults, refresh at long interval, export CSV compatible.
+
 */
 // =====================  x-device BATTERY02
-// This addon implements an x-device, BATTERY02, to do a detailed test of the device's batteries in a HOME. no auto-discovery.
-// USER MUST update 2 arrays: battery data and device data. The 'min' value can be set on a device/code basis.
+// This addon implements a x-device, BATTERY02,  to do a detailed test of the device's batteries in a HOME. no auto-discovery.
+// The advantage are:
+//    - fine tuning of condition on single device basis.
+//    - Total battery requred, sorted by battery type.
+//    - Absence of false positives
+// Disadvantages:
+//    - USER MUST create/update 2 arrays: battery data and device data. The 'min' value can be set on a device/code basis.
+//    - The other options also need to be updated in the code: this x-device only takes care of one default home!
+//    - OPTIONS: var _b2xname = "ROMA test batterie", _b2xroom = "tools", _b2xhome = 'ADMIN', _b2startHome = "ROMA", //    - Multiple homes require multiple instances of the code (with different names!)
+_b2loops = 100
+//     - Auto-refresh data every _b2loops loop. 
+//      - At runtime you can force the refresh putting 'offline' the device, using RULEs: SETXDEVICEONLINE("xxxx", false). 
 
 // =====================  USE AS NEW MACRO 
 // 0) This file is in 'addons' directory of your IoTwebUI installation
 // 1) Include THIS file in the main file ( IoTwebUI.html ) at the end, adding:
 //       <script type="text/javascript" src="addons/battery02.js"></script >
 // 2) optional: update 'custom.js' to set icon and color for this x-devices
-// You can use BATTERY02() as new MACRO in RULE-pad !.
+// Now you can use BATTERY02() as new MACRO in RULE-pad !.
 
 // ======================  USE AS NEW MACRO - ALTERNATIVE
 // 1) Copy just 'BATTERY02' function code in the 'CUSTOM USER MACROS' section of usrrulesXX.X.js file
 // 2) optional: update 'custom.js' to set icon and color for this x-devices
 // You can use BATTERY02() as new MACRO in RULE-pad !.
 
-// =======================  USE AS RULE (no MACRO)
-// 1) Use the 'minified' version, as RULE (you must UPDATE the code and make your minified version!)
-// 1-A) Copy the 'minified BATTERY02' in the RULE-pad at run time (temporary) 
-// 2-B) Copy the 'minified BATTERY02' in the 'var usrrules' in the usrrulesXX.X.js file (permanent).
-// 3) optional: update 'custom.js' to set icon and color for this x-devices
+// note: Large updates to the data are needed. The 'minified' version is not appropriate in this case.
 // ==== end use instructions
 
 // =================== BATTERY02 CODE
-// WARNING: the TRIGBYNAME() MACRO works only on RULE-pad.
-// EXAMPLE: This creates the x-device 'ROMA power' for device control
+// EXAMPLE: This creates the x-device 'ROMA test batterie' for device batteries control
 function BATTERY02() {
-	// USER UPDATE HERE with used batteries:
-    var _power = [ {name: "alcalina_AA", count:0},    //  powID:0
-	           {name: "alcalina_AAA", count:0},   //  powID:1
-		   {name: "Ni-MH_AA", count:0},       //  powID:2
-		   {name: "Ni-MH_AAA", count:0},      //  powID:3
-		   {name: "litio_cr2032", count:0},   //  powID:4
-		   {name: "litio_cr123A", count:0},   //  powID:5
+// ================ start USER UPDATE	
+// note: this x-device requires a lot of user data about the devices in the target Tuya home.
+// So it is not allowed to change target home at runtime: all options are defined in the next line:
+    var _b2xname = "ROMA test batterie", _b2xroom = "tools", _b2xhome = 'ADMIN', _b2startHome = "ROMA", _b2loops = 100;
+	
+	// USER UPDATE HERE with used batteries: (powID is the array index)
+    var _power = [ 
+           {name: "unknown", count:0},        //  powID:0
+	       {name: "alcalina_AA", count:0},    //  powID:1
+	       {name: "alcalina_AAA", count:0},   //  powID:2
+	       {name: "alcalina_9V", count:0},    //  powID:3
+		   {name: "Ni-MH_AA", count:0},       //  powID:4
+		   {name: "Ni-MH_AAA", count:0},      //  powID:5
+		   {name: "litio_cr2032", count:0},   //  powID:6
+		   {name: "litio_cr123A", count:0},   //  powID:7
+		  
 	  ];
     var _dl =[];
     var _devices = [
 	// dettaglio di tutti i dispositivi a batteria sotto controllo
-	// USER Update this with all battery device
-        // record:	[id, status.code, min%|'low', powID, number, 0-flag]
-	      ["42027807d8bfxxxxxxxx", "BatteryStatus", 2, 2, 2, 0], 
-              ["bfbd7ad42xxxxxxxx", "battery_percentage", 10, 1, 2, 0], 
-              ["bf542e7c6xxxxxxxx", "va_battery", 2, 4, 1, 0], 
-              ["bfcd95a6xxxxxxxx", "va_battery", 2, 4, 1, 0], 
-              ["bf3445cexxxxxxxx", "battery_percentage", 10, 1, 2, 0], 
+	// USER MUST update this with all battery device:( here some example lines)
+    // record:	[device.id, status.code, min%|'low', powID, number of batteries, 0-flag]
+	 		  
+              ["0420812xxxxxxxxxxxxxxx", "battery_state",     'low', 5, 1, 0], 
+              ["bfbd7adxxxxxxxxxxxxxxx", "battery_percentage",   10, 1, 2, 0], 
+               
               ];
+			  
+// ================ USER UPDATE ends	
  
  // ====  builds or clear device at any run - AGGIORNARE x-device: home, room|null, name!
-         ADDXDEVICE('ROMA', null, "ROMA power", [{
+      if(TRIGEVERY(_b2loops) || !GETATTRIBUTE(_b2xname, "online", false)) 
+		    ADDXDEVICE(_b2xhome, _b2xroom, _b2xname, [{
                     code: 'home',
-                    value: 'ROMA'   // actual home (RO) Aggiornare!
+                    value: _b2startHome   // actual home 
                 } ]);
 // non è prevista la modifica di home al runtime perchè dovrebbe variare di conseguenza anche  _devices[] 
 	// ==========  data collection		
-		_devices.forEach((dev, pos) => {
+      if (!GETATTRIBUTE(_b2xname, "online", false)){
+        	_devices.forEach((dev, pos) => {
  			let _t1 = GET(dev[0], dev[1], false);
 			if ((_t1 !== null) && ((_t1 < dev[2])||(_t1 == dev[2]))){
 				dev[5] = 1;
@@ -75,12 +93,16 @@ function BATTERY02() {
 		    } });
 
     // ========= formatting and status update       
-		 SETXDEVICESTATUS("ROMA power", "count", _dl.length);
+		 SETXDEVICESTATUS(_b2xname, "tested", _devices.length);
+		 SETXDEVICESTATUS(_b2xname, "low", _dl.length);
 		 _dl.forEach((dev, pos) => {
-                 SETXDEVICESTATUS("ROMA power", "low" + (pos + 1), dev)});
-                 _power.forEach((pila) => {
-	        	 if (pila.count > 0) SETXDEVICESTATUS("ROMA power", pila.name, pila.count)});
-	         SETXDEVICEONLINE("ROMA power");  // done: online
+                 SETXDEVICESTATUS(_b2xname, "low" + (pos + 1), dev)});
+         SETXDEVICESTATUS(_b2xname, "<b>batteries","</b>");
+         _power.forEach((pila) => {
+	        	 if (pila.count > 0) SETXDEVICESTATUS(_b2xname, "<i>"+pila.name, "</i>"+pila.count)});
+	     SETXDEVICEONLINE(_b2xname);  // done: online
+		 VOICE("Lista delle batterie aggiornata");
+	   }
   }
 
 // end  BATTERY02 code
@@ -92,18 +114,3 @@ function BATTERY02() {
 	  // nothing to do at runtime
     */
 
-/*
-// =============================  minified BATTERY02
-//   Minified version of BATTERY01 for RULE-pad: 4 lines only!  (using Notepad++ + plugin JSTool).
-//   On the RULE-pad you can cut long lines in many rows, and use 'continue' char (\) as last char for any row.
-
-var _power=[{name:"alcalina_AA",count:0},{name:"alcalina_AAA",count:0},{name:"Ni-MH_AA",count:0},{name:"Ni-MH_AAA",count:0},{name:"litio_cr2032",count:0},{name:"litio_cr123A",count:0},];
-
-var _dl=[];var _devices=[["4202xxxxxx","BatteryStatus",2,2,2,0],["bfbxxxxxxxx",","battery_percentage",10,1,2,0],["bf542xxxxxxx",","va_battery",2,4,1,0],["bfcd9xxxxxxx",","va_battery",2,4,1,0],["bf3445xxxxxxx",","battery_percentage",10,1,2,0],];
-
-ADDXDEVICE('ROMA',null,"ROMA power",[{code:'home',value:'ROMA'}]);_devices.forEach((dev,pos)=>{let _t1=GET(dev[0],dev[1],false);if((_t1!==null)&&((_t1<dev[2])||(_t1 == dev[2]))){dev[5]=1;_power[dev[3]].count+=dev[4];_dl.push(GETATTRIBUTE(dev[0],'name'));}});
-
-SETXDEVICESTATUS("ROMA power","count",_dl.length);_dl.forEach((dev,pos)=>{SETXDEVICESTATUS("ROMA power","low"+(pos+1),dev)});_power.forEach((pila)=>{if(pila.count>0)SETXDEVICESTATUS("ROMA power",pila.name,pila.count)});SETXDEVICEONLINE("ROMA power");
-
-// end minified
-*/
