@@ -52,21 +52,20 @@ function BATTERY02(xname = "ROMA test batterie", xroom = "tools", xhome = 'ADMIN
 	
 	// USER UPDATE HERE with used batteries: (powID is the array index)
     var _power = [ 
-           {name: "unknown", count:0},        //  powID:0
+               {name: "unknown", count:0},        //  powID:0
 	       {name: "alcalina_AA", count:0},    //  powID:1
 	       {name: "alcalina_AAA", count:0},   //  powID:2
 	       {name: "alcalina_9V", count:0},    //  powID:3
-		   {name: "Ni-MH_AA", count:0},       //  powID:4
-		   {name: "Ni-MH_AAA", count:0},      //  powID:5
-		   {name: "litio_cr2032", count:0},   //  powID:6
-		   {name: "litio_cr123A", count:0},   //  powID:7
-		  
+	       {name: "Ni-MH_AA", count:0},       //  powID:4
+	       {name: "Ni-MH_AAA", count:0},      //  powID:5
+	       {name: "litio_cr2032", count:0},   //  powID:6
+	       {name: "litio_cr123A", count:0},   //  powID:7	  
 	  ];
     var _dl =[];
     var _devices = [
 	// dettaglio di tutti i dispositivi a batteria sotto controllo
 	// USER MUST update this with all battery device:( here some example lines)
-    // record:	[device.id, status.code, min%|'low', powID, number of batteries, 0-flag]
+        // record: [device.id, status.code, min%|'low', powID, number of batteries, 0-flag]
 	 		  
               ["0420812xxxxxxxxxxxxxxx", "battery_state",     'low', 5, 1, 0], 
               ["bfbd7adxxxxxxxxxxxxxxx", "battery_percentage",   10, 1, 2, 0], 
@@ -82,8 +81,8 @@ function BATTERY02(xname = "ROMA test batterie", xroom = "tools", xhome = 'ADMIN
                     value: _b2startHome   // actual home 
                 } ]);
 // non è prevista la modifica di home al runtime perchè dovrebbe variare di conseguenza anche  _devices[] 
-	// ==========  data collection		
-      if (!GETATTRIBUTE(xname, "online", false)){
+ if (!GETATTRIBUTE(xname, "online", false)){
+     // ==========  data collection		
         	_devices.forEach((dev, pos) => {
  			let _t1 = GET(dev[0], dev[1], false);
 			if ((_t1 !== null) && ((_t1 < dev[2])||(_t1 == dev[2]))){
@@ -92,17 +91,18 @@ function BATTERY02(xname = "ROMA test batterie", xroom = "tools", xhome = 'ADMIN
 				_dl.push(GETATTRIBUTE(dev[0], 'name'));
 		    } });
 
-    // ========= formatting and status update       
-		 SETXDEVICESTATUS(xname, "tested", _devices.length);
-		 SETXDEVICESTATUS(xname, "low", _dl.length);
-		 _dl.forEach((dev, pos) => {
+     // ========= formatting and status update       
+	 SETXDEVICESTATUS(xname, "tested", _devices.length);
+	 SETXDEVICESTATUS(xname, "low", _dl.length);
+	 _dl.forEach((dev, pos) => {
                  SETXDEVICESTATUS(xname, "low" + (pos + 1), dev)});
          SETXDEVICESTATUS(xname, "<b>batteries","</b>");
          _power.forEach((pila) => {
 	        	 if (pila.count > 0) SETXDEVICESTATUS(xname, "<i>"+pila.name, "</i>"+pila.count)});
-	     SETXDEVICEONLINE(xname);  // done: online
-		 VOICE("Lista delle batterie aggiornata");
-	   }
+	 SETXDEVICEONLINE(xname);  // done: online
+   // optional:
+	 VOICE("Lista delle batterie aggiornata");
+	 }
   }
 
 // end  BATTERY02 code
