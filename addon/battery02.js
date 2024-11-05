@@ -22,7 +22,7 @@ per IOTwebUI version 2.2.2
 // Disadvantages:
 //    - USER MUST create/update 2 arrays: battery data and device data. The 'min' value can be set on a device/code basis.
 //    - The other options also need to be updated in the code: this x-device only takes care of one default home!
-//    - OPTIONS: var _b2xname = "ROMA test batterie", _b2xroom = "tools", _b2xhome = 'ADMIN', _b2startHome = "ROMA", //    - Multiple homes require multiple instances of the code (with different names!)
+//    - OPTIONS: var xname = "ROMA test batterie", xroom = "tools", xhome = 'ADMIN', _b2startHome = "ROMA", //    - Multiple homes require multiple instances of the code (with different names!)
 _b2loops = 100
 //     - Auto-refresh data every _b2loops loop. 
 //      - At runtime you can force the refresh putting 'offline' the device, using RULEs: SETXDEVICEONLINE("xxxx", false). 
@@ -44,11 +44,11 @@ _b2loops = 100
 
 // =================== BATTERY02 CODE
 // EXAMPLE: This creates the x-device 'ROMA test batterie' for device batteries control
-function BATTERY02() {
+function BATTERY02(xname = "ROMA test batterie", xroom = "tools", xhome = 'ADMIN') {
 // ================ start USER UPDATE	
 // note: this x-device requires a lot of user data about the devices in the target Tuya home.
-// So it is not allowed to change target home at runtime: all options are defined in the next line:
-    var _b2xname = "ROMA test batterie", _b2xroom = "tools", _b2xhome = 'ADMIN', _b2startHome = "ROMA", _b2loops = 100;
+// So it is not allowed to change target home at runtime: all options are defined as defaults or in the next line:
+    var  _b2startHome = "ROMA", _b2loops = 100;
 	
 	// USER UPDATE HERE with used batteries: (powID is the array index)
     var _power = [ 
@@ -76,14 +76,14 @@ function BATTERY02() {
 // ================ USER UPDATE ends	
  
  // ====  builds or clear device at any run - AGGIORNARE x-device: home, room|null, name!
-      if(TRIGEVERY(_b2loops) || !GETATTRIBUTE(_b2xname, "online", false)) 
-		    ADDXDEVICE(_b2xhome, _b2xroom, _b2xname, [{
+      if(TRIGEVERY(_b2loops) || !GETATTRIBUTE(xname, "online", false)) 
+		    ADDXDEVICE(xhome, xroom, xname, [{
                     code: 'home',
                     value: _b2startHome   // actual home 
                 } ]);
 // non è prevista la modifica di home al runtime perchè dovrebbe variare di conseguenza anche  _devices[] 
 	// ==========  data collection		
-      if (!GETATTRIBUTE(_b2xname, "online", false)){
+      if (!GETATTRIBUTE(xname, "online", false)){
         	_devices.forEach((dev, pos) => {
  			let _t1 = GET(dev[0], dev[1], false);
 			if ((_t1 !== null) && ((_t1 < dev[2])||(_t1 == dev[2]))){
@@ -93,14 +93,14 @@ function BATTERY02() {
 		    } });
 
     // ========= formatting and status update       
-		 SETXDEVICESTATUS(_b2xname, "tested", _devices.length);
-		 SETXDEVICESTATUS(_b2xname, "low", _dl.length);
+		 SETXDEVICESTATUS(xname, "tested", _devices.length);
+		 SETXDEVICESTATUS(xname, "low", _dl.length);
 		 _dl.forEach((dev, pos) => {
-                 SETXDEVICESTATUS(_b2xname, "low" + (pos + 1), dev)});
-         SETXDEVICESTATUS(_b2xname, "<b>batteries","</b>");
+                 SETXDEVICESTATUS(xname, "low" + (pos + 1), dev)});
+         SETXDEVICESTATUS(xname, "<b>batteries","</b>");
          _power.forEach((pila) => {
-	        	 if (pila.count > 0) SETXDEVICESTATUS(_b2xname, "<i>"+pila.name, "</i>"+pila.count)});
-	     SETXDEVICEONLINE(_b2xname);  // done: online
+	        	 if (pila.count > 0) SETXDEVICESTATUS(xname, "<i>"+pila.name, "</i>"+pila.count)});
+	     SETXDEVICEONLINE(xname);  // done: online
 		 VOICE("Lista delle batterie aggiornata");
 	   }
   }
