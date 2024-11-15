@@ -53,12 +53,13 @@ per IOTwebUI version 2.2.2
 // 2 properties can be changed at run time by RULEs - see examples - updating automatically the device list:
 // - 'home' (the target Tuya HOME name)
 // - 'low lewel' (i.e. the %  low limit test value)
-// CUSTOMIZATION: user can change defaults: - xroom = "Tools" - xhome = 'ADMIN' and defaultLow = 5
+// CUSTOMIZATION: user can change defaults: - xroom = "tools" - xhome = 'ADMIN' and defaultLow = 5
 // You can change also the VOICE messages (i.e. translating)
-//
-function BATTERY01(xname, startHome, xroom = "Tools", xhome = 'ADMIN') {
+
+function BATTERY01(xname, startHome, xroom = "tools", xhome = 'ADMIN') {
    const defaultLow = 5;   // default low limit value
  // ---------------------- customization zone ends   
+ 
  // step0 ======= singleton CONSTRUCTOR at startup
    if (!GETATTRIBUTE(xname, "name", false)){
 	         ADDXDEVICE(xhome, xroom, xname, [{

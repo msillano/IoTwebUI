@@ -38,36 +38,30 @@ per IOTwebUI version 2.2 10/08/2024
 // 2-B) Copy the 'minified CLONER01' + 'RULES for CLONER01' (excluding MACRO call) in the 'var usrrules' in the usrrulesXX.X.js file (permanent).
 // 3) optional: update 'custom.js' to set icon and color for this x-devices
 
-// ==== end use instructionsSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSS
+// ==== end use instructions
 
 // =================== CLONER01 CODE
 
 // CUSTOM parameter. You can UPDATE the default params to meet your structure in the next line:
 
-function CLONER01( dev_id, xname, room = "Test", home = 'ADMIN') {             // default params
+function POST01( dev_id, code, value) {             // default params
     
 // ====== Use callAPI() to get fresh data
- 	let _clStatus =[];
-    if ( GETATTRIBUTE(dev_id, 'online', false)){
-       const api_url = "/v2.0/cloud/thing/"+dev_id+"/shadow/properties";
-       const x = callAPI('GET', api_url); 
-		   console.log(x);  // for debug only
-	// ====== Format data for the device 'status' as [{code, value},...]
-	   if (x) {
-		   x.properties.forEach( (p) => {   
-					 let item ={
-						 code : p.code,
-						 value: p.value
-					 };
-					 _clStatus.push( item); 
-					 });		 
-		//   console.log(_clStatus);   // for debug only
-	// ====== Create/refresh the x-device
-		   ADDXDEVICE(home, room, xname, _clStatus );
-	       }
-	     }
-	   SETXDEVICEONLINE(xname, GETATTRIBUTE(dev_id, 'online', false));  // set it online
-  
+       const APIurl = "/v2.0/cloud/thing/"+dev_id+"/shadow/properties/issue";
+	   
+	   let p = {
+		   properties: {}
+	   };
+	   p.properties[code] = value;
+	   console.log(p);
+	   let s =  JSON.stringify(p);
+	   console.log(s);
+	   
+	  
+	   let y = callAPI("POST", APIurl, s);
+	   console.log(y);
+	
+     
 }
 // end  CLONER01 code
 

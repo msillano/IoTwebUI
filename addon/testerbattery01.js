@@ -18,46 +18,39 @@ per IOTwebUI version 2.2.2
 // =====================  ADDON INSTALL: USE THIS AS EXTERNAL MACRO (preferred)
 // 0) This file (updated) must be in the 'addons' directory of your IoTwebUI installation
 // 1) Include THIS file in the main file ( IoTwebUI.html ) at the end, adding a line like:
-//       <script type="text/javascript" src="addons/battery01.js"></script >
-// 2-A) Copy the 'RULES for BATTERY01'  (updated) in the RULE-pad at run time (temporary) 
-// 2-B) Or copy the 'RULES for BATTERY01'  (updated) in the 'var usrrules' in the usrrulesXX.X.js file (permanent).
+//       <script type="text/javascript" src="addons/testerbattery01.js"></script >
+// 2-A) Copy the 'RULES for TESTBATTERY01'  (updated) in the RULE-pad at run time (temporary) 
+// 2-B) Or copy the 'RULES for TESTBATTERY01'  (updated) in the 'var usrrules' in the usrrulesXX.X.js file (permanent).
 // 3) optional: update 'custom.js' to set icon and color for this x-devices
 
 // ======================  INSTALL ALTERNATIVE 1: USE AS USER MACRO (only code)
-// 1) Copy just 'BATTERY01' function code in the 'CUSTOM USER MACROS' section of usrrulesXX.X.js file
-// 2-A) Copy the 'RULES for BATTERY01' (updated) in the RULE-pad at run time (temporary) 
-// 2-B) Or copy the 'RULES for BATTERY01' (updated) in the 'var usrrules' in the usrrulesXX.X.js file (permanent).
-// 3) optional: update 'custom.js' to set icon and color for this x-devices
-
-// =======================  INSTALL ALTERNATIVE 2: USE AS RULE (no MACRO)
-// 1) Uses the 'minified' version, as RULE (UPDATE the code if required!).
-// 1-A) Copy the 'RULES for BATTERY01' + 'minified BATTERY01' (updated - excluding the MACRO call) in the RULE-pad at run time (temporary) 
-// 2-B) Copy the  'RULES for BATTERY01' + 'minified BATTERY01' (updated - excluding the MACRO call) in the 'var usrrules' in the usrrulesXX.X.js file (permanent).
+// 1) Copy just 'TESTBATTERY01' function code in the 'CUSTOM USER MACROS' section of usrrulesXX.X.js file
+// 2-A) Copy the 'RULES for TESTBATTERY01' (updated) in the RULE-pad at run time (temporary) 
+// 2-B) Or copy the 'RULES for TESTBATTERY01' (updated) in the 'var usrrules' in the usrrulesXX.X.js file (permanent).
 // 3) optional: update 'custom.js' to set icon and color for this x-devices
 
 // ==== end use instructions
 
-// =================== BATTERY01 CODE
-// 2 properties can be changed at run time by RULEs - see examples - updating automatically the device list:
-// - 'home' (the target Tuya HOME name)
-// - 'low lewel' (i.e. the %  low limit test value)
-// CUSTOMIZATION: user can change defaults: - xroom = "tools" - xhome = 'ADMIN' and defaultLow = 5
+// =================== TESTBATTERY01 CODE
+// Parameters: xname = "BetteryTest", xroom = "Test", xhome = 'ADMIN'
+// CUSTOMIZATION: user can change defaults: DevV, CodeV about ADC
 // You can change also the VOICE messages (i.e. translating)
+// Tarature (una tantum): using only X-TY-08Z and a voltmeter, apply 2 tension and update the 4 values: fref1, fx1, fref2, fx2 
 
 function TESTERBATTERY01(xname = "BetteryTest", xroom = "Test", xhome = 'ADMIN') {
-   const DevV = "X-TY-08Z";   // mirror x-device name 
-   const CodeV = "value_13";  // code name of ADC pin used
+   const DevV  = "X-TY-08Z";   // mirror x-device name (not ID)
+   const CodeV = "value_13";   // code name of ADC pin used in X-TY-08Z
     // coeff derivated from 2 points:
    const fref1 = 2.068 ;  // value fron Vmeter
-   const fx1 = 819;       // value from X-TY-08Z
-   const fref2 = 4.689;
-   const fx2 = 1114;
-   const batON = 650;
-   const batOFF = 650;
-// ---------------------- customization zone ends   
+   const fx1   = 819;       // value from X-TY-08Z
+   const fref2 = 4.689;   // value fron Vmeter
+   const fx2   = 1114;      // value from X-TY-08Z
+ // ---------------------- customization zone ends   
+   const batON = 650;  //  battery
+   const batOFF = 650; //  no battery  
 	
  // step0 ======= singleton CONSTRUCTOR at startup
-   if (!GETATTRIBUTE(xname, "name", false)){
+   if (!GETATTRIBUTE(xname, "name", false)){   //( i.e. if xname don't exst as x-device, only first loop 
 	         ADDXDEVICE(xhome, xroom, xname, [
 			     {  code: 'step',
                     value: "start"  } ,
@@ -93,49 +86,49 @@ function TESTERBATTERY01(xname = "BetteryTest", xroom = "Test", xhome = 'ADMIN')
 		case "start":  
 	   // coeff derivated from 2 points:
 	       VOICE("BATTERY TESTER pronto all'uso!");
-	       let mf = (fref1 - fref2)/(fx1 - fx2);
+	       let mf = (fref1 - fref2)/(fx1 - fx2);  // init coeff
            let qf = fref2 - (mf*fx2);
-           SETXDEVICESTATUS(xname, "mcoeff", mf);			
+           SETXDEVICESTATUS(xname, "mcoeff", mf); 			
 	       SETXDEVICESTATUS(xname, "qcoeff", qf);	
+		   SETXDEVICESTATUS(xname, "time", "0");  // init all
+		   SETXDEVICESTATUS(xname, "tensione", "0.0");
+		   SETXDEVICESTATUS(xname, "smoot", "0.0");
+		   SETXDEVICESTATUS(xname, "charge", "0.0")
 		   SETXDEVICESTATUS(xname, "step", "idle");
 		   return;
 		case "idle": 
-  		   SETXDEVICESTATUS(xname, "time", "0");
-		   SETXDEVICESTATUS(xname, "tensione", "0.0");
-		   SETXDEVICESTATUS(xname, "smoot", "0.0");
-		   if (vx > batON) {VOICE("Inserita una nuova batteria!")};
+  		   if (vx > batON) {VOICE("Inserita una nuova batteria!")};
 		   
 		   return;
 	    case "go": 
-  		   VSET("tbtime", Date.now());
-		   SETXDEVICESTATUS(xname, "time", "0");
+ 		   SETXDEVICESTATUS(xname, "time", "0");      // init runtime data
 		   SETXDEVICESTATUS(xname, "tensione", "0.0");
 		   SETXDEVICESTATUS(xname, "smoot", "0.0");
 		   SETXDEVICESTATUS(xname, "charge", "0.0")
 		   SETXDEVICESTATUS(xname, "step", "running");
-	//	   return;         continue next
+		   return;       //  continue next
 		case "running":
-		   let tx = GET(xname, "time");  // to find first run
-		   if (tx === "0")         // is the first run
+		   let first = (GET(xname, "time") === "0");  // to find first run
+		   if (first)         // is the first run
 	    		VSET("tbtime", Date.now());
      	   let m_coeff = GET(xname, "mcoeff");
            let q_coeff = GET(xname, "qcoeff");
            let Vb = (m_coeff * vx) + q_coeff;
 		   if (vx > batON){
 			   let delta = (Date.now() - VGET("tbtime"))/60000 ;   
-			   SETXDEVICESTATUS(xname, "tensione", Vb.toFixed(2));
-			   SETXDEVICESTATUS(xname, "smoot", AVG(Vb,(tx==="0")?0:10));
 			   SETXDEVICESTATUS(xname, "time", delta.toFixed(1));
-			   let mah = INTEGRAL((Vb / 0.95)* (1/3.6), (tx==="0")?1:null);  //  mAh = V/(RC=0.9)*adjust mA and hour
+     		   SETXDEVICESTATUS(xname, "tensione", Vb.toFixed(2));
+			   // to clear the old values, if first uses param 0, else 10
+			   SETXDEVICESTATUS(xname, "smoot", AVG(Vb, first?0:10));
+			   // to clear the old value, if first uses param -5000 else null
+			   let mah = INTEGRAL((Vb / 0.95)* (1/3.6), first ? -5000:null);  //  mAh = V/(RC=0.9)*adjust mA and hour
 			   SETXDEVICESTATUS(xname, "charge", mah.toFixed(1));
 			   }
-		   if (vx < batOFF) {SETXDEVICESTATUS(xname, "step", "done"); 
+		   if (vx < batOFF) {SETXDEVICESTATUS(xname, "step", "idle"); 
 		          VOICE("Estratta la vecchia batteria!");}
-		   
 		   return;
  	    case "done":   // final, keeps values
-		   if (vx > batON){ SETXDEVICESTATUS(xname, "step", "idle");
-		         VOICE("BATTERY TESTER inserita batteria!")};
+		   SETXDEVICESTATUS(xname, "step", "idle");
   		   return;
      default:		
 	   }
@@ -147,34 +140,12 @@ function TESTERBATTERY01(xname = "BetteryTest", xroom = "Test", xhome = 'ADMIN')
 // end  BATTERY01 code
 
 // =========== RULEs for BATTERY01:
-//  This is an example only, using 2 homes: ROMA, MILANO - you must customize it.
 
     /*
-        // Example (optional): ROULES to change the HOME (if more than one home)! Update where required!
-		// note: the REFRESH() is for speedup the updates.
-    if (TRIGBYNAME("Batterie MILANO")) SETXDEVICESTATUS("Battery test", 'home', 'MILANO'),REFRESH(),VOICE("Test delle batterie di Milano");
-	
-    if (TRIGBYNAME("Batterie ROMA")) SETXDEVICESTATUS("Battery test", 'home', 'ROMA'),REFRESH(),VOICE("Test delle batterie di Roma");
-
-	   // Example (optional): ROULE to change low battery level! Update where required!
-    if (TRIGBYNAME("SET minimo 10%")) SETXDEVICESTATUS("Battery test", 'low level', 10),REFRESH(),VOICE("Livello basso delle batterie aggionato");
-	
-	   // mandatory MACRO call, after any command RULEs 
-    BATTERY01('Battery test','ROMA');                
+  CLONER01("TY-08Z", "X-TY-08Z");
+  TESTERBATTERY01("BetteryTest");
+// rules for commands:
+ if (TRIGBYNAME("Start BatteryTEST")) SETXDEVICESTATUS("BatteryTest", 'step', 'go'), SAVELOG(),REFRESH('cloud'),VOICE("TEST star");
+ if (TRIGBYNAME("Stop BatteryTEST")) SETXDEVICESTATUS("BatteryTest", 'step', 'done'), SAVELOG(),REFRESH(),VOICE("TEST end");
      */
 
-/*
-// =============================  minified BATTERY01
-//   Minified version of BATTERY01.1 for RULE-pad: 3 lines only!  (using Notepad++ + plugin JSTool).
-//   On the RULE-pad you can cut long lines in many rows, and use 'continue' char (\) as last char for any row.
-//   Only one instance! Or repeat the code changing _xname="Battery test". The first line contains CUSMIZABLE DEFAULT.
-
-var _xname="Battery test",_startHome="ROMA",_xroom="tools",_xhome='ADMIN',_defaultLow=5; if(!GETATTRIBUTE(_xname,"name",false)){ADDXDEVICE(_xhome,_xroom,_xname,[{code:'home',value:_startHome},{code:'low level',value:_defaultLow},{code:'count',value:'processing...'}]);}
-
-var _showHome=GET(_xname,'home');var _lowPerc=GET(_xname,'low level');var _lowD=[]; if(!GETATTRIBUTE(_xname,"online")){GETIDLIST(_showHome).forEach((devid)=>{let _t1=GET(devid,'battery_percentage',false);if(_t1===null)_t1=GET(devid,'va_battery',false);if(_t1===null)_t1=GET(devid,'battery_state',false);if((_t1!==null)&&((_t1<_lowPerc)||(_t1=="low")))_lowD.push(GETATTRIBUTE(devid,'name')+((categories)?(': <i>'+devid+'</i>'):''));});SETXDEVICESTATUS(_xname,"count",_lowD.length);_lowD.forEach((dev,pos)=>{SETXDEVICESTATUS(_xname,"low"+(pos+1).toString().padStart(2,"0"),dev)});SETXDEVICEONLINE(_xname);}
-
-if(TRIGCHANGED(_showHome+String(_lowPerc)+!(categories))&&GETATTRIBUTE(_xname,"online")){ADDXDEVICE(_xhome,_xroom,_xname,[{code:'home',value:_showHome},{code:'low level',value:_lowPerc},{code:'count',value:'processing...'}]);VOICE("Aggiorno la lista delle batterie");}
-
-
-// end minified
-*/

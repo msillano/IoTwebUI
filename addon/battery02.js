@@ -14,18 +14,18 @@ per IOTwebUI version 2.2.2
 
 */
 // =====================  x-device BATTERY02
-// This addon implements an x-device, BATTERY02,  to do a detailed test of the device's batteries in a HOME. no auto-discovery.
-// The advantages are:
-//    - fine-tuning of condition on a single-device basis.
-//    - The total batteries required, are sorted by battery type.
+// This addon implements a x-device, BATTERY02,  to do a detailed test of the device's batteries in a HOME. no auto-discovery.
+// The advantage are:
+//    - fine tuning of condition on single device basis.
+//    - Total battery requred, sorted by battery type.
 //    - Absence of false positives
 // Disadvantages:
 //    - USER MUST create/update 2 arrays: battery data and device data. The 'min' value can be set on a device/code basis.
-//    - The other options must also be updated in the code: this x-device only takes care of one default home!
-//    - OPTIONS: var xname = "ROMA test batterie", xroom = "tools", xhome = 'ADMIN', _b2startHome = "ROMA", _b2loops = 100
-//    - Multiple homes require multiple instances of the code (with different names!)
-//     - Auto-refresh data every _b2loops loop. (100 * 60s = about every 1:40:00)
-//     - At runtime you can force a refresh by putting 'offline' the device, using RULE: SETXDEVICEONLINE("xxxx", false). 
+//    - The other options also need to be updated in the code: this x-device only takes care of one default home!
+//    - OPTIONS: var xname = "ROMA test batterie", xroom = "tools", xhome = 'ADMIN', _b2startHome = "ROMA", //    - Multiple homes require multiple instances of the code (with different names!)
+_b2loops = 100
+//     - Auto-refresh data every _b2loops loop. 
+//      - At runtime you can force the refresh putting 'offline' the device, using RULEs: SETXDEVICEONLINE("xxxx", false). 
 
 // =====================  USE AS NEW MACRO 
 // 0) This file is in 'addons' directory of your IoTwebUI installation
@@ -43,28 +43,30 @@ per IOTwebUI version 2.2.2
 // ==== end use instructions
 
 // =================== BATTERY02 CODE
-// EXAMPLE: This creates the x-device 'ROMA test batterie' for device batteries controls.
-// note: this x-device requires a lot of user data about the devices in the target Tuya home.
-// So it is not allowed to change the target home at runtime: all options are defined as defaults or in the next line:
-
-// ================ Start USER UPDATE	
+// EXAMPLE: This creates the x-device 'ROMA test batterie' for device batteries control
 function BATTERY02(xname = "ROMA test batterie", xroom = "tools", xhome = 'ADMIN') {
+// ================ start USER UPDATE	
+// note: this x-device requires a lot of user data about the devices in the target Tuya home.
+// So it is not allowed to change target home at runtime: all options are defined as defaults or in the next line:
     var  _b2startHome = "ROMA", _b2loops = 100;
-	// USER UPDATE HERE if required: (powID is the array index)
+	
+	// USER UPDATE HERE with used batteries: (powID is the array index)
     var _power = [ 
-               {name: "unknown", count:0},        //  powID:0
+           {name: "unknown", count:0},        //  powID:0
 	       {name: "alcalina_AA", count:0},    //  powID:1
 	       {name: "alcalina_AAA", count:0},   //  powID:2
 	       {name: "alcalina_9V", count:0},    //  powID:3
-	       {name: "Ni-MH_AA", count:0},       //  powID:4
-	       {name: "Ni-MH_AAA", count:0},      //  powID:5
-	       {name: "litio_cr2032", count:0},   //  powID:6
-	       {name: "litio_cr123A", count:0},   //  powID:7	  
+		   {name: "Ni-MH_AA", count:0},       //  powID:4
+		   {name: "Ni-MH_AAA", count:0},      //  powID:5
+		   {name: "litio_cr2032", count:0},   //  powID:6
+		   {name: "litio_cr123A", count:0},   //  powID:7
+		  
 	  ];
+    var _dl =[];
     var _devices = [
 	// dettaglio di tutti i dispositivi a batteria sotto controllo
-	// USER MUST update this with all battery devices :( here some example lines)
-        // record: [device.id, status.code, min%|'low', powID, number of batteries, 0-flag]
+	// USER MUST update this with all battery device:( here some example lines)
+    // record:	[device.id, status.code, min%|'low', powID, number of batteries, 0-flag]
 	 		  
               ["0420812xxxxxxxxxxxxxxx", "battery_state",     'low', 5, 1, 0], 
               ["bfbd7adxxxxxxxxxxxxxxx", "battery_percentage",   10, 1, 2, 0], 
@@ -73,43 +75,37 @@ function BATTERY02(xname = "ROMA test batterie", xroom = "tools", xhome = 'ADMIN
 			  
 // ================ USER UPDATE ends	
  
-     var _dl =[];
- // ====  builds or clears devices if required.
-     if(TRIGEVERY(_b2loops) || !GETATTRIBUTE(xname, "online", false)) 
+ // ====  builds or clear device at any run - AGGIORNARE x-device: home, room|null, name!
+      if(!GETATTRIBUTE(xname, "online", false)) 
 		    ADDXDEVICE(xhome, xroom, xname, [{
                     code: 'home',
                     value: _b2startHome   // actual home 
                 } ]);
-// non è prevista la modifica di home al runtime perchè dovrebbe variare di conseguenza anche l'array  _devices[] 
- if (!GETATTRIBUTE(xname, "online", false)){
-     // ==========  data collection		
-        	_devices.forEach((dev, pos) => {
- 			let _t1 = GET(dev[0], dev[1], false);
-			if ((_t1 !== null) && ((_t1 < dev[2])||(_t1 == dev[2]))){
-				dev[5] = 1;
-				_power[dev[3]].count += dev[4];
-				_dl.push(GETATTRIBUTE(dev[0], 'name'));
-		    } });
-
-     // ========= formatting and status update       
-	 SETXDEVICESTATUS(xname, "tested", _devices.length);
-	 SETXDEVICESTATUS(xname, "low", _dl.length);
-	 _dl.forEach((dev, pos) => {
-                SETXDEVICESTATUS(xname, "low" + (pos + 1), dev)});
+// non è prevista la modifica di home al runtime perchè dovrebbe variare di conseguenza anche  _devices[] 
+	// ==========  data collection		
+          let vx = 
+   
+   
+   
+    // ========= formatting and status update       
+		 SETXDEVICESTATUS(xname, "tested", _devices.length);
+		 SETXDEVICESTATUS(xname, "low", _dl.length);
+		 _dl.forEach((dev, pos) => {
+                 SETXDEVICESTATUS(xname, "low" + (pos + 1), dev)});
          SETXDEVICESTATUS(xname, "<b>batteries","</b>");
          _power.forEach((pila) => {
-	        if (pila.count > 0) SETXDEVICESTATUS(xname, "<i>"+pila.name, "</i>"+pila.count)});
-	 SETXDEVICEONLINE(xname);  // done: online
-   // optional:
-	 VOICE("Lista delle batterie aggiornata");
-	 }
+	        	 if (pila.count > 0) SETXDEVICESTATUS(xname, "<i>"+pila.name, "</i>"+pila.count)});
+	     SETXDEVICEONLINE(xname);  // done: online
+		 VOICE("Lista delle batterie aggiornata");
+	   }
   }
+
 // end  BATTERY02 code
 
 // =========== RULES for BATTERY02: use this in RULE-pad
 
     /*
-    BATTERY02();                //  MACRO call using defaults
-	  
+    BATTERY02();                //  MACRO call
+	  // nothing to do at runtime
     */
 
