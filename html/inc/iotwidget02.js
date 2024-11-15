@@ -7,7 +7,7 @@ License MIT
 version 1.0 09/09/2024
  */
 
-/*  add to  main (see exaple test02.html)
+/*  add to  main (see exaple test02.htl)
 <script type="text/javascript" src="inc/restget.js"> </script >
 // REQUIRED by iotwidget02
 <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
@@ -20,36 +20,36 @@ version 1.0 09/09/2024
   google.charts.load('current', {'packages':['corechart']});
 
   const meteroptions = {
-	 width:  200,
-    	 height: 200,
+	       width:  200,
+    	   height: 200,
          minorTicks: 5,
          min : 0,
          max :100
         };
 
   const linechartoptions = {
-	 width:  600,
-    	 height: 300,
-//     	 curveType: 'function',
-//       hAxis:{textPosition: "none"},
+	       width:  600,
+    	   height: 300,
+//     	  curveType: 'function',
+//        hAxis:{textPosition: "none"},
          legend:{position:"none"},
          backgroundColor: "#DBD396",
          pointSize: 3
         };
 
   const multichartoptions = {
-	 width:  600,
-    	 weight: 300,
-         backgroundColor: "#DBD396",
+	      width:  600,
+    	  height: 300,
+        backgroundColor: "#DBD396",
         };
 
   const areachartoptions = {
-	  width:  600,
+	      width:  600,
     	  height: 300,
 //     	  curveType: 'function',
 //        hAxis:{textPosition: "none"},
-          backgroundColor: "#DBD396",
-          pointSize: 3,
+        backgroundColor: "#DBD396",
+        pointSize: 3,
         };
 
 
@@ -85,9 +85,16 @@ function doIotwidget02(item) {
 		   // green: blob:https://www.freeimages.com/08776ea6-e48e-43f2-bab8-a4a19d584429
 		   // red: blob:https://www.freeimages.com/08776ea6-e48e-43f2-bab8-a4a19d584429
 //          data = JSON.parse(restHTTP(baseURL + "device/" + item.devId +"/" + item.code));
+           //item.dataOK (opzionale) array di calori OK
             RESTget(baseURL + "device/" + item.devId +"/" + item.code)
             .then( data => {
-                 const outputDiv = document.getElementById('item'+ item.id);
+				console.log('signal:', data);
+				 console.log('signal0:', item);
+				 if (item.dataOK && Array.isArray(item.dataOK) ){
+					 data[item.code] = item.dataOK.includes(data[item.code]);     // added 15/11/2024
+				 }
+         		console.log('signal2:', data);
+		        const outputDiv = document.getElementById('item'+ item.id);
                  outputDiv.innerHTML = getSignal(item, data);
                  lastsignl = data[item.code];
                  });
