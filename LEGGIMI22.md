@@ -696,6 +696,9 @@ utc_offset_seconds: 0
  <i>Esempio:</i> <code>DATALOG("Temperatura Frigo", GET("TF_frigo","va_temperature")/10);</code>
 </dd>
 
+<dt>SAVELOG() </dt>
+<dd>Causa il salvataggio su file del log attuale, e l'inizion di un nuovo file di log.<br></dd>
+
 <dt>ALERTLOG(name, message) </dt>
 <dd>Aggiunge il 'message' al registro degli avvisi, identificato da 'name'.<br>
 <i>Esempio:</i> <code>if(ISTRIGGERL(GET("tuya_bridge", "switch_1"))) ALERTLOG("tuya_bridge", "Aperto adesso");</code>></dd>
@@ -833,11 +836,13 @@ la durata dello stato vero (come il duty cycle).
 <dt>AVG(value, n) (*) </dt>
 <dd> Media mobile degli ultimi 'n' valori: torna una stringa con 2 decimali.<br>
 'n' è in numero di loop, in tempo: t = n x tuyaInterval (definito in 'config.js' file).<br>
+Restart: n = 0 provoca la cancellazione della cache interna.<br>
  <i>Esempio:</i> <code>DATALOG("Temperatura media Frigo", AVG(GET("TF_frigo","va_temperature")/10, 20)); </code> </dd>
 
 <dt>MAX(value, n) (*) </dt>
 <dd>Ritorna il più grande  degli ultimi 'n' valori.<br>
 'n' è in numero di loop, in tempo: t = n x tuyaInterval (definito in config.js file).<br>
+Restart: n = 0 provoca la pulizia della cache.<br>
 <i>Esempio:</i> <code>var _Tmax = MAX(GET("TF_frigo","va_temperature")/10, 1440);</code>  (24h = 1440 min) </dd>
 
 <dt>DERIVATIVE(value) (*) </dt>
@@ -851,6 +856,7 @@ la durata dello stato vero (come il duty cycle).
 
 <dt>INTEGRAL(value, limite) o INTEGRAL(value)(*) </dt>
 <dd>Ritorna l'integrale (meglio: la somma integrale) di value. Limite è opzionale, e riporta a 0 l'integrale quando è raggiunto.<br>
+restart: Se limite < di ogni possibile valore (anche negativo).<br>
 <i>nota: E' possibile usare <code>INTEGRAL</code> per creare timer più precisi di <code>TRIGEVERY()</code> che si basa sul conteggio dei cicli. <br> L'integrale di una costante è una retta crescente: usando 1 come costante, e un <code>limite</code> in secondi, si ha un'andamento a denti di sega. L'integrale vale 0 all'avvio e poi ogni <code>limite</code> secondi (errore: 0..+TuyaInterval) con ottima precisione. Questo esempio è un timer periodico di durata 1h:</i> <pre>
            var _integ = INTEGRAL(1, 3600); 
            if (_integ == 0) ...more...</pre>
