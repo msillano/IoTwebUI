@@ -35,7 +35,8 @@ _Cosa puoi fare?_<br>
 _**New: nella ver 2.2 per 'power users':**_
 - **Server REST** per APP ed interfacce utente personalizzate - vedi **/RESTserver**<br>
 - **clima01** pagina WEB dinamica ed interattiva custom - vedi **/html**<br>
-- **Addon** e **x-device** virtuali ricorsive! - vedi **/addon**
+- **Addon** e **x-device** virtuali ricorsive! - vedi **/addon**<br>
+- [Esempio di strumentazione](https://github.com/msillano/IoTwebUI/blob/main/addon/TestBattery01_leggimi.pdf) implementata con **x-device** ed interfaccia utente.
 
 
 😃 [Versione 2.2 - Italiano](https://github.com/msillano/IoTwebUI/blob/main/LEGGIMI22.md) <br>
