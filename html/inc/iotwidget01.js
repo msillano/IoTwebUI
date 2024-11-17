@@ -5,6 +5,7 @@ Contains user data and options
 License MIT
 (C)2024 marco.sillano@gmail.com
 version 1.0 09/09/2024
+17/11/2024  Added hook to buttons (to do local actons on the html page)
  */
  /*  add to  main (see example clima01.html)
  <script type="text/javascript" src="inc/restget.js"> </script >
@@ -29,13 +30,13 @@ function getButton(data, image = false){
 	let tmp ="";
 	if (image){
 	      tmp =  "<button class='imgbutton' style='background-image: url(\"";
- 	      tmp += data.image+"\");' onclick='RESTget(\""+baseURL + "execute/" + data.scenerule +"\")' ><span ";
+ 	      tmp += data.image+"\");' onclick='RESTget(\""+baseURL + "execute/" + data.scenerule + "\"), hook(\""+data.id+"\"); ' ><span ";
  	      tmp += (data.color? "style ='color : "+data.color+";' ":" ")+ ">"+data.text+"</span></button>";
   	} else {
           tmp =  "<input id='button"+ data.id +"' type='button' class='bigbutton' ";
           tmp += "style ='"+(data.color? " color : "+data.color+"; ":"");
           tmp += (data.background? " background-color : "+data.background+"; ":" ") + "' value='"+data.text+"'";
-          tmp += " onclick='RESTget(\""+baseURL + "execute/" + data.scenerule +"\" )' />";
+          tmp += " onclick='RESTget(\""+baseURL + "execute/" + data.scenerule +"\" ), hook(\""+data.id+"\"); ' />";
     }
   return(tmp);
 }
@@ -50,7 +51,8 @@ function doIotwidget01(item) {
     			        // document.getElementById('output').innerText = JSON.stringify(data);  // only for test
                         const outputDiv = document.getElementById('item'+ item.id);
                         outputDiv.innerHTML = "<span  class='value' "+(item.color? "style ='color : "+item.color+";' ":"")+ "><b>"+ (data[item.code] || data['error'])+"</b></span>";
- 				        });
+				        hook(item.id, data[item.code]);
+  				        });
  				break;
 
  		   case "bigvalue":
@@ -59,7 +61,8 @@ function doIotwidget01(item) {
         			 //       document.getElementById('output').innerText += JSON.stringify(data);  // only for test
                      const outputDiv = document.getElementById('item'+ item.id);
                         outputDiv.innerHTML = "<span  class='bigvalue' "+(item.color? "style ='color : "+item.color+";' ":"")+ "><b>"+(data[item.code] || data['error'])+"</b></span>";
- 				        });
+ 				        hook(item.id, data[item.code]);
+  				        });
  				break;
 
  	      case "icon":
@@ -68,6 +71,7 @@ function doIotwidget01(item) {
          			 //       document.getElementById('output').innerText += JSON.stringify(data);  // only for test
                        const outputDiv = document.getElementById('item'+ item.id);
                         outputDiv.innerHTML = getDeviceIcon(data);
+					    hook(item.id);
  				        });
  			 break;
 
@@ -77,7 +81,8 @@ function doIotwidget01(item) {
          			 //       document.getElementById('output').innerText += JSON.stringify(data);  // only for test
    	                const outputDiv = document.getElementById('item'+ item.id);
                         outputDiv.innerHTML = getDeviceIcon(data, true);
- 				        });
+ 				        hook(item.id);
+				        });
  			 break;
 
  		   case "bigbutton":

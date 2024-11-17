@@ -5,6 +5,8 @@ Contains user data and options
 License MIT
 (C)2024 marco.sillano@gmail.com
 version 1.0 09/09/2024
+17/11/2024: added clear to chart, added hook() function call.
+
  */
 
 /*  add to  main (see exaple test02.htl)
@@ -34,7 +36,8 @@ version 1.0 09/09/2024
 //        hAxis:{textPosition: "none"},
          legend:{position:"none"},
          backgroundColor: "#DBD396",
-         pointSize: 3
+         pointSize: 3,
+		 clear : false,
         };
 
   const multichartoptions = {
@@ -88,15 +91,16 @@ function doIotwidget02(item) {
            //item.dataOK (opzionale) array di calori OK
             RESTget(baseURL + "device/" + item.devId +"/" + item.code)
             .then( data => {
-				console.log('signal:', data);
-				 console.log('signal0:', item);
+//				console.log('signal:', data);
+//				 console.log('signal0:', item);
 				 if (item.dataOK && Array.isArray(item.dataOK) ){
 					 data[item.code] = item.dataOK.includes(data[item.code]);     // added 15/11/2024
 				 }
-         		console.log('signal2:', data);
+//         		console.log('signal2:', data);
 		        const outputDiv = document.getElementById('item'+ item.id);
                  outputDiv.innerHTML = getSignal(item, data);
-                 lastsignl = data[item.code];
+//                 lastsignl = data[item.code];
+				 hook(item.id, data[item.code]);
                  });
       			break;
 
@@ -107,9 +111,10 @@ function doIotwidget02(item) {
             .then( data => {
                console.log(data);
 			         if (lastswitchstate != data[item.code]){
-     	 		          const outputDiv = document.getElementById('item'+ item.id);
-                        outputDiv.innerHTML = getSwitch(item, data);
-                        lastswitchstate = data[item.code];
+     	 		           const outputDiv = document.getElementById('item'+ item.id);
+                           outputDiv.innerHTML = getSwitch(item, data);
+                           lastswitchstate = data[item.code];
+						   hook(item.id, data[item.code]);
                         }
                });
      				break;
@@ -141,18 +146,25 @@ function doIotwidget02(item) {
 		   // documentation: https://developers.google.com/chart/interactive/docs/gallery/areachart
              if (typeof(charts[item.id]) !== "object") {  // first call
 	                let mergedopt = { ...areachartoptions, ...item.options};
-                  charts[item.id] = new google.visualization.AreaChart(document.getElementById('item'+ item.id));
+                    charts[item.id] = new google.visualization.AreaChart(document.getElementById('item'+ item.id));
 	                google.charts.setOnLoadCallback( function(){
 		              charts[item.id]["data"] = new google.visualization.DataTable();
-                  charts[item.id]["data"].addColumn('timeofday', 'Time');
-                  charts[item.id]["data"].addColumn('number', item.tiplabel1);
-                  charts[item.id]["data"].addColumn('number', item.tiplabel2);
-                  charts[item.id].draw(charts[item.id]["data"], mergedopt);
+                      charts[item.id]["data"].addColumn('timeofday', 'Time');
+                      charts[item.id]["data"].addColumn('number', item.tiplabel1);
+                      charts[item.id]["data"].addColumn('number', item.tiplabel2);
+                      charts[item.id].draw(charts[item.id]["data"], mergedopt);
                        });
             } else {      // next calls
       	          let d = new Date();
                   let t = [ d.getHours(), d.getMinutes(), d.getSeconds()];
                   let d1 = null;
+				  if (item.clear) {
+		              charts[item.id]["data"] = new google.visualization.DataTable();
+                      charts[item.id]["data"].addColumn('timeofday', 'Time');
+                      charts[item.id]["data"].addColumn('number', item.tiplabel1);
+                      charts[item.id]["data"].addColumn('number', item.tiplabel2);
+   			          item['clear'] = false;
+                     }
  	                while (charts[item.id]["data"].getNumberOfRows() >= item.maxPoint) {
 		                    charts[item.id]["data"].removeRow(0);}
 		             let mergedopt = { ...areachartoptions, ...item.options};
@@ -189,15 +201,22 @@ function doIotwidget02(item) {
                   let mergedopt = { ...linechartoptions, ...item.options};
 	                charts[item.id] = new google.visualization.LineChart(document.getElementById('item'+ item.id));
 	                google.charts.setOnLoadCallback( function(){
-		                 charts[item.id]["data"] = new google.visualization.DataTable();
+		             charts[item.id]["data"] = new google.visualization.DataTable();
                      charts[item.id]["data"].addColumn('timeofday', 'Time');
                      charts[item.id]["data"].addColumn('number', item.tiplabel);
                      charts[item.id].draw(charts[item.id]["data"], mergedopt);
                      });
                 } else {
-	                let d = new Date();
+	              let d = new Date();
                   let t = [d.getHours(), d.getMinutes(), d.getSeconds()];
                   let mergedopt = { ...linechartoptions, ...item.options};
+				  if (item.clear) {
+				     charts[item.id]["data"] = new google.visualization.DataTable();
+                     charts[item.id]["data"].addColumn('timeofday', 'Time');
+                     charts[item.id]["data"].addColumn('number', item.tiplabel);
+					 item['clear'] = false;
+                     }
+				  
                   while (charts[item.id]["data"].getNumberOfRows() >= item.maxPoint) {
 		                       charts[item.id]["data"].removeRow(0);}
 //                  data = JSON.parse(restHTTP(baseURL + "device/" + item.devId +"/" + item.code));

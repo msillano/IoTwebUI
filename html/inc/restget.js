@@ -41,7 +41,7 @@ function dynamicPage() {
 
 
 function widgetUpdate(pos = 0) {
-	   console.log('widget #'+pos);
+//	   console.log('widget #'+pos);
 	   if (pos >= widgets.length) return;
      const item = widgets[pos];
           if (typeof(window.doIotwidget01) === "function") {doIotwidget01 (item);}  // extension
