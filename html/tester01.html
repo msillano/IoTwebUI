@@ -139,18 +139,18 @@ const widgets = [
 	   devId: "BatteryTest",    // for value, bigvalue: device ID
 	   code : "step",          // for value, bigvalue: status code
      },
-  { id : "BUT01",
+  { id : "BUTGO",
 	   xpos : 20,            // verticale
 	   ypos : 534,           // orizzontale
 	   type	: "imgbutton",   // icon, icotip,  value, bigvalue, bigbutton, imgbutton
 
 	   image:"onbutton.png",    // for imgbutton
-	   text : "TEST ON",    // for imgbutton, bigbutton: button text
+	   text : "CLEAR",    // for imgbutton, bigbutton: button text
 	   scenerule: "start batterytest",      // for imgbutton, bigbutton: scene|rule name
 
 	   color: 'Blue',        // for imgbutton, bigbutton: optional, default in CSS
      },
-     { id :"BUT02",
+     { id :"BUTSTOP",
 	   xpos : 188,           // verticale
 	   ypos : 534,           // orizzontale
 	   type	: "bigbutton",   // icon, icotip,  value, bigvalue, bigbutton, imgbutton
@@ -190,6 +190,15 @@ const widgets = [
   	  },
   
 ]
+// for button local
+function hook(widgetId, action = null){
+
+	if (widgetId == "BUTGO"){
+		// clear the graph
+		 widgets[0]['clear'] = true;
+	     }
+//	console.log('HOOK ' + widgetId + action);
+	};
 </script>
 
 <!-- =============  PAGE =============  -->
