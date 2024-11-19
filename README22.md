@@ -32,14 +32,14 @@ note: _Portable, it can be installed anywhere: on a _smartphone_ or _tablet_, as
 - Voice commands and Voice navigation between the various pages.
 - If you want to customize even more, unleash your creativity with icons, colors, and informational pop-ups to meet your needs.
 - All texts are grouped in a single file, simplifying translations and customizations.
-- 
+  
 #### Data: safe and always at hand
 
 - Save the data of the properties you are interested in a file, so you always have a complete archive of your home automation.
 - Calculate moving averages, and decoded or normalized values ​​for more in-depth analysis.
 - Choose automatic or manual saving, with data format options (CSV or JSON), sampling period, and saving cadence to suit your needs.
 - Runtime management: unlimited flexibility
-- 
+  
 #### Tap-to-run Tuya: power at your fingertips
 
 - A dedicated page with a tab for each "home" lets you keep everything under control.
@@ -103,6 +103,7 @@ A _REST server_ interface in **IoTwebUI** provides a powerful, flexible, and sta
 _In summary, a single APP offers a higher level of reliability thanks to its simplicity, fewer external dependencies, and greater control over the data._
 
 <hr>
+
 ## Implementation and usage notes
 
 - IoTwebUI is derived from a similar interface designed for [TuyaDAEMON](https://github.com/msillano/tuyaDEAMON-applications/tree/main/daemon.visUI.widget).
@@ -148,7 +149,7 @@ _note: If you are interested in decoding Tuya values, see a [complete example](h
   
 **[from ver. 2.2.2] Updated Tootips:**
 
-- I added the device name to all tooltips.
+- Added the device name to all tooltips.
 - It is possible to 'export' tooltips with [Ctrl] + [click] in a pop-up that can be easily copied with copy-paste.
 - The tooltip format is CSV compatible, using ':' as field separator. So the data of a tooltip is easily importable into a spreadsheet (e.g. Excel) for further use.
 - The updated versions of the example x-devices (in GitHub, /addon) are also optimized for export.
@@ -591,7 +592,7 @@ _**Scenarios of use for x-device:**_
 _**Limits for x-devices**_
 
 1. Be careful when using multiple instances of an x-device. This is only possible if the x-device is implemented as a function (MACRO). If instead it is implemented as a RULE, you need to repeat the code for each instance, and then it is possible to change the assigned values.
-2. Unlike Tuya devices, which are uniquely identified by their ID, x-devices must be identified exclusively by their name, because the ID changes with each run.
+2. Unlike Tuya devices, which are uniquely identified by their ID, **x-devices** must be identified exclusively by their name, because the ID changes with each run.
 
 <hr>
 
@@ -894,5 +895,5 @@ Thanks for your interest <br>
 m.s.
 
 <hr>
-All trademarks listed belong to their legitimate owners.
+All trademarks listed belong to their legitimate owners.<br>
 - https://www.tuya.com/<br> - https://getbootstrap.com/docs/5.3/getting-started/introduction/<br> - https://visjs.github.io/vis-network/docs/network<br> - https://fontawesome.com/v4/icons/<br> - https://code.google.com/archive/p/crypto-js/<br> - https://github.com/inorganik/debugout.js<br> - https://nodejs.org/en<br> - https://hapi.dev/<br> - https://github.com/rigon/hapi-url<br> - https://github.com/websockets/ws/blob/master/doc/ws.md
