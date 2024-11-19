@@ -1,4 +1,4 @@
-## IoTwebUI addon IT [EN](#iotwebui-addon)
+## IoTwebUI addon IT [EN](#iotwebui-user-addon)
 
 Gli ADDON altro non sono che grandi MACRO (cioè funzioni js): in genere creano e gesticono **x-dervice**, ma poswsono essere usate per librerie custom di MACRO specializzate etc. <br>
 Il vantaggio è che sono contenuti in un singolo file, facilmente aggiornabile ed anche scambiabile tra utenti, contenente tutte le istruzioni per l'uso, permettondo l'estensione 'su misura' delle funzionalità di IoTwebUI. <br>
