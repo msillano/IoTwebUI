@@ -20,7 +20,7 @@ b) **Esempi d'uso** ( dir `html/`)
 Per dettagli vedi [clima01-leggimi](https://github.com/msillano/IoTwebUI/blob/main/html/clima01-leggimi.md) con informazioni sul pattern MPV utilizzato!
 * **test02.html** usa solo  `iotwidget02.js` e utilizza device reali come fonte dati (richiede customizzazione).
 Per dettagli vedi [test02-leggimi](https://github.com/msillano/IoTwebUI/blob/main/html/test02-leggimi.md) 
-* **tester01.html** vera WEB APP, per il test di batterie NI-MH. vedi [TestBattery01_leggim](https://github.com/msillano/IoTwebUI/blob/main/addon/TestBattery01_leggimi.pdf)
+* **tester01.html** vera WEB APP, per il test di batterie NI-MH. vedi [TestBattery01_leggimi](https://github.com/msillano/IoTwebUI/blob/main/addon/TestBattery01_leggimi.pdf)
    Richiede HW ad hoc, device TY-08Z, cloner01, testbattery01, iotwidget01.js, iotwidget02.js<br>
    Nella documentazione anche un cenno sul processo di sviluppo di APP custom usando Tuya + IoTwebUI.
 Inoltre nella dir si trovano alcuni file grafici richiesti dagli esempi.
