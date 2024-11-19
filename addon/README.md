@@ -13,7 +13,7 @@ Un utente può sempre aggiungere un ADDON alla propria istanza di IoTwebUI (istr
 Lista di ADDON da usare come sono o utilizzare come modelli per i propri addon: 
 * **battery01.js** _x-device_: Presenta un elenco dei device con batterie scariche. Senza dipendenze e 
 con poca customizzazione, usa auto-discovery per individuare i device.
-* **battery02.js** _x-device_: Analoga alla precedente, ma con algoritmo più performante (e maggiore customizzazione: l'utente deve inserire la lista di device). Senza dipendenze.
+* **battery02.js** _x-device_: Analogo al precedente, ma con algoritmo più performante (e maggiore customizzazione: l'utente deve inserire la lista di device). Senza dipendenze.
 * **classify02.js**  _x-device_:  Fornisce un elenco di tutti i device presenti in un HOME (o in tutte), suddivisi per categoria (is-a). Senza dipendenze.
 * **clone01.js**  _x-device_: crea e mantiene aggiornata una copia di un device reale Tuya, più dettagliata della versione standard usata da IoTwebUI. Senza dipendenze.
 * **testerbattery01.js** _x-device_: Applicazione completa comprensiva di interfaccia utente HTML. Richiede scheda HW TY-08Z, clone01, tester01.html. (vedi [TestBattery01_leggimi](https://github.com/msillano/IoTwebUI/blob/main/addon/TestBattery01_leggimi.pdf) )
