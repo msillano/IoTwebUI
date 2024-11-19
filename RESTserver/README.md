@@ -1,20 +1,20 @@
 # **IoTrest: A REST bridge for your Tuya devices**
 
-**IoTrest** is an optional extension for **IoTwebUI** 2.2 that turns your Tuya devices into _**web services** accessible via simple HTTP_ requests. In addition to reading data from your devices, IoTrest allows you to interact with them in an advanced way, triggering scenes, rules and receiving alerts in real time.
+**IoTrest** is an optional extension for **IoTwebUI** 2.2 that turns your Tuya devices into a _**web service** accessible via simple HTTP_ requests. In addition to reading data from your devices, IoTrest allows you to interact with them in an advanced way, triggering scenes and rules, and receiving alerts in real-time.
 
 ### **Main features**
 
 * **Data access:** Read the current values ​​of sensors (temperature, humidity, etc.) and the status of actuators (lights, sockets, etc.) with a URL.
 * **Automation:** Send REST requests to trigger pre-configured `scenes` and `rules` in Tuya _Smart/SmartLife_ and in _IoTwebUI_, for example with an HTML button.
 * **Alerts:** Check real-time alerts for events that occur on your devices (alarms, status changes, etc.).
-* **Ease of use:** Intuitive and well documented REST interface. For ease of use the results received are arrays or js objects.
+* **Ease of use:** Intuitive and well-documented REST interface. For ease of use, the results received are arrays or js objects.
 
 **NB:** _If you are not interested in using the REST function, completely ignore the 'installation and configuration' phases, you can do them later. **IoTwebUI 2.2** will work perfectly!_
 
 ### **Architecture**
 ![](https://github.com/msillano/IoTwebUI/blob/main/pics/rest01.png?raw=true)
 
-_A WEBAPP (like IoTwebUI) cannot contain an HTTP server, so IoTrest (a REST-HTPP server) is a standalone application in nodejs, which communicates via websocket (the fastest method) with IoTwebUI._
+_A WEBAPP (like IoTwebUI) cannot contain an HTTP server, so IoTrest (a REST-HTPP server) is a standalone application in node-js, which communicates via WebSocket (the fastest method) with IoTwebUI._
 
 IoTrest integrates perfectly with IoTwebUI and takes advantage of its powerful Tuya device management features. REST-HTTP requests sent to IoTrest are translated into commands for IoTwebUI, which in turn interacts with Tuya Cloud.<br>
 The average latency (delay) between an event and its reporting in a WEB client using IoTrest is the sum of 3 factors: 0.5*(time between two device measurements in Tuya Cloud) + 0.5*(IoTwebUI polling interval) + 0.5*(interval between two REST requests of the WEB client). Typical values: 3', 2', 30" => average latency 2'65"
@@ -63,7 +63,7 @@ note: if you do not use REST, do not run `server.js`, but just launch **IoTwebUI
 
 ### **Conclusions**
 
-**IoTrest** is the ideal tool for those who want to quickly create customized solutions for the management of their Tuya devices. Thanks to its flexibility and ease of use, REST allows you to perform unparalleled automations for your home activities and create unique user experiences.
+**IoTrest** is the ideal tool for those who want to quickly create customized solutions for the management of their Tuya devices. Thanks to its flexibility and ease of use, REST allows you to perform unparalleled automation for your home activities and create unique user experiences.
 The user (or an APP or a UI) can read all the data from the Tuya Cloud filtered, when necessary, by decoding or processing. All possible configuration and command operations are guaranteed by the mediation of the Tuya 'tap-to-run': maximum freedom with total security!
 
 ![](https://github.com/msillano/IoTwebUI/blob/main/pics/screen02.png?raw=true)
@@ -229,7 +229,7 @@ In this case we will have:
       addToStatus("Main AC","phase_a_decoded", vals) ;
 }
 ```
-note: `addToStatus()` is a utility that updates local data (used by REST), adding, in this case, the value `phase_a_decoded`.
+note: `addToStatus()` is a utility that updates local data (used by REST), adding or updating, in this case, the value `phase_a_decoded`.
 
 #### Results
 The changes made are additive: they do not alter the existing data.
