@@ -15,7 +15,7 @@ Risiedono nella dir `html/inc/`:
 * _iotwidget01.css_  required by `iotwidget01.js`
 * _restget.js_  required by  `iotwidget01.js` and `iotwidget02.js`
 
-b)** Esempi d'uso** ( dir `html/`)
+b) **Esempi d'uso** ( dir `html/`)
 * **clima01.html** usa solo  `iotwidget01.js` e, come backend, l'x-device `clima01-xdevice.js`.  Utilizza device reali come fonte dati (richiede customizzazione).
 Per dettagli vedi [clima01-leggimi](https://github.com/msillano/IoTwebUI/blob/main/html/clima01-leggimi.md) con informazioni sul pattern MPV utilizzato!
 * **test02.html** usa solo  `iotwidget02.js` e utilizza device reali come fonte dati (richiede customizzazione).
@@ -23,4 +23,4 @@ Per dettagli vedi [test02-leggimi](https://github.com/msillano/IoTwebUI/blob/mai
 * **tester01.html** vera WEB APP, per il test di batterie NI-MH. vedi [TestBattery01_leggim](https://github.com/msillano/IoTwebUI/blob/main/addon/TestBattery01_leggimi.pdf)
    Richiede HW ad hoc, device TY-08Z, cloner01, testbattery01, iotwidget01.js, iotwidget02.js<br>
    Nella documentazione anche un cenno sul processo di sviluppo di APP custom usando Tuya + IoTwebUI.
-
+Inoltre nella dir si trovano alcuni file grafici richiesti dagli esempi.
