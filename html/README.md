@@ -1,6 +1,6 @@
 ## IoTwebUI  HTML stuff
 
-Usando il [IoTrest](https://github.com/msillano/IoTwebUI/blob/main/RESTserver/LEGGIMI-REST22.md) un client può:
+Usando il [RESTserver](https://github.com/msillano/IoTwebUI/blob/main/RESTserver/LEGGIMI-REST22.md) un client può:
 1. Accedere ai dati dei device Tuya e x-device in IoTwebUI
 2. Lanciare una scena ('tap-tro-run) o una REGOLA (con nome).
 
