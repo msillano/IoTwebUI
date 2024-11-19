@@ -1,26 +1,26 @@
-## IoTwebUI  HTML stuff
+## IoTwebUI HTML stuff
 
-Usando il [RESTserver](https://github.com/msillano/IoTwebUI/blob/main/RESTserver/LEGGIMI-REST22.md) un client può:
-1. Accedere ai dati dei device Tuya e x-device in IoTwebUI
-2. Lanciare una scena ('tap-tro-run) o una REGOLA (con nome).
+Using the [RESTserver](https://github.com/msillano/IoTwebUI/blob/main/RESTserver/LEGGIMI-REST22.md) a client can:
+1. Access the data of the Tuya and x-device devices in IoTwebUI
+2. Launch a scene ('tap-tro-run) or a RULE (with name).
 
-La più semplice applicazione di queste funzionalità è la realizzazione di interfacce utente in HTML (WEB).<br>
-Qui abbiamo una collezione di esempi:
+The simplest application of these features is the creation of user interfaces in HTML (WEB).<br>
+Here we have a collection of examples:
 
-a) **Librerie di Widget**: hanno la particolarità che basta posizionarun widget con due numeri (x, y) in una pagina web con sfondo: 
-l'aggiornamento ed il funzionamento è automatico. Tutte le pagine di esempio sono realizzate con questa tecnica, veramente rapida e semplice.<br>
-Risiedono nella dir `html/inc/`:
-* **iotwidget01.js** offre 6 widget: icon, icotip, value, bigvalue, bigbutton, imgbutton
-* **iotwidget02.js** nuove 6 widget: signal, switch, gauge, linechart, multichart, areachart.
-* _iotwidget01.css_  required by `iotwidget01.js`
-* _restget.js_  required by  `iotwidget01.js` and `iotwidget02.js`
+a) **Widget Libraries**: they have the particularity that it is enough to place a widget with two numbers (x, y) in a web page with background:
+the update and the operation is automatic. All the example pages are made with this technique, really fast and simple.<br>
+They reside in the dir `html/inc/`:
+* **iotwidget01.js** offers 6 widgets: icon, icotip, value, bigvalue, bigbutton, imgbutton
+* **iotwidget02.js** new 6 widgets: signal, switch, gauge, linechart, multichart, areachart.
+* _iotwidget01.css_ required by `iotwidget01.js`
+* _restget.js_ required by `iotwidget01.js` and `iotwidget02.js`
 
-b) **Esempi d'uso** ( dir `html/`)
-* **clima01.html** usa solo  `iotwidget01.js` e, come backend, l'x-device `clima01-xdevice.js`.  Utilizza device reali come fonte dati (richiede customizzazione).
-Per dettagli vedi [clima01-leggimi](https://github.com/msillano/IoTwebUI/blob/main/html/clima01-leggimi.md) con informazioni sul pattern MPV utilizzato!
-* **test02.html** usa solo  `iotwidget02.js` e utilizza device reali come fonte dati (richiede customizzazione).
-Per dettagli vedi [test02-leggimi](https://github.com/msillano/IoTwebUI/blob/main/html/test02-leggimi.md) 
-* **tester01.html** vera WEB APP, per il test di batterie NI-MH. vedi [TestBattery01_leggimi](https://github.com/msillano/IoTwebUI/blob/main/addon/TestBattery01_leggimi.pdf)
-   Richiede HW ad hoc, device TY-08Z, cloner01, testbattery01, iotwidget01.js, iotwidget02.js<br>
-   Nella documentazione anche un cenno sul processo di sviluppo di APP custom usando Tuya + IoTwebUI.
-Inoltre nella dir si trovano alcuni file grafici richiesti dagli esempi.
+b) **Example usage** ( dir `html/`)
+* **clima01.html** uses only `iotwidget01.js` and, as a backend, the x-device `clima01-xdevice.js`. Uses real devices as data source (requires customization).
+For details see [clima01-readme](https://github.com/msillano/IoTwebUI/blob/main/html/clima01-readme.md) with information about the MPV pattern used!
+* **test02.html** uses only `iotwidget02.js` and uses real devices as data source (requires customization).
+For details see [test02-readme](https://github.com/msillano/IoTwebUI/blob/main/html/test02-readme.md)
+* **tester01.html** real WEB APP, for testing NI-MH batteries. see [TestBattery01_leggimi](https://github.com/msillano/IoTwebUI/blob/main/addon/TestBattery01_leggimi.pdf)
+Requires ad hoc HW, TY-08Z device, cloner01, testbattery01, iotwidget01.js, iotwidget02.js<br>
+In the documentation there is also a hint on the process of developing custom APPs using Tuya + IoTwebUI.
+In addition, in the dir there are some graphic files required by the examples.
