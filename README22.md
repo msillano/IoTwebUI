@@ -13,7 +13,11 @@ _What can you do?_<br>
 
 **_New, version 2.2_**
 * _REST interface_: web service for simple connection with applications or custom interfaces (document [README-REST22](https://github.com/msillano/IoTwebUI/blob/main/RESTserver/README-REST22.md)).<br>
+* _Examples of custom HTML pages, and widget libraries: see [HTML](https://github.com/msillano/IoTwebUI/tree/main/html) dir._
+* _**x-device**: IoTwebUI virtual devices, recursive, and [addon](https://github.com/msillano/IoTwebUI/tree/main/addon) cooperation mechanism._
 * _Internationalization_: multilingual user interface versions and the 'voice' module.
+
+![](https://github.com/msillano/IoTwebUI/blob/main/pics/useschema.png?raw=true)
 
 note: _Portable, it can be installed anywhere: on a _smartphone_ or _tablet_, as an alternative interface to SmartLife, for you and other family members. On a _PC_ (Windows, Apple, Linux...) have Tuya on these computers too. On an _Android top box_, use the TV as a Tuya interface!_.
 
@@ -26,7 +30,7 @@ note: _Portable, it can be installed anywhere: on a _smartphone_ or _tablet_, as
 - Informational pop-ups with new icons will keep you updated on the status of each property of a device, without missing a single detail.
 - A drop-down menu with configuration information and dynamic options will give you quick access to everything you need.
 - Voice commands and Voice navigation between the various pages.
-- And if you want to customize even more, unleash your creativity with icons, colors, and informational pop-ups to meet your needs.
+- If you want to customize even more, unleash your creativity with icons, colors, and informational pop-ups to meet your needs.
 - All texts are grouped in a single file, simplifying translations and customizations.
 - 
 #### Data: safe and always at hand
@@ -141,7 +145,14 @@ _note: If you are interested in decoding Tuya values, see a [complete example](h
    - `is-a`: name of the Tuya 'type' of the device (in corresponding code it is `device.category`). In total over 600 types.
    - `id`: `device.id`, required by some HUBs (e.g. TuyaDAEMON, Homebridge, HA, etc..) to access the Cloud.
    - `key`: `device.local_key`, required by some HUBs that use MQTT locally.
+  
+**[from ver. 2.2.2] Updated Tootips:**
 
+- I added the device name to all tooltips.
+- It is possible to 'export' tooltips with [Ctrl] + [click] in a pop-up that can be easily copied with copy-paste.
+- The tooltip format is CSV compatible, using ':' as field separator. So the data of a tooltip is easily importable into a spreadsheet (e.g. Excel) for further use.
+- The updated versions of the example x-devices (in GitHub, /addon) are also optimized for export.
+  
 ### Logging and data export
 It is possible to export some data to a file: the user must specify only `device` and `status` (properties) to identify the data of interest and these are saved at regular intervals (minimum 1 minute) in an internal buffer (max 5000 records - equal to 80h @1 rec/min), then exported to file automatically or on user command.<br>
 The user can choose in configuration between two formats: `CSV` (suitable, for example, for DB and spreadsheets such as Excel) or `JSON` (for more complex processing with ad hoc programs) with very few editing interventions on the files (see [beyond formats](#csv-format)).
@@ -214,7 +225,7 @@ _However, to show all information, if pop-ups are disabled, the message is prese
 - Use prefixes to group related commands in IoTwebUI.
 - Be easy to remember and recognize (if using voice commands).<br>
 
-A pad is dedicated to 'user RULES' identified with a name: they are treated like 'tap-to-runs': they can be used in Alarms, or activated with buttons or by voice command, or launched from another RULE.<br>
+A pad is dedicated to 'user RULES' identified with a name: they are treated like 'tap-to-runs': they can be used in Alarms, activated with buttons or by voice command, or launched from another RULE.<br>
 _Of course 'RULES' and 'tap-to-runs' must have unique names to be identified._
 
 ### RULES
@@ -250,8 +261,8 @@ The commands present offer the following features;
 - Also very important is the choice of keywords and names for 'tap-to-run' and 'RULE': for example 'name three words' is difficult to recognize, while 'turn on the light' is easily recognized.<br> I think this depends on the linguistic models used: correct sentences, with a common meaning, are more recognizable than isolated words. For example 'Tuya' is often confused with 'Giulia'.
 - The presence of articles and/or prepositions facilitates recognition.
 - Voice command is optional, and can be disabled in the configuration.
-- If enabled, voice-recognition can be used in two ways, either continuously or by pressing a button. The default mode is set in the configuration but can be changed with voice commands.
-- the default (Englisc) grammar is the following - in brackets `(to)`: optional words; vertical bar `on|in`: alternative words-:
+- If enabled, voice recognition can be used in two ways, either continuously or by pressing a button. The default mode is set in the configuration but can be changed with voice commands.
+- the default (English) grammar is the following - in brackets `(to)`: optional words; vertical bar `on|in`: alternative words-:
 
 - _'Hey Tuya, run|activate (the|an*) xxx ((the|an*) xxx ((the|an*) xxx))'_ => launch 'tap-to-run' or RULE, name max 3 words
 note on names: when speaking you can add articles or prepositions (*) to the 3 words, which are therefore NOT part of the 'name' of the 'tap-to-run' or 'RULE'. Example:
@@ -277,7 +288,7 @@ _note: the request for consent to use the microphone depends on the browser and 
 ### REST: client and server
 In IoTwebUI there are 2 REST interfaces:
 
-1. _REST client_, implemented as MACRO in two versions: TXT and JSON, allows you to import external data into the RULES, from web-services, or even from third-party devices or DIY devices that implement a REST interface. _It is therefore possible to make Tuya interact with custom devices_: to create DIY devices with Arduino or ESP8266 see [example](https://github.com/msillano/tuyaDEAMON-applications/wiki/note-5:-Watchdog-for-IOT#watchdog03-esp01-relay--arduino).
+1. _REST client_, implemented as MACRO in two versions: TXT and JSON, allows you to import external data into the RULES, from web services, or even from third-party devices or DIY devices that implement a REST interface. _It is therefore possible to make Tuya interact with custom devices_: to create DIY devices with Arduino or ESP8266 see [example](https://github.com/msillano/tuyaDEAMON-applications/wiki/note-5:-Watchdog-for-IOT#watchdog03-esp01-relay--arduino).
 2. _REST server_, for exporting Tuya device data and controlling automations and alarms, towards custom applications or interfaces. For details [see IoTrest documentation](https://github.com/msillano/IoTwebUI/blob/main/RESTserver/LEGGIMI-REST22.md).
 
 _These two paths finally allow the integration of Tuya in vertical projects, without altering the basic functioning of Tuya/Smartlife, but enriching it with new potential, with a simpler strategy than the pre-existing alternatives (e.g. tuyaDAEMON, HA, etc...)_
@@ -285,6 +296,15 @@ _These two paths finally allow the integration of Tuya in vertical projects, wit
 <hr style="height:2px;border-width:0;color:gray;background-color:gray">
 
 ## Versions
+- 2.2.2 Bug Fixes
+   - Added tooltip export function with [Ctrl]+[Click], CSV format (':' separator)
+   - Addons and HTML dirs removed from Zip: use the latest versions directly from GitHub!
+   - Updated some x.devices (in addon/) and new example app: [TestBattery](https://github.com/msillano/IoTwebUI/blob/main/addon)
+     
+- 2.2.1 Bug Fixes
+  - Added web interface widgets: iotwidget01 and iotwidget02 in html/inc/
+  - User interface web (examples) clima01.html and tes02.html in html/ dir.
+  - 
 - 2.2 Added REST server (IoTrest)
   - Internationalization (IT, EN) for user interface and speech module.
   - Changed menu items
@@ -491,7 +511,7 @@ note: the conditions of the automations/routines (all: Alexa, Google, Tuya etc..
 **if(** `condition1 && condition2 && ...` **)** `action;` // _AND: 'all',_ `condition1` _and_ `condition2` _and_ ... _must be true at the same time._<br>
 **if(** `condition1 || condition2 || ...` **)** `action;` // _OR: 'at least one',_ `condition1` _or_ `condition2`, _or_ ... _must be true._<br>
 **if (** `condition` **)** `action1` **else** `action2;` // _executes `action1` (if true) or `action2` (if false)._ <br>
-note: Tuya automations (one or more conditions, AND/OR), Google (a test + voice command, OR), Alexa (only one condition!) etc... have heavy constraints in the conditions. RULES are really more elastic: you can have as many conditions as you want in AND or OR, but also more complex conditions using the parentheses carefully to indicate the order of calculation!
+note: Tuya automation (one or more conditions, AND/OR), Google (a test + voice command, OR), Alexa (only one condition!), etc... have heavy constraints in the conditions. RULES are more elastic: you can have as many conditions as you want in AND or OR, but also more complex conditions using the parentheses carefully to indicate the order of calculation!
 example: `if ( (condition1 || condition2) && (condition3 || condition4) )` - in words: "at least one of (condition1, condition2) AND also at least one of (condition3, condition4) must be true".
 
 - If a `condition` is true for a long time (level), an `if()` will be executed multiple times, in each loop. To avoid this, TRIGGER macros are true for only one loop, the FIRST time the condition is true, and then false.
@@ -542,56 +562,99 @@ if (TRIGBYNAME("called Pippo")) TRIGRULE("Pippo"), VOICE("call Pippo");
 #### RULES - MACROS
 MACROS meet various needs:
 1. Provide access to **IoTwebUI** resources and features, to be able to use them in RULES
-2. The environment (runs repeated at regular intervals) and its limits (code in a single line) make it more difficult to write complex functions: MACROS simplify the user's task.
-3. Some operations require the storage of information between one run and the next, and MACROS (*) solve this problem, without explicitly resorting to VSET() or VGET().
-4. With events it is important to distinguish between a **level** - the same value (e.g. true) equal for multiple runs, generated, for example, by a comparison - and a **TRIGGER** - true for a single run, when an event starts or ends -: _The macros with 'TRIG' in the name generate TRIGGER, the others generate LEVELS_.<br>
+2. The environment (runs repeated at regular intervals) and its limits (code in a single line) make it more difficult to write complex functions: MACROS simplifies the user's task.
+3. Some operations require the storage of information between one run and the next, and MACROS (*) solves this problem, without explicitly resorting to VSET() or VGET().
+4. With events it is important to distinguish between a **level** - the same value (e.g. true) equal for multiple runs, generated, for example, by comparison - and a **TRIGGER** - true for a single run, when an event starts or ends -: _The macros with 'TRIG' in the name generate TRIGGER, the others generate LEVELS_.<br>
 
 _note: this initial selection of MACROs is naturally conditioned by my habits and interests: in this sector the contribution of other users is precious._
 
 _note: to identify a device you can use either the name or the ID (I don't like to impose unnecessary limits!). Using the ID is a little more complex (you can find it in the IoTwebUI tooltips in EXPERT mode) but offers the advantage that you can rename the device at any time!_
 
-We can divide the MACROs into two groups: the first one that manages the interactions with the resources available in **IoTwebUI** (a sort of internal API). The second group of MACROs are instead more general, modifying the input data in some useful way or providing useful outputs.<br>
-_note: the goal of MACROs is not to duplicate the functionality of Tuya automations (even if sometimes there is overlap), but to provide more advanced calculation tools, to obtain 'automations' that were impossible until now. The use of virtual devices and tap-to-run allows to divide the tasks between Tuya scenes (automations and tap-to-run) and RULEs in the most efficient way._ <br>
-Of course you can always add new MACROs, either as a customization (if you create new MACROs let me know) or in new releases of **IoTwebUI** (let me know your needs on GitHub, in the [ISSUE](https://github.com/msillano/IoTwebUI/issues)).
+We can divide the MACROs into two groups: the first one manages the interactions with the resources available in **IoTwebUI** (a sort of internal API). The second group of MACROs is instead more general, modifying the input data in some useful way or providing useful outputs.<br>
+_note: the goal of MACROs is not to duplicate the functionality of Tuya automation (even if sometimes there is overlap), but to provide more advanced calculation tools, to obtain 'automations' that were impossible until now. The use of x-devices, virtual devices, and tap-to-run allows us to divide the tasks between Tuya scenes (automation and tap-to-run) and RULEs in the most efficient way._ <br>
+Of course, you can always add new MACROs, either as a customization (if you create new MACROs let me know) or in new releases of **IoTwebUI** (let me know your needs on GitHub, in the [ISSUE](https://github.com/msillano/IoTwebUI/issues)).
+
+### MACRO - x-device
+Starting from ver. 2.2, you can create and manage, via MACRO and RULES, **x-devices**, i.e. 'virtual devices' for **IoTwebUI**. The big advantage is that they have similar performance to real Tuya devices: they appear in the device tree, in the assigned house and room, they have updated tooltips, logs, alarms etc...
+
+The **x-devices** introduce a concept of recursive composition in **IoTwebUI**: an _x-device_ can be a basic device (first level, like Tuya devices) but also an 'abstract' device of a higher level, which brings together and synthesizes the data and actions of multiple lower-level devices, as, for example, the Tuya 'Groups' do.
+Unlike the 'Groups' (the only possibility of aggregation with Tuya), the x-devices are, to all intents and purposes, still devices, and therefore the composition is recursive. Furthermore, the aggregation functions are free, under user control, and not stereotyped in 'ON/OFF'. Furthermore, since the x-devices are devices, Alerts and RULES can be defined based on their properties, which is NOT possible with 'Groups'!
+The **x-devices**, in addition to the presentation of data, can also manage 'actions', which they transfer to the lower level using RULES (and Automations or REST-client).
+
+_**Scenarios of use for x-device:**_
+
+1. I have a 'non Tuya' device that I can control via REST (client): by associating an 'alias' x-device to this device, and updating its values ​​in a mirror, I have the device visible and usable in IoTwebUI as a native Tuya device!
+2. Various devices contribute to form 'systems', e.g. Heating, burglar alarm, consumption etc... A 'system' _x-device_ that presents the processed final data of the system itself, is useful and easy to consult.
+3. HTML pages can act as an interface: they request updated data from various devices via REST-server. Using a 'synthesis' _x-device_ that brings together all the data needed for the HTML interface, you simply have to consult a single device. Furthermore, you have the possibility of monitoring the system from IoTwebUI and separate the data processing from the visualization interface, simplifying its implementation._
+4. In summary, the x-devices constitute a layer of OOP middleware between the atomic Tuya devices and the applications/UI.
+
+_**Limits for x-devices**_
+
+1. Be careful when using multiple instances of an x-device. This is only possible if the x-device is implemented as a function (MACRO). If instead it is implemented as a RULE, you need to repeat the code for each instance, and then it is possible to change the assigned values.
+2. Unlike Tuya devices, which are uniquely identified by their ID, x-devices must be identified exclusively by their name, because the ID changes with each run.
+
 <hr>
 
 #### MACRO for resources
 <dl>
+<dt>GET(device, property)</dt>
+<dt>GET(device, property, strict)</dt>
+<dd>Returns the value of 'property' (use the original names shown in the tooltips) of the device (name or ID)<br>
+If it does not find 'device' or 'property' it throws an error if <code>strict == true</code> (default), otherwise it returns "null".<br>
+        <i>Example:</i> <code>var _tf = GET("TF_frigo","va_temperature");</code> </dd>   
+
+<dt>GETATTRIBUTE(device, attribute)</dt>
+<dt>GETATTRIBUTE(device, attribute, strict)</dt>
+<dd>Returns the value of a device 'attribute' (name or ID). The most useful are 'name', 'id', 'online', etc... <br>
+If it does not find 'device' or 'attribute' it throws an error if <code>strict == true</code> (default), otherwise it returns "null".<br>
+        <i>Example:</i> <code>var _name = GETATTRIBUTE(_devid, 'name');</code> </dd>   
+     
 <dt>ISCONNECTED(device)</dt>
 <dd>Returns 'true' if the device (name or ID) is connected. <br>
 <i>note: the data comes from the Cloud, it may differ from the local value shown by SmartLife.</i><br>
 <i>Example:</i> <code>if (! ISCONNECTED("Tuya bridge")) VOICE ("Warning! 'tuya bridge' currently disconnected"); </code> </dd>
 
-<dt>GET(device, property)</dt>
-<dd>Returns the value of 'property' (use the original names shown in the tooltips) of the device (name or ID)<br> <i>Example:</i> <code>var _tf = GET("TF_frigo","va_temperature");</code> </dd>
+
+<dt>GETHOMELIST()</dt>
+ <dd>Returns an array of the names of all HOMEs. </dd>
+
+<dt>GETIDLIST()</dt>
+<dt>GETIDLIST(home)</dt>
+<dt>GETIDLIST(home, room)</dt>
+ <dd>Returns an array of device IDs.<br>
+<i>Example:</i> <code>GETIDLIST('ROMA').forEach((devid) => {...})</code> </dd>
+
+<hr> 
+
+<dt>ADDXDEVICE(home, room|null, name)</dt>
+<dt>ADDXDEVICE(home, room|null, name, init)</dt>
+<dt>ADDXDEVICE(home, room|null, name, init, category)</dt>
+ <dd>Adds a new x-device in IotwebUI, displayed in the tree and with the same functions as the Tuya devices: 'Alarms', 'Export', 'REST' etc. <br>
+note: <code>init: (default = [])</code> array of initial values ​​as objects. e.g.: {code: 'brightness_max_1', value: 891}. <br>
+note: the default <code>category </code> is 'x-dev', with is-a => 'x-device custom'. You can specify a different category (among the existing ones), for example, to use a special icon, if this is provided by customizations based on category.<br>
+note: <code>room == null</code> associates the device to the indicated 'home'.<br>
+note: if the _x-device_ exists, ADDXDEVICE() re-initializes by replacing the data in 'status' with 'init'<br>.
+note: ADDXDEVICE() starts 'online' with false: only after completing all the calculations (which may take time) can it be set to 'true' with SETXDEVICEONLINE(), to have visual feedback of the x-device status.<br>
+_Example:_<br>
+     <code> // singleton run: adds a x-device after the existence test
+            if(!GETATTRIBUTE("Temperatura media","name",false)) ADDXDEVICE('ROMA', "Studio", "Temperatura media"); </code></dd>
+
+<dt>SETXDEVICESTATUS(device, code, value)</dt>
+<dd>Allows adding new values ​​or updating them in the 'status' of an _x-device_.<br>
+_Example:_<br>
+     <code>   //updates the x-device doing a 2 device average and then a mobile average over the last 10 results
+       var _tm = ( GET("Temperatura studio","va_temperature") + ( GET("Termo studio","temp_current") / 10)) /2;
+       SETDEVICESTATUS( "Temperatura media", "media", AVG(_tm, 10)); </code></dd>
+
+<dt>SETXDEVICEONLINE(device)</dt>
+<dt>SETXDEVICEONLINE(device, online)</dt>
+<dd>Allows setting the 'online' attribute (default 'true') for x-devices.</dd>
+
 
 <dt>DATALOG(name, value) (*)</dt>
 <dd>Adds a new 'value' to the data log file, with the indicated 'name'. Useful for saving processing results (e.g. averages). This MACRO 'books' the saving of a value, but the saving occurs with the times and methods set in config for the data log file.<br>
 <i>note: data saving during a test starts immediately, but, in CSV format, the first line with the names has already been created and is not updated. Eventually save the log file to have a new updated file. This is only for testing: with the RULES in use <i>since startup there is no problem.</i><br>
 <i>Example:</i> <code>DATALOG("Fridge Temperature", GET("TF_frigo","va_temperature")/10);</code>
-</dd>
-
-<dt>ALERTLOG(name, message) </dt>
-<dd>Adds the 'message' to the alert log, identified by 'name'.<br>
-<i>Example:</i> <code>if(ISTRIGGERL(GET("tuya_bridge", "switch_1"))) ALERTLOG("tuya_bridge", "Open now");</code>></dd>
-
-<dt>BEEP()</dt>
-<dd>Alert signal.<br>
-<i>Example:</i> <code>if(GET("TF_frigo","va_temperature") > 100) BEEP(); </code>
-</dd>
-
-<dt> POP(device, message)</dt>
-<dd>Warning signal.<br>
-<i>Example:</i> <code>if(ISTRIGGERH(GET("TF_frigo","va_temperature") > 100)) POP("Frigo", "TEMPERATURE over 10°C" ); </code> </dd>
-
-<dt>XURL(url)<br>
-XURL(url, target)</dt>
-<dd>Opens a URL in the browser.<br>
-`target`: `_self`, `_blank` (default), `_parent`, `_top` (see `window:open` ) <br>
-note: _self, _parent, _top can terminate IoTwebUI.<br>
-<i>Example:</i> <code>if (TRIGBYNAME("client REST")) XURL("rest02.2/client.html")</code> <br>
-Using REST, this MACRO can be used to activate specific WEB pages, such as thematic UIs. <br>
-<i>Example:</i> <code>if (GET("ALLARME", 'status') == 'Allarme') XURL("mypages/alarmmap.html")</code>
 </dd>
 
 <dt>REST(url)</dt>
@@ -624,6 +687,40 @@ if(TRIGBYNAME("meteo")) _meteo = RESTJSON(_urlm), POP("ROMA", "temperature = " +
   utc_offset_seconds: 0 
 </pre></dd>
 
+<hr>
+
+<dt>DATALOG(name, value) (*)</dt>
+<dd>Adds a new 'value' to the data log file, with the indicated 'name'. Useful for saving processing results (e.g. averages). This MACRO 'books' the saving of a value, but the saving occurs with the times and methods set in config for the data log file.
+_note: data saving during a test starts immediately, but, in CSV format, the first line with the names has already been created and is not updated. If necessary, save the log file to have a new updated file. This only in the test phase: with the RULES in use from the start there is no problem._
+<i>Example:</i> <code>DATALOG("Fridge Temperature", GET("TF_frigo","va_temperature")/10); </code></dd>
+
+<dt>SAVELOG()</dt>
+<dd>Causes the saving of the current log to the file, and the start of a new log file.</dd>
+
+
+<dt>ALERTLOG(name, message) </dt>
+<dd>Adds the 'message' to the alert log, identified by 'name'.<br>
+<i>Example:</i> <code>if(ISTRIGGERL(GET("tuya_bridge", "switch_1"))) ALERTLOG("tuya_bridge", "Open now");</code>></dd>
+
+<dt>BEEP()</dt>
+<dd>Alert signal.<br>
+<i>Example:</i> <code>if(GET("TF_frigo","va_temperature") > 100) BEEP(); </code>
+</dd>
+
+<dt> POP(device, message)</dt>
+<dd>Warning signal.<br>
+<i>Example:</i> <code>if(ISTRIGGERH(GET("TF_frigo","va_temperature") > 100)) POP("Frigo", "TEMPERATURE over 10°C" ); </code> </dd>
+
+<dt>XURL(url)</dt>
+<dt>XURL(url, target)</dt>
+<dd>Opens a URL in the browser.<br>
+`target`: `_self`, `_blank` (default), `_parent`, `_top` (see `window:open` ) <br>
+note: _self, _parent, _top can terminate IoTwebUI.<br>
+<i>Example:</i> <code>if (TRIGBYNAME("client REST")) XURL("rest02.2/client.html")</code> <br>
+Using REST, this MACRO can be used to activate specific WEB pages, such as thematic UIs. <br>
+<i>Example:</i> <code>if (GET("ALLARME", 'status') == 'Allarme') XURL("mypages/alarmmap.html")</code>
+</dd>
+
 <dt>VOICE(message)</dt>
 <dd>Warning signal.<br>
 <i>Example:</i> <code>if (! ISCONNECTED("Tuya bridge")) VOICE ("Warning! 'tuya bridge' is currently disconnected") </code>
@@ -631,7 +728,7 @@ if(TRIGBYNAME("meteo")) _meteo = RESTJSON(_urlm), POP("ROMA", "temperature = " +
 
 <dt>SOUND(url)</dt>
 <dd>Play a music or audio message file: MP3 or WAV format.<br>
-Local or remote.
+Local or remote.<br>
 _Example:_ <code>SOUND("https://assets.mixkit.co/active_storage/sfx/918/918.wav"); </code>
 </dd>
 
@@ -642,16 +739,25 @@ _Example:_ <code>SOUND("https://assets.mixkit.co/active_storage/sfx/918/918.wav"
 <dt>TRIGBYNAME(name) </dt>
 <dd> Associates a 'name' (max 3 words) to a RULE, allowing it to be activated with a user command (button or voice command) or in case of 'Alert', or with TRIGRULE(name) from another RULE (similar to the Tuya 'tap-to-run').<br>
 Returns true when it must be executed. <br>
-note: name must be unique (it can be used only once) but the action can be applied to multiple RULES using an auxiliary var.
+note: name must be unique (it can be used only once) but the action can be applied to multiple RULES using an auxiliary var.<br>
 <i>Example:</i> <code>if (TRIGBYNAME('turn off the light')) VOICE ("You have activated: 'turn off the light'") </code> </dd>
 
 <dt>TRIGRULE(name)</dt>
+<dt>TRIGRULE(name, parameter)</dt>
 <dd>Executes a RULE identified by a name. <br>
-note: not recursive, max depth 1 <br>
+'parameter' (optional) is made available in the <code> var _ruleParam </code> (otherwise `null`). Since 'parameter' can be an object, there is no limit to the data passed with this mechanism.  <br>
+note:TRIGRULE is not recursive; max 1 'parameter' active to not overwrite _ruleParam (static). <br>
 note: If the definition of TRIGBYNAME(name) precedes the use of TRIGRULE(name), the execution is not immediate, but occurs immediately after the end of the current run of the RULE, in an EXTRA run. <br>
 <i>Example:</i> <code> if (TRIGBYNAME("pippo")) VOICE (" Found pippo"); <br> // RULE 'pippo'
 if (TRIGBYNAME("call pippo")) TRIGRULE("pippo"), VOICE("call pippo") // RULE 'call pippo'
 </code> </dd>
+
+<dt>REFRESH()</dt>
+<dt>REFRESH('cloud')</dt>
+<dd>Many operations are synchronized on the polling loop: this can slow down the response to user actions too much.
+REFRESH() causes an extra cycle of RULES analysis, while REFRESH('cloud') causes extra polling of Tuya data and UI refresh.
+N.B. DO NOT use them in RULES processed at every loop: it would create a blocking 'race condition'! Use them only in RULES processed once, in response to user actions, and only if really necessary!</dd>
+
 </dl>
 <hr>
 
@@ -665,8 +771,8 @@ if (TRIGBYNAME("call pippo")) TRIGRULE("pippo"), VOICE("call pippo") // RULE 'ca
 <dd> Returns 'true' only when the "condition" changes from 'false to true', avoids that the "condition" 'true' acts at every run. That is, it transforms a true level into a TRIGGER (see figure). <br>
 <i>Example:</i> <code>if(ISTRIGGERH(GET("TF_frigo","va_temperature") > 100)) POP("Frigo", "TEMPERATURE over 10°C" );</code> <br>
 note: Unlike Tuya, at startup, if `condition` is true it returns true (even if a previous 'false' is missing).
-note: the Tuya implementation of multiple <i>conditions (levels) in AND (all)</i> in an automation is as if it were written like this:<br> <code>if( ISTRIGGERH(condiz1 && condiz2 && ...) ... </code> <br> that is, a Tuya automation is triggered when ALL conditions become true. With multiple conditions in OR, just ONE trigger is enough:<br> <code>if( ISTRIGGERH(condiz1) || ISTRIGGERH(condiz2) || ...) ... </code>.<BR>
-Note: multiple <i>conditions (levels) + scope (level) + enablement </i> of Tuya automations can be implemented in RULE like this:<br> <code>if( (ISTRIGGERH(condiz1...) ...) && (scope...) && enabled)...</code>. <br> You can see how <i>Scope</i> does NOT intervene in the TRIGGER but MUST be true!
+note: the Tuya implementation of multiple <i>conditions (levels) in AND (all)</i> in automation is as if it were written like this:<br> <code>if( ISTRIGGERH(condiz1 && condiz2 && ...) ... </code> <br> that is, a Tuya automation is triggered when ALL conditions become true. With multiple conditions in OR, just ONE trigger is enough:<br> <code>if( ISTRIGGERH(condiz1) || ISTRIGGERH(condiz2) || ...) ... </code>.<BR>
+Note: multiple <i>conditions (levels) + scope (level) + enablement </i> of Tuya automation can be implemented in RULE like this:<br> <code>if( (ISTRIGGERH(condiz1...) ...) && (scope...) && enabled)...</code>. <br> You can see how <i>Scope</i> does NOT intervene in the TRIGGER but MUST be true!
 </dd>
 
 <dt>ISTRIGGERL(condition) (*)</dt>
@@ -789,4 +895,4 @@ m.s.
 
 <hr>
 All trademarks listed belong to their legitimate owners.
-- https://www.tuya.com/ - https://getbootstrap.com/docs/5.3/getting-started/introduction/ - https://visjs.github.io/vis-network/docs/network - https://fontawesome.com/v4/icons/ - https://code.google.com/archive/p/crypto-js/ - https://github.com/inorganik/debugout.js - https://nodejs.org /en - https://hapi.dev/ - https://github.com/rigon/hapi-url - https://github.com/websockets/ws/blob/master/doc/ws.md
+- https://www.tuya.com/<br> - https://getbootstrap.com/docs/5.3/getting-started/introduction/<br> - https://visjs.github.io/vis-network/docs/network<br> - https://fontawesome.com/v4/icons/<br> - https://code.google.com/archive/p/crypto-js/<br> - https://github.com/inorganik/debugout.js<br> - https://nodejs.org/en<br> - https://hapi.dev/<br> - https://github.com/rigon/hapi-url<br> - https://github.com/websockets/ws/blob/master/doc/ws.md
