@@ -1,4 +1,4 @@
-## IoTwebUI addon IT [EN]()
+## IoTwebUI addon IT [EN](#iotwebui-addon)
 
 Gli ADDON altro non sono che grandi MACRO (cioè funzioni js): in genere creano e gesticono **x-dervice**, ma poswsono essere usate per librerie custom di MACRO specializzate etc. <br>
 Il vantaggio è che sono contenuti in un singolo file, facilmente aggiornabile ed anche scambiabile tra utenti, contenente tutte le istruzioni per l'uso, permettondo l'estensione 'su misura' delle funzionalità di IoTwebUI. <br>
@@ -19,7 +19,7 @@ con poca customizzazione, usa auto-discovery per individuare i device.
 * **testerbattery01.js** _x-device_: Applicazione completa comprensiva di interfaccia utente HTML. Richiede scheda HW TY-08Z, clone01, tester01.html. (vedi [TestBattery01_leggimi](https://github.com/msillano/IoTwebUI/blob/main/addon/TestBattery01_leggimi.pdf) )
              
 
-## IoTwebUI addon
+## IoTwebUI user addon
 
 ADDONs are nothing more than large MACROs (i.e. js functions): they generally create and manage **x-dervice**, but they can be used for custom libraries of specialized MACROs, etc. <br>
 The advantage is that they are contained in a single file, easily updatable and also exchangeable between users, containing all the instructions for use, allowing the 'tailor-made' extension of IoTwebUI functionality. <br>
