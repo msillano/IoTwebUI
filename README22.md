@@ -151,7 +151,7 @@ _note: If you are interested in decoding Tuya values, see a [complete example](h
 
 - Added the device name to all tooltips.
 - It is possible to 'export' tooltips with [Ctrl] + [click] in a pop-up that can be easily copied with copy-paste.
-- The tooltip format is CSV compatible, using ':' as field separator. So the data of a tooltip is easily importable into a spreadsheet (e.g. Excel) for further use.
+- The tooltip format is now CSV compatible, using ':' as field separator. So the data of a tooltip is easily importable into a spreadsheet (e.g. Excel) for further use.
 - The updated versions of the example x-devices (in GitHub, /addon) are also optimized for export.
   
 ### Logging and data export
@@ -241,10 +241,10 @@ You can manage two sets of RULES: those in <i>use</i>, initially read from the `
 The commands present offer the following features;
 <ul>
 <li> <b> Clear </b>- clears the edit area
-<li> <b> Load </b>- copies the currently used RULES to Edit
-<li> <b> Replace </b>- the currently used RULES are replaced by the ones in the edit.
-<li> <b> Export </b>- Creates a pop-up to see the definitions of the RULES in use. <i>Permanent RULES are in the file 'usrrulesXX.X.js': they can be edited directly or copied from the pop-up.</i>
-<li> <b> Test Start </b>- Start testing the RULES in Edit: the RULES in use are suspended.
+<li> <b> Load </b>- copies the currently used RULES to the Edit pad.
+<li> <b> Replace </b>- the currently used RULES are replaced by the ones in the Edit pad.
+<li> <b> Export </b>- Creates a pop-up to see the definitions of the RULES in use. <i>Permanent RULES are in the file 'usrrulesXX.X.js': they can be edited directly or copied from this pop-up.</i>
+<li> <b> Test Start </b>- Start testing the RULES in Edit pad: the RULES in use are suspended.
 <li> <b> Test End</b>- Ends the Test and restores the previous RULES (auto in case of error)
 </ul>
 </TD>
@@ -290,13 +290,16 @@ _note: the request for consent to use the microphone depends on the browser and 
 In IoTwebUI there are 2 REST interfaces:
 
 1. _REST client_, implemented as MACRO in two versions: TXT and JSON, allows you to import external data into the RULES, from web services, or even from third-party devices or DIY devices that implement a REST interface. _It is therefore possible to make Tuya interact with custom devices_: to create DIY devices with Arduino or ESP8266 see [example](https://github.com/msillano/tuyaDEAMON-applications/wiki/note-5:-Watchdog-for-IOT#watchdog03-esp01-relay--arduino).
-2. _REST server_, for exporting Tuya device data and controlling automations and alarms, towards custom applications or interfaces. For details [see IoTrest documentation](https://github.com/msillano/IoTwebUI/blob/main/RESTserver/LEGGIMI-REST22.md).
+2. _REST server_, for exporting Tuya device data and controlling automations and alarms, towards custom applications or interfaces. For details [see IoTrest documentation](https://github.com/msillano/IoTwebUI/blob/main/RESTserver/README.md).
 
 _These two paths finally allow the integration of Tuya in vertical projects, without altering the basic functioning of Tuya/Smartlife, but enriching it with new potential, with a simpler strategy than the pre-existing alternatives (e.g. tuyaDAEMON, HA, etc...)_
 
 <hr style="height:2px;border-width:0;color:gray;background-color:gray">
 
 ## Versions
+- 2.2.3 Bug Fixes
+    - Updated some MACROs
+- 
 - 2.2.2 Bug Fixes
    - Added tooltip export function with [Ctrl]+[Click], CSV format (':' separator)
    - Addons and HTML dirs removed from Zip: use the latest versions directly from GitHub!
