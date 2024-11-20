@@ -299,7 +299,7 @@ _These two paths finally allow the integration of Tuya in vertical projects, wit
 ## Versions
 - 2.2.3 Bug Fixes
     - Updated some MACROs
-- 
+
 - 2.2.2 Bug Fixes
    - Added tooltip export function with [Ctrl]+[Click], CSV format (':' separator)
    - Addons and HTML dirs removed from Zip: use the latest versions directly from GitHub!
