@@ -7,7 +7,7 @@ Using the [RESTserver](https://github.com/msillano/IoTwebUI/blob/main/RESTserver
 The simplest application of these features is the creation of user interfaces in HTML (WEB).<br>
 Here we have a collection of examples:
 
-a) **Widget Libraries**: they have the particularity that it is enough to place a widget with two numbers (x, y) in a web page with background:
+a) **Widget Libraries**: they have the particularity that it is enough to place a widget with two numbers (x, y) in a web page with a background:
 the update and the operation is automatic. All the example pages are made with this technique, really fast and simple.<br>
 They reside in the dir `html/inc/`:
 * **iotwidget01.js** offers 6 widgets: icon, icotip, value, bigvalue, bigbutton, imgbutton
@@ -16,11 +16,11 @@ They reside in the dir `html/inc/`:
 * _restget.js_ required by `iotwidget01.js` and `iotwidget02.js`
 
 b) **Example usage** ( dir `html/`)
-* **clima01.html** uses only `iotwidget01.js` and, as a backend, the x-device `clima01-xdevice.js`. Uses real devices as data source (requires customization).
+* **clima01.html** uses only `iotwidget01.js` and, as a backend, the x-device `clima01-xdevice.js`. Uses real devices as the data source (requires customization).
 For details see [clima01-readme](https://github.com/msillano/IoTwebUI/blob/main/html/clima01-readme.md) with information about the MPV pattern used!
-* **test02.html** uses only `iotwidget02.js` and uses real devices as data source (requires customization).
+* **test02.html** uses only `iotwidget02.js` and uses real devices as the data source (requires customization).
 For details see [test02-readme](https://github.com/msillano/IoTwebUI/blob/main/html/test02-readme.md)
 * **tester01.html** real WEB APP, for testing NI-MH batteries. see [TestBattery01_leggimi](https://github.com/msillano/IoTwebUI/blob/main/addon/TestBattery01_leggimi.pdf)
 Requires ad hoc HW, TY-08Z device, cloner01, testbattery01, iotwidget01.js, iotwidget02.js<br>
-In the documentation there is also a hint on the process of developing custom APPs using Tuya + IoTwebUI.
-In addition, in the dir there are some graphic files required by the examples.
+In the documentation, there is also a hint about the process of developing custom APPs using Tuya + IoTwebUI.
+In addition, in the dir, there are some graphic files required by the examples.
