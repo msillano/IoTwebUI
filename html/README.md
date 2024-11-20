@@ -4,7 +4,7 @@ Using the [RESTserver](https://github.com/msillano/IoTwebUI/blob/main/RESTserver
 1. Access the data of the Tuya and x-device devices in IoTwebUI
 2. Launch a scene ('tap-tro-run) or a RULE (with name).
 
-The simplest application of these features is the creation of user interfaces in HTML (WEB).<br>
+The simplest application of these features is the creation of user interfaces in HTML (WEB) as a REST client.<br>
 Here we have a collection of examples:
 
 a) **Widget Libraries**: they have the particularity that it is enough to place a widget with two numbers (x, y) in a web page with a background:
