@@ -87,7 +87,7 @@ The EXPERT mode offers total control over the customization of IoTwebUI.
 
 #### REST Interface: Simple and standard access to IoTwebUI
 
-A _REST server_ interface in **IoTwebUI** provides a powerful, flexible, and standardized way to interact with your IoT devices, simplifying development and integration with WEB applications and interfaces. See [installation and details](https://github.com/msillano/IoTwebUI/blob/main/RESTserver/README-REST22.md).
+A _REST server_ interface in **IoTwebUI** provides a powerful, flexible, and standardized way to interact with your IoT devices, simplifying development and integration with WEB applications and interfaces. Optional, see [installation and details](https://github.com/msillano/IoTwebUI/blob/main/RESTserver/README.md#installation-and-configuration).
 * Simplicity: The REST architecture is designed to be intuitive
 * Flexibility: You can access your IoT devices from any internet-connected device, using any programming language that supports HTTP requests.
 * Standards: REST is a widely adopted standard, meaning that many libraries and tools are available to simplify development.
