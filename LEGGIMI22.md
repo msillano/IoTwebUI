@@ -300,11 +300,10 @@ _Queste due strade permettono finalmente l'integrazione di Tuya in progetti vert
 ## Versioni
 - 2.2.3  correzione Bugs
 -  - Aggiornate alcune macro
-   - le dir html/ e addon/ sono escluse dallo ZIP di installazione: saricare l'ultima versione da GitHub.
     
 - 2.2.2  correzione Bugs
   - Aggiunta funzione di export dei tooltip con [Ctrl]+[Click], formato CSV (':' separatore)
-  - Dir Addons e HTLM tolte dallo Zip: usare le ultime versioni direttamente da GitHub!
+  - Dir  `html/` e `addon/` tolte dallo Zip: usare le ultime versioni direttamente da GitHub!
 
 - 2.2.1  correzione Bugs
   - Aggiunti widget per interfacce web: iotwidget01 e iotwidget02 in html/inc/
