@@ -1,8 +1,8 @@
 ## IoTwebUI user addon
 
 ADDONs are nothing more than large MACROs (i.e. js functions): they generally create and manage **x-dervice**, but they can be used for custom libraries of specialized MACROs, etc. <br>
-The advantage is that they are contained in a single file, easily updatable and also exchangeable between users, containing all the instructions for use, allowing the 'tailor-made' extension of IoTwebUI functionality. <br>
-Each user can choose the ADDONs that he/she considers most useful, or can create his/her own, perhaps by modifying a published addon.
+The advantage is that they are contained in a single file, easily updatable and also exchangeable between users. They contain all the instructions for use, allowing the 'tailor-made' extension of IoTwebUI functionality. <br>
+Each user can choose the ADDONs that he/she considers most useful or create his/her own, perhaps by modifying a published addon.
 A user can always add an ADDON to his/her IoTwebUI instance (detailed instructions in each Addon):<br>
 - The file must be in the `addon/` dir
 - The user must insert a new line in the main file (IoTwebUI.html)
