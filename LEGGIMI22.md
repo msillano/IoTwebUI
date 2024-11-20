@@ -298,6 +298,10 @@ _Queste due strade permettono finalmente l'integrazione di Tuya in progetti vert
 <hr style="height:2px;border-width:0;color:gray;background-color:gray">
 
 ## Versioni
+- 2.2.3  correzione Bugs
+-  - Aggiornate alcune macro
+   - le dir html/ e addon/ sono escluse dallo ZIP di installazione: saricare l'ultima versione da GitHub.
+    
 - 2.2.2  correzione Bugs
   - Aggiunta funzione di export dei tooltip con [Ctrl]+[Click], formato CSV (':' separatore)
   - Dir Addons e HTLM tolte dallo Zip: usare le ultime versioni direttamente da GitHub!
