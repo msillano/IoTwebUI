@@ -12,7 +12,7 @@ _What can you do?_<br>
 👌 Perfect integration: Combine device, property, voice, RULES, and Tuya tap-to-run for smooth, complete, and reliable automation. <br>
 
 **_New, version 2.2_**
-* _REST interface_: web service for simple connection with applications or custom interfaces (document [README-REST22](https://github.com/msillano/IoTwebUI/blob/main/RESTserver/README-REST22.md)).<br>
+* _REST interface_: web service for simple connection with applications or custom interfaces (document [README](https://github.com/msillano/IoTwebUI/blob/main/RESTserver/README.md)).<br>
 * _Examples of custom HTML pages, and widget libraries: see [HTML](https://github.com/msillano/IoTwebUI/tree/main/html) dir._
 * _**x-device**: IoTwebUI virtual devices, recursive, and [addon](https://github.com/msillano/IoTwebUI/tree/main/addon) cooperation mechanism._
 * _Internationalization_: multilingual user interface versions and the 'voice' module.
