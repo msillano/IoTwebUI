@@ -10,4 +10,5 @@ Per comodità di uso li abbiamo separati in questa dir: in fase di installazione
 
 ## Owerview
 <table>
-<tr><td>    </td><td>  </td></tr>
+
+<tr><td width = 100%>    </td><td><img src="https://github.com/msillano/IoTwebUI/blob/main/pics/app02.png?raw=true">  </td></tr>
