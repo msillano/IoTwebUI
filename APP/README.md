@@ -1,4 +1,4 @@
-#  APPLICTIONS IoTwebUI
+#  Tuya APPLICATIONS 
 
 By APP we mean an application with a user interface, that uses Tuya and IoTwebUI with REST, to achieve the most varied objectives.
 They normally comprise at least two files: a MACRO that acts as a middleware between the devices and the user interface, also implementing the 'business logic', and a simple user interface (usually in HTML).
@@ -12,15 +12,15 @@ Per comodità di uso li abbiamo separati in questa dir: in fase di installazione
 <table width="100%">
 
 <tr><td colspan=2>  <b><i>Explore</i></b><br><br> 
-Application for 'power users'. It allows you to access all the details of our devices, obtaining them both from the Cloud and from IoTwebUI.
-Also useful for users of tuyaDAEMON, HA, etc. In fact, it allows you to quickly find the keys, codes and any info of a new device!<br>
+Application for 'power users'. It allows you to access all the details of our devices, obtaining them both from the Cloud and IoTwebUI.
+Also useful for users of tuyaDAEMON, HA, etc. It allows you to quickly find the keys, codes, and any info of a new device!<br>
 <hr>
-_Applicazione per 'power users'. Permette di accedere a tutti i dettagli delle nostre device, ottenendoli sia dal Cloud, che da IoTwebUI.
-Utile anche per gli utenti di tuyaDAEMON, HA, etc.  Infatti permette di trovare rapidamente le key, i codici e qualunque info di una nuova device!_
+<i>Applicazione per 'power users'. Permette di accedere a tutti i dettagli delle nostre device, ottenendoli sia dal Cloud, che da IoTwebUI.
+_Utile anche per gli utenti di tuyaDAEMON, HA, etc.  Infatti permette di trovare rapidamente le key, i codici e qualunque info di una nuova device!<i>
 </td><td width="200px"><img src="https://github.com/msillano/IoTwebUI/blob/main/pics/app02.png?raw=true" />  </td></tr>
 <tr><td width = "400pt"><img src="https://github.com/msillano/IoTwebUI/blob/main/pics/app03.png?raw=true"></td><td colspan=2>  <b><i>Battery Tester</i></b><br><br>
-Measures the efficiency of a battery by plotting its discharge and measuring the accumulated charge in mAh.<hr>
+Measures the efficiency of a rechargeable battery by plotting its discharge and measuring the accumulated charge in mAh.<hr>
 
-Misura l'efficienza di una batteria, tracciando il grafico della sua scarica e misurando la carica accumulata in mAh.
+<i>Misura l'efficienza di una batteria ricaricabile, tracciando il grafico della sua scarica e misurando la carica accumulata in mAh.</i>
      </td></tr>
 </table>
