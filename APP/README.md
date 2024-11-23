@@ -12,3 +12,4 @@ Per comodità di uso li abbiamo separati in questa dir: in fase di installazione
 <table>
 
 <tr><td width = "100%">  testo  </td><td><img src="https://github.com/msillano/IoTwebUI/blob/main/pics/app02.png?raw=true" />  </td></tr>
+</table>
