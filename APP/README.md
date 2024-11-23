@@ -18,7 +18,9 @@ Also useful for users of tuyaDAEMON, HA, etc. In fact, it allows you to quickly 
 _Applicazione per 'power users'. Permette di accedere a tutti i dettagli delle nostre device, ottenendoli sia dal Cloud, che da IoTwebUI.
 Utile anche per gli utenti di tuyaDAEMON, HA, etc.  Infatti permette di trovare rapidamente le key, i codici e qualunque info di una nuova device!_
 </td><td width="200px"><img src="https://github.com/msillano/IoTwebUI/blob/main/pics/app02.png?raw=true" />  </td></tr>
-<tr><td width = "300pt"></td><td colspan=2>  <b><i>Battery Tester</i></b><br><br>
+<tr><td width = "400pt"><img src="https://github.com/msillano/IoTwebUI/blob/main/pics/app03.png?raw=true"></td><td colspan=2>  <b><i>Battery Tester</i></b><br><br>
+Measures the efficiency of a battery by plotting its discharge and measuring the accumulated charge in mAh.<hr>
 
+Misura l'efficienza di una batteria, tracciando il grafico della sua scarica e misurando la carica accumulata in mAh.
      </td></tr>
 </table>
