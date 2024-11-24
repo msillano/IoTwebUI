@@ -1,4 +1,5 @@
 ## IoTwebUI HTML stuff
+[versione italiana](https://github.com/msillano/IoTwebUI/blob/main/html/LEGGIMI.md)
 
 Using the [RESTserver](https://github.com/msillano/IoTwebUI/blob/main/RESTserver/LEGGIMI-REST22.md) a client can:
 1. Access the data of the Tuya and x-device devices in IoTwebUI
