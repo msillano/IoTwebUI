@@ -16,9 +16,9 @@ Questa applicazione permette un rapido e semplice accesso alle principali strutt
 1. **Tuya Info**
 Fornisce una serie di **attributi** riguardanti il device: `category`, `is_online`, `sub`, `local_key` etc...
 2. **Tuya standard set** 
-Elenco (ridotto) di **dati RT**, associati ad una categoria (tipo). Divisi in 'status' (RO) e 'functions' (RW). Tuya usa questo modello quando mancano informazioni specifiche. Esempio, device Zigbee NON Tuya campatibili! Oppure per aggiornamenti rapidi.
+Descrizione dei **dati RT**, associati ad una categoria (tipo). Divisi in 'status' (RO) e 'functions' (RW). Tuya usa questo modello quando mancano informazioni specifiche. Esempio, device Zigbee NON Tuya campatibili! Oppure per aggiornamenti rapidi.
 3. **Tuya model**
-Elenco specifico di dati RT, associati ad un device Tuya. In genere più ricco dello 'standard model'.
+Descrizione specifica dei dati RT, associati ad un device Tuya. In genere più ricca dello 'standard model'.
 4. **Tuya schema**
 Elenco dettagliato (segue 'Tuya model') dei dati RT specifici di un device, ma con info extra, e.g. l'indice DP (sostuito da 'code') e gli attuali valori. Questi dati sono utilizzati dalla MACRO CLONER01() per costruire/mantenere la copia di un device, quando interessa un dato RT presente 'schema' ma non in 'standard model'. 
 5. **IoTwebUI**
