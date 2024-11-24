@@ -1,4 +1,5 @@
 ## IoTwebUI user addon
+[versione italiana](https://github.com/msillano/IoTwebUI/blob/main/addon/LEGGIMI.md)
 
 ADDONs are nothing more than large MACROs (i.e. js functions): they generally create and manage **x-dervice**, but they can be used for custom libraries of specialized MACROs, etc. <br>
 The advantage is that they are contained in a single file, easily updatable and also exchangeable between users. They contain all the instructions for use, allowing the 'tailor-made' extension of IoTwebUI functionality. <br>
