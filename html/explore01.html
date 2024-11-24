@@ -1,0 +1,113 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<!--
+USER frontend for EXPLORE01 - device info
+
+Requires: 
+  IotWebUI 2.2, REST2.2, EXPLORE01 installati e funzionanti.
+Più
+  inc/restget.js
+  blank.gif
+  preview_emptyrrect1.png
+  
+ -->
+
+<html>
+<head>
+<title></title>
+<!-- Created with an unregistered copy of Dynamic HTML WYSIWYG Editor -->
+<meta http-equiv="Content-Type" content="text/html; charset=Windows-1252">
+<meta http-equiv="Content-Style-Type" content="text/css">
+<meta name="GENERATOR" content="Dynamic HTML Editor v.6.8 - http://www.hexagora.com">
+<script type="text/javascript" src="inc/restget.js"> </script >
+
+<script language="javascript" type="text/javascript">
+<!--
+const baseURL = 'http://localhost:3031/IoTrest/';
+const xDeviceName = "Explore";   // the name of x.device from MACRO EXPLORE01() (in RULE)
+let xid ="";
+
+function setId(){
+  xid = document.getElementById("Text1").value.trim();  //.innerText;
+  RESTget(baseURL + "set/" + xDeviceName +"/device/" + xid);
+// console.log("ID "+ xid);
+}
+ 
+function doIoT() {
+  RESTget(baseURL + "set/" + xDeviceName +"/action/iot");
+  }
+
+function doInfo() {
+  RESTget(baseURL + "set/" + xDeviceName +"/action/info");
+  }
+  
+function doSchema() {
+  RESTget(baseURL + "set/" + xDeviceName +"/action/schema");
+}
+
+function doModel() {
+  RESTget(baseURL + "set/" + xDeviceName +"/action/model");
+}
+
+function doStandard() {
+  RESTget(baseURL + "set/" + xDeviceName +"/action/standard");
+}
+
+//-->
+</script>
+<style>
+body {margin: 0px; padding: 0px; border: 0px; vertical-align: baseline; text-align: left; font-size: 10px; -webkit-text-size-adjust: 100%; }
+form {margin: 0px; padding: 0px; border: 0px;}
+.verdana100FFFFFFt {font-family: Verdana, Geneva, sans-serif; font-size: 13px; color: #000000; text-decoration: none;}
+.verdana14C0C000FFFFFFtib {font-family: Verdana, Geneva, sans-serif; font-size: 19px; color: #00C0C0; font-weight: bold; font-style: italic; text-decoration: none;}
+
+</style>
+</head>
+
+
+
+<body text="#00C0C0" bgcolor="#FFFFFF" link="#0000FF" alink="#FF0000" vlink="#800080">
+
+<table width="242" border="0" cellspacing="0" cellpadding="0" style="position: relative;">
+<tr>
+<td>
+<img src="blank.gif" width="20" height="6" border="0" alt=""></td>
+<td>
+<img src="blank.gif" width="222" height="1" border="0" alt=""></td></tr>
+<tr>
+<td>
+<img src="blank.gif" width="1" height="311" border="0" alt=""></td>
+<td align="left" valign="top">
+<img id="EmptyRRect1" src="preview_emptyrrect1.png" width="222" height="311" border="0" alt=""></td></tr></table>
+
+
+<div id="ldheText1" style="position: absolute; left: 44px; top: 65px;">
+
+<input type="text" id="Text1" name="Text1" style="width: 175px; height: 24px;" value="device Id/name" maxlength="255" onblur="setId();"></div>
+
+
+<div id="ldheButton1" style="position: absolute; left: 44px; top: 121px;" onClick="doInfo();">
+
+<input type="button" id="Button1" name="Button1" style="width: 147px; height: 26px;" value="Tuya info" title="Device Attributes"></div>
+
+<div id="ldheButton2" style="position: absolute; left: 44px; top: 159px;" onClick="doStandard();">
+
+<input type="button" id="Button2" name="Button2" style="width: 147px; height: 25px;" value="Tuya standard set" title="'Type' Data model"></div>
+
+<div id="ldheButton3" style="position: absolute; left: 44px; top: 195px;" onClick="doModel();">
+
+<input type="button" id="Button3" name="Button3" style="width: 147px; height: 25px;" value="Tuya model" title="'Device' Data model"></div>
+
+<div id="ldheButton4" style="position: absolute; left: 44px; top: 233px;" onClick="doSchema();">
+
+<input type="button" id="Button4" name="Button4" style="width: 147px; height: 25px;" value="Tuya schema" title="RT Data - as per CLONE()"></div>
+
+<div id="ldheButton10" style="position: absolute; left: 44px; top: 268px;" onClick="doIoT();">
+
+<input type="button" id="Button10" name="Button10" style="width: 147px; height: 25px;" value="IoTwebUI" title="Available RT Data&Attributes"></div>
+
+<div id="ldheLabel1" style="position: absolute; left: 36px; top: 23px; width: 176px; height: 23px; text-align: justify;">
+<span class="verdana14C0C000FFFFFFtib">Esplore device</span></div>
+
+</body>
+
+</html>
