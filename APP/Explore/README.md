@@ -4,7 +4,7 @@
 _Pur seguendo delle regole comuni, i device Tuya hanno carateristiche che variano molto, dipendendo in ultima analisi dai costruttori e dai loro obiettivi commerciali.
 Tramite SmartLife noi possimo accedere ad alcuni dati di un device: i principali sono presentati nella pagina del device, eventualmente con grafici, e troviamo quali condizioni possono gestire e le azioni che possiamo fare durante la creazione di una 'automazione'. Nelle info troviamo il device Id, etc._
 <table width = "100%"><tr><td>
-Le informazioni accessibili con SmartLife non esauriscono le potenzialità di un device, e spesso, per ulilizzare un device al meglio sia con SmartLife che con l'aiuto di altre APP, occorrono maggiori informazioni: esempio Key di accesso, informazioni sui dati, come il Dp (Data Point) di uso interno, etc... che non sono utilizzati o accessibili con SmartLife. Anche solo l'elenco completo dei dati RT di un device era un'informazione difficile da reperire un anno fà.</td><td   width="300pt">
+Le informazioni accessibili con SmartLife non esauriscono le potenzialità di un device, e spesso, per ulilizzare un device al meglio sia con SmartLife che con l'aiuto di altre APP, occorrono maggiori informazioni: esempio Key di accesso, informazioni sui dati, come il Dp (Data Point) di uso interno, etc... che non sono utilizzati o accessibili con SmartLife. Anche solo l'elenco completo dei dati RT di un device era un'informazione difficile da reperire un anno fà.</td><td   width="200pt">
 <img src="https://github.com/msillano/IoTwebUI/blob/main/pics/app02.png?raw=true">
 </td></tr></table>
 
