@@ -74,7 +74,7 @@ function EXPLORE01( xname, room = "tools", home = 'ADMIN') {             // defa
 		   if (odev.id.startsWith("x-")) {
 			   autoPopup(odev.name +" "+stp, tit+ JSON.stringify(odev, undefined, 2));
 		   }else {
-			   const api_url = "/v2.0/cloud/thing/"+idx;
+			   const api_url = "/v2.0/cloud/thing/"+odev.id;
 			   const x = callAPI('GET', api_url); 
 //			   console.log("EXPLORE01.schema", x);
 			   autoPopup(odev.name +" "+stp, tit+  JSON.stringify(x, undefined, 2));
@@ -85,7 +85,7 @@ function EXPLORE01( xname, room = "tools", home = 'ADMIN') {             // defa
 		   if (odev.id.startsWith("x-")) {
 			   autoPopup(odev.name +" "+stp, tit+ JSON.stringify(odev.status, undefined, 2));
 		   }else {
-			   const api_url = "/v2.0/cloud/thing/"+idx+"/shadow/properties";
+			   const api_url = "/v2.0/cloud/thing/"+odev.id+"/shadow/properties";
 			   const x = callAPI('GET', api_url); 
 //			   console.log("EXPLORE01.schema", x);
 			   autoPopup(odev.name +" "+stp, tit+  JSON.stringify(x, undefined, 2));
@@ -96,7 +96,7 @@ function EXPLORE01( xname, room = "tools", home = 'ADMIN') {             // defa
 		   if (odev.id.startsWith("x-")) {
 			   autoPopup(odev.name +" "+stp, tit+ JSON.stringify(odev.status, undefined, 2));
 		   }else {
-			   const api_url = "/v2.0/cloud/thing/"+idx+"/model";
+			   const api_url = "/v2.0/cloud/thing/"+odev.id+"/model";
                let x = callAPI('GET', api_url).model;
                let b = x.replace('\\"', '"');	
                x = JSON.parse(b);			   
@@ -110,7 +110,7 @@ function EXPLORE01( xname, room = "tools", home = 'ADMIN') {             // defa
 			   autoPopup(odev.name +" "+stp, tit+ JSON.stringify(odev.status, undefined, 2));
 		   }else {
 //			   const api_url = "/v2.0/cloud/thing/"+idx+"/model";
-	           const api_url = "/v1.0/iot-03/devices/"+idx+"/specification";
+	           const api_url = "/v1.0/iot-03/devices/"+odev.id+"/specification";
 			   let x = callAPI('GET', api_url);
 			   console.log("EXPLORE01.standard", x);
 			   autoPopup(odev.name +" "+stp, tit+  JSON.stringify(x, undefined, 2));
