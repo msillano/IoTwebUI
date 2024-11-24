@@ -592,7 +592,7 @@ Gli **x-device**, oltre alla presentazione dei dati, possono anche gestire 'azio
 1. Ho un device 'non Tuya' che riesco a controllare via REST (client): associando a questo device un _x-device_ 'alias', ed aggornandone i valori a specchio, ho il device visibile ed utilizzabile  in _IoTwebUI_ come un device Tuya nativo!
 2. Varie device contribuiscono a formare dei 'sistemi', e.g. Riscaldamento, antifurto, consumi etc... Una _x-device_ 'di sistema' che presenta i dati elaborati consuntivi del sistema stesso, è utile e facilmente consultabile.
 3. Pagine HTML possono fare da interfaccia: chiedono i dati aggiornati a varie device via REST-server. Usando un _x-device_, 'di sintesi' che riunisca tutti i dati necessari alla interfaccia HTML, si deve semplicemente consultare un'unico device. Inoltre si ha la possibilità di monitorare il sistema da _IoTwebUI_ e si separa l'elaborazione dati dalla interfaccia di visualizzazione,  semplificandone la realizzazione._
-4. In sintesi gli _x-device_ costituiscono un strato di middleware OOP tra i device Tuya atomiche e le applicazioni/UI.
+4. In sintesi gli _x-device_ costituiscono un strato di middleware OOP tra i device Tuya atomici e le applicazioni/UI.
 
 **_Limiti per x-device_**
 
@@ -660,8 +660,9 @@ nota: ADDXDEVICE() inizia 'online' con false: solo dopo aver completato tutti i 
 <dt>SETXDEVICEONLINE(device)</dt>
 <dt>SETXDEVICEONLINE(device, online)</dt>
 <dd> Permette il controllo dell'attributo 'online' (default 'true') per gli x-device<br>
-<i>Esempio:</i> 
 </dd>
+
+
 
 <dt>REST(url)</dt>
 <dd> Client REST, per servizi web API REST (GET) o device che tornano come risposta un testo semplice.<br>
