@@ -14,7 +14,7 @@ Le informazioni accessibili con SmartLife non esauriscono le potenzialità di un
 Questa applicazione permette un rapido e semplice accesso alle principali strutture riguardanti un device, così come sono ottenute da tuyaAPI o da IoTwebUI:
 
 1. **Tuya Info**
-Fornisce una serie di **attributi** riguardanti il device: `category`, `is_online`, `sub`, `local_key` etc...
+Fornisce una serie di **attributi** riguardanti il device: `id`, `local_key`, `category`, `is_online`, `sub` etc...
 2. **Tuya standard set** 
 Descrizione dei **dati RT**, associati ad una categoria (tipo). Divisi in 'status' (RO) e 'functions' (RW). Tuya usa questo modello quando mancano informazioni specifiche. Esempio, device Zigbee NON Tuya campatibili! Oppure per aggiornamenti rapidi.
 3. **Tuya model**
