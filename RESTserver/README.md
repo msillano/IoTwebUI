@@ -1,4 +1,5 @@
 # **IoTrest: A REST bridge for your Tuya devices**
+[versione italiana[(https://github.com/msillano/IoTwebUI/blob/main/RESTserver/LEGGIMI-REST22.md)
 
 **IoTrest** is an optional extension for **IoTwebUI** 2.2 that turns your Tuya devices into a _**web service** accessible via simple HTTP_ requests. In addition to reading data from your devices, IoTrest allows you to interact with them in an advanced way, triggering scenes and rules, and receiving alerts in real-time.
 
