@@ -20,7 +20,7 @@ Elenco (ridotto) di **dati RT**, associati ad una categoria (tipo). Divisi in 's
 3. **Tuya model**
 Elenco specifico di dati RT, associati ad un device Tuya. In genere più ricco dello 'standard model'.
 4. **Tuya schema**
-Elenco dettagliato (segue 'Tuya model') dei dati RT specifici di un device, ma con info extra, e.g. l'indice DP (sostuito da 'code') e gli attuali valori. Questi dati sono utilizzati da CLONE01() per costruire/mantenere la copia di un device, quando interessa un dato RT presente 'schema' ma non in 'standard model'. 
+Elenco dettagliato (segue 'Tuya model') dei dati RT specifici di un device, ma con info extra, e.g. l'indice DP (sostuito da 'code') e gli attuali valori. Questi dati sono utilizzati dalla MACRO CLONER01() per costruire/mantenere la copia di un device, quando interessa un dato RT presente 'schema' ma non in 'standard model'. 
 5. **IoTwebUI**
 Elenco completo (attributi e dati RT - segue 'standard model') dei dati presenti in IoTwebUI, con gli attuali valori. Questi valori sono tutti accessibili dall'utente e utilizzabili nelle REGOLE usando le MACRO GET() per i dati e GETATTRIBUTE() per gli altri attributi.
 
