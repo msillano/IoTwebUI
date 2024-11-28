@@ -13,8 +13,9 @@ _What can you do?_<br>
 
 _**New: in ver 2.2 for 'power users':**_
 - **Server REST** for custom APP and interfaces - see **/RESTserver** <br>
-- **clima01** interactive WEB custom page - see **/html**<br>
+- **clima01** interactive WEB custom page (example) - see **/html**<br>
 - **Addon** and virtual **x-device** with recursive composition - see **/addon**
+- **APPLICATION** with specialized user interface - see **/APP**<br>
 
 😃 [Version  2.2 - English](https://github.com/msillano/IoTwebUI/blob/main/README22.md) <br>
  ⬦ [Version  2.1 - English](https://github.com/msillano/IoTwebUI/blob/main/README21.md) <br>
@@ -38,6 +39,7 @@ _**New: nella ver 2.2 per 'power users':**_
 - **Server REST** per APP ed interfacce utente personalizzate - vedi **/RESTserver**<br>
 - **clima01** pagina WEB dinamica ed interattiva custom - vedi **/html**<br>
 - **Addon** e **x-device** virtuali ricorsive! - vedi **/addon**<br>
+- **APPLICATION** con interfaccia utente specializzata - vedi **/APP**<br>
 - [Esempio di strumentazione](https://github.com/msillano/IoTwebUI/blob/main/addon/TestBattery01_leggimi.pdf) implementata con **x-device** ed interfaccia utente.
 
 
