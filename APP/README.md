@@ -7,12 +7,12 @@ They normally comprise at least two files:
 
 We have separated them in this dir for ease of use: during installation, the files must be copied into your host's 'addon/' and 'html/' dirs.
 
-_Per APP intendiamo una applicazione dotata di propria interfaccia utente, che utilizza Tuya e IoTwebUI con REST, per realizzare gli obiettivi più svariati.
-Sono normalmente composte di almeno due file: 
-* una MACRO che fa da middleware tra i device e l'interfaccia utente, implementando anche la 'businnes logic',
-* una semplice interfaccia utente specializzata (in genere in HTML).
+_Per APP intendiamo una applicazione dotata di propria interfaccia utente, che utilizza Tuya e IoTwebUI con REST, per realizzare gli obiettivi più svariati._
+_Sono normalmente composte di almeno due file:_
+* _una MACRO che fa da middleware tra i device e l'interfaccia utente, implementando anche la 'businnes logic'_
+* _una semplice interfaccia utente specializzata (in genere in HTML)_
 
-Per comodità di uso li abbiamo separati in questa dir: in fase di installazione i file vanno copiati nelle dir 'addon/' e 'html/' della vostra installazione._  
+_Per comodità di uso li abbiamo separati in questa dir: in fase di installazione i file vanno copiati nelle dir 'addon/' e 'html/' della vostra installazione._  
 
 **Note di programmazione**<br>
 * Dettagli sul [Pattern MVP](https://github.com/msillano/IoTwebUI/blob/main/html/clima01-leggimi.md#pattern-mvp) 
