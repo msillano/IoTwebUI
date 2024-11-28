@@ -8,7 +8,9 @@ _Per APP intendiamo una applicazione dotata di propria interfaccia utente, che u
 Sono normalmente composte di almeno due file: una MACRO che fa da middleware tra i device e l'interfaccia utente, implementando anche la 'businnes logic', e una semplice interfaccia utente (in genere in HTML).<br>
 Per comodità di uso li abbiamo separati in questa dir: in fase di installazione i file vanno copiati nelle dir 'addon/' e 'html/' della vostra installazione._  
 
+**Note di programmazione**<br>
 * Dettagli sul [Pattern MVP](https://github.com/msillano/IoTwebUI/blob/main/html/clima01-leggimi.md#pattern-mvp) 
+* "Vantaggi di questa architettura" e 'Processo di sviluppo' in [testBattery01](https://github.com/msillano/IoTwebUI/blob/main/addon/TestBattery01_leggimi.pdf)
 
 ## Owerview
 <table width="100%">
