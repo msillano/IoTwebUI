@@ -908,15 +908,16 @@ Grazie per l'interesse <br>
 m.s.
 
 <hr>
-Tutti i marchi riportati appartengono ai legittimi proprietari.
-- https://www.tuya.com/
-- https://getbootstrap.com/docs/5.3/getting-started/introduction/
-- https://visjs.github.io/vis-network/docs/network
-- https://fontawesome.com/v4/icons/
-- https://code.google.com/archive/p/crypto-js/
-- https://github.com/inorganik/debugout.js 
-- https://nodejs.org/en
-- https://hapi.dev/
-- https://github.com/rigon/hapi-url
-- https://github.com/websockets/ws/blob/master/doc/ws.md
+Tutti i marchi riportati appartengono ai legittimi proprietari.<br>
+- https://www.tuya.com/ <br>
+- https://getbootstrap.com/docs/5.3/getting-started/introduction/ <br>
+- https://visjs.github.io/vis-network/docs/network <br>
+- https://fontawesome.com/v4/icons/ <br>
+- https://code.google.com/archive/p/crypto-js/ <br>
+- https://github.com/inorganik/debugout.js <br>
+- https://nodejs.org/en <br>
+- https://hapi.dev/ <br>
+- https://github.com/rigon/hapi-url <br>
+- https://github.com/websockets/ws/blob/master/doc/ws.md <br>
+- https://api.open-meteo.com
 
