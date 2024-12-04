@@ -31,11 +31,12 @@ Un'**x_device** (WEB Thermostat) si occopa di:
 Tutti i dati sono visibili nel tooltip di IoTwebUI, quindi accessibili tramite 'RULE'.
 In particolare servono due REGOLE per agire sullo swart switch del riscaldamento (raffrescamento).
 ```  
-    if(ISTRIGGERH(GET("WEB Thermostat","HOTout"))) SCENE("HOTTURNON"); 
-    if(ISTRIGGERL(GET("WEB Thermostat","HOTout"))) SCENE("HOTTURNOFF");
+    if(GET("WEB Thermostat","HOTout", false)) SCENE("HOTTURNON"); 
+    if(!GET("WEB Thermostat","HOTout", false)) SCENE("HOTTURNOFF");
 ``` 
-_`HOTTURNON` e `HOTTURNOFF` sono due 'tap-to-run' Tuya che accendono/spengono il riscaldamento_
+_`HOTTURNON` e `HOTTURNOFF` sono due 'tap-to-run' Tuya che accendono/spengono il riscaldamento: sono richiamate ad ogni loop._
 
 
 ### Interfaccia utente
-**WEB thermostat** è completo per funzionare. Volendo, IoTwebUI offre Allarmi e l'esportazione su file dei dati per chi desidera ulteriori elaborazioni.
+**WEB thermostat** è completo per funzionare. Volendo, IoTwebUI offre Allarmi e l'esportazione su file dei dati per chi desidera conservarli od eseguire ulteriori elaborazioni.
+E' anche disponibile una interfaccia WEB ad hoc, che utilizza REST per aggiornare i dati!
