@@ -8,7 +8,7 @@ E' l'unione di tre elementi:
 3. Un'interfaccia **WEB grafica** (opzionale) 
 
 ### Virtual 
-Ha un'interfaccia su SmartLife di uso anche remoto, utilizzando un device virtuale (https://www.tuyaexpo.com/product/1104012), che permette le principali funzioni di controllo utente:
+L'interfaccia su SmartLife di uso anche remoto, utilizza un device virtuale (https://www.tuyaexpo.com/product/1104012), e permette le principali funzioni di controllo utente:
 
 ![](https://github.com/msillano/IoTwebUI/blob/main/pics/virtual%20thermo.png?raw=true)
 
@@ -22,19 +22,19 @@ _nota: le funzioni legate all'HW non sono, ovviamente, utilizzabili in un device
 
 ### x_device 
 Un'**x_device** (WEB Thermostat) si occopa di:
-   1. Connessione con i sensori di temperatura (reali), uno o più di uno: è usata una media mobile per migliorare la sensibilità e ridurre il rumore.
-   2. Connessione con il device virtuale per leggere i valori scelti dall'utente.
+   1. Connessione con i _sensori di temperatura_ (reali), uno o più di uno: è usata una media mobile per migliorare la sensibilità e ridurre il rumore.
+   2. Connessione con il _device virtuale_ per leggere i valori scelti dall'utente.
    3. Logica di funzionamento del termostato:
        * Alla temperatura letta dalle sonde è applicabile un offset di correzione (in config).
        * Effettua i paragoni con +/- un delta regolabile (in config), è quindi un comparatore conisteresi. Consigliato 0.3°C
        * In modo 'auto' una variazione manuale ha effetto fino alla successiva temperatura programmata.
        * `TimeON` fornisce il tempo di accensione giornaliero (in ore). Il conteggio riparte ogni giorno alle 24:00
-   4. Sono presenti due uscite: una per riscaldamento (`HOTout`) e una per raffrescamento (`COLDout`). Valori `true/false`.
+   4. Sono presenti _due uscite_: una per riscaldamento (`HOTout`) e una per raffrescamento (`COLDout`). Valori `true/false`.
   
   ![](https://github.com/msillano/IoTwebUI/blob/main/pics/IoTwebUI03.png?raw=true)
   
 Tutti i dati sono visibili nel tooltip di IoTwebUI, quindi accessibili tramite 'RULE'.
-In particolare servono due REGOLE per agire sullo swart switch del riscaldamento (raffrescamento).
+In particolare servono due REGOLE (IoTwebUI) per agire sullo swart switch del riscaldamento (raffrescamento).
 ```  
     if(GET("WEB Thermostat","HOTout", false)) SCENE("HOTTURNON"); 
     if(!GET("WEB Thermostat","HOTout", false)) SCENE("HOTTURNOFF");
@@ -58,6 +58,6 @@ Poi
 Un'altro aspetto interessante è che si può usare un solo device virtuale per più x-device (e.g. uno per stanza) ognuno con le sue sonde, i suoi profili e lo 'smart relay' o una elettrovalvola comandata! Unica avvertenza creare e includere più file `thermostatXX.js` e cambiare il nome (`function THERMOSTATXX`(...)) ad ogni istanza.
 
 ### Interfaccia utente
-**WEB thermostat x-device** è completo per funzionare. Se si desidera, IoTwebUI offre Allarmi e l'esportazione su file dei dati per chi desidera conservarli od eseguire ulteriori elaborazioni.
-E' disponibile una interfaccia WEB ad hoc, che utilizza RESTserver,  per avere sott'occhio tutti dati!<br>
-_nota: l'interfaccia è del tutto opzionale, non interviene sulla logica di funzionamento di Thermostat01._
+**WEB thermostat x-device** è completo per funzionare. Se si desidera, **IoTwebUI** offre Allarmi e l'esportazione su file dei dati per chi desidera conservarli od eseguire ulteriori elaborazioni.
+E' disponibile una interfaccia WEB ad hoc, che utilizza **RESTserver**,  per avere sott'occhio tutti dati!<br>
+_nota: l'interfaccia è del tutto opzionale, non interviene sulla logica di funzionamento di **WEB thermostat**._
