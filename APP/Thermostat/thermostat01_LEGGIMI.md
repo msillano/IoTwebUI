@@ -2,9 +2,10 @@
 
 Questo è un termostato completo SW che utilizza le misure di uno (o più) sonde di temperatura Tuya per controllare uno smart switch per il riscaldamento (raffrescamento).
 E' l'unione di tre elementi:
-  .1 Interfaccia SmarLife (locale/remota) ottenuta con un device virtuale
-  .2 Un **x-device** che contiene tutta la logica di funzionamento
-  .3 Un'interfaccia WEB grafica (opzionale) 
+
+1. Interfaccia SmarLife (locale/remota) ottenuta con un **device virtuale**
+2. Un **x-device** che contiene tutta la logica di funzionamento
+3. Un'interfaccia **WEB grafica** (opzionale) 
 
 ### Virtual 
 Ha un'interfaccia su SmartLife di uso anche remoto, utilizzando un device virtuale (https://www.tuyaexpo.com/product/1104012), che permette le principali funzioni di controllo utente:
