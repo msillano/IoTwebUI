@@ -36,7 +36,7 @@ In particolare servono due REGOLE per agire sullo swart switch del riscaldamento
 ``` 
 _`HOTTURNON` e `HOTTURNOFF` sono due 'tap-to-run' Tuya che accendono/spengono il riscaldamento: sono richiamate ad ogni loop._
 
-Se il riscaldamento segue un orario predefinito, sono utili due 'autmazioni' che accendano/spengano il device virtuale agli stessi orari:
+Se il riscaldamento segue un orario predefinito, sono utili due 'automazioni' Tuya che accendano/spengano il device virtuale agli stessi orari:
 ```
 ## thermostatSTART:
 Se 
@@ -50,9 +50,9 @@ Se
 Poi
  . HeatingThermostat-vdev0.Switch : OFF
 ```
-Un'altro aspetto interessante è che si può usare un solo device virtuale per più x-device (e.g. uno per stanza) ognuno con le sue sonde, i suoi profili e lo 'smart relay' o una elettrovalvola comandata! Unica avvertenza cambiare il nome (function THERMOSTAT01(...)) ad ogni istanza.
+Un'altro aspetto interessante è che si può usare un solo device virtuale per più x-device (e.g. uno per stanza) ognuno con le sue sonde, i suoi profili e lo 'smart relay' o una elettrovalvola comandata! Unica avvertenza creare e includere più file `thermostatXX.js` e cambiare il nome (`function THERMOSTATXX`(...)) ad ogni istanza.
 
 ### Interfaccia utente
-**WEB thermostat** è completo per funzionare. Volendo, IoTwebUI offre Allarmi e l'esportazione su file dei dati per chi desidera conservarli od eseguire ulteriori elaborazioni.
-E' anche disponibile una interfaccia WEB ad hoc, che utilizza RESTserver,  pertenere sott'occhio tutti dati!<bvr>
-_nota: l'interfaccia è del tutto opzionale, non interviene sulla logica di funzionamento di Thermostat._
+**WEB thermostat x-device** è completo per funzionare. Se si desidera, IoTwebUI offre Allarmi e l'esportazione su file dei dati per chi desidera conservarli od eseguire ulteriori elaborazioni.
+E' disponibile una interfaccia WEB ad hoc, che utilizza RESTserver,  per avere sott'occhio tutti dati!<br>
+_nota: l'interfaccia è del tutto opzionale, non interviene sulla logica di funzionamento di Thermostat01._
