@@ -36,7 +36,21 @@ In particolare servono due REGOLE per agire sullo swart switch del riscaldamento
 ``` 
 _`HOTTURNON` e `HOTTURNOFF` sono due 'tap-to-run' Tuya che accendono/spengono il riscaldamento: sono richiamate ad ogni loop._
 
+Se il riscaldamento segue un orario predefinito, sono utili due 'autmazioni' che accendano/spengano il device virtuale agli stessi orari:
+```
+thermostatSTART
+Se 
+ . Pianifica ore 7:00 (Ogni giorno)
+Poi
+ . HeatingThermostat-vdev0.Switch : ON
+
+thermostatSTOP
+Se 
+ . Pianifica ore 23:00 (Ogni giorno)
+Poi
+ . HeatingThermostat-vdev0.Switch : OFF
+```
 
 ### Interfaccia utente
 **WEB thermostat** è completo per funzionare. Volendo, IoTwebUI offre Allarmi e l'esportazione su file dei dati per chi desidera conservarli od eseguire ulteriori elaborazioni.
-E' anche disponibile una interfaccia WEB ad hoc, che utilizza REST per aggiornare i dati!
+E' anche disponibile una interfaccia WEB ad hoc, che utilizza RESTserver per aggiornare i dati!
