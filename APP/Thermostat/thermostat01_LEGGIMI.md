@@ -122,6 +122,8 @@ _Queste considerazioni ne consigliano l'uso non come sistema primario, ma come d
    _In particolare controllare `xroom` (room: deve esistere), `xhome` (home: deve esistere), `nodeVirt` (nome del device virtuale), e `sonde` (nome, funzione e scala dei termometri TYuya usati). Tutti questi dati si possono leggere nei tooltip di **IoTwebUI**_<br>
  _La programmazione della temperatura può essere fatta in un secondo tempo, come anche la taratura di `ECOtemperature`, `delta` ed `offset`._
 
+    * Creare i richiesti 'tap-to-run' in SmartLife (e.g. `HOTTURNON`, `HOTTUROFF`) che  accendono/spengono il riscaldamento/raffreddamento, usando uno 'smart switch'.
+
     * Creare in  IoTwebUI le REGOLE necessarie, consiglio di modificare stabilmente `usrrules02.2.js`. Esempio, in caso di solo riscaldamento:
       
 ```
@@ -129,16 +131,15 @@ _Queste considerazioni ne consigliano l'uso non come sistema primario, ma come d
    if(GET("WEB Thermostat","HOTout", false)) SCENE("HOTTURNON"); 
    if(!GET("WEB Thermostat","HOTout", false)) SCENE("HOTTURNOFF");
 ```
-    * Creare i richiesti 'tap-to-run' in SmartLife (e.g. `HOTTURNON`, `HOTTUROFF`) che  accendono/spengono il riscaldamento/raffreddamento, usando uno 'smart switch'.
     
-    *  lanciare **IoTwebUI** (file `run_me.bat`) ed accedere con **SmartLife** al device virtuale (default: `HeatingThermostat-vdev0`).
+_Al termine lanciare **IoTwebUI** (file `run_me.bat`) ed accedere con **SmartLife** al device virtuale (default: `HeatingThermostat-vdev0`)._
 
 2. **Completa**
    * Installare [RESTserver](https://github.com/msillano/IoTwebUI/blob/main/RESTserver/LEGGIMI-REST22.md#installazione-e-configurazione)
    
    * Completare la configurazione di  `html/thermostat01.html`<br> _In particolare controllare x_term (nome del x-device, cioè `xname`, usato nella REGOLA di lancio),  `HOTdevId`  e `HOTcode` (sono i dati dello smart switch di riscaldamento, default usare `x_term` e `HOTout`) e `COLDdevId`, `COLDcode`  (sono i dati dello smart switch di raffrescamento, default usare `x_term` e `COLDout`)._
      
-   * Lanciare **RESTserver** (file `rest02.2/run_server.bat`), lanciare **IoTwebUI** (file `run_me.bat`) ed aprire `html/thermostat01.html` in un browser.
+_Al termine lanciare **RESTserver** (file `rest02.2/run_server.bat`), lanciare **IoTwebUI** (file `run_me.bat`) ed aprire `html/thermostat01.html` in un browser._
    
      
      
