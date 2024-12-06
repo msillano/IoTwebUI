@@ -37,6 +37,7 @@ Un'**x_device** (WEB Thermostat) si occopa di:
   
 Tutti i dati sono visibili nel tooltip di IoTwebUI, quindi accessibili tramite 'RULE'.
 In particolare servono due REGOLE (**IoTwebUI**) per agire sullo `swart switch` del riscaldamento (raffrescamento).
+
 ```  
     if(GET("WEB Thermostat","HOTout", false)) SCENE("HOTTURNON"); 
     if(!GET("WEB Thermostat","HOTout", false)) SCENE("HOTTURNOFF");
@@ -45,6 +46,7 @@ In particolare servono due REGOLE (**IoTwebUI**) per agire sullo `swart switch` 
 _`HOTTURNON` e `HOTTURNOFF` sono due 'tap-to-run' Tuya che accendono/spengono il riscaldamento: sono richiamate ad ogni loop (analogamente per il raffrescamento, se usato)._
 
 TIMER: orario ON/OFF. Se il riscaldamento segue un orario predefinito, sono utili due 'automazioni' Tuya che accendano/spengano il device virtuale agli stessi orari:
+
 ```
 ## thermostatSTART:
 Se 
@@ -60,6 +62,7 @@ Poi
 ```
 
 WEEKLY PROGRAM è implemetato in `addon/thermostat01.js` in questo modo:
+
 ````
  var Tprg = [
         DAYMAP(16, "08:00", 20, "18:00", 21, "23:00"), // domenica
