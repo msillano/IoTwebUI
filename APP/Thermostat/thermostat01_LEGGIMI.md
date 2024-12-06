@@ -14,9 +14,9 @@ L'interfaccia su SmartLife di uso anche remoto, utilizza un [device virtuale](ht
 
 _Switch:_ ON/OFF, agisce sul riscaldamento/raffrescamento <br>
 _Mode:_ scelta tra Manual, ECO, Program. 
-   * Manual: temperatura target regolabile in step di 0.5 °C
-   * ECO è una temperatura predefinita (configurabile).
-   * Program: per definire il profilo di temperatura non si usa l'intefeccia virtuale (limitata a 4 fasce giornaliere), ma è impostabile in `addon/thermostat01.js`, senza limiti di intervalli giornalieri.<br>
+   * _Manual_: temperatura target regolabile in step di 0.5 °C
+   * _ECO_ è una bassa temperatura predefinita, ma tale da rendere rapido il ripristino della temperatura di regime. Usato in caso di assenze prolungate. e.g. 16.5°
+   * _Program_: per definire il profilo di temperatura non si usa l'intefeccia virtuale (limitata a 4 fasce giornaliere), ma è impostabile in `addon/thermostat01.js`, senza limiti di intervalli giornalieri.<br>
 _Setpoint:_  La temperatura desiderata (mode _Manual_) oppure una modifica temporanea alla temperatura programmata (mode _Program_).<br>
 _ChildLoch_, _Weekly Program_, _Timer_ (tutte in impostazioni) NON sono disponibili nel 'device virtuale':  _Weekly Program_ e _Timer_ hanno implementazioni alternative in **x-device**.
 
@@ -61,15 +61,14 @@ Poi
 WEEKLY PROGRAM è implemetato in `addon/thermostat01.js` in questo modo:
 ````
  var Tprg = [
-        DAYMAP(16, "08:00", 20.5, "11:00", 16, "18:00", 21, "23:00"), // domenica
+        DAYMAP(16, "08:00", 20, "18:00", 21, "23:00"), // domenica
         DAYMAP(16, "08:00", 20, "11:00", 16, "18:00", 21, "23:00"), // lunedì
         <..etcetera..>
  ```
-Dove è indicata una temperatura, seguita dall'orario di termine, circolare. Si legge:
+Dove per ogni intervallo è indicata una temperatura, seguita dall'orario di termine, circolare. Si legge:
 ```
 domenica: dalle 23:00 alle  8:00 =>  16°
-          dalle  8:00 alle 11:00 =>  20.5° 
-          dalle 11:00 alle 18:00 =>  16°
+          dalle  8:00 alle 18:00 =>  20° 
           dalle 18:00 alle 23:00 =>  21°
  <..etcetera..>
 ```
@@ -77,7 +76,7 @@ domenica: dalle 23:00 alle  8:00 =>  16°
 Un'altro aspetto interessante è che si può usare un solo device virtuale per più x-device (e.g. uno per stanza) ognuno con le sue sonde, i suoi profili e uno 'smart relay' o una elettrovalvola comandata! Unica avvertenza creare e includere più file `thermostatXX.js` e cambiare il nome (`function THERMOSTATXX`(...)) ad ogni istanza.
 
 ### Interfaccia utente
-**WEB thermostat x-device** è completo per funzionare. <br>
+**WEB thermostat x-device** è completo ed autosufficiente. <br>
 Se si desidera, **IoTwebUI** offre Allarmi e l'esportazione su file dei dati per chi desidera conservarli od eseguire ulteriori elaborazioni.<br>
 E' disponibile una interfaccia WEB ad hoc, che utilizza **RESTserver**,  per avere sott'occhio tutti dati!<br>
 _nota: l'interfaccia è del tutto opzionale, non interviene sulla logica di funzionamento di **WEB thermostat**._
@@ -102,7 +101,7 @@ _Queste considerazioni ne consigliano l'uso non come sistema primario, ma come d
 
 ### Installazione
 1. **minima (senza UI)**
-   * installare **IoTwebUI** sul server scelto (vedi [IoTwebUI installazione](https://github.com/msillano/IoTwebUI/blob/main/LEGGIMI22.md#installazione)<br>
+   * installare **IoTwebUI** sul server scelto (vedi [IoTwebUI installazione](https://github.com/msillano/IoTwebUI/blob/main/LEGGIMI22.md#installazione))<br>
    _nota: inizialmente eliminare sia allarmi che Log, e porre `tuyaInterval = 180` (uso continuo) oppure  `tuyaInterval = 60` (uso saltuario, più pronto)._
 
    * copiare nella dir di **IoTwebUI** i file necessari: da [Github](https://github.com/msillano/IoTwebUI/tree/main/APP/Thermostat) alle dir `/addon` e `/html` di **IoTwebUI** installato.
@@ -125,7 +124,7 @@ _Queste considerazioni ne consigliano l'uso non come sistema primario, ma come d
 ```
     * Creare i richiesti 'tap-to-run' in SmartLife (e.g. `HOTTURNON`, `HOTTUROFF`) che  accendono/spengono il riscaldamento/raffreddamento, usando uno 'smart switch'.
     
-    *  lanciare **IoTwebUI** (file `run_me.bat`) ed accedere con **SmartLife** al device virtuale (
+    *  lanciare **IoTwebUI** (file `run_me.bat`) ed accedere con **SmartLife** al device virtuale (default: `HeatingThermostat-vdev0`).
 
 2. **Completa**
    * Installare [RESTserver](https://github.com/msillano/IoTwebUI/blob/main/RESTserver/LEGGIMI-REST22.md#installazione-e-configurazione)
