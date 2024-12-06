@@ -123,6 +123,7 @@ _Queste considerazioni ne consigliano l'uso non come sistema primario, ma come d
  _La programmazione della temperatura può essere fatta in un secondo tempo, come anche la taratura di `ECOtemperature`, `delta` ed `offset`._
 
     * Creare in  IoTwebUI le REGOLE necessarie, consiglio di modificare stabilmente `usrrules02.2.js`. Esempio, in caso di solo riscaldamento:
+      
 ```
    THERMOSTAT01();
    if(GET("WEB Thermostat","HOTout", false)) SCENE("HOTTURNON"); 
