@@ -8,28 +8,28 @@ E' l'unione di tre elementi:
 3. Un'interfaccia **WEB grafica** (opzionale) 
 
 ### Virtual 
-L'interfaccia su SmartLife di uso anche remoto, utilizza un [device virtuale](https://www.tuyaexpo.com/product/1104012), e permette le principali funzioni di controllo utente:
+L'interfaccia su SmartLife, di uso anche remoto, utilizza un [device virtuale](https://www.tuyaexpo.com/product/1104012), e permette le principali funzioni di controllo utente:
 
 ![](https://github.com/msillano/IoTwebUI/blob/main/pics/virtual%20thermo.png?raw=true)
 
 _Switch:_ ON/OFF, agisce sul riscaldamento/raffrescamento <br>
-_Mode:_ scelta tra Manual, ECO, Program. 
-   * _Manual_: temperatura target regolabile in step di 0.5 °C
+_Mode:_ scelta tra Manual, ECO, Program: 
+   * _Manual_: temperatura target (Setpoint) regolabile in step di 0.5 °C
    * _ECO_ è una bassa temperatura predefinita, ma tale da rendere rapido il ripristino della temperatura di regime. Usato in caso di assenze prolungate. e.g. 16.5°
-   * _Program_: per definire il profilo di temperatura non si usa l'intefeccia virtuale (limitata a 4 fasce giornaliere), ma è impostabile in `addon/thermostat01.js`, senza limiti di intervalli giornalieri.<br>
+   * _Program_: per definire il profilo di temperatura non si usa l'intefeccia virtuale (limitata a 4 intervalli giornalieri), ma è impostabile in `addon/thermostat01.js`, senza limiti di intervalli.<br>
 _Setpoint:_  La temperatura desiderata (mode _Manual_) oppure una modifica temporanea alla temperatura programmata (mode _Program_).<br>
-_ChildLoch_, _Weekly Program_, _Timer_ (tutte in impostazioni) NON sono disponibili nel 'device virtuale':  _Weekly Program_ e _Timer_ hanno implementazioni alternative in **x-device**.
+_ChildLoch_, _Weekly Program_, _Timer_ (tutte in impostazioni) NON sono disponibili nel 'device virtuale':  _Weekly Program_ e _Timer_ hanno implementazioni alternative.
 
-_nota: le funzioni legate all'HW non sono, ovviamente, utilizzabili in un device virtuale! (Sono cancellate nella figura)_
+_nota: le funzioni legate all'HW non sono, ovviamente, utilizzabili in un device virtuale! (Sono barrate nella figura)_
 
 ### x_device 
 Un'**x_device** (WEB Thermostat) si occopa di:
    1. Connessione con i _sensori di temperatura_ (reali), uno o più di uno: è usata una media mobile per migliorare la sensibilità e ridurre il rumore.
-   2. Connessione con il _device virtuale_ per leggere i valori scelti dall'utente.
+   2. Connessione con il _device virtuale_ per leggere i valori impostati dall'utente.
    3. Logica di funzionamento del termostato:
        * Alla temperatura letta dalle sonde è applicabile un `offset` di correzione (in `thermostat01.js`).
-       * Effettua i paragoni con +/- `delta` regolabile (in `thermostat01.js`), è quindi un comparatore con isteresi. Consigliato 0.3°C
-       * In modo 'auto' (i.e. Program) una variazione manuale di `Setpoint` ha effetto fino alla successiva temperatura programmata.
+       * Effettua i paragoni con +/- `delta` regolabile (in `thermostat01.js`), è quindi un comparatore con isteresi. Consigliato `delta = 0.3`°C
+       * In modo 'auto' (i.e. Program) una variazione manuale di `Setpoint` ha effetto fino al successivo intervallo programmato.
        * `TimeON` fornisce il tempo di accensione giornaliero (in ore). Il conteggio riparte ogni giorno alle 24:00
    4. Sono presenti _due uscite_: una per riscaldamento (`HOTout`) e una per raffrescamento (`COLDout`). Valori `true/false`.
   
@@ -70,7 +70,7 @@ WEEKLY PROGRAM è implemetato in `addon/thermostat01.js` in questo modo:
         etcetera...
  ```
 
-Dove per ogni intervallo è indicata una temperatura, seguita dall'orario di termine, circolare. Si legge:
+Dove per ogni intervallo è indicata una temperatura, seguita dall'orario di termine, in modo circolare. Si legge:
 
 ```
 domenica: dalle 23:00 alle  8:00 =>  16°
@@ -83,7 +83,8 @@ Un'altro aspetto interessante è che si può usare un solo device virtuale per p
 
 ### Interfaccia utente
 **WEB thermostat x-device** è completo ed autosufficiente. <br>
-Se si desidera, **IoTwebUI** offre Allarmi e l'esportazione su file dei dati per chi desidera conservarli od eseguire ulteriori elaborazioni.<br>
+Se si desidera, **IoTwebUI** offre Allarmi e l'esportazione su file dei dati per chi desidera conservarli od eseguire ulteriori elaborazioni.
+
 E' disponibile una interfaccia WEB ad hoc, che utilizza **RESTserver**,  per avere sott'occhio tutti dati!<br>
 _nota: l'interfaccia è del tutto opzionale, non interviene sulla logica di funzionamento di **WEB thermostat**._
 
