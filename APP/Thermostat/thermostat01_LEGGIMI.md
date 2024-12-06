@@ -34,7 +34,7 @@ Un'**x_device** (WEB Thermostat) si occopa di:
   ![](https://github.com/msillano/IoTwebUI/blob/main/pics/IoTwebUI03.png?raw=true)
   
 Tutti i dati sono visibili nel tooltip di IoTwebUI, quindi accessibili tramite 'RULE'.
-In particolare servono due REGOLE (IoTwebUI) per agire sullo swart switch del riscaldamento (raffrescamento).
+In particolare servono due REGOLE (**IoTwebUI**) per agire sullo `swart switch` del riscaldamento (raffrescamento).
 ```  
     if(GET("WEB Thermostat","HOTout", false)) SCENE("HOTTURNON"); 
     if(!GET("WEB Thermostat","HOTout", false)) SCENE("HOTTURNOFF");
@@ -79,7 +79,7 @@ _nota: l'interfaccia è del tutto opzionale, non interviene sulla logica di funz
 _Queste considerazioni ne consigliano l'uso non come sistema primario, ma come dispositivo ausiliario (e.g. extra riscaldamento con stufette elettriche, raffrescamento estivo, climatizzazione di serre o terrari o acquari, verifica del funzionamento di termovalvole smart, etc...)._ 
 
 ### Installazione
-1. **minima**
+1. **minima (senza UI)**
    * installare **IoTwebUI** sul server scelto (vedi [IoTwebUI installazione](https://github.com/msillano/IoTwebUI/blob/main/LEGGIMI22.md#installazione)<br>
    _nota: inizialmente eliminare allarmi e Log, e porre `tuyaInterval = 180` (uso continuo) o  `tuyaInterval = 40` (uso saltuario, più pronto)._
 
@@ -94,7 +94,13 @@ _Queste considerazioni ne consigliano l'uso non come sistema primario, ma come d
    * Completare la configurazione di  `addon/thermostat01.js`<br> _In particolare controllare
           `xroom` (deve esistere), `xhome` (deve esistere), `nodeVirt` (nome del device virtuale), e `sonde` (nome, funzione e scala dei termometri usati)._
  _La programmazione della temperatura può essere fatta in un secondo tempo, come anche la taratura di `ECOtemperature`, `delta` ed `offset`._
-      *  
+
+    * Creare in  IoTwebUI le REGOLE necessarie: per il lancio di THERMOSTAT01, e per l'attivazione del riscaldamento (raffrescamento) - vedi sopra. Creare i richiesti 'tap-to-run' in SmartLife (e.g. `HOTTURNON`, `HOTTUROFF`).
+
+2. **Completa**
+   * Installare [RESTserver](https://github.com/msillano/IoTwebUI/blob/main/RESTserver/LEGGIMI-REST22.md#installazione-e-configurazione)
+   
+   * Completare la configurazione di  `html/thermostat01.html`<br> _In particolare controllare x_term (nome del x-device, cioè `xname`, usato nella REGOLA di lancio),  `HOTdevId`  e `HOTcode` (sono i dati dello smart switch di riscaldamento, default usare `x_term` e `HOTout`) e `COLDdevId`, `COLDcode`  (sono i dati dello smart switch di raffrescamento, default usare `x_term` e `COLDout`).
    
      
      
