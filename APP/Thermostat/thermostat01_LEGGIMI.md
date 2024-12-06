@@ -7,7 +7,7 @@ E' l'unione di tre elementi:
 2. Un **x-device** che contiene tutta la logica di funzionamento
 3. Un'interfaccia **WEB grafica** (opzionale) 
 
-### Virtual 
+### Virtual device
 L'interfaccia su SmartLife, di uso anche remoto, utilizza un [device virtuale](https://www.tuyaexpo.com/product/1104012), e permette le principali funzioni di controllo utente:
 
 ![](https://github.com/msillano/IoTwebUI/blob/main/pics/virtual%20thermo.png?raw=true)
@@ -16,10 +16,10 @@ _Switch:_ ON/OFF, agisce sul riscaldamento/raffrescamento <br>
 _Mode:_ scelta tra Manual, ECO, Program: 
    * _Manual_: temperatura target (Setpoint) regolabile in step di 0.5 °C
    * _ECO_ è una bassa temperatura predefinita, ma tale da rendere rapido il ripristino della temperatura di regime. Usato in caso di assenze prolungate. e.g. 16.5°
-   * _Program_: per definire il profilo di temperatura non si usa l'intefeccia virtuale (limitata a 4 intervalli giornalieri), ma è impostabile in `addon/thermostat01.js`, senza limiti di intervalli.
+   * _Program_: per definire il profilo di temperatura non si usa l'intefaccia virtuale (limitata a 4 intervalli giornalieri), ma è impostabile in `addon/thermostat01.js`, senza limiti di intervalli.
 
 _Setpoint:_  La temperatura desiderata (mode _Manual_) oppure una modifica temporanea alla temperatura programmata (mode _Program_).<br>
-_ChildLoch_, _Weekly Program_, _Timer_ (tutte in impostazioni) NON sono disponibili nel 'device virtuale':  _Weekly Program_ e _Timer_ hanno implementazioni alternative.
+_ChildLoch_, _Weekly Program_, _Timer_ (tutti in impostazioni) NON sono disponibili nel 'device virtuale':  _Weekly Program_ e _Timer_ hanno implementazioni alternative.
 
 _nota: le funzioni legate all'HW non sono, ovviamente, utilizzabili in un device virtuale! (Sono barrate nella figura)_
 
@@ -102,8 +102,8 @@ _note: il grafico copre 24 ore e si inizializza ogni giorno alle 00:00._
 
 ### Contro
 - tempi di risposta non rapidi, a  causa dei limiti di polling di Tuya Cloud (180s).
-- necessità di un server (telefonino, top-tv, tablet, PC...) IoTwebUI in funzione 24/7.
-- le temporizzazioni sono condizionate dal carico del server e del browser: il funzionamento migliore si ha con le finestre visibili.    
+- necessità di un server (telefonino, top-tv, tablet, PC...) per **IoTwebUI** in funzione 24/7.
+- le temporizzazioni possono essere condizionate dal carico del server e del browser: il funzionamento migliore si ha con le finestre visibili.    
 
 _Queste considerazioni ne consigliano l'uso non come sistema primario, ma come dispositivo ausiliario (e.g. extra riscaldamento con stufette elettriche, raffrescamento estivo, climatizzazione di serre o terrari o acquari, verifica del funzionamento di termovalvole smart, etc...)._ 
 
@@ -121,7 +121,7 @@ _Queste considerazioni ne consigliano l'uso non come sistema primario, ma come d
     _nota: istruzioni nel file stesso: occorre modificare il file `IoTwebUI.html`._
 
    * Completare la configurazione di  `addon/thermostat01.js`<br>
-   _In particolare controllare `xroom` (room: deve esistere), `xhome` (home: deve esistere), `nodeVirt` (nome del device virtuale), e `sonde` (nome, funzione e scala dei termometri TYuya usati). Tutti questi dati si possono leggere nei tooltip di **IoTwebUI**_<br>
+   _In particolare controllare `xroom` (room: deve esistere), `xhome` (home: deve esistere) dove deve andare l'x-device, `nodeVirt` (nome del device virtuale), e `sonde` (nome, funzione e scala dei termometri Tuya usati). Tutti questi dati si possono leggere nei tooltip di **IoTwebUI**_<br>
  _La programmazione della temperatura può essere fatta in un secondo tempo, come anche la taratura di `ECOtemperature`, `delta` ed `offset`._
 
     * Creare i richiesti 'tap-to-run' in SmartLife (e.g. `HOTTURNON`, `HOTTUROFF`) che  accendono/spengono il riscaldamento/raffreddamento, usando uno 'smart switch'.
@@ -136,10 +136,10 @@ _Queste considerazioni ne consigliano l'uso non come sistema primario, ma come d
     
 _Al termine lanciare **IoTwebUI** (file `run_me.bat`) ed accedere con **SmartLife** al device virtuale (default: `HeatingThermostat-vdev0`)._
 
-2. **Completa**
-   * Installare [RESTserver](https://github.com/msillano/IoTwebUI/blob/main/RESTserver/LEGGIMI-REST22.md#installazione-e-configurazione)
+2. **Installazione completa**
+   * Oltre all'installazione 'minima', installare [RESTserver](https://github.com/msillano/IoTwebUI/blob/main/RESTserver/LEGGIMI-REST22.md#installazione-e-configurazione)
    
-   * Completare la configurazione di  `html/thermostat01.html`<br> _In particolare controllare x_term (nome del x-device, cioè `xname`, usato nella REGOLA di lancio),  `HOTdevId`  e `HOTcode` (sono i dati dello smart switch di riscaldamento, in assenza usare `x_term` e `HOTout`) e `COLDdevId`, `COLDcode`  (sono i dati dello smart switch di raffrescamento, default usare `x_term` e `COLDout`)._
+   * Completare la configurazione di  `html/thermostat01.html`<br> _In particolare controllare x_term (nome del x-device, cioè `xname`, usato nella REGOLA di lancio),  `HOTdevId`  e `HOTcode` (sono i dati dello smart switch di riscaldamento, in assenza usare `x_term` e `HOTout`) e `COLDdevId`, `COLDcode`  (sono i dati dello smart switch di raffrescamento, default usare `x_term` e `COLDout`). In questo modo si garantisce il feedback dello stato dei relay nell'iterfaccia._
      
 _Al termine lanciare **RESTserver** (file `rest02.2/run_server.bat`), poi lanciare **IoTwebUI** (file `run_me.bat`) ed aprire `html/thermostat01.html` in un browser._
    
