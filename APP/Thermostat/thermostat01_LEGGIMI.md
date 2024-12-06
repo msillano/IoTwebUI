@@ -8,7 +8,7 @@ E' l'unione di tre elementi:
 3. Un'interfaccia **WEB grafica** (opzionale) 
 
 ### Virtual 
-L'interfaccia su SmartLife di uso anche remoto, utilizza un device virtuale (https://www.tuyaexpo.com/product/1104012), e permette le principali funzioni di controllo utente:
+L'interfaccia su SmartLife di uso anche remoto, utilizza un [device virtuale](https://www.tuyaexpo.com/product/1104012), e permette le principali funzioni di controllo utente:
 
 ![](https://github.com/msillano/IoTwebUI/blob/main/pics/virtual%20thermo.png?raw=true)
 
@@ -39,9 +39,9 @@ In particolare servono due REGOLE (IoTwebUI) per agire sullo swart switch del ri
     if(GET("WEB Thermostat","HOTout", false)) SCENE("HOTTURNON"); 
     if(!GET("WEB Thermostat","HOTout", false)) SCENE("HOTTURNOFF");
 ``` 
-_`HOTTURNON` e `HOTTURNOFF` sono due 'tap-to-run' Tuya che accendono/spengono il riscaldamento: sono richiamate ad ogni loop._
+_`HOTTURNON` e `HOTTURNOFF` sono due 'tap-to-run' Tuya che accendono/spengono il riscaldamento: sono richiamate ad ogni loop (analogamente per il raffrescamento, se usato)._
 
-Se il riscaldamento segue un orario predefinito, sono utili due 'automazioni' Tuya che accendano/spengano il device virtuale agli stessi orari:
+ORARIO ON/OFF: se il riscaldamento segue un orario predefinito, sono utili due 'automazioni' Tuya che accendano/spengano il device virtuale agli stessi orari:
 ```
 ## thermostatSTART:
 Se 
@@ -61,3 +61,39 @@ Un'altro aspetto interessante è che si può usare un solo device virtuale per p
 **WEB thermostat x-device** è completo per funzionare. Se si desidera, **IoTwebUI** offre Allarmi e l'esportazione su file dei dati per chi desidera conservarli od eseguire ulteriori elaborazioni.
 E' disponibile una interfaccia WEB ad hoc, che utilizza **RESTserver**,  per avere sott'occhio tutti dati!<br>
 _nota: l'interfaccia è del tutto opzionale, non interviene sulla logica di funzionamento di **WEB thermostat**._
+
+### Pro
+- Estremamente configurabile, come un classico termostato, con extra funzioni:
+    - possibilità di utilizzare più sonde di temperatura, ed una media mobile, per migliorare sensibilità e prontezza.
+    - conteggio del tempo ON della caldaia (condizionatore).
+    - grafico aggiornato
+    - uso delle features generali di IoTwebUI; allarmi (anche vocali), Logging, etc...
+    - usabile per riscaldamento o raffrescamento
+- Può anche essere usato come monitor di un impianto esistente (caldaia centrale, termovalvole smart etc.): sono collegate solo le sonde ma NON gli output, e devono essere copiati i profili di temperatura e gli orari ON/OFF.
+
+### Contro
+- tempi di risposta non rapidi, a  causa dei limiti di polling di Tuya Cloud (180s).
+- necessità di un server (telefonino, top-tv, tablet, PC...) IoTwebUI in funzione 24/7.
+- le temporizzazioni sono condizionate dal carico e dal browser: il funzionamento migliore si ha con le finestre visibili.    
+
+_Queste considerazioni ne consigliano l'uso non come sistema primario, ma come dispositivo ausiliario (e.g. extra riscaldamento con stufette elettriche, raffrescamento estivo, climatizzazione di serre o terrari o acquari, verifica del funzionamento di termovalvole smart, etc...)._ 
+
+### Installazione
+1. **minima**
+   * installare **IoTwebUI** sul server scelto (vedi [IoTwebUI installazione](https://github.com/msillano/IoTwebUI/blob/main/LEGGIMI22.md#installazione)<br>
+   _nota: inizialmente eliminare allarmi e Log, porre tuyaInterval = 180 (uso continuo) o  tuyaInterval = 40 (uso saltuario, più pronto)._
+
+   * Quando IoTwebUI funziona correttamente, aggiungere a **SmartLife** il [device virtuale](https://www.tuyaexpo.com/product/1104012)<br>
+    _nota. basta leggere il QCODE con SmartLife._
+
+   * Installare in **IoTwebUI** l'x-device `thermostat01.js` 
+    _nota: istruzioni nel file stesso: occorre modificare il file `IoTwebUI.html`._
+
+   *
+   
+     
+     
+     
+      
+
+     
