@@ -88,12 +88,12 @@ _Queste considerazioni ne consigliano l'uso non come sistema primario, ma come d
    * Quando IoTwebUI funziona correttamente, aggiungere a **SmartLife** il [device virtuale](https://www.tuyaexpo.com/product/1104012)<br>
     _nota. basta leggere il QCODE con SmartLife._
 
-   * Installare in **IoTwebUI** l'x-device `addon/thermostat01.js` 
+   * Installare in **IoTwebUI** l'x-device `addon/thermostat01.js`<br> 
     _nota: istruzioni nel file stesso: occorre modificare il file `IoTwebUI.html`._
 
-   * Completare la configurazione di  `addon/thermostat01.js`, in particolare controllare
-          `xroom` (deve esistere), `xhome` (deve esistere), `nodeVirt` (nome del device virtuale), e `sonde` (nome, funzione e scala dei termometri usati).
- La programmazione della temperatura può essere fatta in un secondo tempo, come anche la taratura di `ECOtemperature`, `delta` ed `offset`.
+   * Completare la configurazione di  `addon/thermostat01.js`<br> _In particolare controllare
+          `xroom` (deve esistere), `xhome` (deve esistere), `nodeVirt` (nome del device virtuale), e `sonde` (nome, funzione e scala dei termometri usati)._
+ _La programmazione della temperatura può essere fatta in un secondo tempo, come anche la taratura di `ECOtemperature`, `delta` ed `offset`._
       *  
    
      
