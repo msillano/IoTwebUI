@@ -63,7 +63,7 @@ Poi
 
 WEEKLY PROGRAM è implemetato in `addon/thermostat01.js` in questo modo:
 
-````
+```
  var Tprg = [
         DAYMAP(16, "08:00", 20, "18:00", 21, "23:00"), // domenica
         DAYMAP(16, "08:00", 20, "11:00", 16, "18:00", 21, "23:00"), // lunedì
@@ -71,6 +71,7 @@ WEEKLY PROGRAM è implemetato in `addon/thermostat01.js` in questo modo:
  ```
 
 Dove per ogni intervallo è indicata una temperatura, seguita dall'orario di termine, circolare. Si legge:
+
 ```
 domenica: dalle 23:00 alle  8:00 =>  16°
           dalle  8:00 alle 18:00 =>  20° 
