@@ -64,7 +64,7 @@ WEEKLY PROGRAM è implemetato in `addon/thermostat01.js` in questo modo:
  var Tprg = [
         DAYMAP(16, "08:00", 20, "18:00", 21, "23:00"), // domenica
         DAYMAP(16, "08:00", 20, "11:00", 16, "18:00", 21, "23:00"), // lunedì
-        <..etcetera..>
+        etcetera...
  ```
 
 Dove per ogni intervallo è indicata una temperatura, seguita dall'orario di termine, circolare. Si legge:
@@ -72,7 +72,7 @@ Dove per ogni intervallo è indicata una temperatura, seguita dall'orario di ter
 domenica: dalle 23:00 alle  8:00 =>  16°
           dalle  8:00 alle 18:00 =>  20° 
           dalle 18:00 alle 23:00 =>  21°
- <..etcetera..>
+ etcetera...
 ```
 
 Un'altro aspetto interessante è che si può usare un solo device virtuale per più x-device (e.g. uno per stanza) ognuno con le sue sonde, i suoi profili e uno 'smart relay' o una elettrovalvola comandata! Unica avvertenza creare e includere più file `thermostatXX.js` e cambiare il nome (`function THERMOSTATXX`(...)) ad ogni istanza.
