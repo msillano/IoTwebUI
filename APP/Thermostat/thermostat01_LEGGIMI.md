@@ -81,15 +81,20 @@ _Queste considerazioni ne consigliano l'uso non come sistema primario, ma come d
 ### Installazione
 1. **minima**
    * installare **IoTwebUI** sul server scelto (vedi [IoTwebUI installazione](https://github.com/msillano/IoTwebUI/blob/main/LEGGIMI22.md#installazione)<br>
-   _nota: inizialmente eliminare allarmi e Log, porre tuyaInterval = 180 (uso continuo) o  tuyaInterval = 40 (uso saltuario, più pronto)._
+   _nota: inizialmente eliminare allarmi e Log, e porre `tuyaInterval = 180` (uso continuo) o  `tuyaInterval = 40` (uso saltuario, più pronto)._
+
+   * copiare nella dir di **IoTwebUI** i file necessari: da [Github](https://github.com/msillano/IoTwebUI/tree/main/APP/Thermostat) alle dir `/addon` e `/html` di **IoTwebUI** installato.
 
    * Quando IoTwebUI funziona correttamente, aggiungere a **SmartLife** il [device virtuale](https://www.tuyaexpo.com/product/1104012)<br>
     _nota. basta leggere il QCODE con SmartLife._
 
-   * Installare in **IoTwebUI** l'x-device `thermostat01.js` 
+   * Installare in **IoTwebUI** l'x-device `addon/thermostat01.js` 
     _nota: istruzioni nel file stesso: occorre modificare il file `IoTwebUI.html`._
 
-   *
+   * Completare la configurazione di  `addon/thermostat01.js`, in particolare controllare
+          `xroom` (deve esistere), `xhome` (deve esistere), `nodeVirt` (nome del device virtuale), e `sonde` (nome, funzione e scala dei termometri usati).
+ La programmazione della temperatura può essere fatta in un secondo tempo, come anche la taratura di `ECOtemperature`, `delta` ed `offset`.
+      *  
    
      
      
