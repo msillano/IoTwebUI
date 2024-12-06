@@ -16,7 +16,8 @@ _Switch:_ ON/OFF, agisce sul riscaldamento/raffrescamento <br>
 _Mode:_ scelta tra Manual, ECO, Program: 
    * _Manual_: temperatura target (Setpoint) regolabile in step di 0.5 °C
    * _ECO_ è una bassa temperatura predefinita, ma tale da rendere rapido il ripristino della temperatura di regime. Usato in caso di assenze prolungate. e.g. 16.5°
-   * _Program_: per definire il profilo di temperatura non si usa l'intefeccia virtuale (limitata a 4 intervalli giornalieri), ma è impostabile in `addon/thermostat01.js`, senza limiti di intervalli.<br>
+   * _Program_: per definire il profilo di temperatura non si usa l'intefeccia virtuale (limitata a 4 intervalli giornalieri), ma è impostabile in `addon/thermostat01.js`, senza limiti di intervalli.
+
 _Setpoint:_  La temperatura desiderata (mode _Manual_) oppure una modifica temporanea alla temperatura programmata (mode _Program_).<br>
 _ChildLoch_, _Weekly Program_, _Timer_ (tutte in impostazioni) NON sono disponibili nel 'device virtuale':  _Weekly Program_ e _Timer_ hanno implementazioni alternative.
 
@@ -61,7 +62,7 @@ Poi
  . HeatingThermostat-vdev0.Switch : OFF
 ```
 
-WEEKLY PROGRAM è implemetato in `addon/thermostat01.js` in questo modo:
+WEEKLY PROGRAM è implemetato in `addon/thermostat01.js` e deve essere modificato dall'utente, in questo modo:
 
 ```
  var Tprg = [
@@ -85,7 +86,7 @@ Un'altro aspetto interessante è che si può usare un solo device virtuale per p
 **WEB thermostat x-device** è completo ed autosufficiente. <br>
 Se si desidera, **IoTwebUI** offre Allarmi e l'esportazione su file dei dati per chi desidera conservarli od eseguire ulteriori elaborazioni.
 
-E' disponibile una interfaccia WEB ad hoc, che utilizza **RESTserver**,  per avere sott'occhio tutti dati!<br>
+E' disponibile comunque una interfaccia WEB ad hoc, che utilizza **RESTserver**,  per avere sott'occhio tutti dati!<br>
 _nota: l'interfaccia è del tutto opzionale, non interviene sulla logica di funzionamento di **WEB thermostat**._
 
 _note: il grafico copre 24 ore e si inizializza ogni giorno alle 00:00._
@@ -111,9 +112,9 @@ _Queste considerazioni ne consigliano l'uso non come sistema primario, ma come d
    * installare **IoTwebUI** sul server scelto (vedi [IoTwebUI installazione](https://github.com/msillano/IoTwebUI/blob/main/LEGGIMI22.md#installazione))<br>
    _nota: inizialmente eliminare sia allarmi che Log, e porre `tuyaInterval = 180` (uso continuo) oppure  `tuyaInterval = 60` (uso saltuario, più pronto)._
 
-   * copiare nella dir di **IoTwebUI** i file necessari: da [Github](https://github.com/msillano/IoTwebUI/tree/main/APP/Thermostat) alle dir `/addon` e `/html` di **IoTwebUI** installato.
+   * copiare nella dir di **IoTwebUI** i file necessari: _da [Github](https://github.com/msillano/IoTwebUI/tree/main/APP/Thermostat) alle dir `/addon` e `/html` di **IoTwebUI** installato._
 
-   * Quando IoTwebUI funziona correttamente, aggiungere a **SmartLife** il [device virtuale](https://www.tuyaexpo.com/product/1104012)<br>
+   * Quando **IoTwebUI** funziona correttamente, aggiungere a **SmartLife** il [device virtuale](https://www.tuyaexpo.com/product/1104012)<br>
     _nota. basta leggere il QCODE con SmartLife._
 
    * Installare in **IoTwebUI** l'**x-device** `addon/thermostat01.js`<br> 
@@ -125,7 +126,7 @@ _Queste considerazioni ne consigliano l'uso non come sistema primario, ma come d
 
     * Creare i richiesti 'tap-to-run' in SmartLife (e.g. `HOTTURNON`, `HOTTUROFF`) che  accendono/spengono il riscaldamento/raffreddamento, usando uno 'smart switch'.
 
-    * Creare in  IoTwebUI le REGOLE necessarie, consiglio di modificare stabilmente `usrrules02.2.js`. Esempio, in caso di solo riscaldamento:
+    * Creare in  IoTwebUI le REGOLE necessarie, consiglio di modificare stabilmente `usrrules02.2.js`. Esempio, con i nomi di default e in caso di solo riscaldamento:
       
 ```
    THERMOSTAT01();
@@ -138,9 +139,9 @@ _Al termine lanciare **IoTwebUI** (file `run_me.bat`) ed accedere con **SmartLif
 2. **Completa**
    * Installare [RESTserver](https://github.com/msillano/IoTwebUI/blob/main/RESTserver/LEGGIMI-REST22.md#installazione-e-configurazione)
    
-   * Completare la configurazione di  `html/thermostat01.html`<br> _In particolare controllare x_term (nome del x-device, cioè `xname`, usato nella REGOLA di lancio),  `HOTdevId`  e `HOTcode` (sono i dati dello smart switch di riscaldamento, default usare `x_term` e `HOTout`) e `COLDdevId`, `COLDcode`  (sono i dati dello smart switch di raffrescamento, default usare `x_term` e `COLDout`)._
+   * Completare la configurazione di  `html/thermostat01.html`<br> _In particolare controllare x_term (nome del x-device, cioè `xname`, usato nella REGOLA di lancio),  `HOTdevId`  e `HOTcode` (sono i dati dello smart switch di riscaldamento, in assenza usare `x_term` e `HOTout`) e `COLDdevId`, `COLDcode`  (sono i dati dello smart switch di raffrescamento, default usare `x_term` e `COLDout`)._
      
-_Al termine lanciare **RESTserver** (file `rest02.2/run_server.bat`), lanciare **IoTwebUI** (file `run_me.bat`) ed aprire `html/thermostat01.html` in un browser._
+_Al termine lanciare **RESTserver** (file `rest02.2/run_server.bat`), poi lanciare **IoTwebUI** (file `run_me.bat`) ed aprire `html/thermostat01.html` in un browser._
    
      
      
