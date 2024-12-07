@@ -40,13 +40,17 @@ Tutti i dati sono visibili nel tooltip di IoTwebUI, quindi accessibili tramite '
 In particolare servono due REGOLE (**IoTwebUI**) per agire sullo `swart switch` del riscaldamento (raffrescamento).
 
 ```  
-    if(GET("WEB Thermostat","HOTout", false)) SCENE("HOTTURNON"); 
-    if(!GET("WEB Thermostat","HOTout", false)) SCENE("HOTTURNOFF");
+// rules for HOT on/off - optional
+  if(ISTRIGGERH(GET("WEB Thermostat","HOTout", false))) SCENE("HOTTURNON"); 
+  if(ISTRIGGERL(GET("WEB Thermostat","HOTout", false))) SCENE("HOTTURNOFF"); 
+// rules for COLD on/off - optional
+  if(ISTRIGGERH(GET("WEB Thermostat","COLDout", false))) SCENE("COLDTURNON"); 
+  if(ISTRIGGERL(GET("WEB Thermostat","COLDout", false))) SCENE("COLDTURNOFF"); 
 ```
 
-_`HOTTURNON` e `HOTTURNOFF` sono due 'tap-to-run' Tuya che accendono/spengono il riscaldamento: sono richiamate ad ogni loop (analogamente per il raffrescamento, se usato)._
+_`HOTTURNON` e `HOTTURNOFF`(e `COLDTURNON` e `COLDTURNOFF`) sono 'tap-to-run' Tuya che accendono/spengono il riscaldamento: sono richiamate ad ogni variazione (analogamente per il raffrescamento, se usato)._
 
-TIMER: orario ON/OFF. Se il riscaldamento segue un orario predefinito, sono utili due 'automazioni' Tuya che accendano/spengano il device virtuale agli stessi orari:
+TIMER: orario ON/OFF. Se il riscaldamento segue un orario predefinito (e.g. centralizzato), sono utili due 'automazioni' Tuya che accendano/spengano il device virtuale agli stessi orari:
 
 ```
 ## thermostatSTART:
