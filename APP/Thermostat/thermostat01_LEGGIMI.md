@@ -19,7 +19,7 @@ _Mode:_ scelta tra Manual, ECO, Program:
    * _Program_:  temperatura target (Setpoint) programmata per fasce orarie definite per i 7 giorni. Per definire il profilo di temperatura non si usa l'interfaccia virtuale (limitata a 4 intervalli giornalieri), ma l'utente deve impostarlo in `addon/thermostat01.js`, senza limiti di intervalli.
 
 _Setpoint:_  La temperatura desiderata (mode _Manual_) oppure una modifica temporanea alla temperatura programmata (mode _Program_).<br>
-_ChildLoch_, _Weekly Program_, _Timer_ (tutti in impostazioni) NON sono disponibili nel 'device virtuale':  _Weekly Program_ e _Timer_ hanno implementazioni alternative.
+_ChildLoch_, _Weekly Program_, _Timer_ (tutti in impostazioni - _Settings_) NON sono disponibili nel 'device virtuale':  _Weekly Program_ e _Timer_ hanno implementazioni alternative.
 
 _nota: le funzioni legate all'HW non sono, ovviamente, utilizzabili in un device virtuale! (Sono barrate nella figura). In particolare non è leggibile la temperatura attuale ('Room Temp'), che però è accessibile, in SmartLife, aprendo i device Tuya usati come termometri e in IoTwebUI nel tooltip del x-device, oppure nell'interfaccia utente._
 
