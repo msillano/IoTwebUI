@@ -43,7 +43,8 @@ In particolare servono due REGOLE (**IoTwebUI**) per agire sullo `swart switch` 
 ```  
 // rules for HOT on/off - optional
   if(GET("WEB Thermostat","HOTout", false)) SCENE("HOTTURNON"); 
-  if(!GET("WEB Thermostat","HOTout", false)) SCENE("HOTTURNOFF"); 
+  if(!GET("WEB Thermostat","HOTout", false)) SCENE("HOTTURNOFF");
+
 // rules for COLD on/off - optional
   if(GET("WEB Thermostat","COLDout", false)) SCENE("COLDTURNON"); 
   if(!GET("WEB Thermostat","COLDout", false)) SCENE("COLDTURNOFF"); 
@@ -76,7 +77,7 @@ WEEKLY PROGRAM è implemetato in `addon/thermostat01.js` e deve essere modificat
         etcetera...
  ```
 
-Dove per ogni intervallo è indicata una temperatura, seguita dall'orario di termine, in modo circolare. Si legge:
+Dove per ogni intervallo è indicata una temperatura, seguita dall'orario di termine, in modo circolare. L'esempio precedente si legge:
 
 ```
 domenica: dalle 23:00 alle  8:00 =>  16°
@@ -94,14 +95,14 @@ Se si desidera, **IoTwebUI** offre Allarmi e l'esportazione su file (Logging) de
 E' disponibile comunque una interfaccia WEB ad hoc, che utilizza **RESTserver**,  per avere sott'occhio tutti dati!
 
 
-<br>
+
 _note_: 
 
  * _l'interfaccia è del tutto opzionale, non interviene sulla logica di funzionamento di **WEB thermostat**._
  * _il grafico copre 24 ore e si inizializza ogni giorno alle 00:00._
 
 ### Pro
-- Estremamente configurabile, come un classico termostato, con extra funzioni:
+- Estremamente configurabile, come un classico cronotermostato, con extra funzioni:
     - possibilità di utilizzare più sonde di temperatura, ed una media mobile, per migliorare sensibilità e prontezza.
     - conteggio del tempo ON della caldaia (condizionatore).
     - grafico aggiornato real time.
@@ -118,6 +119,7 @@ _note_:
 _Queste considerazioni ne consigliano l'uso non come sistema primario, ma come dispositivo ausiliario (e.g. extra riscaldamento con stufette elettriche, raffrescamento estivo, climatizzazione di serre o terrari o acquari, verifica del funzionamento di termovalvole smart, etc...)._ 
 
 ### Installazione e Uso
+
 1. **minima (senza UI)**
    * installare **IoTwebUI** sul server scelto (vedi [IoTwebUI installazione](https://github.com/msillano/IoTwebUI/blob/main/LEGGIMI22.md#installazione))<br>
    _nota: inizialmente eliminare sia allarmi che Log, e porre `tuyaInterval = 180` (uso continuo) oppure  `tuyaInterval = 60` (uso saltuario, più pronto)._
