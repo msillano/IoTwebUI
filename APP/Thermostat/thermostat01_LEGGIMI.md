@@ -24,7 +24,7 @@ _ChildLoch_, _Weekly Program_, _Timer_ (tutti in impostazioni) NON sono disponib
 _nota: le funzioni legate all'HW non sono, ovviamente, utilizzabili in un device virtuale! (Sono barrate nella figura). In particolare non è leggibile la temperatura attuale ('Room Temp'), che però è accessibile, in SmartLife, aprendo i device Tuya usati come termometri e in IoTwebUI nel tooltip del x-device, oppure nell'interfaccia utente._
 
 ### x_device 
-Un'**x_device** (WEB Thermostat) si occopa di:
+Un'**x_device** (nome di default "WEB Thermostat") si occupa di:
    1. Connessione con i _sensori di temperatura_ (reali), uno o più di uno: è usata una media mobile per migliorare la sensibilità e ridurre il rumore.
    2. Connessione con il _device virtuale_ per leggere i valori impostati dall'utente.
    3. Logica di funzionamento del termostato:
