@@ -85,16 +85,20 @@ domenica: dalle 23:00 alle  8:00 =>  16°
  etcetera...
 ```
 
-Un'altro aspetto interessante è che si può usare un solo device virtuale per più x-device (e.g. uno per stanza) ognuno con le sue sonde, i suoi profili e uno 'smart relay' o una elettrovalvola comandata! Unica avvertenza creare e includere più file `thermostatXX.js` e cambiare il nome (`function THERMOSTATXX`(...)) ad ogni istanza.
+Un'altro aspetto interessante è che si può usare un solo device virtuale per più x-device (e.g. uno per stanza) ognuno con le sue sonde, i suoi profili e uno 'smart relay' o una elettrovalvola comandata! Unica avvertenza creare e includere più file `thermostatXX.js` e cambiare il nome (`function THERMOSTATXX`(...)) ad ogni istanza, per poter avere impostazioni differenti.
 
 ### Interfaccia utente
 **WEB thermostat x-device** è completo ed autosufficiente. <br>
-Se si desidera, **IoTwebUI** offre Allarmi e l'esportazione su file dei dati per chi desidera conservarli od eseguire ulteriori elaborazioni.
+Se si desidera, **IoTwebUI** offre Allarmi e l'esportazione su file (Logging) dei dati per chi desidera conservarli od eseguire ulteriori elaborazioni.
 
-E' disponibile comunque una interfaccia WEB ad hoc, che utilizza **RESTserver**,  per avere sott'occhio tutti dati!<br>
-_nota: l'interfaccia è del tutto opzionale, non interviene sulla logica di funzionamento di **WEB thermostat**._
+E' disponibile comunque una interfaccia WEB ad hoc, che utilizza **RESTserver**,  per avere sott'occhio tutti dati!
 
-_note: il grafico copre 24 ore e si inizializza ogni giorno alle 00:00._
+
+<br>
+_note_: 
+
+ * _l'interfaccia è del tutto opzionale, non interviene sulla logica di funzionamento di **WEB thermostat**._
+ * _il grafico copre 24 ore e si inizializza ogni giorno alle 00:00._
 
 ### Pro
 - Estremamente configurabile, come un classico termostato, con extra funzioni:
@@ -103,8 +107,8 @@ _note: il grafico copre 24 ore e si inizializza ogni giorno alle 00:00._
     - grafico aggiornato real time.
     - uso delle features generali di IoTwebUI; allarmi (anche vocali), Logging, etc...
     - usabile per riscaldamento o raffrescamento
-- Il progetto è OpenSource e scritto in js, quindi è possibile modificarlo per adattalo ad esigenze specifiche. 
-- Può anche essere usato come monitor di un impianto esistente (caldaia centrale, termovalvole smart etc.): occorre collegate solo le sonde ma NON gli output, e devono essere copiati i profili di temperatura e gli orari ON/OFF dell'impianto monitorizzato.
+    - Il progetto è OpenSource e scritto in js, quindi è possibile modificarlo per adattalo ad esigenze specifiche. 
+    - Può anche essere usato come monitor di un impianto esistente (caldaia centrale, termovalvole smart etc.): occorre collegate solo le sonde ma NON gli output, e devono essere copiati i profili di temperatura e gli orari ON/OFF dell'impianto monitorizzato.
 
 ### Contro
 - tempi di risposta non rapidi, a  causa dei limiti di polling di Tuya Cloud (180s).
