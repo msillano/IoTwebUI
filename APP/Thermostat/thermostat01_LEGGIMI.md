@@ -52,7 +52,7 @@ In particolare servono due REGOLE (**IoTwebUI**) per agire sullo `swart switch` 
 
 _`HOTTURNON` e `HOTTURNOFF`(e `COLDTURNON` e `COLDTURNOFF`) sono 'tap-to-run' Tuya che accendono/spengono il riscaldamento: sono richiamate ad ogni loop (analogamente per il raffrescamento)._
 
-TIMER: orario ON/OFF. Se il riscaldamento (raffreddamento) segue un orario predefinito (e.g. centralizzato), sono utili due 'automazioni' Tuya che accendano/spengano il device virtuale agli stessi orari:
+**TIMER**: orario ON/OFF. Se il riscaldamento (raffreddamento) segue un orario predefinito (e.g. centralizzato), sono utili due 'automazioni' Tuya che accendano/spengano il device virtuale agli stessi orari:
 
 ```
 ## thermostatSTART:
@@ -67,8 +67,9 @@ Se
 Poi
  . HeatingThermostat-vdev0.Switch : OFF
 ```
+nota: Se il device virtuale è OFF, l'x-device continua a funzionare, ma i suoi output saranno _false_.
 
-WEEKLY PROGRAM è implemetato in `addon/thermostat01.js` e deve essere modificato dall'utente, in questo modo:
+**WEEKLY PROGRAM** è implemetato in `addon/thermostat01.js` e deve essere modificato dall'utente, in questo modo:
 
 ```
  var Tprg = [
@@ -86,7 +87,8 @@ domenica: dalle 23:00 alle  8:00 =>  16°
  etcetera...
 ```
 
-Un'altro aspetto interessante è che si può usare un solo device virtuale per più x-device (e.g. uno per stanza) ognuno con le sue sonde, i suoi profili e uno 'smart relay' o una elettrovalvola comandata! Unica avvertenza creare e includere più file `thermostatXX.js` e cambiare il nome (`function THERMOSTATXX`(...)) ad ogni istanza, per poter avere impostazioni differenti.
+**MULTIPLE ISTANZE**. Il device virtuale può avere una sola istanza, ma si può usare un solo _device virtuale_ per più _x-device_ (e.g. uno per ambiente) ognuno con le sue sonde, i suoi profili e uno 'smart relay' o una elettrovalvola comandata! <br>
+Unica avvertenza creare e includere più file `thermostatXX.js` e cambiare il nome (`function THERMOSTATXX`(...)) ad ogni istanza, per poter avere impostazioni differenti.
 
 ### Interfaccia utente
 **WEB thermostat x-device** è completo ed autosufficiente. <br>
@@ -108,7 +110,7 @@ _note_:
     - grafico aggiornato real time.
     - uso delle features generali di IoTwebUI; allarmi (anche vocali), Logging, etc...
     - usabile per riscaldamento o raffrescamento
-    - Il progetto è OpenSource e scritto in js, quindi è possibile modificarlo per adattalo ad esigenze specifiche. 
+    - Il progetto è OpenSource, scritto in js e molto commentato, quindi è semplice modificarlo per adattalo ad esigenze specifiche. 
     - Può anche essere usato come monitor di un impianto esistente (caldaia centrale, termovalvole smart etc.): occorre collegate solo le sonde ma NON gli output, e devono essere copiati i profili di temperatura e gli orari ON/OFF dell'impianto monitorizzato.
 
 ### Contro
