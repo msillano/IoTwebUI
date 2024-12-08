@@ -49,7 +49,7 @@ In particolare servono due REGOLE (**IoTwebUI**) per agire sullo `swart switch` 
   if(!GET("WEB Thermostat","COLDout", false)) SCENE("COLDTURNOFF"); 
 ```
 
-_`HOTTURNON` e `HOTTURNOFF`(e `COLDTURNON` e `COLDTURNOFF`) sono 'tap-to-run' Tuya che accendono/spengono il riscaldamento: sono richiamate ad ogni variazione (analogamente per il raffrescamento, se usato)._
+_`HOTTURNON` e `HOTTURNOFF`(e `COLDTURNON` e `COLDTURNOFF`) sono 'tap-to-run' Tuya che accendono/spengono il riscaldamento: sono richiamate ad ogni variazione (analogamente per il raffrescamento)._
 
 TIMER: orario ON/OFF. Se il riscaldamento (raffreddamento) segue un orario predefinito (e.g. centralizzato), sono utili due 'automazioni' Tuya che accendano/spengano il device virtuale agli stessi orari:
 
@@ -103,7 +103,8 @@ _note: il grafico copre 24 ore e si inizializza ogni giorno alle 00:00._
     - grafico aggiornato real time.
     - uso delle features generali di IoTwebUI; allarmi (anche vocali), Logging, etc...
     - usabile per riscaldamento o raffrescamento
-- Può anche essere usato come monitor di un impianto esistente (caldaia centrale, termovalvole smart etc.): occorre collegate solo le sonde ma NON gli output, e devono essere copiati i profili di temperatura e gli orari ON/OFF.
+- Il progetto è OpenSource e scritto in js, quindi è possibile modificarlo per adattalo ad esigenze specifiche. 
+- Può anche essere usato come monitor di un impianto esistente (caldaia centrale, termovalvole smart etc.): occorre collegate solo le sonde ma NON gli output, e devono essere copiati i profili di temperatura e gli orari ON/OFF dell'impianto monitorizzato.
 
 ### Contro
 - tempi di risposta non rapidi, a  causa dei limiti di polling di Tuya Cloud (180s).
@@ -112,7 +113,7 @@ _note: il grafico copre 24 ore e si inizializza ogni giorno alle 00:00._
 
 _Queste considerazioni ne consigliano l'uso non come sistema primario, ma come dispositivo ausiliario (e.g. extra riscaldamento con stufette elettriche, raffrescamento estivo, climatizzazione di serre o terrari o acquari, verifica del funzionamento di termovalvole smart, etc...)._ 
 
-### Installazione
+### Installazione e Uso
 1. **minima (senza UI)**
    * installare **IoTwebUI** sul server scelto (vedi [IoTwebUI installazione](https://github.com/msillano/IoTwebUI/blob/main/LEGGIMI22.md#installazione))<br>
    _nota: inizialmente eliminare sia allarmi che Log, e porre `tuyaInterval = 180` (uso continuo) oppure  `tuyaInterval = 60` (uso saltuario, più pronto)._
@@ -127,16 +128,23 @@ _Queste considerazioni ne consigliano l'uso non come sistema primario, ma come d
 
    * Completare la configurazione di  `addon/thermostat01.js`<br>
    _In particolare controllare `xroom` (room: deve esistere), `xhome` (home: deve esistere) dove deve andare l'x-device, `nodeVirt` (nome del device virtuale), e `sonde` (nome, funzione e scala dei termometri Tuya usati). Tutti questi dati si possono leggere nei tooltip di **IoTwebUI**_<br>
- _La programmazione della temperatura può essere fatta in un secondo tempo, come anche la taratura di `ECOtemperature`, `delta` ed `offset`._
+ _La programmazione della temperatura può essere fatta in un secondo tempo, come anche le impostazioni di `isHotMode`, `ECOHtemperature`, `ECOCtemperature`, `delta` ed `offset`._
 
     * Creare i richiesti 'tap-to-run' in SmartLife (e.g. `HOTTURNON`, `HOTTUROFF`) che  accendono/spengono il riscaldamento/raffreddamento, usando uno 'smart switch'.
 
     * Creare in  IoTwebUI le REGOLE necessarie, consiglio di modificare stabilmente `usrrules02.2.js`. Esempio, con i nomi di default e in caso di solo riscaldamento:
       
 ```
-   THERMOSTAT01();
+   THERMOSTAT01();                     // esegue la MACRO ad ogni loop
    if(GET("WEB Thermostat","HOTout", false)) SCENE("HOTTURNON"); 
    if(!GET("WEB Thermostat","HOTout", false)) SCENE("HOTTURNOFF");
+```
+
+Alternativa (esempio: NON usa i defaults, stanza ='Bagno', NON usa HOME)
+```
+   THERMOSTAT01("caldobagno", "Bagno", null);     
+   if(GET("caldobagno","HOTout", false)) SCENE("HOTTURNON"); 
+   if(!GET("caldobagno","HOTout", false)) SCENE("HOTTURNOFF");
 ```
     
 _Al termine lanciare **IoTwebUI** (file `run_me.bat`) ed accedere con **SmartLife** al device virtuale (default: `HeatingThermostat-vdev0`)._
@@ -144,7 +152,7 @@ _Al termine lanciare **IoTwebUI** (file `run_me.bat`) ed accedere con **SmartLif
 2. **Installazione completa**
    * Oltre all'installazione 'minima', installare [RESTserver](https://github.com/msillano/IoTwebUI/blob/main/RESTserver/LEGGIMI-REST22.md#installazione-e-configurazione)
    
-   * Completare la configurazione di  `html/thermostat01.html`<br> _In particolare controllare x_term (nome del x-device, cioè `xname`, usato nella REGOLA di lancio),  `HOTdevId`  e `HOTcode` (sono i dati dello smart switch di riscaldamento, in assenza usare `x_term` e `HOTout`) e `COLDdevId`, `COLDcode`  (sono i dati dello smart switch di raffrescamento, default usare `x_term` e `COLDout`). In questo modo si garantisce il feedback dello stato dei relay nell'iterfaccia._
+   * Completare la configurazione di  `html/thermostat01.html`<br> _In particolare controllare x_term (nome del x-device, cioè `xname`, usato nella REGOLA di lancio. V. sopra 'caldobagno')._
      
 3. **Uso**
 
@@ -152,18 +160,18 @@ _Al termine lanciare **IoTwebUI** (file `run_me.bat`) ed accedere con **SmartLif
    * Lanciare **IoTwebUI** (file `run_me.bat`) 
       * premere OK per  _INFO: Connected to REST server!_
       * premere bottone: _PRONTO... premere per continuare_
-   * Lanciare l'**interfaccia** cliccando sul file  `html\thermostat01.html` (opzionale). Si aprirà nel browser.   
+   * Lanciare l'**interfaccia** cliccando sul file  `html\thermostat01.html` (opzionale). Si aprirà nel browser preferito.   
     
-4. **Trobleshooting**
+4. **Troubleshooting**
    * Sia con **IoTwebUI** che con l'**interfaccia** click mouse destro, scegliere 'ispeziona..'. Poi 'console': lì appaiono i messaggi di errore.
    * Per  **RESTserver**  i messaggi appaiono mella finestra `cmd.exe`   
-   *  vedi [issues](https://github.com/msillano/IoTwebUI/issues)
+   *  vedi [issues](https://github.com/msillano/IoTwebUI/issues).
 
 <hr>
 
 Progetto OpenSource, Licenza MIT, (c)2024 marco sillano
 
-Questo progetto è un work-in-progress: viene fornito "così com'è", senza garanzie di alcun tipo, implicite o esplicite.     
+_Questo progetto è un work-in-progress: viene fornito "così com'è", senza garanzie di alcun tipo, implicite o esplicite._     
       
 
      
