@@ -1,6 +1,6 @@
 # WEB Termostato 
 
-Questo è un termostato completo SW che utilizza le misure di uno (o più) sonde di temperatura Tuya per controllare uno smart switch per il riscaldamento (raffrescamento).
+Questo è un cronotermostato completo SW che utilizza le misure di uno (o più) sonde di temperatura Tuya per controllare uno smart switch per il riscaldamento (raffrescamento).
 E' l'unione di tre elementi:
 
 1. Interfaccia SmarLife (locale/remota) ottenuta con un **device virtuale**
@@ -16,7 +16,7 @@ _Switch:_ ON/OFF, agisce sul riscaldamento/raffrescamento <br>
 _Mode:_ scelta tra Manual, ECO, Program: 
    * _Manual_: temperatura target (Setpoint) regolabile in step di 0.5 °C
    * _ECO_ è una bassa (alta) temperatura predefinita, ma tale da rendere rapido il ripristino (1h) della temperatura di regime. Usato in caso di assenze prolungate. e.g. 16.5° (30° in caso di raffrescamento).
-   * _Program_: programmata per fasce orarie definite per i 7 giorni. Per definire il profilo di temperatura non si usa l'intefaccia virtuale (limitata a 4 intervalli giornalieri), ma l'utente deve impostarlo in `addon/thermostat01.js`, senza limiti di intervalli.
+   * _Program_:  temperatura target (Setpoint) programmata per fasce orarie definite per i 7 giorni. Per definire il profilo di temperatura non si usa l'interfaccia virtuale (limitata a 4 intervalli giornalieri), ma l'utente deve impostarlo in `addon/thermostat01.js`, senza limiti di intervalli.
 
 _Setpoint:_  La temperatura desiderata (mode _Manual_) oppure una modifica temporanea alla temperatura programmata (mode _Program_).<br>
 _ChildLoch_, _Weekly Program_, _Timer_ (tutti in impostazioni) NON sono disponibili nel 'device virtuale':  _Weekly Program_ e _Timer_ hanno implementazioni alternative.
@@ -24,7 +24,7 @@ _ChildLoch_, _Weekly Program_, _Timer_ (tutti in impostazioni) NON sono disponib
 _nota: le funzioni legate all'HW non sono, ovviamente, utilizzabili in un device virtuale! (Sono barrate nella figura). In particolare non è leggibile la temperatura attuale ('Room Temp'), che però è accessibile, in SmartLife, aprendo i device Tuya usati come termometri e in IoTwebUI nel tooltip del x-device, oppure nell'interfaccia utente._
 
 ### x_device 
-Un'**x_device** (nome di default "WEB Thermostat") si occupa di:
+Un'**x_device** (nome di default "WEB Thermostat") per **IoTwebUI** si occupa di:
    1. Connessione con i _sensori di temperatura_ (reali), uno o più di uno: è usata una media mobile per migliorare la sensibilità e ridurre il rumore.
    2. Connessione con il _device virtuale_ per leggere i valori impostati dall'utente.
    3. Logica di funzionamento del termostato:
@@ -49,7 +49,7 @@ In particolare servono due REGOLE (**IoTwebUI**) per agire sullo `swart switch` 
   if(!GET("WEB Thermostat","COLDout", false)) SCENE("COLDTURNOFF"); 
 ```
 
-_`HOTTURNON` e `HOTTURNOFF`(e `COLDTURNON` e `COLDTURNOFF`) sono 'tap-to-run' Tuya che accendono/spengono il riscaldamento: sono richiamate ad ogni variazione (analogamente per il raffrescamento)._
+_`HOTTURNON` e `HOTTURNOFF`(e `COLDTURNON` e `COLDTURNOFF`) sono 'tap-to-run' Tuya che accendono/spengono il riscaldamento: sono richiamate ad ogni loop (analogamente per il raffrescamento)._
 
 TIMER: orario ON/OFF. Se il riscaldamento (raffreddamento) segue un orario predefinito (e.g. centralizzato), sono utili due 'automazioni' Tuya che accendano/spengano il device virtuale agli stessi orari:
 
@@ -140,7 +140,7 @@ _Queste considerazioni ne consigliano l'uso non come sistema primario, ma come d
    if(!GET("WEB Thermostat","HOTout", false)) SCENE("HOTTURNOFF");
 ```
 
-Alternativa (esempio: NON usa i defaults, stanza ='Bagno', NON usa HOME)
+Alternativa (esempio: NON usa i defaults, stanza = 'Bagno', NON usa HOME)
 ```
    THERMOSTAT01("caldobagno", "Bagno", null);     
    if(GET("caldobagno","HOTout", false)) SCENE("HOTTURNON"); 
