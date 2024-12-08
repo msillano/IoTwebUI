@@ -15,21 +15,22 @@ L'interfaccia su SmartLife, di uso anche remoto, utilizza un [device virtuale](h
 _Switch:_ ON/OFF, agisce sul riscaldamento/raffrescamento <br>
 _Mode:_ scelta tra Manual, ECO, Program: 
    * _Manual_: temperatura target (Setpoint) regolabile in step di 0.5 °C
-   * _ECO_ è una bassa temperatura predefinita, ma tale da rendere rapido il ripristino della temperatura di regime. Usato in caso di assenze prolungate. e.g. 16.5°
-   * _Program_: per definire il profilo di temperatura non si usa l'intefaccia virtuale (limitata a 4 intervalli giornalieri), ma è impostabile in `addon/thermostat01.js`, senza limiti di intervalli.
+   * _ECO_ è una bassa (alta) temperatura predefinita, ma tale da rendere rapido il ripristino (1h) della temperatura di regime. Usato in caso di assenze prolungate. e.g. 16.5° (30° in caso di raffrescamento).
+   * _Program_: programmata per fasce orarie definite per i 7 giorni. Per definire il profilo di temperatura non si usa l'intefaccia virtuale (limitata a 4 intervalli giornalieri), ma l'utente deve impostarlo in `addon/thermostat01.js`, senza limiti di intervalli.
 
 _Setpoint:_  La temperatura desiderata (mode _Manual_) oppure una modifica temporanea alla temperatura programmata (mode _Program_).<br>
 _ChildLoch_, _Weekly Program_, _Timer_ (tutti in impostazioni) NON sono disponibili nel 'device virtuale':  _Weekly Program_ e _Timer_ hanno implementazioni alternative.
 
-_nota: le funzioni legate all'HW non sono, ovviamente, utilizzabili in un device virtuale! (Sono barrate nella figura). In particolare non è leggibile la temperatura attuale ('Room Temp'), che però è accessibile, in SmartLife, aprendo i device Tuya usati come termometri e in IoTwebUI nel tooltip del x-device._
+_nota: le funzioni legate all'HW non sono, ovviamente, utilizzabili in un device virtuale! (Sono barrate nella figura). In particolare non è leggibile la temperatura attuale ('Room Temp'), che però è accessibile, in SmartLife, aprendo i device Tuya usati come termometri e in IoTwebUI nel tooltip del x-device, oppure nell'interfaccia utente._
 
 ### x_device 
 Un'**x_device** (WEB Thermostat) si occopa di:
    1. Connessione con i _sensori di temperatura_ (reali), uno o più di uno: è usata una media mobile per migliorare la sensibilità e ridurre il rumore.
    2. Connessione con il _device virtuale_ per leggere i valori impostati dall'utente.
    3. Logica di funzionamento del termostato:
-       * Alla temperatura letta dalle sonde è applicabile un `offset` di correzione (in `thermostat01.js`).
-       * Effettua i paragoni con +/- `delta` regolabile (in `thermostat01.js`), è quindi un comparatore con isteresi. Consigliato `delta = 0.3`°C
+       * Il funzionamento invernale (riscaldamento) o estivo (raffrescamento) è impostato in `addon/thermostat01.js`.
+       * Alla temperatura letta dalle sonde è applicabile un `offset` di correzione (in `addon/thermostat01.js`).
+       * Effettua i paragoni con +/- `delta` regolabile (in `addon/thermostat01.js`), è quindi un comparatore con isteresi. Consigliato `delta = 0.3`°C
        * In modo 'auto' (i.e. Program) una variazione manuale di `Setpoint` ha effetto fino al successivo intervallo programmato.
        * `TimeON` fornisce il tempo di accensione giornaliero (in ore). Il conteggio riparte ogni giorno alle 24:00
    4. Sono presenti _due uscite_: una per riscaldamento (`HOTout`) e una per raffrescamento (`COLDout`). Valori `true/false`.
@@ -41,16 +42,16 @@ In particolare servono due REGOLE (**IoTwebUI**) per agire sullo `swart switch` 
 
 ```  
 // rules for HOT on/off - optional
-  if(ISTRIGGERH(GET("WEB Thermostat","HOTout", false))) SCENE("HOTTURNON"); 
-  if(ISTRIGGERL(GET("WEB Thermostat","HOTout", false))) SCENE("HOTTURNOFF"); 
+  if(GET("WEB Thermostat","HOTout", false)) SCENE("HOTTURNON"); 
+  if(!GET("WEB Thermostat","HOTout", false)) SCENE("HOTTURNOFF"); 
 // rules for COLD on/off - optional
-  if(ISTRIGGERH(GET("WEB Thermostat","COLDout", false))) SCENE("COLDTURNON"); 
-  if(ISTRIGGERL(GET("WEB Thermostat","COLDout", false))) SCENE("COLDTURNOFF"); 
+  if(GET("WEB Thermostat","COLDout", false)) SCENE("COLDTURNON"); 
+  if(!GET("WEB Thermostat","COLDout", false)) SCENE("COLDTURNOFF"); 
 ```
 
 _`HOTTURNON` e `HOTTURNOFF`(e `COLDTURNON` e `COLDTURNOFF`) sono 'tap-to-run' Tuya che accendono/spengono il riscaldamento: sono richiamate ad ogni variazione (analogamente per il raffrescamento, se usato)._
 
-TIMER: orario ON/OFF. Se il riscaldamento segue un orario predefinito (e.g. centralizzato), sono utili due 'automazioni' Tuya che accendano/spengano il device virtuale agli stessi orari:
+TIMER: orario ON/OFF. Se il riscaldamento (raffreddamento) segue un orario predefinito (e.g. centralizzato), sono utili due 'automazioni' Tuya che accendano/spengano il device virtuale agli stessi orari:
 
 ```
 ## thermostatSTART:
@@ -145,10 +146,17 @@ _Al termine lanciare **IoTwebUI** (file `run_me.bat`) ed accedere con **SmartLif
    
    * Completare la configurazione di  `html/thermostat01.html`<br> _In particolare controllare x_term (nome del x-device, cioè `xname`, usato nella REGOLA di lancio),  `HOTdevId`  e `HOTcode` (sono i dati dello smart switch di riscaldamento, in assenza usare `x_term` e `HOTout`) e `COLDdevId`, `COLDcode`  (sono i dati dello smart switch di raffrescamento, default usare `x_term` e `COLDout`). In questo modo si garantisce il feedback dello stato dei relay nell'iterfaccia._
      
-_Al termine lanciare **RESTserver** (file `rest02.2/run_server.bat`), poi lanciare **IoTwebUI** (file `run_me.bat`) ed aprire `html/thermostat01.html` in un browser._
-   
-     
-     
+3. **Uso**
+
+   * Lanciare **RESTserver** (file `rest02.2\run_server.bat`), poi iconizzare la finestra  `cmd.exe` (NON chiudere!).
+   * Lanciare **IoTwebUI** (file `run_me.bat`) 
+      * premere OK per  _INFO: Connected to REST server!_
+      * premere bottone: _PRONTO... premere per continuare_
+   * Lanciare l'**interfaccia** cliccando sul file  `html\thermostat01.html` (opzionale). Si aprirà nel browser.   
+    
+4. Trobleshoting
+   * Sia con **IoTwebUI** che con l'**interfaccia** click mouse destro, scegliere 'ispeziona..'. Poi 'console': lì appaiono i messaggi di errore.
+   * Per  **RESTserver**  i messaggi appaiono mella finestra `cmd.exe`
      
       
 
