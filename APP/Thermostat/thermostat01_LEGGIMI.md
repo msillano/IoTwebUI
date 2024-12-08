@@ -154,10 +154,16 @@ _Al termine lanciare **IoTwebUI** (file `run_me.bat`) ed accedere con **SmartLif
       * premere bottone: _PRONTO... premere per continuare_
    * Lanciare l'**interfaccia** cliccando sul file  `html\thermostat01.html` (opzionale). Si aprirà nel browser.   
     
-4. Trobleshoting
+4. **Trobleshooting**
    * Sia con **IoTwebUI** che con l'**interfaccia** click mouse destro, scegliere 'ispeziona..'. Poi 'console': lì appaiono i messaggi di errore.
-   * Per  **RESTserver**  i messaggi appaiono mella finestra `cmd.exe`
-     
+   * Per  **RESTserver**  i messaggi appaiono mella finestra `cmd.exe`   
+   *  vedi [issues](https://github.com/msillano/IoTwebUI/issues)
+
+<hr>
+
+Progetto OpenSource, Licenza MIT, (c)2024 marco sillano
+
+Questo progetto è un work-in-progress: viene fornito "così com'è", senza garanzie di alcun tipo, implicite o esplicite.     
       
 
      
