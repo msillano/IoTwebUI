@@ -119,9 +119,9 @@ _Queste considerazioni ne consigliano l'uso non come sistema primario, ma come d
 
 ### Installazione e Uso
 _nota: molte operazioni di installazione e configurazione richiedono da parte dell'utente l'editing di file,  usare le solite avvertenze.
-    * fare una copia del file prima di ogni modifica, 
-    * usare un editor UTF8 (io uso Notepad-plusplus), 
-    * attenzione a NON ALTERARE niente altro (soprattutto virgole ',' ed apici '"' e "`")._
+ * fare una copia del file prima di ogni modifica, 
+ * usare un editor UTF8 (io uso Notepad-plusplus), 
+ * attenzione a NON ALTERARE niente altro (soprattutto virgole ',' ed apici '"' e "`")._
 
 1. **minima (senza UI)**
    * installare **IoTwebUI** sul server scelto (vedi [IoTwebUI installazione](https://github.com/msillano/IoTwebUI/blob/main/LEGGIMI22.md#installazione))<br>
