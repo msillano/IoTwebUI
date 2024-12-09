@@ -24,6 +24,6 @@ Per dettagli vedi [test02-leggimi](https://github.com/msillano/IoTwebUI/blob/mai
 
 Inoltre nella dir si trovano alcuni file grafici richiesti dagli esempi.
 
-c) **APP** (dir `APP/`)
-Queste applicazioni complete utilizzano **x.device** + **html**, e sono raggruppate in una dir a parte con la loro documentazione.<br>
+c) **APP** (dir `APP/`)<br>
+Queste applicazioni complete utilizzano **x-device** + **html**, e sono raggruppate in una dir a parte con la loro documentazione.<br>
 Vedi [elenco delle APP](https://github.com/msillano/IoTwebUI/tree/main/APP) con Tuya + IoTwebUI + UI
