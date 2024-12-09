@@ -38,25 +38,39 @@ function dynamicPage() {
 	     outputDiv.innerHTML += placeWidget(item);
      });
 }
-
+var mainTimer = null;
+var oldLOOP = null;
 
 function widgetUpdate(pos = 0) {
 //	   console.log('widget #'+pos);
-	   if (pos >= widgets.length) return;
+// added to allow LOOPINTERVAL changes
+     if (pos == 0) {
+  //       console.log("old - new", oldLOOP, LOOPINTERVAL);
+		 if (oldLOOP != LOOPINTERVAL) {
+			 clearInterval(mainTimer);
+			 oldLOOP = LOOPINTERVAL;	
+			 console.log("new LOOP: "+ LOOPINTERVAL); 		 
+			 mainTimer =  setInterval(widgetUpdate, (LOOPINTERVAL)); 
+		 }
+	 }
+	 if (pos >= widgets.length) return;
      const item = widgets[pos];
           if (typeof(window.doIotwidget01) === "function") {doIotwidget01 (item);}  // extension
      else if (typeof(window.doIotwidget02) === "function") {doIotwidget02 (item);}  // extension
      else if (typeof(window.doIotwidget03) === "function") {doIotwidget03 (item);}  // extension
      else if (typeof(window.doIotwidget04) === "function") {doIotwidget04 (item);}  // extension
-     setTimeout(widgetUpdate, (RESTINTERVAL), ++pos);    // 1399  (prime) ms interval between REST call
+     setTimeout(widgetUpdate, (RESTINTERVAL), ++pos);    // ms interval between REST call, defined in the APP HTML page
      }
 
 
 // ===========  START FUNCTION
 
+
 function startup() {
      dynamicPage();
-     widgetUpdate();
-     // data refresh
-     setInterval(widgetUpdate, (LOOPINTERVAL));         // 30 s refresh interval
+ // data refresh
+	 oldLOOP = LOOPINTERVAL;	
+	 console.log("start LOOP: "+ LOOPINTERVAL); 		 
+     mainTimer =  setInterval(widgetUpdate, (LOOPINTERVAL));     
+     widgetUpdate();	 // 
      }

@@ -50,7 +50,7 @@ function doIotwidget01(item) {
 			        .then(data => {
     			        // document.getElementById('output').innerText = JSON.stringify(data);  // only for test
                         const outputDiv = document.getElementById('item'+ item.id);
-                        outputDiv.innerHTML = "<span  class='value' "+(item.color? "style ='color : "+item.color+";' ":"")+ "><b>"+ (data[item.code] || data['error'])+"</b></span>";
+                        outputDiv.innerHTML = "<span  class='value' "+(item.color? "style ='color : "+item.color+";' ":"")+ "><b>"+ (data[item.code] || data['error'])+(item.unit || "") +"</b></span>";
 				        hook(item.id, data[item.code]);
   				        });
  				break;
@@ -60,7 +60,7 @@ function doIotwidget01(item) {
 			        .then(data => {
         			 //       document.getElementById('output').innerText += JSON.stringify(data);  // only for test
                      const outputDiv = document.getElementById('item'+ item.id);
-                        outputDiv.innerHTML = "<span  class='bigvalue' "+(item.color? "style ='color : "+item.color+";' ":"")+ "><b>"+(data[item.code] || data['error'])+"</b></span>";
+                        outputDiv.innerHTML = "<span  class='bigvalue' "+(item.color? "style ='color : "+item.color+";' ":"")+ "><b>"+(data[item.code] || data['error'])+(item.unit || "") +"</b></span>";
  				        hook(item.id, data[item.code]);
   				        });
  				break;
