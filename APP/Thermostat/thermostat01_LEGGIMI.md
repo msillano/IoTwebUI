@@ -50,7 +50,7 @@ In particolare servono due REGOLE (**IoTwebUI**) per agire sullo `swart switch` 
   if(!GET("WEB Thermostat","COLDout", false)) SCENE("COLDTURNOFF"); 
 ```
 
-_`HOTTURNON` e `HOTTURNOFF`(e `COLDTURNON` e `COLDTURNOFF`) sono 'tap-to-run' Tuya che accendono/spengono il riscaldamento: sono richiamate ad ogni loop (analogamente per il raffrescamento)._
+_`HOTTURNON` e `HOTTURNOFF` sono 'tap-to-run' Tuya che accendono/spengono il riscaldamento: sono richiamate ad ogni loop (analogamente per il raffrescamento)._
 
 **TIMER**: orario ON/OFF. Se il riscaldamento (raffreddamento) segue un orario predefinito (e.g. centralizzato), sono utili due 'automazioni' Tuya che accendano/spengano il device virtuale agli stessi orari:
 
@@ -69,7 +69,7 @@ Poi
 ```
 nota: Se il device virtuale è OFF, l'x-device continua a funzionare, ma i suoi output saranno _false_.
 
-**WEEKLY PROGRAM** è implemetato in `addon/thermostat01.js` e deve essere modificato dall'utente, in questo modo:
+**WEEKLY PROGRAM** è implemetato in `addon/thermostat01.js` e deve essere definito dall'utente, in questo modo:
 
 ```
  var Tprg = [
