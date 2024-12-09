@@ -38,19 +38,14 @@ Un'**x_device** (nome di default "WEB Thermostat") per **IoTwebUI** si occupa di
   ![](https://github.com/msillano/IoTwebUI/blob/main/pics/IoTwebUI03.png?raw=true)
   
 Tutti i dati sono visibili nel tooltip di IoTwebUI, quindi accessibili tramite 'RULE'.
-In particolare servono due REGOLE (**IoTwebUI**) per agire sullo `swart switch` del riscaldamento (raffrescamento).
+In particolare servono due REGOLE (**IoTwebUI**) per agire sullo `swart switch` del riscaldamento (raffrescamento). Esempio, ON/OFF per riscaldamento (usando i defaults):
 
 ```  
-// rules for HOT on/off - optional
   if(GET("WEB Thermostat","HOTout", false)) SCENE("HOTTURNON"); 
   if(!GET("WEB Thermostat","HOTout", false)) SCENE("HOTTURNOFF");
-
-// rules for COLD on/off - optional
-  if(GET("WEB Thermostat","COLDout", false)) SCENE("COLDTURNON"); 
-  if(!GET("WEB Thermostat","COLDout", false)) SCENE("COLDTURNOFF"); 
 ```
 
-_`HOTTURNON` e `HOTTURNOFF` sono 'tap-to-run' Tuya che accendono/spengono il riscaldamento: sono richiamate ad ogni loop (analogamente per il raffrescamento)._
+_`HOTTURNON` e `HOTTURNOFF` sono due 'tap-to-run' Tuya che accendono/spengono il riscaldamento: sono richiamate ad ogni loop (analogamente per il raffrescamento)._
 
 **TIMER**: orario ON/OFF. Se il riscaldamento (raffreddamento) segue un orario predefinito (e.g. centralizzato), sono utili due 'automazioni' Tuya che accendano/spengano il device virtuale agli stessi orari:
 
@@ -156,6 +151,13 @@ Alternativa (esempio: NON usa i defaults, stanza = 'Bagno', NON usa HOME)
    if(GET("caldobagno","HOTout", false)) SCENE("HOTTURNON"); 
    if(!GET("caldobagno","HOTout", false)) SCENE("HOTTURNOFF");
 ```
+_nota: le regole REGOLE precedenti garantiscono prontezza, ma sono attive ogni loop!. Se si preferisce l'azione SOLO ad ogni cambio di stato ON/OFF si posso usare:_
+```
+   if(ISTRIGGERH(GET("caldobagno","HOTout", false))) SCENE("HOTTURNON"); 
+   if(ISTRIGGERL(GET("caldobagno","HOTout", false))) SCENE("HOTTURNOFF");
+```
+_ma queste REGOLE presentano il problema dello 'stato iniziale' (come tutte le condizioni Tuya, vedi [post](https://www.facebook.com/groups/tuyaitalia/permalink/1379224052711944/)): se "HOTout" è **true** all'inizio, il riscaldamento NON viene acceso! Si deve quindi iniziare con "HOTout" = **false** (abbassare a mano la temperature target, aspettare che la spia 'fiamma' si spenga, poi ripristinare la temperatura target desiderata!)._  
+
     
 _Al termine lanciare **IoTwebUI** (file `run_me.bat`) ed accedere con **SmartLife** al device virtuale (default: `HeatingThermostat-vdev0`)._
 
