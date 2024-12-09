@@ -63,7 +63,7 @@ Se
 Poi
  . HeatingThermostat-vdev0.Switch : OFF
 ```
-nota: Se il device virtuale è OFF, l'x-device continua a funzionare, ma i suoi output saranno _false_.
+nota: Se il device virtuale è OFF, l'x-device continua ad aggiornare il grafico, ma i suoi output saranno _false_.
 
 **WEEKLY PROGRAM** è implemetato in `addon/thermostat01.js` e deve essere definito dall'utente, in questo modo:
 
