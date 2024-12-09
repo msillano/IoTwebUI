@@ -28,4 +28,4 @@ Inoltre nella dir si trovano alcuni file grafici richiesti dagli esempi.
 
 **APPLICAZIONI** (dir `APP/`)<br>
 Queste sono applicazioni complete che utilizzano **x-device** + **html**, e sono raggruppate in una dir a parte con la loro documentazione.<br>
-Vedi [elenco delle APP](https://github.com/msillano/IoTwebUI/tree/main/APP) con Tuya + IoTwebUI + UI
+Vedi [elenco delle APP](https://github.com/msillano/IoTwebUI/tree/main/APP) implementate con Tuya + IoTwebUI + UI
