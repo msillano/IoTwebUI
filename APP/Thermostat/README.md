@@ -1,5 +1,5 @@
 # WEB Thermostat
-[italiano]() 
+[italiano](https://github.com/msillano/IoTwebUI/blob/main/APP/Thermostat/thermostat01_LEGGIMI.md) 
 
 This complete SW chronothermostat uses the measurements of one (or more) Tuya temperature probes to control a smart switch for heating (cooling).
 It is the union of three elements:
