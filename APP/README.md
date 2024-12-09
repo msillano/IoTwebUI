@@ -20,7 +20,10 @@ _Per comodità di uso li abbiamo separati in questa dir: in fase di installazion
 
 ## Owerview
 <table width="100%">
-
+<tr><td width = "400pt"><img src="https://github.com/msillano/IoTwebUI/blob/main/pics/thermostat01.png?raw=true"></td><td colspan=2>  <b><i>WEB Thermostat</i></b><br><br>
+This complete SW chronothermostat uses the measurements of one (or more) Tuya temperature probes to control a smart switch for heating (cooling).<hr>
+<i>Questo è un cronotermostato completo SW che utilizza le misure di uno (o più) sonde di temperatura Tuya per controllare uno smart switch per il riscaldamento (raffrescamento).</i>  
+ </td></tr>
 <tr><td colspan=2>  <b><i>Explore</i></b><br><br> 
 Application for 'power users'. It allows you to access all the details of our devices, obtaining them both from the Cloud and IoTwebUI.
 Also useful for users of tuyaDAEMON, HA, etc. It lets you quickly find the keys, codes, and any info about a new device!<br>
