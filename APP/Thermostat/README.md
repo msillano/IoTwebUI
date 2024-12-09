@@ -108,7 +108,7 @@ _note_:
     - use of the general features of IoTwebUI; alarms (even vocal), Logging, etc...
     - usable for heating or cooling
 - The project is OpenSource, written in JS, and very commented, so it is easy to modify it to adapt it to specific needs.
-- It can also be used as a monitor for an existing system (central boiler, smart thermostatic valves, etc.): _only the probes need to be connected but NOT the outputs, and must be copied the temperature profiles and ON/OFF times of the monitored system._
+- It can also be used as a monitor for an existing system (central boiler, smart thermostatic valves, etc.): _only the probes need to be connected but NOT the outputs, and must be copied the delta, the temperature profiles and ON/OFF times of the monitored system._
 
 ### Cons
 - The response times are not fast, due to the polling limits of Tuya Cloud (180s).
