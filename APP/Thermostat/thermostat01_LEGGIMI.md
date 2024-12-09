@@ -109,7 +109,7 @@ _note_:
     - uso delle features generali di IoTwebUI; allarmi (anche vocali), Logging, etc...
     - usabile per riscaldamento o raffrescamento
 - Il progetto è OpenSource, scritto in js e molto commentato, quindi è semplice modificarlo per adattalo ad esigenze specifiche.
-- Può anche essere usato come monitor di un impianto esistente (caldaia centrale, termovalvole smart etc.): _occorre collegate solo le sonde ma NON gli output, e devono essere copiati i profili di temperatura e gli orari ON/OFF dell'impianto monitorizzato._
+- Può anche essere usato come monitor di un impianto esistente (caldaia centrale, termovalvole smart etc.): _occorre collegate solo le sonde ma NON gli output, e devono essere copiati il delta, i profili di temperatura e gli orari ON/OFF dell'impianto monitorizzato._
 
 ### Contro
 - tempi di risposta non rapidi, a  causa dei limiti di polling di Tuya Cloud (180s).
