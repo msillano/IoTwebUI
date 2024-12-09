@@ -21,7 +21,11 @@ b) **Usage examples** ( dir `html/`)
 For details see [clima01-readme](https://github.com/msillano/IoTwebUI/blob/main/html/clima01-readme.md) with information about the MPV pattern used!
 * **test02.html** only to show the widget's look and feel: uses only `iotwidget02.js` and uses real devices as the data source (requires customization).
 For details see [test02-readme](https://github.com/msillano/IoTwebUI/blob/main/html/test02-readme.md)
-* **tester01.html** real WEB APP, for testing NI-MH batteries. see [TestBattery01_leggimi](https://github.com/msillano/IoTwebUI/blob/main/addon/TestBattery01_leggimi.pdf)
-Requires ad hoc HW, TY-08Z device, cloner01, testbattery01, iotwidget01.js, iotwidget02.js<br>
-In the documentation, there is also a hint about the process of developing custom APPs using Tuya + IoTwebUI.
+
 In addition, in the dir, there are some graphic files required by the examples.
+
+<hr>
+
+**APPLICATIONS** (dir `APP/`)<br>
+These are complete applications that use **x-device** + **html**, and are grouped in a separate dir with their documentation.<br>
+See [list of APPs](https://github.com/msillano/IoTwebUI/tree/main/APP) implemented with Tuya + IoTwebUI + UI
