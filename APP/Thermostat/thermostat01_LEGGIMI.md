@@ -96,6 +96,7 @@ Se si desidera, **IoTwebUI** offre Allarmi e l'esportazione su file (Logging) de
 
 E' disponibile comunque una interfaccia WEB ad hoc, che utilizza **RESTserver**,  per avere sott'occhio tutti dati!
 
+![](https://github.com/msillano/IoTwebUI/blob/main/pics/thermostat01.png?raw=true)
 
 
 _note_: 
