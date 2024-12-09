@@ -1,5 +1,5 @@
 # WEB Termostato 
-[inglese](https://github.com/msillano/IoTwebUI/blob/main/APP/Thermostat/README.md)
+[english version](https://github.com/msillano/IoTwebUI/blob/main/APP/Thermostat/README.md)
 
 Questo è un cronotermostato completo SW che utilizza le misure di uno (o più) sonde di temperatura Tuya per controllare uno smart switch per il riscaldamento (raffrescamento).
 E' l'unione di tre elementi:
