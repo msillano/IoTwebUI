@@ -1,0 +1,282 @@
+<html>
+<!--
+This file is part of IoTwebUI project (https://github.com/msillano/IoTwebUI)
+Contains user data and updatable options
+------------------------------
+License MIT
+(C)2024 marco.sillano@gmail.com
+ver 1.0 07/12/2024
+for IOTwebUI version 2.2.2
+------------------------------
+USER frontend for THERMOSTAT01 - WEB thermostat Tuya
+see: https://github.com/msillano/IoTwebUI/tree/main/APP/Thermostat
+
+Requires: 
+  IotWebUI 2.2, REST2.2,  installed and running.
+And:
+  inc/restget.js
+  inc/iotwidget01.js
+  inc/iotwidget01.css
+  inc/iotwidget02.js
+  red_light_32x32.png
+  green_light_32x32.png
+  fire01A.png
+  fire01B.png
+  snow01A.png
+  snow01A.png
+  
+====================== USER CONFIGURATION:  GOTO LINE  97 !
+ -->
+ 
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!-- REQUIRED all javascript procedures to handle widgets -->
+    <script type="text/javascript" src="inc/restget.js"> </script >
+    <script type="text/javascript" src="inc/iotwidget01.js"> </script >
+<!-- REQUIRED by iotwidget02 -->
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript" src="inc/iotwidget02.js"> </script >
+
+	<link rel = "stylesheet" href ="inc/iotwidget01.css" >
+
+  <style>
+/* ======= USER PAGE DEFAULTS */
+   :root {
+      --button-width: 150px;
+      --button-height: 50px;
+      }
+   .butzone {
+	    width:   var(--button-width);
+	    }
+   table {
+      border-collapse: collapse;
+      border: none;
+      }
+
+/* defaults from iotwidget01.css: customizable look for this page
+   note: colors custumizable also in widget definition
+*/
+
+  .hover .tooltip {
+    border-radius: 5px;
+	padding: 5px;
+ 	font: 10px Arial, sans-serif;
+ 	background-color: black;
+    color: #fff;
+    border-radius: 5px;
+    }
+
+  .value {
+	color:black;
+	font-size:14px;
+	}
+  .bigvalue {
+	color:Blue;
+	font-size:20px;
+	}
+  .bigbutton {
+	border-radius:5px;
+	font-weight: bold;
+	}
+  .imgbutton {
+    border-radius:5px;
+	font-weight: bold;
+    }
+	
+ /* for iotwidget02 - extra local style */
+  .signal{
+    width:  32px;
+    height: 32px;
+    background-color: transparent;
+    border: none ;
+    }
+  .switch{
+    width:  80px;
+    height: 40px;
+    background-color: transparent;
+    border: none ;
+    }
+
+ </style>
+
+<script type="text/javascript">
+
+// =====   USER CONFIGURATION ================
+const x_term   = "WEB Thermostat";    // Name of x--device THERMOSTAT01
+const baseURL = 'http://localhost:3031/IoTrest/';  // for this and REST2.2 in the same server
+// =================== USER CONFIG  ENDS
+
+// =================== locals:  do not change  ==============
+const RESTINTERVAL =    701;           // (prime number) x 7 
+const LOOPINTERVAL_START =  7177;      // start: fast (7 s)
+const LOOPINTERVAL_RUN =  121001;      // run: standard (120 s)
+var   LOOPINTERVAL =  LOOPINTERVAL_START;    
+
+// list of dynamic widgets in the page: adjust xpos, ypos
+// note: widget[x].id  must be unique!
+// see   inc/iotwidget01.js, inc/iotwidget02.js
+
+const widgets = [
+ { id : "LED0",
+     xpos : 11,         // verticale
+     ypos : 530,         // orizzontale
+     type	: "signal",
+     devId: x_term,    // for value: device ID
+     code : "Tswitch",          // for value: status code
+	 dataOK:[true],
+     on: {
+		 image:"red_light_32x32.png",
+		 },
+	 off: {
+		 image:"green_light_32x32.png",
+		 },
+     },
+
+{ id :"CHART",
+     xpos : 0,           // verticale
+     ypos : -30,           // orizzontale
+     type	: "multichart",
+     devId: x_term,                     // data source device
+     code : ["Tactual","Ttarget","TimeON"],  // selected codes
+     tiplabel: '°C',
+     maxPoint: 720,   // 24h @ LOOPINTERVAL == 120s
+     // instance options are merged with default options in iotwidget02
+     // for info https://developers.google.com/chart/interactive/docs/gallery/linechart (english version)
+     options: {
+		title: 'WEB Thermostat v. 1.0',
+		vAxis:{
+			0: {title: 'Temp (°C)'},
+			1: {title: 'Time (h)',
+				viewWindow: {min :0, max:24},
+				textStyle:{color:'yellow'},
+				}
+			},
+		series:{
+			0: {targetAxisIndex: 0},
+			1: {targetAxisIndex: 0},
+			2: {targetAxisIndex: 1}
+			},
+//	    curveType: 'function',
+		backgroundColor: "#cbd5f2",
+		width:  540,
+		height: 258,
+		},
+     },
+
+	 
+ { id :"TXTA",
+	   xpos : 18,         // verticale
+	   ypos : 570,         // orizzontale
+	   type	: "value",  // icon, icotip,  value, bigvalue, bigbutton, imgbutton
+
+	   devId: x_term,    // for value, bigvalue: device ID
+	   code : "Tmode",          // for value, bigvalue: status code
+	  
+     },
+	 
+ { id :"TXT0",
+	   xpos : 52,         // verticale
+	   ypos : 558,         // orizzontale
+	   type	: "bigvalue",  // icon, icotip,  value, bigvalue, bigbutton, imgbutton
+
+	   devId: x_term,    // for value, bigvalue: device ID
+	   code : "Tactual",          // for value, bigvalue: status code
+	   unit: "°",
+     },
+ 
+ { id :"TXTB",
+	   xpos : 91,         // verticale
+	   ypos : 540,         // orizzontale
+	   type	: "value",  // icon, icotip,  value, bigvalue, bigbutton, imgbutton
+
+	   devId: x_term,    // for value, bigvalue: device ID
+	   code : "Ttarget",          // for value, bigvalue: status code
+	   unit: "° Setpoint",
+     },
+	 
+ { id : "LED2",
+     xpos : 188,         // verticale
+     ypos : 560,         // orizzontale
+     type	: "signal",
+     devId: x_term,    
+     code : "HOTout",          
+	 dataOK:[true],
+     on: {
+		 image:"fire01A.png",
+		 },
+	 off: {
+		 image:"fire01B.png",
+		 },
+     },
+	 
+{ id : "LED3",
+     xpos : 226,         // verticale
+     ypos : 560,         // orizzontale
+     type	: "signal",
+     devId: x_term,    
+     code : "COLDout",      
+	 dataOK:[true],
+     on: {
+		 image:"snow01A.png",
+		 },
+	 off: {
+		 image:"snow01B.png",
+		 },
+     },
+ ]
+// ==================== local callback
+// local service functions, in hook()
+var lcount = 0;
+var oggi = -3;
+
+function hook(widgetId, action = null){
+// chart clear
+	if (widgetId == "LED0"){
+// test for day change (at 00:00)	
+// note: processd before chart to speedup: action in the same loop!
+        const d = new Date();
+	    if (oggi < 0){
+	        oggi = d.getDay();
+	        } 
+        if (oggi != d.getDay()){
+	 		widgets[1]['clear'] = true;
+			oggi = d.getDay();
+     	  }
+  	    };
+// start speedup, slow after 3 loops	
+	if (widgetId == "LED2"){
+	     if (lcount < 10){
+			lcount++;
+			if( lcount > 2)
+				LOOPINTERVAL =  LOOPINTERVAL_RUN; 
+			};
+		};
+};
+</script>
+
+<!-- =============  PAGE =============  -->
+
+  </head>
+  <body bgcolor="#c2c6d1" onload="startup()">        <!-- background color -->
+ 	 <hr>
+	 <br>
+	 <hr>
+ 	 <br>
+	 <hr>
+ 	 <br>
+	 <hr>
+ 	 <br>
+	 <hr>
+ 	 <br>
+	 <hr>
+	 <br>
+	 <hr>
+ 	 <br>
+	 <hr>
+  
+     <div id="dynamic"> </div>      <!-- dynamic widget division -->
+     <div id="output"> </div>       <!-- only for local tests -->
+
+  </body>
+</html>
