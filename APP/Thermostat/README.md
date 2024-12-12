@@ -23,7 +23,7 @@ _Mode:_ choice between Manual, ECO, Program:
 _Setpoint:_ The desired temperature (mode _Manual_) or a temporary change to the programmed temperature (mode _Program_).<br>
 _ChildLoch_, _Weekly Program_, _Timer_ (all in settings - _Settings_) are NOT available in the 'virtual device': _Weekly Program_ and _Timer_ have alternative implementations.
 
-_note: the HW-related functions are, obviously, not usable on a virtual device! (They are crossed out in the figure). In particular, the current temperature ('Room Temp') cannot be read, it is accessible using SmartLife by opening the Tuya devices kept as thermometers or using IoTwebUI, in the x-device tooltip, or using the user interface._
+_note: the HW-related functions are, obviously, not usable on a virtual device! (They are crossed out in the figure). In particular, the current temperature ('Room Temp') cannot be read, it is accessible using SmartLife by opening the Tuya devices kept as thermometers or using IoTwebUI, in the x-device tooltip - see image, or using the user interface - see image._
 
 ### x_device 
 A **x_device** (default name "WEB Thermostat") for **IoTwebUI** takes care of:
@@ -33,9 +33,9 @@ A **x_device** (default name "WEB Thermostat") for **IoTwebUI** takes care of:
    * Winter (heating) or summer (cooling) operation is set in `addon/thermostat01.js`.
    * A correction `offset` can be applied to the temperature read by the probes (in `addon/thermostat01.js`).
    * It makes comparisons with an adjustable +/- `delta` (in `addon/thermostat01.js`), so it is a comparator with hysteresis. Recommended `delta = 0.3`°C
-   * In 'auto' mode (i.e. Program) a manual change of `Setpoint` takes effect until the next scheduled interval.
+   * In 'auto' mode (i.e. Program mode) a manual change of `Setpoint` takes effect until the next scheduled interval.
    * `TimeON` provides the daily on-time (in hours). The countdown restarts every day at 24:00
-4. There are _two outputs_: one for heating (`HOTout`) and one for cooling (`COLDout`). Values ​​`true/false`.
+4. There are _two outputs_: heating (`HOTout`) and cooling (`COLDout`). Values ​​`true/false`.
 
 ![](https://github.com/msillano/IoTwebUI/blob/main/pics/IoTwebUI03.png?raw=true)
 
@@ -90,7 +90,7 @@ The only caveat is to create and include multiple `thermostatXX.js` files and ch
 ### User Interface
 **WEB thermostat x-device** is complete and self-sufficient.
 
-However, an ad hoc WEB interface is available, which uses **RESTserver**, to keep an eye on all data!
+However, an ad hoc WEB interface is available, which uses **RESTserver** to monitor all data!
 
 ![](https://github.com/msillano/IoTwebUI/blob/main/pics/thermostat01.png?raw=true)
 
@@ -108,7 +108,7 @@ _note_:
     - use of the general features of IoTwebUI; alarms (even vocal), Logging, etc...
     - usable for heating or cooling
 - The project is OpenSource, written in JS, and very commented, so it is easy to modify it to adapt it to specific needs.
-- It can also be used as a monitor for an existing system (central boiler, smart thermostatic valves, etc.): _only the probes need to be connected but NOT the outputs, and must be copied the delta, the temperature profiles and ON/OFF times of the monitored system._
+- It can also be used as a monitor for an existing system (central boiler, smart thermostatic valves, etc.): _only the probes need to be connected but NOT the outputs, and must be copied the delta, the temperature profiles, and ON/OFF times of the monitored system._
 
 ### Cons
 - The response times are not fast, due to the polling limits of Tuya Cloud (180s).
@@ -132,12 +132,12 @@ _note. just read the QCODE with SmartLife._
    * Install in **IoTwebUI** the **x-device** `addon/thermostat01.js`<br>
 _note: instructions in the file itself: you need to modify the file `IoTwebUI.html`._
    * Complete the configuration of `addon/thermostat01.js`<br>
-_In particular check `xroom` (room: must exist), `xhome` (home: must exist) where the x-device must go, `nodeVirt` (name of the virtual device), and `sonde` (name, function and scale of the Tuya thermometers used). All this data can be read in the **IoTwebUI** tooltips_<br>
-_Temperature programming can be done later, as well as the settings of `isHotMode`, `ECOHtemperature`, `ECOCtemperature`, `delta` and `offset`._
+_In particular check `xroom` (room: must exist), `xhome` (home: must exist) where the x-device must go, `nodeVirt` (name of the virtual device), and `sonde` (name, function, and scale of the Tuya thermometers used). All this data can be read in the **IoTwebUI** tooltips_<br>
+_Temperature programming can be done later, as well as the settings of `isHotMode`, `ECOHtemperature`, `ECOCtemperature`, `delta`, and `offset`._
 
    * Create the required 'tap-to-run' in SmartLife (e.g. `HOTTURNON`, `HOTTUROFF`) that turn on/off the heating/cooling, using a 'smart switch'.
 
-   * Create the necessary RULES in IoTwebUI, I recommend permanently modifying `usrrules02.2.js`. Example, with the default names and in case of heating only:
+   * Create the necessary RULES in IoTwebUI, I recommend permanently modifying `usrrules02.2.js`. For example, with the default names and in the case of heating only:
 
 ```
    THERMOSTAT01(); // run the MACRO at each loop
@@ -154,7 +154,7 @@ Alternative (example: DO NOT use defaults, room = 'Bathroom', DO NOT use HOME)
 _note: the previous RULES rules guarantee readiness, but are active every loop! If you prefer the action ONLY at every ON/OFF state change you can use:_
 ```
    if(ISTRIGGERH(GET("hottub","HOTout", false))) SCENE("HOTTURNON");
-   if(ISTRIGGERL(GET("caldobagno","HOTout", false))) SCENE("HOTTURNOFF");
+   if(ISTRIGGERL(GET("hottub","HOTout", false))) SCENE("HOTTURNOFF");
 ```
 _but these RULES have the 'initial state' problem (like all Tuya conditions, see [post](https://www.facebook.com/groups/tuyaitalia/permalink/1379224052711944/)): if "HOTout" is **true** at the beginning, the heating is NOT turned on! You must then start with "HOTout" = **false** (manually lower the target temperature, wait for the 'flame' light to go off, then restore the desired target temperature!)._
 
@@ -164,7 +164,7 @@ _At the end, launch **IoTwebUI** (file `run_me.bat`) and access the virtual devi
 
    * In addition to the 'minimal' installation, install [RESTserver](https://github.com/msillano/IoTwebUI/blob/main/RESTserver/LEGGIMI-REST22.md#impianto-e-configurazione)
 
-   * Complete the configuration of `html/thermostat01.html`<br> _In particular, check x_term (name of the x-device, i.e. `xname`, used in the launch RULE. See above 'caldobagno')._
+   * Complete the configuration of `html/thermostat01.html`<br> _In particular, check x_term (name of the x-device, i.e. `xname`, used in the launch RULE. See above 'hottub')._
 
 3. **Use**
 
@@ -176,7 +176,7 @@ _At the end, launch **IoTwebUI** (file `run_me.bat`) and access the virtual devi
 
 4. **Troubleshooting**
 
-   * Both with **IoTwebUI** and with the **interface** right mouse click, choose 'inspect..'. Then 'console': there the error messages appear.
+   * Both with **IoTwebUI** and with the **interface**: right mouse click, choose 'inspect..'. Then 'console': there the error messages appear.
    * For **RESTserver** the messages appear in the `cmd.exe` window
    * see [issues](https://github.com/msillano/IoTwebUI/issues).
 
