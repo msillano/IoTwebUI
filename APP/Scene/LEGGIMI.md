@@ -48,6 +48,7 @@ _Sono tutte informazioni facilmente visibili in SmartLife._
 </td><td   width="200pt">
 Per scopo di docunentazione puù essere utile un grafo parziale e non totale.
 Questo è facilmente ottenibile con i passi seguenti:
+
 1. Usare **Plain list**, quarta opzione del menu: si ottengono due liste (_automazioni_ e _tap-to-run_) già formattate.
 2. Copiare gli elenchi nel file  sorgente (`/addon/scene01.js`) nei due array (di default vuoti: `[]`):
 
