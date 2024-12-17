@@ -8,9 +8,9 @@ Sostanzialmente sono prodotti due ertefatti: elenchi di tutte le scene con le pr
 Una visione d'insieme che permette di valutare meglio le relazioni tra i vari elementi.
 
 Il menu offre quattro scelte:<br>
-* **Automation** genera una tabella (per la stampa meglio ilfoglio orizzontale) con tutte le automazioni presenti 
+* **Automation** genera una tabella (per la stampa meglio il foglio orizzontale) con tutte le automazioni presenti 
 * **Tap-to-run** genera un tabella con tutti i tap-to-run
-* **Tuya grapho** genere un grapho con tutte le automazioni, i tap-to-run e le device coinvolte.
+* **Tuya grapho** genere un grapho con tutte le automazioni, i tap-to-run e i device coinvolti.
 
 </td><td   width="200pt">
 <img src="https://github.com/msillano/IoTwebUI/blob/main/pics/scene01d.png?raw=true">
@@ -18,14 +18,17 @@ Il menu offre quattro scelte:<br>
 
 ![](https://github.com/msillano/IoTwebUI/blob/main/pics/Scene01b.png?raw=true)
 ![](https://github.com/msillano/IoTwebUI/blob/main/pics/scene01a.png?raw=true)
+
 ### Risultati
 
 1. **Tuya grapho**
+Legenda: Con i defaults abbiamo:
    * In verde le _automazioni_
    * In grigio i _Tap-to-run_
    * In box3d i sottoinsiemi e _miniAPP Tuya_: Allarmi, geolocalizzazione, timer per schedulig, etc
    * In ellissi i _device Tuya_.
- 
+
+ <hr>
 nota importante: le API usate (da IOT base) NON forniscono alcune informazioni, che quindi mancano in tutti artefatti. Mentre sto cercando API alternative e facilmente abilitabili, la situazione attuale è questa:
    * Non sono accessibili i dati e le funzioni gestiti da miniAPP. In particolare:
       * tutti gli eventi dell'antifurto (braccio), degli allarmi e delle emergenze NON sono differenziati e si riferiscono tutti ad "armed state"
