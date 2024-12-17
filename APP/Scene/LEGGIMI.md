@@ -42,10 +42,12 @@ nota importante: le API usate (da IOT base) NON forniscono alcune informazioni, 
 _Sono tutte informazioni facilmente visibili in SmartLife._
 
 <hr>
+
 ### Customizzazioni
-<table width = "100%"><tr><td>
+
+<table width = "100%"><tr><td width="200pt">
 <img src="https://github.com/msillano/IoTwebUI/blob/main/pics/scene01c.png?raw=true">
-</td><td   width="200pt">
+</td><td>
 Per scopo di docunentazione puù essere utile un grafo parziale e non totale.
 Questo è facilmente ottenibile con i passi seguenti:
 
@@ -59,6 +61,6 @@ Questo è facilmente ottenibile con i passi seguenti:
                                 ];
 3. commentare (con '//' a inizio riga) o cancellare le scene che si VOGLIONO processare.
 4. Riavviare **IoTwebUI** (`run_me.bat`).
-La figura di esempio l'ho ottenuta commentando solo le due automazioni: `thermostatSTART` e `thermostatSTOP`.
+Il grapho di esempio l'ho ottenuto commentando solo le due automazioni: `thermostatSTART` e `thermostatSTOP`.
 
 </td></tr></table>
