@@ -8,7 +8,7 @@ Sostanzialmente sono prodotti due ertefatti: elenchi di tutte le scene con le pr
 Una visione d'insieme che permette di valutare meglio le relazioni tra i vari elementi.
 
 Il menu offre quattro scelte:<br>
-* **Automation** genera una tabella (per la stampa meglio il foglio orizzontale) con tutte le automazioni presenti 
+* **Automation** genera una tabella (per la stampa meglio il foglio A4 orizzontale) con tutte le automazioni presenti 
 * **Tap-to-run** genera un tabella con tutti i tap-to-run
 * **Tuya grapho** genere un grapho con tutte le automazioni, i tap-to-run e i device coinvolti.
 
@@ -44,7 +44,7 @@ _Sono tutte informazioni facilmente visibili in SmartLife._
 <hr>
 ### Customizzazioni
 <table width = "100%"><tr><td>
-<img src="https://github.com/msillano/IoTwebUI/blob/main/pics/scene01d.png?raw=true">
+<img src="https://github.com/msillano/IoTwebUI/blob/main/pics/scene01c.png?raw=true">
 </td><td   width="200pt">
 Per scopo di docunentazione puù essere utile un grafo parziale e non totale.
 Questo è facilmente ottenibile con i passi seguenti:
