@@ -19,6 +19,9 @@ Il menu offre quattro scelte:<br>
 ![](https://github.com/msillano/IoTwebUI/blob/main/pics/Scene01b.png?raw=true)
 ![](https://github.com/msillano/IoTwebUI/blob/main/pics/scene01a.png?raw=true)
 
+_nota: Tuya non 'conosce' gli **x-device**, che pertanto NON compariranno mai nel grapho. 
+Idem per le _regole_ di IoTwebUI, che hanno una sintassi totalmente diversa dalle 'scene' Tuya!_
+
 ### Risultati
 
 1. **Tuya grapho**
@@ -29,7 +32,7 @@ Legenda: Con i defaults abbiamo:
    * In ellissi i _device Tuya_.
 
  <hr>
-nota importante: le API usate (da IOT base) NON forniscono alcune informazioni, che quindi mancano in tutti artefatti. Mentre sto cercando API alternative e facilmente abilitabili, la situazione attuale è questa:
+nota importante: le API usate (da IOT base) NON forniscono alcune informazioni, che quindi mancano in tutti gli artefatti. Mentre sto cercando API alternative e facilmente abilitabili, la situazione attuale è questa:
    * Non sono accessibili i dati e le funzioni gestiti da miniAPP. In particolare:
       * tutti gli eventi dell'antifurto (braccio), degli allarmi e delle emergenze NON sono differenziati e si riferiscono tutti ad "armed state"
       * analogamente anche le azioni NON sono differenziate e si riferiscono tutte ad "armed state" (mini APP 'protenzione intelligente')
@@ -37,9 +40,9 @@ nota importante: le API usate (da IOT base) NON forniscono alcune informazioni, 
 
    * i gruppi compaiono solo con il loro ID (e  non con il nome) nè si hanno dettagli.
    * le condizioni definite dall'utente in _ambito di validità_ (preconditions)
-   * la _regola_ impostata  per gestire più condizioni di trigger (ANR / OR)
+   * la _regola_ impostata  per gestire più condizioni di trigger (AND / OR)
    * la _durata_ dei ritardi (delay)
-_Sono tutte informazioni facilmente visibili in SmartLife._
+_Sono tutte informazioni facilmente visibili in SmartLife, ma attualmente NON leggibili via tuyaAPI._
 
 <hr>
 
