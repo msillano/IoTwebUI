@@ -17,7 +17,7 @@ _What can you do?_<br>
 * _REST interface_: web service for simple connection with applications or custom interfaces (document [README](https://github.com/msillano/IoTwebUI/blob/main/RESTserver/README.md)).<br>
 * _**x-device**: IoTwebUI virtual devices, recursive: see [addon](https://github.com/msillano/IoTwebUI/tree/main/addon) cooperation mechanism._
 * _Examples of custom HTML pages, and widget libraries: see [HTML](https://github.com/msillano/IoTwebUI/tree/main/html) dir._
-* _ **x-device** + ** WEB interface** => **APP**. See some [APP examples](https://github.com/msillano/IoTwebUI/tree/main/APP)._ 
+* _ **x-device** + **WEB interface** => **APP**. See some [APP examples](https://github.com/msillano/IoTwebUI/tree/main/APP)._ 
 * _Internationalization_: multilingual user interface versions and the 'voice' module.
 
 ![](https://github.com/msillano/IoTwebUI/blob/main/pics/useschema.png?raw=true)
