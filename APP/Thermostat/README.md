@@ -66,6 +66,11 @@ Then
 ```
 note: If the virtual device is OFF, the x-device will continue to work, but its outputs will be _false_.
 
+This graph summarizes the situation in SmartLife/Tuya:
+![](https://github.com/msillano/IoTwebUI/blob/main/pics/Screenshot%202024-12-18%20110709.png?raw=true)
+
+
+
 **WEEKLY PROGRAM** is implemented in `addon/thermostat01.js` and must be defined by the user, like this:
 
 ```
