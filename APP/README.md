@@ -71,7 +71,7 @@ Istruzioni comuni e generali. Per ulteriori dettagli vedere le singole APP.
    
    * Oltre all'installazione 'minima', installare [RESTserver](https://github.com/msillano/IoTwebUI/blob/main/RESTserver/LEGGIMI-REST22.md#installazione-e-configurazione)
    
-   * Completare la configurazione di  `html/thermostat01.html`<br> _In particolare controllare x_term (nome del x-device, cioè `xname`, usato nella REGOLA di lancio. V. sopra)._
+   * Completare la configurazione di  `html/xxxxxx0y.html`<br> _In particolare controllare x_term (nome del x-device, cioè `xname`, usato nella REGOLA di lancio. V. sopra ed eventuali parametri e customizzazioni._
      
 4. **Uso**
 
@@ -79,7 +79,7 @@ Istruzioni comuni e generali. Per ulteriori dettagli vedere le singole APP.
    * Lanciare **IoTwebUI** (file `run_me.bat`) 
       * premere OK per  _INFO: Connected to REST server!_
       * premere bottone: _PRONTO... premere per continuare_
-   * Lanciare l'**interfaccia** cliccando sul file  `html\thermostat01.html` (opzionale). Si aprirà nel browser preferito.   
+   * Lanciare l'**interfaccia** cliccando sul file  `html\xxxxxx0y.html` (opzionale). Si aprirà nel browser preferito.   
     
 5. **Troubleshooting**
    * Sia con **IoTwebUI** che con l'**interfaccia** click mouse destro, scegliere 'ispeziona..'. Poi 'console': lì appaiono i messaggi di errore.
