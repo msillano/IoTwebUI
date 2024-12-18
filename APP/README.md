@@ -1,4 +1,5 @@
 #  Tuya APPLICATIONS 
+[versione italiana]()
 
 By APP we mean an application with a user interface, that uses Tuya and IoTwebUI with REST, to achieve the most varied objectives.
 They normally comprise at least two files: 
@@ -6,6 +7,9 @@ They normally comprise at least two files:
 * a simple user interface (usually in HTML).
 
 We have separated them in this dir for ease of use: during installation, the files must be copied into your host's 'addon/' and 'html/' dirs.
+
+#  APPLICAZIONI Tuya 
+[english version]()
 
 _Per APP intendiamo una applicazione dotata di propria interfaccia utente, che utilizza Tuya e IoTwebUI con REST, per realizzare gli obiettivi più svariati._
 _Sono normalmente composte di almeno due file:_
