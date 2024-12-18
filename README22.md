@@ -9,7 +9,9 @@ _What can you do?_<br>
 ⚡️ Powerful automation: Create complex automation with tap-to-run and RULES, impossible with SmartLife!<br>
 ⏱️ Customized alerts: Monitor every aspect of your home automation and receive real-time, even voice, alerts.<br>
 🎙 Voice commands: integrated with tap-to-run and RULES, in a single APP<br>
+🏚 It is a bridge between HOMES: it can read data from devices in any HOME, use them in RULES, and activate tap-to-run in all HOMES. Tuya 'scenes' only act on devices in the HOME in which they are defined.<br>
 👌 Perfect integration: Combine device, property, voice, RULES, and Tuya tap-to-run for smooth, complete, and reliable automation. <br>
+
 
 **_New, version 2.2_**
 * _REST interface_: web service for simple connection with applications or custom interfaces (document [README](https://github.com/msillano/IoTwebUI/blob/main/RESTserver/README.md)).<br>
