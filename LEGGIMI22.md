@@ -10,7 +10,8 @@ _Cosa puoi fare?_<br>
 ⏱️ Alert personalizzati: Monitora ogni aspetto della tua domotica e ricevi avvisi realtime, anche vocali.<br>
 🎙  Comandi vocali: integrati con tap-to-run e REGOLE, in un'unica APP<br>
 👌 Integrazione perfetta: Combina device, proprietà, voce, REGOLE e Tuya tap-to-run per un'automazione fluida, completa ed affidabile. <br>
-🏚  Come integratore è un ponte tra le HOME: può leggere i dati dei device in qualsiasi HOME e può usarli nelle REGOLE e attivare tap-to-run in tutte le HOME!. <br>
+🏚  Come integratore è un ponte tra le HOME: può leggere i dati dei device in qualsiasi HOME e può usarli nelle REGOLE e attivare tap-to-run in tutte le HOME!. 
+
 **_Nuovo, versione 2.2_**
 * _Interfaccia REST (server)_: webservice per il semplice collegamento con applicazioni od interfacce custom (documento [LEGGIMI-REST22](https://github.com/msillano/IoTwebUI/blob/main/RESTserver/LEGGIMI-REST22.md)).<br>
 * Esempi di pagine custom html, librerie di widget: vedi dir [html](https://github.com/msillano/IoTwebUI/tree/main/html).
