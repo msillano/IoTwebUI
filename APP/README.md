@@ -43,3 +43,47 @@ Measures the efficiency of a rechargeable battery by plotting its discharge and 
 <i>Misura l'efficienza di una batteria ricaricabile, tracciando il grafico della sua scarica e misurando la carica accumulata in mAh.</i>
      </td></tr>
 </table>
+
+
+### Installazione e Uso
+>>_nota: molte operazioni di installazione e configurazione richiedono da parte dell'utente l'editing di file source, a causa dei limiti delle WEBBAPP. Usare le solite avvertenze: Fare una copia del file prima di ogni modifica. Usare un editor UTF8 (io uso Notepad-plusplus). Attenzione a NON ALTERARE niente altro (soprattutto virgole ',' ed apici '"' e "`")._
+
+Istruzioni comuni e generali. Per ulteriori dettagli vedere le singole APP.
+
+1. **minima (senza UI)**
+   * installare **IoTwebUI** sul server scelto (vedi [IoTwebUI installazione](https://github.com/msillano/IoTwebUI/blob/main/LEGGIMI22.md#installazione))<br>
+   _nota: inizialmente eliminare (file `config.js`) sia allarmi che Log, e porre `tuyaInterval = 180` (uso continuo) oppure  `tuyaInterval = 60` (uso saltuario, più pronto)._
+
+   * copiare nella dir di **IoTwebUI** i file necessari: _da [Github APP](https://github.com/msillano/IoTwebUI/tree/main/APP) alle dir `/addon` e `/html` di **IoTwebUI** installato._
+
+   * Installare in **IoTwebUI** l'**x-device** richiesta.<br> 
+    _nota: istruzioni nel file stesso  `addon/xxxxx0y.js`: occorre modificare il file `IoTwebUI.html`._
+
+   * Completare la configurazione di  `addon/xxxxx0y.js`<br>
+   _In particolare controllare `xroom` (room: deve esistere), `xhome` (home: deve esistere) dove deve andare l'x-device, seguendo le istruzione nel file._<br>
+   
+    * Se richiesto dalla APP creare i 'tap-to-run' in SmartLife per agire sui device Tuya, ovvero quant'altro necessario fare in Tuya (e.g. _Thermostat_ richiede l'installazione di una specifica _device virtuale_).
+
+    * Creare in  IoTwebUI le REGOLE necessarie, consiglio di modificare stabilmente `usrrules02.2.js`. Sono indicate nel file stesso `addon/xxxxx0y.js`:      
+
+2. **Installazione completa** (User Inteface)
+   _Alcune APP funzionano perfettamente senza UI (e.g. Thermostat) per altre l'UI è insispensabile_
+   
+   * Oltre all'installazione 'minima', installare [RESTserver](https://github.com/msillano/IoTwebUI/blob/main/RESTserver/LEGGIMI-REST22.md#installazione-e-configurazione)
+   
+   * Completare la configurazione di  `html/thermostat01.html`<br> _In particolare controllare x_term (nome del x-device, cioè `xname`, usato nella REGOLA di lancio. V. sopra)._
+     
+4. **Uso**
+
+   * Lanciare **RESTserver** (file `rest02.2\run_server.bat`), poi iconizzare la finestra  `cmd.exe` (NON chiudere!).
+   * Lanciare **IoTwebUI** (file `run_me.bat`) 
+      * premere OK per  _INFO: Connected to REST server!_
+      * premere bottone: _PRONTO... premere per continuare_
+   * Lanciare l'**interfaccia** cliccando sul file  `html\thermostat01.html` (opzionale). Si aprirà nel browser preferito.   
+    
+5. **Troubleshooting**
+   * Sia con **IoTwebUI** che con l'**interfaccia** click mouse destro, scegliere 'ispeziona..'. Poi 'console': lì appaiono i messaggi di errore.
+   * Per  **RESTserver**  i messaggi appaiono mella finestra `cmd.exe`   
+   *  vedi [issues](https://github.com/msillano/IoTwebUI/issues).
+
+<hr>
