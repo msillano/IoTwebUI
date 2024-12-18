@@ -83,7 +83,7 @@ Istruzioni comuni e generali. Per ulteriori dettagli vedere le singole APP.
     
 5. **Troubleshooting**
    * Sia con **IoTwebUI** che con l'**interfaccia** click mouse destro, scegliere 'ispeziona..'. Poi 'console': lì appaiono i messaggi di errore.
-   * Per  **RESTserver**  i messaggi appaiono mella finestra `cmd.exe`   
+   * Per  **RESTserver**  i messaggi appaiono nella finestra di `cmd.exe`   
    *  vedi [issues](https://github.com/msillano/IoTwebUI/issues).
 
 <hr>
