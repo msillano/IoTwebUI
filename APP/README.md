@@ -18,7 +18,7 @@ _Sono normalmente composte di almeno due file:_
 
 _Per comodità di uso li abbiamo separati in questa dir: in fase di installazione i file vanno copiati nelle dir 'addon/' e 'html/' della vostra installazione._  
 
-**Note di programmazione**<br>
+**Programming Notes/Note di programmazione**<br>
 * Details on [Pattern MVP](https://github.com/msillano/IoTwebUI/blob/main/html/clima01-leggimi.md#pattern-mvp) 
 * "Advantages of this architecture" and 'Development process' in [testBattery01](https://github.com/msillano/IoTwebUI/blob/main/addon/TestBattery01_leggimi.pdf) <hr>
 * Dettagli sul [Pattern MVP](https://github.com/msillano/IoTwebUI/blob/main/html/clima01-leggimi.md#pattern-mvp) 
