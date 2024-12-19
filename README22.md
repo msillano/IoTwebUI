@@ -644,7 +644,7 @@ note: if the _x-device_ exists, ADDXDEVICE() re-initializes by replacing the dat
 note: ADDXDEVICE() starts 'online' with false: only after completing all the calculations (which may take time) can it be set to 'true' with SETXDEVICEONLINE(), to have visual feedback of the x-device status.<br>
 _Example:_<br>
      <code> // singleton run: adds a x-device after the existence test
-            if(!GETATTRIBUTE("Temperatura media","name",false)) ADDXDEVICE('ROMA', "Studio", "Temperatura media"); </code></dd>
+            if(!GETATTRIBUTE("Temperatura media", "name", false)) ADDXDEVICE('ROMA', "Studio", "Temperatura media"); </code></dd>
 
 <dt>SETXDEVICESTATUS(device, code, value)</dt>
 <dd>Allows adding new values ​​or updating them in the 'status' of an _x-device_.<br>
@@ -659,8 +659,8 @@ _Example:_<br>
 
 
 <dt>DATALOG(name, value) (*)</dt>
-<dd>Adds a new 'value' to the data log file, with the indicated 'name'. Useful for saving processing results (e.g. averages). This MACRO 'books' the saving of a value, but the saving occurs with the times and methods set in config for the data log file.<br>
-<i>note: data saving during a test starts immediately, but, in CSV format, the first line with the names has already been created and is not updated. Eventually save the log file to have a new updated file. This is only for testing: with the RULES in use <i>since startup there is no problem.</i><br>
+<dd>Adds a new 'value' to the data log file, with the indicated 'name'. Useful for saving processing results (e.g. averages). This MACRO 'books' the saving of a value, but the saving occurs with the times and methods set in the config file for the data log feature.<br>
+<i>note: data saving during a test starts immediately, but, in CSV format, the first line with the names has already been created and is not updated. Eventually, save the log file to have a new updated file. This is only for testing: with the RULES in use <i>since startup there is no problem.</i><br>
 <i>Example:</i> <code>DATALOG("Fridge Temperature", GET("TF_frigo","va_temperature")/10);</code>
 </dd>
 
@@ -746,23 +746,28 @@ _Example:_ <code>SOUND("https://assets.mixkit.co/active_storage/sfx/918/918.wav"
 <dt>TRIGBYNAME(name) </dt>
 <dd> Associates a 'name' (max 3 words) to a RULE, allowing it to be activated with a user command (button or voice command) or in case of 'Alert', or with TRIGRULE(name) from another RULE (similar to the Tuya 'tap-to-run').<br>
 Returns true when it must be executed. <br>
-note: name must be unique (it can be used only once) but the action can be applied to multiple RULES using an auxiliary var.<br>
+note: The name must be unique (it can be used only once) but the action can be applied to multiple RULES using an auxiliary var.<br>
 <i>Example:</i> <code>if (TRIGBYNAME('turn off the light')) VOICE ("You have activated: 'turn off the light'") </code> </dd>
 
 <dt>TRIGRULE(name)</dt>
 <dt>TRIGRULE(name, parameter)</dt>
 <dd>Executes a RULE identified by a name. <br>
 'parameter' (optional) is made available in the <code> var _ruleParam </code> (otherwise `null`). Since 'parameter' can be an object, there is no limit to the data passed with this mechanism.  <br>
-note:TRIGRULE is not recursive; max 1 'parameter' active to not overwrite _ruleParam (static). <br>
-note: If the definition of TRIGBYNAME(name) precedes the use of TRIGRULE(name), the execution is not immediate, but occurs immediately after the end of the current run of the RULE, in an EXTRA run. <br>
+Note: TRIGRULE is not recursive; max 1 'parameter' is active so as not to overwrite _ruleParam (static). <br>
+note: If the definition of TRIGBYNAME(name) precedes the use of TRIGRULE(name), the execution is not immediate, but occurs immediately after the end of the current RULE run, in an EXTRA run. <br>
 <i>Example:</i> <code> if (TRIGBYNAME("pippo")) VOICE (" Found pippo"); <br> // RULE 'pippo'
 if (TRIGBYNAME("call pippo")) TRIGRULE("pippo"), VOICE("call pippo") // RULE 'call pippo'
 </code> </dd>
 
+<dt>REFRESH(deviceName)</dt>
 <dt>REFRESH()</dt>
 <dt>REFRESH('cloud')</dt>
-<dd>Many operations are synchronized on the polling loop: this can slow down the response to user actions too much.
-REFRESH() causes an extra cycle of RULES analysis, while REFRESH('cloud') causes extra polling of Tuya data and UI refresh.
+<dd>Many operations are synchronized on the polling loop, which can slow down the response to user actions.
+  
+* REFRESH(deviceName) only for _x-device_, causes an immediate refresh of the device interface (immediate update of `online`, `tooltip`).
+* REFRESH() causes an extra cycle of parsing all RULES (advances any state automata)
+* REFRESH('cloud') causes extra data polling and global UI refresh.
+
 N.B. DO NOT use them in RULES processed at every loop: it would create a blocking 'race condition'! Use them only in RULES processed once, in response to user actions, and only if really necessary!</dd>
 
 </dl>
