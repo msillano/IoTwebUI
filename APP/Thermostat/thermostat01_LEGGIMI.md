@@ -66,7 +66,7 @@ Poi
 nota: Se il device virtuale è OFF, l'x-device continua ad aggiornare il grafico, ma i suoi output saranno _false_.
 
 Questo grafo riassume la situazione in SmartLife/Tuya:
-![](https://github.com/msillano/IoTwebUI/blob/main/pics/Screenshot%202024-12-18%20110709.png?raw=true)
+![](https://github.com/msillano/IoTwebUI/blob/main/pics/thermostat03.png?raw=true)
 
 **WEEKLY PROGRAM** è implemetato in `addon/thermostat01.js` e deve essere definito dall'utente, in questo modo:
 
