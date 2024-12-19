@@ -759,11 +759,15 @@ nota: name deve essere unico (può essere usato una sola volta) ma l'azione può
      if (TRIGBYNAME("chiama pippo")) TRIGRULE("pippo"), VOICE("chiamo pippo")    // RULE 'chiama pippo' 
 </code> </dd>
 
+<dt>REFRESH(deviceName) </dt>
 <dt>REFRESH() </dt>
-<dt>REFRESH('cloud') </dt>
+<dt>REFRESH('cloud'|deviceName) </dt>
 <dd>Molte operazioni sono sincronizzate sul loop di polling: questo può rallentare troppo la risposta alle azioni utente.<br>
-REFRESH() causa un extra ciclo di analisi delle REGOLE, mentre REFRESH('cloud') causa un extra polling dei dati e rinfresco della UI.<BR>
- N.B. NON usarle in REGOLE processate ad ogni loop: si creerebbe una 'race condition' bloccante! Usarle solo in REGOLE processate una tantum, in risposta ad azioni utente, e solo se veramente necessario!
+ * REFRESH(deviceName) solo per _x-device_, causa un immediato rinfresco dell'interfaccia del device (immediato aggiornamento di online, tooltip).
+ * REFRESH() causa un extra ciclo di analisi di tutte le REGOLE (fa avanzare eventuali automi a stati)
+ * REFRESH('cloud') causa un extra polling dei dati e rinfresco globale della UI.
+
+ N.B. NON usare in REGOLE processate ad ogni loop: si potrebbe creare una 'race condition' bloccante! Usare solo in REGOLE processate una tantum, in risposta ad azioni utente, e solo se veramente necessario!
 </dd>
 </dl>
 <hr>
