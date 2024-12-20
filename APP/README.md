@@ -8,6 +8,8 @@ They normally comprise at least two files:
 
 We have separated them in this dir for ease of use: during installation, the files must be copied into your host's 'addon/' and 'html/' dirs.
 
+**All available APPs are presented in [this page](https://github.com/msillano/IoTwebUI/blob/main/APP/Overviews.md).**
+
 **Programming Notes**<br>
 * Details on [Pattern MVP](https://github.com/msillano/IoTwebUI/blob/main/html/clima01-leggimi.md#pattern-mvp) 
 * "Advantages of this architecture" and 'Development process' in [testBattery01](https://github.com/msillano/IoTwebUI/blob/main/addon/TestBattery01_leggimi.pdf) <hr>
