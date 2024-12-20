@@ -15,9 +15,10 @@ Il menu offre queste scelte:
 * **Tap-to-run** genera un tabella con tutti i tap-to-run
 * **Tuya grapho** genere un grapho con le automazioni, i tap-to-run e i device coinvolti, con le relazioni che li legano.
 
-_Inserire la HOME desiderata nel campo superiore, e cliccare fouri dal campo (deselezionare il campo): parte l'aggiornamento dei dati della 'HOME' scelta che può durare un certo tempo, un messaggio vocale segnala la fine._
+_Inserire la HOME desiderata nel campo superiore, e cliccare fuori dal campo (deselezionare il campo): parte l'aggiornamento dei dati, che può durare un certo tempo. Un messaggio vocale segnala la fine._
 
-* **Clear** pulisce i dati in memoria, quindi occorre reinserire l'HOME. Utile se si è fatta qualche modifica in ambiente Tuya e si vuole aggiornare.
+* **Clear** pulisce i dati in memoria, quindi occorre reinserire l'HOME. <br>
+ Utile se si è fatta qualche modifica in ambiente Tuya e si vuole aggiornare.
 </td><td   width="200pt">
 <img src="https://github.com/msillano/IoTwebUI/blob/main/pics/scene01d.png?raw=true">
 </td></tr></table>
@@ -26,7 +27,7 @@ _Inserire la HOME desiderata nel campo superiore, e cliccare fouri dal campo (de
 ![](https://github.com/msillano/IoTwebUI/blob/main/pics/scene01a.png?raw=true)
 
 _nota: Tuya non 'conosce' gli **x-device**, che pertanto NON compariranno mai nel grapho. 
-Idem per le _regole_ di IoTwebUI, che hanno una sintassi totalmente diversa dalle 'scene' Tuya!_
+Idem per le **regole** di IoTwebUI, che hanno una sintassi totalmente diversa dalle 'scene' Tuya!_
 
 ### Risultati
 
@@ -37,18 +38,20 @@ Legenda: Con i defaults abbiamo:
    * In box3d i sottoinsiemi e _miniAPP Tuya_: Allarmi, geolocalizzazione, timer per schedulig, etc
    * In ellissi i _device Tuya_.
 
+**nota:** e'facile cambiare sia le forme (shape) che i colori dei nodi. Vedi source `addon/scene01`.js.
  <hr>
 nota importante: le API usate (da IOT base) purtroppo NON forniscono alcune informazioni, che quindi mancano in tutti gli artefatti. Mentre sto cercando API alternative, la situazione attuale è questa:
+
    * Non sono accessibili i dati e le funzioni gestiti da miniAPP. In particolare:
-      * tutti gli eventi dell'antifurto (braccio), degli allarmi e delle emergenze NON sono differenziati e si riferiscono tutti ad "armed state" (?)
-      * analogamente anche le azioni NON sono differenziate e si riferiscono sempre ad "armed state" (mini APP 'protenzione intelligente')
+      * tutti gli _eventi_ dell'antifurto (braccio), degli allarmi e delle emergenze NON sono differenziati e si riferiscono tutti ibdistintamente ad "armed state".
+      * analogamente anche le _azioni_ NON sono differenziate e si riferiscono sempre ad "armed state" (mini APP 'protenzione intelligente')
       * le funzioni di temporizzazione (anche mensile ed annuale) impostate con le 'regole' nella mini APP 'Casa Accogliente'.
 
   * Anche le seguenti informazioni risultano assenti:
       * i gruppi compaiono solo con il loro ID (e  non con il nome) nè si hanno dettagli.
       * le condizioni definite dall'utente in _ambito di validità_ (preconditions)
       * la _logica_ impostata  per gestire più condizioni di trigger (cioè AND / OR)
-      * la _durata_ dei ritardi (delay)
+      * la _durata_ dei ritardi (delay)<br>
 _Sono tutte informazioni facilmente visibili in SmartLife, ma attualmente NON leggibili via tuyaAPI._
 
 <hr>
