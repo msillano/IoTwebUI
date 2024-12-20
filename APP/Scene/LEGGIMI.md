@@ -40,7 +40,8 @@ Legenda: Con i defaults abbiamo:
 
 **nota:** e'facile cambiare sia le forme (shape) che i colori dei nodi. Vedi source `addon/scene01`.js.
  <hr>
-nota importante: le API usate (da IOT base) purtroppo NON forniscono alcune informazioni, che quindi mancano in tutti gli artefatti. Mentre sto cercando API alternative, la situazione attuale è questa:
+ 
+**IMPORTANTE:**  _le API usate (da IOT base) purtroppo NON forniscono alcune informazioni, che quindi mancano in tutti gli artefatti._ <br> Mentre sto cercando API alternative, la situazione attuale è questa:
 
    * Non sono accessibili i dati e le funzioni gestiti da miniAPP. In particolare:
       * tutti gli _eventi_ dell'antifurto (braccio), degli allarmi e delle emergenze NON sono differenziati e si riferiscono tutti ibdistintamente ad "armed state".
