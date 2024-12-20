@@ -69,12 +69,17 @@ Questo è facilmente ottenibile con i passi seguenti:
 2. Copiare gli elenchi nel file  sorgente (`/addon/scene01.js`) nei due array (di default vuoti: `[]`):
 
         const excludeAutomation = [
+                                 "automation01",
+                                 "automation02",
+        //                       "thermostatSTART",
+                                 . . . 
                                 ];
 
         const excludeTapToRun = [
                                 ];
-3. commentare (con '//' a inizio riga) o cancellare le scene che si VOGLIONO processare.
-4. Riavviare **IoTwebUI** (`run_me.bat`).
+4. commentare (con '//' a inizio riga) o cancellare le scene che si VOGLIONO processare.
+5. Riavviare **IoTwebUI** (`run_me.bat`).
+   
 Il grapho di esempio è ottenuto commentando solo le due automazioni: `thermostatSTART` e `thermostatSTOP`.
 
 </td></tr></table>
