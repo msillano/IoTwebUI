@@ -9,9 +9,7 @@ _Il grafo è utile sia come verifica della logica implementata che come chiara d
  
 
 <table width = "100%"><tr><td>
-Una visione d'insieme che permette di valutare meglio le relazioni tra i vari elementi.
-
-Il menu offre quattro scelte:<br>
+Il menu offre queste scelte:<br>
 * **Automation** genera una tabella (per la stampa meglio il foglio A4 orizzontale) con tutte le automazioni presenti 
 * **Tap-to-run** genera un tabella con tutti i tap-to-run
 * **Tuya grapho** genere un grapho con le automazioni, i tap-to-run e i device coinvolti, con le relazioni che li legano.
