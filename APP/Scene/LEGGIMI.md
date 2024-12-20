@@ -20,7 +20,7 @@ _Inserire la HOME desiderata nel campo superiore, e cliccare fuori dal campo (de
 * **Clear** pulisce i dati in memoria, quindi occorre reinserire l'HOME. <br>
  Utile se si è fatta qualche modifica in ambiente Tuya e si vuole aggiornare.
 </td><td   width="200pt">
-<img src="https://github.com/msillano/IoTwebUI/blob/main/pics/scene01d.png?raw=true">
+<img src= "https://github.com/msillano/IoTwebUI/blob/main/pics/scene01d.png?raw=true">
 </td></tr></table>
 
 ### Risultati
