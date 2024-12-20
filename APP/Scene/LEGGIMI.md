@@ -23,16 +23,16 @@ _Inserire la HOME desiderata nel campo superiore, e cliccare fuori dal campo (de
 <img src="https://github.com/msillano/IoTwebUI/blob/main/pics/scene01d.png?raw=true">
 </td></tr></table>
 
+### Risultati
+
 ![](https://github.com/msillano/IoTwebUI/blob/main/pics/Scene01b.png?raw=true)
 ![](https://github.com/msillano/IoTwebUI/blob/main/pics/scene01a.png?raw=true)
 
 _nota: Tuya non 'conosce' gli **x-device**, che pertanto NON compariranno mai nel grapho. 
 Idem per le **regole** di IoTwebUI, che hanno una sintassi totalmente diversa dalle 'scene' Tuya!_
 
-### Risultati
-
-1. **Tuya grapho**
 Legenda: Con i defaults abbiamo:
+
    * In verde le _automazioni_
    * In grigio i _Tap-to-run_
    * In box3d i sottoinsiemi e _miniAPP Tuya_: Allarmi, geolocalizzazione, timer per schedulig, etc
