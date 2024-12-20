@@ -52,10 +52,10 @@ Istruzioni comuni e generali. Per ulteriori dettagli vedere le singole APP.
 
 Successivamente **IoTwebUI** e l'**interfaccia** possono essere chiusi e rilanciati come si vuole.
 
-4. **Limiti** 
-   * **IoTwebUI** una sola istanza.
-   * **interfaccia** anche più istanze se specificato nelle istruzioni specifiche.
-    
+4. **Limits**
+* **IoTwebUI** one instance only.
+* **interface** also multiple instances if specified in the instructions.
+
 5. **Troubleshooting** 
    * Sia con **IoTwebUI** che con l'**interfaccia** click mouse destro, scegliere 'ispeziona..'. Poi 'console': lì appaiono i messaggi di errore.
    * Per  **RESTserver**  i messaggi appaiono nella finestra di `cmd.exe`   
