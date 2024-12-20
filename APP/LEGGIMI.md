@@ -42,7 +42,7 @@ Istruzioni comuni e generali. Per ulteriori dettagli vedere le singole APP.
    
    * Completare la configurazione di  `html/xxxxxx0y.html`<br> _In particolare controllare x_term (nome del x-device, cioè `xname`, usato nella REGOLA di lancio. V. sopra ed eventuali parametri e customizzazioni._
      
-4. **Uso**
+3. **Uso**
 
    * Lanciare **RESTserver** (file `rest02.2\run_server.bat`), poi iconizzare la finestra  `cmd.exe` (NON chiudere!).
    * Lanciare **IoTwebUI** (file `run_me.bat`) 
@@ -52,11 +52,11 @@ Istruzioni comuni e generali. Per ulteriori dettagli vedere le singole APP.
 
 Successivamente **IoTwebUI** e l'**interfaccia** possono essere chiusi e rilanciati come si vuole.
 
-5. **Limiti:**
+4. **Limiti:** 
    * **IoTwebUI** una sola istanza.
    * **interfaccia** anche più istanze se specificato nelle istruzioni specifiche.
     
-6. **Troubleshooting**
+5. **Troubleshooting** 
    * Sia con **IoTwebUI** che con l'**interfaccia** click mouse destro, scegliere 'ispeziona..'. Poi 'console': lì appaiono i messaggi di errore.
    * Per  **RESTserver**  i messaggi appaiono nella finestra di `cmd.exe`   
    *  vedi [issues](https://github.com/msillano/IoTwebUI/issues).
