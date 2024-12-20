@@ -9,6 +9,9 @@ _Sono normalmente composte di almeno due file:_
 
 _Per comodità di uso li abbiamo separati in questa dir: in fase di installazione i file vanno copiati nelle dir 'addon/' e 'html/' della vostra installazione._  
 
+**Tutte le APP disponibili sono presentate in [questa pagina](https://github.com/msillano/IoTwebUI/blob/main/APP/Overviews.md).**
+
+
 **Note di programmazione**<br>
 
 * Dettagli sul [Pattern MVP](https://github.com/msillano/IoTwebUI/blob/main/html/clima01-leggimi.md#pattern-mvp) 
@@ -40,7 +43,7 @@ Istruzioni comuni e generali. Per ulteriori dettagli vedere le singole APP.
    
    * Oltre all'installazione 'minima', installare [RESTserver](https://github.com/msillano/IoTwebUI/blob/main/RESTserver/LEGGIMI-REST22.md#installazione-e-configurazione)
    
-   * Completare la configurazione di  `html/xxxxxx0y.html`<br> _In particolare controllare x_term (nome del x-device, cioè `xname`, usato nella REGOLA di lancio. V. sopra ed eventuali parametri e customizzazioni._
+   * Completare la configurazione di  `html/xxxxxx0y.html`<br> _In particolare controllare x_name (nome del x-device, cioè `xname`, usato nella REGOLA di lancio. V. sopra ed eventuali parametri e customizzazioni._
      
 3. **Uso**
 
