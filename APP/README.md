@@ -41,7 +41,8 @@ _Some APPs work perfectly without UI (e.g. Thermostat) for others the UI is esse
 
   * In addition to the 'minimal' installation, install [RESTserver](https://github.com/msillano/IoTwebUI/blob/main/RESTserver/READ-ME-REST22.md#installation-and-configuration)
 
-  * Complete the configuration of `html/xxxxxx0y.html`<br> _In particular check x_term (name of the x-device, i.e. `xname`, used in the launch RULE. See above and any parameters and customizations._
+  * Complete the configuration of `html/xxxxxx0y.html`<br> _In particular check x_name (name of the x-device, i.e. `xname`), used in the launch RULE. See above. 
+Check also any parameters and customizations._
 
 3. **Use**
 
