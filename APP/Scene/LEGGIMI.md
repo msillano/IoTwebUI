@@ -80,6 +80,6 @@ Questo è facilmente ottenibile con i passi seguenti:
 4. commentare (con '//' a inizio riga) o cancellare le scene che si VOGLIONO processare.
 5. Riavviare **IoTwebUI** (`run_me.bat`).
    
-Il grapho di esempio è ottenuto commentando solo le due automazioni: `thermostatSTART` e `thermostatSTOP`.
+_Il grapho di esempio è ottenuto commentando solo le due automazioni: `thermostatSTART` e `thermostatSTOP`._
 
 </td></tr></table>
