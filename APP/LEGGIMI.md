@@ -43,7 +43,7 @@ Istruzioni comuni e generali. Per ulteriori dettagli vedere le singole APP.
    
    * Oltre all'installazione 'minima', installare [RESTserver](https://github.com/msillano/IoTwebUI/blob/main/RESTserver/LEGGIMI-REST22.md#installazione-e-configurazione)
    
-   * Completare la configurazione di  `html/xxxxxx0y.html`<br> _In particolare controllare x_name (nome del x-device, cioè `xname`, usato nella REGOLA di lancio. V. sopra ed eventuali parametri e customizzazioni._
+   * Completare la configurazione di  `html/xxxxxx0y.html`<br> _In particolare controllare x_name (nome del x-device, cioè `xname`) usato nella REGOLA di lancio. V. sopra. Controllare eventuali parametri e customizzazioni._
      
 3. **Uso**
 
