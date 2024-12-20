@@ -36,7 +36,7 @@ _In particular, check `xroom` (room: must exist), `xhome` (home: must exist) whe
 
   * Create the necessary RULES in IoTwebUI, I recommend permanently modifying `usrrules02.2.js`. They are indicated in the `addon/xxxxx0y.js` file itself.
   
-2. **Complete installation** (User Interface)
+2. **Complete installation** (User Interface)<br>
 _Some APPs work perfectly without UI (e.g. Thermostat) for others the UI is essential._
 
   * In addition to the 'minimal' installation, install [RESTserver](https://github.com/msillano/IoTwebUI/blob/main/RESTserver/READ-ME-REST22.md#installation-and-configuration)
