@@ -1,5 +1,5 @@
 #  Tuya APPLICATIONS 
-[versione italiana](https://github.com/msillano/IoTwebUI/blob/main/APP/README.md#applicazioni-tuya)
+[versione italiana](https://github.com/msillano/IoTwebUI/blob/main/APP/LEGGIMI.md)
 
 By APP we mean an application with a user interface, that uses Tuya and IoTwebUI with REST, to achieve the most varied objectives.
 They normally comprise at least two files: 
