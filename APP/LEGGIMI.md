@@ -52,7 +52,7 @@ Istruzioni comuni e generali. Per ulteriori dettagli vedere le singole APP.
 
 Successivamente **IoTwebUI** e l'**interfaccia** possono essere chiusi e rilanciati come si vuole.
 
-4. **Limiti:** 
+4. **Limiti** 
    * **IoTwebUI** una sola istanza.
    * **interfaccia** anche più istanze se specificato nelle istruzioni specifiche.
     
