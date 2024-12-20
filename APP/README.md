@@ -8,82 +8,54 @@ They normally comprise at least two files:
 
 We have separated them in this dir for ease of use: during installation, the files must be copied into your host's 'addon/' and 'html/' dirs.
 
-#  APPLICAZIONI Tuya 
-[english version](https://github.com/msillano/IoTwebUI/blob/main/APP/README.md#tuya-applications)
-
-_Per APP intendiamo una applicazione dotata di propria interfaccia utente, che utilizza Tuya e IoTwebUI con REST, per realizzare gli obiettivi più svariati._
-_Sono normalmente composte di almeno due file:_
-* _una MACRO (**x-device**) che fa da middleware tra i device e l'interfaccia utente, implementando anche la 'businnes logic'_
-* _una semplice interfaccia utente specializzata (in genere in HTML)_
-
-_Per comodità di uso li abbiamo separati in questa dir: in fase di installazione i file vanno copiati nelle dir 'addon/' e 'html/' della vostra installazione._  
-
-**Programming Notes/Note di programmazione**<br>
+**Programming Notes**<br>
 * Details on [Pattern MVP](https://github.com/msillano/IoTwebUI/blob/main/html/clima01-leggimi.md#pattern-mvp) 
 * "Advantages of this architecture" and 'Development process' in [testBattery01](https://github.com/msillano/IoTwebUI/blob/main/addon/TestBattery01_leggimi.pdf) <hr>
-* Dettagli sul [Pattern MVP](https://github.com/msillano/IoTwebUI/blob/main/html/clima01-leggimi.md#pattern-mvp) 
-* "Vantaggi di questa architettura" e 'Processo di sviluppo' in [testBattery01](https://github.com/msillano/IoTwebUI/blob/main/addon/TestBattery01_leggimi.pdf)
-
-## Owerview
-<table width="100%">
-<tr><td width = "400pt"><img src="https://github.com/msillano/IoTwebUI/blob/main/pics/thermostat01.png?raw=true"></td><td colspan=2>  <b><i>WEB Thermostat</i></b><br><br>
-This complete SW chronothermostat uses the measurements of one (or more) Tuya temperature probes to control a smart switch for heating (cooling).<hr>
-<i>Questo è un cronotermostato completo SW che utilizza le misure di uno (o più) sonde di temperatura Tuya per controllare uno smart switch per il riscaldamento (raffrescamento).</i>  
- </td></tr>
-<tr><td colspan=2>  <b><i>Explore</i></b><br><br> 
-Application for 'power users'. It allows you to access all the details of our devices, obtaining them both from the Cloud and IoTwebUI.
-Also useful for users of tuyaDAEMON, HA, etc. It lets you quickly find the keys, codes, and any info about a new device!<br>
-<hr>
-<i>Applicazione per 'power users'. Permette di accedere a tutti i dettagli dei nostri device, ottenendoli sia dal Cloud, che da IoTwebUI.
-Utile anche per gli utenti di tuyaDAEMON, HA, etc.  Infatti permette di trovare rapidamente le key, i codici e qualunque info di un device!<i>
-</td><td width="200px"><img src="https://github.com/msillano/IoTwebUI/blob/main/pics/app02.png?raw=true" />  </td></tr>
-<tr><td width = "400pt"><img src="https://github.com/msillano/IoTwebUI/blob/main/pics/app03.png?raw=true"></td><td colspan=2>  <b><i>Battery Tester</i></b><br><br>
-Measures the efficiency of a rechargeable battery by plotting its discharge and measuring the accumulated charge in mAh.<hr>
-
-<i>Misura l'efficienza di una batteria ricaricabile, tracciando il grafico della sua scarica e misurando la carica accumulata in mAh.</i>
-     </td></tr>
-</table>
 
 
 ### Installazione e Uso
->>_nota: molte operazioni di installazione e configurazione richiedono da parte dell'utente l'editing di file source, a causa dei limiti delle WEBBAPP. Usare le solite avvertenze: Fare una copia del file prima di ogni modifica. Usare un editor UTF8 (io uso Notepad-plusplus). Attenzione a NON ALTERARE niente altro (soprattutto virgole ',' ed apici '"' e "`")._
+>>_note: many installation and configuration operations require the user to edit source files, due to WEBBAPP limitations. Use the usual warnings: Make a copy of the file before each change. Use a UTF8 editor (I use Notepad-plusplus). Be careful NOT to ALTER anything else (especially commas ',' and quotes '"' and "`")._
 
-Istruzioni comuni e generali. Per ulteriori dettagli vedere le singole APP.
+Common and general instructions. For further details see the individual APPs.
 
-1. **minima (senza UI)**
-   * installare **IoTwebUI** sul server scelto (vedi [IoTwebUI installazione](https://github.com/msillano/IoTwebUI/blob/main/LEGGIMI22.md#installazione))<br>
-   _nota: inizialmente eliminare (file `config.js`) sia allarmi che Log, e porre `tuyaInterval = 180` (uso continuo) oppure  `tuyaInterval = 60` (uso saltuario, più pronto)._
+1. **minimal (without UI)**
+  * Install **IoTwebUI** on the chosen server (see [IoTwebUI installation](https://github.com/msillano/IoTwebUI/blob/main/LEGGIMI22.md#installation))<br>
+_note: initially delete (file `config.js`) both alarms and Logs, and set `tuyaInterval = 180` (continuous use) or `tuyaInterval = 60` (occasional use, more ready)._
 
-   * copiare nella dir di **IoTwebUI** i file necessari: _da [Github APP](https://github.com/msillano/IoTwebUI/tree/main/APP) alle dir `/addon` e `/html` di **IoTwebUI** installato._
+  * Copy the necessary files into the **IoTwebUI** dir: _from [Github APP](https://github.com/msillano/IoTwebUI/tree/main/APP) to the `/addon` and `/html` dirs of **IoTwebUI** installed._
 
-   * Installare in **IoTwebUI** l'**x-device** richiesta.<br> 
-    _nota: istruzioni nel file stesso  `addon/xxxxx0y.js`: occorre modificare il file `IoTwebUI.html`._
+  * Install the required **x-device** in **IoTwebUI**.<br>
+_note: instructions in the file itself `addon/xxxxx0y.js`: you need to modify the file `IoTwebUI.html`._
 
-   * Completare la configurazione di  `addon/xxxxx0y.js`<br>
-   _In particolare controllare `xroom` (room: deve esistere), `xhome` (home: deve esistere) dove deve andare l'x-device, seguendo le istruzione nel file._<br>
-   
-    * Se richiesto dalla APP creare i 'tap-to-run' in SmartLife per agire sui device Tuya, ovvero quant'altro necessario fare in Tuya (e.g. _Thermostat_ richiede l'installazione di una specifica _device virtuale_).
+  * Complete the configuration of `addon/xxxxx0y.js`<br>
+_In particular, check `xroom` (room: must exist), `xhome` (home: must exist) where the x-device must go, following the instructions in the file._<br>
 
-    * Creare in  IoTwebUI le REGOLE necessarie, consiglio di modificare stabilmente `usrrules02.2.js`. Sono indicate nel file stesso `addon/xxxxx0y.js`:      
+  * If the APP requires, create the 'tap-to-run' in SmartLife to act on the Tuya devices, or whatever else is necessary to do in Tuya (e.g. _Thermostat_ requires installing a specific _virtual device_).
 
-2. **Installazione completa** (User Inteface)
-   _Alcune APP funzionano perfettamente senza UI (e.g. Thermostat) per altre l'UI è insispensabile_
-   
-   * Oltre all'installazione 'minima', installare [RESTserver](https://github.com/msillano/IoTwebUI/blob/main/RESTserver/LEGGIMI-REST22.md#installazione-e-configurazione)
-   
-   * Completare la configurazione di  `html/xxxxxx0y.html`<br> _In particolare controllare x_term (nome del x-device, cioè `xname`, usato nella REGOLA di lancio. V. sopra ed eventuali parametri e customizzazioni._
-     
-4. **Uso**
+  * Create the necessary RULES in IoTwebUI, I recommend permanently modifying `usrrules02.2.js`. They are indicated in the `addon/xxxxx0y.js` file itself.
+  
+2. **Complete installation** (User Interface)
+_Some APPs work perfectly without UI (e.g. Thermostat) for others the UI is essential._
 
-   * Lanciare **RESTserver** (file `rest02.2\run_server.bat`), poi iconizzare la finestra  `cmd.exe` (NON chiudere!).
-   * Lanciare **IoTwebUI** (file `run_me.bat`) 
-      * premere OK per  _INFO: Connected to REST server!_
-      * premere bottone: _PRONTO... premere per continuare_
-   * Lanciare l'**interfaccia** cliccando sul file  `html\xxxxxx0y.html` (opzionale). Si aprirà nel browser preferito.   
+  * In addition to the 'minimal' installation, install [RESTserver](https://github.com/msillano/IoTwebUI/blob/main/RESTserver/READ-ME-REST22.md#installation-and-configuration)
+
+  * Complete the configuration of `html/xxxxxx0y.html`<br> _In particular check x_term (name of the x-device, i.e. `xname`, used in the launch RULE. See above and any parameters and customizations._
+
+3. **Use**
+
+  * Launch **RESTserver** (file `rest02.2\run_server.bat`), then minimize the `cmd.exe` window (DO NOT close!).
+  * Launch **IoTwebUI** (file `run_me.bat`)
+  * press OK for _INFO: Connected to REST server!_
+  * press button: _READY... press to continue_
+  * Launch the **interface** by clicking on the file `html\xxxxxx0y.html` (optional). It will open in your favorite browser.
+
+4. **Limiti** 
+   * **IoTwebUI** una sola istanza.
+   * **interfaccia** anche più istanze se specificato nelle istruzioni.
     
 5. **Troubleshooting**
-   * Sia con **IoTwebUI** che con l'**interfaccia** click mouse destro, scegliere 'ispeziona..'. Poi 'console': lì appaiono i messaggi di errore.
-   * Per  **RESTserver**  i messaggi appaiono nella finestra di `cmd.exe`   
-   *  vedi [issues](https://github.com/msillano/IoTwebUI/issues).
+* Both with **IoTwebUI** and with the **interface** right mouse click, choose 'inspect..'. Then 'console': there the error messages appear.
+* For **RESTserver** the messages appear in the `cmd.exe` window
+* see [issues](https://github.com/msillano/IoTwebUI/issues).
 
 <hr>
