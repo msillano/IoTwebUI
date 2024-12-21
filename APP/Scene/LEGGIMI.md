@@ -51,7 +51,8 @@ Legenda: Con i defaults abbiamo:
   * Anche le seguenti informazioni risultano assenti:
       * i gruppi compaiono solo con il loro ID (e  non con il nome) nè si hanno dettagli.
       * le condizioni definite dall'utente in _ambito di validità_ (preconditions)
-      * la _logica_ impostata  per gestire più condizioni di trigger (cioè AND / OR)
+      * la _logica_ impostata  per gestire le precondizioni di validità o le condizioni di trigger (cioè AND / OR)
+      * i periodi (girno/notte/orario) di validità temporate.
       * la _durata_ dei ritardi (delay)<br>
 _Sono tutte informazioni facilmente visibili in SmartLife, ma attualmente NON leggibili via tuyaAPI._
 
