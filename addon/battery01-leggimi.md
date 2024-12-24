@@ -10,7 +10,7 @@ Ha le proprietà visibili in figura.
 - La proprietà `low level` è anch'essa RW: se viene cambiata, aggiorna i device.
 - Le altre proprietà sono RO.
 - Funzionamento in _auto-discovery_ dei device Tuya, basato sulle proprietà dei device.
-- Come esempio è fornito il codice di REGOLE per cambiare al RT sia  `home` che `low level`.
+- Come esempio è fornito il codice di REGOLE per cambiare al RT  `home`.
 
 Ver. 1.2 23/12/2024 update
 - Added control on user home
