@@ -12,13 +12,20 @@ Ha le proprietà visibili in figura.
 - Funzionamento in _auto-discovery_ dei device Tuya, basato sulle proprietà dei device.
 - Come esempio è fornito il codice di REGOLE per cambiare al RT sia  `home` che `low level`.
 
-Ver. 1.0 20/08/2024  (c)marco.sillano@gmail.com <br>
-       28/10/24 - I also added a test for 'low' value.<br>
-       
+Ver. 1.2 23/12/2024 update
+- Added control on user home
+- Added metadata for "Explore Scene"
+
 Ver. 1.1 03/11/2024 breaking update
 - Added parameters to MACRO to allow multiple instances
 - In EXPERT mode added device's IDs
- 
+
+Ver. 1.0 20/08/2024  (c)marco.sillano@gmail.com <br>
+       28/10/24 - I also added a test for 'low' value.<br>
+       
+ ![](https://github.com/msillano/IoTwebUI/blob/main/pics/Screenshot%202024-12-24%20193614.png?raw=true)
+Grafo sinottico di battery01.
+
 #### Pro
 - semplicità d'uso, praticamente NON richiede interventi di customizzazione
 
