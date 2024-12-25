@@ -86,7 +86,43 @@ _Il grapho di esempio è ottenuto commentando solo le due automazioni: `thermost
 </td></tr></table>
 <hr>
 ### Grapho di x-device
+
 I dati necssari per i grafi swono estratti automaticamente dalla 'scene' e dai device Tuya. Per includere x-device ne grafi, ad esempio per documentazione, come in questo esempio, che illustra sinotticamente il funzionamento di "Explore Scene", occorre inserire esplicitamente i metadati nella **x-device**. 
+
 ![](https://github.com/msillano/IoTwebUI/blob/main/pics/Screenshot%202024-12-24%20163004.png?raw=true)
 
+La struttura (opzionale) è la seguente
+```
+details: = {
+            input: [
+                   {entity_type: "UI\\nscene01",       //extra, from UI
+                    expr: {extra_code: "action.set" }},
+                    ...
+                  ],
+            output: [
+                  {action_executor: "SVG graph",        // extra, artifact
+                   executor_property: {extra_code: "popup"}}
+                   ...
+                 ]};
+```
+In the 'input array' (i.e. conditions) can take place:
+<table width = "100%", border = 1><tr><th>entity_type</th>expr<th></th> <th>note</th></tr>
+ 
+ <tr><td> <b>device_report</b><br> entity_id:<i>name</i>|<i>id</i></td><td>{extra_code: <i>'trigger'</i>} <br>{comparator: <i>'>'</i>, status_code: <i>'countdown_1</i>', status_value: <i>25606</i>} </td><td><i>device data test</i></td></tr>
+ 
+<tr><td><b>weather</b></td><td>{comparator: <i>'>'</i>, weather_code: <i>'humidity'</i>, weather_value: <i>'comfort'</i>}</td><td><i>device data test</i></td></tr>
 
+<tr><td><b>rule</b><br>entity_name:<i>taptorun</i> </td><td>{extra_code: <i>'trigger'</i>} or<br>{comparator: <i>'>'</i>, status_code: <i>'countdown_1</i>', status_value: <i>25606</i>}</td><td><i>tap-to-run action for this x-device</i></td></tr>
+
+<tr><td><b>timer</b> </td><td>{extra_code: <i>'schedule'</i>}</td><td><i>internal timer, scheduling, data-driven etc.</i></td></tr>
+
+<tr><td><b>&lt;any&gt;</b></td><td>{extra_code: <i>'action push'</i>}</td><td><i>external data, miniAPP.. note: box node, special node for all "UI\\nxxxx"</i></td></tr> <table>
+
+
+<tr><td></td><td></td><td></td></tr>
+<tr><td></td><td></td><td></td></tr>
+<tr><td></td><td></td><td></td></tr>
+// timer:     expr: extra_code:'schedule'      // internal timer, scheduled actions, data-driven etc.
+ // weather:   expr:{comparator: '==', weather_code: 'humidity', weather_value: 'comfort'}
+ // rule:      entity_name: taptorun_name, expr: extra_code:'trigger'|{comparator: '>', status_code: 'countdown_1', status_value: 25606}    // tap-to-run action on this xdevice.
+ // any(extra):    expr:{extra_code: 'action push') //external data, miniAPP.. note: box node, special node for all "UI\\nxxxx".    
