@@ -95,12 +95,12 @@ Per includere **x-device** nei grafi, ad esempio per documentazione, come in que
 
 I mondi Tuya e IoTwebUI hanno limitati punti di contatto:
 
-a. un _x-device_ (o una _REGOLA_) può leggere dati da _device Tuya_
-b. un _x_device_ (o una _REGOLA_) può attivare un _Tap_to_run Tuya_ per scatenare azioni o aggiornare device.
-c. un _x-device_ appare nei grafi di **Explore Scene** solo se ha metadati. 
-d. una _REGOLA_ non può avere metadati, ed appare nei grafi di **Explore Scene** solo se è presente nei metadati di un _x-device_.
+* un _x-device_ (o una _REGOLA_ di IoTwebUI) può leggere dati da _device Tuya_
+* un _x_device_ (o una _REGOLA_ di IoTwebUI) può attivare un _Tap_to_run Tuya_ per scatenare azioni o aggiornare device.
+* un _x-device_ appare nei grafi di **Explore Scene** solo se ha metadati. 
+* una _REGOLA_(IoTwebUI) non può avere metadati, ed appare nei grafi di **Explore Scene** solo se è presente nei metadati di un _x-device_.
 
-La struttura (opzionale) per i metadati di **x-device** è la seguente (esempio):
+La struttura (opzionale) per i metadati di un **x-device** è la seguente (esempio):
 ```
 details: = {
             input: [
@@ -115,7 +115,7 @@ details: = {
                  ]};
 ```
 nell''input array' (i.e. condizioni) si può inserire
- <table width = "100%", border = 1><tr><th>entity_type</th><th>expr</th> <th>note</th></tr>
+ <table width = "100%", border = 1><tr><th>entity_type</th><th>expr</th> <th><i>note</i></th></tr>
  
  <tr><td> <b>device_report</b><br> entity_id:<i>name</i>|<i>id</i></td><td>{extra_code: <i>'trigger'</i>} or <br>{comparator: <i>'>'</i>, status_code: <i>'countdown_1</i>', status_value: <i>25606</i>} </td><td><i>device data test</i></td></tr>
  
