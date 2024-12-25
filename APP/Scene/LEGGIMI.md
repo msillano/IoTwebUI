@@ -106,23 +106,25 @@ details: = {
                  ]};
 ```
 In the 'input array' (i.e. conditions) can take place:
-<table width = "100%", border = 1><tr><th>entity_type</th>expr<th></th> <th>note</th></tr>
+<table width = "100%", border = 1><tr><th>entity_type</th><th>expr</th> <th>note</th></tr>
  
- <tr><td> <b>device_report</b><br> entity_id:<i>name</i>|<i>id</i></td><td>{extra_code: <i>'trigger'</i>} <br>{comparator: <i>'>'</i>, status_code: <i>'countdown_1</i>', status_value: <i>25606</i>} </td><td><i>device data test</i></td></tr>
+ <tr><td> <b>device_report</b><br> entity_id:<i>name</i>|<i>id</i></td><td>{extra_code: <i>'trigger'</i>} or <br>{comparator: <i>'>'</i>, status_code: <i>'countdown_1</i>', status_value: <i>25606</i>} </td><td><i>device data test</i></td></tr>
  
-<tr><td><b>weather</b></td><td>{comparator: <i>'>'</i>, weather_code: <i>'humidity'</i>, weather_value: <i>'comfort'</i>}</td><td><i>device data test</i></td></tr>
+<tr><td><b>weather</b></td><td>{comparator: <i>'>'</i>, weather_code: <i>'humidity'</i>, weather_value: <i>'comfort'</i>}</td><td><i>weather data test</i></td></tr>
 
-<tr><td><b>rule</b><br>entity_name:<i>taptorun</i> </td><td>{extra_code: <i>'trigger'</i>} or<br>{comparator: <i>'>'</i>, status_code: <i>'countdown_1</i>', status_value: <i>25606</i>}</td><td><i>tap-to-run action for this x-device</i></td></tr>
+<tr><td><b>rule</b><br>entity_name:<i>taptorun</i> </td><td>{extra_code: <i>'trigger'</i>} or<br>{comparator: <i>'='</i>, status_code: <i>'countdown_1</i>', status_value: <i>25606</i>}</td><td><i>tap-to-run action for this x-device</i></td></tr>
 
 <tr><td><b>timer</b> </td><td>{extra_code: <i>'schedule'</i>}</td><td><i>internal timer, scheduling, data-driven etc.</i></td></tr>
 
-<tr><td><b>&lt;any&gt;</b></td><td>{extra_code: <i>'action push'</i>}</td><td><i>external data, miniAPP.. note: box node, special node for all "UI\\nxxxx"</i></td></tr> <table>
+<tr><td><b>&lt;any&gt;</b> (extra)</td><td>{extra_code: <i>'action push'</i>}</td><td><i>external data, miniAPP.. note: box node, special color for all "UI\\nxxxx"</i></td></tr> <table>
+
+In the 'output array' (i.e. actions) can take place:
+<table width = "100%", border = 1><tr><th>action_executor</th><th>executor_property</th> <th>note</th></tr>
+ 
+ <tr><td> <b>device_issue</b><br> entity_id:<i>name</i>|<i>id</i></td><td>{ function_code: <i>'switch_1</i>', function_value: <i>true</i>} </td><td><i>device data set</i></td></tr>
+
+ <tr><td> <b>rule_trigger</b><br> entity_name:<i>name</i></td><td>{ function_code: <i>'switch_1</i>', function_value: <i>true</i>} </td><td><i>device data set</i></td></tr>
+
+<tr><td><b>&lt;any&gt;</b> (extra)</td><td>{extra_code: <i>'popup'</i>}</td><td><i>tooltip, artifacts, miniAPP.. note: box node, special color for all "UI\\nxxxx"</i></td></tr> <table>
 
 
-<tr><td></td><td></td><td></td></tr>
-<tr><td></td><td></td><td></td></tr>
-<tr><td></td><td></td><td></td></tr>
-// timer:     expr: extra_code:'schedule'      // internal timer, scheduled actions, data-driven etc.
- // weather:   expr:{comparator: '==', weather_code: 'humidity', weather_value: 'comfort'}
- // rule:      entity_name: taptorun_name, expr: extra_code:'trigger'|{comparator: '>', status_code: 'countdown_1', status_value: 25606}    // tap-to-run action on this xdevice.
- // any(extra):    expr:{extra_code: 'action push') //external data, miniAPP.. note: box node, special node for all "UI\\nxxxx".    
