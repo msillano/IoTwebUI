@@ -64,5 +64,5 @@ Check also any parameters and customizations._
 <hr>
 Open Source Project, MIT License, (c)2024 marco sillano
 
-IoTwebUI, Rest, and APPs are a work-in-progress: they are provided "as is", without warranties of any kind, implicit or explicit.
+IoTwebUI, Rest, addons, and APPs are a work-in-progress: they are provided "as is", without warranties of any kind, implicit or explicit.
 <hr>
