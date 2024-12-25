@@ -895,10 +895,17 @@ Usi: profili di temperatura giornalieri, eventi ad orario o abilitazione per int
  
 </dl>
 
-(\*) - IMPORTANTE: identifica le MACRO che fanno uso di memoria per salvare lo stato, DEVONO essere eseguite ad ogni RUN delle regole!<br>
+(\*) - IMPORTANTE: identifica le MACRO che fanno uso di memoria per salvare lo stato: per come sono implementate, **DEVONO essere eseguite ad ogni RUN** delle regole!<br>
   1. _NON usarle quindi nella parte _azione_ di un IF_: <code> if(condizione){ qui_NO }  </code><br>
   2. _NON usarle nemmeno come seconda condizione di un IF, dopo || o &&_: <code>if(cond1 &&  qui_NO){azione}</code><br>
- Workaround: usare una var di appoggio prima dell'IF:  <code> var _test2 = MACRO(*); if(cond1 && _test2){azione}</code>    
+  3. _NON usarle in sezioni di codice che in alcuni casi NON viene eseguito (vedi esempio in `battery01.2.is`)_
+
+ Workaround: se possibile una var di appoggio prima dell'IF:  <code> var _test2 = MACRO(*); if(cond1 && _test2){azione}</code>
+ 
+IMPORTANTE: _non osservare questa regola porta a bug di non facile interpretazione_! Per un verifica, ponete come ultima riga delle regole;
+
+         console.log("## Check RULEs idxMax:"+useStore.idx);
+ Questo riga stampa in console un numero ogni loop, che corrisponde al numero di MACRO(\*) usate. Il numero deve essere costante **dal primo loop e per tutti i loop successivi**; se varia c'è un errore nel codice riguardo l'uso delle MACRO(*)
 
 ## Riconoscimenti
       
