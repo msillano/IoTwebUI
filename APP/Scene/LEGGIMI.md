@@ -84,3 +84,9 @@ Questo è facilmente ottenibile con i passi seguenti:
 _Il grapho di esempio è ottenuto commentando solo le due automazioni: `thermostatSTART` e `thermostatSTOP`._
 
 </td></tr></table>
+<hr>
+### Grapho di x-device
+I dati necssari per i grafi swono estratti automaticamente dalla 'scene' e dai device Tuya. Per includere x-device ne grafi, ad esempio per documentazione, come in questo esempio, che illustra sinotticamente il funzionamento di "Explore Scene", occorre inserire esplicitamente i metadati nella **x-device**. 
+![](https://github.com/msillano/IoTwebUI/blob/main/pics/Screenshot%202024-12-24%20163004.png?raw=true)
+
+
