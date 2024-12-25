@@ -85,18 +85,20 @@ _Il grapho di esempio è ottenuto commentando solo le due automazioni: `thermost
 
 </td></tr></table>
 <hr>
+
 ### Grapho di x-device
 
-I dati necessari per i grafi sono estratti automaticamente dalla 'scene' e dai 'device' Tuya. 
-Per includere x-device nei grafi, ad esempio per documentazione, come in questo esempio, che illustra sinotticamente il funzionamento di "Explore Scene", occorre inserire esplicitamente i metadati nella **x-device**. 
+I dati necessari per i grafi sono estratti automaticamente dalle 'scene' e dai 'device' Tuya.<br> 
+Per includere **x-device** nei grafi, ad esempio per documentazione, come in questo esempio, che illustra sinotticamente il funzionamento di "Explore Scene", occorre inserire esplicitamente dei metadati in **x-device**. 
 
 ![](https://github.com/msillano/IoTwebUI/blob/main/pics/Screenshot%202024-12-24%20163004.png?raw=true)
 
 I mondi Tuya e IoTwebUI hanno limitati punti di contatto:
-a) un x-device (o una REGOLA) può leggere dati da device Tuya
-b) un x_device (o una REGOLA) può attivare Tap_to_run Tuya per scatenare azioni o aggiornare device.
-c) un x-device appare nei grafi se ha metadati. 
-d) una REGOLA non può avere mettadati, ed appare nei grafi solo se è presente nei metadati di un x-device.
+
+a. un _x-device_ (o una _REGOLA_) può leggere dati da _device Tuya_
+b. un _x_device_ (o una _REGOLA_) può attivare un _Tap_to_run Tuya_ per scatenare azioni o aggiornare device.
+c. un _x-device_ appare nei grafi di **Explore Scene** solo se ha metadati. 
+d. una _REGOLA_ non può avere metadati, ed appare nei grafi di **Explore Scene** solo se è presente nei metadati di un _x-device_.
 
 La struttura (opzionale) per i metadati di **x-device** è la seguente (esempio):
 ```
@@ -113,7 +115,7 @@ details: = {
                  ]};
 ```
 nell''input array' (i.e. condizioni) si può inserire
-<table width = "100%", border = 1><tr><th>entity_type</th><th>expr</th> <th>note</th></tr>
+ <table width = "100%", border = 1><tr><th>entity_type</th><th>expr</th> <th>note</th></tr>
  
  <tr><td> <b>device_report</b><br> entity_id:<i>name</i>|<i>id</i></td><td>{extra_code: <i>'trigger'</i>} or <br>{comparator: <i>'>'</i>, status_code: <i>'countdown_1</i>', status_value: <i>25606</i>} </td><td><i>device data test</i></td></tr>
  
@@ -133,5 +135,7 @@ Invece nell''output array' (i.e. azioni) si può inserire:
  <tr><td> <b>rule_trigger</b><br> entity_name:<i>name</i></td><td><i>none</i> </td><td><i>tap_to_run trigger</i></td></tr>
 
 <tr><td><b>&lt;any&gt;</b> (extra)</td><td>{extra_code: <i>'popup'</i>}</td><td><i>tooltip, artifacts, miniAPP.. note: box node, special color for all "UI\\nxxxx"</i></td></tr> <table>
+
+Esempi si possono trovare nei source in molti addon o APP. (`batterry01.2.js`, `scene01.js` etc.)
 
 
