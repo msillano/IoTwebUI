@@ -890,7 +890,19 @@ Uses: daily temperature profiles, timed events or time interval enablement, etc.
 
 </dl>
 
-(*): identifies MACROS that use memory to save state: DO NOT use them in the _action_ part of an if())
+#### (\*) - IMPORTANT
+The symbol (\*) identifies MACROS that use memory to save the state: as they are implemented, they **MUST be executed at every RUN** of the rules!
+
+1. _Therefore DO NOT use them in the _action_ part of an IF_: <code> if(condition){ here_NO } </code><br>
+2. _Do NOT use them even as the second condition of an IF, after || or &&_: <code>if(cond1 && here_NO){action}</code><br>
+3. _Do NOT use them in sections of code that in some cases are NOT executed (see example in `battery01.2.js`)_
+
+Workaround: if possible, use a support var before the IF: <code> var _test2 = MACRO(*); if(cond1 && _test2){action}</code>
+
+IMPORTANT: _not observing this rule leads to bugs that are not easy to interpret_! To verify, put as the last line of the rules;
+
+             console.log("## Check RULEs idxMax:"+useStore.idx);
+This line prints a number in the console for every loop, which corresponds to the number of MACRO(\*) executed in ALL the previous rules. The number must be constant **from the first loop and for all subsequent loops**; if it varies there is an error in the code of the rules or addons regarding the use of MACRO(*).
 
 ## Credits
 
