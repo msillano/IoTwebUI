@@ -67,6 +67,6 @@ Successivamente **IoTwebUI** e l'**interfaccia** possono essere chiusi e rilanci
 <hr>
 Progetto OpenSource, Licenza MIT, (c)2024 marco sillano
 
-IoTwebUI, Rest, APP sono un work-in-progress: vengono fornite "così come sono", senza garanzie di alcun tipo, implicite o esplicite.
+IoTwebUI, Rest, addon, APP sono un work-in-progress: vengono fornite "così come sono", senza garanzie di alcun tipo, implicite o esplicite.
 <hr>
 
