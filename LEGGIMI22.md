@@ -906,7 +906,7 @@ Il simbolo (\*) identifica le MACRO che fanno uso di memoria per salvare lo stat
 IMPORTANTE: _non osservare questa regola porta a bug di non facile interpretazione_! Per un verifica, ponete come ultima riga delle regole;
 
          console.log("## Check RULEs idxMax:"+useStore.idx);
- Questo riga stampa in console un numero ogni loop, che corrisponde al numero di MACRO(\*) eseguite. Il numero deve essere costante **dal primo loop e per tutti i loop successivi**; se varia c'è un errore nel codice riguardo l'uso delle MACRO(*)
+Questo riga stampa in console un numero ogni loop, che corrisponde al numero di MACRO(\*) eseguite in TUTTE le regole precedenti. Il numero deve essere costante **dal primo loop e per tutti i loop successivi**; se varia c'è un errore nel codice delle regole o degli addon riguardo l'uso delle MACRO(*).
 
 ## Riconoscimenti
       
