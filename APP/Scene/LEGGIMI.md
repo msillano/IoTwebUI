@@ -87,11 +87,18 @@ _Il grapho di esempio è ottenuto commentando solo le due automazioni: `thermost
 <hr>
 ### Grapho di x-device
 
-I dati necssari per i grafi swono estratti automaticamente dalla 'scene' e dai device Tuya. Per includere x-device ne grafi, ad esempio per documentazione, come in questo esempio, che illustra sinotticamente il funzionamento di "Explore Scene", occorre inserire esplicitamente i metadati nella **x-device**. 
+I dati necessari per i grafi sono estratti automaticamente dalla 'scene' e dai 'device' Tuya. 
+Per includere x-device nei grafi, ad esempio per documentazione, come in questo esempio, che illustra sinotticamente il funzionamento di "Explore Scene", occorre inserire esplicitamente i metadati nella **x-device**. 
 
 ![](https://github.com/msillano/IoTwebUI/blob/main/pics/Screenshot%202024-12-24%20163004.png?raw=true)
 
-La struttura (opzionale) è la seguente
+I mondi Tuya e IoTwebUI hanno limitati punti di contatto:
+a) un x-device (o una REGOLA) può leggere dati da device Tuya
+b) un x_device (o una REGOLA) può attivare Tap_to_run Tuya per scatenare azioni o aggiornare device.
+c) un x-device appare nei grafi se ha metadati. 
+d) una REGOLA non può avere mettadati, ed appare nei grafi solo se è presente nei metadati di un x-device.
+
+La struttura (opzionale) per i metadati di **x-device** è la seguente (esempio):
 ```
 details: = {
             input: [
@@ -105,7 +112,7 @@ details: = {
                    ...
                  ]};
 ```
-In the 'input array' (i.e. conditions) can take place:
+nell''input array' (i.e. condizioni) si può inserire
 <table width = "100%", border = 1><tr><th>entity_type</th><th>expr</th> <th>note</th></tr>
  
  <tr><td> <b>device_report</b><br> entity_id:<i>name</i>|<i>id</i></td><td>{extra_code: <i>'trigger'</i>} or <br>{comparator: <i>'>'</i>, status_code: <i>'countdown_1</i>', status_value: <i>25606</i>} </td><td><i>device data test</i></td></tr>
@@ -118,12 +125,12 @@ In the 'input array' (i.e. conditions) can take place:
 
 <tr><td><b>&lt;any&gt;</b> (extra)</td><td>{extra_code: <i>'action push'</i>}</td><td><i>external data, miniAPP.. note: box node, special color for all "UI\\nxxxx"</i></td></tr> <table>
 
-In the 'output array' (i.e. actions) can take place:
+Invece nell''output array' (i.e. azioni) si può inserire:
 <table width = "100%", border = 1><tr><th>action_executor</th><th>executor_property</th> <th>note</th></tr>
  
  <tr><td> <b>device_issue</b><br> entity_id:<i>name</i>|<i>id</i></td><td>{ function_code: <i>'switch_1</i>', function_value: <i>true</i>} </td><td><i>device data set</i></td></tr>
 
- <tr><td> <b>rule_trigger</b><br> entity_name:<i>name</i></td><td>{ function_code: <i>'switch_1</i>', function_value: <i>true</i>} </td><td><i>device data set</i></td></tr>
+ <tr><td> <b>rule_trigger</b><br> entity_name:<i>name</i></td><td><i>none</i> </td><td><i>tap_to_run trigger</i></td></tr>
 
 <tr><td><b>&lt;any&gt;</b> (extra)</td><td>{extra_code: <i>'popup'</i>}</td><td><i>tooltip, artifacts, miniAPP.. note: box node, special color for all "UI\\nxxxx"</i></td></tr> <table>
 
