@@ -8,6 +8,7 @@ Un utente può sempre aggiungere un ADDON alla propria istanza di IoTwebUI (istr
 - Il file deve essere nella dir addon/
 - L'opzione di installazione più semplice è inserire una nuova riga nel file principale (IoTwebUI.html) 
 - L'utente deve aggiungere la/le REGOLE  necessarie per eseguire o interagire con l'ADDON.
+- Gli **addon** possono formare, quando forniti di _interfaccia utente_, vere e proprie [APP Tuya](https://github.com/msillano/IoTwebUI/tree/main/APP).
 
 <hr>
 
@@ -17,5 +18,5 @@ con poca customizzazione, usa auto-discovery per individuare i device.
 * **battery02.js** _x-device_: Analogo al precedente, ma con algoritmo più performante (e maggiore customizzazione: l'utente deve inserire la lista di device). Senza dipendenze.
 * **classify02.js**  _x-device_:  Fornisce un elenco di tutti i device presenti in un HOME (o in tutte), suddivisi per categoria (is-a). Senza dipendenze.
 * **clone01.js**  _x-device_: crea e mantiene aggiornata una copia di un device reale Tuya, più dettagliata della versione standard usata da IoTwebUI. Senza dipendenze.
-* **testerbattery01.js** _x-device_: Applicazione completa comprensiva di interfaccia utente HTML. Richiede scheda HW TY-08Z, clone01, tester01.html. (vedi [TestBattery01_leggimi](https://github.com/msillano/IoTwebUI/blob/main/addon/TestBattery01_leggimi.pdf) )
+
              
