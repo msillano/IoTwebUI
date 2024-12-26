@@ -11,9 +11,11 @@ Ha le proprietà visibili in figura.
 - Le altre proprietà sono RO.
 - Funzionamento in _auto-discovery_ dei device Tuya, basato sulle proprietà dei device.
 - Come esempio è fornito il codice di REGOLE per cambiare al RT  `home`.
+- In Expert mode, oltre al nome fornisce anche gli id dei device.
+- Il tooltip è exportabile ([CTRL]+click) con copia/incolla, formato CSV (usare ':' come separatore).
 
 Ver. 1.2 23/12/2024 update
-- Added control on user home
+- Added control on the user's home
 - Added metadata for "Explore Scene"
 
 Ver. 1.1 03/11/2024 breaking update
