@@ -132,7 +132,7 @@ Invece nell''output array' (i.e. azioni) si può inserire:
  
  <tr><td> <b>device_issue</b><br> entity_id:<i>name</i>|<i>id</i></td><td>{ function_code: <i>'switch_1</i>', function_value: <i>true</i>} </td><td><i>device data set</i></td></tr>
 
- <tr><td> <b>rule_trigger</b><br> entity_name:<i>name</i></td><td><i>none</i> </td><td><i> tap_to_run && X-RULE trigger</i></td></tr>
+ <tr><td> <b>rule_trigger</b><br> entity_name:<i>name</i></td><td><i>none</i> </td><td><i> tap_to_run && X-RULE (tap_to_run) trigger action </i></td></tr>
 
 <tr><td><b>xrule</b><br>entity_name:<i>name</i> </td><td>{extra_code: <i>'trigger'</i>} or<br>{comparator: <i>'='</i>, status_code: <i>'countdown_1</i>', status_value: <i>25606</i>}</td><td><i> X-RULE (automation) definition && condition push from this x-device</i></td></tr>
 
