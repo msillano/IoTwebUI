@@ -102,41 +102,21 @@ I mondi Tuya e IoTwebUI hanno limitati punti di contatto:
 
 La struttura (opzionale) per i metadati di un **x-device** è la seguente (esempio):
 ```
-details: = {
-            input: [
-                   {entity_type: "UI\\nscene01",       //extra, from UI
-                    expr: {extra_code: "action.set" }},
-                    ...
-                  ],
-            output: [
-                  {action_executor: "SVG graph",        // extra, artifact
-                   executor_property: {extra_code: "popup"}}
-                   ...
-                 ]};
+  device.details: [
+                { from: { type: "type",   
+                            id: "name"},
+                    to: { type: "type",
+                            id: "name"},
+                action: "label" 
+ 		    	        }, ...];
 ```
-nell''input array' (i.e. condizioni) si può inserire
- <table width = "100%", border = 1><tr><th>entity_type</th><th>expr</th> <th><i>note</i></th></tr>
- 
- <tr><td> <b>device_report</b><br> entity_id:<i>name</i>|<i>id</i></td><td>{extra_code: <i>'trigger'</i>} or <br>{comparator: <i>'>'</i>, status_code: <i>'countdown_1</i>', status_value: <i>25606</i>} </td><td><i>device & x-device data test</i></td></tr>
- 
-<tr><td><b>weather</b></td><td>{comparator: <i>'>'</i>, weather_code: <i>'humidity'</i>, weather_value: <i>'comfort'</i>}</td><td><i>weather data test</i></td></tr>
-
-<tr><td><b>rule</b><br>entity_name:<i>taptorun</i> </td><td>{extra_code: <i>'trigger'</i>} or<br>{comparator: <i>'='</i>, status_code: <i>'countdown_1</i>', status_value: <i>25606</i>}</td><td><i> X-RULE (tap-to-run) definition && action for this x-device</i></td></tr>
-
-<tr><td><b>timer</b> </td><td>{extra_code: <i>'schedule'</i>}</td><td><i>internal timer, scheduling, data-driven etc.</i></td></tr>
-
-<tr><td><b>&lt;any&gt;</b> (extra)</td><td>{extra_code: <i>'action push'</i>}</td><td><i>external data, miniAPP.. note: box node, special color for all "UI\\nxxxx"</i></td></tr> <table>
-
-Invece nell''output array' (i.e. azioni) si può inserire:
-<table width = "100%", border = 1><tr><th>action_executor</th><th>executor_property</th> <th>note</th></tr>
- 
- <tr><td> <b>device_issue</b><br> entity_id:<i>name</i>|<i>id</i></td><td>{ function_code: <i>'switch_1</i>', function_value: <i>true</i>} </td><td><i>device data set</i></td></tr>
-
- <tr><td> <b>rule_trigger</b><br> entity_name:<i>name</i></td><td><i>none</i> </td><td><i> tap_to_run && X-RULE (tap_to_run) trigger action </i></td></tr>
-
-<tr><td><b>xrule</b><br>entity_name:<i>name</i> </td><td>{extra_code: <i>'trigger'</i>} or<br>{comparator: <i>'='</i>, status_code: <i>'countdown_1</i>', status_value: <i>25606</i>}</td><td><i> X-RULE (automation) definition && condition push from this x-device</i></td></tr>
-
-<tr><td><b>&lt;any&gt;</b> (extra)</td><td>{extra_code: <i>'popup'</i>}</td><td><i>tooltip, artifacts, miniAPP.. note: box node, special color for all "UI\\nxxxx"</i></td></tr> <table>
+note:
+*  `from` e/o `to` sono optionali, se mancano sono sostituiti con i dati dell'**x-device**
+*  `type`: obbligatorrio: uno tra **device, auto, tap, extra, xdevice, xauto, xtap, xextra**
+   i nomi con la 'x' si riferiscono a IoTwebUI, quelli senza ad elementi Tuya. 
+*  `nome`: obbligatorio, _acapo_ con `\n` doublescaped `"\\n"`
+Se un nome non esiste viene creato un nodo, definito da `type`. Questo è il modo di far apparire nel grafo le REGOLE di IoTwebUI, che altrimenti NON sarebbero presenti!
+* Le forme e i colori usati per gli 8 tipi di nodi sono definiti in `scene01.js` e posso essere cambiati.
 
 Esempi si possono trovare nei source in molti addon o APP. (`batterry01.2.js`, `scene01.js` etc.)
 
