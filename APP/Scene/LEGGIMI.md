@@ -119,4 +119,4 @@ _note:_
 * **id**, obbligatorio, è il nome di un elemento e compare al centro del nodo. Se non esiste ancora è creato: questo è il modo per inserire nel grafo le _ROUTINE di_ _IoTwebUI_ che altrimenti non comparirebbero.
 * **action** è la label dell'arco che unisce _from_ a _to_.
 
-Esempi si possono trovare nei source in molti addon o APP. (`batterry01.2.js`, `scene01.js` etc.)
+Esempi si possono trovare nei source in molti addon o APP. (`battery01.2.js`, `scene01.js` etc.)
