@@ -91,7 +91,7 @@ _Il grapho di esempio è ottenuto commentando solo le due automazioni: `thermost
 I dati necessari per i grafi sono estratti automaticamente dalle 'scene' e dai 'device' Tuya.<br> 
 Per includere **x-device** nei grafi, ad esempio per documentazione, come in questo esempio, che illustra sinotticamente il funzionamento di "Explore Scene", occorre inserire esplicitamente dei metadati in **x-device**. 
 
-![](https://github.com/msillano/IoTwebUI/blob/main/pics/Screenshot%202024-12-24%20163004.png?raw=true)
+![](https://github.com/msillano/IoTwebUI/blob/main/pics/Screenshot%202024-12-27%20194833.png?raw=true)
 
 I mondi Tuya e IoTwebUI hanno limitati punti di contatto:
 
