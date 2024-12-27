@@ -1,7 +1,7 @@
 # Explore scene
 
 ### Obiettivi
-_Questa APP ha come obiettivo agevolare lo sviluppo e la documentazione delle scene (Automazioni e Tap-to-run) di Tuya (SmartLife o Tuya Smart APPs) in modo semplice ed automatico._ <br>
+_Questa APP ha come obiettivo agevolare lo sviluppo e la documentazione delle scene (Automazioni e Tap-to-run) di Tuya (SmartLife o Tuya Smart APPs) e IoTwebUI in modo semplice ed automatico._ <br>
 Sostanzialmente sono prodotti due artefatti: elenchi di tutte le scene con le principali caratteristiche, formattati in una tavola, ed un grafo con le relazioni tra  scene e device coinvolte.
 
 _Le tabelle testuali possono servire come archivio, da usare, per esempio, in caso di necessità di reinserimento delle scene se un device ha cambiato ID._ <br>
@@ -28,23 +28,21 @@ _Inserire la HOME desiderata nel campo superiore, e cliccare fuori dal campo (de
 ![](https://github.com/msillano/IoTwebUI/blob/main/pics/Scene01b.png?raw=true)
 ![](https://github.com/msillano/IoTwebUI/blob/main/pics/scene01a.png?raw=true)
 
-_nota: Tuya non 'conosce' gli **x-device**, che pertanto NON compariranno mai nel grapho. 
-Idem per le **regole** di IoTwebUI, che hanno una sintassi totalmente diversa dalle 'scene' Tuya!_
 
 Legenda: Con i defaults abbiamo:
 
    * In verde le _automazioni_
    * In grigio i _Tap-to-run_
-   * In box3d i sottoinsiemi e _miniAPP Tuya_: Allarmi, geolocalizzazione, timer per schedulig, etc
-   * In ellissi i _device Tuya_.
+   * In box3d i sottoinsiemi esterni e _miniAPP Tuya_: Allarmi, geolocalizzazione, timer per schedulig, etc
+   * In ellissi i _device_.
 
-**nota:** e'facile cambiare sia le forme (shape) che i colori dei nodi. Vedi source `addon/scene01`.js.
- <hr>
+**nota:** e'facile cambiare sia le forme (shape) che i colori dei nodi. Occorre modificare `addon/scene01.js`
+  Vedi [https://graphviz.org/doc/info/shapes.html](https://graphviz.org/doc/info/shapes.html).<hr>
  
 **IMPORTANTE:**  _le API usate (da IOT base) purtroppo NON forniscono alcune informazioni, che quindi mancano in tutti gli artefatti._ <br> Mentre sto cercando API alternative, la situazione attuale è questa:
 
    * Non sono accessibili i dati e le funzioni gestiti da miniAPP. In particolare:
-      * tutti gli _eventi_ dell'antifurto (braccio), degli allarmi e delle emergenze NON sono differenziati e si riferiscono tutti ibdistintamente ad "armed state".
+      * tutti gli _eventi_ dell'antifurto (braccio), degli allarmi e delle emergenze NON sono differenziati e si riferiscono tutti indistintamente ad "armed state".
       * analogamente anche le _azioni_ NON sono differenziate e si riferiscono sempre ad "armed state" (mini APP 'protenzione intelligente')
       * le funzioni di temporizzazione (anche mensile ed annuale) impostate con le 'regole' nella mini APP 'Casa Accogliente'.
 
@@ -82,6 +80,7 @@ Questo è facilmente ottenibile con i passi seguenti:
                                 ];
 
 4. commentare (con '//' a inizio riga) o cancellare le `scene` o le `x-device` che si VOGLIONO processare.
+Default: array vuoti []: nei grafici appare tutto!
 5. Riavviare **IoTwebUI** (`run_me.bat`).
    
 _Il grapho di esempio è ottenuto commentando solo le due automazioni: `thermostatSTART` e `thermostatSTOP`; il device è aggiunto automaticamente perchè è usato dalle automazioni._
@@ -92,7 +91,7 @@ _Il grapho di esempio è ottenuto commentando solo le due automazioni: `thermost
 ### Grapho di x-device
 
 I dati necessari per i grafi sono estratti automaticamente dalle 'scene' e dai 'device' Tuya.<br> 
-Per includere **x-device** nei grafi, ad esempio per documentazione, come in questo esempio, che illustra sinotticamente il funzionamento di "Explore Scene", occorre inserire esplicitamente dei metadati nelle **x-device**. 
+Per includere gli **x-device** nei grafi, ad esempio per documentazione, come in questo esempio, che illustra sinotticamente il funzionamento di "Explore Scene", occorre inserire esplicitamente dei metadati nelle **x-device**. 
 
 ![](https://github.com/msillano/IoTwebUI/blob/main/pics/Screenshot%202024-12-27%20194833.png?raw=true)
 
@@ -112,15 +111,11 @@ x-device.details: = [
                                id: "name"},
                    action: "label" 
 		    	            }, ...];
-
-// from, to: optional, if missed are replaced by this x-device
-// type: one of device,auto,tap,extra,xdevice,xauto,xtap,xextra
-// name of a node: if not exists it is cteated
 ```
-note:
+
+_note:_
 * **to** e/o **from** sono opzionali, se mancano sono usati i dati dell'_x-device_.
-* **type** è obbligatorio e deve assumere uno dei seguenti valori:  **device, auto, tap, extra, xdevice, xauto, xtap, xextra.** I valori che iniziano la x (e.g. _xdevice_) si riferiscono a elementi di `IoTwebUI`, gli altri a `Tuya`.
-* ad ogni _type_ corrisponde un diverso nodo: forme e colori sono definiti nel file `addon/scene01.js` e sono facili da cambiare. Vedere [https://graphviz.org/doc/info/shapes.html](https://graphviz.org/doc/info/shapes.html).
+* **type** è obbligatorio e deve assumere uno dei seguenti valori:  **device, auto, tap, extra, xdevice, xauto, xtap, xextra.** I valori che iniziano la x (e.g. _xdevice_) si riferiscono a elementi di `IoTwebUI`, gli altri a `Tuya`. Ad ogni _type_ corrisponde un nodo di stile diverso, in tutto 8.
 * **id**, obbligatorio, è il nome di un elemento e compare al centro del nodo. Se non esiste ancora è creato: questo è il modo per inserire nel grafo le _ROUTINE di_ _IoTwebUI_ che altrimenti non comparirebbero.
 * **action** è la label dell'arco che unisce _from_ a _to_.
 
