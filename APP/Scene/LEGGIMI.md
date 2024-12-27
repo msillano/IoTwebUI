@@ -66,8 +66,8 @@ _Sono tutte informazioni facilmente visibili in SmartLife, ma attualmente NON le
 Per scopo di docunentazione può essere utile un grafo parziale e non totale.
 Questo è facilmente ottenibile con i passi seguenti:
 
-1. Usare **Plain list**, quarta opzione del menu: si ottengono due liste (_automazioni_ e _tap-to-run_) già formattate.
-2. Copiare gli elenchi nel file  sorgente (`/addon/scene01.js`) nei due array (di default vuoti: `[]`):
+1. Usare **Plain list**, quarta opzione del menu: si ottengono tre liste (_automazioni_, _tap-to-run_, _x-device_) già formattate.
+2. Copiare gli elenchi nel file  sorgente (`/addon/scene01.js`) negli array (di default vuoti: `[]`):
 
         const excludeAutomation = [
                                  "automation01",
@@ -78,10 +78,13 @@ Questo è facilmente ottenibile con i passi seguenti:
 
         const excludeTapToRun = [
                                 ];
-4. commentare (con '//' a inizio riga) o cancellare le scene che si VOGLIONO processare.
+        const excludeXDevice  = [
+                                ];
+
+4. commentare (con '//' a inizio riga) o cancellare le `scene` o le `x-device` che si VOGLIONO processare.
 5. Riavviare **IoTwebUI** (`run_me.bat`).
    
-_Il grapho di esempio è ottenuto commentando solo le due automazioni: `thermostatSTART` e `thermostatSTOP`._
+_Il grapho di esempio è ottenuto commentando solo le due automazioni: `thermostatSTART` e `thermostatSTOP`; il device è aggiunto automaticamente perchè è usato dalle automazioni._
 
 </td></tr></table>
 <hr>
@@ -89,7 +92,7 @@ _Il grapho di esempio è ottenuto commentando solo le due automazioni: `thermost
 ### Grapho di x-device
 
 I dati necessari per i grafi sono estratti automaticamente dalle 'scene' e dai 'device' Tuya.<br> 
-Per includere **x-device** nei grafi, ad esempio per documentazione, come in questo esempio, che illustra sinotticamente il funzionamento di "Explore Scene", occorre inserire esplicitamente dei metadati in **x-device**. 
+Per includere **x-device** nei grafi, ad esempio per documentazione, come in questo esempio, che illustra sinotticamente il funzionamento di "Explore Scene", occorre inserire esplicitamente dei metadati nelle **x-device**. 
 
 ![](https://github.com/msillano/IoTwebUI/blob/main/pics/Screenshot%202024-12-27%20194833.png?raw=true)
 
@@ -102,22 +105,23 @@ I mondi Tuya e IoTwebUI hanno limitati punti di contatto:
 
 La struttura (opzionale) per i metadati di un **x-device** è la seguente (esempio):
 ```
-  device.details: [
-                { from: { type: "type",   
-                            id: "name"},
-                    to: { type: "type",
-                            id: "name"},
-                action: "label" 
- 		    	        }, ...];
+x-device.details: = [
+                   { from: { type: "type",
+                               id: "name"},
+                       to: { type: "type",
+                               id: "name"},
+                   action: "label" 
+		    	            }, ...];
+
+// from, to: optional, if missed are replaced by this x-device
+// type: one of device,auto,tap,extra,xdevice,xauto,xtap,xextra
+// name of a node: if not exists it is cteated
 ```
 note:
-*  `from` e/o `to` sono optionali, se mancano sono sostituiti con i dati dell'**x-device**
-*  `type`: obbligatorrio: uno tra **device, auto, tap, extra, xdevice, xauto, xtap, xextra**
-   i nomi con la 'x' si riferiscono a IoTwebUI, quelli senza ad elementi Tuya. 
-*  `nome`: obbligatorio, _acapo_ con `\n` doublescaped `"\\n"`
-Se un nome non esiste viene creato un nodo, definito da `type`. Questo è il modo di far apparire nel grafo le REGOLE di IoTwebUI, che altrimenti NON sarebbero presenti!
-* Le forme e i colori usati per gli 8 tipi di nodi sono definiti in `scene01.js` e posso essere cambiati.
+* **to** e/o **from** sono opzionali, se mancano sono usati i dati dell'_x-device_.
+* **type** è obbligatorio e deve assumere uno dei seguenti valori:  **device, auto, tap, extra, xdevice, xauto, xtap, xextra.** I valori che iniziano la x (e.g. _xdevice_) si riferiscono a elementi di `IoTwebUI`, gli altri a `Tuya`.
+* ad ogni _type_ corrisponde un diverso nodo: forme e colori sono definiti nel file `addon/scene01.js` e sono facili da cambiare. Vedere [https://graphviz.org/doc/info/shapes.html](https://graphviz.org/doc/info/shapes.html).
+* **id**, obbligatorio, è il nome di un elemento e compare al centro del nodo. Se non esiste ancora è creato: questo è il modo per inserire nel grafo le _ROUTINE di_ _IoTwebUI_ che altrimenti non comparirebbero.
+* **action** è la label dell'arco che unisce _from_ a _to_.
 
 Esempi si possono trovare nei source in molti addon o APP. (`batterry01.2.js`, `scene01.js` etc.)
-
-
