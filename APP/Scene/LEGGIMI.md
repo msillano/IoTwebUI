@@ -114,8 +114,8 @@ x-device.details: = [
 ```
 
 _note:_
-* **to** e/o **from** sono opzionali, se mancano sono usati i dati dell'_x-device_.
-* **type** è obbligatorio e deve assumere uno dei seguenti valori:  **device, auto, tap, extra, xdevice, xauto, xtap, xextra.** I valori che iniziano la x (e.g. _xdevice_) si riferiscono a elementi di `IoTwebUI`, gli altri a `Tuya`. Ad ogni _type_ corrisponde un nodo di stile diverso, in tutto 8.
+* **from** e/o **to** sono opzionali, quando mancano come default è usato il nodo dell'_x-device_.
+* **type** è obbligatorio e deve assumere uno dei seguenti valori:  **device, auto, tap, extra, xdevice, xauto, xtap, xextra.** I valori che iniziano la x (e.g. _xdevice_) si riferiscono a elementi di `IoTwebUI`, gli altri a `Tuya`. Ad ogni _type_ corrisponde un nodo di aspetto diverso, in tutto 8.
 * **id**, obbligatorio, è il nome di un elemento e compare al centro del nodo. Se non esiste ancora è creato: questo è il modo per inserire nel grafo le _ROUTINE di_ _IoTwebUI_ che altrimenti non comparirebbero.
 * **action** è la label dell'arco che unisce _from_ a _to_.
 
