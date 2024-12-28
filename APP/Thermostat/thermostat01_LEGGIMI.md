@@ -43,7 +43,7 @@ In particolare servono due REGOLE (**IoTwebUI**) per agire sullo `swart switch` 
 
 ```  
   if(GET("WEB Thermostat","HOTout", false)) SCENE("HOTTURNON");     // driveOn
-  if(!GET("WEB Thermostat","HOTout", false)) SCENE("HOTTURNOFF");   // droveOff
+  if(!GET("WEB Thermostat","HOTout", false)) SCENE("HOTTURNOFF");   // driveOff
 ```
 
 _`HOTTURNON` e `HOTTURNOFF` sono due 'tap-to-run' Tuya che accendono/spengono il riscaldamento: sono richiamate ad ogni loop (analogamente per il raffrescamento)._
@@ -101,10 +101,12 @@ _note_:
  * _il grafico copre 24 ore e si inizializza ogni giorno alle 00:00._
 
    
-Questo grafo mostra le relazioni tra le varie entità **Tuya/IoTwebUI**
+Questo grafo mostra le relazioni tra le varie entità **Tuya/IoTwebUI** di questa APP:
+
+
 ![](https://github.com/msillano/IoTwebUI/blob/main/pics/Screenshot%202024-12-28%20084634.png?raw=true)
 
-_In questa APP gli input provengono da device (reali e virtuali) Tuya, l'output torna a Tuya: in mezzo l'**x-device** 'WEB thermostat' agisce come una automazione avanzata, implementando una logica non realizzabile solo con Tuya._
+_Gli input provengono da device (reali e virtuali) Tuya, l'output torna a Tuya: in mezzo l'**x-device** 'WEB thermostat' agisce come una automazione avanzata, implementando una logica non realizzabile solo con Tuya._
 
 ### Pro
 - Estremamente configurabile, come un classico cronotermostato, con extra funzioni:
