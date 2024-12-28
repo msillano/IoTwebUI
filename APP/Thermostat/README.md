@@ -66,10 +66,6 @@ Then
 ```
 note: If the virtual device is OFF, the x-device will continue to work, but its outputs will be _false_.
 
-This graph summarizes the situation in SmartLife/Tuya:
-![](https://github.com/msillano/IoTwebUI/blob/main/pics/thermostat03.png?raw=true)
-
-
 
 **WEEKLY PROGRAM** is implemented in `addon/thermostat01.js` and must be defined by the user, like this:
 
@@ -103,6 +99,15 @@ _note_:
 
 * _The interface is completely optional, it does not intervene with the operating logic of **WEB thermostat**._
 * _The graph covers 24 hours and initializes every day at 00:00._
+
+<hr>
+  
+This graph shows the relationships between the various **Tuya/IoTwebUI** entities of this APP:
+
+![](https://github.com/msillano/IoTwebUI/blob/main/pics/Screenshot%202024-12-28%20084634.png?raw=true)
+
+_The inputs come from Tuya devices (real and virtual), and the output goes back to Tuya: in the middle the **x-device** 'WEB thermostat' acts as an advanced automation, implementing a logic that cannot be achieved with Tuya alone._
+
 
 ### Pro
 - Extremely configurable, like a classic chronothermostat, with extra functions:
