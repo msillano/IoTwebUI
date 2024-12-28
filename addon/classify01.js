@@ -28,115 +28,153 @@ per IOTwebUI version 2.2 10/08/2024
 // 3) optional: update 'custom.js' to set icon and color for this x-devices
 // You can use 'CLASSIFY01(name, room, mode)' as new MACRO in RULE-pad !.
 
-// =====================  USE AS RULE (no MACRO)
-// 1) Use the 'minified' version, as RULE (UPDATE the code if required!)
-// 1-A) Copy the 'minified CLASSIFY01' + 'RULES for CLASSIFY01' (excluding MACRO call) in the RULE-pad at run time (temporary)
-// 2-B) Copy the 'minified CLASSIFY01' + 'RULES for CLASSIFY01' (excluding MACRO call) in the 'var usrrules' in the usrrulesXX.X.js file (permanent).
-// 3) optional: update 'custom.js' to set icon and color for this x-devices
-
 // ==== end use instructions
 
 // =================== CLASSIFY01 CODE
-// WARNING: the TRIGBYNAME() MACRO works only on RULE-pad.
-// EXAMPLE: This MACRO creates the x-device 'Device list' for device control
 
 // CUSTOM parameter. All vars names starts with 'cl'.
-var _clHome = 'ADMIN', _clRoom = "System";
-
-function CLASSIFY01(_clName = "Device list", _clStartHome = null, _clStartMode = 'all' ) {             //  MACRO name
-
-// ====== A_PHASE. singleton constructor: buids the x-device with default status
+let _clHome = 'ADMIN', _clRoom = "System"; // Home and room for the x-device
+//
+function CLASSIFY01(_clName = "Device list", _clStartHome = null, _clStartMode = 'all') { //  ====================
+    let first = false;
+    // ====== A_PHASE. singleton constructor: buids the x-device with default status
     if (!GETATTRIBUTE(_clName, "name", false)) {
+        first = true;
         ADDXDEVICE(_clHome, _clRoom, _clName, [{
-                    code:  'home',
-                    value: _clStartHome       // default start home
-                  }, {
-                    code:  'mode',  // all|online|offline
+                    code: 'home',
+                    value: _clStartHome // default start home
+                }, {
+                    code: 'mode', // all|online|offline
                     value: _clStartMode
-                  }, {
-                    code:  'count',
-                    value:  0
-                }] );
-       console.log("cl_phase A - startup");
-       }
+                }, {
+                    code: 'count',
+                    value: 0
+                }
+            ]);
 
-// ====== METHOD: check a cleanup is triggered when the home/mode properties changes
+        // ====================  EXTRA METADATA for 'Classify'
+        // (optional) adds 'details' to the x-object
+        // run only one time, at startup!
+        // for details see https://github.com/msillano/IoTwebUI/blob/main/APP/Scene/LEGGIMI.md#grapho-di-x-device
+        //      a) init
+        let xdev = getDeviceFromRef(_clName);
+        xdev['details'] = [
+            //   b)here   input data (like conditions)
+            {
+                from: {
+                    type: "extra",
+                    id: "IoTwebUI\\ntuyaData"
+                },
+                action: "get",
+            }, {
+                action: "data driven",
+            }, {
+                from: {
+                    type: "xtap",
+                    id: "List any device"
+                },
+                action: "mode=all",
+            }, {
+                from: {
+                    type: "xtap",
+                    id: "List offline device"
+                },
+                action: "mode=offline",
+            }, {
+                from: {
+                    type: "xtap",
+                    id: "List device from any HOME"
+                },
+                action: "home=null",
+            }, {
+                from: {
+                    type: "xtap",
+                    id: "List device from ROMA"
+                },
+                action: "home=ROMA",
+            },
+            //   c)here   output data (like actions)
+            {
+                to: {
+                    type: "extra",
+                    id: "tooltip"
+                },
+                action: "result",
+            },
+        ];
+    }
+
+    // ====== METHOD: check a cleanup is triggered when the home/mode properties changes
     var _clXhome = GET(_clName, 'home'); // user can change home at runtime
     var _clXmode = GET(_clName, 'mode'); // user can change mode at runtime
     var _clDev = []; // temp device names array
-
-    if (TRIGCHANGED(_clXhome + _clXmode + !categories)) {    // to use a single TRIGCHANGED()
-   	      ADDXDEVICE(_clHome, _clRoom, _clName, [{
+ 
+  if (TRIGCHANGED(_clXhome + _clXmode + !categories)) { // to use a single TRIGCHANGED()
+         ADDXDEVICE(_clHome, _clRoom, _clName, [{
                     code: 'home',
                     value: _clXhome
                 }, {
-                    code:  'mode',  // all|online|offline
+                    code: 'mode', // all|online|offline
                     value: _clXmode
                 }, {
-                    code:  'count',
-                    value:  0
-                }] );
-        console.log("cl_phase A - update");
-    	VOICE("Aggiorno la lista dei device");
-		  }
-
-
-// ========  B_PHASE  wait for 2 loops to complete device processing
-    if((TRIGEVERY(2) && GET(_clName, 'count', false) == 0)) {
-      var _clAHomes = (_clXhome == null) ? GETHOMELIST():[_clXhome];
-      _clAHomes.forEach ((xhome) => {
-         GETIDLIST(xhome).forEach((devid) => {
-           let online = GETATTRIBUTE(devid, 'online');
-           if ( (_clXmode == 'all') || ((_clXmode == 'online') && online) || ((_clXmode == 'offline') && !online)){
-    	   	   let device ={};
-			     device.id = devid;
-    	     	 device.name = GETATTRIBUTE(devid, 'name');
-    		     device.category = GETATTRIBUTE(devid, 'category', false);
-    		     device.is_a		= GETATTRIBUTE(devid, 'is-a', false);
-    		     _clDev.push( device); };
-        });}), console.log("cl_phase B - array done");
-     }
-
-// ========  C_PHASE: fills status properties
-  function dynamicSort(properties) {    // local function
-     return function(a, b) {
-        for (let i = 0; i < properties.length; i++) {
-            let prop = properties[i];
-            if (a[prop] < b[prop]) return -1;
-            if (a[prop] > b[prop]) return 1;
-         }
-         return 0;
-       }
+                    code: 'count',
+                    value: 0
+                }
+            ]);		
+    }
+	
+   function dynamicSort(properties) { // local function
+        return function (a, b) {
+            for (let i = 0; i < properties.length; i++) {
+                let prop = properties[i];
+                if (a[prop] < b[prop])
+                    return -1;
+                if (a[prop] > b[prop])
+                    return 1;
+            }
+            return 0;
+        }
     }
 
-if (ISTRIGGERH( _clDev.length > 0)){
-    _clDev = _clDev.sort(dynamicSort(['category','name']));
-    SETXDEVICESTATUS(_clName, "count", _clDev.length);
-	  let _clC = ''; let i =1;
-    _clDev.forEach((dev, pos) => {
-	      if(_clC != dev.category){
-			  if (categories)	// expert mode	
-  		        SETXDEVICESTATUS(_clName,  '<b>'+dev.category, dev.is_a +'</b>');
-			  else 
-	            SETXDEVICESTATUS(_clName,  '<b>'+dev.category,'</b>');
-	       _clC = dev.category
-	         }
-	      if (categories)	// expert mode	 
-             SETXDEVICESTATUS(_clName, '---- ' + (i++).toString().padStart(2, "0"), dev.name + ': <i>'+dev.id + '</i>');
-	      else
-             SETXDEVICESTATUS(_clName, '---- ' + (i++).toString().padStart(2, "0"), dev.name );
-	//	  SETXDEVICESTATUS(_clName, '&nbsp; &nbsp; &nbsp; <i>'+i++, dev.id + '</i>');
-	      });
-    console.log("cl_phase C - status ready");
-    }
-
- // ====== D_PHASE: if done, set online and refresh
-  if (ISTRIGGERH(_clDev.length > 0)) {
-	    SETXDEVICEONLINE(_clName);  // done: online
-		  console.log("** done classify01");
-		  REFRESH('cloud');                 // to update tooltip asap
-      VOICE("Device "+_clName+" aggiornato");
-      };
+    // ========  B_PHASE  wait for 1 loop to complete device processing
+    if ((!first) && (GET(_clName, 'count', false) === 0)) { // NOT the first run
+//        VOICE("attendere per favore...");
+        var _clAHomes = (_clXhome == null) ? GETHOMELIST() : [_clXhome];
+        _clAHomes.forEach((xhome) => {
+            GETIDLIST(xhome).forEach((devid) => {
+                let online = GETATTRIBUTE(devid, 'online');
+                if ((_clXmode == 'all') || ((_clXmode == 'online') && online) || ((_clXmode == 'offline') && !online)) {
+                    let device = {};
+                    device.id = devid;
+                    device.name = GETATTRIBUTE(devid, 'name');
+                    device.category = GETATTRIBUTE(devid, 'category', false);
+                    device.is_a = GETATTRIBUTE(devid, 'is-a', false);
+                    _clDev.push(device);
+                };
+            });
+        });
+        // ========  C_PHASE: fills status properties
+        _clDev = _clDev.sort(dynamicSort(['category', 'name']));
+        SETXDEVICESTATUS(_clName, "count", _clDev.length);
+        let _clC = '';
+        let i = 1;
+        _clDev.forEach((dev, pos) => {
+            if (_clC != dev.category) {
+                if (categories) // expert mode
+                    SETXDEVICESTATUS(_clName, '<b>' + dev.category, dev.is_a + '</b>');
+                else
+                    SETXDEVICESTATUS(_clName, '<b>' + dev.category, '</b>');
+                _clC = dev.category
+            }
+            if (categories) // expert mode
+                SETXDEVICESTATUS(_clName, '---- ' + (i++).toString().padStart(2, "0"), dev.name + ': <i>' + dev.id + '</i>');
+            else
+                SETXDEVICESTATUS(_clName, '---- ' + (i++).toString().padStart(2, "0"), dev.name);
+        });
+        SETXDEVICEONLINE(_clName); // done: online
+        REFRESH(_clName); // to update tooltip asap
+        VOICE("Device List " + (_clXhome ? ("di " + _clXhome) : "totale") + " aggiornata");
+    };
 
 } // end  CLASSIFY01 code
 
@@ -144,18 +182,15 @@ if (ISTRIGGERH( _clDev.length > 0)){
 // This is an example only, using 'ROMA' home - you can customize it in RULE-pad
 
 /*
-  CLASSIFY01("Device list", 'ROMA', 'online');                //  MACRO call
+// ---- CLASSIFY01: Device list
+//  some control RULES with name (xtap examples), before for fastest execution
+if (TRIGBYNAME("List any device")) SETXDEVICESTATUS("Device list",'mode','all'),REFRESH(),VOICE("Lista di tutti i device");
 
-  if (TRIGBYNAME("ROMA all device")) SETXDEVICESTATUS("Device list", 'mode', 'all'), REFRESH(),VOICE("Tutti i device di Roma");
+if (TRIGBYNAME("List offline devices")) SETXDEVICESTATUS("Device list",'mode','offline'),REFRESH(),VOICE("Lista dei soli device offline");
 
-  if (TRIGBYNAME("ROMA offline")) SETXDEVICESTATUS("Device list", 'mode', 'offline'),REFRESH(),VOICE("Device offline di Roma");
-*/
+if (TRIGBYNAME("List devices from any HOME")) SETXDEVICESTATUS("Device list",'home',null),REFRESH(),VOICE("Lista totale di "+GET("Device list", 'mode')+" device");
 
-/*
-// =============================  minified CLASSIFY01
-//   Minified version of CLASSIFY01 for RULE-pad: 4 lines only!  (using Notepad++ + plugin JSTool).
-//   On the RULE-pad you can cut long lines in many rows, and use 'continue' char (\) as last char for any row.
-
-
-// end minified
-*/
+if (TRIGBYNAME("List devices from ROMA")) SETXDEVICESTATUS("Device list",'home','ROMA'),REFRESH(),VOICE("Lista di "+GET("Device list", 'mode')+" device di Roma ");
+//
+CLASSIFY01("Device list", 'ROMA', 'all');            // x-device MACRO call
+ */
