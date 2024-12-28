@@ -42,8 +42,8 @@ Tutti i dati sono visibili nel tooltip di IoTwebUI, quindi accessibili tramite '
 In particolare servono due REGOLE (**IoTwebUI**) per agire sullo `swart switch` del riscaldamento (raffrescamento). Esempio, ON/OFF per riscaldamento (usando i defaults):
 
 ```  
-  if(GET("WEB Thermostat","HOTout", false)) SCENE("HOTTURNON"); 
-  if(!GET("WEB Thermostat","HOTout", false)) SCENE("HOTTURNOFF");
+  if(GET("WEB Thermostat","HOTout", false)) SCENE("HOTTURNON");     // driveOn
+  if(!GET("WEB Thermostat","HOTout", false)) SCENE("HOTTURNOFF");   // droveOff
 ```
 
 _`HOTTURNON` e `HOTTURNOFF` sono due 'tap-to-run' Tuya che accendono/spengono il riscaldamento: sono richiamate ad ogni loop (analogamente per il raffrescamento)._
@@ -102,7 +102,7 @@ _note_:
 
    
 Questo grafo mostra le relazioni tra le varie entità **Tuya/IoTwebUI**
-![](https://github.com/msillano/IoTwebUI/blob/main/pics/Screenshot%202024-12-28%20080438.png?raw=true)
+![](https://github.com/msillano/IoTwebUI/blob/main/pics/Screenshot%202024-12-28%20084634.png?raw=true)
 
 _In questa APP gli input provengono da device (reali e virtuali) Tuya, l'output torna a Tuya: in mezzo l'**x-device** 'WEB thermostat' agisce come una automazione avanzata, implementando una logica non realizzabile solo con Tuya._
 
@@ -152,8 +152,8 @@ _nota: molte operazioni di installazione e configurazione richiedono da parte de
       
 ```
    THERMOSTAT01();                     // esegue la MACRO ad ogni loop
-   if(GET("WEB Thermostat","HOTout", false)) SCENE("HOTTURNON"); 
-   if(!GET("WEB Thermostat","HOTout", false)) SCENE("HOTTURNOFF");
+   if(GET("WEB Thermostat","HOTout", false)) SCENE("HOTTURNON");     // driveOn
+   if(!GET("WEB Thermostat","HOTout", false)) SCENE("HOTTURNOFF");   // driveOff
 ```
 
 Alternativa (esempio: NON usa i defaults, stanza = 'Bagno', NON usa HOME)
