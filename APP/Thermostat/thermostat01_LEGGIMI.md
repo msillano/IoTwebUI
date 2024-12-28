@@ -65,9 +65,6 @@ Poi
 ```
 nota: Se il device virtuale è OFF, l'x-device continua ad aggiornare il grafico, ma i suoi output saranno _false_.
 
-Questo grafo riassume la situazione in SmartLife/Tuya:
-![](https://github.com/msillano/IoTwebUI/blob/main/pics/thermostat03.png?raw=true)
-
 **WEEKLY PROGRAM** è implemetato in `addon/thermostat01.js` e deve essere definito dall'utente, in questo modo:
 
 ```
@@ -88,6 +85,11 @@ domenica: dalle 23:00 alle  8:00 =>  16°
 
 **MULTIPLE ISTANZE**. Il device virtuale può avere una sola istanza, ma si può usare un solo _device virtuale_ per più _x-device_ (e.g. uno per ambiente) ognuno con le sue sonde, i suoi profili e uno 'smart relay' o una elettrovalvola comandata! <br>
 Unica avvertenza creare e includere più file `thermostatXX.js` e cambiare il nome (`function THERMOSTATXX`(...)) ad ogni istanza, per poter avere impostazioni differenti.
+
+Questo grafo mostra le relazioni tra le varie entità Tuya/IoTwebUI
+![](https://github.com/msillano/IoTwebUI/blob/main/pics/Screenshot%202024-12-28%20073547.png?raw=true)
+
+_In questa APP gli input provengono da device (reali e virtuali) Tuya, l'output torna a Tuya: in mezzo 'WEB thermostat' agisce come una automazione avanzata, implementando una logica non realizzabile solo con Tuya._
 
 ### Interfaccia utente
 **WEB thermostat x-device** è completo ed autosufficiente. <br>
