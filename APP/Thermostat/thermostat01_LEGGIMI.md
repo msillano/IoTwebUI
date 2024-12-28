@@ -86,11 +86,6 @@ domenica: dalle 23:00 alle  8:00 =>  16°
 **MULTIPLE ISTANZE**. Il device virtuale può avere una sola istanza, ma si può usare un solo _device virtuale_ per più _x-device_ (e.g. uno per ambiente) ognuno con le sue sonde, i suoi profili e uno 'smart relay' o una elettrovalvola comandata! <br>
 Unica avvertenza creare e includere più file `thermostatXX.js` e cambiare il nome (`function THERMOSTATXX`(...)) ad ogni istanza, per poter avere impostazioni differenti.
 
-Questo grafo mostra le relazioni tra le varie entità Tuya/IoTwebUI
-![](https://github.com/msillano/IoTwebUI/blob/main/pics/Screenshot%202024-12-28%20073547.png?raw=true)
-
-_In questa APP gli input provengono da device (reali e virtuali) Tuya, l'output torna a Tuya: in mezzo 'WEB thermostat' agisce come una automazione avanzata, implementando una logica non realizzabile solo con Tuya._
-
 ### Interfaccia utente
 **WEB thermostat x-device** è completo ed autosufficiente. <br>
 Se si desidera, **IoTwebUI** offre Allarmi e l'esportazione su file (Logging) dei dati per chi desidera conservarli od eseguire ulteriori elaborazioni.
@@ -104,6 +99,12 @@ _note_:
 
  * _l'interfaccia è del tutto opzionale, non interviene sulla logica di funzionamento di **WEB thermostat**._
  * _il grafico copre 24 ore e si inizializza ogni giorno alle 00:00._
+
+   
+Questo grafo mostra le relazioni tra le varie entità **Tuya/IoTwebUI**
+![](https://github.com/msillano/IoTwebUI/blob/main/pics/Screenshot%202024-12-28%20080438.png?raw=true)
+
+_In questa APP gli input provengono da device (reali e virtuali) Tuya, l'output torna a Tuya: in mezzo l'**x-device** 'WEB thermostat' agisce come una automazione avanzata, implementando una logica non realizzabile solo con Tuya._
 
 ### Pro
 - Estremamente configurabile, come un classico cronotermostato, con extra funzioni:
