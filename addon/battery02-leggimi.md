@@ -8,6 +8,7 @@ Ha le proprietà visibili in figura.
 - La proprietà `home` è RO: è predefinita nel codice.
 - Le altre proprietà sono dinamicamente calcolate (RO).
 - Funzionamento: utilizza un elenco aggiornato dei device.
+- Refresch automatico ogni ora (circa)
 
   ![image](https://github.com/user-attachments/assets/f61d76fc-d3ce-424b-9596-70351495fba8)
 
