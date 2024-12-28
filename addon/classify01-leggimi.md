@@ -9,6 +9,9 @@ Ha le proprietà visibili in figura.
 - La proprietà `mode` è RW, valori: 'all'|'online'|'offline'. Se viene cambiata, aggiorna i device.
 - Le altre proprietà sono RO.
 - Durante le fasi di elaborazione l'**x-device** risulta offline. 
+- In modo esperto la lista contiene anche l'ID del device.
+
+![image](https://github.com/user-attachments/assets/fc80ada6-afa0-47d9-9b82-1ab47e7b8c42)
 
 Ver. 1.0 02/09/2024  (c)marco.sillano@gmail.com 
 
