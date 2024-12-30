@@ -272,12 +272,18 @@ function THERMOSTAT01(xname = "WEB Thermostat", xroom = "Test", xhome = 'ADMIN')
 THERMOSTAT01();  // runs this every loop, uses default values - see line 29 - required
 
 //   note: the Tuya 'tap-to-run' "HOTTURNON", "HOTTURNOFF", etc.  MUST EXIST !
-//   rules for HOT on/off - optional (driveOn, driveOff)
+//   rules for HOT on/off - optional (driveOn, driveOff) every loop:
 if(GET("WEB Thermostat","HOTout", false)) SCENE("HOTTURNON");
 if(GET("WEB Thermostat","HOTout", false)) SCENE("HOTTURNOFF");
+or (N.B. At the start set a very LOW temperature, i.e. OFF, after 5m set the required temperature) 
+if(ISTRIGGERH(GET("WEB Thermostat","HOTout", false))) SCENE("HOTTURNON"); 
+if(ISTRIGGERL(GET("WEB Thermostat","HOTout", false))) SCENE("HOTTURNOFF");
 
 //   rules for COLD on/off - optional
 if(GET("WEB Thermostat","COLDout", false)) SCENE("COLDTURNON");
 if(GET("WEB Thermostat","COLDout", false)) SCENE("COLDTURNOFF");
-
+or (At start set a very HI temperature, i.e. OFF, after 5m set the required temperature) 
+if(ISTRIGGERH(GET("WEB Thermostat","COLDout", false))) SCENE("COLDTURNON"); 
+if(ISTRIGGERL(GET("WEB Thermostat","COLDout", false))) SCENE("COLDTURNOFF");
+// see post https://www.facebook.com/groups/tuyaitalia/permalink/1379224052711944/
 */
