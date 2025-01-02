@@ -123,6 +123,15 @@ note:<br>
       - `dinfo.test` _IoTwebUI extension_: `true` if there is an IoTwebUI alarm connected to the device.<br>
       - `dinfo.category` : code corresponding to `is-a` (in pop-ups, EXPERT mode).
 
+* **set/_dev-name_|_dev-id_/_code_/_value_** (e.g.: set/Device list/home/ROMA )<br>
+ Only for x-devices! <br>
+
+Received
+```
+          {done: "set"}
+```
+
+
 * **alert/list/_dev-name_|_dev-id_** ( e.g.: alert/list/tuya_bridge)<br>
 Received
 ```
@@ -164,7 +173,7 @@ Received
 * **execute/_scene-name_|_rule-name_** (e.g.: execute/call pippo)<br>
 Received
 ``` 
-          {done: "rule"]
+          {done: "rule"}
 ```
 
 **Errors:**
