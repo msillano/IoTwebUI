@@ -136,6 +136,16 @@ note: `dstatus.icon` and `dstatus.tooltip`<br>
 
 ![custom tooltip](https://github.com/msillano/IoTwebUI/blob/main/pics/tooltip01.png?raw=true)
 
+
+* **set/_dev-name_/_code_/_value_** (e.g.: set/Device list/home/ROMA )<br>
+ Solo per x-devices! <br>
+nota: con gli **x-device** non usare `id`. ma il `nome`! L'id di un x-device cambia ad ogni run!
+
+Received
+```
+          {done: "set"}
+```
+
         
 *  **alert/list/_dev-name_|_dev-id_** ( e.g.: alert/list/tuya_bridge)<br>
    Received
