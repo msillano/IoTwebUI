@@ -35,6 +35,12 @@ Un'**x_device** (nome di default "WEB Thermostat") per **IoTwebUI** si occupa di
        * In modo 'auto' (i.e. Program) una variazione manuale di `Setpoint` ha effetto fino al successivo intervallo programmato.
        * `TimeON` fornisce il tempo di accensione giornaliero (in ore). Il conteggio riparte ogni giorno alle 24:00
    4. Sono presenti _due uscite_: una per riscaldamento (`HOTout`) e una per raffrescamento (`COLDout`). Valori `true/false`.
+
+**VERSION 01.3**
+
+    Con la creazione di un'interfaccia WEB per pannello (IoTwebUI03.0), è stata aggiunta la funzsione (+/-) per variare il target di 0.5°C.
+
+    L'interfaccia SmartLife del device virtuale è dominante sull'interfaccia WEB.   
   
   ![](https://github.com/msillano/IoTwebUI/blob/main/pics/IoTwebUI03.png?raw=true)
   
