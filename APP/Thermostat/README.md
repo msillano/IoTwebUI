@@ -37,6 +37,9 @@ A **x_device** (default name "WEB Thermostat") for **IoTwebUI** takes care of:
    * `TimeON` provides the daily on-time (in hours). The countdown restarts every day at 24:00
 4. There are _two outputs_: heating (`HOTout`) and cooling (`COLDout`). Values ​​`true/false`.
 
+version 1.3
+With the creation of a WEB interface for the panel (IoTwebUI03.0), the function (+/-) has been added to vary the target temperature by 0.5°C. The SmartLife interface of the virtual device is dominant over the WEB interface.
+
 ![](https://github.com/msillano/IoTwebUI/blob/main/pics/IoTwebUI03.png?raw=true)
 
 All data is visible in the IoTwebUI tooltip, therefore accessible via 'RULE'.
