@@ -82,7 +82,14 @@ generale: `http://localhost:3031/IoTrest/` + path (vedi sotto) <br>
 
 **Risposta:** <br>
  Sempre un oggetto js, vedi singoli casi.
-
+ 
+*  **home/list** zbr>
+    Received
+ ```
+            {homes:["ROMA",
+                    "ADMIN"]}
+```
+ 
 *  **device/list[/_home_[/_room_]]** (e.g.: device/list,  device/list/ROMA,  device/list/ROMA/Studio) <br>
     Received (ROMA/Studio)
  ```
