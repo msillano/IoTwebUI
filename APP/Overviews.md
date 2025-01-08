@@ -28,7 +28,7 @@ _Oltre a grafi totali, è utile anche per ottenere grafi parziali per illustrare
 _Produce anche informazioni testuali (per documentazione ed archivio) di tutte le scene._
  
 </td><td>
- <img src="https://github.com/msillano/IoTwebUI/blob/main/pics/scene01c.png?raw=true" /></td></tr>
+ <img src="https://github.com/msillano/IoTwebUI/blob/main/pics/scene01c.png?raw=true" /><br> <br>  <img src="https://github.com/msillano/IoTwebUI/raw/main/pics/scene01d.png?raw=true" /></td></tr>
 
 </table>
 
