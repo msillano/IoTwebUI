@@ -18,5 +18,26 @@ con poca customizzazione, usa auto-discovery per individuare i device.
 * **battery02.js** _x-device_: Analogo al precedente, ma con algoritmo più performante (e maggiore customizzazione: l'utente deve inserire la lista di device). Senza dipendenze.
 * **classify02.js**  _x-device_:  Fornisce un elenco di tutti i device presenti in un HOME (o in tutte), suddivisi per categoria (is-a). Senza dipendenze.
 * **clone01.js**  _x-device_: crea e mantiene aggiornata una copia di un device reale Tuya, più dettagliata della versione standard usata da IoTwebUI. Senza dipendenze.
+  
+<hr>
+
+### APP, x-device, addon: note di programmazione
+* Una [**APP**](https://github.com/msillano/IoTwebUI/tree/main/APP) è dotata di un'interfaccia utente (in genere WEB) per accettare comandi e presentare risultati.
+* Una **APP** utilizza un **x-device** come _middleware_: logica di funzionamento e formattazione dei dati ([pattern MVP](https://github.com/msillano/IoTwebUI/blob/main/html/clima01-leggimi.md#pattern-mvp)).
+
+* Un **x-device** può essere implementato coma 'addon' nei casi più complessi, ma nei casi semplici un può anche essere realizzato con poche REGOLE.
+
+Esempio:<br>
+Si desidera formattare il valore di temperatura fornito da un sensore in un valore  visualizzato in un 'panel' di interfaccia:
+  da `termometro.va_temperature` (212) a `tempData.scr_temperature` ("21.2 °C")
+Bastano due rige nelle REGOLE:
+```
+if (!GETATTRIBUTE("tempData", "name", false))
+     ADDXDEVICE('ROMA', "Tools", "tempData"),SETXDEVICEONLINE("tempData", true);
+
+SETXDEVICESTATUS("tempData",  "scr_temperature",
+     ROUND(GET("termometro", "va_temperature")/10, 1)+" °C");
+```
+
 
              
