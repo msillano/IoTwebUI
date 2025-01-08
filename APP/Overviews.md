@@ -18,12 +18,12 @@ Measures the efficiency of a rechargeable battery by plotting its discharge and 
      </td></tr>
 
 <tr><td colspan=2>  <b><i>Explore scene</i></b><br><br> 
- Creates graphs of Tuya scenes and devices, highlighting relationships and dependencies.
+ Creates graphs of Tuya and IoTwebUI scenes and devices, highlighting relationships and dependencies.
 In addition to total graphs, it is also useful for obtaining partial graphs to illustrate the functioning of subsets (see figure).
 It also produces all scenes' textual information (for documentation and archive).
 <hr>
  
-_Crea grafi delle scene e dei device Tuya, evidenziondo relazioni e dipendenze._
+_Crea grafi delle scene e dei device Tuya e IoTwebUI, evidenziondo relazioni e dipendenze._
 _Oltre a grafi totali, è utile anche per ottenere grafi parziali per illustrare il funzionamento di sottoinsiemi (vedi figura)._
 _Produce anche informazioni testuali (per documentazione ed archivio) di tutte le scene._
  
