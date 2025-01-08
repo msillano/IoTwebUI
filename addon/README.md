@@ -34,10 +34,10 @@ _from `termometro.va_temperature` (212) to `tempData.scr_temperature` ("21.2 °C
 An 'addon' is excessive, just two lines in the RULES:
 ```
 if (!GETATTRIBUTE("tempData", "name", false))
-ADDXDEVICE('ROMA', "Tools", "tempData"),SETXDEVICEONLINE("tempData", true);
+    ADDXDEVICE('ROMA', "Tools", "tempData"),SETXDEVICEONLINE("tempData", true);
 
 SETXDEVICESTATUS("tempData", "scr_temperature",
-ROUND(GET("termometro", "va_temperature")/10, 1)+" °C");
+    ROUND(GET("termometro", "va_temperature")/10, 1)+" °C");
 ```
 On the other hand, in more complex cases, the **addon-MACRO** implementation has many advantages, both in terms of use and performance!
 
