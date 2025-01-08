@@ -1,6 +1,7 @@
 #  Tuya APPLICATIONS 
 <table width="100%">
-<tr><td width = "400pt"><img src="https://github.com/msillano/IoTwebUI/blob/main/pics/thermostat01.png?raw=true"></td><td colspan=2>  <b><i>WEB Thermostat</i></b><br><br>
+<tr><td width = "400pt"><img src="https://github.com/msillano/IoTwebUI/blob/main/pics/thermostat01.png?raw=true"><br><br> <img src="https://github.com/user-attachments/assets/b9ef2221-cf72-43e4-8fd8-1c21e913317a">
+</td><td colspan=2>  <b><i>WEB Thermostat</i></b><br><br>
 This complete SW chronothermostat uses the measurements of one (or more) Tuya temperature probes to control a smart switch for heating (cooling).<hr>
 <i>Questo è un cronotermostato completo SW che utilizza le misure di uno (o più) sonde di temperatura Tuya per controllare uno smart switch per il riscaldamento (raffrescamento).</i>  
  </td></tr>
