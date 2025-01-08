@@ -28,9 +28,10 @@ con poca customizzazione, usa auto-discovery per individuare i device.
 * Un **x-device** può essere implementato coma 'addon' nei casi più complessi, ma nei casi semplici un può anche essere realizzato con poche REGOLE.
 
 Esempio:<br>
-Si desidera formattare il valore di temperatura fornito da un sensore in un valore  visualizzato in un 'panel' di interfaccia:
-  da `termometro.va_temperature` (212) a `tempData.scr_temperature` ("21.2 °C")
-Bastano due rige nelle REGOLE:
+Si desidera formattare il valore di temperatura fornito da un sensore in un valore  visualizzato in un 'panel' di interfaccia:<br>
+  _da `termometro.va_temperature` (212) a `tempData.scr_temperature` ("21.2 °C")_
+
+Un 'addon' è eccessivo, Bastano due rige nelle REGOLE:
 ```
 if (!GETATTRIBUTE("tempData", "name", false))
      ADDXDEVICE('ROMA', "Tools", "tempData"),SETXDEVICEONLINE("tempData", true);
@@ -38,6 +39,6 @@ if (!GETATTRIBUTE("tempData", "name", false))
 SETXDEVICESTATUS("tempData",  "scr_temperature",
      ROUND(GET("termometro", "va_temperature")/10, 1)+" °C");
 ```
-
+Viceversa, nei casi più complessi, l'implementazione **addon-MACRO** presenta molti vantaggi, sia di uso che di prestazioni! 
 
              
