@@ -678,7 +678,7 @@ nota: ADDXDEVICE() inizia 'online' con false: solo dopo aver completato tutti i 
 <dd> Client REST, per servizi web API REST (GET) o device che forniscono la risposta in formato JSON (la maggior parte). Questa funzione restituisce, per semplificare l'uso, direttamente un oggetto.<br>
  <i>Esempio:</i>  <code>
   // see https://open-meteo.com/<br>
- var _meteo, _urlm ="https://api.open-meteo.com/v1/forecast?latitude=41.9030&longitude=12.4663&current=temperature_2m"; <br>
+ var _meteo, _urlm ="https://api.open-meteo.com/v1/forecast?latitude=41.9030&longitude=12.4663&amp;current=temperature_2m"; <br>
  if(TRIGBYNAME("meteo")) _meteo = RESTJSON(_urlm), POP("ROMA", "temperatura = " + _meteo.current.temperature_2m );  </code> <br>
 <i> nota: questa è la struttura completa dell'oggetto-risposta (<code>_meteo</code>) REST, che si può vedere in console con <code>'console.log(_meteo)'</code>. Si è utilizzata in POP() solo la temperatura ( <code>_meteo.current.temperature_2m </code>): </i> <pre>
 current: 
