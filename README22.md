@@ -380,7 +380,7 @@ The **IoTwebUI** app is not for novice users, so it is acceptable that the confi
 
 - The ESSENTIAL data to insert are your `Tuya credentials` for the 'platform.tuya'. <BR>
 They are listed as _Access ID_ and _Access secret_ in the 'overview' page of your Tuya project!
-![401439889-6fbd6d7e-6532-4c7b-9a20-02450c9d4175](https://github.com/user-attachments/assets/330fa223-dd7f-4c57-8da3-06ba5a2c2724)
+![image](https://github.com/user-attachments/assets/cae692ca-2b64-4d62-81e1-1865ca9f1e08)
 
 Users of tuyaDAEMON, Homebridge, HA, and other similar hubs should already have them, but new users must register, there are many guides on the web. [This](https://github.com/iRayanKhan/homebridge-tuya/wiki/Get-Local-Keys-for-your-devices) is one of the clearest, others are [listed here](https://github.com/msillano/tuyaDAEMON/wiki/50.-Howto:-add-a-new-device-to-tuyaDAEMON#1-preconditions). An advantage is that you have access to the Tuya platform, with a lot of data on your devices, and to the technical documentation.
 
