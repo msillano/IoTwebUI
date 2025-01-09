@@ -678,7 +678,7 @@ if(TRIGBYNAME("my IP")) POP( "My IP", REST("https://api.ipify.org/?format=txt"))
 <dd> REST client, for REST API (GET) web services or devices that return the response in JSON format (most of them). This function returns, for ease of use, an object directly.<br>
 <i>Example:</i> <code>
 // see https://open-meteo.com/<br>
-var _meteo, _urlm ="https://api.open-meteo.com/v1/forecast?latitude=41.9030&longitude=12.4663&current=temperature_2m"; <br>
+var _meteo, _urlm ="https://api.open-meteo.com/v1/forecast?latitude=41.9030&longitude=12.4663&amp;current=temperature_2m"; <br>
 if(TRIGBYNAME("meteo")) _meteo = RESTJSON(_urlm), POP("ROMA", "temperature = " + _meteo.current.temperature_2m ); </code> <br>
 <i> note: this is the complete structure of the response object (<code>_meteo</code>), which can be seen in the console with <code>'console.log(_meteo)'</code>. Only the temperature was used in POP() ( <code>_meteo.current.temperature_2m </code>): </i> <pre>
   current: 
