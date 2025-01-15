@@ -938,5 +938,7 @@ Tutti i marchi riportati appartengono ai legittimi proprietari.<br>
 - https://hapi.dev/ <br>
 - https://github.com/rigon/hapi-url <br>
 - https://github.com/websockets/ws/blob/master/doc/ws.md <br>
-- https://api.open-meteo.com
+- https://api.open-meteo.com <br>
+- https://www.drogbaster.it <br>
+- https://sharpweather.com <br>
 
