@@ -1,7 +1,7 @@
-# IoTwebUI 2.2: Tuya WEBAPP open extension #
+# IoTwebUI 3.0: Tuya WEBAPP open extension #
 [english version](https://github.com/msillano/IoTwebUI/blob/main/README22.md)<br>
 
-**_Stanco delle limitazioni di SmartLife?  IoTwebUI 2.2 è arrivato per dare nuova linfa alla tua casa intelligente, con un arsenale di funzionalità che ti faranno dire "finalmente!". <br> La filosofia 'open' è nel DNA di questa APP, che esalta la customizzazione ed il controllo da parte dell'utente._** 
+**_Stanco delle limitazioni di SmartLife?  IoTwebUI 3.0 è arrivato per dare nuova linfa alla tua casa intelligente, con un arsenale di funzionalità che ti faranno dire "finalmente!". <br> La filosofia 'open' è nel DNA di questa APP, che esalta la customizzazione ed il controllo da parte dell'utente._** 
 
 _Cosa puoi fare?_<br>
 👀 Controlla tutto: Interfaccia intuitiva e personalizzabile, dati sempre a portata di mano, visualizzazione flessibile.<br>
@@ -12,12 +12,15 @@ _Cosa puoi fare?_<br>
 👌 Integrazione perfetta: Combina device, proprietà, voce, REGOLE e Tuya tap-to-run per un'automazione fluida, completa ed affidabile. <br>
 🏚  E' un ponte tra le HOME: può leggere i dati dei device in qualsiasi HOME e può usarli nelle REGOLE e attivare tap-to-run in tutte le HOME. Le 'scene' Tuya agiscono solo sui device dell'HOME in cui sono definite. 
 
-**_Nuovo, versione 2.2_**
+**_versione 2.2_**
 * _Interfaccia REST (server)_: webservice per il semplice collegamento con applicazioni od interfacce custom (documento [LEGGIMI-REST22](https://github.com/msillano/IoTwebUI/blob/main/RESTserver/LEGGIMI-REST22.md)).<br>
 * _x-device_: device virtuali IoTwebUI, ricorsive, e meccanismo di cooperazione [addon](https://github.com/msillano/IoTwebUI/tree/main/addon).
 * Esempi di pagine custom html, librerie di widget: vedi dir [html](https://github.com/msillano/IoTwebUI/tree/main/html).
 * _x-device_ +_ WEB interface_ => _APP_  Alcuni esempi di APP sono [qui](https://github.com/msillano/IoTwebUI/blob/main/APP/Overviews.md).
 * _Internazionalizzazione_: versioni multilingua dell'interfaccia utente e del modulo 'voce'.
+
+**_versione 3.0_**
+* versione per tablet: integrazione di menu totalmente customizzabili (panel e page) con IoTwebUI, per una migliore esperienza d'uso con sforzo minimo. 
 
  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;![](https://github.com/msillano/IoTwebUI/blob/main/pics/useschema.png?raw=true)
 
