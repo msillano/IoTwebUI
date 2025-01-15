@@ -26,6 +26,7 @@ _Cosa puoi fare?_<br>
 
 ![vers30](https://github.com/user-attachments/assets/5d8b9565-37bc-41af-86de-91a46d73b732)
 
+nota: nella prima pagina menu di default (`index.html`) son presenti alcuni widget _senza dipendenze_. Widget per tutte la APP sono invece presenti, insieme ad altri esempi, nella pagina `panel_for_addon.html`. Comporre le proprie pagine, partendo da `panel_empty_template.html` è poco più di un copia-incolla di widgets (frammenti HTML) per le APP esitenti. Anche la creazione di nuove widget dinamiche è semplificata, con due librerie di IoTwidget interattive.
 
 nota: _Portabile, può essere installato ovunque: su uno _smartphone_ o _tablet_, come interfaccia alternativa a SmartLife, per voi e per gli altri componenti della famiglia. Su un _PC_ (Windows, Apple, Linux...) per avere Tuya anche su questi computer. Su un _top-box Android_, per usare la TV come interfaccia Tuya!_.
 
