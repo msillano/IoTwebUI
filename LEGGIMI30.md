@@ -307,8 +307,14 @@ _Queste due strade permettono finalmente l'integrazione di Tuya in progetti vert
 <hr style="height:2px;border-width:0;color:gray;background-color:gray">
 
 ## Versioni
+- 3.0  Interfaccia **IoTwebUI** con pannello di comando/controllo, che supporta un sistema gerarchico di menu custom.
+  - Essenzialmente sviluppo HTML esterno: cambiato il file di lancio (l'attivazione del REST è auto)
+  - Create due serie di pagine: i 'panel' con interfaccia grafica, e i 'menu' più semplici, usati come controllo per alcune APP.
+  - Tutti gli **addon** aggiornati per essere compatibili con i grafici creati da _Explore scene_ (`sceneo1.js`)
+  - Il nuovo look ed il panel di default (`index.html`) sono distribuiti con _IoTwebUI_, gli altri come una APP 
+
 - 2.2.3  correzione Bugs
--  - Aggiornate alcune macro
+  - Aggiornate alcune macro
     
 - 2.2.2  correzione Bugs
   - Aggiunta funzione di export dei tooltip con [Ctrl]+[Click], formato CSV (':' separatore)
@@ -381,6 +387,10 @@ Nelle immagini: a sinistra avvio OK (Chrome, CORS disattivato) a destra in caso 
 
 <div><img src="https://github.com/msillano/IoTwebUI/blob/main/pics/okconsole.png?raw=true" alt="normal start" width="300" />
    <img src="https://github.com/msillano/IoTwebUI/blob/main/pics/CORSerror.png?raw=true" alt="CORS error" width="400" align="right" /></div>
+
+## Note ver.3.0
+
+    Installare come descritto e separatamente sia **IoTwebUI** che **IoTres**t. Solo una volta che funzionano bene, utilizzare il nuovo file bat `APP_me.bat`, che attiva il look della versione 3.0.
 
 ## Configurazione
 
