@@ -24,6 +24,9 @@ _Cosa puoi fare?_<br>
 **NUOVO _versione 3.0_**
 * versione per tablet: integrazione di menu totalmente customizzabili (panel e page) con IoTwebUI, per una migliore esperienza d'uso con sforzo minimo. 
 
+![vers30](https://github.com/user-attachments/assets/5d8b9565-37bc-41af-86de-91a46d73b732)
+
+
 nota: _Portabile, può essere installato ovunque: su uno _smartphone_ o _tablet_, come interfaccia alternativa a SmartLife, per voi e per gli altri componenti della famiglia. Su un _PC_ (Windows, Apple, Linux...) per avere Tuya anche su questi computer. Su un _top-box Android_, per usare la TV come interfaccia Tuya!_.
 
  ![aspetto della versione 2.1](https://github.com/msillano/IoTwebUI/blob/main/pics/ver22.jpg?raw=true)
