@@ -16,8 +16,9 @@ Un panel può contenere:
 * Link per la navigazione in altre pagine del menu custom
 
 **ESEMPI**
-`index.html`: il Panel di default di IoTwebUI 3.0, senza dipendenze
-`panel_empty_template.html`: per creare nuovi Panel custom.
+
+`index.html`: il Panel di default di IoTwebUI 3.0, senza dipendenze<br>
+`panel_empty_template.html`: per creare nuovi Panel custom.<br>
 `panel_for_addon.html`: un Panel che contiene i controlli per TUTTi gli ADDON e APP. Quando un utente aggiunge un'addon o una APP alla sua istanza di IoTwebUI, può copiare da qui i contreolli per il suo menu personalizzato.
 
 ### IoTmenu
