@@ -27,7 +27,9 @@ _What can you do?_<br>
 
 ![vers30](https://github.com/user-attachments/assets/5d8b9565-37bc-41af-86de-91a46d73b732)
 
-note: in the first default menu page (`index.html`) there are some widgets _without dependencies_. Widgets for all the APP are instead present, together with other examples, in the page `panel_for_addon.html`. Composing your own pages, starting from `panel_empty_template.html` is little more than a copy-paste of widgets (HTML fragments) for existing APPs. Even the creation of new dynamic widgets is simplified, with two interactive IoTwidget libraries.
+note: in the first default menu page (`index.html`) there are some widgets _without dependencies_. Widgets for all the APP are instead present, together with other examples, on the page `panel_for_addon.html`. Composing your own pages, starting from `panel_empty_template.html` is little more than a copy-paste of widgets (HTML fragments) for existing APPs. Even creating new dynamic widgets is simplified, with two interactive `iotwidget` libraries.
+
+
 note: _Portable, it can be installed anywhere: on a _smartphone_ or _tablet_, as an alternative interface to SmartLife, for you and other family members. On a _PC_ (Windows, Apple, Linux...) have Tuya on these computers too. On an _Android top box_, use the TV as a Tuya interface!_.
 
 ![version 2.1 look](https://github.com/msillano/IoTwebUI/blob/main/pics/ver22.jpg?raw=true)
