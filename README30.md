@@ -382,6 +382,10 @@ In the images: on the left, OK start (Chrome, CORS disabled) on the right, in ca
 <div><img src="https://github.com/msillano/IoTwebUI/blob/main/pics/okconsole.png?raw=true" alt="normal start" width="300" />
 <img src="https://github.com/msillano/IoTwebUI/blob/main/pics/CORSerror.png?raw=true" alt="CORS error" width="400" align="right" /></div>
 
+## Notes ver.3.0
+
+Install as described and separately both **IoTwebUI** and **IoTres**t. Only once they work well, use the new bat file `APP_me.bat`, which activates the look of version 3.0 (update the DIR in `APP_me.bat`).
+
 ## Configuration
 
 The **IoTwebUI** app is not for novice users, so it is acceptable that the configuration is done directly by editing a file (`config`.js). _The usual warnings: make a copy of the file before each change, use a UTF8 editor (I use Notepad-plus-plus), and be careful NOT to ALTER anything else (especially commas ',' and quotes '"' and "`")._
