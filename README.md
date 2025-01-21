@@ -17,7 +17,8 @@ _**New: in ver 2.2 for 'power users':**_
 - **Addon** and virtual **x-device** with recursive composition - see **/addon**
 - **APPLICATION** with specialized user interface - see **/APP**<br>
 
-😃 [Version  2.2 - English](https://github.com/msillano/IoTwebUI/blob/main/README22.md) <br>
+😃 [Version  3.0 - English](https://github.com/msillano/IoTwebUI/blob/main/README30.md) <br>
+ ⬦ [Version  2.2 - English](https://github.com/msillano/IoTwebUI/blob/main/README22.md) <br>
  ⬦ [Version  2.1 - English](https://github.com/msillano/IoTwebUI/blob/main/README21.md) <br>
  ⬦ [Version  2.0 - English](https://github.com/msillano/IoTwebUI/blob/main/README20.md) <br>
  ⬦ [Version  1.2 - English](https://github.com/msillano/IoTwebUI/blob/main/README12.md)
@@ -43,7 +44,8 @@ _**New: nella ver 2.2 per 'power users':**_
 - [Esempio di strumentazione](https://github.com/msillano/IoTwebUI/blob/main/addon/TestBattery01_leggimi.pdf) implementata con **x-device** ed interfaccia utente.
 
 
-😃 [Versione 2.2 - Italiano](https://github.com/msillano/IoTwebUI/blob/main/LEGGIMI22.md) <br>
+😃 [Versione 3.0 - Italiano](https://github.com/msillano/IoTwebUI/blob/main/LEGGIMI30.md) <br>
+⬦  [Versione 2.2 - Italiano](https://github.com/msillano/IoTwebUI/blob/main/LEGGIMI22.md) <br>
 ⬦  [Versione 2.1 - Italiano](https://github.com/msillano/IoTwebUI/blob/main/LEGGIMI21.md) <br>
 ⬦  [Versione 2.0 - Italiano](https://github.com/msillano/IoTwebUI/blob/main/LEGGIMI20.md) <br>
 ⬦  [Versione 1.2 - Italiano](https://github.com/msillano/IoTwebUI/blob/main/LEGGIMI12.md)
