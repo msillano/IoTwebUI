@@ -40,6 +40,8 @@ Un IoTmenu può contenere:
 * etc..
   
 </td><td>
+  <img  width="600" src="https://github.com/user-attachments/assets/037dc0c9-23ab-4404-8528-60e7e305bd49"/><br>
+
 <img width="600" src="https://github.com/user-attachments/assets/97b622af-95ae-4e32-9a7c-fc90960883d7" />
 </td></tr></table>
 
