@@ -53,7 +53,7 @@ Inoltre: <br>
 
 ### IoTpage
 
-Quando le dimensioni dell'IFRAME menu non possono contenere l'interfaccia utente di una APP, si può usare una pagina web, costruita con le stesse tecniche degli altri artefatti HTML (iotwidget, librerie etc...) e presentata in un pop-up flottante agendo su un bottone con il codice seguente (v. menu_app.html):
+Quando le dimensioni dell'IFRAME menu non possono contenere l'interfaccia utente di una APP, si può usare una pagina web, costruita con le stesse tecniche degli altri artefatti HTML (iotwidget, librerie etc...) e presentata in un pop-up flottante agendo su un bottone con il codice seguente (v. menu_apps.html):
 ```
   onClick="openMyWind('thermostat01.html', 650, 300, false);">
 ```
