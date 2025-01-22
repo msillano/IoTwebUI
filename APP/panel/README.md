@@ -30,7 +30,7 @@ Un _panel_ può contenere:
 
 ### IoTmenu
 <table><tr><td>
-Questi menu HTML sono più sobri dei _panel_. Sono nati come semplici Interfacce Utente testuali per le APP, configurazioni, menu interni etc... e presentano il vantaggio della rapidità di implementazione.<br>
+Questi menu HTML sono più sobri dei <i>panel</i>. Sono nati come semplici <i>Interfacce Utente</i>i> testuali per le APP, configurazioni, menu interni etc... e presentano il vantaggio della rapidità di implementazione.<br>
 Un _IoTmenu_ può contenere:
   
 * Campi 'input' per l'ingresso di dati utente, oppure select
@@ -46,9 +46,10 @@ Un _IoTmenu_ può contenere:
 **ESEMPI**
 
 Le seguenti APP hanno **IoTpage** usabili in IFRAME come menu (attualmente, se una APP ha una IoTpage NON ha un Panel): <br>
-`menu_apps.html`: Un menu interno per lanciare tutte le APP<br>
 Scene: (`APP/Scene/html/scene01.html`) User interface. Vedi [APP/Scene](https://github.com/msillano/IoTwebUI/blob/main/APP/Scene/LEGGIMI.md) <br>
-Explore devices: (`APP/Explore/html/explore01.htm`l) User interface. Vedi [APP/Explore](https://github.com/msillano/IoTwebUI/tree/main/APP/Explore) <br>
+Explore devices: (`APP/Explore/html/explore01.htm`) User interface. Vedi [APP/Explore](https://github.com/msillano/IoTwebUI/tree/main/APP/Explore) <br>
+Inoltre: <br>
+`menu_apps.html`: Un menu interno per lanciare tutte le APP<br>
 
 ### IoTpage
 
