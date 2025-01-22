@@ -60,5 +60,10 @@ Quando le dimensioni dell'IFRAME menu non possono contenere un'interfaccia utent
 
 **ESEMPI**
 
-Thermostat:  `APP/Thermostat/html/thermostat01.html` vedi qui: [APP/Thermostat](https://github.com/msillano/IoTwebUI/blob/main/APP/Thermostat/README.md)  <br>
-Battery tester: `APP/Battery tester/html/tester01.html` vedi qui: [APP/Battery tester](https://github.com/msillano/IoTwebUI/blob/main/APP/Battyery%20tester/Ba)
+Thermostat:  `APP/Thermostat/html/thermostat01.html`, usato da 'menu_apps.html'. Vedi anche: [APP/Thermostat](https://github.com/msillano/IoTwebUI/blob/main/APP/Thermostat/README.md)  <br>
+Battery tester: `APP/Battery tester/html/tester01.html`,  usato da 'menu_apps.html'. Vedi anche:  [APP/Battery tester](https://github.com/msillano/IoTwebUI/blob/main/APP/Battyery%20tester/Ba)
+
+<hr>
+
+### note di programmazione
+* cominciare utilizzando e modificando gli esempi forniti.
