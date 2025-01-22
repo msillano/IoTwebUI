@@ -1,0 +1,148 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<!--
+USER menu for "IoTvebUI applications"
+
+Requires: 
+  IotWebUI 2.2, REST2.2,  installati e funzionanti.
+  inc/restget.js
+  inc/iotmenu.js
+and
+  blank.gif
+  preview_emptyrrect1.png
+ -->
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+	    <script type="text/javascript" src="inc/restget.js"> </script >
+        <script type="text/javascript" src="inc/iotmenu.js"> </script >
+		
+<script language="javascript"  type="text/javascript" >
+<!--
+// ================= CUSTOMIZATION (update baseURL if required)
+
+const baseURL = 'http://localhost:3031/IoTrest/';
+
+//  ================= CUSTOMIZATION ends
+//-->
+</script>
+ 
+<style>
+body {margin: 0px; padding: 0px; border: 0px; vertical-align: baseline; text-align: left; font-size: 10px; -webkit-text-size-adjust: 100%; }
+div {position: absolute; left: 44px;}
+input {width: 147px; height: 25px;}
+.verdana100FFFFFFt {font-family: Verdana, Geneva, sans-serif; font-size: 13px; color: #000000; text-decoration: none;}
+.verdana14C0C000FFFFFFtib {font-family: Verdana, Geneva, sans-serif; font-size: 19px; color: #00C0C0; font-weight: bold; font-style: italic; text-decoration: none;}
+
+ </style>
+</head>
+<body text="#00C0C0"
+      bgcolor="#FFFFFF"
+      link="#0000FF"
+      alink="#FF0000"
+      vlink="#800080"
+	  onload="">
+ <!-- n.b.: no widgets, no test x-device, so onload=""  -->
+ <!-- stuff for correct title and background placement -->
+	<table width="242"
+	       border="0"
+	       cellspacing="0"
+	       cellpadding="0"
+	       style="position: relative;">
+		<tr>
+			<td>
+				<img src="blank.gif"
+				     width="20"
+				     height="16"
+				     border="0"
+				     alt=""/>
+			</td>
+			<td>
+				<img src="blank.gif"
+				     width="222"
+				     height="1"
+				     border="0"
+				     alt=""/>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<img src="blank.gif"
+				     width="1"
+				     height="311"
+				     border="0"
+				     alt=""/>
+			</td>
+			<td align="left"
+			    valign="top">
+				<img id="EmptyRRect1"
+				     src="preview_emptyrrect1.png"
+				     width="222"
+				     height="311"
+				     border="0"
+				     alt=""/>
+			</td>
+		</tr>
+	</table>
+	<br><a id='goBack' href="javascript:window.history.back();" style="font-family: Verdana, Geneva, sans-serif; font-size: 10px;">&lt;&lt;BACK</a>
+	
+<!-- ================  CUSTOM SECTION
+====  WIDGETs ABSOLUTE POSITIONS -->	
+	<div id="menulabel"
+	     style="left: 36px; top: 23px; width: 176px; height: 23px; text-align: justify;">
+		<span class="verdana14C0C000FFFFFFtib">Applications</span>
+	</div>
+	
+<!-- buttons changing menu page -->
+	<div id="exploreDevices"
+	     style="top: 61px;"      
+	     onClick="window.location = 'explore01.html';">
+		<input type="button"
+		       value="Explore devices"
+		       title="Many accesses to device data"/>
+	</div>
+	<div id="exploreScenes"
+	     style="top: 99px;"
+	     onClick="window.location = 'scene01.html'">
+		<input type="button"
+		       value="Explore scenes"
+		       title="Table and grapho"/>
+	</div>
+<!-- buttons calling popup UI -->
+	<div id="NiMHbatteryTest"
+	     style="top: 137px;"
+	     onClick="openMyWind('tester02.html', 720, 330, false);">
+		<input type="button"
+		       value="NiMH Battery tester"
+		       title="Capacity and decharge curve"/>
+	</div>
+	<div id="cronothermostat"
+	     style="top: 175px;"
+	     onClick="openMyWind('thermostat01.html', 650, 300, false);">
+		<input type="button"
+		       value="Thermostat"
+		       title="Cronothermostat SW"/>
+	</div>
+<!-- buttons calling tap-to-run/rules -->
+	<div id="tap-to-run"
+	     style="top: 213px;"
+	     onClick="RESTget(baseURL + 'execute/sirena1');">
+		<input type="button"
+		       value="a tap-to-run (Tuya)"
+		       title="Example of Tuya's tap-to-run call"/>
+	</div>
+		<div id="fireRule"
+	     style="top: 251px;"
+	     onClick="RESTget(baseURL + 'execute/chiamata pippo');">
+		<input type="button"
+		       value="a RULE (IoTwebUI)"
+		       title="Example of IoTwebUI RULE-with-name call"/>
+	</div>
+	<div id="testPanel"
+	     style="top: 289px;"
+	     onClick="window.location = 'panel_for_addon.html';">
+		<input type="button"
+		       value="Test Panel"
+		       title="Example of IoTwebUI Panel"/>
+	</div>
+</body>
+</html>
