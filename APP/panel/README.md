@@ -17,8 +17,8 @@ Un panel può contenere:
 * Widget di terze parti con informazioni utili (e.g meteo)
 * Link interni (per la navigazione del menu custom) o esterni
 * etc...
-</td><td width="320" style="white-space:nowrap; vertical-align:top;">
-  <img width="140"  src="https://github.com/user-attachments/assets/c8186b88-2cb0-47b1-acda-95e654b01ef3"/> <img width="150"  src="https://github.com/user-attachments/assets/e0df29eb-f45f-46b0-9bbb-f5c97a49c54d"/>  
+</td><td width="330" style="white-space:nowrap; vertical-align:top;">
+  <img width="138"  src="https://github.com/user-attachments/assets/c8186b88-2cb0-47b1-acda-95e654b01ef3"/> <img width="150"  src="https://github.com/user-attachments/assets/e0df29eb-f45f-46b0-9bbb-f5c97a49c54d"/>  
 </td></tr></table>
 
 
@@ -41,8 +41,7 @@ Un IoTmenu può contenere:
   
 </td><td>
   <img  width="600" src="https://github.com/user-attachments/assets/037dc0c9-23ab-4404-8528-60e7e305bd49"/><br>
-
-<img width="600" src="https://github.com/user-attachments/assets/97b622af-95ae-4e32-9a7c-fc90960883d7" />
+  <img width="600" src="https://github.com/user-attachments/assets/97b622af-95ae-4e32-9a7c-fc90960883d7" />
 </td></tr></table>
 
 **ESEMPI**
