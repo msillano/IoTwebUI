@@ -53,7 +53,7 @@ Explore devices: (`APP/Explore/html/explore01.htm`l) User interface. Vedi [APP/E
 
 ### IoTpage
 
-Quando le dimensioni dell'IFRAME menu non possono contenere un'interfaccia utente, si può usare una pagina web, costruita con le stesse tecniche degli altri artefatti HTML (iotwidget, librerie etc...) e presentata in un pop-up flottante con il codice.
+Quando le dimensioni dell'IFRAME menu non possono contenere un'interfaccia utente, si può usare una pagina web, costruita con le stesse tecniche degli altri artefatti HTML (iotwidget, librerie etc...) e presentata in un pop-up flottante agendo su un bottone con il codice.
 ```
   onClick="openMyWind('thermostat01.html', 650, 300, false);">
 ```
