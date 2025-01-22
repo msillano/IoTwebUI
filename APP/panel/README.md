@@ -44,4 +44,4 @@ Un IoTmenu può contenere:
 </td></tr></table>
 
 **ESEMPI**
-Le seguenti APP hanno IoTpage usabili nel menu (attualmente, se una APP ha una IoTpage NON ha un Panel) 
+Le seguenti APP hanno IoTpage usabili in IFRAME come menu (attualmente, se una APP ha una IoTpage NON ha un Panel) 
