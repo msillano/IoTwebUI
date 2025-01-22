@@ -1,5 +1,5 @@
 # Menu and Panels
-La versione **IoTebUI 3.0** si caratterizza per una IFRAME dedicata ad un menu personalizzato.
+La versione **IoTebUI 3.0** si caratterizza per un IFRAME dedicato ad un menu personalizzato.
 Le pagine HTML usate con IoTwebUI possono essere di tre tipi:
 * **panel**: pagine menu più curate graficamente, anche con extra widgets.
 * **IoTmenu**: nenu più semplici, senza widget, per UI di APP, pagine menu di servizio, etc..
@@ -53,7 +53,7 @@ Inoltre: <br>
 
 ### IoTpage
 
-Quando le dimensioni dell'IFRAME menu non possono contenere l'interfaccia utente di una APP, si può usare una pagina web, costruita con le stesse tecniche degli altri artefatti HTML (iotwidget, librerie etc...) e presentata in un pop-up flottante agendo su un bottone con il codice seguente (v. menu_apps.html):
+Quando le dimensioni dell'IFRAME menu non possono contenere l'interfaccia utente di una APP, si può usare una pagina HTML, costruita con le stesse tecniche degli altri artefatti HTML (iotwidget, librerie etc...) e presentata in un pop-up flottante agendo su un bottone con il codice seguente (v. menu_apps.html):
 ```
   onClick="openMyWind('thermostat01.html', 650, 300, false);">
 ```
