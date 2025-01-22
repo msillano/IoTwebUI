@@ -1,21 +1,21 @@
 # Menu and Panels
-La versione IoTebUI 3.0 si caratterizza per una IFRAME dedicata ad un menu personalizzato.
-Le pagine HTML usate possono essere di tre tipi:
+La versione **IoTebUI 3.0** si caratterizza per una IFRAME dedicata ad un menu personalizzato.
+Le pagine HTML usate con IoTwebUI possono essere di tre tipi:
 * **panel**: pagine menu più curate graficamente, anche con extra widgets.
-* **IoTmenu**: più semplici, senza widget, per UI di APP, pagine menu di servizio, etc..
-* **IoTpage**: Alcune APP utilizzano front-end in un popup, soprattutto perchè richiedono dimensini più grandi di quelle disponibili nella IFRAME menu. 
+* **IoTmenu**: nenu più semplici, senza widget, per UI di APP, pagine menu di servizio, etc..
+* **IoTpage**: alcune APP utilizzano front-end in un popup, soprattutto se richiedono dimensini più grandi di quelle disponibili nella IFRAME menu. 
 
 ### Panel
 <table><tr><td>
-  I panel sono altamente customizzabili, per rispecchiare gli obiettivi dell'utente. <br>
-Un panel può contenere:
+  I _panel_ sono altamente customizzabili, per rispecchiare gli obiettivi dell'utente. <br>
+Un _panel_ può contenere:
   
-* Bottoni per il lancio di Tap-o-Run Tuya e RULE IoYwebUI (e.g. rule 'Pippo')
-* Bottoni per l'apertura di Interfacce per APP (e.g. THERMOSTAT02)
-* Informazioni dinamiche ottenute dai device (IoTwidget01: e.g. temperatura)
-* Interruttori, spie ed altri controlli dinamici (IoTwidget02: e.g. interruttore caldaia)
+* Bottoni per il lancio di _Tap-o-Run_ Tuya e _REGOLE_ IoTwebUI (e.g. rule 'Pippo')
+* Informazioni dinamiche ottenute dai device (`IoTwidget01`: e.g. temperatura)
+* Interruttori, spie ed altri controlli dinamici (`IoTwidget02`: e.g. interruttore caldaia)
 * Widget di terze parti con informazioni utili (e.g meteo)
-* Link interni (per la navigazione del menu custom) o esterni
+* Link interni (per la navigazione nell'albero menu custom) o esterni
+* Bottoni per l'apertura di Interfacce per APP (_IoTpage_, e.g. THERMOSTAT02)
 * etc...
 </td><td width="330" style="white-space:nowrap; vertical-align:top;">
   <img width="138"  src="https://github.com/user-attachments/assets/c8186b88-2cb0-47b1-acda-95e654b01ef3"/> <img width="150"  src="https://github.com/user-attachments/assets/e0df29eb-f45f-46b0-9bbb-f5c97a49c54d"/>  
@@ -24,18 +24,18 @@ Un panel può contenere:
 
 **ESEMPI**
 
-`index.html`: il Panel di default di IoTwebUI 3.0, senza dipendenze<br>
-`panel_empty_template.html`: per creare nuovi Panel custom.<br>
-`panel_for_addon.html`: un Panel che contiene i controlli per TUTTi gli ADDON e APP. Quando un utente aggiunge un'addon o una APP alla sua istanza di IoTwebUI, può copiare da qui i controlli per il suo menu personalizzato.
+`index.html`: il _panel di default di IoTwebUI 3.0_, senza dipendenze<br>
+`panel_empty_template.html`: per creare nuovi _panel_ custom.<br>
+`panel_for_addon.html`: un panel che contiene i controlli per TUTTi gli ADDON e APP. Quando un utente aggiunge un'addon o una APP alla sua istanza di IoTwebUI, può copiare da qui i controlli per il suo menu personalizzato.
 
 ### IoTmenu
 <table><tr><td>
-Questi menu HTML sono più sobri dei Panel. Sono nati come semplici Interfacce Utente testuali per le APP, configurazioni, menu interni etc... e presentano il vantaggio della rapidità di implementazione.<br>
-Un IoTmenu può contenere:
+Questi menu HTML sono più sobri dei _panel_. Sono nati come semplici Interfacce Utente testuali per le APP, configurazioni, menu interni etc... e presentano il vantaggio della rapidità di implementazione.<br>
+Un _IoTmenu_ può contenere:
   
-* Campi 'input' per l'ingresso di dati utente, o select
-* Bottoni per il lancio di Tap-o-Run Tuya e RULE IoYwebUI
-* Bottoni per SET di valori per x-device
+* Campi 'input' per l'ingresso di dati utente, oppure select
+* Bottoni per il lancio di _Tap-o-Run_ Tuya e _RULE_ IoYwebUI
+* Bottoni per SET di valori per **x-device** (NON per i device Tuya: per sicurezza si deve usare un _tap-to-run_).
 * Link interni (per la navigazione del menu custom) o esterni
 * etc..
   
@@ -52,7 +52,7 @@ Explore devices: (`APP/Explore/html/explore01.htm`l) User interface. Vedi [APP/E
 
 ### IoTpage
 
-Quando le dimensioni dell'IFRAME menu non possono contenere un'interfaccia utente, si può usare una pagina web, costruita con le stesse tecniche degli altri artefatti HTML (iotwidget, librerie etc...) e presentata in un pop-up flottante agendo su un bottone con il codice.
+Quando le dimensioni dell'IFRAME menu non possono contenere l'interfaccia utente di una APP, si può usare una pagina web, costruita con le stesse tecniche degli altri artefatti HTML (iotwidget, librerie etc...) e presentata in un pop-up flottante agendo su un bottone con il codice seguente (v. menu_app.html):
 ```
   onClick="openMyWind('thermostat01.html', 650, 300, false);">
 ```
