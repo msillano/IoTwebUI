@@ -1,11 +1,11 @@
 # Menu and Panels
 La versione IoTebUI 3.0 si caratterizza per una IFRAME dedicata ad un menu personalizzato.
 Le pagine HTML usate possono essere di tre tipi:
-* panel: pagine menu più curate graficamente, anche con extra widgets.
-* IoTmenu: più semplici, senza widget, per UI di APP, pagine menu di servizio, etc..
-* IoTpage: Alcune APP utilizzano front-end in un popup, soprattutto perchè richiedono dimensini più grandi di quelle disponibili nella IFRAME menu. (e.g. NiMH Battery tester)
+* **panel**: pagine menu più curate graficamente, anche con extra widgets.
+* **IoTmenu**: più semplici, senza widget, per UI di APP, pagine menu di servizio, etc..
+* **IoTpage**: Alcune APP utilizzano front-end in un popup, soprattutto perchè richiedono dimensini più grandi di quelle disponibili nella IFRAME menu. 
 
-### Panels
+### Panel
 <table><tr><td>
   I panel sono altamente customizzabili, per rispecchiare gli obiettivi dell'utente. <br>
 Un panel può contenere:
@@ -26,7 +26,7 @@ Un panel può contenere:
 
 `index.html`: il Panel di default di IoTwebUI 3.0, senza dipendenze<br>
 `panel_empty_template.html`: per creare nuovi Panel custom.<br>
-`panel_for_addon.html`: un Panel che contiene i controlli per TUTTi gli ADDON e APP. Quando un utente aggiunge un'addon o una APP alla sua istanza di IoTwebUI, può copiare da qui i contreolli per il suo menu personalizzato.
+`panel_for_addon.html`: un Panel che contiene i controlli per TUTTi gli ADDON e APP. Quando un utente aggiunge un'addon o una APP alla sua istanza di IoTwebUI, può copiare da qui i controlli per il suo menu personalizzato.
 
 ### IoTmenu
 <table><tr><td>
@@ -49,17 +49,18 @@ Un IoTmenu può contenere:
 
 Le seguenti APP hanno **IoTpage** usabili in IFRAME come menu (attualmente, se una APP ha una IoTpage NON ha un Panel): <br>
 `menu_apps.html`: Un menu interno per lanciare tutte le APP
-Scene (`APP/Scene/html/scene01.html`) <br>
-Explore devices (`APP/Explore/html/explore01.htm`l) <br>
+Scene: (`APP/Scene/html/scene01.html`). Vedi [APP/Scene](https://github.com/msillano/IoTwebUI/blob/main/APP/Scene/LEGGIMI.md) <br>
+Explore devices: (`APP/Explore/html/explore01.htm`l). Vedi [APP/Explore](https://github.com/msillano/IoTwebUI/tree/main/APP/Explore) <br>
 
 ### IoTpage
 
-Quando le dimensioni dell'IFRAME menu non possono contenere un'interfaccia utente, si può usare una pagina web, costruita con le stesse tecniche degli altri artefatti HTML (iotwidget, librerie etc...) e presentata in un pop-up flottante.
+Quando le dimensioni dell'IFRAME menu non possono contenere un'interfaccia utente, si può usare una pagina web, costruita con le stesse tecniche degli altri artefatti HTML (iotwidget, librerie etc...) e presentata in un pop-up flottante con il codice.
 ```
   onClick="openMyWind('thermostat01.html', 650, 300, false);">
 ```
  e `openMyWind(url, width, height, resizable)`  è definito in `inc/iotmenu.js` 
 
 **ESEMPI**
-Thermostat: vedi qui: [APP/Thermostat](https://github.com/msillano/IoTwebUI/blob/main/APP/Thermostat/README.md)  <br>
-Battery tester: vedi qui: [APP/Battery tester](https://github.com/msillano/IoTwebUI/blob/main/APP/Battyery%20tester/Ba)
+
+Thermostat:  `APP/Thermostat/html/thermostat01.html` vedi qui: [APP/Thermostat](https://github.com/msillano/IoTwebUI/blob/main/APP/Thermostat/README.md)  <br>
+Battery tester: `APP/Battery tester/html/tester01.html` vedi qui: [APP/Battery tester](https://github.com/msillano/IoTwebUI/blob/main/APP/Battyery%20tester/Ba)
