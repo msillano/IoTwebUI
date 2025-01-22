@@ -48,9 +48,9 @@ Un IoTmenu può contenere:
 **ESEMPI**
 
 Le seguenti APP hanno **IoTpage** usabili in IFRAME come menu (attualmente, se una APP ha una IoTpage NON ha un Panel): <br>
-`menu_apps.html`: Un menu interno per lanciare tutte le APP
-Scene: (`APP/Scene/html/scene01.html`). Vedi [APP/Scene](https://github.com/msillano/IoTwebUI/blob/main/APP/Scene/LEGGIMI.md) <br>
-Explore devices: (`APP/Explore/html/explore01.htm`l). Vedi [APP/Explore](https://github.com/msillano/IoTwebUI/tree/main/APP/Explore) <br>
+`menu_apps.html`: Un menu interno per lanciare tutte le APP<br>
+Scene: (`APP/Scene/html/scene01.html`) User interface. Vedi [APP/Scene](https://github.com/msillano/IoTwebUI/blob/main/APP/Scene/LEGGIMI.md) <br>
+Explore devices: (`APP/Explore/html/explore01.htm`l) User interface. Vedi [APP/Explore](https://github.com/msillano/IoTwebUI/tree/main/APP/Explore) <br>
 
 ### IoTpage
 
