@@ -17,9 +17,9 @@ Un panel può contenere:
 * Widget di terze parti con informazioni utili (e.g meteo)
 * Link interni (per la navigazione del menu custom) o esterni
 * etc...
-</td><td>
-  <img width="200"  src="https://github.com/user-attachments/assets/e0df29eb-f45f-46b0-9bbb-f5c97a49c54d"/>
-  <img width="200"  src="https://github.com/user-attachments/assets/c8186b88-2cb0-47b1-acda-95e654b01ef3"/>
+</td><td width="291">
+  <img width="150"  src="https://github.com/user-attachments/assets/e0df29eb-f45f-46b0-9bbb-f5c97a49c54d"/>
+  <img width="140"  src="https://github.com/user-attachments/assets/c8186b88-2cb0-47b1-acda-95e654b01ef3"/>
 
 </td></tr></table>
 
