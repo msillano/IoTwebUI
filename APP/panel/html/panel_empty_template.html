@@ -1,0 +1,63 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<!--
+Template USER panel for "IoTvebUI 3.0"
+USE example: see APP/panel/panel_for_addon.html
+Requires: 
+  IotWebUI 3.0, REST3.0, installed and working.
+-->
+<html>
+	<head>
+	   <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+	   <script type="text/javascript"  src="inc/restget.js"> </script>    <!-- for RESTget() -->
+	   <script type="text/javascript"  src="inc/iotmenu.js"> </script>    <!-- for openMyWind() -->
+	   <script type="text/javascript"  src="inc/panel.js"> </script>	  <!-- panel tools -->
+	    <link rel = "stylesheet" href ="inc/panel.css" >                  <!-- panel style common -->
+<!-- REQUIRED by iotwidget01 -->
+       <script type="text/javascript" src="inc/iotwidget01.js"> </script>  <!-- IoTwidgets set#1 -->
+       <link rel = "stylesheet" href ="inc/iotwidget01.css" >		
+ <!-- REQUIRED by iotwidget02: iotwidget01 and -->
+       <script type="text/javascript" src= "https://www.gstatic.com/charts/loader.js"></script>
+       <link rel = "stylesheet" href= "http://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" >
+       <script type="text/javascript" src="inc/iotwidget02.js"> </script >  <!-- IoTwidgets set#2 -->
+       <link rel = "stylesheet" href ="inc/iotwidget02.css" >		
+ 		
+<style>
+ /* add custom style for IoTwidget in this page (example:  panel_for_addon.html) */
+
+ </style>
+  
+  
+<script language="javascript" type="text/javascript">
+// update if required
+const baseURL = 'http://localhost:3031/IoTrest/';
+
+// mandatory
+function hook(widgetId, action = null){
+// called for every widget loop, for extra processes 
+// note: if you are using iotwidgets on this page, speedup ad this code are required (else comment it):
+	if (widgetId == "LED2"){fastRun();};  // the widgetId MUST exist, update!
+};
+// mote: if you are not using iotwidgets on this page, use this code (else comment it):
+// LOOPINTERVAL = LOOPINTERVAL_RUN;    
+
+// ================== PANEL PAGE
+// list of dynamic widgets in the page: adjust xpos, ypos
+// note: widgetx;.id  must be unique!
+// see   inc/iotwidget01.js, inc/iotwidget02.js
+const widgets = 
+// here add required iotwidget definitions (examples: clima01.html, test02.html, panel_for_addon.html...)
+ 
+ ;;   // widgets array ends
+</script>
+
+</head>
+<body text="#00C0C0"  bgcolor="#000000" link="#00C0C0" alink="#00C0C0" vlink="#800080"
+	  onload="startup();">  <!-- onload=startup() only for  dynamic widget-->	
+<!-- here  add HTML code bloch for widgets -->	  
+
+<!-- REQUIRED, simple BACK link -->		
+   	<a id='goBack'
+		   href="javascript:window.history.back();"
+		   style="font-family: Verdana, Geneva, sans-serif; font-size:10px;">&lt;&lt;BACK<a><br><br><br>
+	</body>
+</html>
