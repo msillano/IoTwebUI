@@ -46,4 +46,20 @@ Un IoTmenu può contenere:
 </td></tr></table>
 
 **ESEMPI**
-Le seguenti APP hanno IoTpage usabili in IFRAME come menu (attualmente, se una APP ha una IoTpage NON ha un Panel) 
+
+Le seguenti APP hanno **IoTpage** usabili in IFRAME come menu (attualmente, se una APP ha una IoTpage NON ha un Panel): <br>
+`menu_apps.html`: Un menu interno per lanciare tutte le APP
+Scene (`APP/Scene/html/scene01.html`) <br>
+Explore devices (`APP/Explore/html/explore01.htm`l) <br>
+
+### IoTpage
+
+Quando le dimensioni dell'IFRAME menu non possono contenere un'interfaccia utente, si può usare una pagina web, costruita con le stesse tecniche degli altri artefatti HTML (iotwidget, librerie etc...) e presentata in un pop-up flottante.
+```
+  onClick="openMyWind('thermostat01.html', 650, 300, false);">
+```
+ e `openMyWind(url, width, height, resizable)`  è definito in `inc/iotmenu.js` 
+
+**ESEMPI**
+Thermostat: vedi qui: [APP/Thermostat](https://github.com/msillano/IoTwebUI/blob/main/APP/Thermostat/README.md)  <br>
+Battery tester: vedi qui: [APP/Battery tester](https://github.com/msillano/IoTwebUI/blob/main/APP/Battyery%20tester/Ba)
