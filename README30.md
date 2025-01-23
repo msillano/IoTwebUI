@@ -104,8 +104,14 @@ A _REST server_ interface in **IoTwebUI** provides a powerful, flexible, and sta
 * Standards: REST is a widely adopted standard, meaning that many libraries and tools are available to simplify development.
 * Independence: The REST interface separates the user interface from the backend, allowing you to update or change one without affecting the other.
 
+#### Panel Interface: everything at your fingertips
+
+A customizable tree menu according to everyone's needs and tastes!
+The panel is thus an optimized 'tailor-made suit'
+
 #### One APP, an avalanche of functions
 
+* Open and customizable as a vocation: every choice will be yours alone!
 * Single point of control: With a single APP, you have a single point to monitor and manage. This simplifies problem resolution and reduces the risk of conflicts between different applications.
 * Less dependence on third parties: By eliminating dependences on multiple providers, you reduce the risk of service interruptions caused by external problems, such as server failures or changes to provider policies.
 * Greater readiness: reducing the steps between APPs reduces latency times.
