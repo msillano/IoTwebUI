@@ -30,7 +30,7 @@ Un _panel_ può contenere:
 
 ### IoTmenu
 <table><tr><td>
-Questi menu HTML sono più sobri dei <i>panel</i>. Sono nati come semplici <i>Interfacce Utente</i>i> testuali per le APP, configurazioni, menu interni etc... e presentano il vantaggio della rapidità di implementazione.<br>
+Questi menu HTML sono più sobri dei <i>panel</i>. Sono nati come semplici <i>Interfacce Utente</i> testuali per le APP, configurazioni, menu interni etc... e presentano il vantaggio della rapidità di implementazione.<br>
 Un _IoTmenu_ può contenere:
   
 * Campi 'input' per l'ingresso di dati utente, oppure select
@@ -68,3 +68,15 @@ Battery tester: `APP/Battery tester/html/tester01.html`,  usato da 'menu_apps.ht
 
 ### note di programmazione
 * cominciare utilizzando e modificando gli esempi forniti.
+
+**Pagine HTML**
+
+Per i prototipi delle pagine HTML usate come IoTmemu, ho trovato comodo usare ""Dynamic HTML Editor v.6.8" (http://www.hexagora.com).
+
+**Bottoni**
+
+Sono presenti (png) di bottoni 'vuoti' 1x1, 1x2, 1x3, 0.5x3, ed alcuni bottoni con label (e.g. `online84.png` )
+Ho usato 'Button shop 4-26' (https://www.kristanixsoftware.com/) e per comodità dell'utente il file `IoTwebUI_button01.bsx` contiene tutti i bottoni usati: l'utente può aggiungere labels, cambiare colore, creare altri bottoni della serie etc...  
+
+
+
