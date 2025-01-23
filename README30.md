@@ -943,4 +943,9 @@ All trademarks listed belong to their legitimate owners.<br>
 - https://github.com/inorganik/debugout.js<br> 
 - https://nodejs.org/en<br> - https://hapi.dev/<br> 
 - https://github.com/rigon/hapi-url<br> 
-- https://github.com/websockets/ws/blob/master/doc/ws.md
+- https://github.com/websockets/ws/blob/master/doc/ws.md <br>
+- https://api.open-meteo.com <br>
+- https://www.drogbaster.it <br>
+- https://sharpweather.com <br>
+- http://www.hexagora.com <br>
+- https://www.kristanixsoftware.com/ <br>
