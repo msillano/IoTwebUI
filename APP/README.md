@@ -44,17 +44,24 @@ _Some APPs work perfectly without UI (e.g. Thermostat) for others the UI is esse
   * Complete the configuration of `html/xxxxxx0y.html`<br> _In particular check x_name (name of the x-device, i.e. `xname`), used in the launch RULE. See above. 
 Check also any parameters and customizations._
 
-3. **Use**
+3. **Use - until ver. 2.2**
 
   * Launch **RESTserver** (file `rest02.2\run_server.bat`), then minimize the `cmd.exe` window (DO NOT close!).
   * Launch **IoTwebUI** (file `run_me.bat`)
   * press OK for _INFO: Connected to REST server!_
   * press button: _READY... press to continue_
   * Launch the **interface** by clicking on the file `html\xxxxxx0y.html` (optional). It will open in your favorite browser.
+  
+   **Use - ver. 3.0 - panel menu**
 
-4. **Limiti** 
-   * **IoTwebUI** una sola istanza.
-   * **interfaccia** anche più istanze se specificato nelle istruzioni.
+  * Launch **IoTwebUI 3.0** (file `APP_me.bat` - needs a local update!) for IoTwebUI, REST and menu
+  * press OK for _INFO: Connected to REST server!_
+  * press button: _READY... press to continue_
+  * Now you can control APP via the custom menu.
+
+4. **Limits** 
+   * **IoTwebUI** a single instance.
+   * **interface** also multiple instances if specified in the instructions.
     
 5. **Troubleshooting**
 * Both with **IoTwebUI** and with the **interface** right mouse click, choose 'inspect..'. Then 'console': there the error messages appear.
