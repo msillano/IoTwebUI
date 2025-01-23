@@ -106,6 +106,9 @@ A _REST server_ interface in **IoTwebUI** provides a powerful, flexible, and sta
 
 #### Panel Interface: everything at your fingertips
 
+A tree menu that can be customized to suit everyone's needs and tastes!
+The panel is thus an optimized 'tailor-made suit'
+
 A customizable tree menu according to everyone's needs and tastes!
 The panel is thus an optimized 'tailor-made suit'
 
