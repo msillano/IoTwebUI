@@ -28,6 +28,7 @@ Il tempo di latenza (ritardo) medio tra un evento e la sua segnalazione in un cl
        * Android: vedi [node-red in Android](https://nodered.org/docs/getting-started/android), seguire le istruzioni, fermandosi SENZA installare _node-red_, cioè non eseguendo il comando:  `npm i -g --unsafe-perm node-red`<br>
          Oppure se si vuole installare un server Android 24/7, con vari tool (FTP, DB Maria, Apache, Autostart, etc...) vedi qui: [deployment Android](https://github.com/msillano/tuyaDAEMON/wiki/80.-deployment:-android-server#2022-update)  
    * IoTwebUI ver. 2.2 o superiore, configurato e funzionante: vedi https://github.com/msillano/IoTwebUI, versione 2.2 o superiore.
+   * Dalla versione 3.0, REST3.0 è distribuito con lo ZIP, altrimenti scaricare da Github la versione REST2.2
 2. **Installazione:**
    * Aggiorna il path della tua installazione nel file `install_server.bat`
    * Clikka su `install_server.bat`: installerà le dipendenze aggiornate nell dir 'node_modules'. 
