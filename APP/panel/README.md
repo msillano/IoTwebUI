@@ -68,6 +68,9 @@ Battery tester: `APP/Battery tester/html/tester01.html`,  usato da 'menu_apps.ht
 
 ### note di programmazione
 * cominciare utilizzando e modificando gli esempi forniti.
+* Sull'interazione REST - pagine dinamiche HTML [vedi qui](https://github.com/msillano/IoTwebUI/tree/main/html)
+* Per dettagli su iotwidget01 ed esempi, vedi [html/clima01](https://github.com/msillano/IoTwebUI/blob/main/html/clima01-leggimi.md)
+* Per dettagli si iotwidget02 ed esempi, vedi [html/test02](https://github.com/msillano/IoTwebUI/blob/main/html/test02-leggimi.md)
 
 **Pagine HTML**
 
