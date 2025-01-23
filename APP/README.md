@@ -48,15 +48,15 @@ Check also any parameters and customizations._
 
    * Launch **RESTserver** (file `rest02.2\run_server.bat`), then minimize the `cmd.exe` window (DO NOT close!).
    * Launch **IoTwebUI** (file `run_me.bat`)
-   * press OK for _INFO: Connected to REST server!_
-   * press button: _READY... press to continue_
+      * press OK for _INFO: Connected to REST server!_
+      * press button: _READY... press to continue_
    * Launch the **interface** by clicking on the file `html\xxxxxx0y.html` (optional). It will open in your favorite browser.
 
 3. **Use - ver. 3.0 - panel menu**
 
    * Launch **IoTwebUI 3.0** (file `APP_me.bat` - needs a local update!) for IoTwebUI, REST and menu
-   * press OK for _INFO: Connected to REST server!_
-   * press button: _READY... press to continue_
+      * press OK for _INFO: Connected to REST server!_
+      * press button: _READY... press to continue_
    * Now you can control APP via the custom menu.
 
 4. **Limits** 
