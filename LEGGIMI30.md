@@ -385,16 +385,14 @@ _NON rendetela accessibile dall'esterno o da terzi, altrimenti tutti i vostri da
 
 ## Installazione
 
-1) Scaricare e dezippare il file `IoTwebUI.x.x.zip`  in una dir (con le autorizzazioni richieste dal S.O.).
-2) Eseguire le operazioni di configurazione (vedi oltre).
-3) Per l'installazione del server REST (opzionale), vedi [dettagli qui](https://github.com/msillano/IoTwebUI/blob/main/RESTserver/LEGGIMI-REST22.md).
-4) Il file principale è `IoTwebUI.html`.  NON è necessario un server WEB, in quanto il codice è tutto in javaScript, eseguito dal browser, ovviamente con JavaScript abilitato. Per lanciarlo vedi il file `run_me.bat` (per Windows - Chrome). Per altri S.O. creare uno script analogo. (Ignorare il messaggio Chrome: "stai utilizzando una segnalazione della riga di comando non supportata: - disable-web-security...": non supportata ma funzionante).
+1. Scaricare e dezippare il file `IoTwebUI.x.x.zip`  in una dir (con le autorizzazioni richieste dal S.O.).
+2. Eseguire le operazioni di configurazione (vedi oltre).
+3. Per l'installazione del server REST (opzionale), vedi [dettagli qui](https://github.com/msillano/IoTwebUI/blob/main/RESTserver/LEGGIMI-REST22.md).
+4. Il file principale è `IoTwebUI.html`.  NON è necessario un server WEB, in quanto il codice è tutto in javaScript, eseguito dal browser, ovviamente con JavaScript abilitato. Per lanciarlo vedi il file `run_me.bat` (per Windows - Chrome). Per altri S.O. creare uno script analogo. (Ignorare il messaggio Chrome: "stai utilizzando una segnalazione della riga di comando non supportata: - disable-web-security...": non supportata ma funzionante).
 <br>
-5) Con un Mac (IOS 10.11.6) ha funzionato la seguente riga di comando:
-`xxx:~ yyyy$ open -n -a /Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome --args --user-data-dir="/tmp/chrome_dev_test" --disable-web-security  --disable-popup-blocking --auto-accept-camera-and-microphone-capture --app=file:///Applications/IoTwebUI/IoTwebUI.html ` 
-
-nota: L'addon "Cross Domain - CORS" sembra risolvere il problema CORS senza file BAT, vedi [ISSUE4](https://github.com/msillano/IoTwebUI/issues/4).
-6) In fase di installazione e setup è utile la console (nel browser - strumenti per programmatori -, o menu contestuale 'ispeziona') perchè lì vanno i messaggi di informazione e di errore di IoTwebUI.<BR>
+5. Con un Mac (IOS 10.11.6) ha funzionato la seguente riga di comando:
+`xxx:~ yyyy$ open -n -a /Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome --args --user-data-dir="/tmp/chrome_dev_test" --disable-web-security  --disable-popup-blocking --auto-accept-camera-and-microphone-capture --app=file:///Applications/IoTwebUI/IoTwebUI.html ` <br> nota: L'addon "Cross Domain - CORS" sembra risolvere il problema CORS senza file BAT, vedi [ISSUE4](https://github.com/msillano/IoTwebUI/issues/4).
+6. In fase di installazione e setup è utile la console (nel browser - strumenti per programmatori -, o menu contestuale 'ispeziona') perchè lì vanno i messaggi di informazione e di errore di IoTwebUI.<BR>
 Nelle immagini: a sinistra avvio OK (Chrome, CORS disattivato) a destra in caso di errore CORS (Opera):
 
 <div><img src="https://github.com/msillano/IoTwebUI/blob/main/pics/okconsole.png?raw=true" alt="normal start" width="300" />
