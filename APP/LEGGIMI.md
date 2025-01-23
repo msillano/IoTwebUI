@@ -55,10 +55,10 @@ Istruzioni comuni e generali. Per ulteriori dettagli vedere le singole APP.
 
 3. **Uso - ver. 3.0 - panel menu**
 
-    * Launch **IoTwebUI 3.0** (file `APP_me.bat` - richiede aggiornamento dir!) per IoTwebUI, REST e menu
+    * Lanciare **IoTwebUI 3.0** (file `APP_me.bat` - richiede aggiornamento delle dir!) per IoTwebUI, REST e menu
        * premere OK per  _INFO: Connected to REST server!_
        * premere bottone: _PRONTO... premere per continuare_
-    * Ora potete controllare le vostre APP dal menu.
+    * Ora potete controllare le APP che avete installato sul vostro sistema dal menu.
 
 Successivamente **IoTwebUI** e l'**interfaccia** possono essere chiusi e rilanciati come si vuole.
 
