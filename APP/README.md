@@ -34,7 +34,7 @@ _In particular, check `xroom` (room: must exist), `xhome` (home: must exist) whe
 
    * If the APP requires, create the 'tap-to-run' in SmartLife to act on the Tuya devices, or whatever else is necessary to do in Tuya (e.g. _Thermostat_ requires installing a specific _virtual device_).
 
-   * Create the necessary RULES in IoTwebUI, I recommend permanently modifying `usrrules02.2.js`. They are indicated in the `addon/xxxxx0y.js` file itself.
+   * Create the necessary RULES in IoTwebUI, I recommend permanently modifying `usrrules0x.y.js`. They are indicated in the `addon/xxxxx0y.js` file itself.
   
 2. **Complete installation** (User Interface)<br>
 _Some APPs work perfectly without UI (e.g. Thermostat) for others the UI is essential._
