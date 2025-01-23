@@ -24,14 +24,13 @@ And:
   fire01B.png
   snow01A.png
   snow01A.png
-  
+Window size 650x300
 ====================== USER CONFIGURATION:  GOTO LINE  97 !
  -->
  
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<!-- REQUIRED all javascript procedures to handle widgets -->
+ <!-- REQUIRED all javascript procedures to handle widgets -->
     <script type="text/javascript" src="inc/restget.js"> </script >
     <script type="text/javascript" src="inc/iotwidget01.js"> </script >
 <!-- REQUIRED by iotwidget02 -->
@@ -103,7 +102,7 @@ And:
 <script type="text/javascript">
 
 // =====   USER CONFIGURATION ================
-const x_term   = "WEB Thermostat";    // Name of x--device THERMOSTAT01
+const x_term   = "WEB thermostat";    // user name of the x-device THERMOSTAT01
 const baseURL = 'http://localhost:3031/IoTrest/';  // for this and REST2.2 in the same server
 // =================== USER CONFIG  ENDS
 
@@ -230,6 +229,17 @@ const widgets = [
 var lcount = 0;
 var oggi = -3;
 
+async function initWind() {
+
+// test x-device presence
+	let devTest = await RESTget(baseURL + "device/" + x_term +"/dinfo");
+	if (devTest.error){
+	  alert("The x-device "+x_term+" (THERMOSTAT) is not running!\nCheck IoTwebUI RULES or console\n...Closing...");
+      window.close();
+	  }
+startup();	  
+}	  
+
 function hook(widgetId, action = null){
 // chart clear
 	if (widgetId == "LED0"){
@@ -248,7 +258,7 @@ function hook(widgetId, action = null){
 	if (widgetId == "LED2"){
 	     if (lcount < 10){
 			lcount++;
-			if( lcount > 2)
+			if( lcount > 3)
 				LOOPINTERVAL =  LOOPINTERVAL_RUN; 
 			};
 		};
@@ -258,7 +268,9 @@ function hook(widgetId, action = null){
 <!-- =============  PAGE =============  -->
 
   </head>
-  <body bgcolor="#c2c6d1" onload="startup()">        <!-- background color -->
+  <body bgcolor="#c2c6d1" onload="initWind()">        <!-- background color -->
+  <table  width= 400  height= 200><tr><td>
+  
  	 <hr>
 	 <br>
 	 <hr>
@@ -277,6 +289,6 @@ function hook(widgetId, action = null){
   
      <div id="dynamic"> </div>      <!-- dynamic widget division -->
      <div id="output"> </div>       <!-- only for local tests -->
-
+</td></tr></table>
   </body>
 </html>
