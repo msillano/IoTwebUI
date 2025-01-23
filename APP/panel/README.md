@@ -60,7 +60,7 @@ Quando le dimensioni dell'IFRAME menu non possono contenere l'interfaccia utente
  e `openMyWind(url, width, height, resizable)`  è definito in `inc/iotmenu.js` 
 
 **ESEMPI**
-
+Vedi informazioni dettagliate sulle [librerie ed esempi d'uso](https://github.com/msillano/IoTwebUI/tree/main/html). 
 Thermostat:  `APP/Thermostat/html/thermostat01.html`, usato da 'menu_apps.html'. Vedi anche: [APP/Thermostat](https://github.com/msillano/IoTwebUI/blob/main/APP/Thermostat/README.md)  <br>
 Battery tester: `APP/Battery tester/html/tester01.html`,  usato da 'menu_apps.html'. Vedi anche:  [APP/Battery tester](https://github.com/msillano/IoTwebUI/blob/main/APP/Battyery%20tester/Ba)
 
