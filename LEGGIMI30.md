@@ -956,4 +956,6 @@ Tutti i marchi riportati appartengono ai legittimi proprietari.<br>
 - https://api.open-meteo.com <br>
 - https://www.drogbaster.it <br>
 - https://sharpweather.com <br>
+- http://www.hexagora.com <br>
+- https://www.kristanixsoftware.com/ <br>
 
