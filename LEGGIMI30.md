@@ -310,6 +310,10 @@ In IoTwebUI esistono 2 interfacce REST:
 
 _Queste due strade permettono finalmente l'integrazione di Tuya in progetti verticali, senza alterare il funzionamento base di Tuya/Smartlife, ma arricchendolo di nuove potenzialità, con una strategia più semplice delle alternative preesistenti (e.g. tuyaDAEMON, HA, etc...) Vedi [clima01](https://github.com/msillano/IoTwebUI/blob/main/html/clima01-leggimi.md), esempio di semplice UI WEB custom.
 
+### Panel: menu realmente customizzabili
+
+Realizzati in HTML, le pagine 'Panel' si possono pensare suddivise in strisce orizzontali. Ogni striscia può contenere un titolo oppure 1, 2, o 3 bottoni, che a loro volta possono contenere icone, widget, informazioni. L'utente può limitarsi al copia e incolla delle varie 'striscie'. L'uso di librerie e css renda semplice l'operazione!
+
 <hr style="height:2px;border-width:0;color:gray;background-color:gray">
 
 ## Versioni
@@ -317,7 +321,7 @@ _Queste due strade permettono finalmente l'integrazione di Tuya in progetti vert
   - Essenzialmente sviluppo HTML esterno: cambiato il file di lancio (l'attivazione del REST è auto)
   - Create due serie di pagine: i 'panel' con interfaccia grafica, e i 'menu' più semplici, usati come controllo per alcune APP.
   - Tutti gli **addon** aggiornati per essere compatibili con i grafici creati da _Explore scene_ (`sceneo1.js`)
-  - Il nuovo look ed il panel di default (`index.html`) sono distribuiti con _IoTwebUI_, gli altri come una APP 
+  - Il nuovo look ed il panel di default (`index.html`) sono distribuiti con _IoTwebUI_, gli altri come una APP (vedi [APP/panel](https://github.com/msillano/IoTweb) )
 
 - 2.2.3  correzione Bugs
   - Aggiornate alcune macro
