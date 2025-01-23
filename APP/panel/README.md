@@ -10,7 +10,7 @@ Le pagine HTML usate con IoTwebUI possono essere di tre tipi:
   I _panel_ sono altamente customizzabili, per rispecchiare gli obiettivi dell'utente. <br>
 Un _panel_ può contenere:
   
-* Bottoni per il lancio di _Tap-o-Run_ Tuya e _REGOLE_ IoTwebUI (e.g. rule 'Pippo')
+* Bottoni per il lancio di _Tap-to-Run_ Tuya e _REGOLE_ IoTwebUI (e.g. rule 'Pippo')
 * Informazioni dinamiche ottenute dai device (`IoTwidget01`: e.g. temperatura)
 * Interruttori, spie ed altri controlli dinamici (`IoTwidget02`: e.g. interruttore caldaia)
 * Widget di terze parti con informazioni utili (e.g meteo)
