@@ -51,14 +51,23 @@ function CLASSIFY01(_clName = "Device list", _clStartHome = null, _clStartMode =
                     value: 0
                 }
             ]);
-
-        // ====================  EXTRA METADATA for 'Classify'
-        // (optional) adds 'details' to the x-object
-        // run only one time, at startup!
+      sleep(20); // after ADDXDEVICE()
+	  // ====================  EXTRA METADATA for 'Explore scene' (optional)
+        //  adds 'details[]' to the x-object, structure
+        //  device.details: [
+        //                { from: { type: "type",
+        //                            id: "name"},
+        //                    to: { type: "type",
+        //                            id: "name"},
+        //                action: "label"
+        // 		    	  }, ...];
+        // from, to: optional, if missed are replaced by this x-device
+        // type: one of device,auto,tap,extra,xdevice,xauto,xtap,xextra
+        // id: name of a node: if not exists it is cteated
         // for details see https://github.com/msillano/IoTwebUI/blob/main/APP/Scene/LEGGIMI.md#grapho-di-x-device
-        //      a) init
-        let xdev = getDeviceFromRef(_clName);
-        xdev['details'] = [
+ 
+     let xdev = getDeviceFromRef(_clName);
+     xdev['details'] = [
             //   b)here   input data (like conditions)
             {
                 from: {
@@ -67,7 +76,7 @@ function CLASSIFY01(_clName = "Device list", _clStartHome = null, _clStartMode =
                 },
                 action: "get",
             }, {
-                action: "data driven",
+                action: "<I>data driven</I>",
             }, {
                 from: {
                     type: "xtap",
@@ -77,21 +86,33 @@ function CLASSIFY01(_clName = "Device list", _clStartHome = null, _clStartMode =
             }, {
                 from: {
                     type: "xtap",
-                    id: "List offline device"
+                    id: "List offline devices"
                 },
                 action: "mode=offline",
-            }, {
+            },{
                 from: {
                     type: "xtap",
-                    id: "List device from any HOME"
+                    id: "List online devices"
                 },
-                action: "home=null",
+                action: "mode=online",
             }, {
                 from: {
                     type: "xtap",
-                    id: "List device from ROMA"
+                    id: "List total devices"
+                },
+                action: "home=any",
+            }, {
+                from: {
+                    type: "xtap",
+                    id: "List devices from ROMA"
                 },
                 action: "home=ROMA",
+            },{
+                from: {
+                    type: "xtap",
+                    id: "List devices from ADMIN"
+                },
+                action: "home=ADMIN",
             },
             //   c)here   output data (like actions)
             {
@@ -137,9 +158,9 @@ function CLASSIFY01(_clName = "Device list", _clStartHome = null, _clStartMode =
     }
 
     // ========  B_PHASE  wait for 1 loop to complete device processing
-    if ((!first) && (GET(_clName, 'count', false) === 0)) { // NOT the first run
+    if ((!first) && (GET(_clName, 'count', false) === 0)) {   // NOT  at the first run
 //        VOICE("attendere per favore...");
-        var _clAHomes = (_clXhome == null) ? GETHOMELIST() : [_clXhome];
+        var _clAHomes = (_clXhome == 'any') ? GETHOMELIST() : [_clXhome];
         _clAHomes.forEach((xhome) => {
             GETIDLIST(xhome).forEach((devid) => {
                 let online = GETATTRIBUTE(devid, 'online');
@@ -175,11 +196,11 @@ function CLASSIFY01(_clName = "Device list", _clStartHome = null, _clStartMode =
         REFRESH(_clName); // to update tooltip asap
         VOICE("Device List " + (_clXhome ? ("di " + _clXhome) : "totale") + " aggiornata");
     };
-
+   
 } // end  CLASSIFY01 code
 
 // =========== RULES for CLASSIFY01: use this in RULE-pad
-// This is an example only, using 'ROMA' home - you can customize it in RULE-pad
+// This is an example only, using 'ROMA' home - you can customize it in RULE-pad (or editing usr
 
 /*
 // ---- CLASSIFY01: Device list
@@ -188,7 +209,7 @@ if (TRIGBYNAME("List any device")) SETXDEVICESTATUS("Device list",'mode','all'),
 
 if (TRIGBYNAME("List offline devices")) SETXDEVICESTATUS("Device list",'mode','offline'),REFRESH(),VOICE("Lista dei soli device offline");
 
-if (TRIGBYNAME("List devices from any HOME")) SETXDEVICESTATUS("Device list",'home',null),REFRESH(),VOICE("Lista totale di "+GET("Device list", 'mode')+" device");
+if (TRIGBYNAME("List devices from any HOME")) SETXDEVICESTATUS("Device list",'home',null),REFRESH(),VOICE("Lista totale di tutti i device "+GET("Device list", 'mode'));
 
 if (TRIGBYNAME("List devices from ROMA")) SETXDEVICESTATUS("Device list",'home','ROMA'),REFRESH(),VOICE("Lista di "+GET("Device list", 'mode')+" device di Roma ");
 //
