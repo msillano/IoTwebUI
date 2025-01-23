@@ -2,10 +2,10 @@
 [english version](https://github.com/msillano/IoTwebUI/blob/main/html/README.md)
 
 Usando il [RESTserver](https://github.com/msillano/IoTwebUI/blob/main/RESTserver/LEGGIMI-REST22.md) un client può:
-1. _Accedere ai dati dei device Tuya e x-device in IoTwebUI_
-2. _Lanciare una scena ('tap-tro-run) o una REGOLA (con nome)._
+1. _Accedere ai dati dei device Tuya e x-device in IoTwebUI in lettura, in scrittura solo a x-device._
+2. _Lanciare una scena ('tap-tro-run) o una REGOLA (con nome) o altri tipi di link._
    
-La più semplice applicazione di queste funzionalità è la realizzazione di interfacce utente in HTML (WEB).<br>
+La più semplice applicazione di queste funzionalità è la realizzazione di interfacce utente in HTML (WEB), cioè [IoTpage](https://github.com/msillano/IoTwebUI/blob/main/APP/panel/README.md).<br>
 Qui abbiamo una collezione di esempi:
 
 a) **Librerie di Widget**: hanno la particolarità che basta posizionare un widget con due numeri (x, y) in una pagina web con sfondo: 
