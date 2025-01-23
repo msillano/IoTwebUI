@@ -47,7 +47,7 @@ function EXPLORE01( xname, room = "tools", home = 'ADMIN') {             // defa
                     code:  'action',
                     value:  "idle"
                 }] );
-       console.log("exp_phase A - startup");
+ //      console.log("exp_phase A - startup");
 	   SETXDEVICEONLINE(xname);
        }
 
