@@ -31,6 +31,17 @@ _Produce anche informazioni testuali (per documentazione ed archivio) di tutte l
 </td><td>
  <img src="https://github.com/msillano/IoTwebUI/blob/main/pics/scene01c.png?raw=true" /><br> <br>  <img src="https://github.com/msillano/IoTwebUI/raw/main/pics/scene01d.png?raw=true" /></td></tr>
 
+<tr><td colspan=2>  <b><i>Panel toolkit</i></b><br><br> 
+ With IoTwebUI 3.0, the user can create custom menus.
+Here you can find examples and useful files to simplify your work.
+<hr>
+ _Con IoTwebUI 3.0, l'utente può creare menu custom._ 
+ _Qui può trovare esempi e file utili per semplificare il suo lavoro._
+ 
+</td><td>
+<img width="138"  src="https://github.com/user-attachments/assets/c8186b88-2cb0-47b1-acda-95e654b01ef3"/> 
+</td></tr>
+
 </table>
 
 
