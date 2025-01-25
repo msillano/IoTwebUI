@@ -71,6 +71,11 @@ Battery tester: `APP/Battery tester/html/tester01.html`,  usato da 'menu_apps.ht
 * Sull'interazione REST - pagine dinamiche HTML [vedi qui](https://github.com/msillano/IoTwebUI/tree/main/html)
 * Per dettagli su iotwidget01 ed esempi, vedi [html/clima01](https://github.com/msillano/IoTwebUI/blob/main/html/clima01-leggimi.md)
 * Per dettagli si iotwidget02 ed esempi, vedi [html/test02](https://github.com/msillano/IoTwebUI/blob/main/html/test02-leggimi.md)
+* E' opportuno dare all'utente un feedback immediato acustico quando preme un pulsante (Panel): la funzione  `key()` in `inc/panel.js` è pensata allo scopo. Uso (`panel_for_addons.html`):
+```
+ ... onClick="key(), RESTget(baseURL + 'set/Device list/mode/offline');">... 
+```
+Inoltre molti `addon`, specie se con lunghe elaborazioni, inviano un messaqggio vocale al termine!
 
 **Pagine HTML**
 
