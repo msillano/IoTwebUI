@@ -21,6 +21,7 @@ use:  <div class='hover'> clickable <div class = 'tooltip'> tooltip text </div><
     visibility: hidden;
     position: absolute;
     white-space: nowrap;
+	text-align: left;
     z-index: 1;
     
     /* customizable */

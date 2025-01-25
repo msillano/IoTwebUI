@@ -14,6 +14,7 @@ version 1.0 09/09/2024
      <!-- REQUIRED Stylesheets by iotwidget01 	-->
 <link rel = "stylesheet" href ="http://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" >
 <link rel = "stylesheet" href ="inc/iotwidget01.css" >
+note: baseURL MUST BE defined in the calling HTML page!
 */
 
 function getDeviceIcon(data, tooltip = false){

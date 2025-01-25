@@ -83,7 +83,6 @@ function getSwitch(item, data) {
 }
 
 const maxChart = 120; // 70, 150
-var lastswitchstate = null;
 var charts = {};
 var data = null;
 function doIotwidget02(item) {
@@ -114,11 +113,12 @@ function doIotwidget02(item) {
         //          data = JSON.parse(restHTTP(baseURL + "device/" + item.devId +"/" + item.code));
         RESTget(baseURL + "device/" + item.devId + "/" + item.code)
         .then(data => {
-            //             console.log(data);
-            if (lastswitchstate != data[item.code]) {
+			if (item.d = "LUCE")
+                         console.log(item, data);
+            if (item["lastswitchstate"] != data[item.code]) {
                 const outputDiv = document.getElementById('item' + item.id);
                 outputDiv.innerHTML = getSwitch(item, data);
-                lastswitchstate = data[item.code];
+                item.lastswitchstate = data[item.code];
                 hook(item.id, data[item.code]);
             }
         });

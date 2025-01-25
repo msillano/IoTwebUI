@@ -1,0 +1,37 @@
+/*
+This file is part of IoTwebUI project (https://github.com/msillano/IoTwebUI)
+ CSS for widget01
+ ------------------------------
+License MIT
+(C)2024 marco.sillano@gmail.com
+version 3.0 13/01/2025
+*/
+/* panel page definitions */
+body {margin: 0px; padding: 0px; border: 0px; vertical-align: baseline; text-align: left; font-size: 10px; -webkit-text-size-adjust: 100%; }
+div {position: absolute; left: 44px;}
+input {width: 147px; height: 25px;}
+caption  {padding: 6px 6px 6px 6px;}
+
+
+/* panel fonts definitions */
+.verdana1000C0C0FFFFFFt   {font-family: Verdana, Geneva, sans-serif; font-size: 13px; color: #00C0C0; text-decoration: none; font-weight: bold;}
+.verdana1900C0C0FFFFFFtib {font-family: Verdana, Geneva, sans-serif; font-size: 19px; color: #00C0C0; font-weight: bold; font-style: italic; text-decoration: none;}
+.verdana15000000FFFFFFtb {font-family: Verdana, Geneva, sans-serif; font-size: 15px; color: #FFFFFF; font-weight: bold; text-decoration: none;}
+.verdana5000C0C0FFFFFFt {font-family: Verdana, Geneva, sans-serif; font-size: 50px; color: #00C0C0; text-decoration: none;}
+
+
+table {  cellspacing="0"  cellpadding="0" position: "relative" width="258" ;
+ border-radius: 15px;
+ border-color = #000000; 
+}
+/* panel table td styles: block1, block2, block3half, block3, block3x2, block3x3  */	
+.block1 {background-repeat:no-repeat; background-size:84px 84px; width: 84px; height: 84px; vertical-align: middle;  text-align: center; padding: 0px 1px;}
+.block2 {background-repeat:no-repeat; background-size:170px 84px; width: 170px; height: 84px; vertical-align: middle;  text-align: center; padding: 0px 1px;}
+.block3half {background-repeat:no-repeat; background-size:257px 42px; width: 257px; height: 42px; vertical-align: middle;  text-align: center;}
+.block3 {background-repeat:no-repeat; background-size:257px 84px; width: 257px; height: 84px; vertical-align: middle;  text-align: center;}
+.block3x2 {background-repeat:no-repeat; background-size:257px 168px; width: 257px; height: 168px; vertical-align: middle;  text-align: center;}
+.block3x3 {background-repeat:no-repeat; background-size:257px 252px; width: 257px; height: 252px; vertical-align: middle;  text-align: center;}
+
+/* extra for buttons */
+.click {cursor: pointer;}
+

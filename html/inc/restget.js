@@ -9,11 +9,40 @@ version 2.0 30/05/2024
 
 // REST simple client for IOTwebUI
 // DO NOT CHANGE: see https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API/Using_Fetch
-function RESTget(url) {
-  return fetch(url, { method: 'GET'})
-    .then(response => {
-		if (response.ok)
-			   return response.json();
+// note: LOOPINTERVAL MUST be defined in calling html page!
+async function RESTget(url) {
+	try {
+    const response = await fetch(url);
+    if (!response.ok) {
+           if(response.status === 404) {
+		    response.status = 200;
+			   console.log("ERROR *** REST result: 'unfound' on " + url );
+			   return {error: "unfound"};
+			 }
+		else {
+			 throw new Error('Network response was not ok. Status: '+response.status);
+			 }
+       }
+	const data = await response.json();
+			   if (data.error)
+				   console.log("ERROR *** REST result: '"+data.error +"' on " + url );
+			   return data;
+	}
+    catch(error) {
+       throw 'There has been a problem with your fetch operation:'+ error;
+    };
+}
+/*
+async function RESTget(url) {
+  return await fetch(url, { method: 'GET'})
+    .then((response) => {
+		if (response.ok){
+			   let r =  response.json();
+			   console.log("result = ", r);
+			   if (r.error)
+				    VOICE( "Warning: REST result "+ r.error);
+			   return r;
+		}
 		else if(response.status === 404) {
 		     response.status = 200;
 			   return {error: "unknown"};
@@ -26,16 +55,21 @@ function RESTget(url) {
        console.error('There has been a problem with your fetch operation:', error);
     });
 }
-
+*/
 // Page buiding routines
 function  placeWidget(data) {
-    return ("<div  style= 'position:absolute; top:"+data.xpos+"px; left:" +data.ypos+"px;' id='item"+data.id+"' ></div>");
+	if (data.parent)
+        return ("<div  style= 'position:relative; top:"+data.xpos+"px; left:" +data.ypos+"px;' id='item"+data.id+"' ></div>");
+   return ("<div  style= 'position:absolute; top:"+data.xpos+"px; left:" +data.ypos+"px;' id='item"+data.id+"' ></div>");
 }
 
 function dynamicPage() {
      const outputDiv = document.getElementById('dynamic');
      widgets.forEach((item) => {
-	     outputDiv.innerHTML += placeWidget(item);
+//		 console.log(item);
+  	     let toDiv =  document.getElementById(item.parent) || outputDiv; 
+//		 console.log("setting ", toDiv);
+	     toDiv.innerHTML += placeWidget(item);
      });
 }
 var mainTimer = null;

@@ -1,0 +1,21 @@
+/*
+This file is part of IoTwebUI project (https://github.com/msillano/IoTwebUI)
+ CSS for widget01
+ ------------------------------
+License MIT
+(C)2024 marco.sillano@gmail.com
+version 2.0 30/05/2024
+*/
+/* for iotwidget02 - default style */
+  .signal{
+    width:  32px;
+    height: 32px;
+    background-color: transparent;
+    border: none ;
+    }
+  .switch{
+    width:  60px;
+    height: 60px;
+    background-color: transparent;
+    border: none ;
+	}
