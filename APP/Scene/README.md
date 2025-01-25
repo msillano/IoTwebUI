@@ -88,7 +88,7 @@ _The example graph is obtained by commenting only the two automations: `thermost
 </td></tr></table>
 <hr>
 
-### Grapho di x-device
+### Graphs for x-device
 
 The data needed for the graphs are automatically extracted from the Tuya 'scenes' and 'devices'.<br>
 You need to explicitly insert metadata in the **x-devices** to include them in the graphs, for example, for documentation, as in this example, which synoptically illustrates the operation of "Explore Scene."
