@@ -1,4 +1,5 @@
 # Explore device
+[english version](README.md)
 
 ### Obiettivi
 _Pur seguendo delle regole comuni, i device Tuya hanno caratteristiche che variano molto, dipendendo in ultima analisi dai costruttori e dai loro obiettivi commerciali.
