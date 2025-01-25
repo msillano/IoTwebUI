@@ -322,7 +322,7 @@ Realizzati in HTML, le pagine 'Panel' si possono pensare suddivise in strisce or
   - Create due serie di pagine: i 'panel' con interfaccia grafica, e i 'menu' più semplici, usati come controllo per alcune APP.
   - Tutti gli **addon** aggiornati per essere compatibili con i grafici creati da _Explore scene_ (`sceneo1.js`)
   - Il nuovo look ed il panel di default (`index.html` - senza dipendenze) sono distribuiti con _IoTwebUI_, gli altri come  APP (vedi [APP/panel](https://github.com/msillano/IoTwebUI/tree/main/APP/panel) ) da aggiungere in seguito.
-  - La versione distribuita `IoTwebUI3.0.zip` ora contiene tutto il necessario: `IoTwebUI 3.0`, `REST3.0`, e il Panel `index.html`.
+  - La versione distribuita `IoTwebUI3.0.zip` ora contiene tutto il necessario: `IoTwebUI 3.0`, `REST3.0`, e il Panel `index.html`. La dir /html con il panel di default è reinserita nello ZIP.
 
 - 2.2.3  correzione Bugs
   - Aggiornate alcune macro
