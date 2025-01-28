@@ -1,0 +1,230 @@
+<html>
+<!--
+USER frontend for TESTERBATTERY02 - battery decharger
+
+Requires: 
+  IotWebUI 3.0, REST3.0, device DT20HBW and x-device TESTERBATTERY02 installed and working.
+more:
+  inc/restget.js
+  inc/iotwidget01.js
+  inc/iotwidget01.css
+  inc/iotwidget02
+  inc/iotwidget02.css
+  sfondo_tb.png
+  red_light_32x32.png
+  green_light_32x32.png
+  onbutton.png
+-->
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!-- REQUIRED all javascript procedures to handle widgets -->
+    <script type="text/javascript" src="inc/restget.js"> </script >
+    <script type="text/javascript" src="inc/iotwidget01.js"> </script >
+<!-- REQUIRED by iotwidget02 -->
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript" src="inc/iotwidget02.js"> </script >
+
+<!-- REQUIRED Stylesheet by iotwidget01 and to use same icons as IoTwebUI	-->
+	<link rel = "stylesheet" href ="http://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" >
+	<link rel = "stylesheet" href ="inc/iotwidget01.css" >
+	<link rel = "stylesheet" href ="inc/iotwidget02.css" >
+	
+
+  <style>
+/* ======= USER PAGE DEFAULTS */
+   :root {
+      --button-width: 150px;
+      --button-height: 50px;
+      }
+   .butzone {
+	    width:   var(--button-width);
+	    }
+   table {
+      border-collapse: collapse;
+      border: none;
+      }
+
+/* defaults from iotwidget01.css: here extra for this page
+   note: colors custumizable also in widget definition
+*/
+
+  .value {
+	color:black;
+	font-size:14px;
+	}
+  .bigvalue {
+	color:Blue;
+	font-size:20px;
+	}
+  .bigbutton {
+	border-radius:5px;
+	font-weight: bold;
+	}
+  .imgbutton {
+    border-radius:5px;
+	font-weight: bold;
+    }
+	
+ /* for iotwidget02 - extra local style */
+   .switch{
+    width:  80px;
+    height: 40px;
+    }
+
+ </style>
+
+<script type="text/javascript">
+// here custom definitions UPDATABLE
+const xdev  = "炬为电能表(DT20HBW)";    // voltmeter device name
+const xthis = "BatteryTest";         // x-device name for TESTERBATTERY02
+
+// =====   definitions
+// variable loop: used with many iotwidgets to optimize start performance - see hook()
+const LOOPINTERVAL_START =  7177;      // start: fast (7 s)
+const LOOPINTERVAL_RUN =   29311;      // run: standard (30 s)
+var _lcount = 0;  // local counter for variable loop
+//
+const RESTINTERVAL =   911;         // (prime number)  defined here, but used by restget.js
+var   LOOPINTERVAL =  LOOPINTERVAL_START;           // defined here, but used by iotwidget0x.js
+const baseURL = 'http://localhost:3031/IoTrest/';   // defined here, used here and by iotwidget0x.js
+
+// =====   THIS PAGE WIDGET DEFINITIONS
+// list of dynamic widgets in the page: adjust xpos, ypos
+// nota: widget[x].id  must be unique!
+const widgets = [
+  { id :"CHART",
+     xpos : 0,           // verticale
+     ypos : 0,           // orizzontale
+     type	: "linechart",
+     devId: "BatteryTest",
+     code : "smoot",
+     tiplabel: 'tension',
+     maxPoint: 300,  // 300 pts, i.e. 5h @1/min
+     // instance options are merged with default options in iotwidget02
+     // for info https://developers.google.com/chart/interactive/docs/gallery/linechart (english version)
+     options: {
+          vAxis:{minValue: 0.8},
+          title: 'Tuya Battery tester v. 2.0',
+          },
+     },
+	 { id : "LED",
+     xpos : 245,         // verticale
+     ypos : 534,         // orizzontale
+     type	: "signal",
+     devId: "BatteryTest",    // for value: device ID
+     code : "step",          // for value: status code
+	 dataOK:["running"],
+     on: {
+		 image:"red_light_32x32.png",
+		 },
+	 off: {
+		 image:"green_light_32x32.png",
+		 },
+     },
+ 	 { id :"TXT",
+	   xpos : 250,         // verticale
+	   ypos : 580,         // orizzontale
+	   type	: "bigvalue",  // icon, icotip,  value, bigvalue, bigbutton, imgbutton
+
+	   devId: "BatteryTest",    // for value, bigvalue: device ID
+	   code : "step",          // for value, bigvalue: status code
+     },
+     { id : "BUTGO",
+	   xpos : 20,            // verticale
+	   ypos : 534,           // orizzontale
+	   type	: "imgbutton",   // icon, icotip,  value, bigvalue, bigbutton, imgbutton
+
+	   image:"onbutton.png",    // for imgbutton
+	   text : "CLEAR",    // for imgbutton, bigbutton: button text
+	   scenerule: "start batterytest",      // for imgbutton, bigbutton: scene|rule name
+
+	   color: 'Blue',        // for imgbutton, bigbutton: optional, default in CSS
+     },
+     { id :"BUTSTOP",
+	   xpos : 188,           // verticale
+	   ypos : 534,           // orizzontale
+	   type	: "bigbutton",   // icon, icotip,  value, bigvalue, bigbutton, imgbutton
+	   	background: "#AFEEEE", // default in cs
+
+	   text : "TEST OFF",   // for imgbutton, bigbutton: button text
+	   scenerule: "stop batterytest"       // for imgbutton, bigbutton: scene|rule name
+     },	 
+	{ id :"METER",
+	 xpos : 71,           // verticale
+	 ypos : 552,           // orizzontale
+	 type	: "gauge",   // icon, icotip,  value, bigvalue, bigbutton, imgbutton
+	 label: "[mAh]",
+	 devId: "BatteryTest",    // for value, bigvalue: device ID
+	 code : "charge",                  // for value, bigvalue: status code
+	 // instance options are merged with default optons in iotwidget02
+	 // for info https://developers.google.com/chart/interactive/docs/gallery/gauge (english version)
+	 options: {
+		 width: 120,
+		 height: 120,
+		 min  : 0,
+		 max  : 3000,
+		 majorTicks :["0","1000","2000","3000"],
+		 minorTicks: 5,
+	//      redFrom:0,
+	//      redTo: 1200,
+		 yellowFrom:1200,
+		 yellowTo: 2000,
+		 yellowColor: '#E4E866',
+		 greenFrom:2000,
+		 greenTo: 3000,
+		 greenColor: '#53E53E',
+		 },
+	  },
+  
+];
+
+async function initWind() {
+	try{
+    let devTest = await RESTget(baseURL + "device/" + xthis +"/step");
+	console.log(devTest);
+	if (devTest.error){
+	  alert("The x-device "+xthis+" (BTTERYTESTER02) is not running!\nCheck IoTwebUI RULES or console\n...Closing...");
+      window.close();
+	  }
+	 } catch(e){
+      alert("REST error: check REST running state.\n"+e);
+      window.close();
+     }
+// dynamic loop starts
+    startup();	  
+}	
+  
+ // for button local
+function hook(widgetId, action = null){
+	if (widgetId == "BUTGO"){         // clear the graph
+		 widgets[0]['clear'] = true;
+	     }
+//	console.log('HOOK ' + widgetId + action);
+// variable loop: used with many iotwidgets
+	if (widgetId == "LED"){   // MUST exist
+	     if (_lcount < 10){
+			_lcount++;
+			if( _lcount > 3)
+				LOOPINTERVAL =  LOOPINTERVAL_RUN; 
+			};
+		};
+	};
+</script>
+
+<!-- =============  PAGE =============  -->
+
+  </head>
+  <body bgcolor="#DBD396" onload="initWind()">        <!-- background color -->
+     <table><tr><td>
+	       <img src="sfondo_tb.png"  width="500" alt="home" border="0">  <!-- background image -->
+        </td><td class='butzone'> &nbsp;      <!-- gets place for buttons -->
+	    </td></tr></table>
+	 <hr>
+    <div id="dynamic"> </div> <br>     <!-- dynamic widget division -->
+    &nbsp; &nbsp; &nbsp;<input type="text" title="Add notes before capture the screen" size=65 placeholder="Editable optional notes"/>
+    <div id="output"> </div>       <!-- only for tests -->
+
+  </body>
+</html>
