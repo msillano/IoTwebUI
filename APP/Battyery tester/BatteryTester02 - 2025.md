@@ -18,3 +18,6 @@ _Tra le funzioni che mi hanno più colpito:_
 * Frequenze di campionamento impostabile (lento 60s, veloce 1s)
 * Cambio della visualizzazione sul monitor controllata da Tuya (3 opzioni/5).
 * Sempre a proposito di Tuya, nelle'scene' il device presenta 34 (!) CONDIZIONI diverse (di cui due in cinese!) e 21 AZIONI. Veramente ricco: ci vorrà un po' di tempo per studiarlo bene!
+
+<hr>
+BatteryTester02 presenta le (poche) modifiche richieste per usare questo volmetro!
