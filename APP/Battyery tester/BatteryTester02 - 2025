@@ -1,7 +1,9 @@
-# Battery Tester02 - 2025
+# BatteryTester02 - 2025
 
 Il mercato evolve, i device cambiano: ecco il primo meter CC Tuya compatibile, specializzato nella gestione di batterie per FV: 0-420VDC, 100-600 A !
 vedi Tuya WiFi Smart Tester Atorch (DT1209HBW): https://it.aliexpress.com/item/1005007168934730.html
+
+
 
 #### Impressioni generali
 * Collegato immediatamente con Tuya: ha messaggi molto chiari! Ha l'opzione "rete alternativa"!
@@ -11,7 +13,7 @@ Impressionante il numero di schermate diverse (5 principali, in tutto 16) su un 
 
 Manuale utente: http://en.atorch.cn/upload/20240816173247.pdf
 
-_Tra le funzioni che mi hanno colpito:_
+_Tra le funzioni che mi hanno più colpito:_
 * Relay esterno (5V, non fornito) programmabile come Over/uder voltage
 * Frequenze di campionamento impostabile (lento 60s, veloce 1s)
 * Cambio della visualizzazione sul monitor controllata da Tuya (3 opzioni/5).
