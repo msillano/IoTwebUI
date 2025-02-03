@@ -12,10 +12,12 @@ Rileva quando un evento inizia (`startDevice.start = true`) e termina (`stopDevi
 *  Una notifica se il consumo di casa supera 3.3 KW per più di 10 minuti
 
 ---
-```
 ### Implementazione 1 (Collegamento Locale con Switch Zigbee)
 **Strumento**: Switch Zigbee con funzione countdown. Le altre funzioni dello switch (ON/OFF, etc.) possono essere usate per altri scopi.
 
+**Codice**
+
+```
 // Automazione A1
 SE (test_dispositivo(startDevice, start, =, true))
 POI (set_device_status(SWITCH, countdown, xxx))    // Nota: xxx va sostituito con (100 + durataMinima) 
