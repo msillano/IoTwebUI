@@ -66,6 +66,8 @@ POI (disabilita_automazione(A1), start_tap_to_run(E1))     // Tuya non accetta a
 SE (esegui())
 POI (set_ritardo(0:00:04), abilita_automazione(A1))  
 ```
+![image](https://github.com/user-attachments/assets/1f718f2a-cab9-4448-8b72-db9b2cbfeafc)
+
 
 **Logica**:  
 1. **Avvio Delay**:  
