@@ -50,6 +50,21 @@ POI (set_device_status(SWITCH, countdown, 0), set_device_status(segnale, attivo,
 
 ### Implementazione 2 (Collegamento Cloud con Tuya)
 
+**Codice**
+
+```
+// Automazione A1
+SE (test_dispositivo(startDevice, start, =, true))
+POI (set_ritardo(0:05:00), set_device_status(segnale, attivo, true))  // 0:05:00 va sostituito con durataMinima 
+
+// Automazione A2
+SE (test_dispositivo(stopDevice, stop, =, true))
+POI (disabilita_automazione(A1), start_tap_to_run(E1))     // Tuya non accetta abilita(A1) dopo disabilita (A1)
+
+// Tap-to-Run E1 - quindi è necessario un tap_to_run solo per abilita(A1)
+SE (esegui())
+POI (set_ritardo(0:00:04), abilita_automazione(A1))  
+```
 
 **Logica**:  
 1. **Avvio Delay**:  
