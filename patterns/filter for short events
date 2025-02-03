@@ -1,0 +1,25 @@
+### Pattern 
+_Filtro per eventi brevi_
+
+### Modello 
+* un evento segnala lo start (sia startDevice.start = true)
+* un evento segnala la fine (sia stopDevice.stop = true)
+* La durata minima è predefinita (sia durataMinima)
+* Una azione è eseguita se durataMinima viene superata (sia segnale.attivo = true)
+
+### Esempi
+*  Un messaggio "Per favore, chiudere la porta!" se una porta resta aperta per più di 4 minuti.
+*  Una notifica se il consumo di casa supera 3.3 KW per più di 10 minuti
+
+### implementazione 1 - local linkage
+
+nota: richiede uno switch Zigbee dotato di funzione countdown. Le altre funzioni dello switch (ON/OFF, etc.) possono essere usate per altri scopi.
+
+  A1) Se startDevice.start = true, poi set SWITCH.countdown a <count>    // count = 100 + durataMinima (s)
+. A2) Se stopDevice.stop = true, poi set SWITCH.countdown a 0
+. A3) Se SWITCH.countdown = 100, poi set SWITCH.countdown a 0 e segnale.attivo = true
+
+### implementazione 2 - cloud linkage
+ A1) Se  startDevice.start = true, poi ritardo (durataMinima), segnale.attivo = true
+. A2) Se stopDevice.stop = true, poi disabilita(A1),  esegue(E1)  // Tuya non accetta abilita(A1) dopo disabilita (A1)
+. E1) Se esegui() poi ritardo( 4), abilita(A1)  // quindi è necessario un tap_to_run solo per abilita(A1) 
