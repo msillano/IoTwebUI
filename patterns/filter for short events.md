@@ -85,6 +85,25 @@ POI (set_ritardo(0:00:04), abilita_automazione(A1))
 
 ---
 
+### Implementazione 3 (REGOLE di IoTwebUI)
+
+**Vantaggi**
+* `startDevice` e `stopDevice` sono un'unica device: si misura la durata dello stato 'TRUE'
+* La potenza delle REGOLE e delle MACRO rende molto semplice e compatto il codice necessario
+* `VOICE()` permette di utilizzare messaggi vocali in modo intuitivo.
+* Le azioni immediate disponibili sono, oltre a VOICE(): beep, pop-up, suona(file), esegui(tap_to_run)
+
+
+**Codice**
+
+```
+if(ISTRIGGERH( CONFIRMH(GET("Sensore porta", "doorcontact_state") , "04:00"))) VOICE("chiudere la porta, grazie");
+```
+**Svantaggi**:  
+- **Latenza**: A causa dei vari tempi di polling, può presentare ritardi che lo rendono inadatto a tempi troppo brevi  
+- **Server**: Richiede IoTwebUI in funzione.
+
+---
 ### Esempi Pratici
 1. **Porta Aperta**:  
    - Implementazione 1: Lo switch Zigbee conta 340s. Se la porta viene chiusa prima di 240s, il timer si annulla. A 100s rimanenti (240s trascorsi), parte l'allarme.  
@@ -98,3 +117,4 @@ POI (set_ritardo(0:00:04), abilita_automazione(A1))
 ### Raccomandazioni
 - **Preferire Implementazione 1** (Zigbee) se possibile: più robusta e immediata.  
 - **Implementazione 2** (Cloud) richiede attenzione ai ritardi e alle limitazioni di Tuya. Ottimizzare il delay in E1 (es. 2-10s) per bilanciare reattività e stabilità.
+- Se si usa già per altri motivi **IoTwebUI** (e.g. menu di interfaccia) è da preferire la **Implementazione 3** perchè più adattabile.
