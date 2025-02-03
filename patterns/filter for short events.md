@@ -73,7 +73,7 @@ POI (set_ritardo(0:00:04), abilita_automazione(A1))
 2. **Interruzione**:  
    - Allo stop, disabilita il delay (A1) per evitare falsi positivi.  
 3. **Riattivazione**:  
-   - Dopo 4 secondi (o altro valore), un secondo automation (E1) riabilita A1.  
+   - Dopo 4 secondi (o altro valore), una terza scena (E1) riabilita A1.  
 
 **Limitazioni di Tuya**:  
 - Non permette di riabilitare un automation disabilitato nella stessa scena.  
