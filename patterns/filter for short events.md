@@ -108,6 +108,8 @@ if(ISTRIGGERH( CONFIRMH(GET("Sensore porta", "doorcontact_state") , "04:00"))) V
 1. **Porta Aperta**:  
    - Implementazione 1: Lo switch Zigbee conta 340s. Se la porta viene chiusa prima di 240s, il timer si annulla. A 100s rimanenti (240s trascorsi), parte l'allarme.  
    - Implementazione 2: Un delay cloud di 4 minuti. Se la porta viene chiusa, il delay si disabilita e un secondo automation lo riattiva dopo 4 secondi.
+   - Implementazione 3: Un messaggio vocale avverte che la posta è aperta dopo 4 minuti (+ 0..180s)
+   
 
 2. **Consumo Elettrico**:  
    - Analogamente, se il consumo supera 3.3KW per >10 minuti, il trigger avviene solo dopo il superamento della durata minima.
