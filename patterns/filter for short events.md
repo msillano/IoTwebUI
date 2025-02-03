@@ -31,6 +31,7 @@ SE (test_dispositivo(SWITCH, countdown, =, 100))
 POI (set_device_status(SWITCH, countdown, 0), set_device_status(segnale, attivo, true))
 ```
 
+![image](https://github.com/user-attachments/assets/01601754-8221-4f5c-8bc4-b898c29951c4)
 
 **Logica**:  
 1. **Avvio Timer**:  
