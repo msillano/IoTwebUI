@@ -11,7 +11,7 @@ Un ciclo esegue una serie di operazioni (es. accensione/spegnimento di un dispos
 *  irrigazione: da un orario di inizio ad uno di fine, viene ripetuto un periodo di irrigazione seguito da un periodo di pausa.
 ---
 
-### Implementazione 1 ('local linking' con Switch Zigbee)
+### Implementazione 1 ('local linkage' e Switch Zigbee)
 **Device**: _Switch Zigbee (SWITCH) con funzione di master e timer_. 
 
 **Codice**
