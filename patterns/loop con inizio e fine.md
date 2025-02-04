@@ -18,7 +18,7 @@ Un ciclo esegue una serie di operazioni (es. accensione/spegnimento di un dispos
 
 ```
 A1. Automazione (trigger iniziale)
-SE (giorno_orario_definito("06:00", "ogni_giorno"))
+SE (giorno_orario_definito("06:00", "tutti i giorni"))
 POI (
    set_device_status("irrigatore", "attivo", false)  // condizione iniziale
    set_device_status("SWITCH", "stato", true),       // Abilita i cicli
@@ -46,7 +46,7 @@ POI (
   )
 
 A4. Automazione (opzionale - backup fine al tramonto)
-SE (giorno_orario_definito("20:00", "ogni giorno"))  
+SE (giorno_orario_definito("20:00", "tutti i giorni"))  
 POI (
    set_device_status("SWITCH", "stato", false)          // Blocco Master
    )
