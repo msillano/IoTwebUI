@@ -75,7 +75,7 @@ if(ISTRIGGERH( CONFIRMH(GET("Sensore porta", "doorcontact_state") , "04:00"))) V
    
 
 2. **Consumo Elettrico**:  
-   - Analogamente, se il consumo supera 3.3KW per >10 minuti, il trigger avviene solo dopo il superamento della durata minima.
+   - Analogamente, se il consumo supera 3.3KW per >10 minuti, la notifica avviene solo dopo il superamento della durata minima.
 
 ---
 
