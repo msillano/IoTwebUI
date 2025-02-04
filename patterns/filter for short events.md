@@ -82,4 +82,4 @@ if(ISTRIGGERH( CONFIRMH(GET("Sensore porta", "doorcontact_state") , "04:00"))) V
 
 ### Raccomandazioni
 - **Preferire Implementazione 1** (Zigbee) se possibile: più robusta e immediata.  
-- Se si usa già per altri motivi **IoTwebUI** (e.g. menu di interfaccia) è da preferire la **Implementazione 2** perchè più adattabile.
+- Se si usa già per altri motivi **IoTwebUI** (e.g. menu di interfaccia) prendere in considerazione la **Implementazione 2** perchè più adattabile.
