@@ -7,12 +7,12 @@ _Loop con inizio e fine_
 **Modello Concettuale**  
 Un ciclo esegue una serie di operazioni (es. accensione/spegnimento di un dispositivo) in modo ripetuto. Il loop viene avviato da un trigger iniziale e terminato da un trigger finale. Una logica di ripresa garantisce che il ciclo si riavvii automaticamente dopo ogni completamento.
 
-**Esempi**
+**Esempio**
 *  irrigazione: da un orario di inizio ad uno di fine, viene ripetuto un periodo di irrigazione seguito da un periodo di pausa.
 ---
 
 ### Implementazione 1 ('local linking' con Switch Zigbee)
-**Device**: Switch Zigbee (SWITCH) con funzione di master e timer. 
+**Device**: _Switch Zigbee (SWITCH) con funzione di master e timer_. 
 
 **Codice**
 
@@ -22,7 +22,9 @@ SE (giorno_orario_definito("06:00", "ogni_giorno"))
 POI (
    set_device_status("irrigatore", "attivo", false)  // condizione iniziale
    set_device_status("SWITCH", "stato", true),       // Abilita i cicli
-   set_device_status("SWITCH", "countdown", 50400)   // Countdown fino al tramonto (14h * 3600s))
+   set_device_status("SWITCH", "countdown", 50400)   // Countdown fino al tramonto
+                                                     // 20:00 - 06:00 = 14h →  14 * 3600s
+  )
 
 E2. tap-to-run (azioni cicliche)
 SE (esegui())
@@ -61,7 +63,6 @@ E2. **Ciclo**
  - 58 minuti di irrigatore spento (ritardo iniziale).
  - 2 minuti di irrigatore acceso.
 
-
 A3. **Riavvio loop **
  - Al termine di E2, l'irrigatore è OFF → Automazione di Ripresa riavvia il ciclo solo se lo switch è ancora ON. IMPORTANTE: è necessaria una condizione univoca di fine ciclo.
 
@@ -73,7 +74,7 @@ A4. **Backup**
     - Questa automazione spegne comunque SWITCH alle 20:00.
 
 **Vantaggi**:  
-- **Loop flessibile**: Azioni e durata del loop sono definite in modu indipendente in E2.  
+- **Loop flessibile**: Azioni e durata del loop sono definite in modo indipendente in E2.  
 - **Spegnimento garantito**: Doppia sicurezza (countdown + automazione A4).
 - **Switch come master**: Può essere disattivato manualmente in emergenza o esteso con altre condizioni (es. sensore pioggia). 
 - **output**: ha il significato 'loop in corso' e può direttamente pilotare una spia. 
@@ -82,7 +83,7 @@ A4. **Backup**
 
 ### Implementazione 2 (Cloud linkage)
 
-
+**Device**: _Non richiede device dedicate_. 
 
 **Codice**
 
@@ -116,6 +117,7 @@ Poi (
     set_device_status("irrigatore", "attivo", false)  // OFF device - opzionale
 )
 ```
+
 ---
 
 ### Raccomandazioni
