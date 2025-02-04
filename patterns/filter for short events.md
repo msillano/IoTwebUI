@@ -49,46 +49,7 @@ POI (set_device_status(SWITCH, countdown, 0), set_device_status(segnale, attivo,
 
 ---
 
-### Implementazione 2 (Collegamento Cloud con Tuya)
-
-**Codice**
-
-```
-// Automazione A1
-SE (test_dispositivo(startDevice, start, =, true))
-POI (set_ritardo(0:05:00), set_device_status(segnale, attivo, true))  // 0:05:00 va sostituito con durataMinima 
-
-// Automazione A2
-SE (test_dispositivo(stopDevice, stop, =, true))
-POI (disabilita_automazione(A1), start_tap_to_run(E1))     // Tuya non accetta abilita(A1) dopo disabilita (A1)
-
-// Tap-to-Run E1 - quindi è necessario un tap_to_run solo per abilita(A1)
-SE (esegui())
-POI (set_ritardo(0:00:04), abilita_automazione(A1))  
-```
-![image](https://github.com/user-attachments/assets/1f718f2a-cab9-4448-8b72-db9b2cbfeafc)
-
-
-**Logica**:  
-1. **Avvio Delay**:  
-   - Allo start, inizia un delay di `durataMinima`.  
-   - Se il delay termina senza interruzioni, attiva `segnale.attivo`.  
-2. **Interruzione**:  
-   - Allo stop, disabilita il delay (A1) per evitare falsi positivi.  
-3. **Riattivazione**:  
-   - Dopo 4 secondi (o altro valore), una terza scena (E1) riabilita A1.  
-
-**Limitazioni di Tuya**:  
-- Non permette di riabilitare un automation disabilitato nella stessa scena.  
-- Soluzione: Usare un tap_to_run separato (E1) con un piccolo delay per riattivare A1.
-
-**Svantaggi**:  
-- **Fragile**: Dipende da ritardi cloud e workaround.  
-- **Ritardi Potenziali**: Il ripristino di A1 potrebbe non essere immediato.
-
----
-
-### Implementazione 3 (REGOLE di IoTwebUI)
+### Implementazione 2 (REGOLE di IoTwebUI)
 
 **Vantaggi**
 * `startDevice` e `stopDevice` sono un'unica device: si misura la durata dello stato 'TRUE'
@@ -110,8 +71,7 @@ if(ISTRIGGERH( CONFIRMH(GET("Sensore porta", "doorcontact_state") , "04:00"))) V
 ### Esempi Pratici
 1. **Porta Aperta**:  
    - Implementazione 1: Lo switch Zigbee conta 340s. Se la porta viene chiusa prima di 240s, il timer si annulla. A 100s rimanenti (240s trascorsi), parte l'allarme.  
-   - Implementazione 2: Un delay cloud di 4 minuti. Se la porta viene chiusa, il delay si disabilita e un secondo automation lo riattiva dopo 4 secondi.
-   - Implementazione 3: Un messaggio vocale avverte che la posta è aperta dopo 4 minuti (+ 0..180s)
+   - Implementazione 2: Un messaggio vocale avverte che la posta è aperta dopo 4 minuti (+ 0..180s)
    
 
 2. **Consumo Elettrico**:  
@@ -121,5 +81,4 @@ if(ISTRIGGERH( CONFIRMH(GET("Sensore porta", "doorcontact_state") , "04:00"))) V
 
 ### Raccomandazioni
 - **Preferire Implementazione 1** (Zigbee) se possibile: più robusta e immediata.  
-- **Implementazione 2** (Cloud) richiede attenzione ai ritardi e alle limitazioni di Tuya. Ottimizzare il delay in E1 (es. 2-10s) per bilanciare reattività e stabilità.
-- Se si usa già per altri motivi **IoTwebUI** (e.g. menu di interfaccia) è da preferire la **Implementazione 3** perchè più adattabile.
+- Se si usa già per altri motivi **IoTwebUI** (e.g. menu di interfaccia) è da preferire la **Implementazione 2** perchè più adattabile.
