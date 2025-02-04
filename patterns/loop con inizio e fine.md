@@ -8,11 +8,11 @@ _Loop con inizio e fine_
 Un ciclo esegue una serie di operazioni (es. accensione/spegnimento di un dispositivo) in modo ripetuto. Il loop viene avviato da un trigger iniziale e terminato da un trigger finale. Una logica di ripresa garantisce che il ciclo si riavvii automaticamente dopo ogni completamento.
 
 **Esempi**
-*  irrigazione: da un orario di inizio ad uno di fine, viene ripetuto un periodo di irrigazione segito da un periodo di pausa.
-
+*  irrigazione: da un orario di inizio ad uno di fine, viene ripetuto un periodo di irrigazione seguito da un periodo di pausa.
 ---
+
 ### Implementazione 1 ('local linking' con Switch Zigbee)
-**Device**: Switch Zigbee (SWITCH) con funzione di flag e timer. 
+**Device**: Switch Zigbee (SWITCH) con funzione di master e timer. 
 
 **Codice**
 
@@ -30,7 +30,8 @@ POI (
     set_ritardo(0:58:00), // Fase OFF: 58 minuti
     set_device_status("irrigatore", "attivo", true), // Accensione irrigatore
     set_ritardo(0:02:00), // Fase ON: 2 minuti
-     set_device_status("irrigatore", "attivo", false) // Spegnimento irrigatore
+    set_device_status("irrigatore", "attivo", false) // Spegnimento irrigatore
+  )
      
 A3. Automazione (riavvio loop)
 SE (
@@ -43,10 +44,9 @@ POI (
   )
 
 A4. Automazione (opzionale - backup fine al tramonto)
-SE (giorno_orario_definito("20:00", "ogni giorno"))
+SE (giorno_orario_definito("20:00", "ogni giorno"))  
 POI (
-   set_device_status("SWITCH", "stato", false), // Blocco finale definitivo
-   set_device_status("irrigatore", "attivo", false)
+   set_device_status("SWITCH", "stato", false)          // Blocco Master
    )
 
 ```
@@ -60,14 +60,17 @@ A1. **Avvio**:
 E2. **Ciclo**
  - 58 minuti di irrigatore spento (ritardo iniziale).
  - 2 minuti di irrigatore acceso.
- - Al termine, l'irrigatore è OFF → Automazione di Ripresa riavvia il ciclo solo se lo switch è ancora ON. IMPORTANTE: è necessaria una condizione univoca di fine ciclo
 
-A3. **Termine**
-  - Il countdown dello switch raggiunge zero → switch si spegne automaticamente.
-  - Automazione di Ripresa non parte più (switch OFF).
+
+A3. **Riavvio loop **
+ - Al termine di E2, l'irrigatore è OFF → Automazione di Ripresa riavvia il ciclo solo se lo switch è ancora ON. IMPORTANTE: è necessaria una condizione univoca di fine ciclo.
+
+**Fine**
+  - Il countdown dello switch raggiunge zero → SWITCH si spegne automaticamente.
+  - Automazione di Ripresa non parte più (SWITCH OFF).
 
 A4. **Backup** 
-    - Questa l'automazione spegne comunque tutto alle 20:00.
+    - Questa automazione spegne comunque SWITCH alle 20:00.
 
 **Vantaggi**:  
 - **Loop flessibile**: Azioni e durata del loop sono definite in modu indipendente in E2.  
@@ -77,37 +80,43 @@ A4. **Backup**
 
 ---
 
-### Implementazione 2 (REGOLE di IoTwebUI)
+### Implementazione 2 (Cloud linkage)
 
-**Vantaggi**
-* `startDevice` e `stopDevice` sono un'unica device: si misura la durata dello stato 'TRUE' (e.g. "Sensore porta", "doorcontact_state")
-* La potenza delle REGOLE e delle MACRO rende molto semplice e compatto il codice necessario
-* `VOICE()` permette di utilizzare messaggi vocali in modo intuitivo.
-* Le azioni immediate disponibili sono, oltre a VOICE(): beep, pop-up, suona(file), esegui(tap_to_run)
 
 
 **Codice**
 
 ```
-if(ISTRIGGERH( CONFIRMH(GET("Sensore porta", "doorcontact_state") , "04:00"))) VOICE("chiudere la porta, grazie");
+A1) Automazione (trigger iniziale)
+Se (cambio_condizione_meteo("sole", "alba", "0"))  // condizione 'alba' dal Cloud
+Poi (
+   automazione_abilita("A3"),     // Abilita la ripresa dei cicli
+   start_tap_to_run("E2")         // Avvia il primo ciclo
+  )   
+
+E2. tap-to-run (azioni cicliche)
+Se (esegui())
+Poi (
+   set_ritardo(0:58:00), // Fase OFF: 58 minuti
+   set_device_status("irrigatore", "attivo", true),  // Fase ON: accensione
+   set_ritardo(0:02:00), // Fase ON: 2 minuti
+   set_device_status("irrigatore", "attivo", false)  // Trigger per riavvio
+  )
+
+A3. Automazione (riavvio loop)
+Se (test_dispositivo("irrigatore", "attivo", "==", false))
+Poi (
+   start_tap_to_run("E2") // Riavvio del ciclo
+   )
+
+A4. Automazione (fine al tramonto)
+Se (cambio_condizione_meteo("sole", "tramonto", "0")) // condizione 'tramonto' dal Cloud
+Poi (
+    automazione_disabilita("A3"),                     // Disabilita la ripresa
+    set_device_status("irrigatore", "attivo", false)  // OFF device - opzionale
+)
 ```
-
-**Svantaggi**:  
-- **Latenza**: A causa dei vari tempi di polling, può presentare ritardi che lo rendono inadatto a tempi troppo brevi  
-- **Server**: Richiede IoTwebUI in funzione.
-
----
-### Esempi Pratici
-1. **Porta Aperta**:  
-   - Implementazione 1: Lo switch Zigbee conta 340s. Se la porta viene chiusa prima di 240s, il timer si annulla. A 100s rimanenti (240s trascorsi), parte l'allarme.  
-   - Implementazione 2: Un messaggio vocale avverte che la posta è aperta dopo 5.5 minuti (+/- 90s)
-   
-
-2. **Consumo Elettrico**:  
-   - Analogamente, se il consumo supera 3.3KW per >10 minuti, la notifica avviene solo dopo il superamento della durata minima.
-
 ---
 
 ### Raccomandazioni
 - **Preferire Implementazione 1** (Zigbee) se possibile: più robusta e immediata.  
-- Se si usa già per altri motivi **IoTwebUI** (e.g. menu di interfaccia) prendere in considerazione la **Implementazione 2** perchè più adattabile.
