@@ -13,7 +13,7 @@ Rileva quando un evento inizia (`startDevice.start = true`) e termina (`stopDevi
 
 ---
 ### Implementazione 1 ('local linking' con Switch Zigbee)
-**Device**: Switch Zigbee (SWITCH) con funzione countdown. Le altre funzioni dello switch (ON/OFF, etc.) possono essere usate in modo indipendente per altri scopi.
+**Device**: _Switch Zigbee (SWITCH) con funzione countdown. Le altre funzioni dello switch (ON/OFF, etc.) possono essere usate in modo indipendente per altri scopi_.
 
 **Codice**
 
