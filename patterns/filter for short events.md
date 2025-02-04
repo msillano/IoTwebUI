@@ -12,7 +12,7 @@ Rileva quando un evento inizia (`startDevice.start = true`) e termina (`stopDevi
 *  Una notifica se il consumo di casa supera 3.3 KW per più di 10 minuti
 
 ---
-### Implementazione 1 (Collegamento Locale con Switch Zigbee)
+### Implementazione 1 ('local linking' con Switch Zigbee)
 **Device**: Switch Zigbee (SWITCH) con funzione countdown. Le altre funzioni dello switch (ON/OFF, etc.) possono essere usate in modo indipendente per altri scopi.
 
 **Codice**
