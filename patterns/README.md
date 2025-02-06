@@ -22,6 +22,17 @@ Qualche problema si crea nel caso di disabilitazione seguite da riabilitazione d
 Talora è necessario ovviare all'assenza di varibili o ad altri limiti del linguaggio utilizzando device (reali o virtuali) come semaforo (1 bit di memoria) o come timer (usando la funzione countdowb) etc.. e questo complica ovviamente la scene.
 
 ## pattern
-Alcuni problemi si presentano simili in contesti diversi. In questi casi, una robusta soluzione generale è chiamata 'pattern' e si presta a essere applicata più volte.
-Questa è una collezione di pattern per scene Tuya, sviluppati e documentati con l'aiuto di varie AI.
-Si prediligono le soluzioni Tuya (più portabili e diffuse) alle soluzioni IoTwebUI, ovviamente di più limitata applicazione.
+Alcuni problemi si presentano simili in applicazioni diverse. In questi casi, una valida soluzione generale è chiamata 'pattern' e si presta a essere utilizzata più e più volte.
+Questa è una collezione di pattern per scene Tuya, spesso nati e discussi nel [gruppo TuyaItalia](https://www.facebook.com/groups/tuyaitalia?locale=it_IT) poi sviluppati e documentati con l'aiuto di varie AI.
+
+## contesti
+Per i pattern sono presi in considerazione 3 contesti
+
+1) "local linkage": scene Tuya che possono essere eseguite dirattamente dall'HUB e da device Zigbee, senza uso del WiFi e di TuyaCloud. Comporta alcuni limiti alle condizioni e azioni utilizzabili, oltre al vincolo di tutte device Zigbee e all'impossibilitòà di usare device virtuali ed ambito. 
+Da preferire per un sistema affidabile e robusto.
+
+2) "Cloud linkage": tutte le scene valide in Tuya, con uso del Cloud, etc. 
+Poggiandosi sul Cloud, richiedono un WiFi affidabile 24/7
+
+3) "REGOLE di IoTwebUI": le REGOLE sono l'equivalente delle 'scene' Tuya. Utilizzano, per semplificare, MACRO potenti, e sono scritte in un'dialetto' javascript. In certe APP sono indispensabili (e.g. Thermostat, pieno di operazioni aritmetiche!), nei pattern in genere rappresantono una semplice e potente alternativa. 
+Dipendono dall'esecuzione di IoTwebUI su un server, sono qundi la soluxione meno robusta. 
