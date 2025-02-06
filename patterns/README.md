@@ -1,22 +1,23 @@
 # Tuya patterns for scenes
 
-La creazione di `scene` Tuya è abbastanza semplice: una serie di interfacce e menu guidano l'utente alla creazione di `tap_to_run` (attivate da comando manuale o da altre `scene`, senza condizioni)   ed `automazioni` (attivate - triggerate - da condizioni su eventi). 
+La creazione di **`scene`** Tuya è abbastanza semplice: una serie di interfacce e menu guidano l'utente alla creazione di **`tap_to_run`** (attivate da comando manuale o da altre `scene`, senza condizioni)   ed **`automazioni`** (attivate - triggerate - da condizioni su eventi). 
 
-Non sono sempre rose e fiori: una serie di 'quirk' nell'implematazione di Tuya possono creare problemi all'utente nei casi più semplici, mentre i limiti imposti (mancanza di variabili, di ELSE, di operazioni aritmetiche, etc..) possono costringere a cercare soluzioni alternative nei casi appena più complessi, o rendere indispensabile l'uso di IoTwebUI.
+Non sono sempre rose e fiori: una serie di 'quirk' nell'implematazione di Tuya possono creare problemi all'utente nei casi più semplici, mentre i limiti imposti (mancanza di ELSE, di variabili, di operazioni aritmetiche, etc..) possono costringere a cercare soluzioni alternative nei casi appena più complessi, oppure possono rendere indispensabile l'uso di **IoTwebUI**.
 
 ## principali Quirk
 
 #### condizioni
-1) Le 'condizioni' sono attivate una sola volta, appena la condizione è raggiunta (cioè quando passa da FALSO a VERO - edge triggering). Perchè altrimenti sarebbe impossibile la coesistenza tra comandi automatici e manuali. (vedi https://support.tuya.com/en/help/_detail/K9hutqbuwhik3)
-2) Condizioni in AND: Attivano l'azione (trigger) appena sono TUTTE vere (cioè quando l'ultima passa da FALSO a VERO e tutte le altre sono già VERE)
-3) Condizioni in OR: sono indipendenti (cioè si ha un trigger quando una passa da FALSO a VERO, a prescindere dalle altre). 
+1) Le **condizioni** attivano le azioni collegate una sola volta, appena la condizione è raggiunta (cioè quando passa da FALSO a VERO - edge triggering). Perchè altrimenti sarebbe impossibile la coesistenza tra comandi automatici e manuali. (vedi https://support.tuya.com/en/help/_detail/K9hutqbuwhik3)
+2) Condizioni in AND: Attivano l'azione (trigger) quando diventano TUTTE vere (cioè quando l'ultima passa da FALSO a VERO e tutte le altre sono già VERE)
+3) Condizioni in OR: sono indipendenti (cioè si ha un trigger ogni volta che una passa da FALSO a VERO, a prescindere dalle altre). 
 
 #### ambito
 Vincoli logici aggiuntivi che non provocano azioni (non sono trigger) ma DEVONO essere VERI (level) per avere un trigger dalle condizioni
 
 #### disabilitare automazioni
-Se si disabilita una automazione in corso di esecuzione, questa interrompe l'esecuzione prima del task successivo.
-Qualche problema si crea nel caso di disabilitazione seguite da riabilitazione durante l'esecuzione di un delay. Una disabilitazione viene onorata al termine del delay in corso. Se però interviene una riabilitazione prima del termine del delay, il comportamento può variare: in alcuni casi l'esecuzione abortisce (Zigbee) in altri, invece, NON abortisce, ignorando completamente la disabilitazione! E' quindi una situazione da evitare, perchè NON affidabile!
+Una `automazione` disabilitata  ovviamente NON si avvia, a prescindere dalle condizioni + ambito.<br>
+Se si disabilita una `automazione` in corso di esecuzione, questa interrompe l'esecuzione prima del task successivo.
+Qualche problema si crea nel caso di una disabilitazione seguite da riabilitazione durante l'esecuzione di un delay. Una disabilitazione viene onorata al termine del delay in corso. Se però interviene una riabilitazione prima del termine del delay, il comportamento può variare: in alcuni casi l'esecuzione abortisce (Zigbee) in altri, invece, _NON abortisce, ignorando completamente la disabilitazione_! E' quindi una situazione da evitare, perchè NON affidabile!
 
 ## HW workaround
 Talora è necessario ovviare all'assenza di varibili o ad altri limiti del linguaggio utilizzando device (reali o virtuali) come semaforo (1 bit di memoria) o come timer (usando la funzione countdowb) etc.. e questo complica ovviamente la scene.
