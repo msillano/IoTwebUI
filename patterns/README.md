@@ -35,5 +35,5 @@ Da preferire per un sistema affidabile e robusto.
 2) **Cloud linkage**: tutte le scene valide in Tuya, con uso del Cloud, etc. <br>
 Poggiandosi sul Cloud, richiedono un WiFi affidabile 24/7
 
-3) **"REGOLE di IoTwebUI"**: le REGOLE sono l'equivalente delle 'scene' Tuya. Utilizzano, per semplificare, MACRO potenti, e sono scritte in un'dialetto' javascript. In certe APP sono indispensabili (e.g. Thermostat, pieno di operazioni aritmetiche!), nei pattern in genere rappresantono una semplice e potente alternativa. <br>
+3) **REGOLE di IoTwebUI**: le REGOLE sono l'equivalente delle 'scene' Tuya. Utilizzano, per semplificare, MACRO potenti, e sono scritte in un'dialetto' javascript. Sono 'Turing complete'. In certe APP sono indispensabili (e.g. Thermostat, pieno di operazioni aritmetiche!), nei pattern in genere rappresantono una semplice e potente alternativa. <br>
 Dipendono dall'esecuzione di **IoTwebUI** su un server, sono qundi la soluzione meno robusta. 
