@@ -2,14 +2,14 @@
 
 La creazione di **`scene`** Tuya è abbastanza semplice: una serie di interfacce e menu guidano l'utente alla creazione di **`tap_to_run`** (attivate da comando manuale o da altre `scene`, senza condizioni)   ed **`automazioni`** (attivate - triggerate - da condizioni su eventi). 
 
-Non sono sempre rose e fiori: una serie di 'quirk' nell'implematazione di Tuya possono creare problemi all'utente nei casi più semplici, mentre i limiti imposti (mancanza di ELSE, di variabili, di operazioni aritmetiche, etc..) possono costringere a cercare soluzioni alternative nei casi appena più complessi, oppure possono rendere indispensabile l'uso di **IoTwebUI**.
+Non sono sempre rose e fiori: una serie di `quirk` nell'implematazione di Tuya possono creare problemi all'utente nei casi più semplici, mentre i limiti imposti (mancanza di ELSE, di variabili, di operazioni aritmetiche, etc..) possono costringere a cercare soluzioni alternative nei casi appena più complessi, oppure possono rendere indispensabile l'uso di **IoTwebUI**.
 
-## principali Quirk
+## principali quirk
 
 #### condizioni
 1) Le **condizioni** attivano le azioni collegate una sola volta, appena la condizione è raggiunta (cioè quando passa da FALSO a VERO - edge triggering). Perchè altrimenti sarebbe impossibile la coesistenza tra comandi automatici e manuali. (vedi https://support.tuya.com/en/help/_detail/K9hutqbuwhik3)
-2) Condizioni in AND: Attivano l'azione (trigger) quando diventano TUTTE vere (cioè quando l'ultima passa da FALSO a VERO e tutte le altre sono già VERE)
-3) Condizioni in OR: sono indipendenti (cioè si ha un trigger ogni volta che una passa da FALSO a VERO, a prescindere dalle altre). 
+2) Condizioni in **AND**: (= tutte) attivano l'azione (trigger) quando diventano TUTTE vere (cioè quando l'ultima passa da FALSO a VERO e tutte le altre sono già VERE)
+3) Condizioni in **OR**: (= almeno una) sono indipendenti (cioè si ha un trigger ogni volta che una passa da FALSO a VERO, a prescindere dalle altre). 
 
 #### ambito
 Vincoli logici aggiuntivi che non provocano azioni (non sono trigger) ma DEVONO essere VERI (level) per avere un trigger dalle condizioni
