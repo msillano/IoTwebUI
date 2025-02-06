@@ -18,10 +18,10 @@ Un ciclo esegue una serie di operazioni (es. accensione/spegnimento di un dispos
 
 ```
 A1. Automazione (trigger iniziale)
-SE (giorno_orario_definito("06:00", "tutti i giorni"))
+SE (giorno_orario_definito("06:00", "tutti i giorni"))  // condixzione start - esempio
 POI (
-   set_device_status("irrigatore", "attivo", false)  // condizione iniziale
-   set_device_status("SWITCH", "stato", true),       // Abilita i cicli
+   set_device_status("irrigatore", "attivo", false)  
+   set_device_status("SWITCH", "stato", true),       // set ON master SWITCH
    set_device_status("SWITCH", "countdown", 50400)   // Countdown fino al tramonto
                                                      // 20:00 - 06:00 = 14h →  14 * 3600s
   )
@@ -30,16 +30,16 @@ E2. tap-to-run (azioni cicliche)
 SE (esegui())
 POI (
     set_ritardo(0:58:00), // Fase OFF: 58 minuti
-    set_device_status("irrigatore", "attivo", true), // Accensione irrigatore
+    set_device_status("irrigatore", "attivo", true), // Accensione irrigatore - esempio
     set_ritardo(0:02:00), // Fase ON: 2 minuti
-    set_device_status("irrigatore", "attivo", false) // Spegnimento irrigatore
+    set_device_status("irrigatore", "attivo", false) // Spegnimento irrigatore - esempio
   )
      
 A3. Automazione (riavvio loop)
 SE (
-    test_dispositivo("SWITCH", "stato", "==", true) // Switch ON
+    test_dispositivo("SWITCH", "stato", "==", true)       // se master SWIRCH ON
   AND
-    test_dispositivo("irrigatore", "attivo", "==", false) // Ciclo precedente completato
+    test_dispositivo("irrigatore", "attivo", "==", false) // e Ciclo precedente completato
   )
 POI (
    start_tap_to_run("E2") // Riavvio immediato del ciclo
@@ -64,7 +64,7 @@ E2. **Ciclo**
  - 2 minuti di irrigatore acceso.
 
 A3. **Riavvio loop **
- - Al termine di E2, l'irrigatore è OFF → Automazione di Ripresa riavvia il ciclo solo se lo switch è ancora ON. IMPORTANTE: è necessaria una condizione univoca di fine ciclo.
+ - Al termine di E2, l'irrigatore è OFF → Automazione di Ripresa riavvia il ciclo solo se lo SWITCH è ancora ON. IMPORTANTE: è necessaria una condizione univoca di fine ciclo.
 
 **Fine**
   - Il countdown dello switch raggiunge zero → SWITCH si spegne automaticamente.
@@ -77,7 +77,7 @@ A4. **Backup**
 - **Loop flessibile**: Azioni e durata del loop sono definite in modo indipendente in E2.  
 - **Spegnimento garantito**: Doppia sicurezza (countdown + automazione A4).
 - **Switch come master**: Può essere disattivato manualmente in emergenza o esteso con altre condizioni (es. sensore pioggia). 
-- **output**: ha il significato 'loop in corso' e può direttamente pilotare una spia. 
+- **output**: master SWITCH ON ha il significato 'loop in corso' e può direttamente pilotare una spia. 
 
 ---
 
