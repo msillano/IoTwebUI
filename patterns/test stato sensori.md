@@ -46,7 +46,9 @@ test_sensori:
 
 ---
 
-### Implementazione 2 (Tuya-local/Zigbee)  
+### Implementazione 2 (Tuya-local/Zigbee) 
+
+Usando il 'local linkage' e device Zigbee, si ha il vantaggio del funzionamento più affidabile, anche semza Internet e WiFi, ma si perde la possibilità dell'uso dlell'AMBITO. La logica deve essere quindi diversa. 
 
 **Device**:  
 - Scene bottone smart Zigbee 
