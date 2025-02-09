@@ -1,0 +1,49 @@
+### Pattern  
+_Test di stato sensori_  
+
+### Spiegazione del Pattern e Implementazioni  
+
+**Modello Concettuale**  
+Si vuole verificare lo stato di una serie di sensori su richiesta dell'utente o in base a una condizione specifica. L'obiettivo è eseguire un'azione (ad esempio, accendere una luce rossa) se almeno uno dei sensori rileva uno stato particolare (ad esempio, una finestra o una porta aperta). 
+Differisce dall'allarme perchè non utiliza l'evento, ma verifica gli stati su richiesta. 
+
+**Esempio**  
+- Un'automazione di test che, se avviata, accenda una luce rossa se almeno un sensore finestra/porta è aperto.  
+
+---  
+
+### Implementazione 1 (Tuya-full)  
+
+**Device**:  
+- _Bottone smart_ per avviare il test.  
+- _Sensori_ per rilevare lo stato delle finestre/porte.  
+- _Luce rossa_ come indicatore di stato.  
+
+**Codice**  
+
+```  
+test_sensori: 
+SE (trigger(test_dispositivo("Switch", "button1", "=", 'single click')) 
+AND ambito(
+    stato_dispositivo("sensore1", "Sensore porta", "=", On) OR 
+    stato_dispositivo("sensore2", "Sensore porta", "=", On)     // OR... more
+)) 
+POI (
+    set_device_status("Luce rossa", "switch", ON)
+) 
+```  
+
+**Logica**:  
+1. **Trigger**:  
+   - L'automazione viene attivata quando il bottone smart viene premuto.  
+2. **Ambito**:  
+   - L'azione (accensione della luce rossa) viene eseguita solo se almeno uno dei sensori (sensore1 o sensore2) rileva che una finestra o una porta è aperta.  
+3. **Azione**:  
+   - Se la condizione nell'ambito è soddisfatta, la luce rossa viene accesa.  
+
+**Vantaggi**:  
+- **Semplice e diretto**: L'implementazione è facile da configurare e gestire.  
+- **Flessibile**: Può essere estesa per includere più sensori o condizioni aggiuntive.  
+
+---  
+
