@@ -23,10 +23,10 @@ Differisce dall'allarme perchè non utiliza l'evento, ma verifica gli stati su r
 
 ```  
 test_sensori: 
-SE (trigger(test_dispositivo("Switch", "button1", "=", 'single click')) 
+SE (trigger(test_device("Switch", "button1", "=", 'single click')) 
 AND ambito(
-    stato_dispositivo("sensore1", "Sensore porta", "=", On) OR 
-    stato_dispositivo("sensore2", "Sensore porta", "=", On)     // OR... more
+    test_device("sensore1", "Sensore porta", "=", On) OR 
+    test_device("sensore2", "Sensore porta", "=", On)     // OR... more
 )) 
 POI (
     set_device_status("Luce rossa", "switch", ON)
@@ -49,4 +49,45 @@ POI (
 - **Tuya-full**: Poichè richiede l'uso di AMBITO, non può essere implementato con Tuya-local.
 
 ---  
+### Implementazione 2 (Tuya-local)  
+**Device**:  
+- _Bottone smart_ per avviare il test.  (Zigbee)
+- _Sensori_ per rilevare lo stato delle finestre/porte.  (Zigbee)(
+- _Luce rossa_ come indicatore di stato. (Zigbee)
 
+**Codice**  
+
+```  
+Verifica_sensori:
+SE (trigger(
+      test_device("Switch", "button1", "=", "single click")
+    AND test_device("sensore1", "Sensore porta", "=", "Off")
+    AND test_device("sensore2", "Sensore porta", "=", "Off")    // esempio: de sensori
+))
+POI (
+    set_device_status("Luce rossa", "stato", "Off"),         // spegne...
+)
+
+Controllo_sensore_porta:               // una automazione per sensore
+SE (trigger(
+        test_device("Switch", "button1", "=", "single click")
+      AND test_device("sensore1", "Sensore porta", "=", "On"))
+)
+POI (
+    set_device_status("Luce rossa", "stato", "On"),
+)
+
+Controllo_sensore_finestra:          // esempio, secondo sensore
+SE (trigger(
+        test_device("Switch", "button1", "=", "single click")
+        AND test_device("sensore2", "Sensore finestra", "=", "On"))
+)
+POI (
+    set_device_status("Luce rossa", "stato", "On"),
+)
+
+**Logica**:  
+
+**Vantaggi**
+
+-------
