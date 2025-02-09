@@ -11,7 +11,7 @@ Si vuole verificare lo stato di una serie di sensori su richiesta dell'utente o 
 ### Implementazione 1 (Tuya-full)  
 
 **Device**:  
-- Bottone smart (Tuya) per avviare il test  
+- Scene bottone smart (Tuya) per avviare il test  
 - Sensori porta/finestra (Tuya)  
 - Luce RGB (Tuya) come indicatore  
 
@@ -49,7 +49,7 @@ test_sensori:
 ### Implementazione 2 (Tuya-local/Zigbee)  
 
 **Device**:  
-- Bottone smart Zigbee 
+- Scene bottone smart Zigbee 
 - Sensori Zigbee   
 - Lampada rossa Zigbee 
 
