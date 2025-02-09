@@ -4,90 +4,123 @@ _Test di stato sensori_
 ### Spiegazione del Pattern e Implementazioni  
 
 **Modello Concettuale**  
-Si vuole verificare lo stato di una serie di sensori su richiesta dell'utente o in base a una condizione specifica. L'obiettivo è eseguire un'azione (ad esempio, accendere una luce rossa) se almeno uno dei sensori rileva uno stato particolare (ad esempio, una finestra o una porta aperta). 
-Differisce dall'allarme perchè non utiliza l'evento, ma verifica gli stati su richiesta. 
+Si vuole verificare lo stato di una serie di sensori su richiesta dell'utente o in base a una condizione specifica. L'obiettivo è eseguire un'azione (ad esempio, accendere una luce rossa) se almeno uno dei sensori rileva uno stato particolare (ad esempio, una finestra o una porta aperta). Differisce dall'allarme tradizionale perché non utilizza trigger event-driven, ma verifica attivamente gli stati su richiesta.
 
-**Esempio**  
-- Un'automazione di test che, se avviata, accenda una luce rossa se almeno un sensore finestra/porta è aperto.  
-
----  
+---
 
 ### Implementazione 1 (Tuya-full)  
 
 **Device**:  
-- _Bottone smart_ per avviare il test.  
-- _Sensori_ per rilevare lo stato delle finestre/porte.  
-- _Luce rossa_ come indicatore di stato.  
+- Bottone smart (Tuya) per avviare il test  
+- Sensori porta/finestra (Tuya)  
+- Luce RGB (Tuya) come indicatore  
 
-**Codice**  
-
-```  
-test_sensori: 
-SE (trigger(test_device("Switch", "button1", "=", 'single click')) 
-AND ambito(
-    test_device("sensore1", "Sensore porta", "=", On) OR 
-    test_device("sensore2", "Sensore porta", "=", On)     // OR... more
-)) 
-POI (
-    set_device_status("Luce rossa", "switch", ON)
-) 
-```  
+**Codice**:  
+```
+test_sensori:
+  SE (trigger(test_device("Switch", "button1", "=", 'single_clic')) 
+    AND ambito(
+      test_device("sensore1", "Sensore porta", "=", On) 
+      OR test_device("sensore2", "Sensore porta", "=", On)
+    ))
+  POI (
+    set_device_status("Luce rossa", "switch", ON),
+    ritardo(00:00:10),
+    set_device_status("Luce rossa", "switch", OFF)
+  )
+```
 
 **Logica**:  
-1. **Trigger**:  
-   - L'automazione viene attivata quando il bottone smart viene premuto.  
-2. **Ambito**:  
-   - L'azione (accensione della luce rossa) viene eseguita solo se almeno uno dei sensori (sensore1 o sensore2) rileva che una finestra o una porta è aperta.  
-3. **Azione**:  
-   - Se la condizione nell'ambito è soddisfatta, la luce rossa viene accesa.  
+1. **Trigger**: Attivazione manuale tramite pressione pulsante  
+2. **Ambito**: Verifica OR tra stati dei sensori tramite funzione nativa  
+3. **Azione**: Segnale visivo temporizzato (10 secondi)  
 
 **Vantaggi**:  
-- **Semplice e diretto**: L'implementazione è facile da configurare e gestire.  
-- **Flessibile**: Può essere estesa per includere più sensori o condizioni aggiuntive.  
+- Implementazione centralizzata con singola automazione  
+- Utilizzo efficiente della funzione AMBITO per logica complessa  
+- Facile scalabilità con nuovi sensori  
 
 **Svantaggi**:  
-- **Tuya-full**: Poichè richiede l'uso di AMBITO, non può essere implementato con Tuya-local.
+- Vincolato all'ecosistema Tuya-full  
+- Dipendenza da cloud per elaborazione  
 
----  
-### Implementazione 2 (Tuya-local)  
+---
+
+### Implementazione 2 (Tuya-local/Zigbee)  
+
 **Device**:  
-- _Bottone smart_ per avviare il test.  (Zigbee)
-- _Sensori_ per rilevare lo stato delle finestre/porte.  (Zigbee)(
-- _Luce rossa_ come indicatore di stato. (Zigbee)
+- Bottone smart Zigbee 
+- Sensori Zigbee   
+- Lampada rossa Zigbee 
 
-**Codice**  
+**Codice**:  
+```l
+verifica_base:
+  SE (trigger(test_device("Switch", "button1", "=", 'single_clic'))
+    AND test_device("sensore1", "sensore1", "=", False)
+    AND test_device("sensore2", "Sensore porta", "=", False))    // esempio: 2 sensori
+  POI (
+    set_device_status("lampada", "state", "OFF")
+  )
 
-```  
-Verifica_sensori:
-SE (trigger(
-      test_device("Switch", "button1", "=", "single click")
-    AND test_device("sensore1", "Sensore porta", "=", "Off")
-    AND test_device("sensore2", "Sensore porta", "=", "Off")    // esempio: de sensori
-))
-POI (
-    set_device_status("Luce rossa", "stato", "Off"),         // spegne...
-)
+allarme_sensore1:               // una automazione pèer sensore
+  SE (trigger(test_device("Switch", "button1", "=", 'single_clic'))
+    AND test_device("sensore1", "sensore1", "=", True))
+  POI (
+    set_device_status("Luce rossa", "switch", ON),
+    ritardo(00:00:10),
+    set_device_status("Luce rossa", "switch", OFF)
+  )
 
-Controllo_sensore_porta:               // una automazione per sensore
-SE (trigger(
-        test_device("Switch", "button1", "=", "single click")
-      AND test_device("sensore1", "Sensore porta", "=", "On"))
-)
-POI (
-    set_device_status("Luce rossa", "stato", "On"),
-)
-
-Controllo_sensore_finestra:          // esempio, secondo sensore
-SE (trigger(
-        test_device("Switch", "button1", "=", "single click")
-        AND test_device("sensore2", "Sensore finestra", "=", "On"))
-)
-POI (
-    set_device_status("Luce rossa", "stato", "On"),
-)
+allarme_sensore2:
+  SE (trigger(test_device("Switch", "button1", "=", 'single_clic'))
+    AND test_device("contact", "sensore2", "=", True))
+  POI (
+    set_device_status("Luce rossa", "switch", ON),
+    ritardo(00:00:10),
+    set_device_status("Luce rossa", "switch", OFF)
+  )
+```
 
 **Logica**:  
+1. **Architettura decentralizzata**: Automazione separata per ogni sensore  
+2. **Trigger combinato**: Pressione pulsante + stato sensore specifico  
+3. **Gestione stati**:  
+   - Reset luce quando tutti i sensori sono chiusi  
+   - Attivazione per ogni sensore compromesso  
 
-**Vantaggi**
+**Vantaggi**:  
+- Funziona offline con HUB Zigbee locale  
+- Maggiore controllo granulare  
 
--------
+**Svantaggi**:  
+- Manutenzione complessa (N+1 automazioni)  
+- Logica ridondante tra automazioni  
+- Limitata scalabilità con molti sensori  
+
+---
+
+### Raccomandazioni  
+
+1. **Scelta Implementazione**:  
+   - Preferire Tuya-full per installazioni piccole/medie (<10 sensori)  
+   - Optare per Tuya-local/Zigbee in scenari critici che richiedono offline operation  
+
+2. **Best Practice**:  
+   - Implementare timeout automatico (es. spegnimento luce dopo 10s)  
+   - Utilizzare naming convention espliciti (es. "btn_test_sicurezza")  
+
+3. **Estensioni**:  
+   - Aggiungere feedback acustico oltre a quello visivo  
+   - Integrare notifiche push in caso di test positivo  
+   - Registrare log degli stati per diagnostica  
+
+
+```mermaid
+graph TD
+    A[Pressione Bottone] --> B{Verifica Stati}
+    B -->|Tutti Chiusi| C[Spegni Luce]
+    B -->|Almeno 1 Aperto| D[Accendi Luce]
+    D --> E[Timer 5s]
+    E --> F[Spegni Luce]
+```
