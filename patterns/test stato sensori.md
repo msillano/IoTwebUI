@@ -121,6 +121,6 @@ graph TD
     A[Pressione Bottone] --> B{Verifica Stati}
     B -->|Tutti Chiusi| C[Spegni Luce]
     B -->|Almeno 1 Aperto| D[Accendi Luce]
-    D --> E[Timer 5s]
+    D --> E[Timer 10s]
     E --> F[Spegni Luce]
 ```
