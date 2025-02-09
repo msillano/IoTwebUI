@@ -45,5 +45,8 @@ POI (
 - **Semplice e diretto**: L'implementazione è facile da configurare e gestire.  
 - **Flessibile**: Può essere estesa per includere più sensori o condizioni aggiuntive.  
 
+**Svantaggi**:  
+- **Tuya-full**: Poichè richiede l'uso di AMBITO, non può essere implementato con Tuya-local.
+
 ---  
 
