@@ -65,7 +65,7 @@ verifica_base:
     set_device_status("lampada", "state", "OFF")
   )
 
-allarme_sensore1:               // una automazione pèer sensore
+allarme_sensore1:               // una automazione per sensore
   SE (trigger(test_device("Switch", "button1", "=", 'single_clic'))
     AND test_device("sensore1", "sensore1", "=", True))
   POI (
