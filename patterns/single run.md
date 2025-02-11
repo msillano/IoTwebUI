@@ -9,7 +9,7 @@ Una serie di attività da eseguire al massimo una volta al giorno su comando
 
 **Esempio**
 
-- irrigazione: Un ciclo di irrigazione (e.g. 15 minuti) da eseguire su comando dell'utente, magari solo se non piove.
+- irrigazione: Un ciclo di irrigazione (e.g. 15 minuti) da eseguire su richiesta, magari solo se i bambini non giocano e non piove.
 
 ---
 
