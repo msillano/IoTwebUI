@@ -5,7 +5,7 @@
 ### Spiegazione del Pattern e Implementazioni
 
 **Modello Concettuale**\
-Una serie di attività da eseguire al massimo una volta al giorno
+Una serie di attività da eseguire al massimo una volta al giorno su comando
 
 **Esempio**
 
@@ -15,9 +15,9 @@ Una serie di attività da eseguire al massimo una volta al giorno
 
 ### Implementazione 1 ('local linkage' e Switch Zigbee)
 
-**Device**:&#x20;
-*Switch Zigbee (switch\_acqua) con funzione di master*.&#x20;
-*Scene Switch Zigbee (start\_button) con funzione di user start*.&#x20;
+**Device**:<br>
+*Switch Zigbee (switch\_acqua) con funzione di master*.<br>
+*Scene Switch Zigbee (start\_button) con funzione di user start*.<br>
 *extra: Switch Zigbee (lock\_switch) con funzione di signal*
 
 **Codice**
@@ -98,6 +98,6 @@ graph TD;
 ### Raccomandazioni
 
 - **Usare Local Linkage** se la priorità è l'affidabilità e si vuole evitare dipendenze dalla connessione internet.
-- **Usare Cloud Linkage** se si desidera più flessibilità nella gestione da remoto e non si ha timore di eventuali interruzioni della rete.
+- **Usare Cloud Linkage** se si desidera più flessibilità e non si ha timore di eventuali interruzioni della rete.
 - In entrambi i casi, verificare che i dispositivi supportino la logica scelta e testare la configurazione prima della messa in uso definitiva.
 
