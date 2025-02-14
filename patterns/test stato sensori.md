@@ -70,7 +70,7 @@ allarme_sensore1:               // una automazione per sensore
     AND test_device("sensore1", "sensore1", "=", True))
   POI (
     set_device_status("Luce rossa", "switch", ON),
-    ritardo(00:00:10),
+    ritardo(00:01:00),
     set_device_status("Luce rossa", "switch", OFF)
   )
 
@@ -79,7 +79,7 @@ allarme_sensore2:
     AND test_device("contact", "sensore2", "=", True))
   POI (
     set_device_status("Luce rossa", "switch", ON),
-    ritardo(00:00:10),
+    ritardo(00:01:00),
     set_device_status("Luce rossa", "switch", OFF)
   )
 ```
@@ -93,7 +93,8 @@ allarme_sensore2:
 
 **Vantaggi**:  
 - Funziona offline con HUB Zigbee locale  
-- Maggiore controllo granulare  
+- Maggiore controllo granulare
+- fattorizzazione: l'accensione della luce può essere eseguita da un unico 'tap_to_run'
 
 **Svantaggi**:  
 - Manutenzione complessa (N+1 automazioni)  
