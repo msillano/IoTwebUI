@@ -89,7 +89,16 @@ allarme_sensore2:
 2. **Trigger combinato**: Pressione pulsante + stato sensore specifico  
 3. **Gestione stati**:  
    - Reset luce quando tutti i sensori sono chiusi  
-   - Attivazione per ogni sensore compromesso  
+   - Attivazione per ogni sensore compromesso
+
+```mermaid
+graph TD
+    A[Pressione Bottone] --> B{Verifica Stati}
+    B -->|Tutti Chiusi| C[Spegni Luce]
+    B -->|Almeno 1 Aperto| D[Accendi Luce]
+    D --> E[Timer 10s]
+    E --> F[Spegni Luce]
+```
 
 **Vantaggi**:  
 - Funziona offline con HUB Zigbee locale  
@@ -119,11 +128,3 @@ allarme_sensore2:
    - Registrare log degli stati per diagnostica  
 
 
-```mermaid
-graph TD
-    A[Pressione Bottone] --> B{Verifica Stati}
-    B -->|Tutti Chiusi| C[Spegni Luce]
-    B -->|Almeno 1 Aperto| D[Accendi Luce]
-    D --> E[Timer 10s]
-    E --> F[Spegni Luce]
-```
