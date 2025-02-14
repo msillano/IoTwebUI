@@ -22,7 +22,7 @@ Una serie di attività da eseguire al massimo una volta al giorno su comando
 
 **Codice**
 
-```tuya
+```tuya_local
 Attivazione Irrigazione:
 SE (trigger(test_dispositivo(start_button, switch1, =, short))
    AND test_dispositivo(lock_switch, switch1, =, OFF))
@@ -59,8 +59,8 @@ graph TD;
 ### Implementazione 2 (Cloud linkage)
 
 **Device**:
-*Switch Zigbee (switch\_acqua) con funzione di master*.&#x20;
-*Scene Switch Zigbee (start\_button) con funzione di user start*.&#x20;
+*Switch (switch\_acqua) con funzione di master*.<br>
+*Scene Switch (start\_button) con funzione di user start*.<br>
 
 **Codice**
 
