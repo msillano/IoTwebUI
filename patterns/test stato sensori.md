@@ -94,7 +94,6 @@ allarme_sensore2:
 **Vantaggi**:  
 - Funziona offline con HUB Zigbee locale  
 - Maggiore controllo granulare
-- fattorizzazione: l'accensione della luce può essere eseguita da un unico 'tap_to_run'
 
 **Svantaggi**:  
 - Manutenzione complessa (N+1 automazioni)  
@@ -110,8 +109,9 @@ allarme_sensore2:
    - Optare per Tuya-local/Zigbee in scenari critici che richiedono offline operation  
 
 2. **Best Practice**:  
-   - Implementare timeout automatico (es. spegnimento luce dopo 10s)  
    - Utilizzare naming convention espliciti (es. "btn_test_sicurezza")  
+   - Fattorizzazione e riuso: l'accensione della luce può essere eseguita da un unico 'tap_to_run'
+   - Implementare timeout automatico (es. spegnimento luce dopo 1m - vedi implementazione 2)  
 
 3. **Estensioni**:  
    - Aggiungere feedback acustico oltre a quello visivo  
