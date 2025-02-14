@@ -98,6 +98,6 @@ graph TD;
 ### Raccomandazioni
 
 - **Usare Local Linkage** se la priorità è l'affidabilità e si vuole evitare dipendenze dalla connessione internet.
-- **Usare Cloud Linkage** se si desidera più flessibilità e non si ha timore di eventuali interruzioni della rete.
+- **Usare Cloud Linkage** se si desidera più flessibilità e se eventuali interruzioni della rete non hanno conseguenze negative.
 - In entrambi i casi, verificare che i dispositivi supportino la logica scelta e testare la configurazione prima della messa in uso definitiva.
 
