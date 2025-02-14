@@ -23,11 +23,17 @@ Una serie di attività da eseguire al massimo una volta al giorno su comando
 **Codice**
 
 ```tuya_local
-Attivazione Irrigazione:
+Attivazione task:
 SE (trigger(test_dispositivo(start_button, switch1, =, short))
    AND test_dispositivo(lock_switch, switch1, =, OFF))
 POI (
     set_device_status(lock_switch, switch1, ON),
+    start_tap_to_run( Task irrigazione )
+)
+
+Task irrigazione:
+SE (trigger( esegui()))
+POI (
     set_device_status(switch_acqua, switch1, ON),
     set_ritardo(900),                             // 900s = 15 minuti
     set_device_status(switch_acqua, switch1, OFF)
