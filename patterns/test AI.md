@@ -1,16 +1,19 @@
 Esempio di Come Potresti Strutturare il Prompt:
 
-Elenco dei Dispositivi di Roma:
-HOME, CATEGORIA, NOME, ONLINE, ATTRIBUTO, VALORE
-ROMA, Plant monitor, HC010-2, false, humidity, 30
+Elenco dei Dispositivi di Roma:<br>
+HOME, CATEGORIA, NOME, ONLINE, ATTRIBUTO, VALORE<br>
+ROMA, Plant monitor, HC010-2, false, humidity, 30<br>
 ROMA, Gateway, BLE MESH (SIG) Gateway, false, status, offline
-...
-Domande Specifiche:
-Numero Totale e Percentuale di Dispositivi Offline:
-"Quanti dispositivi a Roma sono offline e qual è la loro percentuale rispetto al totale?"
-Condizioni Ambientali:
-"Quali sono le temperature registrate a Roma e sono all'interno dei parametri di comfort?"
+
+
+Domande Specifiche:<br>
+Numero Totale e Percentuale di Dispositivi Offline:<br>
+"Quanti dispositivi a Roma sono offline e qual è la loro percentuale rispetto al totale?"<br>
+Condizioni Ambientali:<br>
+"Quali sono le temperature registrate a Roma e sono all'interno dei parametri di comfort?"<br>
+
 -------------------------
+
 Certo! Ecco un'analisi dettagliata dei tuoi dispositivi a **Roma**:
 
 ### **Totale Dispositivi a Roma: 29**
