@@ -59,11 +59,12 @@ function EXPLORE01( xname, room = "tools", home = 'ADMIN') {             // defa
        let idx = GET(xname, "device", false);
 //	   console.log("EXPLORE01", idx, stp);
 	   let odev = getDeviceFromRef(idx);
-  	   if (!( odev && odev.id)){
-			    SETXDEVICESTATUS(xname, "action", "idle");
-	            throw "Device not found - verify ID";
+  	   if ((!( odev && odev.id)) && (stp != 'list')){     // list without device!
+			   SETXDEVICESTATUS(xname, "action", "idle");
+	           VOICE("Device not found - verify ID");
+			   return;
 		        }				   
-       let tit ="<b>" +odev.name +" - "+stp+"</b><br><br>";
+       let tit ="<b>" + (odev?odev.name:'full') +" - "+stp+"</b><br><br>";
 	   switch(stp)  {
 		case "iot":
 		   autoPopup(odev.name +" "+stp, tit+ JSON.stringify(odev, undefined, 2));
@@ -105,6 +106,11 @@ function EXPLORE01( xname, room = "tools", home = 'ADMIN') {             // defa
 			   }
 		   SETXDEVICESTATUS(xname, "action", "idle");
 		   break;
+		   
+		 case "list":
+	  	     autoPopup("IoTwenUI & EXPLORE01", getListPageCSV());
+  	         SETXDEVICESTATUS(xname, "action", "idle");
+	         break;		 
 	     case "standard":
 		   if (odev.id.startsWith("x-")) {
 			   autoPopup(odev.name +" "+stp, tit+ JSON.stringify(odev.status, undefined, 2));
@@ -120,6 +126,55 @@ function EXPLORE01( xname, room = "tools", home = 'ADMIN') {             // defa
 		 default: return;
 	     }
 }
+   function getListPageHtML() {
+        cols = 4;
+        let d = 0;
+        let txt = "<table width='100%' border=1><tr>";
+        Object.keys(tuyaData).forEach((homeId) => {
+            txt += "<td colspan = "+cols+" ><b>" + tuyaData[homeId].name + "</b></td></tr><tr>";
+               
+        for (const device of tuyaData[homeId].devices) {
+ //               if (device.online == true) {
+	                 txt += "<td width='" + Math.floor(100 / cols) + "%' ><b>" + (device["is-a"] || device.category)  + "</b></td>";
+ 
+                    txt += "<td width='" + Math.floor(100 / cols) + "%' >" + ++d + ":" + device.name + "</td>";
+					
+                    txt += "<td width='" + Math.floor(100 / cols) + "%' >";
+                    device.status.forEach((rec) => {
+                        txt += rec.code + "<br>";
+                    })
+                    txt += "</td><td width='" + Math.floor(100 / cols) + "%' >";
+                    device.status.forEach((rec) => {
+                        txt += rec.value + "<br>";
+                    })
+                    txt += "</td></tr><tr>";
+ //               }
+            } // device loop
+
+        }); // homes loop
+        return txt;
+        }
+
+    function getListPageCSV() {
+        cols = 4;
+        let d = 0;
+        let txt = "<pre>\nDB CSV DEVICE TUYA INSTALLATE:\n\n";
+        Object.keys(tuyaData).forEach((homeId) => {
+             txt += "HOME, CATEGORIA, NOME, ONLINE, ATTRIBUTO, VALORE;\n";            
+ 			
+            for (const device of tuyaData[homeId].devices) {
+ //           if (device.online == true) {
+	            device.status.forEach((rec) => {
+                txt += tuyaData[homeId].name + ", "+ (device["is-a"] || device.category) + ", "+ device.name  + ", "+ device.online  + ", "+ rec.code+ ", "+rec.value +";\n";
+                      })
+  //               } // if true
+            } // device loop
+        }); // homes loop
+        return txt + "</pre>";
+        }
+
+
+
 
 // end  EXPLORE01 code
 
