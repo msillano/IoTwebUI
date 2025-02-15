@@ -4,18 +4,17 @@ USER frontend for EXPLORE01 - device info
 
 Requires: 
   IotWebUI 2.2, REST2.2, EXPLORE01 installati e funzionanti.
-Più
+Plus:
   inc/restget.js
   blank.gif
   preview_emptyrrect1.png
-  
  -->
 
 <html>
 <head>
 <title></title>
 <!-- Created with an unregistered copy of Dynamic HTML WYSIWYG Editor -->
-<meta http-equiv="Content-Type" content="text/html; charset=Windows-1252">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <meta http-equiv="Content-Style-Type" content="text/css">
 <meta name="GENERATOR" content="Dynamic HTML Editor v.6.8 - http://www.hexagora.com">
 <script type="text/javascript" src="inc/restget.js"> </script >
@@ -23,9 +22,30 @@ Più
 <script language="javascript" type="text/javascript">
 <!--
 const baseURL = 'http://localhost:3031/IoTrest/';
-const xDeviceName = "Explore";   // the name of x.device from MACRO EXPLORE01() (in RULE)
+const xDeviceName = "Explore devices";   // the name of x.device from MACRO EXPLORE01() (in RULE)
+
 let xid ="";
 
+// body.onload  test function:
+async function initFrame() {
+let inframe = true;
+    if  (window === window.parent || window.opener) {
+	// The page is not in an iFrames
+	    inframe = false;
+        document.getElementById("goBack").style.display = 'none';
+        }
+// test the x-device presence => ok to display
+	let devTest = await RESTget(baseURL + "device/" + xDeviceName +"/dinfo");
+	if (devTest.error){    // nor ready
+	  alert("The x-device "+xDeviceName+" (EXPLORE01) is not running!\nCheck IoTwebUI RULES or console\n...Closing...");
+      if (inframe) 
+	       window.history.back();	
+	  else
+	       window.close();
+	  }
+}
+	  
+// inteface functions:	
 function setId(){
   xid = document.getElementById("Text1").value.trim();  //.innerText;
   RESTget(baseURL + "set/" + xDeviceName +"/device/" + xid);
@@ -51,6 +71,10 @@ function doModel() {
 function doStandard() {
   RESTget(baseURL + "set/" + xDeviceName +"/action/standard");
 }
+function doList() {
+  RESTget(baseURL + "set/" + xDeviceName +"/action/list");
+}
+
 
 //-->
 </script>
@@ -58,55 +82,51 @@ function doStandard() {
 body {margin: 0px; padding: 0px; border: 0px; vertical-align: baseline; text-align: left; font-size: 10px; -webkit-text-size-adjust: 100%; }
 form {margin: 0px; padding: 0px; border: 0px;}
 .verdana100FFFFFFt {font-family: Verdana, Geneva, sans-serif; font-size: 13px; color: #000000; text-decoration: none;}
-.verdana14C0C000FFFFFFtib {font-family: Verdana, Geneva, sans-serif; font-size: 19px; color: #00C0C0; font-weight: bold; font-style: italic; text-decoration: none;}
-
+.verdana14C0C000FFFFFFtib {font-family: Verdana, Geneva, sans-serif; font-size: 19px; color: #00C0C0; font-weight: bold; font-style: italic; text-decoration: none;
 </style>
 </head>
 
 
 
-<body text="#00C0C0" bgcolor="#FFFFFF" link="#0000FF" alink="#FF0000" vlink="#800080">
+<body text="#00C0C0" bgcolor="#FFFFFF" link="#0000FF" alink="#FF0000" vlink="#800080" onload="initFrame();">
 
-<table width="242" border="0" cellspacing="0" cellpadding="0" style="position: relative;">
+<table id="atable" width="242" border="0" cellspacing="0" cellpadding="0" style="position: relative;">
 <tr>
-<td>
-<img src="blank.gif" width="20" height="6" border="0" alt=""></td>
-<td>
-<img src="blank.gif" width="222" height="1" border="0" alt=""></td></tr>
-<tr>
-<td>
-<img src="blank.gif" width="1" height="311" border="0" alt=""></td>
+<td><img src="blank.gif" width="20" height="16" border="0" alt=""></td>
+<td><img src="blank.gif" width="222" height="1" border="0" alt=""></td>
+</tr><tr>
+<td><img src="blank.gif" width="1" height="311" border="0" alt=""></td>
 <td align="left" valign="top">
-<img id="EmptyRRect1" src="preview_emptyrrect1.png" width="222" height="311" border="0" alt=""></td></tr></table>
+<img id="EmptyRRect1" src="preview_emptyrrect1.png" width="222" height="311" border="0" alt="">
+<br><a id='goBack' href="javascript:window.history.back();" style="font-family: Verdana, Geneva, sans-serif; font-size: 10px;">&lt;&lt;BACK</a>
+</td>
+</tr></table>
 
-
-<div id="ldheText1" style="position: absolute; left: 44px; top: 65px;">
-
-<input type="text" id="Text1" name="Text1" style="width: 175px; height: 24px;" value="device Id/name" maxlength="255" onblur="setId();"></div>
-
-
-<div id="ldheButton1" style="position: absolute; left: 44px; top: 121px;" onClick="doInfo();">
-
-<input type="button" id="Button1" name="Button1" style="width: 147px; height: 26px;" value="Tuya info" title="Device Attributes"></div>
-
-<div id="ldheButton2" style="position: absolute; left: 44px; top: 159px;" onClick="doStandard();">
-
-<input type="button" id="Button2" name="Button2" style="width: 147px; height: 25px;" value="Tuya standard set" title="'Type' Data model"></div>
-
-<div id="ldheButton3" style="position: absolute; left: 44px; top: 195px;" onClick="doModel();">
-
-<input type="button" id="Button3" name="Button3" style="width: 147px; height: 25px;" value="Tuya model" title="'Device' Data model"></div>
-
-<div id="ldheButton4" style="position: absolute; left: 44px; top: 233px;" onClick="doSchema();">
-
-<input type="button" id="Button4" name="Button4" style="width: 147px; height: 25px;" value="Tuya schema" title="RT Data - as per CLONE()"></div>
-
-<div id="ldheButton10" style="position: absolute; left: 44px; top: 268px;" onClick="doIoT();">
-
-<input type="button" id="Button10" name="Button10" style="width: 147px; height: 25px;" value="IoTwebUI" title="Available RT Data&Attributes"></div>
-
+<!-- absolute positons -->
 <div id="ldheLabel1" style="position: absolute; left: 36px; top: 23px; width: 176px; height: 23px; text-align: justify;">
 <span class="verdana14C0C000FFFFFFtib">Esplore device</span></div>
+
+<div id="ldheText1" style="position: absolute; left: 44px; top: 65px;">
+<input type="text" id="Text1" name="Text1" style="width: 175px; height: 24px;" value="device Id/name" maxlength="255" onblur="setId();"></div>
+
+<div id="ldheButton1" style="position: absolute; left: 44px; top: 100px;" onClick="doInfo();">
+<input type="button" id="Button1" name="Button1" style="width: 147px; height: 26px;" value="Tuya info" title="Device Attributes"></div>
+<!-- top delta: 38pt --> 
+<div id="ldheButton2" style="position: absolute; left: 44px; top: 135px;" onClick="doStandard();">
+<input type="button" id="Button2" name="Button2" style="width: 147px; height: 25px;" value="Tuya standard set" title="'Type' Data model"></div>
+
+<div id="ldheButton3" style="position: absolute; left: 44px; top: 170px;" onClick="doModel();">
+<input type="button" id="Button3" name="Button3" style="width: 147px; height: 25px;" value="Tuya model" title="'Device' Data model"></div>
+
+<div id="ldheButton10" style="position: absolute; left: 44px; top: 205px;" onClick="doIoT();">
+<input type="button" id="Button10" name="Button10" style="width: 147px; height: 25px;" value="IoTwebUI" title="Locals RT Data&Attributes"></div>
+
+<div id="ldheButton4" style="position: absolute; left: 44px; top: 240px;" onClick="doSchema();">
+<input type="button" id="Button4" name="Button4" style="width: 147px; height: 25px;" value="Tuya schema" title="RT all Data - as by CLONE()"></div>
+
+<div id="ldheButton5" style="position: absolute; left: 44px; top: 275px;" onClick="doList();">
+<input type="button" id="Button5" name="Button5" style="width: 147px; height: 25px;" value="Full list CSV" title="Complete table of all devices"></div>
+
 
 </body>
 
