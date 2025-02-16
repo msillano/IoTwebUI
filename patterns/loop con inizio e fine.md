@@ -125,6 +125,9 @@ Poi (
 )
 ```
 ```mermaid
+ info
+```
+```mermaid
 zenumlDiagram
  @actor U as userstart
  A1
