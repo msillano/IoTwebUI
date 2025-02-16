@@ -5,7 +5,7 @@ _Loop con inizio e fine_
 ### Spiegazione del Pattern e Implementazioni
 
 **Modello Concettuale**  
-Un ciclo esegue una serie di operazioni (es. accensione/spegnimento di un dispositivo) in modo ripetuto. Il loop viene avviato da un trigger iniziale e terminato da un trigger finale. Una logica di ripresa garantisce che il ciclo si riavvii automaticamente dopo ogni completamento.
+Un ciclo esegue una serie di operazioni (es. accensione/spegnimento di un dispositivo) in modo ripetuto. Il loop viene avviato da una condizione iniziale e terminato da una condizione finale. Una logica di ripresa garantisce che il ciclo si riavvii automaticamente dopo ogni completamento.
 
 **Esempio**
 *  irrigazione: da un orario di inizio ad uno di fine, viene ripetuto un periodo di irrigazione seguito da un periodo di pausa.
@@ -38,8 +38,8 @@ POI (
 A3. Automazione (riavvio loop)
 SE (
     test_dispositivo("SWITCH", "stato", "==", true)       // se master SWIRCH ON
-  AND
-    test_dispositivo("irrigatore", "attivo", "==", false) // e Ciclo precedente completato
+  AND                                                     // AND (tutte le condizioni...)
+    test_dispositivo("irrigatore", "attivo", "==", false) // Ciclo precedente completato
   )
 POI (
    start_tap_to_run("E2") // Riavvio immediato del ciclo
@@ -76,8 +76,13 @@ A4. **Backup**
 **Vantaggi**:  
 - **Loop flessibile**: Azioni e durata del loop sono definite in modo indipendente in E2.  
 - **Spegnimento garantito**: Doppia sicurezza (countdown + automazione A4).
-- **Switch come master**: Può essere disattivato manualmente in emergenza o esteso con altre condizioni (es. sensore pioggia). 
-- **output**: master SWITCH ON ha il significato 'loop in corso' e può direttamente pilotare una spia. 
+- **Switch come master**: Può essere disattivato manualmente in emergenza o esteso con altre condizioni (e.g. sensore pioggia). 
+- **output**: master SWITCH ON ha il significato 'loop in corso' e può essere usato come evento, e.g. pilotare una spia. 
+
+**Modello**
+Può essere visto come un _black-box_, con due ingressi (`start`, `stop`) e due uscite (`run`, `status`).
+
+![image](https://github.com/user-attachments/assets/de8e6148-d000-412c-a80b-503135de8f94)
 
 ---
 
