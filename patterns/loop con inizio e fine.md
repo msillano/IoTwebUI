@@ -125,15 +125,15 @@ Poi (
 )
 ```
 ```mermaid
-zenuml
-@actor U as userstart
-A1
-@control E2
+ZenUML
+ @actor U as userstart
+ A1
+ @control E2
  A3
  A4
-@entity O as OUTPUT
+ @entity O as OUTPUT
 
-U -> A1: "orario = 06:00" {
+ U -> A1: "orario = 06:00" {
    A1-> E2. "start_tap_to_run(E2)"{
         E2: ritardo(58m) 
         O: status => ON 
@@ -141,10 +141,10 @@ U -> A1: "orario = 06:00" {
         O: status => OFF 
         }
     }
-O -> A3: test_dispositivo(OFF)
-A3 -> E2: start_tap_to_run("E2") 
-U -> A4: "orario = 20:00"
-A4 -> A3: disabilita(A3)
+ O -> A3: test_dispositivo(OFF)
+ A3 -> E2: start_tap_to_run("E2") 
+ U -> A4: "orario = 20:00"
+ A4 -> A3: disabilita(A3)
 ```
 ---
 
