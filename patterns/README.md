@@ -2,7 +2,7 @@
 
 La creazione di **`scene`** Tuya è abbastanza semplice: una serie di interfacce e menu guidano l'utente alla creazione di **`tap_to_run`** (attivate da comando manuale o da altre `scene`, senza condizioni)   ed **`automazioni`** (attivate - triggerate - da condizioni su eventi). 
 
-Non sono sempre rose e fiori: una serie di `quirk` nell'implematazione di Tuya possono creare problemi all'utente nei casi più semplici, mentre i limiti imposti da scelte di progetto (mancanza di funzioni con parametri, di ELSE, di variabili, di operazioni aritmetiche, etc..) possono costringere a cercare soluzioni non lineari nei casi appena più complessi, oppure possono rendere indispensabile l'uso di **IoTwebUI**.
+Ma non sono sempre rose e fiori: una serie di `quirk` nell'implematazione di Tuya possono creare problemi all'utente nei casi più semplici, mentre i limiti imposti da scelte di progetto (mancanza di funzioni con parametri, di ELSE, di variabili, di operazioni aritmetiche, etc..) possono costringere a cercare soluzioni non lineari nei casi appena più complessi, oppure possono rendere indispensabile l'uso di altri ambienti come **IoTwebUI**, oppure tuyaDAEMON o HA, etc..
 
 ## principali Tuya quirk
 
@@ -12,11 +12,11 @@ Non sono sempre rose e fiori: una serie di `quirk` nell'implematazione di Tuya p
 3) Condizioni in **OR**: (= almeno una) sono indipendenti (cioè si ha un trigger ogni volta che una condizione passa da FALSO a VERO, a prescindere dalle altre). 
 
 #### ambito
-Vincoli logici aggiuntivi che non provocano attivazioni (non sono trigger) ma DEVONO essere VERI (level) per avere un trigger dalle condizioni, e quindi per attivare l'automazione.
+L'**ambito** è presente solo nelle `automazioni`, ed è formato de vincoli logici aggiuntivi che non provocano attivazioni (non sono trigger) ma DEVONO essere VERI (level) per avere un trigger dalle condizioni, e quindi per attivare l'automazione.
 In altre parole 'quando' una automazione si attiva è deciso dalle condizioni (SE...) ma l'autorizzazione è data da _abilitazione + condizioni + ambito_ !
 
 #### disabilitare automazioni
-Una `automazione disabilitata`  ovviamente NON si avvia, a prescindere dalle condizioni e ambito.<br>
+Una `automazione disabilitata` ovviamente NON si avvia, a prescindere dalle condizioni e dall'ambito.<br>
 Se si disabilita una `automazione` in corso di esecuzione, questa interrompe l'esecuzione prima del task successivo.<br>
 Qualche problema si crea nel caso di una disabilitazione seguite da riabilitazione durante l'esecuzione di un delay. Una disabilitazione viene onorata al termine del delay in corso. Se però interviene una riabilitazione prima del termine del delay, il comportamento può variare: in alcuni casi l'esecuzione abortisce (Zigbee) correttamente in altri, invece, _NON abortisce, ignorando completamente la disabilitazione_! E' quindi una situazione da evitare, perchè NON affidabile!
 
