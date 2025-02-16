@@ -65,11 +65,12 @@ if(ISTRIGGERH( CONFIRMH( GET("Sensore porta", "doorcontact_state") , "04:00"))) 
 ```
 
 **Spiegazione**
-* **GET** (`device`, `attributo`) è una MACRO che ritorna lo `stato` della porta (VERO/falso)
+* **GET** (`device`, `attributo`) è una MACRO che ritorna lo `stato` di `device.attributo` (VERO/FALSO)
 * **CONFIRMH** (`evento`, `durata`) è una MACRO che ritorna vero solo se `evento` è H (VERO) per almeno il tempo `durata`, altrimenti ignora evento.
 * **ISTRIGGERH** (`evento`) è una MACRO che trasforma un evento in _trigger_: è cioè VERO per un solo run, quando `evento` passa da FALSO a VERO.
 * **if** (`condizione`) `azione` è il costrutto usuale js (può avere `else`)
-* **VOICE** (`testo`) è una MACRO che pronuncia il `testo` nella lingua di default. 
+* **VOICE** (`testo`) è una MACRO che pronuncia il `testo` nella lingua di default. <br>
+Vedi [documentazione di riferimento](https://github.com/msillano/IoTwebUI/blob/main/LEGGIMI30.md#macro-per-risorse) per le MACRO.
 
 **Svantaggi**:  
 - **Latenza**: A causa dei vari tempi di polling, può presentare ritardi che lo rendono inadatto a tempi troppo brevi  
