@@ -80,7 +80,7 @@ A4. **Backup**
 - **output**: master SWITCH ON ha il significato 'loop in corso' e può essere usato come evento, e.g. pilotare una spia. 
 
 **Modello**<br>
-Può essere visto come un _black-box_, con tre ingressi (`start`, `stop`, `done-loop`) e due uscite (`run-loop`, `status`).
+Può essere wsemplificato come un _black-box_, con tre ingressi (`start`, `stop`, `done-loop`) e due uscite (`run-loop`, `status`).
 
 ![image](https://github.com/user-attachments/assets/a1f6d7aa-a4cc-4528-a816-6a550c72761e)
 
