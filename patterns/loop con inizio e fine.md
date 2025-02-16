@@ -125,7 +125,7 @@ Poi (
 )
 ```
 ```mermaid
-ZenUML
+sequenceDiagram
  @actor U as userstart
  A1
  @control E2
