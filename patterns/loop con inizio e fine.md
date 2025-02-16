@@ -124,7 +124,28 @@ Poi (
     set_device_status("irrigatore", "attivo", false)  // OFF device - opzionale
 )
 ```
+```mermaid
+zenuml
+@actor U as userstart
+A1
+@control E2
+ A3
+ A4
+@entity O as OUTPUT
 
+U -> A1: "orario = 06:00" {
+   A1-> E2. "start_tap_to_run(E2)"{
+        E2: ritardo(58m) 
+        O: status => ON 
+        E2: ritardo(2m)
+        O: status => OFF 
+        }
+    }
+O -> A3: test_dispositivo(OFF)
+A3 -> E2: start_tap_to_run("E2") 
+U -> A4: "orario = 20:00"
+A4 -> A3: disabilita(A3)
+```
 ---
 
 ### Raccomandazioni
