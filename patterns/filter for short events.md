@@ -55,14 +55,21 @@ POI (set_device_status(SWITCH, countdown, 0), set_device_status(segnale, attivo,
 * `startDevice` e `stopDevice` sono un'unica device: si misura la durata dello stato 'TRUE' (e.g. "Sensore porta", "doorcontact_state")
 * La potenza delle REGOLE e delle MACRO rende molto semplice e compatto il codice necessario
 * `VOICE()` permette di utilizzare messaggi vocali in modo intuitivo.
-* Le azioni immediate disponibili sono, oltre a VOICE(): beep, pop-up, suona(file), esegui(tap_to_run)
+* Le azioni immediate disponibili sono, oltre a VOICE(testo): beep, pop-up(testo), suona(file), esegui(tap_to_run)
 
 
 **Codice**
 
 ```
-if(ISTRIGGERH( CONFIRMH(GET("Sensore porta", "doorcontact_state") , "04:00"))) VOICE("chiudere la porta, grazie");
+if(ISTRIGGERH( CONFIRMH( GET("Sensore porta", "doorcontact_state") , "04:00"))) VOICE("chiudere la porta, grazie");
 ```
+
+**Spiegazione**
+* **GET** (`device`, `attributo`) è una MACRO che ritorna lo `stato` della porta (VERO/falso)
+* **CONFIRMH** (`evento`, `durata`) è una MACRO che ritorna vero solo se `evento` è H (VERO) per almeno il tempo `durata`, altrimenti ignora evento.
+* **ISTRIGGERH** (`evento`) è una MACRO che trasforma un evento in _trigger_: è cioè VERO per un solo run, quando `evento` passa da FALSO a VERO.
+* **if** (`condizione`) `azione` è il costrutto usuale js (può avere `else`)
+* **VOICE** (`testo`) è una MACRO che pronuncia il `testo` nella lingua di default. 
 
 **Svantaggi**:  
 - **Latenza**: A causa dei vari tempi di polling, può presentare ritardi che lo rendono inadatto a tempi troppo brevi  
@@ -82,4 +89,4 @@ if(ISTRIGGERH( CONFIRMH(GET("Sensore porta", "doorcontact_state") , "04:00"))) V
 
 ### Raccomandazioni
 - **Preferire Implementazione 1** (Zigbee) se possibile: più robusta e immediata.  
-- Se si usa già per altri motivi **IoTwebUI** (e.g. menu di interfaccia) prendere in considerazione la **Implementazione 2** perchè più adattabile.
+- Se si usa già per altri motivi **IoTwebUI** (e.g. menu di interfaccia in un tablet) prendere in considerazione la **Implementazione 2** perchè più adattabile.
