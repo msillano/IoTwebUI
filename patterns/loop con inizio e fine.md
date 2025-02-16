@@ -63,10 +63,10 @@ E2. **Ciclo**
  - 58 minuti di irrigatore spento (ritardo iniziale).
  - 2 minuti di irrigatore acceso.
 
-A3. **Riavvio loop **
+A3. **Riavvio loop**
  - Al termine di E2, l'irrigatore è OFF → Automazione di Ripresa riavvia il ciclo solo se lo SWITCH è ancora ON. IMPORTANTE: è necessaria una condizione univoca di fine ciclo.
 
-**Fine**
+XX. **Fine**
   - Il countdown dello switch raggiunge zero → SWITCH si spegne automaticamente.
   - Automazione di Ripresa non parte più (SWITCH OFF).
 
@@ -79,7 +79,7 @@ A4. **Backup**
 - **Switch come master**: Può essere disattivato manualmente in emergenza o esteso con altre condizioni (e.g. sensore pioggia). 
 - **output**: master SWITCH ON ha il significato 'loop in corso' e può essere usato come evento, e.g. pilotare una spia. 
 
-**Modello**
+**Modello**<br>
 Può essere visto come un _black-box_, con due ingressi (`start`, `stop`) e due uscite (`run`, `status`).
 
 ![image](https://github.com/user-attachments/assets/e7f60ce0-131b-4c61-aff9-02dab36112af)
