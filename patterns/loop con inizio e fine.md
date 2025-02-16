@@ -82,7 +82,8 @@ A4. **Backup**
 **Modello**
 Può essere visto come un _black-box_, con due ingressi (`start`, `stop`) e due uscite (`run`, `status`).
 
-![image](https://github.com/user-attachments/assets/de8e6148-d000-412c-a80b-503135de8f94)
+![image](https://github.com/user-attachments/assets/e7f60ce0-131b-4c61-aff9-02dab36112af)
+
 
 ---
 
