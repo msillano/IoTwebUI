@@ -24,7 +24,7 @@ POI (set_device_status(SWITCH, countdown, xxx))    // Nota: xxx va sostituito co
 
 // Automazione A2
 SE (test_dispositivo(stopDevice, stop, =, true))
-POI (set_device_status(SWITCH, countdown, 0))
+POI (set_device_status(SWITCH, countdown, 0), set_device_status(segnale, attivo, false))
 
 // Automazione A3
 SE (test_dispositivo(SWITCH, countdown, =, 100))
@@ -34,19 +34,23 @@ POI (set_device_status(SWITCH, countdown, 0), set_device_status(segnale, attivo,
 ![image](https://github.com/user-attachments/assets/01601754-8221-4f5c-8bc4-b898c29951c4)
 
 **Logica**:  
+
 1. **Avvio Timer**:  
    - All'evento di start, imposta il countdown a `100 + durataMinima` secondi.  
    - Esempio: Se `durataMinima = 240s` (4 minuti), il countdown parte da **340s**.  
 2. **Interruzione**:  
-   - Se arriva lo stop, il countdown viene resettato a **0** (annulla il timer).  
+   - Se arriva lo stop, il countdown viene resettato a **0** (annulla il timer) e l'output a "false".  
 3. **Trigger dell'Azione**:  
    - Quando il countdown raggiunge **100**, significa che sono trascorsi `durataMinima` secondi (es. 340 - 100 = 240s).  
    - A questo punto, attiva `segnale.attivo` e resetta il timer.
+
+![image](https://github.com/user-attachments/assets/ee6314ff-1d04-40ff-bc07-8f30e68f9103)
 
 **Vantaggi**:  
 - **Affidabile**: Funziona offline, senza dipendenze cloud.  
 - **Reattivo**: Gestisce correttamente interruzioni e riavvii.
 
+nota: se è complesso inserire in SmartLife un countdown di 100 (s), usate pure i minuti: 120 = 2 minuti; ritardo 240s = 4 minuti, totale 6 minuti
 ---
 
 ### Implementazione 2 (REGOLE di IoTwebUI)
