@@ -31,7 +31,30 @@ SE (test_dispositivo(SWITCH, countdown, =, 100))
 POI (set_device_status(SWITCH, countdown, 0), set_device_status(segnale, attivo, true))
 ```
 
-![image](https://github.com/user-attachments/assets/01601754-8221-4f5c-8bc4-b898c29951c4)
+```mermaid
+%%{init: {'flowchart': {'nodeSpacing': 10, 'rankSpacing': 30}}}%%
+flowchart 
+direction LR
+
+    subgraph Automazione A3
+        direction TB
+        A3_Start([Start]) --> A3_Cond{"test_device('SWITCH', 'countdown', '=', 100)?"}
+        A3_Cond -->|Sì| A3_Action["set_device_status('SWITCH', 'countdown', 0)<br>set_device_status('segnale', 'attivo', true)"]
+    end
+    
+    subgraph Automazione A2
+        direction TB
+        A2_Start([Start]) --> A2_Cond{"test_device('stopDevice', 'stop', '=', true)?"}
+        A2_Cond -->|Sì| A2_Action["set_device_status('SWITCH', 'countdown', 0)<br>set_device_status('segnale', 'attivo', false)"]
+    end
+
+    subgraph Automazione A1
+        direction TB
+        A1_Start([Start]) --> A1_Cond{"test_device('startDevice', 'start', '=', true)?"}
+        A1_Cond -->|Sì| A1_Action["set_device_status('SWITCH', 'countdown', 100 + durataMinima)"]
+    end
+    
+```
 
 **Logica**:  
 
@@ -58,7 +81,7 @@ nota: se è complesso inserire in SmartLife un countdown di 100 (s), usate pure 
 ### Implementazione 2 (REGOLE di IoTwebUI)
 
 **Vantaggi**
-* `startDevice` e `stopDevice` sono un'unica device: si misura la durata dello stato 'TRUE' (e.g. "Sensore porta", "doorcontact_state")
+* `startDevice` e `stopDevice` sono un'unica device: si misura la durata dello stato 'TRUE' (e.g. "Sensore porta.doorcontact_state")
 * La potenza delle REGOLE e delle MACRO rende molto semplice e compatto il codice necessario
 * `VOICE()` permette di utilizzare messaggi vocali in modo intuitivo.
 * Le azioni immediate disponibili sono, oltre a VOICE(testo): beep, pop-up(testo), suona(file), esegui(tap_to_run)
