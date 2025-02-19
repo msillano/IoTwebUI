@@ -45,6 +45,7 @@ POI (set_device_status(SWITCH, countdown, 0), set_device_status(segnale, attivo,
    - A questo punto, attiva `segnale.attivo` e resetta il timer.
 
 ![image](https://github.com/user-attachments/assets/ee6314ff-1d04-40ff-bc07-8f30e68f9103)
+<b>A<b>: Input &nbsp; <b>B<b>: Output &nbsp; <b>A<b>: Countdown > 0 
 
 **Vantaggi**:  
 - **Affidabile**: Funziona offline, senza dipendenze cloud.  
