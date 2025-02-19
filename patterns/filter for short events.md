@@ -51,7 +51,8 @@ POI (set_device_status(SWITCH, countdown, 0), set_device_status(segnale, attivo,
 - **Affidabile**: Funziona offline, senza dipendenze cloud.  
 - **Reattivo**: Gestisce correttamente interruzioni e riavvii.
 
-nota: se è complesso inserire in SmartLife un countdown di 100 (s), usate pure i minuti: 120 = 2 minuti; ritardo 240s = 4 minuti, totale 6 minuti
+nota: se è complesso inserire in SmartLife un countdown di 100 (s), usate pure i minuti: 120 = 2 minuti; ritardo 240s = 4 minuti, totale 6 minuti.
+
 ---
 
 ### Implementazione 2 (REGOLE di IoTwebUI)
