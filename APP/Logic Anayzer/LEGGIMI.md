@@ -13,4 +13,21 @@ _Ovviamente ha senso sceglie attributi (code)  con valori booleani (true/false) 
 
 ![image](https://github.com/user-attachments/assets/e0b957f3-9371-405e-9981-630d13f7dec6)
 
+### note
+* Mi trovo bene usando 2 device virtuali: un 4 interruttori ([vedi](https://www.tuyaexpo.com/product/1078029)) e un 2 switch, che possono essere usati indifferentemente per simulare input o visualizzare output.
+* Inoltre trovo comodo, per avere test affidabili e ripetibili, crare per ogni test un 'tap_to_run' con funzioni di driver, che:
+  1. inizializzi gli input ed output
+  2. abiliti solo le 'automazioni' interessate al test
+  3. gestisca la sequenza temporale degli input, possibilmente in tutti i casi possibili!
+
+### Customizzazioni
+Soprattutto per creare documentazione, è possibile cambiare i nomi sia dei device, che dei segnali visualizzati, anche con HTML per modificarne il look.
+Occorre (al solito) editare il file "logic_analyzer01.js" aggiungendo elementi come segue (vedi in figura il risultato): 
+```ruby
+        _translate["OUT2-vdevo|switch_1"] = {
+             device: "ALERT*",
+             code: "<b>longOpen!</b>"
+             };
+```
+
  
