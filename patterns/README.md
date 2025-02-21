@@ -31,7 +31,7 @@ Questa è una collezione di pattern per scene Tuya, spesso nati e discussi nel [
 #### contesti
 Per i pattern si sono presi in considerazione 3 contesti
 
-1) **local linkage**: Scene Tuya che possono essere eseguite dirattamente dall'HUB e da device Zigbee, senza uso del WiFi e di TuyaCloud. Usare questo contesto comporta alcuni limiti alle condizioni e azioni utilizzabili, oltre al vincolo di tutte device Zigbee e all'impossibilitòà di usare device virtuali ed ambito. _LAN linkage_ è analogo come vincoli e prestazioni ma coinvolge più HUB Zigbee e richiede il WiFi.<br>
+1) **Local linkage**: Scene Tuya che possono essere eseguite dirattamente dall'HUB e da device Zigbee, senza uso del WiFi e di TuyaCloud. Usare questo contesto comporta alcuni limiti alle condizioni e azioni utilizzabili, oltre al vincolo di tutte device Zigbee e all'impossibilitòà di usare device virtuali ed ambito. _LAN linkage_ è analogo come vincoli e prestazioni ma coinvolge più HUB Zigbee e richiede il WiFi.<br>
 Da preferire per un sistema affidabile e robusto.<br>
 nota: nulla vieta di usare questi pattern con device WiFI (_Cloud linkage_): si perde il vantaggio del funzionamento locale, ma la logica resta valida!
 
