@@ -1,5 +1,12 @@
 #  Tuya APPLICATIONS 
 <table width="100%">
+<tr><td width = "400pt"> <b><i>Logic Analyzer 5ch</i></b><br><br>
+ This APP is a 5-channel <b>Logic Analyzer</b> made for testing, debugging, and documenting <b>Tuya</b> and <b>IoTwebUI</b> <i>scenes</i> and <i>RULES</i>.
+<hr>
+Questa APP è un <b>Analizzatore Logico</b> a 5 canali realizzato per il test, il debug e la documentazione di <i>scene</i> e <i>REGOLE</i> <b>Tuya</b> e </b>IoTwebUI**.
+</td><td colspan=2>  
+ <img src="https://github.com/user-attachments/assets/a52a6742-0848-4f83-8239-63d848b7d00a">
+</td></tr>
 <tr><td width = "400pt"><img src="https://github.com/msillano/IoTwebUI/blob/main/pics/thermostat01.png?raw=true"><br><br> <img src="https://github.com/user-attachments/assets/b9ef2221-cf72-43e4-8fd8-1c21e913317a">
 </td><td colspan=2>  <b><i>WEB Thermostat</i></b><br><br>
 This complete SW chronothermostat uses the measurements of one (or more) Tuya temperature probes to control a smart switch for heating (cooling).<hr>
