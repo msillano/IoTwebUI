@@ -1,0 +1,226 @@
+<html>
+<!--
+This file is part of IoTwebUI project (https://github.com/msillano/IoTwebUI)
+Contains user data and updatable options
+------------------------------
+License MIT
+(C)2024 marco.sillano@gmail.com
+ver 1.0 15/02/2025
+for IOTwebUI version 3.0
+------------------------------
+USER frontend for LOGIC_ANALYZER01 - 
+see: https://github.com/msillano/IoTwebUI/tree/main/APP/Logic%20Analyzer
+
+Requires: 
+  IotWebUI 3.0, REST3.0,  installed and running.
+And:
+  inc/restget.js
+  inc/iotwidget01.js
+  inc/iotwidget01.css
+  inc/iotwidget02.js
+  blank.gif
+
+  Window size 650x300
+====================== USER CONFIGURATION:  GOTO LINE  97 !
+ -->
+ 
+<head>
+    <meta charset="UTF-8">
+ <!-- REQUIRED all javascript procedures to handle widgets -->
+    <script type="text/javascript" src="inc/restget.js"> </script >
+    <script type="text/javascript" src="inc/iotwidget01.js"> </script >
+<!-- REQUIRED by iotwidget02 -->
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript" src="inc/iotwidget02.js"> </script >
+
+	<link rel = "stylesheet" href ="inc/iotwidget01.css" >
+
+  <style>
+/* ======= USER PAGE DEFAULTS */
+   :root {
+      --button-width: 150px;
+      --button-height: 50px;
+      }
+   .butzone {
+	    width:   var(--button-width);
+	    }
+   table {
+      border-collapse: collapse;
+      border: none;
+      }
+
+/* defaults from iotwidget01.css: customizable look for this page
+   note: colors custumizable also in widget definition
+*/
+
+  .hover .tooltip {
+    border-radius: 5px;
+	padding: 5px;
+ 	font: 10px Arial, sans-serif;
+ 	background-color: black;
+    color: #fff;
+    border-radius: 5px;
+    }
+
+  .value {
+	color:black;
+	font-size:14px;
+	}
+  .bigvalue {
+	color:Blue;
+	font-size:20px;
+	}
+  .bigbutton {
+	border-radius:5px;
+	font-weight: bold;
+	}
+  .imgbutton {
+    border-radius:5px;
+	font-weight: bold;
+    }
+	
+ /* for iotwidget02 - extra local style */
+  .signal{
+    width:  32px;
+    height: 32px;
+    background-color: transparent;
+    border: none ;
+    }
+  .switch{
+    width:  80px;
+    height: 40px;
+    background-color: transparent;
+    border: none ;
+    }
+
+ </style>
+
+<script type="text/javascript">
+
+// =====   USER CONFIGURATION ================
+const x_term   = "Lanalyzer";    // user name of the x-device LOGIC_ANALYZER01
+const baseURL = 'http://localhost:3031/IoTrest/';  // for this and REST3 in the same server
+// =================== USER CONFIG  ENDS
+
+// =================== locals:  do not change  ==============
+const RESTINTERVAL =    401;           // (prime number) x 7 
+var   LOOPINTERVAL =  7177;            // Tuyaloop : 20s
+
+// list of dynamic widgets in the page: adjust xpos, ypos
+// note: widget[x].id  must be unique!
+// see   inc/iotwidget01.js, inc/iotwidget02.js
+
+const widgets = [
+ 
+{ id :"CHART",
+     xpos : 0,           // verticale
+     ypos : -30,         // orizzontale
+     type	: "multichart",
+     devId: x_term,                     // data source device
+     code : ["A","B","C","D","E"],  // selected codes
+
+     maxPoint: 720,   // 24h @ LOOPINTERVAL == 120s
+     // instance options are merged with default options in iotwidget02
+     // for info https://developers.google.com/chart/interactive/docs/gallery/linechart (english version)
+     options: {
+		title: 'IoTwebUI Logic Analyzer v. 1.0',
+		vAxis:{
+			0: {title: 'Signal',
+				viewWindow: {min :0, max:7},
+				textStyle:{color:'yellow'},
+				}
+			},
+		series:{
+			0: {targetAxisIndex: 0},
+			1: {targetAxisIndex: 0},
+			2: {targetAxisIndex: 0},
+			3: {targetAxisIndex: 0},
+			4: {targetAxisIndex: 0},
+			},
+//	    curveType: 'function',
+		backgroundColor: "#cbd5f2",
+		width:  540,
+		height: 258,
+		},
+     },
+  ]
+// ==================== local callback
+
+async function initWind() {
+7// test x-device presence
+	let devTest = await RESTget(baseURL + "device/" + x_term +"/action");
+	if (devTest.error){
+	  alert("The x-device "+x_term+" (LOGIC_ANALYZER01) is not running!\nCheck IoTwebUI RULES or console\n...Closing...");
+      window.close();
+	  }
+startup();	  
+}	  
+
+function hook(widgetId, action = null){
+// not used
+	if (widgetId == "LED0"){
+	};
+};
+
+async function doClear(){
+let labelTxt = "A: none<br>&nbsp;&nbsp;<br> B: none<br>&nbsp;&nbsp;<br> C: none<br>&nbsp;&nbsp;<br> D: none<br>&nbsp;&nbsp;<br> E: none<br>&nbsp;&nbsp;<br>";
+
+widgets[0]['clear'] = true;
+if (confirm("Clear graph only? \nOr cancel data too?")) {
+   labelo = await RESTget(baseURL + "device/" + x_term +"/labels");
+   labelTxt = labelo.labels;
+} else {
+   //console.log(labelo, labelTxt);
+    RESTget(baseURL + 'set/'+x_term+'/action/clear')
+   }
+document.getElementById("labels").innerHTML = labelTxt;
+}
+
+
+</script>
+
+
+
+
+
+<!-- =============  PAGE =============  -->
+
+  </head>
+  <body bgcolor="#c2c6d1" onload="initWind()">        <!-- background color -->
+  <table  width= 620  height= 350><tr><td><img src="blank.gif"
+				     width="504"
+				     height="1"
+				     border="0"
+				     alt=""/></td>
+	  <td style="vertical-align: top">
+  
+ 		<span id="labels">A: none<br>&nbsp;&nbsp;<br>
+		                  B: none<br>&nbsp;&nbsp;<br>
+		                  C: none<br>&nbsp;&nbsp;<br>
+		                  D: none<br>&nbsp;&nbsp;<br>
+		                  E: none<br>&nbsp;&nbsp;<br>
+	    </span><hr>
+     <div id="add"
+	     style="top: 99px;"
+	     onClick= "RESTget(baseURL + 'set/'+x_term+'/action/add');">
+		<input type="button"
+		       style="width: 120px; height: 25px;"
+		       value="Add"
+		       title="Round Robin adds devices"/>
+	  </div>
+    <div id="clear"
+	     style="top: 99px;"
+	     onClick="doClear();" >
+		<input type="button"
+		       style="width: 120px; height: 25px;"
+		       value="Clear"
+		       title="Clear all graph and device list (optional)"/>
+	  </div>
+
+
+ 	 </td></tr><tr> <td>
+     <div id="dynamic"> </div>      <!-- dynamic widget division -->
+     <div id="output"> </div>       <!-- only for local tests - not used -->
+</td></tr></table>
+  </body>
+</html>
