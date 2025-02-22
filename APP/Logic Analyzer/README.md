@@ -7,9 +7,12 @@ This APP is a **5-channel Logic Analyzer** designed for testing, debugging, and 
 TEST of the Pattern ['filter for short events'](https://github.com/msillano/IoTwebUI/blob/main/patterns/filter%20for%20short%20events.md). A is the input signal, B is the output, and C is the countdown used by another real switch (virtual switches do not have countdown implementation!).
 
 ### USAGE
-* **Clear**: Initializes the chart and updates the list of displayed signals, or optionally, clears the list.
+* **Clear**: Initializes the chart and updates the list of displayed signals or clears the list optionally.
 * **Add**: A large pop-up appears with all available devices and signals. By clicking _add_ (`aggiungi`), you can select the signals to display in the _Logic Analyzer_ (note: if more than 5 signals are selected, the later ones will overwrite the earlier ones).
 _Of course, it makes sense to choose attributes (codes) with boolean values (true/false) or numeric values (0 => false, else => true: see 'countdown' (C) in the figure): for convenience, the third column shows the current values._
+
+note: _the display has some latency, due to the frequency of TuyaCloud data polling (see `tuyaInterval`, in 'config.js', min 20s for short periods). Events shorter than 20s may NOT be displayed. Please keep this in mind when you schedule a test._
+
 
 ![image](https://github.com/user-attachments/assets/e0b957f3-9371-405e-9981-630d13f7dec6)
 
