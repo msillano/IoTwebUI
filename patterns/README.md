@@ -8,15 +8,18 @@ However, it's not always smooth sailing: a series of `quirks` in Tuya's implemen
 ## Main Tuya Quirks
 
 #### Conditions
-1) **Conditions** trigger the linked actions only once, as soon as the condition is met (i.e., when the condition changes from FALSE to TRUE - edge triggering). Otherwise, coexistence between automatic and manual commands would be impossible. (see https://support.tuya.com/en/help/_detail/K9hutqbuwhik3)
-2) **AND** conditions: (= all) trigger the action when they ALL become true (i.e., when the last condition changes from FALSE to TRUE and all others are already TRUE).
-3) **OR** conditions: (= at least one) are independent (i.e., a trigger occurs every time a condition changes from FALSE to TRUE, regardless of the others).
+1) **Conditions** trigger the linked actions only once, as soon as the condition is met (i.e., when the condition changes from FALSE to TRUE - edge triggering). Otherwise, coexistence between automatic and manual commands would be impossible (see [here](https://support.tuya.com/en/help/_detail/K9hutqbuwhik3)). In symbols `trigger(condition)`.
+2) **AND** conditions: (= all) trigger the action when they ALL become true (i.e., when the last condition changes from FALSE to TRUE and all others are already TRUE). In symbols `trigger(cond1 AND cond2 AND ...)`.
+3) **OR** conditions: (= at least one) are independent (i.e., a trigger occurs every time a condition changes from FALSE to TRUE, regardless of the others). In symbols `trigger(cond1) OR trigger(cond2) OR ...`
+4) **trigger()** is a monostable-like function that models the operation of TuyaCloud. Definition: `trigger(X)` is true if and only if X<sub>t-1</sub> is FALSE and X<sub>t</sub> is TRUE - _note: TuyaCloud checks conditions at discrete instants, so it operates synchronously._
+With multiple conditions, you cannot mix AND and OR: either they are all AND or they are all OR.
 
 #### Scope
-**Scope** is only present in `automations` and consists of additional logical constraints that do not trigger activations (they are not triggers) but MUST be TRUE (level) for the conditions to trigger, and thus for the automation to activate.
-In other words, 'when' an automation triggers is determined by the conditions (IF...), but the authorization is given by _enablement + conditions + scope_!
+1) **Scope** is only present in `automations` and consists of additional logical constraints that do not trigger activations (they are not triggers) but MUST be TRUE (level) for the conditions to trigger, and thus for the automation to activate.
+In other words, 'when' an automation trigger is determined by the conditions (IF...), but the authorization is given by _enablement + conditions + scope_!
+2) With multiple constraints, you cannot mix AND and OR: either they are all AND or they are all OR (but regardless of the choice for the conditions).
 
-#### Disabling Automations
+#### Disabling Automation
 A `disabled automation` obviously does NOT start, regardless of conditions and scope.<br>
 If you disable an `automation` during execution, it stops execution before the next task.<br>
 Some issues arise when disabling followed by re-enabling during the execution of a delay. A disable is honored at the end of the current delay. However, if a re-enable occurs before the delay ends, the behavior can vary: in some cases, execution aborts (Zigbee) correctly; in others, it _does NOT abort, completely ignoring the disable_! Therefore, this is a situation to avoid, as it is NOT reliable!
