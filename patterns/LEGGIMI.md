@@ -12,13 +12,13 @@ Ma non sono sempre rose e fiori: una serie di `quirk` nell'implematazione di Tuy
 1) Le **condizioni** attivano le azioni collegate una sola volta, appena la condizione è raggiunta (cioè quando la condizione passa da FALSO a VERO - edge triggering). Perchè altrimenti sarebbe impossibile la coesistenza tra comandi automatici e manuali. (vedi [qui](https://support.tuya.com/en/help/_detail/K9hutqbuwhik3)). In simboli: `trigger(condizione)`
 2) Condizioni in **AND**: (= tutte) attivano l'azione (trigger) quando diventano TUTTE vere (cioè quando l'ultima condizione passa da FALSO a VERO e tutte le altre sono già VERE). In simboli: `trigger(cond1 AND cond2 AND ...)`
 3) Condizioni in **OR**: (= almeno una) sono indipendenti (cioè si ha un trigger ogni volta che una condizione passa da FALSO a VERO, a prescindere dalle altre).  In simboli: `trigger(cond1) OR trigger(cond2) OR ...`
-4) `trigger()` è una funzione monostabile che modella il funzionamento di TuyaCloud. Definizione: `trigger(X)` è vera se e solo se X<sub>t-1</sub> è FALSO e X<sub>t</sub> è VERO - Ricordare che TuyaCloud verifica le condizioni in istanti discreti, ha quindi un funzionamento sincrono.
+4) `trigger()` è una funzione simile ad un monostabile che modella il funzionamento di TuyaCloud. Definizione: `trigger(X)` è vera se e solo se X<sub>t-1</sub> è FALSO e X<sub>t</sub> è VERO - _nota: TuyaCloud verifica le condizioni in istanti discreti, ha quindi un funzionamento sincrono._
 5) Con più condizioni, non è possibile mescolare AND e OR: o sono tutte in AND o sono tutte in OR.
 
 #### ambito
 1. L'**ambito** è presente solo nelle `automazioni`, ed è formato da vincoli logici aggiuntivi che non provocano attivazioni (non utilizzano `trigger()`) ma DEVONO essere VERI (level-asincrono) per avere un trigger dalle condizioni, e quindi per attivare l'automazione.
 In altre parole 'quando' una automazione si attiva è deciso dalle condizioni (SE...) ma l'autorizzazione è data da _abilitazione + ambito_ !
-2. Con più vicoli, non è possibile mescolare AND e OR: o sono tutti in AND o sono tutte in OR (ma indipendentemente dalla scelta per le condizioni)
+2. Con più vicoli, non è possibile mescolare AND e OR: o sono tutti in AND o sono tutti in OR (ma indipendentemente dalla scelta per le condizioni)
 
 
 #### disabilitare automazioni
