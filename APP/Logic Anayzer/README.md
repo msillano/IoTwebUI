@@ -1,5 +1,5 @@
 # Logic Analyzer
-[English version](https://github.com/msillano/IoTwebUI/blob/main/APP/Logic%20Anayzer/README.md)
+[Versione italiana](https://github.com/msillano/IoTwebUI/blob/main/APP/Logic%20Anayzer/LEGGIMI.md)
 
 This APP is a **5-channel Logic Analyzer** designed for testing, debugging, and documenting _scenes_ and _RULES_ for **Tuya** and **IoTwebUI**.
 
@@ -28,4 +28,4 @@ You need to (as usual) edit the file "logic_analyzer01.js" by adding elements as
              device: "ALERT*",
              code: "<b>longOpen!</b>"
              };
-             
+```             
