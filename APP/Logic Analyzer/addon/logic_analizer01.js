@@ -5,7 +5,7 @@ Contains user data and updatable options
 License MIT
 (C)2024 marco.sillano@gmail.com
 ver 1.0 07/12/2024
-for IOTwebUI version 2.2.2
+for IOTwebUI version 3.0
  */
 
 // =====================  x-device LOGIC_ANALYZER01.1
