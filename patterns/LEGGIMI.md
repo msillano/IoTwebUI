@@ -10,13 +10,16 @@ Ma non sono sempre rose e fiori: una serie di `quirk` nell'implematazione di Tuy
 
 #### condizioni
 1) Le **condizioni** attivano le azioni collegate una sola volta, appena la condizione è raggiunta (cioè quando la condizione passa da FALSO a VERO - edge triggering). Perchè altrimenti sarebbe impossibile la coesistenza tra comandi automatici e manuali. (vedi [qui](https://support.tuya.com/en/help/_detail/K9hutqbuwhik3)). In simboli: `trigger(condizione)`
-2) Condizioni in **AND**: (= tutte) attivano l'azione (trigger) quando diventano TUTTE vere (cioè quando l'ultima condizione passa da FALSO a VERO e tutte le altre sono già VERE). In simboli: `trigger(cond1 AND cond2 AND..)`
+2) Condizioni in **AND**: (= tutte) attivano l'azione (trigger) quando diventano TUTTE vere (cioè quando l'ultima condizione passa da FALSO a VERO e tutte le altre sono già VERE). In simboli: `trigger(cond1 AND cond2 AND ...)`
 3) Condizioni in **OR**: (= almeno una) sono indipendenti (cioè si ha un trigger ogni volta che una condizione passa da FALSO a VERO, a prescindere dalle altre).  In simboli: `trigger(cond1) OR trigger(cond2) OR ...`
-4) `trigger(X)` è una funzione monostabile che modella il funzionamento di TuyaCloud, che è vera se e solo se X<sub>t-1</sub> è FALSO e X<sub>t</sub> è VERO - Ricordare che Tuyacloud è attivato ad istanti discreti, e non continui.
+4) `trigger()` è una funzione monostabile che modella il funzionamento di TuyaCloud. Definizione: `trigger(X)` è vera se e solo se X<sub>t-1</sub> è FALSO e X<sub>t</sub> è VERO - Ricordare che TuyaCloud verifica le condizioni in istanti discreti, ha quindi un funzionamento sincrono.
+5) Con più condizioni, non è possibile mescolare AND e OR: o sono tutte in AND o sono tutte in OR.
 
 #### ambito
-L'**ambito** è presente solo nelle `automazioni`, ed è formato de vincoli logici aggiuntivi che non provocano attivazioni (non sono trigger) ma DEVONO essere VERI (level) per avere un trigger dalle condizioni, e quindi per attivare l'automazione.
-In altre parole 'quando' una automazione si attiva è deciso dalle condizioni (SE...) ma l'autorizzazione è data da _abilitazione + condizioni + ambito_ !
+1. L'**ambito** è presente solo nelle `automazioni`, ed è formato da vincoli logici aggiuntivi che non provocano attivazioni (non utilizzano `trigger()`) ma DEVONO essere VERI (level-asincrono) per avere un trigger dalle condizioni, e quindi per attivare l'automazione.
+In altre parole 'quando' una automazione si attiva è deciso dalle condizioni (SE...) ma l'autorizzazione è data da _abilitazione + ambito_ !
+2. Con più vicoli, non è possibile mescolare AND e OR: o sono tutti in AND o sono tutte in OR (ma indipendentemente dalla scelta per le condizioni)
+
 
 #### disabilitare automazioni
 Una `automazione disabilitata` ovviamente NON si avvia, a prescindere dalle condizioni e dall'ambito.<br>
@@ -27,12 +30,12 @@ Qualche problema si crea nel caso di una disabilitazione seguite da riabilitazio
 Talora è necessario ovviare all'assenza di varibili o ad altri limiti del linguaggio utilizzando device (reali o virtuali) come semaforo (1 bit di memoria) o come timer (usando la funzione countdown) etc.. e questo complica ovviamente la scene.
 
 ## Tuya pattern
-Alcuni problemi si presentano simili in applicazioni diverse. In questi casi, una valida soluzione generale è chiamata 'pattern' e si presta a essere utilizzata più e più volte.
+Alcuni problemi si presentano simili in diversi ambiti applictivi. In questi casi, una valida soluzione generale è chiamata 'pattern' e si presta ad essere utilizzata più e più volte.
 Questa è una collezione di pattern per scene Tuya, spesso nati e discussi nel [gruppo TuyaItalia](https://www.facebook.com/groups/tuyaitalia?locale=it_IT) poi sviluppati e documentati con l'aiuto di varie AI.
 
 
 #### contesti
-Per i pattern si sono presi in considerazione 3 contesti
+Per i **pattern** si sono presi in considerazione _3 contesti_:
 
 1) **Local linkage**: Scene Tuya che possono essere eseguite dirattamente dall'HUB e da device Zigbee, senza uso del WiFi e di TuyaCloud. Usare questo contesto comporta alcuni limiti alle condizioni e azioni utilizzabili, oltre al vincolo di tutte device Zigbee e all'impossibilitòà di usare device virtuali ed ambito. _LAN linkage_ è analogo come vincoli e prestazioni ma coinvolge più HUB Zigbee e richiede il WiFi.<br>
 Da preferire per un sistema affidabile e robusto.<br>
