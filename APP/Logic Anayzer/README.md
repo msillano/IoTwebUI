@@ -8,7 +8,7 @@ TEST of the Pattern ['filter for short events'](https://github.com/msillano/IoTw
 
 ### USAGE
 * **Clear**: Initializes the chart and updates the list of displayed signals, or optionally, clears the list.
-* **Add**: A large pop-up appears with all available devices and signals. By clicking _add_, you can select the signals to display in the _Logic Analyzer_ (note: if more than 5 signals are selected, the later ones will overwrite the earlier ones).
+* **Add**: A large pop-up appears with all available devices and signals. By clicking _add_ (`aggiungi`), you can select the signals to display in the _Logic Analyzer_ (note: if more than 5 signals are selected, the later ones will overwrite the earlier ones).
 _Of course, it makes sense to choose attributes (codes) with boolean values (true/false) or numeric values (0 => false, else => true: see 'countdown' (C) in the figure): for convenience, the third column shows the current values._
 
 ![image](https://github.com/user-attachments/assets/e0b957f3-9371-405e-9981-630d13f7dec6)
