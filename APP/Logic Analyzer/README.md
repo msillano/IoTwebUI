@@ -14,6 +14,7 @@ _Of course, it makes sense to choose attributes (codes) with boolean values (tru
 ![image](https://github.com/user-attachments/assets/e0b957f3-9371-405e-9981-630d13f7dec6)
 
 ### Notes
+* For installation, see [general instructions for APP](https://github.com/msillano/IoTwebUI/tree/main/APP#installation-and-use)
 * I find it convenient to use 2 virtual devices: a 4-switch device (`IN4_vdevo`, [see](https://www.tuyaexpo.com/product/1078029)) and a 2-switch device, which can be used interchangeably to simulate inputs or display outputs.
 * Additionally, I find it useful, for reliable and repeatable tests, to create a 'tap_to_run' for each test with driver functions that:
   1. Initialize inputs and outputs
