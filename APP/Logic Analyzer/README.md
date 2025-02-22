@@ -11,9 +11,6 @@ TEST of the Pattern ['filter for short events'](https://github.com/msillano/IoTw
 * **Add**: A large pop-up appears with all available devices and signals. By clicking _add_ (`aggiungi`), you can select the signals to display in the _Logic Analyzer_ (note: if more than 5 signals are selected, the later ones will overwrite the earlier ones).
 _Of course, it makes sense to choose attributes (codes) with boolean values (true/false) or numeric values (0 => false, else => true: see 'countdown' (C) in the figure): for convenience, the third column shows the current values._
 
-note: _the display has some latency, due to the frequency of TuyaCloud data polling (see `tuyaInterval`, in 'config.js', min 20s for short periods). Events shorter than 20s may NOT be displayed. Please keep this in mind when you schedule a test._
-
-
 ![image](https://github.com/user-attachments/assets/e0b957f3-9371-405e-9981-630d13f7dec6)
 
 ### Notes
@@ -22,6 +19,8 @@ note: _the display has some latency, due to the frequency of TuyaCloud data poll
   1. Initialize inputs and outputs
   2. Enable only the 'automations' involved in the test
   3. Manage the timing sequence of inputs, preferably covering all possible cases!
+* _The display has some latency, due to the frequency of TuyaCloud data polling (see `tuyaInterval`, in 'config.js', min 20s for short periods). Events shorter than 20s may NOT be displayed. Please keep this in mind when you schedule a test._
+
 
 ### Customizations
 Especially for creating documentation, it is possible to change the names of both devices and displayed signals, even using HTML to modify their appearance.
