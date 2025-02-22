@@ -11,6 +11,8 @@ TEST del Pattern ['filter for short events'](https://github.com/msillano/IoTwebU
 * **Add**: Appare un grande pop-up con tutti i device e segnali disponibili, cliccando su _aggiungi_ si scelgono i segnali da visualizzare nel _Logic Analyzer_ (nota: se si scelgono più di 5 segnali, gli ultimi sovrascrivono i primi).
 _Ovviamente ha senso scegliere attributi (code)  con valori booleani (true/false) oppure numerici (0 => false, else => true: vedi 'countdown' (C) in figura): per comodità la terza colonna presenta i valori attuali._
 
+nota: la visualizzazione ha una certa latenza, dovuta alla frequenza di polling dei dati di TuyaCloud (vedi `tuyaInterval`, in 'config.js', min 20s per bevi periodi). Eventi più brevi di 20s possono NON essere visualizzati. Tenere presente questo fattore programmando un test.
+
 ![image](https://github.com/user-attachments/assets/e0b957f3-9371-405e-9981-630d13f7dec6)
 
 ### note
