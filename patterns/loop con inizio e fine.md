@@ -17,7 +17,7 @@ Un ciclo esegue una serie di operazioni (es. accensione/spegnimento di un dispos
 
 **Codice**
 
-```
+```ruby
 A1. Automazione (trigger iniziale)
 SE (giorno_orario_definito("06:00", "tutti i giorni"))  // condixzione start - esempio
 POI (
@@ -88,35 +88,6 @@ Può essere semplificato come un _black-box_, con tre ingressi (`start`, `stop`,
 ---
 
 ### Implementazione 2 ('local linkage' e Switch Zigbee)
-**Device**: 
-* _Switch Zigbee (MASTER) con funzione di master._ <br>
-* _Switch Zigbee (SLAVE) con funzione di slave (Opzionale)._ <br>
-* evento COMTROLLO: se VERO, il loop è eseguito.
-
-**Codice**
-
-```
-A1) Automazione (OFF step)
-Se (test_dispositivo("CONTROLLO", "Stato", true)  // condizione di Loop
-   AND test_dispositivo("MASTER", "Switch_1", false))
-Poi (
-   set_device_status("SLAVE", "Switch_1", true),  //  SLAVE  (optional)
-   set_ritardo(0:04:00),                          // Fase OFF: 4 minuti  )   
-   set_device_status("MASTER", "Switch_1", true)
-   )  
-
-A2) Automazione (ON step)
-Se (test_dispositivo("CONTROLLO", "Stato", true)  // condizione di Loop
-   AND test_dispositivo("MASTER", "Switch_1", true))
-Poi (
-   set_device_status("SLAVE", "Switch_1", false),  //  SLAVE  (optional)
-   set_ritardo(0:02:00),                          // Fase ON: 2 minuti  )   
-   set_device_status("MASTER", "Switch_1", false)
-   )  
-
-
-```
-### Implementazione 2 ('local linkage' e Switch Zigbee)
 
 **Device**: 
 * _Switch Zigbee (MASTER) con funzione di master._ <br>
@@ -146,7 +117,9 @@ Poi (
 ```
 
 **Logica**:  
-Questa implementazione utilizza due automazioni (A1 e A2) per gestire un ciclo di accensione e spegnimento di due dispositivi Zigbee: un master e uno slave opzionale. La logica è controllata da un evento esterno ("CONTROLLO") che, se attivo (true), permette l'esecuzione del loop. 
+Questa implementazione utilizza due automazioni (A1 e A2) per gestire un ciclo ON / OFF  di due dispositivi Zigbee: un master e uno slave opzionale. La logica è controllata da un evento esterno ("CONTROLLO") che, se attivo (true), permette l'esecuzione del loop. 
+
+![image](https://github.com/user-attachments/assets/16cd38cb-9338-4825-8419-18456c2b0251)
 
 - **A1 (OFF step)**: Quando il dispositivo "CONTROLLO" è attivo e lo switch del master è spento (false), l'automazione accende lo switch dello slave (se presente), imposta un ritardo di 4 minuti (fase OFF), e poi accende lo switch del master.
   
@@ -156,7 +129,7 @@ Questa implementazione utilizza due automazioni (A1 e A2) per gestire un ciclo d
   
 1. **Flessibilità**: L'uso di uno slave opzionale permette di estendere la funzionalità del sistema senza dover modificare il codice principale. Questo rende la soluzione adattabile a diverse esigenze.
 
-2. **Controllo Ciclico**: Il loop di accensione e spegnimento è gestito in modo autonomo, con tempi predefiniti (4 minuti OFF e 2 minuti ON), il che lo rende ideale per applicazioni come l'illuminazione temporizzata o il controllo di dispositivi ciclici.
+2. **Controllo Ciclico**: Il loop di accensione e spegnimento è gestito in modo autonomo, con tempi predefiniti (e.g.: 4 minuti OFF e 2 minuti ON), il che lo rende ideale per applicazioni come l'illuminazione temporizzata o il controllo ciclico di dispositivi.
 
 3. **Semplicità di Implementazione**: Il codice è semplice e modulare, facilitando la manutenzione e l'aggiunta di nuove funzionalità da eseguire in fase ON o in fase OFF.
 
@@ -168,7 +141,7 @@ Questa implementazione utilizza due automazioni (A1 e A2) per gestire un ciclo d
 
 **Codice**
 
-```
+```ruby
 A1) Automazione (trigger iniziale)
 Se (cambio_condizione_meteo("sole", "alba", "0"))  // condizione 'alba' dal Cloud
 Poi (
@@ -200,4 +173,4 @@ Poi (
 
 ---
 ### Raccomandazioni
-- **Preferire Implementazione 1** (Zigbee) se possibile: più robusta e immediata.  
+- **Preferire Implementazione 2** (Zigbee) se possibile: più robusta e immediata.  
