@@ -5,9 +5,10 @@ _Loop con inizio e fine_
 ### Spiegazione del Pattern e Implementazioni
 
 **Modello Concettuale**  
-Un ciclo esegue una serie di operazioni (es. accensione/spegnimento di un dispositivo) in modo ripetuto. Il loop viene avviato da una condizione iniziale e terminato da una condizione finale. Una logica di ripresa garantisce che il ciclo si riavvii automaticamente dopo ogni completamento.
+Un ciclo esegue una serie di operazioni (es. accensione/spegnimento di un dispositivo) in modo ripetuto. Il loop viene avviato da una condizione iniziale e terminato da una condizione finale.
 
-**Esempio**
+**Esempi**
+* Luci lampeggianti di allarme
 *  irrigazione: da un orario di inizio ad uno di fine, viene ripetuto un periodo di irrigazione seguito da un periodo di pausa.
 ---
 
@@ -84,11 +85,84 @@ Può essere semplificato come un _black-box_, con tre ingressi (`start`, `stop`,
 
 ![image](https://github.com/user-attachments/assets/a1f6d7aa-a4cc-4528-a816-6a550c72761e)
 
-
-
 ---
 
-### Implementazione 2 (Cloud linkage)
+### Implementazione 2 ('local linkage' e Switch Zigbee)
+**Device**: 
+* _Switch Zigbee (MASTER) con funzione di master._ <br>
+* _Switch Zigbee (SLAVE) con funzione di slave (Opzionale)._ <br>
+* evento COMTROLLO: se VERO, il loop è eseguito.
+
+**Codice**
+
+```
+A1) Automazione (OFF step)
+Se (test_dispositivo("CONTROLLO", "Stato", true)  // condizione di Loop
+   AND test_dispositivo("MASTER", "Switch_1", false))
+Poi (
+   set_device_status("SLAVE", "Switch_1", true),  //  SLAVE  (optional)
+   set_ritardo(0:04:00),                          // Fase OFF: 4 minuti  )   
+   set_device_status("MASTER", "Switch_1", true)
+   )  
+
+A2) Automazione (ON step)
+Se (test_dispositivo("CONTROLLO", "Stato", true)  // condizione di Loop
+   AND test_dispositivo("MASTER", "Switch_1", true))
+Poi (
+   set_device_status("SLAVE", "Switch_1", false),  //  SLAVE  (optional)
+   set_ritardo(0:02:00),                          // Fase ON: 2 minuti  )   
+   set_device_status("MASTER", "Switch_1", false)
+   )  
+
+
+```
+### Implementazione 2 ('local linkage' e Switch Zigbee)
+
+**Device**: 
+* _Switch Zigbee (MASTER) con funzione di master._ <br>
+* _Switch Zigbee (SLAVE) con funzione di slave (Opzionale)._ <br>
+* evento COMTROLLO: se VERO, il loop è eseguito.
+
+**Codice**
+
+```ruby
+A1) Automazione (OFF step)
+Se (test_dispositivo("CONTROLLO", "enable", true)     // condizione di Loop
+   AND test_dispositivo("MASTER", "Switch_1", false))
+Poi (
+   set_device_status("SLAVE", "Switch_1", true),     //  SLAVE  (optional)
+   set_ritardo(0:04:00),                             // Fase OFF: e.g. 4 minuti  )   
+   set_device_status("MASTER", "Switch_1", true)
+   )  
+
+A2) Automazione (ON step)
+Se (test_dispositivo("CONTROLLO", "enable", true)     // condizione di Loop
+   AND test_dispositivo("MASTER", "Switch_1", true))
+Poi (
+   set_device_status("SLAVE", "Switch_1", false),    //  SLAVE  (optional)
+   set_ritardo(0:02:00),                             // Fase ON: e.g. 2 minuti  )   
+   set_device_status("MASTER", "Switch_1", false)
+   )  
+```
+
+**Logica**:  
+Questa implementazione utilizza due automazioni (A1 e A2) per gestire un ciclo di accensione e spegnimento di due dispositivi Zigbee: un master e uno slave opzionale. La logica è controllata da un evento esterno ("CONTROLLO") che, se attivo (true), permette l'esecuzione del loop. 
+
+- **A1 (OFF step)**: Quando il dispositivo "CONTROLLO" è attivo e lo switch del master è spento (false), l'automazione accende lo switch dello slave (se presente), imposta un ritardo di 4 minuti (fase OFF), e poi accende lo switch del master.
+  
+- **A2 (ON step)**: Quando il dispositivo "CONTROLLO" è attivo e lo switch del master è acceso (true), l'automazione spegne lo switch dello slave (se presente), imposta un ritardo di 2 minuti (fase ON), e poi spegne lo switch del master.
+
+**Vantaggi**:
+  
+1. **Flessibilità**: L'uso di uno slave opzionale permette di estendere la funzionalità del sistema senza dover modificare il codice principale. Questo rende la soluzione adattabile a diverse esigenze.
+
+2. **Controllo Ciclico**: Il loop di accensione e spegnimento è gestito in modo autonomo, con tempi predefiniti (4 minuti OFF e 2 minuti ON), il che lo rende ideale per applicazioni come l'illuminazione temporizzata o il controllo di dispositivi ciclici.
+
+3. **Semplicità di Implementazione**: Il codice è semplice e modulare, facilitando la manutenzione e l'aggiunta di nuove funzionalità da eseguire in fase ON o in fase OFF.
+
+-----
+
+### Implementazione 3 (Cloud linkage)
 
 **Device**: _Non richiede device dedicate_. 
 
@@ -123,6 +197,7 @@ Poi (
     automazione_disabilita("A3"),                     // Disabilita la ripresa
     set_device_status("irrigatore", "attivo", false)  // OFF device - opzionale
 )
+
 ---
 ### Raccomandazioni
 - **Preferire Implementazione 1** (Zigbee) se possibile: più robusta e immediata.  
