@@ -13,7 +13,7 @@ Un ciclo esegue una serie di operazioni (es. accensione/spegnimento di un dispos
 ---
 
 ### Implementazione 1 ('local linkage' e Switch Zigbee)
-**Device**: _Switch Zigbee (SWITCH) con funzione di master e timer_. 
+**Device**: _Switch Zigbee (SWITCH) con funzione di CONTROL e timer_. 
 
 **Codice**
 
@@ -22,7 +22,7 @@ A1. Automazione (trigger iniziale)
 SE (giorno_orario_definito("06:00", "tutti i giorni"))  // condixzione start - esempio
 POI (
    set_device_status("irrigatore", "attivo", false)  
-   set_device_status("SWITCH", "stato", true),       // set ON master SWITCH
+   set_device_status("SWITCH", "stato", true),       // set ON CONTROL SWITCH
    set_device_status("SWITCH", "countdown", 50400)   // Countdown fino al tramonto
                                                      // 20:00 - 06:00 = 14h →  14 * 3600s
   )
@@ -38,7 +38,7 @@ POI (
      
 A3. Automazione (riavvio loop)
 SE (
-    test_dispositivo("SWITCH", "stato", "==", true)       // se master SWIRCH ON
+    test_dispositivo("SWITCH", "stato", "==", true)       // se CONTROL SWITCH ON
   AND                                                     // AND (tutte le condizioni...)
     test_dispositivo("irrigatore", "attivo", "==", false) // Ciclo precedente completato
   )
@@ -77,8 +77,8 @@ A4. **Backup**
 **Vantaggi**:  
 - **Loop flessibile**: Azioni e durata del loop sono definite in modo indipendente in E2.  
 - **Spegnimento garantito**: Doppia sicurezza (countdown + automazione A4).
-- **Switch come master**: Può essere disattivato manualmente in emergenza o esteso con altre condizioni (e.g. sensore pioggia). 
-- **output**: master SWITCH ON ha il significato 'loop in corso' e può essere usato come evento, e.g. pilotare una spia. 
+- **Switch come control**: Può essere disattivato manualmente in emergenza o esteso con altre condizioni (e.g. sensore pioggia). 
+- **output**: CONTROL SWITCH ON ha il significato 'loop in corso' e può essere usato come evento, e.g. pilotare una spia. 
 
 **Modello**<br>
 Può essere semplificato come un _black-box_, con tre ingressi (`start`, `stop`, `done-loop`) e due uscite (`run-loop`, `status`).
@@ -173,4 +173,4 @@ Poi (
 
 ---
 ### Raccomandazioni
-- **Preferire Implementazione 2** (Zigbee) se possibile: più robusta e immediata.  
+- **Preferire Implementazione 1** (Zigbee): più robusta e affidabile, oppure Implementazione 2, molto semplice.  
