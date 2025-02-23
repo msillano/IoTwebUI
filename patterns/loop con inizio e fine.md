@@ -116,10 +116,12 @@ Poi (
    )  
 ```
 
+![image](https://github.com/user-attachments/assets/16cd38cb-9338-4825-8419-18456c2b0251)
+
 **Logica**:  
 Questa implementazione utilizza due automazioni (A1 e A2) per gestire un ciclo ON / OFF  di due dispositivi Zigbee: un master e uno slave opzionale. La logica è controllata da un evento esterno ("CONTROLLO") che, se attivo (true), permette l'esecuzione del loop. 
 
-![image](https://github.com/user-attachments/assets/16cd38cb-9338-4825-8419-18456c2b0251)
+![image](https://github.com/user-attachments/assets/403f14f5-80fc-41c6-b2e9-d39cef6a0ddd)
 
 - **A1 (OFF step)**: Quando il dispositivo "CONTROLLO" è attivo e lo switch del master è spento (false), l'automazione accende lo switch dello slave (se presente), imposta un ritardo di 4 minuti (fase OFF), e poi accende lo switch del master.
   
