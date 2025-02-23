@@ -92,7 +92,7 @@ Può essere semplificato come un _black-box_, con tre ingressi (`start`, `stop`,
 **Device**: 
 * _Switch Zigbee (MASTER) con funzione di master._ <br>
 * _Switch Zigbee (SLAVE) con funzione di slave (Opzionale)._ <br>
-* evento COMTROLLO: se VERO, il loop è eseguito.
+* evento CONTROLLO: se VERO, il loop è eseguito.
 
 **Codice**
 
