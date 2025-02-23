@@ -97,7 +97,7 @@ Può essere semplificato come un _black-box_, con tre ingressi (`start`, `stop`,
 **Codice**
 
 ```ruby
-A1) Automazione (OFF step)
+AL1) Automazione (OFF step)
 Se (test_dispositivo("CONTROLLO", "enable", true)     // condizione di Loop
    AND test_dispositivo("MASTER", "Switch_1", false))
 Poi (
@@ -106,7 +106,7 @@ Poi (
    set_device_status("MASTER", "Switch_1", true)
    )  
 
-A2) Automazione (ON step)
+AL2) Automazione (ON step)
 Se (test_dispositivo("CONTROLLO", "enable", true)     // condizione di Loop
    AND test_dispositivo("MASTER", "Switch_1", true))
 Poi (
@@ -119,13 +119,13 @@ Poi (
 ![image](https://github.com/user-attachments/assets/16cd38cb-9338-4825-8419-18456c2b0251)
 
 **Logica**:  
-Questa implementazione utilizza due automazioni (A1 e A2) per gestire un ciclo ON / OFF  di due dispositivi Zigbee: un master e uno slave opzionale. La logica è controllata da un evento esterno ("CONTROLLO") che, se attivo (true), permette l'esecuzione del loop. 
+Questa implementazione utilizza due automazioni (AL1 e AL2) per gestire un ciclo ON / OFF  di due dispositivi Zigbee: un master e uno slave opzionale. La logica è controllata da un evento esterno ("CONTROLLO") che, se attivo (true), permette l'esecuzione del loop. 
 
 ![image](https://github.com/user-attachments/assets/403f14f5-80fc-41c6-b2e9-d39cef6a0ddd)
 
-- **A1 (OFF step)**: Quando il dispositivo "CONTROLLO" è attivo e lo switch del master è spento (false), l'automazione accende lo switch dello slave (se presente), imposta un ritardo di 4 minuti (fase OFF), e poi accende lo switch del master.
+- **AL1 (OFF step)**: Quando il dispositivo "CONTROLLO" è attivo e lo switch del master è spento (false), l'automazione accende lo switch dello slave (se presente), imposta un ritardo di 4 minuti (fase OFF), e poi accende lo switch del master.
   
-- **A2 (ON step)**: Quando il dispositivo "CONTROLLO" è attivo e lo switch del master è acceso (true), l'automazione spegne lo switch dello slave (se presente), imposta un ritardo di 2 minuti (fase ON), e poi spegne lo switch del master.
+- **AL2 (ON step)**: Quando il dispositivo "CONTROLLO" è attivo e lo switch del master è acceso (true), l'automazione spegne lo switch dello slave (se presente), imposta un ritardo di 2 minuti (fase ON), e poi spegne lo switch del master.
 
 **Vantaggi**:
   
