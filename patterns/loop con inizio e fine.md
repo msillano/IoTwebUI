@@ -170,7 +170,7 @@ Poi (
     automazione_disabilita("A3"),                     // Disabilita la ripresa
     set_device_status("irrigatore", "attivo", false)  // OFF device - opzionale
 )
-
+```
 ---
 ### Raccomandazioni
 - **Preferire Implementazione 1** (Zigbee): più robusta e affidabile, oppure Implementazione 2, molto semplice.  
