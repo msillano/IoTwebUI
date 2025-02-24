@@ -22,7 +22,10 @@ I relay elettromeccanico ad impulsi (Finder) sono molto usati negli impianti dom
 Ovviamente le sequenze sono predefinite meccanicamente, e NON possoo essere cambiate senza cambiare il relat finder.
 
 Da qui l'interesse ad usare smart relay al posto dei relay Finder.
-Prendimo in caso con 2 luci (o gruppi di luci): S possono avere in tutto 4 possibilità (0 = spento, 1 = acceso): 00, 01, 10, 11, che come si vede, rappresentano un conteggio binario ed anche la sequenza seguita da 
+
+
+Prendimo in caso con 2 luci (o gruppi di luci): Si possono avere in tutto 4 possibilità (0 = spento, 1 = acceso): 00, 01, 10, 11, che come si vede, rappresentano una sequenza di conteggio binario.
+Questa è la sequenza più semplice da implementare per 1, 2, 3 etc. luci!
 
 
 
