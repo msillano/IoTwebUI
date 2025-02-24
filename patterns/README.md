@@ -1,5 +1,5 @@
 # Tuya Patterns for Scenes
-[versione italiana]()
+[versione italiana](https://github.com/msillano/IoTwebUI/blob/main/patterns/LEGGIMI.md)
 
 Creating **`scenes`** in Tuya is quite straightforward: a series of interfaces and menus guide the user in creating **`tap_to_run`** (triggered manually or by other scenes, without conditions) and **`automations`** (triggered by conditions based on events).
 
