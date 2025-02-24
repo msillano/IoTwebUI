@@ -45,7 +45,7 @@ nota: nulla vieta di usare questi pattern con device WiFI (_Cloud linkage_): si 
 2) **Cloud linkage**: Tutte le scene valide in Tuya, con uso del Cloud, etc. <br>
 Poggiandosi sul Cloud, richiedono un WiFi affidabile 24/7. In genere più semplici dei pattern equivalenti _local linkage_.
 
-3) **REGOLE di IoTwebUI**: Le [REGOLE](https://github.com/msillano/IoTwebUI/blob/main/LEGGIMI30.md#regole---sintassi) sono l'equivalente delle 'scene' Tuya. Utilizzano [MACRO](https://github.com/msillano/IoTwebUI/blob/main/LEGGIMI30.md#regole---macro) potenti, che semplificano la loro definizione, e sono scritte dall'utente in un'dialetto' javascript. Sono 'Turing complete' ovvero posso implementare qualsiasi algoritmo.<br>
+3) **REGOLE di IoTwebUI**: Le [REGOLE](https://github.com/msillano/IoTwebUI/blob/main/LEGGIMI30.md#regole---sintassi) sono l'equivalente delle 'scene' Tuya. Utilizzano [MACRO](https://github.com/msillano/IoTwebUI/blob/main/LEGGIMI30.md#regole---macro) potenti, che semplificano la loro definizione, e sono scritte dall'utente in un 'dialetto' javascript. Sono 'Turing complete' ovvero posso implementare qualsiasi algoritmo.<br>
 Per realizzare alcune APP sono indispensabili (e.g. Thermostat, pieno di operazioni aritmetiche!), per i pattern rappresantono talora una semplice e potente alternativa. <br>
 Dipendono dall'esecuzione di **IoTwebUI** su un server, sono qundi la soluzione meno robusta. 
 
