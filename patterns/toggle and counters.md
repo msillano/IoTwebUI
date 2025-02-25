@@ -51,6 +51,7 @@ Questa è la sequenza più semplice da implementare per 1, 2, 3 etc. luci: occor
   ![image](https://github.com/user-attachments/assets/5107e6c2-f0ef-4927-b579-50bd101a3cd3)
 Simulazione, usando 'loop' come ingresso.
 
+---
 ### Implementazione 2: contatore binario down ('local linking' con Switch Zigbee)
 
 **Device**:  _N Switch Zigbee (BIT0, BIT1,...)  con controllo da pulsante (reset rocker)_.
