@@ -26,7 +26,7 @@ Da qui l'interesse ad usare smart relay al posto dei relay Finder.
 ---
 ### Implementazione 1: contatore binario up ('local linking' con Switch Zigbee)
 
-**Device**:  _N Switch Zigbee (BIT0, BIT1,...) con controllo da pulsante (reset rocker)_.
+**Device**:  _N Switch Zigbee (BIT0, BIT1,...) di cui uno con controllo da pulsante (reset rocker)_.
 
 Prendimo in caso con 2 luci (o gruppi di luci): Si possono avere in tutto 4 possibilità (0 = spento, 1 = acceso): 00, 01, 10, 11, che come si vede, rappresentano una sequenza di conteggio binario.
 Questa è la sequenza più semplice da implementare per 1, 2, 3 etc. luci: occorrono 1, 2, 3 etc. smart relay. Il primo (BIT0) è collegato sia ai pulsanti che ad una luce, gli altri sono collegati solo alle luci:
@@ -35,7 +35,7 @@ Questa è la sequenza più semplice da implementare per 1, 2, 3 etc. luci: occor
 
 **Codice**
 ```ruby
-// comando di BIT0 da user
+// comando di BIT0 da user, alternativa ai pulsanti 
      Se ( 
         trigger( test_dispositivo( "USER", "Switch_1", false)))
      Poi (
@@ -53,12 +53,12 @@ Simulazione, usando 'loop' come ingresso.
 
 ### Implementazione 2: contatore binario down ('local linking' con Switch Zigbee)
 
-**Device**:  _N Switch Zigbee (BIT0, BIT1,...) con controllo da pulsante (reset rocker)_.
+**Device**:  _N Switch Zigbee (BIT0, BIT1,...)  con controllo da pulsante (reset rocker)_.
 
 La sequenza inversa, cioè il conteggio all'indietro (11, 10, 01, 00), è altrettanto facile da realizzare:
 **Codice**
 ```ruby
-// comando di BIT0 da user
+// comando di BIT0 da user, alternativa ai pulsanti
      Se ( 
         trigger( test_dispositivo( "USER", "Switch_1", false)))
      Poi (
@@ -84,7 +84,7 @@ nota: mentre il conteggio binario non presenta glitch, il contatore in una base 
 
 **Codice**
 ```ruby
-// comando di BIT0 da user
+// comando di BIT0 da user, alternativa ai pulsanti
      Se ( 
         trigger( test_dispositivo( "USER", "Switch_1", false)))
      Poi (
@@ -114,7 +114,7 @@ RST3:                  // per avere il reset a 3
 Per evitare i glitch dell'implementazione 3, si può aggiungere un secondo relay ad ogni relay contatore, in funzione di 'slave', controllato dal master. 
 **Codice**
 ```ruby
-// comando di BIT0 da user
+// comando di BIT0 da user, non direttamente con pulsanti!
      Se ( 
         trigger( test_dispositivo( "USER", "Switch_1", true )))  // nota: true!
      Poi (
