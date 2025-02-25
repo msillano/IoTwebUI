@@ -35,6 +35,12 @@ Questa è la sequenza più semplice da implementare per 1, 2, 3 etc. luci: occor
 
 **Codice**
 ```ruby
+// comando di BIT0 da user
+     Se ( 
+        trigger( test_dispositivo( "USER", "Switch_1", false)))
+     Poi (
+        set_device_status("BIT0","Switch_1","toggle"))
+
 // per BIT1 - analogo per BIT2,...
  TU1:
      Se ( 
@@ -52,8 +58,14 @@ Simulazione, usando 'loop' come ingresso.
 La sequenza inversa, cioè il conteggio all'indietro (11, 10, 01, 00), è altrettanto facile da realizzare:
 **Codice**
 ```ruby
-// per BIT1 - analogo per BIT2,...
-TD1:
+// comando di BIT0 da user
+     Se ( 
+        trigger( test_dispositivo( "USER", "Switch_1", false)))
+     Poi (
+        set_device_status("BIT0","Switch_1","toggle"))
+
+
+TD1:                        // per BIT1 - analogo per BIT2,...
      Se ( 
         trigger( test_dispositivo( "BIT0", "Switch_1", true)))
      Poi (
@@ -66,13 +78,50 @@ TD1:
 
 **Device**:  _N Switch Zigbee (BIT0, BIT1,...) con controllo da pulsante (reset rocker)_.
 
-Per contare invece in una base qualsiasi (esempio, base 3, conteggio: 0,1,2,0,1...) 
-occorrono N relay, con N  tale che  2<sup>N-1</sup> &lt; base &lt;= 2<sup>N</sup> con le automazione per avere un contatore binari 'up', ed aggiungere una 'automazione' di 'reset': che cioè porti a 00 una volta arrivati alla base (3 nell'esempio)
+Per contare invece in una base qualsiasi (esempio, base 3, conteggio: 0, 1, 2, 0, 1... ovvero: 00, 01, 10, 00, 01..) 
+occorrono N relay, con N  tale che  2<sup>N-1</sup> &lt; base &lt;= 2<sup>N</sup> con le automazione per avere un contatore binario 'up', ed aggiungere una 'automazione' di 'reset': che cioè porti a 00 una volta arrivati alla base (3 nell'esempio)<br>
+nota: mentre il conteggio binario non presenta glitch, il contatore in una base qualsiasi, con funzionamentoo sequenziale, può presentare 'glitch' (come lampeggi spuri delle luci).
 
 **Codice**
 ```ruby
+// comando di BIT0 da user
+     Se ( 
+        trigger( test_dispositivo( "USER", "Switch_1", false)))
+     Poi (
+        set_device_status("BIT0","Switch_1","toggle"))
+
+TU1:                   // per BIT1 - analogo per BIT2,...
+     Se ( 
+        trigger( test_dispositivo( "BIT0", "Switch_1", false)))
+     Poi (
+        set_device_status("BIT1","Switch_1","toggle"))
+
+RST3:                  // per avere il reset a 3
+     Se ( 
+        trigger( test_dispositivo( "BIT0", "Switch_1", true)
+              AND
+                 test_dispositivo( "BIT1", "Switch_1", true)))
+     Poi (
+        set_device_status("BIT0","Switch_1",false))
+
+```
+![image](https://github.com/user-attachments/assets/4e232f17-dd66-4548-a147-53c95b8265d5)
+
+
+---
+### Implementazione 4: counter by 3, with master-slave (Cloud link)
+
+Per evitare i glitch dell'implementazione 3, si può aggiungere un secondo relay ad ogni relay contatore, in funzione di 'slave', controllato dal master. 
+**Codice**
+```ruby
+// comando di BIT0 da user
+     Se ( 
+        trigger( test_dispositivo( "USER", "Switch_1", true )))  // nota: true!
+     Poi (
+        set_device_status("BIT0","Switch_1","toggle"))
+
 // per BIT1 - analogo per BIT2,...
-TU1:
+TU1:   // simile a Implementazione 3
      Se ( 
         trigger( test_dispositivo( "BIT0", "Switch_1", false)))
      Poi (
@@ -86,6 +135,37 @@ RST3:
      Poi (
         set_device_status("BIT0","Switch_1",false))
 
+// gestione dei relay slave: SL0 e SL1
+ Se (
+    trigger( test_dispositivo( "USER", "Switch_1", false ))  // nota: false!
+ AND ambito(test_dispositivo( "BIT0", "Switch_1", true)))
+ Poi (
+     set_device_status("SL0","Switch_1",true))
+
+ Se (
+    trigger( test_dispositivo( "USER", "Switch_1", false ))  // nota: false!
+ AND ambito(test_dispositivo( "BIT0", "Switch_1", false)))
+ Poi (
+     set_device_status("SL0","Switch_1", false))
+
+ Se (
+    trigger( test_dispositivo( "USER", "Switch_1", false ))  // nota: false!
+ AND ambito(test_dispositivo( "BIT1", "Switch_1", true)))
+ Poi (
+     set_device_status("SL1","Switch_1",true))
+
+ Se (
+    trigger( test_dispositivo( "USER", "Switch_1", false ))  // nota: false!
+ AND ambito(test_dispositivo( "BIT1", "Switch_1", false)))
+ Poi (
+     set_device_status("SL1","Switch_1", false))
 ```
-![image](https://github.com/user-attachments/assets/4e232f17-dd66-4548-a147-53c95b8265d5)
+![Screenshot 2025-02-25 173927](https://github.com/user-attachments/assets/0f7e4135-3520-4ded-9819-56285c1bd5b8)
+
+
+note:<br>
+* Poichè é necessario usare AMBITO, questa implementazione è solo per 'Cloud linkage'.
+* I due relay MASTER possono quindi essere virtuali! I due SLAVE devono essere reali, perchè pilotano il carico.
+* Notare come i master comutano sul fronte in salita dell'input, mentre gli slave sul fronte in discesa.
+* L'uscita è 'pulita' (senza glitch) e sincrona: tutti i relay SLAVE commutano allo stesso tempo!
 
