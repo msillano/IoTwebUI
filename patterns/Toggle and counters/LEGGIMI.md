@@ -15,7 +15,7 @@ Questa funzione è utile per implementare contatori binari (i.e. in base 2, quin
 
 Esempio: simulazione relay passo-passo Finder
 
-I relay elettromeccanico ad impulsi (Finder) sono molto usati negli impianti domestici per controllare una o più luci con uno o più pulsanti. Il modello 26 permette di gestire due luci, con varie sequenze a seconda del tipo:
+I relay elettromeccanico ad impulsi (Finder) sono molto usati negli impianti domestici per controllare una o più luci con uno o più pulsanti. Il modello 26. ad esempio, permette di gestire due luci tramite pulsanti, con varie sequenze a seconda del tipo:
 
 ![finder01](https://github.com/user-attachments/assets/1fa05d9d-947a-4944-a6ed-d1b5cc226ee5)
 
@@ -23,9 +23,10 @@ Ovviamente le sequenze sono predefinite meccanicamente, e NON possoo essere camb
 
 Da qui l'interesse ad usare smart relay al posto dei relay Finder.
 
+![fig001](https://github.com/user-attachments/assets/08601739-e811-4408-8b76-de448febe187)
 
 Prendimo in caso con 2 luci (o gruppi di luci): Si possono avere in tutto 4 possibilità (0 = spento, 1 = acceso): 00, 01, 10, 11, che come si vede, rappresentano una sequenza di conteggio binario.
-Questa è la sequenza più semplice da implementare per 1, 2, 3 etc. luci!
+Questa è la sequenza più semplice da implementare per 1, 2, 3 etc. luci: occorrono 1, 2, 3 etc. smart relay. Il primo (BIT0) è collegato ai pulsanti e ad una luce, gli altri sono collegati alle altre luci:
 
 
 
