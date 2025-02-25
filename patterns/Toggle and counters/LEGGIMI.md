@@ -19,7 +19,7 @@ I relay elettromeccanico ad impulsi (Finder) sono molto usati negli impianti dom
 
 ![finder01](https://github.com/user-attachments/assets/1fa05d9d-947a-4944-a6ed-d1b5cc226ee5)
 
-Ovviamente le sequenze sono predefinite meccanicamente, e NON possoo essere cambiate senza cambiare il relat finder.
+Ovviamente le sequenze sono predefinite meccanicamente, e NON possono essere cambiate senza cambiare il relay Finder.
 
 Da qui l'interesse ad usare smart relay al posto dei relay Finder.
 
@@ -36,8 +36,9 @@ Questa è la sequenza più semplice da implementare per 1, 2, 3 etc. luci: occor
 **Codice**
 ```ruby
 // per BIT1 - analogo per BIT2,...
+ TU1:
      Se ( 
-        trigger( test_dispositivo( "BIT0", "Switch_1", false))
+        trigger( test_dispositivo( "BIT0", "Switch_1", false)))
      Poi (
         set_device_status("BIT1","Switch_1","toggle"))
 ```
@@ -52,9 +53,38 @@ La sequenza inversa, cioè il conteggio all'indietro (11, 10, 01, 00), è altret
 **Codice**
 ```ruby
 // per BIT1 - analogo per BIT2,...
+TD1:
      Se ( 
-        trigger( test_dispositivo( "BIT0", "Switch_1", true))
+        trigger( test_dispositivo( "BIT0", "Switch_1", true)))
      Poi (
         set_device_status("BIT1","Switch_1","toggle"))
 ```
 ![Screenshot 2025-02-25 082700](https://github.com/user-attachments/assets/923caad3-f436-4a5b-99cf-ff0faa399aa6)
+
+---
+### Implementazione 3: contatore up in una base qualsiasi ('local linking' con Switch Zigbee)
+
+**Device**:  _N Switch Zigbee (BIT0, BIT1,...) con controllo da pulsante (reset rocker)_.
+
+Per contare invece in una base qualsiasi (esempio, base 3, conteggio: 0,1,2,0,1...) 
+occorrono N relay, con N  tale che  2<sup>N-1</sup> &lt; base &lt;= 2<sup>N</sup> ed aggiungere una 'automazione' di 'reset': che cioè porti a 00 una volta arrivati alla base (3 nell'esempio)
+
+**Codice**
+```ruby
+// per BIT1 - analogo per BIT2,...
+TU1:
+     Se ( 
+        trigger( test_dispositivo( "BIT0", "Switch_1", false)))
+     Poi (
+        set_device_status("BIT1","Switch_1","toggle"))
+
+RST3:
+     Se ( 
+        trigger( test_dispositivo( "BIT0", "Switch_1", true)
+              AND
+                 test_dispositivo( "BIT1", "Switch_1", true)))
+     Poi (
+        set_device_status("BIT0","Switch_1",false))
+
+```
+
