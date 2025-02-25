@@ -23,10 +23,25 @@ Ovviamente le sequenze sono predefinite meccanicamente, e NON possoo essere camb
 
 Da qui l'interesse ad usare smart relay al posto dei relay Finder.
 
-![fig001](https://github.com/user-attachments/assets/08601739-e811-4408-8b76-de448febe187)
+---
+### Implementazione 1: contatore binario up ('local linking' con Switch Zigbee)
+
+**Device**:  _N Switch Zigbee (BIT0, BIT1,...) con controllo da pulsante (reset rocker)_.
 
 Prendimo in caso con 2 luci (o gruppi di luci): Si possono avere in tutto 4 possibilità (0 = spento, 1 = acceso): 00, 01, 10, 11, che come si vede, rappresentano una sequenza di conteggio binario.
-Questa è la sequenza più semplice da implementare per 1, 2, 3 etc. luci: occorrono 1, 2, 3 etc. smart relay. Il primo (BIT0) è collegato ai pulsanti e ad una luce, gli altri sono collegati alle altre luci:
+Questa è la sequenza più semplice da implementare per 1, 2, 3 etc. luci: occorrono 1, 2, 3 etc. smart relay. Il primo (BIT0) è collegato sia ai pulsanti che ad una luce, gli altri sono collegati solo alle luci:
 
+![fig001](https://github.com/user-attachments/assets/08601739-e811-4408-8b76-de448febe187)
+
+**Codice**
+```ruby
+// per BIT1 - analogo per BIT2,...
+     Se ( 
+        trigger( test_dispositivo( "BIT0", "Switch_1", false))
+     Poi (
+        set_device_status("BIT1","Switch_1","toggle"))
+```
+  ![image](https://github.com/user-attachments/assets/5107e6c2-f0ef-4927-b579-50bd101a3cd3)
+Simulazione, usando 'loop' come ingresso.
 
 
