@@ -48,7 +48,7 @@ Simulazione, usando 'loop' come ingresso.
 
 **Device**:  _N Switch Zigbee (BIT0, BIT1,...) con controllo da pulsante (reset rocker)_.
 
-La sequenza inversa, cioè 'l conteggio all'indietro, è altrettanto facile da realizzare:
+La sequenza inversa, cioè il conteggio all'indietro (11, 10, 01, 00), è altrettanto facile da realizzare:
 **Codice**
 ```ruby
 // per BIT1 - analogo per BIT2,...
