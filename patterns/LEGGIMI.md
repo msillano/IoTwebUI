@@ -18,7 +18,7 @@ Ma non sono sempre rose e fiori: una serie di `quirk` nell'implematazione di Tuy
 #### ambito
 1. L'**ambito** è presente solo nelle `automazioni`, ed è formato da vincoli logici aggiuntivi che non provocano attivazioni (non utilizzano `trigger()`) ma DEVONO essere VERI (level-asincrono) per avere un trigger dalle condizioni, e quindi per attivare l'automazione.
 In altre parole 'quando' una automazione si attiva è deciso dalle condizioni (SE...) ma l'autorizzazione è data da _abilitazione + ambito_ !
-2. Con più vicoli, non è possibile mescolare AND e OR: o sono tutti in AND o sono tutti in OR (ma indipendentemente dalla scelta per le condizioni)
+2. Con più vincoli, non è possibile mescolare AND e OR: o sono tutti in AND o sono tutti in OR (ma indipendentemente dalla scelta per le condizioni)
 
 
 #### disabilitare automazioni
