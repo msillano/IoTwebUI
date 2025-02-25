@@ -67,7 +67,7 @@ TD1:
 **Device**:  _N Switch Zigbee (BIT0, BIT1,...) con controllo da pulsante (reset rocker)_.
 
 Per contare invece in una base qualsiasi (esempio, base 3, conteggio: 0,1,2,0,1...) 
-occorrono N relay, con N  tale che  2<sup>N-1</sup> &lt; base &lt;= 2<sup>N</sup> ed aggiungere una 'automazione' di 'reset': che cioè porti a 00 una volta arrivati alla base (3 nell'esempio)
+occorrono N relay, con N  tale che  2<sup>N-1</sup> &lt; base &lt;= 2<sup>N</sup> con le automazione per avere un contatore binari 'up', ed aggiungere una 'automazione' di 'reset': che cioè porti a 00 una volta arrivati alla base (3 nell'esempio)
 
 **Codice**
 ```ruby
@@ -87,4 +87,5 @@ RST3:
         set_device_status("BIT0","Switch_1",false))
 
 ```
+![image](https://github.com/user-attachments/assets/4e232f17-dd66-4548-a147-53c95b8265d5)
 
