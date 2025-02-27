@@ -24,4 +24,4 @@ _Tra le funzioni che mi hanno più colpito:_
 ![image](https://github.com/user-attachments/assets/e2994425-04a5-498a-91f6-f855aeec9cc2)
 
 BatteryTester02 presenta le (poche) modifiche richieste per usare questo voltmetro!
-IL grande vantaggio è che NON è necessario l'uso di CLONER01, che consuma molte risorse.
+Il grande vantaggio è che NON è necessario l'uso di CLONER01, che consuma molte risorse.
