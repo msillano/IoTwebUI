@@ -20,5 +20,7 @@ _Tra le funzioni che mi hanno più colpito:_
 * Sempre a proposito di Tuya, nelle 'scene' il device presenta 34 (!) CONDIZIONI diverse (di cui due in cinese!) e 21 AZIONI. Veramente ricco: ci vorrà un po' di tempo per studiarlo bene!
 
 <hr>
+![image](https://github.com/user-attachments/assets/e2994425-04a5-498a-91f6-f855aeec9cc2)
+
 BatteryTester02 presenta le (poche) modifiche richieste per usare questo voltmetro!
 IL grande vantaggio è che NON è necessario l'uso di CLONER01, che consuma molte risorse.
