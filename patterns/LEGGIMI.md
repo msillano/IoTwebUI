@@ -24,13 +24,13 @@ In altre parole 'quando' una automazione si attiva è deciso dalle condizioni (S
 #### disabilitare automazioni
 Una `automazione disabilitata` ovviamente NON si avvia, a prescindere dalle condizioni e dall'ambito.<br>
 Se si disabilita una `automazione` in corso di esecuzione, questa interrompe l'esecuzione prima del task successivo.<br>
-Qualche problema si crea nel caso di una disabilitazione seguite da riabilitazione durante l'esecuzione di un delay. Una disabilitazione viene onorata al termine del delay in corso. Se però interviene una riabilitazione prima del termine del delay, il comportamento può variare: in alcuni casi l'esecuzione abortisce (Zigbee) correttamente in altri, invece, _NON abortisce, ignorando completamente la disabilitazione_! E' quindi una situazione da evitare, perchè NON affidabile!
+Qualche problema si crea nel caso di una disabilitazione seguita da riabilitazione durante l'esecuzione di un delay. Una disabilitazione viene onorata al termine del delay in corso. Se però interviene una riabilitazione prima del termine del delay, il comportamento può variare: in alcuni casi l'esecuzione abortisce (Zigbee) correttamente in altri, invece, _NON abortisce, ignorando completamente la disabilitazione_! E' quindi una situazione da evitare, perchè NON affidabile!
 
 #### HW workaround
 Talora è necessario ovviare all'assenza di varibili o ad altri limiti del linguaggio utilizzando device (reali o virtuali) come semaforo (1 bit di memoria) o come timer (usando la funzione countdown) etc.. e questo complica ovviamente la scene.
 
 ## Tuya pattern
-Alcuni problemi si presentano simili in diversi ambiti applictivi. In questi casi, una valida soluzione generale è chiamata 'pattern' e si presta ad essere utilizzata più e più volte.
+Alcuni problemi si presentano simili in diversi ambiti applicativi. In questi casi, una valida soluzione generale è chiamata 'pattern' e si presta ad essere utilizzata più e più volte.
 Questa è una collezione di pattern per scene Tuya, spesso nati e discussi nel [gruppo TuyaItalia](https://www.facebook.com/groups/tuyaitalia?locale=it_IT) poi sviluppati e documentati con l'aiuto di varie AI.
 
 
