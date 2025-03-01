@@ -186,4 +186,4 @@ Vedi un esempio di device [con la funzione 'circulate'](tuyaDAEMON/devices/smart
 
 ---
 ### Raccomandazioni
-- **Preferire Implementazione 1** (Zigbee): più robusta e affidabile, oppure Implementazione 2, molto semplice.  
+- **Preferire Implementazione 4** (Zigbee): più robusta e affidabile, oppure Implementazione 1, affidabile.  
