@@ -173,6 +173,18 @@ Poi (
     set_device_status("irrigatore", "attivo", false)  // OFF device - opzionale
 )
 ```
+-----
+
+### Implementazione 4 ('local linkage' e Switch Zigbee)
+
+**Device**: _Uso di uno switch con la funzione 'circulate' - o 'tempo di ciclo'_. 
+
+**Codice**
+Questa implementazione è solo HW, si sfruttano le proprietà del timer 'circulate' che ha un tempo di inizio, un tempo di fine, e, all'interno di questi limiti, un tempo ON ed un tempo OFF! Esattamente quello che serve per un loop.
+Basta quindi usare lo stato dello switch (eventualmente collegato al carico utile).
+Vedi per esempio [questo device](tuyaDAEMON/devices/smart_breaker/device_smart_breaker.pdf).
+
+
 ---
 ### Raccomandazioni
 - **Preferire Implementazione 1** (Zigbee): più robusta e affidabile, oppure Implementazione 2, molto semplice.  
