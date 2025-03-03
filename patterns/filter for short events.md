@@ -71,7 +71,8 @@ direction LR
 <b>A</b>: Input &nbsp; <b>B</b>: Output &nbsp; <b>C</b>: Countdown > 0 
 
 **Vantaggi**:  
-- **Affidabile**: Funziona offline, senza dipendenze cloud.  
+- **Affidabile**: Funziona offline, senza dipendenze cloud, con sensori Zigbee.  
+- **Generale**: Funziona anche con sensori WiFI, in questo caso oviamente usa TuyaCloud.  
 - **Reattivo**: Gestisce correttamente interruzioni e riavvii.
 
 nota: se è complesso inserire in SmartLife un countdown di 100 (s), usate pure i minuti: 120 = 2 minuti; ritardo 240s = 4 minuti, totale 6 minuti.
