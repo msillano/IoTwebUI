@@ -665,7 +665,7 @@ Se non trova 'device' o 'property' dà errore se <code>strict == true</code> (de
 <dt>ADDXDEVICE(home, room|null, name, init)</dt>
 <dt>ADDXDEVICE(home, room|null, name, init, category)</dt>
  <dd> Aggiunge un nuovo <i>x-device</i> in <b>IotwebUI</b>, visualizzato nell'albero e con le stesse funzioni dei device Tuya: 'Allarmi', 'Esportazione', 'REST' etc.<br>
-nota: init: (default = []) array di valori iniziali come oggetti. e.g.: <code>{code: 'brightness_max_1', value: 891}</code>.
+nota: init: (default = []) array di valori iniziali come oggetti. e.g.: <code>[{code: 'brightness_max_1', value: 891}, ...]</code>.
 nota: la categoria di default è 'x-dev', con <code>is-a</code> => 'x-device custom'. Si può specificare una diversa categoria (tra le esistenti), per esempio per usare un'icona speciale, se così è previsto da customizzazioni basate su <code>category</code>.<br>
 nota: <code>room == null</code> associa il device alla 'home' indicata.<br>
 nota: se il x-device esiste, ADDXDEVICE() re-inizializza con la sostituzione dei dati in 'status' con 'init'.<br>
