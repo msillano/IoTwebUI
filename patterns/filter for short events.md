@@ -76,6 +76,7 @@ direction LR
 - **Reattivo**: Gestisce correttamente interruzioni e riavvii.
 
 nota: se è complesso inserire in SmartLife un countdown di 100 (s), usate pure i minuti: 120 = 2 minuti; ritardo 240s = 4 minuti, totale 6 minuti.
+
 ---
 
 ### Implementazione 2 ('local linking' con Switch Zigbee)
@@ -84,7 +85,6 @@ nota: se è complesso inserire in SmartLife un countdown di 100 (s), usate pure 
   - Proprietà: `countdown()` (timer retriggerabile, valore > 0 per avviare, 0 per annullare).
                          quando arriva a 0 effettua il TOGGLE di  MASTER.switch_1. 
   - Output: `MASTER.switch_1 == true` indica l'attivazione dell'allarme.  
----
 
 **Codice**  
 ``` 
@@ -109,11 +109,20 @@ POI (
 
 ```mermaid
 flowchart TD
-    A[Apertura Porta] -->|trigger(startDevice.start=true| A1
-    A1 -->|set MASTER.countdown(80)| B[Timer Avviato]
-    B -->|Scaduto| C{{MASTER.switch_1=true}} --> D[Allarme Attivo]
-    A[Chiusura Porta] -->|trigger(stopDevice.stop=true| A2
-    A2 -->|set MASTER.countdown(0)| E[Timer Annullato] --> F[Allarme Disattivato]
+direction LR
+
+     subgraph Automazione A1
+        direction TB
+  A["Apertura Porta"] -->|trigger("startDevice.start=true")| A1
+    A1 -->|"set MASTER.countdown(80)"| B["Timer Avviato"]
+    B -->|Scaduto| C{{"MASTER.switch_1=true"}} --> D["Allarme Attivo"]
+   end
+    subgraph Automazione A2
+        direction TB
+
+    A[Chiusura Porta] -->|trigger("stopDevice.stop=true")| A2
+    A2 -->|"set MASTER.countdown(0)"| E["Timer Annullato"] --> F["Allarme Disattivato"]
+end
 ```
 
 ---
