@@ -151,7 +151,8 @@ direction LR
 
 **Note Tecniche**:  
 - **Calibrazione tempo**: Il valore `80` nel codice corrisponde a durataMinima = 80 secondi (Si può usare anche 01:20 se più semplice in SmartLife).  
-- **Dispositivi**: `startDevice` e `stopDevice` possono essere sostituiti con lo stesso sensore porta (es. `sensoreport.aperto` → `start=true` e `stop=false`).
+- **Sensori**: `startDevice` e `stopDevice` possono essere sostituiti con lo stesso sensore porta (es. `sensoreport.aperto` → `start=true` e `stop=false`).
+- **MASTER**: è vero che rispetto all'implementazione 1 questa usa un relay in più, ma si ha il vantaggio di una variabile 'allarme' (MASTER.switch_1) usabile in altre automazioni.
 ---
 
 ### Implementazione 3 (REGOLE di IoTwebUI)
