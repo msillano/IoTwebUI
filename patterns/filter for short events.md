@@ -194,5 +194,5 @@ Vedi [documentazione di riferimento](https://github.com/msillano/IoTwebUI/blob/m
 ---
 
 ### Raccomandazioni
-- **Preferire Implementazione 1** (Zigbee) se possibile: più robusta e immediata.  
+- **Preferire Implementazione 2** (Zigbee) se possibile: più robusta e immediata.  
 - Se si usa già per altri motivi **IoTwebUI** (e.g. menu di interfaccia in un tablet) prendere in considerazione la **Implementazione 2** perchè più adattabile.
