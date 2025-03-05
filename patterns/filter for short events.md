@@ -110,8 +110,8 @@ POI (
 ```mermaid
 flowchart TD
 direction LR
-    A["Sensore Porta"] -->|"trigger(stopDevice.stop=true)"| A2
-    A["Sensore Porta"] -->|"trigger(startDevice.start=true)"| A1
+    A["Sensori"] -->|"stopDevice.stop=true"| A2
+    A["Sensori"] -->|"startDevice.start=true"| A1
     subgraph Automazione A2
         direction TB
         A2 -->|"set MASTER.countdown(0)"| E["Timer Annullato"] --> F["Allarme Disattivato"]
