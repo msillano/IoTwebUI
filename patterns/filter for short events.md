@@ -110,17 +110,16 @@ POI (
 ```mermaid
 flowchart TD
 direction LR
-
-     subgraph Automazione A1
+    A["Sensore Porta"] -->|"trigger(stopDevice.stop=true)"| A2
+    A["Sensore Porta"] -->|"trigger(startDevice.start=true)"| A1
+   subgraph Automazione A1
         direction TB
-  A["Apertura Porta"] -->|"trigger(startDevice.start=true)"| A1
     A1 -->|"set MASTER.countdown(80)"| B["Timer Avviato"]
     B -->|Scaduto| C{{"MASTER.switch_1=true"}} --> D["Allarme Attivo"]
    end
     subgraph Automazione A2
         direction TB
 
-    A["Chiusura Porta"] -->|"trigger(stopDevice.stop=true)"| A2
     A2 -->|"set MASTER.countdown(0)"| E["Timer Annullato"] --> F["Allarme Disattivato"]
 end
 ```
