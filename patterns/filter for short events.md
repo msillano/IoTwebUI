@@ -145,12 +145,12 @@ direction LR
 **Vantaggi**:  
 - **Gestione pulita del timer**:  
   - `countdown()` gestisce internamente la logica temporale, evitando azioni manuali.  
-  - Il reset a **0** previene falsi trigger (es. toggle da 1→0).  
+  - Il reset a **0** previene falsi trigger (i.e. toggle da 1→0).  
 - **Retriggering integrato**:  
-  - Ogni apertura riavvia il timer, garantendo che l'allarme scatti solo dopo 80s di inattività.  
+  - Ogni apertura riavvia il timer, garantendo che l'allarme scatti solo dopo `durataMinima` di inattività.  
 
 **Note Tecniche**:  
-- **Calibrazione tempo**: Il valore `80` nel codice corrisponde a 80 secondi (Si può usare anche 01:20 se più facile in SmartLife).  
+- **Calibrazione tempo**: Il valore `80` nel codice corrisponde a durataMinima = 80 secondi (Si può usare anche 01:20 se più semplice in SmartLife).  
 - **Dispositivi**: `startDevice` e `stopDevice` possono essere sostituiti con lo stesso sensore porta (es. `sensoreport.aperto` → `start=true` e `stop=false`).
 ---
 
