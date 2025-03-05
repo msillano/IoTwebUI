@@ -120,7 +120,7 @@ direction LR
     subgraph Automazione A2
         direction TB
 
-    A[Chiusura Porta] -->|"trigger(stopDevice.stop=true)"| A2
+    A["Chiusura Porta"] -->|"trigger(stopDevice.stop=true)"| A2
     A2 -->|"set MASTER.countdown(0)"| E["Timer Annullato"] --> F["Allarme Disattivato"]
 end
 ```
