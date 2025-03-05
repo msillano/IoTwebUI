@@ -422,7 +422,7 @@ Come alternativa potete accedere su `platform.tuya.com`, selezionare 'Cloud' e '
 
 - Dalla versione 2.0 le definizioni per 'dataLog' (`logList`  in `config.js`), ALLARMI (`testList` in `config.js`) e REGOLE (`usrRules` in  `usrrulesXX.X.js`) possono essere create nella APP, con semplici interfacce utente, e poi esportate per essere copiate nei rispettivi file.
 
-- Aggiornare con i path del sistema ospite il file di lancio `run_me.bat`, per lanciare Chrome con una configurazione ottimizzata.
+- IMPORTANTE! Aggiornare con i path del sistema ospite il file di lancio `run_me.bat`, (e poi anche il file  `APP_me.bat`) per lanciare Chrome con una configurazione ottimizzata.
   
 ## Internazionalizzazione
 
