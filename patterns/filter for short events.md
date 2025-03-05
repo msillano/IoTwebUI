@@ -76,10 +76,77 @@ direction LR
 - **Reattivo**: Gestisce correttamente interruzioni e riavvii.
 
 nota: se è complesso inserire in SmartLife un countdown di 100 (s), usate pure i minuti: 120 = 2 minuti; ritardo 240s = 4 minuti, totale 6 minuti.
+---
+
+### Implementazione 2 ('local linking' con Switch Zigbee)
+**Device**:  
+- **Switch Zigbee (MASTER)**: Utilizzato come dispositivo centrale per l'allarme.  
+  - Proprietà: `countdown()` (timer retriggerabile, valore > 0 per avviare, 0 per annullare).
+                         quando arriva a 0 effettua il TOGGLE di  MASTER.switch_1. 
+  - Output: `MASTER.switch_1 == true` indica l'attivazione dell'allarme.  
+---
+
+**Codice**  
+``` 
+// Automazione A1: Avvia timer all'apertura della porta
+A1:
+SE (trigger(test_dispositivo(startDevice, start, =, true)))
+POI (
+    set_device_status(MASTER, countdown, 80),  // Imposta timer a 80s (valore > 0)
+    set_device_status(MASTER, switch_1, false)  // Resetta l'allarme
+)
+
+// Automazione A2: Interrompi timer alla chiusura della porta
+A2:
+SE (trigger(test_dispositivo(stopDevice, stop, =, true)))   // or: (startDevice, start, =, false)
+POI (
+    set_device_status(MASTER, countdown, 0),    // Annulla timer
+    set_device_status(MASTER, switch_1, false)  // Resetta allarme
+)
+```
 
 ---
 
-### Implementazione 2 (REGOLE di IoTwebUI)
+```mermaid
+flowchart TD
+    A[Apertura Porta] -->|trigger(startDevice.start=true| A1
+    A1 -->|set MASTER.countdown(80)| B[Timer Avviato]
+    B -->|Scaduto| C{{MASTER.switch_1=true}} --> D[Allarme Attivo]
+    A[Chiusura Porta] -->|trigger(stopDevice.stop=true| A2
+    A2 -->|set MASTER.countdown(0)| E[Timer Annullato] --> F[Allarme Disattivato]
+```
+
+---
+
+**Logica**:  
+1. **Avvio Timer**:  
+   - Quando la porta viene aperta (`startDevice.start=true`), A1:  
+     - Imposta `MASTER.countdown=80` (80 secondi).  
+     - Resetta `MASTER.switch_1` per evitare attivazioni accidentali.  
+   - Il countdown è **retriggerabile**: ogni nuovo start sovrascrive il timer precedente.  
+
+2. **Scadenza Timer**:  
+   - Se il timer raggiunge **0** (dopo 80s), il MASTER imposta automaticamente `switch_1=true`, attivando l'allarme.  
+
+3. **Interruzione Timer**:  
+   - Se la porta viene chiusa (`stopDevice.stop=true`), A2:  
+     - Resetta il timer a **0**, annullandolo.  
+     - Disattiva l'allarme (`switch_1=false`).  
+---
+
+**Vantaggi**:  
+- **Gestione pulita del timer**:  
+  - `countdown()` gestisce internamente la logica temporale, evitando azioni manuali.  
+  - Il reset a **0** previene falsi trigger (es. toggle da 1→0).  
+- **Retriggering integrato**:  
+  - Ogni apertura riavvia il timer, garantendo che l'allarme scatti solo dopo 80s di inattività.  
+
+**Note Tecniche**:  
+- **Calibrazione tempo**: Il valore `80` nel codice corrisponde a 80 secondi (Si può usare anche 01:20 se più facile in SmartLife).  
+- **Dispositivi**: `startDevice` e `stopDevice` possono essere sostituiti con lo stesso sensore porta (es. `sensoreport.aperto` → `start=true` e `stop=false`).
+---
+
+### Implementazione 3 (REGOLE di IoTwebUI)
 
 **Vantaggi**
 * `startDevice` e `stopDevice` sono un'unica device: si misura la durata dello stato 'TRUE' (e.g. "Sensore porta.doorcontact_state")
