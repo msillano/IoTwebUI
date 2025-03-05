@@ -92,7 +92,7 @@ nota: se è complesso inserire in SmartLife un countdown di 100 (s), usate pure 
 A1:
 SE (trigger(test_dispositivo(startDevice, start, =, true)))
 POI (
-    set_device_status(MASTER, countdown, 80),  // Imposta timer a 80s (valore > 0)
+    set_device_status(MASTER, countdown, 80),  // Imposta timer a durataMinima (valore > 0)
     set_device_status(MASTER, switch_1, false)  // Resetta l'allarme
 )
 
@@ -112,16 +112,16 @@ flowchart TD
 direction LR
     A["Sensore Porta"] -->|"trigger(stopDevice.stop=true)"| A2
     A["Sensore Porta"] -->|"trigger(startDevice.start=true)"| A1
-   subgraph Automazione A1
-        direction TB
-    A1 -->|"set MASTER.countdown(80)"| B["Timer Avviato"]
-    B -->|Scaduto| C{{"MASTER.switch_1=true"}} --> D["Allarme Attivo"]
-   end
     subgraph Automazione A2
         direction TB
+        A2 -->|"set MASTER.countdown(0)"| E["Timer Annullato"] --> F["Allarme Disattivato"]
+    end
+   subgraph Automazione A1
+        direction TB
+        A1 -->|"set MASTER.countdown(80)"| B["Timer Avviato"]
+        B -->|Scaduto| C{{"MASTER.switch_1=true"}} --> D["Allarme Attivo"]
+   end
 
-    A2 -->|"set MASTER.countdown(0)"| E["Timer Annullato"] --> F["Allarme Disattivato"]
-end
 ```
 
 ---
