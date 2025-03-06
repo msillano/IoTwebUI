@@ -159,31 +159,29 @@ direction LR
 
 **Codice**  
 ```
-SE (trigger(test_dispositivo(startDevice, start, =, true)))
-POI (
-    set_device_status(MASTER, countdown, 80),  // Imposta timer a durataMinima (valore > 0)
-    set_device_status(MASTER, switch_1, false)  // Resetta l'allarme
+A1:    // Automazione principale: vedi nota*  
+SE (trigger(test_dispositivo(startDevice, start, =, true)))  // Condizione device Zigbee  
+POI (  
+   set_ritardo(80s)                          
+   set_device_status(OUTPUT, switch_1, true)  // OUTPUT device Zigbee.
+)  
 
-A1: (principale: vedi nota*)
-SE (trigger(test_dispositivo(startDevice, start, =, true)))  // start, qualsiasi, ma Zigbee
-POI
-   set_ritardo(01:20)                         //  esempio  80 s
-   set_device_status(OUTPUT, switch_1, true)  // alarm,  qualsiasi, ma Zigbee
+A2: // Automazione di stop  
+SE (trigger(test_dispositivo(stopDevice, stop, =, true)))  
+POI (  
+   disabilita_automazione(A1),  
+   set_device_status(OUTPUT, switch_1, false),  
+   start_tap_to_run(E3)  
+)  
 
-A2:  (stop)
-SE (trigger(test_dispositivo(stopDevice, stop, =, true))) // qualsiasi
-POI
-   disabilita_automazione(A1)
-   set_device_status(OUTPUT, switch_1, false)
-   start_tap_to_run(E3)
-
-E3: (riabilita A!)
-SE (Tocca per eseguire)
-POI
-   set_ritardo(00:02)
-   abilita_automazione(A1)
+E3: // tap_to_run di ripristino 
+SE (trigger(esegui())) 
+POI (  
+   set_ritardo(2s),         // tempo cieco!
+   abilita_automazione(A1)  
+)  
 ```
-NOTA* Per un Qirk di TuyaCloud, A1 con 'Cloud linkage') NON funziona come atteso, per cui A1 DEVE essere 'local linkage (i.e. startDevice e OUTPUT devono essere device Zigbee!). A2 e E3 saranno sempre 'Cloud linkage' (contengono (dis)abilita_automazione) quindi il tutto è 'Cloud linkage', anche se A1  DEVE essere 'local linkage'!
+NOTA* Per un qirk di TuyaCloud, A1 con 'Cloud linkage' NON funziona come atteso, per cui A1 DEVE essere 'local linkage' (i.e. `startDevice` e `OUTPUT` devono essere device Zigbee!). A2 e E3 saranno sempre 'Cloud linkage' (contengono dis-abilita_automazione) quindi il tutto è 'Cloud linkage', anche se A1  DEVE essere 'local linkage'! (Ticket Tuya [T202503040017](https://service.console.tuya.com/8/3/detail?id=T202503040017))
 
 *** Dettagli del quirk:
 ![image](https://github.com/user-attachments/assets/0d38df9a-a662-4a44-aa2c-a3d2a6dbb6ff)
@@ -203,7 +201,7 @@ NOTA* Per un Qirk di TuyaCloud, A1 con 'Cloud linkage') NON funziona come atteso
 **tempo T3 = T1 + 80s**
 - Termina il ritardo di 80s di A1<br>
 =============== BAD CASE 'cloud linkage' prima figura
- - OUT2-vdevo.Switch_1 = ON - (A1 NON ha abortito il RUN!)
+ - OUT2-vdevo.Switch_1 = ON - (A1 NON ha abortito il RUN!)<br>
 =============== OK CASE 'local linkage' figura a destra
  - nothing – (A1 HA abortito il RUN) <br>
 
@@ -255,4 +253,5 @@ Vedi [documentazione di riferimento](https://github.com/msillano/IoTwebUI/blob/m
 
 ### Raccomandazioni
 - **Preferire Implementazione 2** (Zigbee) se possibile: più robusta e immediata.  
+- **NON usare l'implementazione 3** sia per l'esistenza di un tempo cieco, sia perchè si basa su un quirk, ed in futuro potrebbe cambiare.
 - Se si usa già per altri motivi **IoTwebUI** (e.g. menu di interfaccia in un tablet) prendere in considerazione la **Implementazione 2** perchè più adattabile.
