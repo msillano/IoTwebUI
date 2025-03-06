@@ -399,7 +399,7 @@ Nelle immagini: a sinistra avvio OK (Chrome, CORS disattivato) a destra in caso 
 
 ## Note ver.3.0
 
-Installare come descritto e separatamente sia **IoTwebUI** che **IoTres**t. Solo una volta che funzionano bene, utilizzare il nuovo file bat `APP_me.bat`, che attiva il look della versione 3.0 (aggiornare le DIR in `APP_me.bat`).
+Installare come descritto e separatamente sia **IoTwebUI** che **IoTres**t. Solo una volta che funzionano bene, utilizzare il nuovo file bat `APP_me.bat`, che attiva il look della versione 3.0 (aggiornare le DIR in `APP_me.bat`). Vedi anche le [istruzioni per le APP](https://github.com/msillano/IoTwebUI/blob/main/APP/LEGGIMI.md#installazione-e-uso).
 
 ## Configurazione
 
