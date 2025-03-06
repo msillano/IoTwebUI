@@ -129,11 +129,11 @@ direction LR
    - Il countdown è **retriggerabile**: ogni nuovo start sovrascrive il timer precedente.  
 
 2. **Scadenza Timer**:  
-   - Se il timer raggiunge **0** (dopo 80s), il MASTER imposta automaticamente `switch_1=true`, attivando l'allarme.  
+   - Se il timer raggiunge **0** (e.g. dopo 80s), il MASTER imposta automaticamente `switch_1=true` (toggle), attivando l'allarme.  
 
 3. **Interruzione Timer**:  
    - Se la porta viene chiusa (`stopDevice.stop=true`), A2:  
-     - Resetta il timer a **0**, annullandolo.  
+     - Resetta il timer a **0**, annullandolo. (Impostandolo a 0 NON si ha toggle) 
      - Disattiva l'allarme (`switch_1=false`).  
 
 **Vantaggi**:  
@@ -141,7 +141,7 @@ direction LR
   - `countdown()` gestisce internamente la logica temporale, evitando azioni manuali.  
   - Il reset a **0** previene falsi trigger (i.e. toggle da 1→0).  
 - **Retriggering integrato**:  
-  - Ogni apertura riavvia il timer, garantendo che l'allarme scatti solo dopo `durataMinima` di inattività.  
+  - Ogni evento `startDevice.start = true` riavvia il timer, garantendo che l'allarme scatti solo dopo `durataMinima` di inattività, anche nel caso di più 'start' non seguiti da 'stop' (contrariamente alla porta, dove ogni 'start' è seguito da uno 'stop')  
 
 **Note Tecniche**:  
 - **Calibrazione tempo**: Il valore `80` nel codice corrisponde a durataMinima = 80 secondi (Si può usare anche 01:20 se più semplice in SmartLife).  
@@ -195,9 +195,9 @@ NOTA* Per un qirk di TuyaCloud, A1 con 'Cloud linkage' NON funziona come atteso,
 
 **tempo T3 = T1 + 80s**
 - Termina il ritardo di 80s di A1<br>
-=============== BAD CASE 'cloud linkage' prima figura
+=============== BAD CASE 'cloud linkage' vedi figura a sx
  - OUT2-vdevo.Switch_1 = ON - (A1 NON ha abortito il RUN!)<br>
-=============== OK CASE 'local linkage' figura a destra
+=============== OK CASE 'local linkage' vedi figura a dx
  - nothing – (A1 HA abortito il RUN) <br>
 
 **tempo T4**: come T1
