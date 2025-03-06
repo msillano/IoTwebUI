@@ -191,18 +191,22 @@ NOTA* Per un Qirk di TuyaCloud, A1 con 'Cloud linkage') NON funziona come atteso
 **tempo T1:**
 - A1 start RUN (condizione ok)
 - Inizia ritardo di 80s 
+
 **tempo T2:**
 - A2 start RUN (condizione ok)
 - A1 è DISABILITATA da A2
 - E3 è lanciato
+
 **tempo T2 + 2s**
 - A1 is ABILITATO (da E3)
+
 **tempo T3 = T1 + 80s**
-- Termina il ritardo di 80s di A1
+- Termina il ritardo di 80s di A1<br>
 =============== BAD CASE 'cloud linkage' prima figura
  - OUT2-vdevo.Switch_1 = ON - (A1 NON ha abortito il RUN!)
 =============== OK CASE 'local linkage' figura a destra
- - nothing – (A1 HA abortito il RUN)
+ - nothing – (A1 HA abortito il RUN) <br>
+
 **tempo T4**: come T1
 
 
