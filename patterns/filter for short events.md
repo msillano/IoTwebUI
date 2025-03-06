@@ -104,7 +104,6 @@ POI (
     set_device_status(MASTER, switch_1, false)  // Resetta allarme
 )
 ```
-
 ---
 
 ```mermaid
@@ -157,6 +156,57 @@ direction LR
 ---
 
 ### Implementazione 3 (Cloud linkage*)
+
+**Codice**  
+```
+SE (trigger(test_dispositivo(startDevice, start, =, true)))
+POI (
+    set_device_status(MASTER, countdown, 80),  // Imposta timer a durataMinima (valore > 0)
+    set_device_status(MASTER, switch_1, false)  // Resetta l'allarme
+
+A1: (principale: vedi nota*)
+SE (trigger(test_dispositivo(startDevice, start, =, true)))  // start, qualsiasi, ma Zigbee
+POI
+   set_ritardo(01:20)                         //  esempio  80 s
+   set_device_status(OUTPUT, switch_1, true)  // alarm,  qualsiasi, ma Zigbee
+
+A2:  (stop)
+SE (trigger(test_dispositivo(stopDevice, stop, =, true))) // qualsiasi
+POI
+   disabilita_automazione(A1)
+   set_device_status(OUTPUT, switch_1, false)
+   start_tap_to_run(E3)
+
+E3: (riabilita A!)
+SE (Tocca per eseguire)
+POI
+   set_ritardo(00:02)
+   abilita_automazione(A1)
+```
+NOTA* Per un Qirk di TuyaCloud, A1 con 'Cloud linkage') NON funziona come atteso, per cui A1 DEVE essere 'local linkage (i.e. startDevice e OUTPUT devono essere device Zigbee!). A2 e E3 saranno sempre 'Cloud linkage' (contengono (dis)abilita_automazione) quindi il tutto è 'Cloud linkage', anche se A1  DEVE essere 'local linkage'!
+
+*** Dettagli del quirk:
+![image](https://github.com/user-attachments/assets/0d38df9a-a662-4a44-aa2c-a3d2a6dbb6ff)
+
+**tempo T1:**
+- A1 start RUN (condizione ok)
+- Inizia ritardo di 80s 
+**tempo T2:**
+- A2 start RUN (condizione ok)
+- A1 è DISABILITATA da A2
+- E3 è lanciato
+**tempo T2 + 2s**
+- A1 is ABILITATO (da E3)
+**tempo T3 = T1 + 80s**
+- Termina il ritardo di 80s di A1
+=============== BAD CASE 'cloud linkage' prima figura
+ - OUT2-vdevo.Switch_1 = ON - (A1 NON ha abortito il RUN!)
+=============== OK CASE 'local linkage' figura a destra
+ - nothing – (A1 HA abortito il RUN)
+**tempo T4**: come T1
+
+
+
 
 ---
 
