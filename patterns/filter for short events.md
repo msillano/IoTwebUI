@@ -178,7 +178,7 @@ POI (
 ```
 NOTA* Per un qirk di TuyaCloud, A1 con 'Cloud linkage' NON funziona come atteso, per cui A1 DEVE essere 'local linkage' (i.e. `startDevice` e `OUTPUT` devono essere device Zigbee!). A2 e E3 saranno sempre 'Cloud linkage' (contengono dis-abilita_automazione) quindi il tutto è 'Cloud linkage', anche se A1  DEVE essere 'local linkage'! (Ticket Tuya [T202503040017](https://service.console.tuya.com/8/3/detail?id=T202503040017))
 
-*** Dettagli del quirk:
+**Dettagli del quirk:**
 ![image](https://github.com/user-attachments/assets/0d38df9a-a662-4a44-aa2c-a3d2a6dbb6ff)
 
 **tempo T1:**
@@ -195,9 +195,9 @@ NOTA* Per un qirk di TuyaCloud, A1 con 'Cloud linkage' NON funziona come atteso,
 
 **tempo T3 = T1 + 80s**
 - Termina il ritardo di 80s di A1<br>
-=============== BAD CASE 'cloud linkage' vedi figura a sx
- - OUT2-vdevo.Switch_1 = ON - (A1 NON ha abortito il RUN!)<br>
-=============== OK CASE 'local linkage' vedi figura a dx
+_=============== BAD CASE 'cloud linkage' vedi figura a sx_
+ - OUT2-vdevo.Switch_1 = ON - ( da A1 che NON ha abortito il RUN!)<br>
+_=============== OK CASE 'local linkage' vedi figura a dx_
  - nothing – (A1 HA abortito il RUN) <br>
 
 **tempo T4**: come T1
