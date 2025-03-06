@@ -12,7 +12,7 @@ Rileva quando un evento inizia (`startDevice.start = true`) e termina (`stopDevi
 *  Una notifica se il consumo di casa supera 3.3 KW per più di 10 minuti
 
 ---
-### Implementazione 1 ('local linking' con Switch Zigbee)
+### Implementazione 1 ('local linking' con 1/2 Switch Zigbee)
 **Device**: _Switch Zigbee (SWITCH) con funzione countdown. Le altre funzioni dello switch (ON/OFF, etc.) possono essere usate in modo indipendente per altri scopi_.
 
 **Codice**
@@ -79,7 +79,7 @@ nota: se è complesso inserire in SmartLife un countdown di 100 (s), usate pure 
 
 ---
 
-### Implementazione 2 ('local linking' con Switch Zigbee)
+### Implementazione 2 ('local linking' con 1 Switch Zigbee)
 **Device**:  
 - **Switch Zigbee (MASTER)**: Utilizzato come dispositivo centrale per l'allarme.  
   - Proprietà: `countdown()` (timer retriggerabile, valore > 0 per avviare, 0 per annullare).
@@ -153,9 +153,14 @@ direction LR
 - **Calibrazione tempo**: Il valore `80` nel codice corrisponde a durataMinima = 80 secondi (Si può usare anche 01:20 se più semplice in SmartLife).  
 - **Sensori**: `startDevice` e `stopDevice` possono essere sostituiti con lo stesso sensore porta (es. `sensoreport.aperto` → `start=true` e `stop=false`).
 - **MASTER**: è vero che rispetto all'implementazione 1 questa usa un relay in più, ma si ha il vantaggio di una variabile 'allarme' (MASTER.switch_1) usabile in altre automazioni.
+
 ---
 
-### Implementazione 3 (REGOLE di IoTwebUI)
+### Implementazione 3 (Cloud linkage*)
+
+---
+
+### Implementazione 4 (REGOLE di IoTwebUI)
 
 **Vantaggi**
 * `startDevice` e `stopDevice` sono un'unica device: si misura la durata dello stato 'TRUE' (e.g. "Sensore porta.doorcontact_state")
