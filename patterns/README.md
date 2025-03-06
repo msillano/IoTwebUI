@@ -14,7 +14,7 @@ However, it's not always smooth sailing: a series of `quirks` in Tuya's implemen
 4) **trigger()** is a monostable-like function that models the operation of TuyaCloud. Definition: `trigger(X)` is true if and only if X<sub>t-1</sub> is FALSE and X<sub>t</sub> is TRUE - _note: TuyaCloud checks conditions at discrete instants, so it operates synchronously._
 With multiple conditions, you cannot mix AND and OR: either they are all AND or they are all OR.
 
-#### Scope
+#### Preconditions (scope)
 1) **Scope** is only present in `automations` and consists of additional logical constraints that do not trigger activations (they are not triggers) but MUST be TRUE (level) for the conditions to trigger, and thus for the automation to activate.
 In other words, 'when' an automation trigger is determined by the conditions (IF...), but the authorization is given by _enablement + conditions + scope_!
 2) With multiple constraints, you cannot mix AND and OR: either they are all AND or they are all OR (but regardless of the choice for the conditions).
