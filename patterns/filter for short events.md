@@ -179,6 +179,7 @@ POI (
 NOTA* Per un qirk di TuyaCloud, A1 con 'Cloud linkage' NON funziona come atteso, per cui A1 DEVE essere 'local linkage' (i.e. `startDevice` e `OUTPUT` devono essere device Zigbee!). A2 e E3 saranno sempre 'Cloud linkage' (contengono dis-abilita_automazione) quindi il tutto è 'Cloud linkage', anche se A1  DEVE essere 'local linkage'! (Ticket Tuya [T202503040017](https://service.console.tuya.com/8/3/detail?id=T202503040017))
 
 **Dettagli del quirk:**
+
 ![image](https://github.com/user-attachments/assets/0d38df9a-a662-4a44-aa2c-a3d2a6dbb6ff)
 
 **tempo T1:**
