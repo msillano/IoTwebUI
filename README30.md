@@ -393,7 +393,7 @@ In the images: on the left, OK start (Chrome, CORS disabled) on the right, in ca
 
 ## Notes ver.3.0
 
-Install as described and separately both **IoTwebUI** and **IoTres**t. Only once they work well, use the new bat file `APP_me.bat`, which activates the look of version 3.0 (update the DIR in `APP_me.bat`).
+Install as described and separately both **IoTwebUI** and **IoTrest**. Only once they work well, use the new bat file `APP_me.bat`, which activates the look of version 3.0 (update the DIR in `APP_me.bat`). See also [here](https://github.com/msillano/IoTwebUI/blob/main/APP/LEGGIMI.md#installazione-e-uso).
 
 ## Configuration
 
