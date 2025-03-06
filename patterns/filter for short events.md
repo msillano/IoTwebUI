@@ -104,8 +104,6 @@ POI (
     set_device_status(MASTER, switch_1, false)  // Resetta allarme
 )
 ```
----
-
 ```mermaid
 flowchart TD
 direction LR
@@ -123,8 +121,6 @@ direction LR
 
 ```
 
----
-
 **Logica**:  
 1. **Avvio Timer**:  
    - Quando la porta viene aperta (`startDevice.start=true`), A1:  
@@ -139,7 +135,6 @@ direction LR
    - Se la porta viene chiusa (`stopDevice.stop=true`), A2:  
      - Resetta il timer a **0**, annullandolo.  
      - Disattiva l'allarme (`switch_1=false`).  
----
 
 **Vantaggi**:  
 - **Gestione pulita del timer**:  
@@ -207,8 +202,11 @@ NOTA* Per un qirk di TuyaCloud, A1 con 'Cloud linkage' NON funziona come atteso,
 
 **tempo T4**: come T1
 
+**Note Implementative**
 
+**Local vs Cloud Linkage**: Come specificato, A1 deve essere eseguita in locale (Zigbee) per garantire l'aborto del ritardo quando disabilitata. Se configurata come "cloud linkage", il ritardo non viene interrotto, portando al BAD CASE.
 
+**Abilitazione dinamica**: E3 riattiva A1 dopo 2 secondi, creando una zona 'cieca'.
 
 ---
 
