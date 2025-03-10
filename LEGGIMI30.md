@@ -405,7 +405,7 @@ Installare come descritto e separatamente sia **IoTwebUI** che **IoTres**t. Solo
 
 L'app **IoTwebUI** non è per utenti alle prime armi, pertanto è accettabile che la configurazione avvenga direttamente editando un file (`config`.js). _Le solite avvertenze: fare una copia del file prima di ogni modifica, usare un editor UTF8 (io uso Notepad-plusplus), e attenzione a NON ALTERARE niente altro (soprattutto virgole  ','  ed  apici '"' e "`")._
 
- - I dati INDISPENSABILI da inserire sono le proprie `credenziali Tuya` per la 'platform.tuya'.<BR> Sono indicate come _Access ID_ e _Access secret_ nella pagina 'overview' del Vostro progetto Tuya!
+ - Che usiate l'app "Tuya smart" oppure l'app "SmartLIfe" non importa: ì dati INDISPENSABILI da inserire sono le proprie `credenziali Tuya` per la 'platform.tuya'.<BR> Sono indicate come _Access ID_ e _Access secret_ nella pagina 'overview' del Vostro progetto Tuya!
 ![image](https://github.com/user-attachments/assets/856c0db6-737b-4f85-8e69-a09e055936bc)
  <BR> Gli utenti di tuyaDAEMON, Homebridge, HA ed altri hub simili dovrebbero già averle, ma i nuovi utenti si devono iscrivere, ci sono molte guide nel web. [Questa](https://github.com/iRayanKhan/homebridge-tuya/wiki/Get-Local-Keys-for-your-devices) oppure [questa](https://github.com/azerty9971/xtend_tuya/blob/main/docs/cloud_credentials.md) sono molto chiare, altre sono [elencate qui](https://github.com/msillano/tuyaDAEMON/wiki/50.-Howto:-add-a-new-device-to-tuyaDAEMON#1-preconditions). Un vantaggio è che così si ha accesso alla piattaforma Tuya, con molti dati sui propri device, ed alla documentazione tecnica.
 
