@@ -1,119 +1,134 @@
 
 **Introduzione:**
 
- Volevo esplorare le possibilità di modifica (modding) degli interruttori smart Tuya, partendo dalla [constatazione](https://www.facebook.com/groups/tuyaitalia/permalink/1601909300443417/) che la tensione ai capi dell'interruttore fisico di controllo è tipicamente una tensione continua a bassa tensione (3.3V o 5V), isolata galvanicamente dal circuito di potenza a 230V. Questa caratteristica apre scenari interessanti per l'integrazione di sensori e microcontrollori, permettendo di creare 'device Tuya custom'.
+I wanted to explore the possibilities of modifying (modding) the Tuya smart switches, starting from the [observation](https://www.facebook.com/groups/tuyaitalia/permalink/1601909300443417/) that the voltage across the physical control switch is typically a low voltage DC voltage (3.3V or 5V), galvanically isolated from the 230V power circuit. This feature opens up interesting scenarios for integrating sensors and microcontrollers, allowing the creation of 'custom Tuya devices'.
 
-### Analisi dell'Interruttore Smart
+### Smart Switch Analysis
 
-* **Dispositivo di Test:** Un interruttore smart [Zigbee economico](https://it.aliexpress.com/item/1005005875932568.html) è stato utilizzato come piattaforma di test.
+* **Test Device:** A [cheap Zigbee](https://it.aliexpress.com/item/1005005875932568.html) smart switch was used as a test platform.
 
 ![full001](https://github.com/user-attachments/assets/5526c2b4-8f3b-400d-9d63-45ec7e69cd55)
 
-* **Identificazione dei Punti di Alimentazione:** L'analisi del circuito ha rivelato la felice presenza sia di tensione a 5V (per l'alimentazione del relè) che a 3.3V (per l'elettronica di controllo), entrambe isolate dalla rete elettrica. I condensatori elettrolitici più grandi sono stati identificati come punti di prelievo comodi per queste tensioni (vedi figura).
-* **Caratteristiche del Pin di Input:** Il pin di input dell'interruttore è collegato a un resistore da 6.8K verso +3.3V, con una soglia di attivazione di circa 1.4V.
-* **Warning:** Una serie ravvicinata di ON/OFF (chattering, contatto instabile...) mette lo switch in una condizione di 'pairing' (luce blu lempeggiante) da cui si esce solo riassociandolo all'HUB (con cambio di nome automatico).
-
-
-## Esempio 1: Rivelatore di Fiamma DIY
+* **Power Pins Identification:** Circuit analysis revealed the happy presence of both 5V (for relay power) and 3.3V (for control electronics), both isolated from the mains. Larger electrolytic capacitors were identified as convenient tap points for these voltages (see figure).
+* **Input Pin Characteristics:** The switch input pin is connected to a 6.8K resistor to +3.3V, with an activation threshold of about 1.4V.
+* **Warning:** A series of ON/OFFs in quick succession (chattering, unstable contact...) puts the switch into a 'pairing' condition (flashing blue light) which can only be exited by re-associating it to the HUB (with automatic name change).
+ 
+## Example 1: DIY Flame Detector
 
 ![smartodiy](https://github.com/user-attachments/assets/aa2f31be-f7fe-4c35-86f4-c6d47d3bf05e)
 
-Da una [serie di post](https://www.facebook.com/groups/tuyaitalia/permalink/1543046892996325/), è risultato che NON esistono sul mercato allarmi Tuya per fiamme libere! Buona occasione per un dispositivo Tuya compatibile DIY.
+From a [series of posts](https://www.facebook.com/groups/tuyaitalia/permalink/1543046892996325/), it turned out that there are NO Tuya alarms for open flames on the market! Good opportunity for a DIY Tuya-compatible device.
 
 ![image](https://github.com/user-attachments/assets/bfd57a5a-3507-4ab2-805d-2bc537dfc0cd)
 
- * È stato realizzato un prototipo di rivelatore di fiamma utilizzando un sensore IR ad alta sensibilità e un comparatore con soglia regolabile utilizzando un [modulo per Ardiuno](https://it.aliexpress.com/item/1005007581633099.html).
- * _nota: questo modulo fa parte di una serie di [37 sensori per Arduino](https://it.aliexpress.com/w/wholesale-37-arduino-sensor.html) molto diffusa_.
- * Il modulo è alimentato a 3.3V e il suo output digitale è collegato al pin di input dell'interruttore smart.
- * Il collegamento è molto semplice, in tutto tre fili: GND, +3.3V, DO/IN: in pratica una sola saldatura (+3.3V).
- * Il sistema ha dimostrato un'elevata sensibilità, rilevando la fiamma di un accendino a distanze di 50-70 cm.
+ * A flame detector prototype was built using a high sensitivity IR sensor and a comparator with adjustable threshold using a [module for Ardiuno](https://it.aliexpress.com/item/1005007581633099.html).
+ * _note: this module is part of a series of [37 sensors for Arduino](https://it.aliexpress.com/w/wholesale-37-arduino-sensor.html) very popular_..
+* The module is powered at 3.3V and its digital output is connected to the input pin of the smart switch.
+* The connection is very simple, three wires in total: GND, +3.3V, DO/IN: basically just one solder (+3.3V).
+* The system has demonstrated high sensitivity, detecting the flame of a lighter at distances of 50-70 cm.
 
 ![definitivo](https://github.com/user-attachments/assets/f4bbe185-4abd-4b20-b782-9afa9a90b78f)
 
- * Versione definitiva. E' collegato internamente un solo filo, a +3.3V. Massa ed input sono presi dai morsetti esterni! _Nota: l'uso di 3 connettori permette di sostituire il modulo 'fire' con [altri moduli della serie](https://www.adrirobot.it/37_in_1_sensor_module_board_set_kit_for_arduino/)_!
+* Final version. Only one wire is connected internally, at +3.3V. Ground and input are taken from the external terminals! _Note: using 3 connectors allows you to replace the 'fire' module with [other modules of the series](https://www.adrirobot.it/37_in_1_sensor_module_board_set_kit_for_arduino/)_!
  
 <hr> 
 
-## Esempio 2:  BLINK-ESP01, integrazione Tuya + ESP3266
+## Example 2: BLINK-ESP01, Tuya + ESP3266 integration
 
 ![esp-01s-esp8266-pinout-mischianti](https://github.com/user-attachments/assets/7e756b2f-d20e-42cf-ace9-d15ed1fb66f8)
 
-Questo progetto usa il microcontrollore ESP01S per implementare un semplice 'blink' a relay. <br>
-_Per una introduzione generale a ESP01 [vedi qui](https://www.ariat-tech.it/blog/esp-01-functional-features,pin-configuration,applications-and-relationship-with-esp-01s-and-esp8266.html)_.<br>
-_Invece una introduzione generale all'uso di ESP3266 in device custom si trova in [questo articolo](https://github.com/msillano/tuyaDEAMON-applications/wiki/note-5:-Watchdog-for-IOT#note-esp-01-programming)_.
+This project uses the ESP01S microcontroller to implement a simple relay 'blink'. <br>
+_For a general introduction to ESP01 [see here](https://www.ariat-tech.it/blog/esp-01-functional-features,pin-configuration,applications-and-relationship-with-esp-01s-and-esp8266.html)_.<br>
+_Instead a general introduction to the use of ESP3266 in custom devices can be found in [this article](https://github.com/msillano/tuyaDEAMON-applications/wiki/note-5:-Watchdog-for-IOT#note-esp-01-programming)_.
 
 ![esp01-02](https://github.com/user-attachments/assets/ea6eaf65-409b-411d-b6c5-6f81525e3bfc)
-Sinistra: programmazione ESP01S con adattatore via USB.  Destra: finito.
+Left: ESP01S programming with adapter via USB. Right: finished.
 
-Per rimanere sul semplice, come è il caso per un _proof of concept_, prendiamo la demo Arduino 'blink' forse il programmino più semplice e famoso, solo lo implementiamo con un timer. In pratica trasformiamo lo smart relay in un lampeggiatore.
+To keep it simple, as is the case for a _proof of concept_, we take the Arduino demo 'blink' perhaps the simplest and most famous program, only we implement it with a timer. In practice, we transform the smart relay into a flasher.
 
 ### Hardware
 
-Modding smart switch: si usano gli stessi 3 collegamenti usati in Esempio 1: uno interno (3.3V) e  due sui morsetti: S1 (GND) e S2 (IN).
+Modding smart switch: we use the same 3 connections used in Example 1: one internal (3.3V) and two on the terminals: S1 (GND) and S2 (IN).
 
 ### Firmware
 
-Sia l'installazione che l'uso di Arduino per programmare un ESP01s sono molto semplici: occorre solo un adattatore USB. Per dettagli vedi il progetto [Watchdog03](https://github.com/msillano/tuyaDEAMON-applications/wiki/note-5:-Watchdog-for-IOT#watchdog03-esp01-relay--arduino).
+Both the installation and the use of Arduino to program an ESP01s are very simple: you only need a USB adapter. For details see the project [Watchdog03](https://github.com/msillano/tuyaDEAMON-applications/wiki/note-5:-Watchdog-for-IOT#watchdog03-esp01-relay--arduino).
 
-nota: Il cambio di modo (run/programmazione) avviene allo startup dell'ESP01 e il modo programmazione richiede il PIN IN0 a massa. Ho quindi aggiunto un piccolo switch al programmatore (in alcuni modelli è già presente) e quindi la procedura è la seguente:
-* switch con IN0 a GND (programmazione)
-* infilare il programmatore nella presa USB
-* programmazione con Arduino
-* estrarre il programmatore dalla presa USB
-* switch con IN0 aperto (run)
-* Aprire su Arduino il terminale seriale a 9600 baud.
-* infilare il programmatore nella presa USB: il programma parte automaticamente
-* debug del programma con l'aiuto degli echo sul seriale
+note: The mode change (run/programming) occurs at the startup of the ESP01 and the programming mode requires the IN0 PIN to ground. I therefore added a small switch to the programmer (in some models it is already present) and therefore the procedure is the following:
+* switch with IN0 to GND (programming)
+* insert the programmer into the USB socket
+* programming with Arduino
+* remove the programmer from the USB socket
+* switch with IN0 open (run)
+* Open the serial terminal on Arduino at 9600 baud.
+* insert the programmer into the USB socket: the program starts automatically
+* debug the program with the help of echos on the serial
 
-_ATTENZIONE: alcuni programmatori hanno ponticelli per scegliere 5V o 3.3V. ESP01S richiede 3.3V!_
+_ATTENTION: some programmers have jumpers to choose 5V or 3.3V. ESP01S requires 3.3V!_
 
-### controllo HTTP
-Dobbiano aggiungere qualche funzionalità di controllo: ON/OFF e la possibilità di cambiare il periodo. Non possiamo utilizzare in alcun modo il relay, già usato come device di output.<br> 
-Per  gestire questi parametri 'extra' sfruttiamo le capacità di ESP3266 per implementare due interfacce WiFi-HTTP alternative:
+### HTTP control
+We need to add some control functionality: ON/OFF and the possibility to change the period. We cannot use the relay in any way, ### Firmware
 
-**Interfaccia WEB: `http://192.168.1.23/`**
+Both the installation and the use of Arduino to program an ESP01s are very simple: you only need a USB adapter. For details see the project [Watchdog03](https://github.com/msillano/tuyaDEAMON-applications/wiki/note-5:-Watchdog-for-IOT#watchdog03-esp01-relay--arduino).
+
+note: The mode change (run/programming) occurs at the startup of the ESP01 and the programming mode requires the IN0 PIN to ground. I therefore added a small switch to the programmer (in some models it is already present) and therefore the procedure is the following:
+* switch with IN0 to GND (programming)
+* insert the programmer into the USB socket
+* programming with Arduino
+* remove the programmer from the USB socket
+* switch with IN0 open (run)
+* Open the serial terminal on Arduino at 9600 baud.
+* insert the programmer into the USB socket: the program starts automatically
+* debug the program with the help of echos on the serial
+
+_ATTENTION: some programmers have jumpers to choose 5V or 3.3V. ESP01S requires 3.3V!_
+
+### HTTP control
+We need to add some control functionality: ON/OFF and the possibility to change the period. We cannot use the relay in any way, already used as an output device.<br>
+To manage these 'extra' parameters we exploit the capabilities of ESP3266 to implement two alternative WiFi-HTTP interfaces:
+
+**WEB Interface: URL `http://192.168.1.23/`**
 
  ![Screenshot 2025-03-17 211306](https://github.com/user-attachments/assets/7a8d1dd8-a853-4e5d-a81a-ba102655fd23)
  
-   Chiamando da un browser l'indirizzo associato a ESP01 (custom, definito nel codice) ci si collega ad un server WEB (port 80) creato in ESP01. La risposta del server è una pagina WEB con una semplice interfaccia interattiva che presenta informazioni sullo stato e permette gli aggiornamenti.
+By calling the address associated with ESP01 (custom, defined in the code) from a browser, you connect to a WEB server (port 80) created in ESP01. The server's response is a WEB page with a simple interactive interface that presents status information and allows updates.
 
-**Interfaccia HTTP GET e REST**
+**HTTP GET and REST interface**
 
-   Per maggiore comodità è presente una seconda interfaccia, sempre via server WEB, ma che utilizza il protocollo REST ed il protocollo GET+ parametri (lo stesso dei 'form' HTML): 
+For greater convenience, there is a second interface, always via the WEB server, but which uses the REST protocol and the GET+ parameters protocol (the same as the HTML 'forms'):
 
 * `http://192.168.1.23/ON`
 * `http://192.168.1.23/OFF`
 * `http://192.168.1.23/ESPtuya?loop=xxxx` (xxx = periodo in ms)
+  
+The response is TEXT and contains 'OK' or 'BAD'. (Alternative: use JSON responses, when data must be provided).
+You can also try them with a browser, directly writing the previous URLs.<br>
+These interfaces are not intended for interactive uses but for programmatic uses in any APP or language capable of sending HTTP requests (in particular, from IoTwebUI).
 
-La risposta è TESTO e contiene 'OK' o 'BAD'. (Alternativa: usare risposte JSON, quando devono essere forniti dati).
-Si posono provare anche con un browser, scrivendo direttamente gli URL precedenti.<br>
-Queste interfacce sono pensate non per usi interattivi ma per usi programmatici in qualsiasi APP o linguaggio in grado di inviare richieste HTPP (in particolare, da IoTwebUI).
+_If you want, you could also use an MQTT interface, but it is more complex and requires an external MQTT broker._
 
-_Volendo si potrebbe usare anche un'interfaccia MQTT, ma è più complessa e richiede un broker MQTT esterno._
+**Examples of use with IOTwebUI**
 
-**Esempi di uso con IOTwebUI**
-
-* La strada più semplice sono due 'REGOLE con nome' (equivalenti ai tap-to-run Tuya) che appariranno nella pagina _tap-to-run_ di **IoTwebUI**:
+* The simplest way are two 'RULES with name' (equivalent to Tuya tap-to-run) that will appear in the _tap-to-run_ page of **IoTwebUI**:
 ```
 if (TRIGBYNAME("BLINK on"))   REST("http://192.168.1.23/ON"), BEEP();
 if (TRIGBYNAME("BLINK off"))  REST("http://192.168.1.23/OFF"), BEEP();
 ```
-* Volendo si può usare uno _smart switch virtual Tuya_ per implementare un 'proxy' per controllore lo stato ON/OFF di ESP3266: quando il proxy è ON lampeggia, altrimenti no. Fatto questo, si può controllare il proxy nelle 'scene' Tuya standard!
+* If you want, you can use a _smart switch virtual Tuya_ to implement a 'proxy' to control the ON/OFF state of the ESP3266: when the proxy is ON it blinks, otherwise it doesn't. Once you've done this, you can control the proxy in the standard Tuya 'scenes'!
 
-Queste due regole di IoTwebUI copiano lo stato di 'blink-proxy.switch_1' su ESP3266, via rest, usando il comando apposito (in questo caso la risposta è TEXT - non JSON - e quindi usiamo la MACRO `REST()`).
+These two IoTwebUI rules copy the state of 'blink-proxy.switch_1' to the ESP3266, via rest, using the appropriate command (in this case the response is TEXT - not JSON - and so we use the MACRO `REST()`).
 
 ![image](https://github.com/user-attachments/assets/5de0a999-f4a5-4636-b084-b8167fcea8fa)
 ```
 if(ISTRIGGERH(!!GET("blink-proxy", "switch_1", false))) REST("http://192.168.1.23/ON"), BEEP();
 if(ISTRIGGERL(!!GET("blink-proxy", "switch_1", false))) REST("http://192.168.1.23/OFF"), BEEP();
 ```
-nota: questi comandi presentano una latenza dovuta ai loop di TuyaCloud!
-
+note: these commands have latency due to TuyaCloud loops!
 
 <hr>
 
-**Considerazioni Generali:**
+**General Considerations:**
 
-* L'isolamento galvanico tra il circuito di controllo a bassa tensione e il circuito di potenza a 230V è un aspetto cruciale per la sicurezza e la possibilità di effettuare modifiche.
-* La conoscenza delle caratteristiche elettriche del pin di input (tensione, corrente, soglia di attivazione) è fondamentale per l'integrazione di sensori e microcontrollori.
-* L'utilizzo di un microcontrollore ESP32 apre la strada a funzionalità più avanzate, come l'elaborazione di segnali complessi e la comunicazione wireless.
+* Galvanic isolation between the low voltage control circuit and the 230V power circuit is crucial for safety and the ability to make changes.
+* Knowledge of the electrical characteristics of the input pin (voltage, current, activation threshold) is essential for the integration of sensors and microcontrollers.
+* Using an ESP32 microcontroller opens the way to more advanced features, such as complex signal processing and wireless communication.
