@@ -67,25 +67,7 @@ note: The mode change (run/programming) occurs at the startup of the ESP01 and t
 _ATTENTION: some programmers have jumpers to choose 5V or 3.3V. ESP01S requires 3.3V!_
 
 ### HTTP control
-We need to add some control functionality: ON/OFF and the possibility to change the period. We cannot use the relay in any way, ### Firmware
-
-Both the installation and the use of Arduino to program an ESP01s are very simple: you only need a USB adapter. For details see the project [Watchdog03](https://github.com/msillano/tuyaDEAMON-applications/wiki/note-5:-Watchdog-for-IOT#watchdog03-esp01-relay--arduino).
-
-note: The mode change (run/programming) occurs at the startup of the ESP01 and the programming mode requires the IN0 PIN to ground. I therefore added a small switch to the programmer (in some models it is already present) and therefore the procedure is the following:
-* switch with IN0 to GND (programming)
-* insert the programmer into the USB socket
-* programming with Arduino
-* remove the programmer from the USB socket
-* switch with IN0 open (run)
-* Open the serial terminal on Arduino at 9600 baud.
-* insert the programmer into the USB socket: the program starts automatically
-* debug the program with the help of echos on the serial
-
-_ATTENTION: some programmers have jumpers to choose 5V or 3.3V. ESP01S requires 3.3V!_
-
-### HTTP control
-We need to add some control functionality: ON/OFF and the possibility to change the period. We cannot use the relay in any way, already used as an output device.<br>
-To manage these 'extra' parameters we exploit the capabilities of ESP3266 to implement two alternative WiFi-HTTP interfaces:
+We need to add some control functionality: ON/OFF and the possibility to change the period. We cannot use the relay in any way. To manage these 'extra' parameters we exploit the capabilities of ESP3266 to implement two alternative WiFi-HTTP interfaces:
 
 **WEB Interface: URL `http://192.168.1.23/`**
 
