@@ -7,9 +7,8 @@ Semplice esempio (blink) di modding di 'smart relay Tuya' usando ESP8266:
   - http://192.168.X.X/ON   REST per attivare il lampeggiatore
   - http://192.168.X.X/OFF  REST per spegnere il lampeggiatore
   - http://192.168.X.X/ESPtuya?time=XXXX (ms) REST per impostare il tempo (periodo, duty cycle 50%)
-
+vedi articolo: https://github.com/msillano/IoTwebUI/blob/main/DIY%20ESP3266/Modding%20switch/LEGGIMI.md
 Riferimenti:
-vedi: https://github.com/msillano/tuyaDEAMON-applications/wiki/note-9:-Modding-Tuya-smart-Switches 
 vedi: https://github.com/msillano/tuyaDEAMON-applications/wiki/note-5:-Watchdog-for-IOT#basic-wifi-arduino)  
 vedi: https://github.com/msillano/Ozone-coronavirus-sonoff/tree/master/PROJECTS-DIY/timerPDM (logica AP startup)
 vedi: https://www.elektormagazine.de/news/eineinfacher2wlanschalterderfunktioniert
