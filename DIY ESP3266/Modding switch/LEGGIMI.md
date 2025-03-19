@@ -67,6 +67,10 @@ nota: Il cambio di modo (run/programmazione) avviene allo startup dell'ESP01 e i
 
 _ATTENZIONE: alcuni programmatori hanno ponticelli per scegliere 5V o 3.3V. ESP01S richiede 3.3V!_
 
+Nella dir [modding test](https://github.com/msillano/IoTwebUI/tree/main/DIY%20ESP3266/Modding%20switch) sono presenti due file; 
+* `modding-ESP.ino` il codice completo per **ESP01S** di **blink-esp**.
+* `ESP3266-template01.ino` il codice delle comunicazioni HTTP, ma esclusa la parte specifica relativa al blinking, da usare come punto di partenza per progetti **ESP3266 custom**
+
 ### controllo HTTP
 Dobbiano aggiungere qualche funzionalità di controllo: ON/OFF e la possibilità di cambiare il periodo. Non possiamo utilizzare in alcun modo il relay, già usato come device di output.<br> 
 Per  gestire questi parametri 'extra' sfruttiamo le capacità di ESP3266 per implementare due interfacce WiFi-HTTP alternative:
