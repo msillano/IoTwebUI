@@ -9,7 +9,10 @@ with constants directly in the code. However, an extension with dynamic configur
 
 The changes to be made to this sketch are of two types:
 A) Add the logic related to the 'USER' application.
-B) Enter the required connection parameters (SSID, pass, IP etc...) as 'CONFIG'// see https://www.elektormagazine.de/news/eineinfacher2wlanschalterderfunktioniert
+B) Enter the required connection parameters (SSID, pass, IP etc...) as 'CONFIG'
+// see https://github.com/msillano/IoTwebUI/blob/main/DIY%20ESP3266/Modding%20switch/README.md
+more:
+// see https://www.elektormagazine.de/news/eineinfacher2wlanschalterderfunktioniert
 // see https://github.com/arduino/esp8266/blob/master/libraries/ESP8266WiFi/examples/WiFiWebServer/WiFiWebServer.ino
 // see https://docs.arduino.cc/library-examples/wifi-library/WiFiWebServer
 ------------------------------
