@@ -183,7 +183,18 @@ Questa implementazione è solo HW e richiede un relay reale (non virtuale), si s
 Basta quindi usare lo stato dello switch (eventualmente collegato al carico utile).
 Vedi un esempio di device [con la funzione 'circulate'](tuyaDAEMON/devices/smart_breaker/device_smart_breaker.pdf).
 
+-----
 
----
+### Implementazione 5 ('local linkage' e Switch Zigbee + ESP01S (ESP3266))
+
+**Device**: _Uso di uno switch reale, più un ESP01S programmato ad hoc_. 
+
+![full001](https://github.com/user-attachments/assets/5526c2b4-8f3b-400d-9d63-45ec7e69cd55)
+
+Soluzione forse eccessiva, usata come "proof of concept" della possibilità di modding dei device Tuya. Minimo periodo 6 secondi (periodi più brevi mandano in pairing lo smart switch). In pratica un generatore di onde quadre controllato.
+
+Vedi dettagli [BLINK-ESP01S](https://github.com/msillano/IoTwebUI/blob/main/DIY%20ESP3266/Modding%20switch/LEGGIMI.md#esempio-2--blink-esp01-integrazione-tuya--esp3266)
+
+-----
 ### Raccomandazioni
-- **Preferire Implementazione 4** (Zigbee): più robusta e affidabile, oppure Implementazione 1, affidabile.  
+- **Preferire Implementazione 4** (Zigbee): più robusta e affidabile, oppure **Implementazione 1**, affidabile.  
