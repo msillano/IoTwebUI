@@ -102,6 +102,10 @@ Un'interfaccia _REST server_ in **IoTwebUI** offre un modo potente, flessibile e
 * Flessibilità: Puoi accedere ai tuoi dispositivi IoT da qualsiasi dispositivo connesso a internet, utilizzando qualsiasi linguaggio di programmazione che supporti le richieste HTTP.
 * Standard: REST è uno standard ampiamente adottato, il che significa che ci sono molte librerie e strumenti disponibili per semplificare lo sviluppo.
 * Indipendenza: L'interfaccia REST separa l'interfaccia utente dal backend, permettendoti di aggiornare o modificare l'uno senza influenzare l'altro.
+  
+#### APP-Tuya: l'impensabile realizzato con Tuya
+
+L'uso sinergico di 'x-device' e di UI custom permette la realizzazione di APP-Tuya inpensabili: per esempio un 'logic analyzer a 5 canali' per la visualizzazione di eventi dei device, oppure un 'termostato SW completo', o un 'tester per batterie al NiMH', etc... UN campo dove ogni utente può espandere la propria progettualità.
 
 #### Interfaccia con Panel: tutto a portata di dito
 
@@ -110,8 +114,8 @@ Il pannello è così un 'abito su misura' ottimizzato
 
 #### Modding e device DIY Tuya con ESP3266
 
-Dedicato agli appassionati di DIY, si sono esplorate le possibilità di 'modding' dei device Tuyta standard, per ottenre  nuovi device e nuove funzionalità.
-E' possibile aggiungere un ESP01 con uno 'sketch'  custom ad uno smart relay Tuya.
+Dedicato agli appassionati di DIY, si sono esplorate alcune possibilità di 'modding' dei device Tuyta standard, per ottenere semplicemente nuovi device e nuove funzionalità custom Tuyta compatibili.
+E' possibile aggiungere un ESP01 con uno 'sketch' realizzato con Arduino ad uno smart relay Tuya.
 
 
 #### Unica APP, una valanga di funzioni 
