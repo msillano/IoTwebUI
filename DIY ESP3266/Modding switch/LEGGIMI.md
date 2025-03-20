@@ -3,13 +3,13 @@
 
  Volevo esplorare le possibilità di modifica (modding) degli interruttori smart Tuya, partendo dalla [constatazione](https://www.facebook.com/groups/tuyaitalia/permalink/1601909300443417/) che la tensione ai capi dell'interruttore fisico di controllo è tipicamente una tensione continua a bassa tensione (3.3V o 5V), isolata galvanicamente dal circuito di potenza a 230V. Questa caratteristica apre scenari interessanti per l'integrazione di sensori e microcontrollori, permettendo di creare 'device Tuya custom'.
 
-### Analisi dell'Interruttore Smart
+### Analisi di un Interruttore Smart
 
 * **Dispositivo di Test:** Un interruttore smart [Zigbee economico](https://it.aliexpress.com/item/1005005875932568.html) è stato utilizzato come piattaforma di test.
 
 ![full001](https://github.com/user-attachments/assets/5526c2b4-8f3b-400d-9d63-45ec7e69cd55)
 
-* **Identificazione dei Punti di Alimentazione:** L'analisi del circuito ha rivelato la felice presenza sia di tensione a 5V (per l'alimentazione del relè) che a 3.3V (per l'elettronica di controllo), entrambe isolate dalla rete elettrica. I condensatori elettrolitici più grandi sono stati identificati come punti di prelievo comodi per queste tensioni (vedi figura).
+* **Identificazione dei Punti di Alimentazione:** L'analisi del circuito ha rivelato la felice presenza sia di tensione a 5V (per l'alimentazione del relè) che a 3.3V (per l'elettronica di controllo), entrambe isolate dalla rete elettrica. I condensatori elettrolitici più grandi sono stati identificati come punti di prelievo comodi per queste tensioni (vedi frecce nella figura ingrandita).
 * **Caratteristiche del Pin di Input:** Il pin di input dell'interruttore è collegato a un resistore da 6.8K verso +3.3V, con una soglia di attivazione di circa 1.4V.
 * **Warning:** Una serie ravvicinata di ON/OFF (chattering, contatto instabile...) mette lo switch in una condizione di 'pairing' (luce blu lempeggiante) da cui si esce solo riassociandolo all'HUB (con cambio di nome automatico).
 
@@ -43,7 +43,7 @@ _Per una introduzione generale a ESP01 [vedi qui](https://www.ariat-tech.it/blog
 _Invece una introduzione generale all'uso di ESP3266 in device custom si trova in [questo articolo](https://github.com/msillano/tuyaDEAMON-applications/wiki/note-5:-Watchdog-for-IOT#note-esp-01-programming)_.
 
 ![esp01-02](https://github.com/user-attachments/assets/ea6eaf65-409b-411d-b6c5-6f81525e3bfc)
-Sinistra: programmazione ESP01S con adattatore via USB.  Destra: finito.
+Sinistra: programmazione dell'ESP01S con adattatore via USB.  Destra: finito.
 
 Per rimanere sul semplice, come è il caso per un _proof of concept_, prendiamo la demo Arduino 'blink' forse il programmino più semplice e famoso, solo lo implementiamo con un timer. In pratica trasformiamo lo smart relay in un lampeggiatore.
 
@@ -55,7 +55,7 @@ Modding smart switch: si usano gli stessi 3 collegamenti usati in Esempio 1: uno
 
 Sia l'installazione che l'uso di Arduino per programmare un ESP01s sono molto semplici: occorre solo un adattatore USB. Per dettagli vedi il progetto [Watchdog03](https://github.com/msillano/tuyaDEAMON-applications/wiki/note-5:-Watchdog-for-IOT#watchdog03-esp01-relay--arduino).
 
-nota: Il cambio di modo (run/programmazione) avviene allo startup dell'ESP01 e il modo programmazione richiede il PIN IN0 a massa. Ho quindi aggiunto un piccolo switch al programmatore (in alcuni modelli è già presente) e quindi la procedura è la seguente:
+nota: Il cambio di modo (run/programmazione) avviene allo startup dell'ESP01 e il modo programmazione richiede il PIN IN0 a massa all'avvio. Ho quindi aggiunto un piccolo switch al programmatore (in alcuni modelli è già presente) e quindi la procedura è la seguente:
 * switch con IN0 a GND (programmazione)
 * infilare il programmatore nella presa USB
 * programmazione con Arduino
@@ -68,28 +68,28 @@ nota: Il cambio di modo (run/programmazione) avviene allo startup dell'ESP01 e i
 _ATTENZIONE: alcuni programmatori hanno ponticelli per scegliere 5V o 3.3V. ESP01S richiede 3.3V!_
 
 Nella dir [modding test](https://github.com/msillano/IoTwebUI/tree/main/DIY%20ESP3266/Modding%20switch) sono presenti due file; 
-* `modding-ESP.ino` il codice completo per **ESP01S** di **blink-esp**.
+* `modding-ESP.ino` il codice completo per **ESP01S** di questo **blink-esp**.
 * `ESP3266-template01.ino` il codice delle comunicazioni HTTP, ma esclusa la parte specifica relativa al blinking, da usare come punto di partenza per progetti **ESP3266 custom**
 
 ### controllo HTTP
 Dobbiano aggiungere qualche funzionalità di controllo: ON/OFF e la possibilità di cambiare il periodo. Non possiamo utilizzare in alcun modo il relay, già usato come device di output.<br> 
 Per  gestire questi parametri 'extra' sfruttiamo le capacità di ESP3266 per implementare due interfacce WiFi-HTTP alternative:
 
-**Interfaccia WEB: `http://192.168.1.23/`**
+**Interfaccia WEB: URL `http://192.168.1.23/`**
 
  ![Screenshot 2025-03-17 211306](https://github.com/user-attachments/assets/7a8d1dd8-a853-4e5d-a81a-ba102655fd23)
  
-   Chiamando da un browser l'indirizzo associato a ESP01 (custom, definito nel codice) ci si collega ad un server WEB (port 80) creato in ESP01. La risposta del server è una pagina WEB con una semplice interfaccia interattiva che presenta informazioni sullo stato e permette gli aggiornamenti.
+   Chiamando da un browser l'indirizzo associato a ESP01 (custom, definito nel codice) ci si collega ad un server WEB (port 80) creato da ESP01. La risposta del server è una pagina WEB con una semplice interfaccia interattiva che presenta informazioni sullo stato e permette gli aggiornamenti.
 
 **Interfaccia HTTP GET e REST**
 
-   Per maggiore comodità è presente una seconda interfaccia, sempre via server WEB, ma che utilizza il protocollo REST ed il protocollo GET+ parametri (lo stesso dei 'form' HTML): 
+   Per maggiore comodità è presente una seconda interfaccia, sempre via server WEB, ma che utilizza il protocollo REST ed il protocollo GET+ parametri (lo stesso dei 'form' HTML). URL usate: 
 
-* `http://192.168.1.23/ON`
-* `http://192.168.1.23/OFF`
-* `http://192.168.1.23/ESPtuya?loop=xxxx` (xxx = periodo in ms)
+* `http://192.168.1.23/ON`   // REST
+* `http://192.168.1.23/OFF`  // REST
+* `http://192.168.1.23/ESPtuya?loop=xxxx` (xxx = periodo in ms)  // GET + prams
 
-La risposta è TESTO e contiene 'OK' o 'BAD'. (Alternativa: usare risposte JSON, quando devono essere forniti dati).
+La risposta è TESTO e contiene 'OK' o 'BAD'. (Alternativa: usare risposte JSON, quando devono essere forniti più dati).
 Si posono provare anche con un browser, scrivendo direttamente gli URL precedenti.<br>
 Queste interfacce sono pensate non per usi interattivi ma per usi programmatici in qualsiasi APP o linguaggio in grado di inviare richieste HTPP (in particolare, da IoTwebUI).
 
@@ -97,11 +97,13 @@ _Volendo si potrebbe usare anche un'interfaccia MQTT, ma è più complessa e ric
 
 **Esempi di uso con IOTwebUI**
 
-* La strada più semplice sono due 'REGOLE con nome' (equivalenti ai tap-to-run Tuya) che appariranno nella pagina _tap-to-run_ di **IoTwebUI**:
+* La strada più semplice sono due 'REGOLE con nome' (equivalenti ai tap-to-run Tuya) che appariranno nella pagina _'tap-to-run'/'user RULES' _ di **IoTwebUI**:
 ```
 if (TRIGBYNAME("BLINK on"))   REST("http://192.168.1.23/ON"), BEEP();
 if (TRIGBYNAME("BLINK off"))  REST("http://192.168.1.23/OFF"), BEEP();
 ```
+![image](https://github.com/user-attachments/assets/930ff85a-4096-465b-8727-6ac591d3dfff)
+
 * Volendo si può usare uno _smart switch virtual Tuya_ per implementare un 'proxy' per controllore lo stato ON/OFF di ESP3266: quando il proxy è ON lampeggia, altrimenti no. Fatto questo, si può controllare il proxy nelle 'scene' Tuya standard!
 
 Queste due regole di IoTwebUI copiano lo stato di 'blink-proxy.switch_1' su ESP3266, via rest, usando il comando apposito (in questo caso la risposta è TEXT - non JSON - e quindi usiamo la MACRO `REST()`).
