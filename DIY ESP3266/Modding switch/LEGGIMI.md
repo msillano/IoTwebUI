@@ -1,7 +1,8 @@
 
 **Introduzione:**
 
- Volevo esplorare le possibilità di modifica (modding) degli interruttori smart Tuya, partendo dalla [constatazione](https://www.facebook.com/groups/tuyaitalia/permalink/1601909300443417/) che la tensione ai capi dell'interruttore fisico di controllo è tipicamente una tensione continua a bassa tensione (3.3V o 5V), isolata galvanicamente dal circuito di potenza a 230V. Questa caratteristica apre scenari interessanti per l'integrazione di sensori e microcontrollori, permettendo di creare 'device Tuya custom'.
+ Volevo esplorare le possibilità di modifica (modding) degli interruttori smart Tuya, partendo dalla [constatazione](https://www.facebook.com/groups/tuyaitalia/permalink/1601909300443417/) che la tensione ai capi dell'interruttore fisico di controllo è tipicamente una tensione continua a bassa tensione (3.3V o 5V), isolata galvanicamente dal circuito di potenza a 230V. Questa caratteristica apre scenari interessanti per l'integrazione di sensori e microcontrollori, permettendo di creare 'device Tuya custom'. <br>
+In questo progetto si utilizza un pin (GPO0) come output collegato a S2 per controllare lo _smart relay_, gli altre 3 pin di I/O di ESP01S non sono usati.
 
 ### Analisi di un Interruttore Smart
 
@@ -10,8 +11,8 @@
 ![full001](https://github.com/user-attachments/assets/5526c2b4-8f3b-400d-9d63-45ec7e69cd55)
 
 * **Identificazione dei Punti di Alimentazione:** L'analisi del circuito ha rivelato la felice presenza sia di tensione a 5V (per l'alimentazione del relè) che a 3.3V (per l'elettronica di controllo), entrambe isolate dalla rete elettrica. I condensatori elettrolitici più grandi sono stati identificati come punti di prelievo comodi per queste tensioni (vedi frecce nella figura ingrandita).
-* **Caratteristiche del Pin di Input:** Il pin di input dell'interruttore è collegato a un resistore da 6.8K verso +3.3V, con una soglia di attivazione di circa 1.4V.
-* **Warning:** Una serie ravvicinata di ON/OFF (chattering, contatto instabile...) mette lo switch in una condizione di 'pairing' (luce blu lempeggiante) da cui si esce solo riassociandolo all'HUB (con cambio di nome automatico).
+* **Caratteristiche del Pin di Input:** Il pin di input dell'interruttore (S2) è collegato tramite un resistore di pullup da 6.8K a +3.3V, con una soglia di attivazione di circa 1.4V.
+* **Warning:** Una serie ravvicinata di ON/OFF (chattering, contatto instabile...) mette lo switch in condizione di 'pairing' (luce blu lempeggiante) da cui si esce solo riassociandolo all'HUB (con cambio di nome automatico).
 
 
 ## Esempio 1: Rivelatore di Fiamma DIY
