@@ -105,7 +105,7 @@ Un'interfaccia _REST server_ in **IoTwebUI** offre un modo potente, flessibile e
   
 #### APP-Tuya: l'impensabile realizzato con Tuya
 
-L'uso sinergico di 'x-device' e di UI custom permette la realizzazione di APP-Tuya inpensabili: per esempio un 'logic analyzer a 5 canali' per la visualizzazione di eventi dei device, oppure un 'termostato SW completo', o un 'tester per batterie al NiMH', etc... UN campo dove ogni utente può espandere la propria progettualità.
+L'uso sinergico di 'x-device' e di UI custom permette la realizzazione di APP-Tuya inpensabili: per esempio un 'logic analyzer a 5 canali' per la visualizzazione di eventi dei device, oppure un 'termostato SW completo', o un 'tester per batterie al NiMH', etc... Un campo dove ogni utente può espandere la propria progettualità.
 
 #### Interfaccia con Panel: tutto a portata di dito
 
@@ -115,8 +115,8 @@ Il pannello è così un 'abito su misura' ottimizzato
 #### Modding e device DIY Tuya con ESP3266
 
 Non è possibile usare device custom con Tuya, non le riconoscerebbe!
-Dedicato agli appassionati di DIY, si sono esplorate alcune possibilità di 'modding' dei device Tuyta standard, per ottenere semplicemente nuovi device e nuove funzionalità custom Tuya compatibili.
-E' possibile aggiungere un ESP01 con uno 'sketch' realizzato con Arduino ad uno smart relay Tuya.
+Dedicato agli appassionati di DIY, si sono esplorate alcune possibilità di 'modding' dei device Tuyta standard, per ottenere semplicemente nuovi device e nuove funzionalità custom, ma Tuya compatibili.<br>
+E' possibile aggiungere un ESP01 con uno 'sketch' realizzato con Arduino ad uno _smart relay Tuya_.
 
 
 #### Unica APP, una valanga di funzioni 
