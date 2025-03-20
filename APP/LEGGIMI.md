@@ -23,6 +23,9 @@ _Per comodità di uso li abbiamo separati in questa dir: in fase di installazion
 Istruzioni comuni e generali. Per ulteriori dettagli vedere le singole APP.
 
 1. **minima (senza UI)**
+
+![image](https://github.com/user-attachments/assets/57662994-d2b9-43ac-ac72-2cb9101efbab)
+
    * installare **IoTwebUI** sul server scelto (vedi [IoTwebUI installazione](https://github.com/msillano/IoTwebUI/blob/main/LEGGIMI22.md#installazione))<br>
    _nota: inizialmente eliminare (file `config.js`) sia allarmi che Log, e porre `tuyaInterval = 180` (uso continuo) oppure  `tuyaInterval = 60` (uso saltuario, più pronto)._
 
@@ -41,11 +44,13 @@ Istruzioni comuni e generali. Per ulteriori dettagli vedere le singole APP.
 2. **Installazione completa** (User Inteface)
    _Alcune APP funzionano perfettamente senza UI (e.g. Thermostat) per altre l'UI è insispensabile_
    
-   * Oltre all'installazione 'minima', installare [RESTserver](https://github.com/msillano/IoTwebUI/blob/main/RESTserver/LEGGIMI-REST22.md#installazione-e-configurazione)
+![image](https://github.com/user-attachments/assets/b038e96c-012d-48d6-9c57-d0151aad58bc)
+
+   * Oltre all'installazione 'minima', installare anche [RESTserver](https://github.com/msillano/IoTwebUI/blob/main/RESTserver/LEGGIMI-REST22.md#installazione-e-configurazione)
    
    * Completare la configurazione di  `html/xxxxxx0y.html`<br> _In particolare controllare x_name (nome del x-device, cioè `xname`) usato nella REGOLA di lancio. V. sopra. Controllare eventuali parametri e customizzazioni._
      
-3. **Uso - fino a ver. 2.2**
+2. **Uso - fino a ver. 2.2**
 
    * Lanciare **RESTserver** (file `rest02.2\run_server.bat`), poi iconizzare la finestra  `cmd.exe` (NON chiudere!).
    * Lanciare **IoTwebUI** (file `run_me.bat`) 
