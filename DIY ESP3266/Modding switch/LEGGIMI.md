@@ -2,13 +2,17 @@
 **Introduzione:**
 
  Volevo esplorare le possibilità di modifica (modding) degli interruttori smart Tuya, partendo dalla [constatazione](https://www.facebook.com/groups/tuyaitalia/permalink/1601909300443417/) che la tensione ai capi dell'interruttore fisico di controllo è tipicamente una tensione continua a bassa tensione (3.3V o 5V), isolata galvanicamente dal circuito di potenza a 230V. Questa caratteristica apre scenari interessanti per l'integrazione di sensori e microcontrollori, permettendo di creare 'device Tuya custom'. <br>
-In questo progetto si utilizza un pin (GPO0) come output collegato a S2 per controllare lo _smart relay_, gli altre 3 pin di I/O di ESP01S non sono usati.
 
 ### Analisi di un Interruttore Smart
 
 * **Dispositivo di Test:** Un interruttore smart [Zigbee economico](https://it.aliexpress.com/item/1005005875932568.html) è stato utilizzato come piattaforma di test.
 
 ![full001](https://github.com/user-attachments/assets/5526c2b4-8f3b-400d-9d63-45ec7e69cd55)
+
+IMPORTANTE _Con altri tipi di 'smart switch' le indicazioni possono cambiare.<br> 
+Non usare smart switch Tuya con gli interruttori collegati alla 230 (F o N !) perchè l'alimentatore CC in questi casi non è galvanicamente isolato dalla rete. Provare solo con smart switch che hanno S1 e S2 (o COM). Verificare con un tester la tensione tra S1/S2 e F/N!_<br>
+
+NON APRITE UNO SMART SWTCH TUYA SE NON SIETE SICURI DI QUELLO CHE STATE FACENDO!
 
 * **Identificazione dei Punti di Alimentazione:** L'analisi del circuito ha rivelato la felice presenza sia di tensione a 5V (per l'alimentazione del relè) che a 3.3V (per l'elettronica di controllo), entrambe isolate dalla rete elettrica. I condensatori elettrolitici più grandi sono stati identificati come punti di prelievo comodi per queste tensioni (vedi frecce nella figura ingrandita).
 * **Caratteristiche del Pin di Input:** Il pin di input dell'interruttore (S2) è collegato tramite un resistore di pullup da 6.8K a +3.3V, con una soglia di attivazione di circa 1.4V.
@@ -46,11 +50,12 @@ _Invece una introduzione generale all'uso di ESP3266 in device custom si trova i
 ![esp01-02](https://github.com/user-attachments/assets/ea6eaf65-409b-411d-b6c5-6f81525e3bfc)
 Sinistra: programmazione dell'ESP01S con adattatore via USB.  Destra: finito.
 
-Per rimanere sul semplice, come è il caso per un _proof of concept_, prendiamo la demo Arduino 'blink' forse il programmino più semplice e famoso, solo lo implementiamo con un timer. In pratica trasformiamo lo smart relay in un lampeggiatore.
+Per rimanere sul semplice, come è il caso per un _proof of concept_, prendiamo la demo Arduino 'blink' forse il programmino più semplice e famoso, solo lo implementiamo con un timer. In pratica trasformiamo lo smart relay in un lampeggiatore.<br>
+In questo progetto si utilizza un pin (GPO0) come output collegato a S2 per controllare lo _smart relay_, gli altre 3 pin di I/O di ESP01S non sono usati.
 
 ### Hardware
 
-Modding smart switch: si usano gli stessi 3 collegamenti usati in Esempio 1: uno interno (3.3V) e  due sui morsetti: S1 (GND) e S2 (IN).
+Modding smart switch: si usano gli stessi 3 collegamenti usati in Esempio 1: uno interno (3.3V) e  due sui morsetti: S1 (GND) e S2 (IN). 
 
 ### Firmware
 
