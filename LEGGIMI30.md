@@ -310,7 +310,7 @@ In IoTwebUI esistono 2 interfacce REST:
 
 _Queste due strade permettono finalmente l'integrazione di Tuya in progetti verticali, senza alterare il funzionamento base di Tuya/Smartlife, ma arricchendolo di nuove potenzialità, con una strategia più semplice delle alternative preesistenti (e.g. tuyaDAEMON, HA, etc...) Vedi [clima01](https://github.com/msillano/IoTwebUI/blob/main/html/clima01-leggimi.md), esempio di semplice UI WEB custom.
 
-### Panel: menu realmente customizzabili
+### Panel: menu realmente customizzabili (v. 3.0)
 
 Realizzati in HTML, le pagine 'Panel' si possono pensare suddivise in strisce orizzontali. Ogni striscia può contenere un titolo oppure 1, 2, o 3 bottoni, che a loro volta possono contenere icone, widget, informazioni. L'utente può limitarsi al copia e incolla delle varie 'striscie'. L'uso di librerie e css renda semplice l'operazione!
 
@@ -397,11 +397,11 @@ Nelle immagini: a sinistra avvio OK (Chrome, CORS disattivato) a destra in caso 
 <div><img src="https://github.com/msillano/IoTwebUI/blob/main/pics/okconsole.png?raw=true" alt="normal start" width="300" />
    <img src="https://github.com/msillano/IoTwebUI/blob/main/pics/CORSerror.png?raw=true" alt="CORS error" width="400" align="right" /></div>
 
-## Note ver.3.0
+### Note ver.3.0
 
-Installare come descritto e separatamente sia **IoTwebUI** che **IoTres**t. Solo una volta che funzionano bene, utilizzare il nuovo file bat `APP_me.bat`, che attiva il look della versione 3.0 (aggiornare le DIR in `APP_me.bat`). Vedi anche le [istruzioni per le APP](https://github.com/msillano/IoTwebUI/blob/main/APP/LEGGIMI.md#installazione-e-uso).
+Installare come descritto e separatamente sia **IoTwebUI** che **IoTrest**. Solo una volta che funzionano bene, utilizzare il nuovo file bat `APP_me.bat`, che attiva il look della versione 3.0 (aggiornare le DIR in `APP_me.bat`). Vedi anche le [istruzioni per le APP](https://github.com/msillano/IoTwebUI/blob/main/APP/LEGGIMI.md#installazione-e-uso).
 
-## Configurazione
+### Configurazione
 
 L'app **IoTwebUI** non è per utenti alle prime armi, pertanto è accettabile che la configurazione avvenga direttamente editando un file (`config`.js). _Le solite avvertenze: fare una copia del file prima di ogni modifica, usare un editor UTF8 (io uso Notepad-plusplus), e attenzione a NON ALTERARE niente altro (soprattutto virgole  ','  ed  apici '"' e "`")._
 
@@ -424,7 +424,7 @@ Come alternativa potete accedere su `platform.tuya.com`, selezionare 'Cloud' e '
 
 - IMPORTANTE! Aggiornare con i path del sistema ospite il file di lancio `run_me.bat`, (e poi anche il file  `APP_me.bat`) per lanciare Chrome con una configurazione ottimizzata.
   
-## Internazionalizzazione
+### Internazionalizzazione
 
 * Interfaccia utente:  i file, uno per lingua, nome `text02.2.xx.js` sono situati nella dir 'i18n': il file in uso è `text02.2.js`. Sostituirlo con il file della lingua desiderata._<br>
 * moduli 'speech':  i file, uno per lingua, nome `speech02.2.xx.js` sono situati nella dir 'i18n': il file in uso è `speech02.2.js`. Sostituirlo con il file della lingua desiderata._<br>
@@ -465,7 +465,7 @@ Queste customizzazioni NON SONO NECESSARIE, ma sono opzioni che redono più util
 
 <hr style="height:2px;border-width:0;color:gray;background-color:gray">
 
-### formato CSV
+## formato CSV
 
 Questo è un esempio di file di log in formato CSV:
 ```
@@ -486,7 +486,7 @@ date, time, ROMA.TF_frigo.va_temperature, ROMA.Temperatura studio.va_temperature
 2024-05-17, 06:37:28, 71, 22;
 ... more ...
 ```
-### formato JSON
+## formato JSON
 Questo è un esempio di file di log in formato JSON:
 ```
 [{"home":"ROMA","device":"TF_frigo","status":"va_temperature","result":70,"day":"2024-05-17","time":"19:37:51"},
@@ -511,7 +511,7 @@ E' un array di array contenenti le singole misure (oggetti).
 
 <hr style="height:2px;border-width:0;color:gray;background-color:gray">
 
-### REGOLE - sintassi
+## REGOLE - sintassi
 Le 'REGOLE' sono codificate in `JavaScript`. Il particolare ambiente in cui sono valutate le REGOLE comporta qualche limite alla sintassi JavaScript (js) standard, come veremo in queste note. Le REGOLE sono esegute ciclicamente, dopo ogni pollig di dati dal Cloud Tuya, quindi ogni `TuyaInterval` (vedi `config.js`). Talora si hanno delle esecuzione extra, per esempio in occasione di attivazioni per nome delle REGOLE.
 
 - **importante**: il codice è eseguito una riga alla volta, non è possibile scrivere blocchi js che occuppino più righe!  Per contenere la lunghezza delle righe, usare delle variabili volatili intermedie (vedi esempi).
@@ -583,7 +583,7 @@ nota: i nomi dei tap-to-run come 'TLetto16' sono impossibili da usare con il ric
 _Tutto sommato semplice, nevvero? Secondo i progettisti di APP per domotica (tutti: si copiano l'un l'altro le prestazioni) noi utenti siamo solo in grado di gestire " Se ....  Poi ....". Che mancanza di fantasia e di fiducia!._ 
 _Che poi, avere a disposizione strumenti sofisticati, non vuol dire essere obbligati ad usarli! Se non si devono usare, meglio. Ma quando servono le REGOLE sono lì, pronte a risolvere i nostri problemi._
 
-#### REGOLE - Primi passi
+### REGOLE - Primi passi
 Volete fare delle prove ma non sapete da dove cominciare? Ecco tre REGOLE che non richiedono device, ma sono utili per fare le prime prove.
 1) copiare le seguenti 3 REGOLE nell'area di edit delle RULE (modo ESPERTO), e poi premere TEST.
 2) Nella pagina tap-to-run, tab 'user RULE' trovate tre nuovi bottoni: 'spegni luce'. 'Pippo' e 'chiamata Pippo': potete verificare il funzionamento delle tre REGOLE.
@@ -594,7 +594,7 @@ Volete fare delle prove ma non sapete da dove cominciare? Ecco tre REGOLE che no
    if (TRIGBYNAME("chiamata Pippo")) TRIGRULE("Pippo"), VOICE("chiamo Pippo");
 ```
 
-#### REGOLE - MACRO
+### REGOLE - MACRO
 le MACRO rispondono a varie esigenze:
  1. Fornire accesso alle risorse e funzionalità di **IoTwebUI**, per poterle usare nelle REGOLE
  2. L'ambiente (run ripetuti ad intervalli regolari) e i suoi limiti (codice in una sola riga) rendono più ardua la scrittura di funzioni complesse: le MACRO semplificano il compito dell'utente. 
