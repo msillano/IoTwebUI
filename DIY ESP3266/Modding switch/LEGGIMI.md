@@ -15,8 +15,10 @@ Non usare smart switch Tuya con gli interruttori collegati alla 230 (F o N !) pe
 NON APRITE UNO SMART SWTCH TUYA SE NON SIETE SICURI DI QUELLO CHE STATE FACENDO!
 
 * **Identificazione dei Punti di Alimentazione:** L'analisi del circuito ha rivelato la felice presenza sia di tensione a 5V (per l'alimentazione del relè) che a 3.3V (per l'elettronica di controllo), entrambe isolate dalla rete elettrica. I condensatori elettrolitici più grandi sono stati identificati come punti di prelievo comodi per queste tensioni (vedi frecce nella figura ingrandita).
+
 * **Caratteristiche del Pin di Input:** Il pin di input dell'interruttore (S2) è collegato tramite un resistore di pullup da 6.8K a +3.3V, con una soglia di attivazione di circa 1.4V.
-* **Warning:** Una serie ravvicinata di ON/OFF (chattering, contatto instabile...) mette lo switch in condizione di 'pairing' (luce blu lempeggiante) da cui si esce solo riassociandolo all'HUB (con cambio di nome automatico).
+
+* **Warning:** Una serie ravvicinata di ON/OFF (chattering, contatto instabile...) mette lo switch in condizione di 'pairing' (luce blu lempeggiante) da cui si esce solo riassociandolo all'HUB (con cambio di nome automatico) oppure togliendo l'alimentazione (230) al relay per qualche secondo. Nei miei test il periodo minimo di lampeggiamento per evitare il problema è di 5 s.
 
 
 ## Esempio 1: Rivelatore di Fiamma DIY
@@ -50,7 +52,7 @@ _Invece una introduzione generale all'uso di ESP3266 in device custom si trova i
 ![esp01-02](https://github.com/user-attachments/assets/ea6eaf65-409b-411d-b6c5-6f81525e3bfc)
 Sinistra: programmazione dell'ESP01S con adattatore via USB.  Destra: finito.
 
-Per rimanere sul semplice, come è il caso per un _proof of concept_, prendiamo la demo Arduino 'blink' forse il programmino più semplice e famoso, solo lo implementiamo con un timer. In pratica trasformiamo lo smart relay in un lampeggiatore.<br>
+Per rimanere sul semplice, come è il caso per un _proof of concept_, prendiamo la demo Arduino 'blink' forse il programmino più semplice e famoso, solo lo implementiamo con un timer. In pratica trasformiamo lo smart relay in un lampeggiatore o in un generatore controllato di onde quadre.<br>
 In questo progetto si utilizza un pin (GPO0) come output collegato a S2 per controllare lo _smart relay_, gli altre 3 pin di I/O di ESP01S non sono usati.
 
 ### Hardware
@@ -108,6 +110,8 @@ _Volendo si potrebbe usare anche un'interfaccia MQTT, ma è più complessa e ric
 if (TRIGBYNAME("BLINK on"))   REST("http://192.168.1.23/ON"), BEEP();
 if (TRIGBYNAME("BLINK off"))  REST("http://192.168.1.23/OFF"), BEEP();
 ```
+nota: questi comandi sono praticamente immediati.
+
 ![image](https://github.com/user-attachments/assets/930ff85a-4096-465b-8727-6ac591d3dfff)
 
 * E' comodo usare uno _smart switch virtual Tuya_ per implementare un 'proxy' per controllore lo stato ON/OFF di ESP3266: quando il proxy è ON, BLINK-ESP01S lampeggia, altrimenti no. Fatto questo, si può controllare il proxy nelle 'scene' Tuya standard!
@@ -120,7 +124,7 @@ Queste due regole di IoTwebUI copiano lo stato di 'blink-proxy.switch_1' su ESP3
 if(ISTRIGGERH(!!GET("blink-proxy", "switch_1", false))) REST("http://192.168.1.23/ON"), BEEP();
 if(ISTRIGGERL(!!GET("blink-proxy", "switch_1", false))) REST("http://192.168.1.23/OFF"), BEEP();
 ```
-nota: questi comandi presentano una latenza dovuta ai loop di TuyaCloud!
+nota: questi comandi presentano una latenza dovuta ai loop di TuyaCloud per la lettura di "blink-proxy"!
 
 
 <hr>
