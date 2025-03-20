@@ -455,15 +455,15 @@ Ma sono facilmente personalizzabili dall'utente: basta fornire un criterio di se
 
 Anche l'icona speciale che indica un'alert è customizzabile: vedi `alertIcon` in 'config.js'.
      
- - Il contenuto dei tooltip, varia a seconda del device. E' un settore dove è utile la possibilità di personalizzazioni, il metodo scelto (un filtro) permette ogni libertà: <br>
-    - Alcuni valori sono criptati: si può scegliere di non farli vedere  - oppure di decodificarli. In alcuni casi la decodifica è opportuna: vedi un [esempio comleto](https://github.com/msillano/IoTwebUI/blob/main/RESTserver/LEGGIMI-REST22.md#customizzazioni). 
+ - Il contenuto dei **tooltip**, varia a seconda del device. E' un settore dove è utile la possibilità di personalizzazioni, il metodo scelto (un filtro) permette ogni libertà: <br>
+    - Alcuni valori sono criptati: si può scegliere di non farli vedere  - oppure di decodificarli. In alcuni casi la decodifica è opportuna: vedi un [esempio completo](https://github.com/msillano/IoTwebUI/blob/main/RESTserver/LEGGIMI-REST22.md#customizzazioni). 
     - In altri casi occorre dividere per 10 o 100 per avere il valore in unità SI.   
-    - Come sviluppatore preferisco avere i nomi delle proprietà originali Tuya, ma si possono rendere più frendly traducendoli.
+    - Come sviluppatore preferisco avere i nomi delle proprietà originali Tuya, ma si possono rendere più frendly traducendoli. N.B. nelle REGOLE usare i nomi Tuya originali, non eventuali traduzioni!
     - Se si desidera si possono anche aggiungere nuove informazioni per esempio derivandole da quelle del device (e.g. temperatura sia in °C che in °F).
 
 - Per i 'tap-to-run' Tuya, è possibile personalizzare il colore dei pulsanti modificando `sceneColor(scene)` in `custom.js`.
 
-- Per le RULE, i più avventurosi possono aggiungere le loro MACRO personali nel file `usrrulesXX.X.js`.
+- Per le REGOLE (RULE), i più avventurosi possono aggiungere le loro MACRO personali nel file `usrrulesXX.X.js`.
 
 - Tutti i testi usati nell'interfaccia utente sono nei file "i18n/text0X.X.js".
 - Per VoiceRecognition, nel file "i18n/speech0X.X.js" è semplice modificare le parole della grammatica proposta: esempio sostituire 'vai' con 'raggiungi'. L'obiettivo deve essere sempre quello di migliorare la comprensione dei comandi.
