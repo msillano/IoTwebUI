@@ -114,7 +114,8 @@ Il pannello è così un 'abito su misura' ottimizzato
 
 #### Modding e device DIY Tuya con ESP3266
 
-Dedicato agli appassionati di DIY, si sono esplorate alcune possibilità di 'modding' dei device Tuyta standard, per ottenere semplicemente nuovi device e nuove funzionalità custom Tuyta compatibili.
+Non è possibile usare device custom con Tuya, non le riconoscerebbe!
+Dedicato agli appassionati di DIY, si sono esplorate alcune possibilità di 'modding' dei device Tuyta standard, per ottenere semplicemente nuovi device e nuove funzionalità custom Tuya compatibili.
 E' possibile aggiungere un ESP01 con uno 'sketch' realizzato con Arduino ad uno smart relay Tuya.
 
 
