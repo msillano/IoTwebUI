@@ -104,11 +104,12 @@ if (TRIGBYNAME("BLINK off"))  REST("http://192.168.1.23/OFF"), BEEP();
 ```
 ![image](https://github.com/user-attachments/assets/930ff85a-4096-465b-8727-6ac591d3dfff)
 
-* Volendo si può usare uno _smart switch virtual Tuya_ per implementare un 'proxy' per controllore lo stato ON/OFF di ESP3266: quando il proxy è ON lampeggia, altrimenti no. Fatto questo, si può controllare il proxy nelle 'scene' Tuya standard!
-
-Queste due regole di IoTwebUI copiano lo stato di 'blink-proxy.switch_1' su ESP3266, via rest, usando il comando apposito (in questo caso la risposta è TEXT - non JSON - e quindi usiamo la MACRO `REST()`).
+* E' comodo usare uno _smart switch virtual Tuya_ per implementare un 'proxy' per controllore lo stato ON/OFF di ESP3266: quando il proxy è ON, BLINK-ESP01S lampeggia, altrimenti no. Fatto questo, si può controllare il proxy nelle 'scene' Tuya standard!
 
 ![image](https://github.com/user-attachments/assets/5de0a999-f4a5-4636-b084-b8167fcea8fa)
+In rosso: uscita di BLINK-ESP01S  In blu: stato del 'proxy' di controllo.
+ 
+Queste due regole di IoTwebUI copiano lo stato di 'blink-proxy.switch_1' su ESP3266, via rest, usando il comando apposito (in questo caso la risposta è TEXT - non JSON - e quindi usiamo la MACRO `REST()`).
 ```
 if(ISTRIGGERH(!!GET("blink-proxy", "switch_1", false))) REST("http://192.168.1.23/ON"), BEEP();
 if(ISTRIGGERL(!!GET("blink-proxy", "switch_1", false))) REST("http://192.168.1.23/OFF"), BEEP();
