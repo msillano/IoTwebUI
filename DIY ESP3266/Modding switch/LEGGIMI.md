@@ -34,9 +34,9 @@ Da una [serie di post](https://www.facebook.com/groups/tuyaitalia/permalink/1543
  
 <hr> 
 
-## Esempio 2:  BLINK-ESP01, integrazione Tuya + ESP3266
+## Esempio 5:  BLINK-ESP01, integrazione Tuya + ESP3266
 
-![esp-01s-esp8266-pinout-mischianti](https://github.com/user-attachments/assets/7e756b2f-d20e-42cf-ace9-d15ed1fb66f8)
+![esp01-02](https://github.com/user-attachments/assets/ea6eaf65-409b-411d-b6c5-6f81525e3bfc)
 
 Questo progetto usa il microcontrollore ESP01S per implementare un semplice 'blink' a relay. <br>
 _Per una introduzione generale a ESP01 [vedi qui](https://www.ariat-tech.it/blog/esp-01-functional-features,pin-configuration,applications-and-relationship-with-esp-01s-and-esp8266.html)_.<br>
