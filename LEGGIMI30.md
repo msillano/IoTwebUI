@@ -108,6 +108,12 @@ Un'interfaccia _REST server_ in **IoTwebUI** offre un modo potente, flessibile e
 Un menu ad albero personalizzabile secondo le esigenze ed i gusti di ciascuno!
 Il pannello è così un 'abito su misura' ottimizzato 
 
+#### Modding e device DIY Tuya con ESP3266
+
+Dedicato agli appassionati di DIY, si sono esplorate le possibilità di 'modding' dei device Tuyta standard, per ottenre  nuovi device e nuove funzionalità.
+E' possibile aggiungere un ESP01 con uno 'sketch'  custom ad uno smart relay Tuya.
+
+
 #### Unica APP, una valanga di funzioni 
 
 * Open e customizzabile come vocazione: ogni scelta sarà solo vostra!
@@ -628,6 +634,14 @@ Gli **x-device**, oltre alla presentazione dei dati, possono anche gestire 'azio
 
 1. Attenzione all'uso di multiple istanze di un **x-device**. E' possibile solo se l'**x-device** è implementato come una funzione (MACRO). Se invece è implementato come REGOLA, occorre ripetere il codice per ogni istanza, ed allora é possibile cambiare i valori assegnati.  
 2. Contrariamente ai _device Tuya_, identificati univocamente dall'ID, gli **x-device** devono essere identificati esclusivamente dal _nome_, perchè l'ID cambia ad ogni run.
+
+#### MACRO - APP-Tuya
+Per APP-Tuya intendiamo una applicazione dotata di propria interfaccia utente, che utilizza Tuya e IoTwebUI con REST, per realizzare gli obiettivi più svariati. Sono normalmente composte di almeno due file:
+
+* una MACRO (x-device) che fa da middleware tra i singoli device e l'interfaccia utente, implementando anche la 'businnes logic'
+* una semplice interfaccia utente specializzata (in genere in HTML)
+
+Per dettagli sulle APP finora implementate vedi la [dir dedicata.](https://github.com/msillano/IoTwebUI/blob/main/APP/Overviews.md)
 
 <hr>
 
