@@ -2,7 +2,7 @@
 #  APPLICAZIONI Tuya 
 [english version](https://github.com/msillano/IoTwebUI/blob/main/APP/README.md)
 
-_Per APP intendiamo una applicazione dotata di propria interfaccia utente, che utilizza Tuya e IoTwebUI con REST, per realizzare gli obiettivi più svariati._
+_Per APP-Tuya intendiamo una applicazione dotata di propria interfaccia utente, che utilizza Tuya e IoTwebUI con REST, per realizzare gli obiettivi più svariati._
 _Sono normalmente composte di almeno due file:_
 * _una MACRO (**x-device**) che fa da middleware tra i singoli device e l'interfaccia utente, implementando anche la 'businnes logic'_
 * _una semplice interfaccia utente specializzata (in genere in HTML)_
