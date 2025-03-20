@@ -649,7 +649,7 @@ Per dettagli sulle APP finora implementate vedi la [dir dedicata.](https://githu
 
 <hr>
 
-#### MACRO per risorse
+#### ref. MACRO per risorse
 <dl>
 
 <dt>GET(device, property)</dt>
@@ -818,7 +818,7 @@ nota: name deve essere unico (può essere usato una sola volta) ma l'azione può
 </dl>
 <hr>
 
-#### MACRO funzionali
+#### ref. MACRO funzionali
 <dl>
 
 ![TRIGGERS](https://github.com/msillano/IoTwebUI/blob/main/pics/MACRO_01.png?raw=true)<br>
