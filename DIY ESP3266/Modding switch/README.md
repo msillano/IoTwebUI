@@ -7,7 +7,12 @@ I wanted to explore the possibilities of modifying (modding) the Tuya smart swit
 
 * **Test Device:** A [cheap Zigbee](https://it.aliexpress.com/item/1005005875932568.html) smart switch was used as a test platform.
 
-![full001](https://github.com/user-attachments/assets/5526c2b4-8f3b-400d-9d63-45ec7e69cd55)
+![full001](https://github.com/user-attachments/assets/5526c2b4-8f3b-400d-9d63-45ec7e69cd55) 
+
+IMPORTANT _With other types of 'smart switches' the indications may change.<br>
+Do not use Tuya smart switches with switches connected to 230 (F or N!) because the DC power supply in these cases is not galvanically isolated from the network. Try only with smart switches that have S1 and S2 (or COM). Check the voltage between S1/S2 and F/N with a tester!_<br>
+
+DO NOT OPEN A TUYA SMART SWITCH IF YOU ARE NOT SURE OF WHAT YOU ARE DOING!
 
 * **Power Pins Identification:** Circuit analysis revealed the happy presence of both 5V (for relay power) and 3.3V (for control electronics), both isolated from the mains. Larger electrolytic capacitors were identified as convenient tap points for these voltages (see figure).
 * **Input Pin Characteristics:** The switch input pin is connected to a 6.8K resistor to +3.3V, with an activation threshold of about 1.4V.
