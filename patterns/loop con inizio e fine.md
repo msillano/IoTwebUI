@@ -189,7 +189,7 @@ Vedi un esempio di device [con la funzione 'circulate'](tuyaDAEMON/devices/smart
 
 **Device**: _Uso di uno switch reale, più un ESP01S programmato ad hoc_. 
 
-![full001](https://github.com/user-attachments/assets/5526c2b4-8f3b-400d-9d63-45ec7e69cd55)
+![esp01-02](https://github.com/user-attachments/assets/ea6eaf65-409b-411d-b6c5-6f81525e3bfc)
 
 Soluzione forse eccessiva, usata come "proof of concept" della possibilità di modding dei device Tuya. Minimo periodo 6 secondi (periodi più brevi mandano in pairing lo smart switch). In pratica un generatore di onde quadre controllato.
 
