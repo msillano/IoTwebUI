@@ -71,6 +71,11 @@ note: The mode change (run/programming) occurs at the startup of the ESP01 and t
 
 _ATTENTION: some programmers have jumpers to choose 5V or 3.3V. ESP01S requires 3.3V!_
 
+_References_
+* Introduction to [ESP01 - ESP8266](https://securipi.co.uk/esp01.pdf) use.
+* Some [quirks e tricks](https://www.instructables.com/How-to-use-the-ESP8266-01-pins/) on programming ESP01S
+* Technical Reference manual for [ESP01S](https://doc.10gtek.com/en/p/ESP-01S-12E-12F-Technical-Reference-Manual)
+
 ### HTTP control
 We need to add some control functionality: ON/OFF and the possibility to change the period. We cannot use the relay in any way. To manage these 'extra' parameters we exploit the capabilities of ESP3266 to implement two alternative WiFi-HTTP interfaces:
 
