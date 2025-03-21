@@ -79,8 +79,14 @@ Nella dir [modding test](https://github.com/msillano/IoTwebUI/tree/main/DIY%20ES
 * `modding-ESP.ino` il codice completo per **ESP01S** di questo **blink-esp**.
 * `ESP3266-template01.ino` il codice delle comunicazioni HTTP, ma esclusa la parte specifica relativa al blinking, da usare come punto di partenza per progetti **ESP3266 custom**
 
+_Riferimenti:_
+* Guida introduttiva a [ESP01 - ESP8266](https://securipi.co.uk/esp01.pdf)
+* Una serie di [quirks e tricks](https://www.instructables.com/How-to-use-the-ESP8266-01-pins/) per programmare ESP01S
+* Technical Reference manual per [ESP01S](https://doc.10gtek.com/en/p/ESP-01S-12E-12F-Technical-Reference-Manual)
+
+
 ### controllo HTTP
-Dobbiano aggiungere qualche funzionalità di controllo: ON/OFF e la possibilità di cambiare il periodo. Non possiamo utilizzare in alcun modo il relay, già usato come device di output.<br> 
+Dobbiamo aggiungere qualche funzionalità di controllo: ON/OFF e la possibilità di cambiare il periodo. Non possiamo utilizzare in alcun modo il relay, già usato come device di output.<br> 
 Per  gestire questi parametri 'extra' sfruttiamo le capacità di ESP3266 per implementare due interfacce WiFi-HTTP alternative:
 
 **Interfaccia WEB: URL `http://192.168.1.23/`**
