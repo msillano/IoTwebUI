@@ -97,7 +97,7 @@ _Come strategia generale, è opportuno che la logica sia implementata il più po
 5. Funzionalità delle SCENE di  **Tuya**: una **SCENA** può:
     * LEGGERE e SCRIVERE in qualunque momento le proprietà di un **device Tuya** limitatamente a quelle accessibili (<sup>1</sup>).
     * NON può accedere agli **x-device**
-6. Da **Tuya** si uò attivare un una REGOLA **IoTwebUI** indirettamente, tramite i valori di  proprietà visibili  (<sup>1</sup>) dei device Tuya (reali o virtuali), in tre modi <br>
+6. Da **Tuya** si può attivare un una REGOLA **IoTwebUI** indirettamente, tramite i valori di  proprietà visibili  (<sup>1</sup>) dei device Tuya (reali o virtuali), in tre modi <br>
    1. con una sola condizione sul valore di una proprietà usando gli ALARMI e una REGOLA come azione.
    2. tramite una (o più) condizioni impostate in una REGOLA ad hoc.<br>
    3. tramite una proprietà di un `device virtuale` (particolarmente indicato `countdown` di un relay, non funzionale nei device virtuali, e non azzerato ai cambi di stato - purtroppo NON presente in tutti gli switch virtuali) dedicata a fungere da 'BRIDGE'. Questa tecnica deriva da tuyaDAEMON (vedi [tuyaTRIGGER](https://github.com/msillano/tuyaDAEMON/tree/main/tuyaTRIGGER)).
