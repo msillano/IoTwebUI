@@ -88,7 +88,7 @@ _Come strategia generale, è opportuno che la logica sia implementata il più po
 2. Le 'REGOLE' **IoTwebUI** sono tutte eseguite subito dopo la lettura  dei dati, per usare rapidamente i dati aggiornati.
      * Sono possibili dei run delle REGOLE extra, per avere risposte più pronte: quando una regola ne chiama un'altra (MACRO TRIGRULE(name)) oppure quando l'interfaccia utente di una APP aggiorna un valore di un **x_device** con REST, etc.
 3. Funzionalità delle REGOLE di  **IoTwebUI**: una **REGOLA** può:
-    * LEGGERE in qualunque momento tutte le proprietà accessibili(<up>1</up>) di un **device Tuya** (MACRO GET())
+    * LEGGERE in qualunque momento tutte le proprietà accessibili(<sup>1</sup>) di un **device Tuya** (MACRO GET())
     * LEGGERE E SCRIVERE tutte le proprietà di un **x_device** (MACRO GET(), MACRO SETXDEVICESTATUS()) 
     * ATTIVARE un `tap_to_run` **Tuya**  (MACRO SCENE())
      nota: Tramite un `tap_to_run` si può ASSEGNARE un valore fisso ad una qualsiasi proprietà modificabile dei **device Tuya**.
