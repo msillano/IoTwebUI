@@ -103,9 +103,9 @@ _Come strategia generale, è opportuno che la logica sia implementata il più po
    3. tramite una proprietà di un `device virtuale` (particolarmente indicato `countdown` di un relay, non funzionale nei device virtuali, e non azzerato ai cambi di stato - purtroppo NON presente in tutti gli switch virtuali) dedicata a fungere da 'BRIDGE'. Questa tecnica deriva da tuyaDAEMON (vedi [tuyaTRIGGER](https://github.com/msillano/tuyaDAEMON/tree/main/tuyaTRIGGER)).
 Lato REGOLE abbiamo (_`RESETBRIDGE` è un tap-to-run che esegue `BRIDGE-vdevo.countdown_2 = 0`, per evitare trigger multipli_):
 ```
- var trig = GET('BRIDGE-vdevo','countdown_2', false) ;
- if (trig == 3600) SCENE('RESETBRIDGE'),POP("Countdown","valore: "+nx);  // 3600s = 01:00:00    
- if (trig == 7200) SCENE('RESETBRIDGE'),POP("Countdown","valore: "+nx);  // 7200s = 02:00:00   
+ var _trig = GET('BRIDGE-vdevo','countdown_2', false) ;
+ if (_trig == 3600) SCENE('RESETBRIDGE'),POP("Countdown","valore: "+_trig);  // 3600s = 01:00:00    
+ if (_trig == 7200) SCENE('RESETBRIDGE'),POP("Countdown","valore: "+_trig);  // 7200s = 02:00:00   
 ```  
     
 (<up>1</up>) nota:
