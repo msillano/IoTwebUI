@@ -84,7 +84,7 @@ Facciamo alcune considerazioni utili nella fase di progetto di una APP, o, più 
 
 _Come strategia generale, è opportuno che la logica sia implementata il più possibile nelle 'scene' Tuya, e meglio ancora con 'local linkage' per avere la massima affidabilità e robustezza!_ I  menu e i panel, le APP, etc. sono però implementate in IOTwebUI, e quindi vediamo nella loro globalità le possibili interazioni **Tuya** <=> **IoTwbUI**.
 
-1. **IoTwebUI** legge i dati di tutti i device **Tuya** in polling (ogni 120 secondi - min. 20s - vedi `tuyaInterval` in `config,js`).
+1. **IoTwebUI** legge i dati di tutti i dati visibili (<sup>1</sup>) dei device **Tuya** in polling (ogni 120 secondi - min. 20s - vedi `tuyaInterval` in `config,js`).
 2. Le 'REGOLE' **IoTwebUI** sono tutte eseguite subito dopo la lettura  dei dati, per usare rapidamente i dati aggiornati.
      * _Sono possibili dei run delle REGOLE extra, per avere risposte più pronte: quando una regola ne chiama un'altra (MACRO TRIGRULE(name)) oppure quando l'interfaccia utente di una APP aggiorna un valore di un **x_device** con REST, etc._
 3. Gli **x-device** sono device virtuali a tutti gli effetti, ma NON sono visibili da **Tuya**, esitono solo per  **IoTwebUI**
