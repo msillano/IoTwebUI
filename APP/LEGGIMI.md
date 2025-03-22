@@ -80,7 +80,7 @@ Successivamente **IoTwebUI** e l'**interfaccia** possono essere chiusi e rilanci
 <hr>
 
 ### Interazioni Tuya <=> IOTwebUI
-Facciamo alcune considerazioni utili nella fase di progetto di una APP, o, più in generale, nella organizzazione REGOLE IoTwebUI.
+Facciamo alcune considerazioni utili nella fase di progetto di una APP, o, più in generale, nella organizzazione delle REGOLE di IoTwebUI.
 
 _Come strategia generale, è opportuno che la logica sia implementata il più possibile nelle 'scene' Tuya, e meglio ancora con 'local linkage' per avere la massima affidabilità e robustezza!_ I  menu e i panel, le APP, etc. sono però implementate in IOTwebUI, e quindi vediamo nella loro globalità le possibili interazioni **Tuya** <=> **IoTwbUI**.
 
@@ -88,17 +88,23 @@ _Come strategia generale, è opportuno che la logica sia implementata il più po
 2. Le 'REGOLE' **IoTwebUI** sono tutte eseguite subito dopo la lettura  dei dati, per usare rapidamente i dati aggiornati.
      * Sono possibili dei run delle REGOLE extra, per avere risposte più pronte: quando una regola ne chiama un'altra (MACRO TRIGRULE(name)) oppure quando l'interfaccia utente di una APP aggiorna un valore di un **x_device** con REST, etc.
 3. Funzionalità delle REGOLE di  **IoTwebUI**: una **REGOLA** può:
-    * LEGGERE in qualunque momento tutte le proprietà accessibili di un **device Tuya** (MACRO GET())
+    * LEGGERE in qualunque momento tutte le proprietà accessibili(<up>1<</up>) di un **device Tuya** (MACRO GET())
     * LEGGERE E SCRIVERE tutte le proprietà di un **x_device** (MACRO GET(), MACRO SETXDEVICESTATUS()) 
     * ATTIVARE un `tap_to_run` **Tuya**  (MACRO SCENE())
      nota: Tramite un `tap_to_run` si può ASSEGNARE un valore fisso ad una qualsiasi proprietà modificabile dei **device Tuya**.
 4. Funzionalità delle SCENE di  **Tuya**: una **SCENA** può:
-    * LEGGERE e SCRIVERE in qualunque momento le proprietà di un **device Tuya** limitatamente a quelle accessibili come 'condizione' o come 'azione'.
+    * LEGGERE e SCRIVERE in qualunque momento le proprietà di un **device Tuya** limitatamente a quelle accessibili .
     * NON può accedere agli **x-device**
     * Può attivare un una REGOLA indirettamente in due modi
             a) tramite una (o più) condizioni impostate nella REGOLA su valori di proprietà dei device.
             b) derivato da (a): usare una proprietà di un device (reale o virtuale, e.g. countdown) dedicata a fungere da 'bridge'.
       
+(<up>1</up>) nota:
+  _Abbiamo diversi insiemi di  proprietà legate ad un **device Tuya**:_<br>
+* _**visibili**: sono quelle che **IoTwebUI** legge da Tuya Cloud, usate nei tooltip, leggibili nelle REGOLE con GET()_
+* _**accessibili**: sono le proprietà leggibili in una `condizione` e scrivibili con una `azione` nelle **SCENE Tuya**_
+* _**estese**: sono proprietà non visibili che l'addon `cloner01` può leggere da **TuyaCloud**, e copiare in un x-device 'mirror' (da usare solo se necessario, raddoppia gli accessi al Cloud a ogni loop)_ 
+
   <hr>
 Progetto OpenSource, Licenza MIT, (c)2024 marco sillano
 
