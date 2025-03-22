@@ -648,19 +648,6 @@ Per APP-Tuya intendiamo una applicazione dotata di propria interfaccia utente, c
 
 Per dettagli sulle APP finora implementate vedi la [dir dedicata.](https://github.com/msillano/IoTwebUI/blob/main/APP/Overviews.md)
 
-### MACRO - Interazioni Tuya <=> IOTwebUI
-Facciamo alcune considerazioni utili nella fase di progetto di una APP, o, più in generale, nella organizzazione REGOLE IoTwebUI.
-
-Come strategia generale, è opportuno che la logica sia implementata il più possibile nelle 'scene' Tuya, e meglio ancora con 'local linkage' per avere la massima affidabilità e robustezza! Alcune APP saranno però implementate in IOTwebUI, e quindi vediamo nella sua globalità le possibili interazioni Tuya <=> IoTwbUI.
-
-1. **IoTwebUI** legge i dati di tutti i device **Tuya** in polling (ogni 120 secondi - min. 20s - vedi `tuyaInterval` in `config,js`).
-2. Le 'REGOLE' **IoTwebUI** sono tutte eseguite subito dopo la lettura  dei dati, per usare rapidamente i dati aggiornati.
-      * Sono possibili dei run delle REGOLE extra: quando una regola ne chiama un'altra (MACRO TRIGRULE(name)) oppure qundo l'interfaccia utente di una APP aggiorna un valore di un **x_device** con REST, etc.
-3) Che 
-
-
-
-
 <hr>
 
 #### ref. MACRO per risorse
