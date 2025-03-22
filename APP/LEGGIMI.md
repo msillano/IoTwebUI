@@ -97,14 +97,15 @@ _Come strategia generale, è opportuno che la logica sia implementata il più po
 5. Funzionalità delle SCENE di  **Tuya**: una **SCENA** può:
     * LEGGERE e SCRIVERE in qualunque momento le proprietà di un **device Tuya** limitatamente a quelle accessibili (<sup>1</sup>).
     * NON può accedere agli **x-device**
-6. Da **Tuya** si uò attivare un una REGOLA **IoTwebUI** indirettamente in due modi <br>
-    a. tramite una (o più) condizioni impostate nella REGOLA su valori di proprietà visibili (<sup>1</sup>) dei device.<br>
-    b. tramite una proprietà di un `device virtuale` (particolarmente indicato `countdown` di un relay, non funzionale nei device virtuali, e non azzerato ai cambi di stato, ma NON presente in tutti gli switch virtuali) dedicata a fungere da 'BRIDGE'. Questa tecnica deriva da tuyaDAEMON (vedi [tuyaTRIGGER](https://github.com/msillano/tuyaDAEMON/tree/main/tuyaTRIGGER)).
+6. Da **Tuya** si uò attivare un una REGOLA **IoTwebUI** indirettamente, tramite i valori di  proprietà visibili  (<sup>1</sup>) di device Tuya, in tre modi <br>
+    a. con una sola condizione sul valore di una proprietà usando gli ALARMI e una REGOLA come azione.
+    a. tramite una (o più) condizioni impostate in una REGOLA ad hoc, su uno o più valori.<br>
+    b. tramite una proprietà di un `device virtuale` (particolarmente indicato `countdown` di un relay, non funzionale nei device virtuali, e non azzerato ai cambi di stato - purtroppo NON presente in tutti gli switch virtuali) dedicata a fungere da 'BRIDGE'. Questa tecnica deriva da tuyaDAEMON (vedi [tuyaTRIGGER](https://github.com/msillano/tuyaDAEMON/tree/main/tuyaTRIGGER)).
 Lato REGOLE abbiamo (_`RESETBRIDGE` è un tap-to-run che esegue `BRIDGE-vdevo.countdown_2 = 0`, per evitare trigger multipli_):
 ```
  var trig = GET('BRIDGE-vdevo','countdown_2', false) ;
- if (trig == 3600) SCENE('RESETBRIDGE'),POP("Countdown","valore: "+nx);     
- if (trig == 7200) SCENE('RESETBRIDGE'),POP("Countdown","valore: "+nx);     
+ if (trig == 3600) SCENE('RESETBRIDGE'),POP("Countdown","valore: "+nx);  // 3600s = 01:00:00    
+ if (trig == 7200) SCENE('RESETBRIDGE'),POP("Countdown","valore: "+nx);  // 7200s = 02:00:00   
 ```  
     
 (<up>1</up>) nota:
