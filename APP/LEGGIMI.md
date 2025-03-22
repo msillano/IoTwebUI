@@ -16,6 +16,7 @@ _Per comodità di uso li abbiamo separati in questa dir: in fase di installazion
 
 * Dettagli sul [Pattern MVP](https://github.com/msillano/IoTwebUI/blob/main/html/clima01-leggimi.md#pattern-mvp) 
 * "Vantaggi di questa architettura" e 'Processo di sviluppo' in [testBattery01](https://github.com/msillano/IoTwebUI/blob/main/addon/TestBattery01_leggimi.pdf)
+* "
 
 ### Installazione e Uso
 >>_nota: molte operazioni di installazione e configurazione richiedono da parte dell'utente l'editing di file source, a causa dei limiti delle WEBBAPP. Usare le solite avvertenze: Fare una copia del file prima di ogni modifica. Usare un editor UTF8 (io uso Notepad-plusplus). Attenzione a NON ALTERARE niente altro (soprattutto virgole ',' ed apici '"' e "`")._
@@ -77,6 +78,28 @@ Successivamente **IoTwebUI** e l'**interfaccia** possono essere chiusi e rilanci
    *  vedi [issues](https://github.com/msillano/IoTwebUI/issues).
 
 <hr>
+
+### Interazioni Tuya <=> IOTwebUI
+Facciamo alcune considerazioni utili nella fase di progetto di una APP, o, più in generale, nella organizzazione REGOLE IoTwebUI.
+
+_Come strategia generale, è opportuno che la logica sia implementata il più possibile nelle 'scene' Tuya, e meglio ancora con 'local linkage' per avere la massima affidabilità e robustezza!_ I  menu e i panel, le APP, etc. sono però implementate in IOTwebUI, e quindi vediamo nella loro globalità le possibili interazioni **Tuya** <=> **IoTwbUI**.
+
+1. **IoTwebUI** legge i dati di tutti i device **Tuya** in polling (ogni 120 secondi - min. 20s - vedi `tuyaInterval` in `config,js`).
+2. Le 'REGOLE' **IoTwebUI** sono tutte eseguite subito dopo la lettura  dei dati, per usare rapidamente i dati aggiornati.
+     * Sono possibili dei run delle REGOLE extra, per avere risposte più pronte: quando una regola ne chiama un'altra (MACRO TRIGRULE(name)) oppure quando l'interfaccia utente di una APP aggiorna un valore di un **x_device** con REST, etc.
+3. Funzionalità delle REGOLE di  **IoTwebUI**: una **REGOLA** può:
+    * LEGGERE in qualunque momento tutte le proprietà accessibili di un **device Tuya** (MACRO GET())
+    * LEGGERE E SCRIVERE tutte le proprietà di un **x_device** (MACRO GET(), MACRO SETXDEVICESTATUS()) 
+    * ATTIVARE un `tap_to_run` **Tuya**  (MACRO SCENE())
+     nota: Tramite un `tap_to_run` si può ASSEGNARE un valore fisso ad una qualsiasi proprietà modificabile dei **device Tuya**.
+4. Funzionalità delle SCENE di  **Tuya**: una **SCENA** può:
+    * LEGGERE e SCRIVERE in qualunque momento le proprietà di un **device Tuya** limitatamente a quelle accessibili come 'condizione' o come 'azione'.
+    * NON può accedere agli **x-device**
+    * Può attivare un una REGOLA indirettamente in due modi
+            a) tramite una (o più) condizioni impostate nella REGOLA su valori di proprietà dei device.
+            b) derivato da (a): usare una proprietà di un device (reale o virtuale, e.g. countdown) dedicata a fungere da 'bridge'.
+      
+  <hr>
 Progetto OpenSource, Licenza MIT, (c)2024 marco sillano
 
 IoTwebUI, Rest, addon, APP sono un work-in-progress: vengono fornite "così come sono", senza garanzie di alcun tipo, implicite o esplicite.
