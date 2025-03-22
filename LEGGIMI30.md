@@ -648,6 +648,19 @@ Per APP-Tuya intendiamo una applicazione dotata di propria interfaccia utente, c
 
 Per dettagli sulle APP finora implementate vedi la [dir dedicata.](https://github.com/msillano/IoTwebUI/blob/main/APP/Overviews.md)
 
+### MACRO - Interazioni Tuya <=> IOTwebUI
+Facciamo alcune considerazioni utili nella fase di progetto di una APP, o, più in generale, nella organizzazione REGOLE IoTwebUI.
+
+Come strategia generale, è opportuno che la logica sia implementata il più possibile nelle 'scene' Tuya, e meglio ancora con 'local linkage' per avere la massima affidabilità e robustezza! Alcune APP saranno però implementate in IOTwebUI, e quindi vediamo nella sua globalità le possibili interazioni Tuya <=> IoTwbUI.
+
+1. **IoTwebUI** legge i dati di tutti i device **Tuya** in polling (ogni 120 secondi - min. 20s - vedi `tuyaInterval` in `config,js`).
+2. Le 'REGOLE' **IoTwebUI** sono tutte eseguite subito dopo la lettura  dei dati, per usare rapidamente i dati aggiornati.
+      * Sono possibili dei run delle REGOLE extra: quando una regola ne chiama un'altra (MACRO TRIGRULE(name)) oppure qundo l'interfaccia utente di una APP aggiorna un valore di un **x_device** con REST, etc.
+3) Che 
+
+
+
+
 <hr>
 
 #### ref. MACRO per risorse
@@ -798,7 +811,7 @@ nota: name deve essere unico (può essere usato una sola volta) ma l'azione può
 
 <dt>TRIGRULE(name)</dt>
 <dt>TRIGRULE(name, parameter)</dt>
-<dd>Esegue un RULE individuato da un nome. <br>
+<dd>Esegue un RULE individuato da un nome (vedi TRIGBYNAME()). <br>
 <code>parameter</code> (opzionale) è reso disponibile nella var <code>_ruleParam`</code> (altrimenti `null`). Potendo essere 'parameter' un oggetto, non ci sono limiti ai dati passati con questo meccanismo.
  nota: TRIGRULE non è ricorsiva; max 1 'parameter' attivo per non sovrascrivere _ruleParam (statico). <br>
  nota: Se la definizione TRIGBYNAME(name) precede l'uso di TRIGRULE(name), l'esecuzione non è immediata, ma avviene subito dopo il termine del run attuale delle RULE, in un run EXTRA. <br>                                             
