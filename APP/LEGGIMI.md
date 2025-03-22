@@ -97,9 +97,9 @@ _Come strategia generale, è opportuno che la logica sia implementata il più po
 5. Funzionalità delle SCENE di  **Tuya**: una **SCENA** può:
     * LEGGERE e SCRIVERE in qualunque momento le proprietà di un **device Tuya** limitatamente a quelle accessibili (<sup>1</sup>).
     * NON può accedere agli **x-device**
-6. Da **Tuya** Può attivare un una REGOLA **IoTwebUI** indirettamente in due modi
-            a) tramite una (o più) condizioni impostate nella REGOLA su valori di proprietà visibili (<sup>1</sup>) dei device.
-            b) tramite una proprietà di un device virtuale (particolarmente indicato `countdown`, non funzionale nei device virtuali, e non azzerato ai cambi di stato, ma NON presente in tutti gli switch virtuali) dedicata a fungere da 'BRIDGE'. Questa tecnica deriva da tuyaDAEMON (vedi [tuyaTRIGGER](https://github.com/msillano/tuyaDAEMON/tree/main/tuyaTRIGGER)). Lato REGOLE abbiamo (`RESETBRIDGE` è un tap-to-run che esegue `BRIDGE-vdevo.countdown_2 = 0`, per evitare trigger multipli):
+6. Da **Tuya** si uò attivare un una REGOLA **IoTwebUI** indirettamente in due modi
+    a. tramite una (o più) condizioni impostate nella REGOLA su valori di proprietà visibili (<sup>1</sup>) dei device.
+    b. tramite una proprietà di un device virtuale (particolarmente indicato `countdown`, non funzionale nei device virtuali, e non azzerato ai cambi di stato, ma NON presente in tutti gli switch virtuali) dedicata a fungere da 'BRIDGE'. Questa tecnica deriva da tuyaDAEMON (vedi [tuyaTRIGGER](https://github.com/msillano/tuyaDAEMON/tree/main/tuyaTRIGGER)). Lato REGOLE abbiamo (`RESETBRIDGE` è un tap-to-run che esegue `BRIDGE-vdevo.countdown_2 = 0`, per evitare trigger multipli):
 ```
  var trig = GET('BRIDGE-vdevo','countdown_2', false) ;
  if (trig == 3600) SCENE('RESETBRIDGE'),POP("Countdown","valore: "+nx);     
