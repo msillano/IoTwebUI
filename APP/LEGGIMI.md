@@ -84,34 +84,37 @@ Facciamo alcune considerazioni utili nella fase di progetto di una APP, o, più 
 
 _Come strategia generale, è opportuno che la logica sia implementata il più possibile nelle 'scene' Tuya, e meglio ancora con 'local linkage' per avere la massima affidabilità e robustezza!_ I  menu e i panel, le APP, etc. sono però implementate in IOTwebUI, e quindi vediamo nella loro globalità le possibili interazioni **Tuya** <=> **IoTwbUI**.
 
-1. **IoTwebUI** legge i dati di tutti i dati visibili (<sup>1</sup>) dei device **Tuya** in polling (ogni 120 secondi - min. 20s - vedi `tuyaInterval` in `config,js`).
+1. **IoTwebUI** legge i dati di tutti i dati visibili (<sup>1</sup>) dei device **Tuya** in polling (ogni 120 secondi - min. 20s - vedi `tuyaInterval` in `config.js`).
 2. Le 'REGOLE' **IoTwebUI** sono tutte eseguite subito dopo la lettura  dei dati, per usare rapidamente i dati aggiornati.
      * _Sono possibili dei run delle REGOLE extra, per avere risposte più pronte: quando una regola ne chiama un'altra (MACRO TRIGRULE(name)) oppure quando l'interfaccia utente di una APP aggiorna un valore di un **x_device** con REST, etc._
 3. Gli **x-device** sono device virtuali a tutti gli effetti, ma NON sono visibili da **Tuya**, esitono solo per  **IoTwebUI**
-4. Funzionalità delle REGOLE di  **IoTwebUI**: una **REGOLA** può:
+4. _Funzionalità delle REGOLE di  **IoTwebUI**_: una **REGOLA** può:
     * LEGGERE in qualunque momento tutte le proprietà visibili (<sup>1</sup>) di un **device Tuya** (MACRO GET())
     * LEGGERE le proprietà estese (<sup>1</sup>) di un device Tuya tramite un **x-mirror**
     * LEGGERE E SCRIVERE tutte le proprietà di un **x_device** (MACRO GET(), MACRO SETXDEVICESTATUS()) 
     * ATTIVARE un `tap_to_run` **Tuya**  (MACRO SCENE())
      nota: Tramite un `tap_to_run`  **IoTwebUI** può ASSEGNARE un valore fisso ad una qualsiasi proprietà accessibile (<sup>1</sup>) dei **device Tuya**.
-5. Funzionalità delle SCENE di  **Tuya**: una **SCENA** può:
+5. _Funzionalità delle SCENE di  **Tuya**_: una **SCENA** può:
     * LEGGERE e SCRIVERE in qualunque momento le proprietà di un **device Tuya** limitatamente a quelle accessibili (<sup>1</sup>).
     * NON può accedere agli **x-device**
-6. Da **Tuya** si può attivare un una REGOLA **IoTwebUI** indirettamente, tramite i valori di  proprietà visibili  (<sup>1</sup>) dei device Tuya (reali o virtuali), in tre modi <br>
-   1. con una sola condizione sul valore di una proprietà usando gli ALARMI e una REGOLA come azione.
-   2. tramite una (o più) condizioni impostate in una REGOLA ad hoc.<br>
-   3. tramite una proprietà di un `device virtuale` (particolarmente indicato `countdown` di un relay, non funzionale nei device virtuali, e non azzerato ai cambi di stato - purtroppo NON presente in tutti gli switch virtuali) dedicata a fungere da 'BRIDGE'. Questa tecnica deriva da tuyaDAEMON (vedi [tuyaTRIGGER](https://github.com/msillano/tuyaDAEMON/tree/main/tuyaTRIGGER)).
-Lato REGOLE abbiamo (_`RESETBRIDGE` è un tap-to-run che esegue `BRIDGE-vdevo.countdown_2 = 0`, per evitare trigger multipli_):
+6. Da **Tuya** si può attivare un una REGOLA di **IoTwebUI** indirettamente, basandosi sui valori di  proprietà visibili (<sup>1</sup>) dei device Tuya (reali o virtuali), in tre modi <br>
+   1. con una sola condizione sul valore di una proprietà usando gli ALARMI **IoTwebUI** e una REGOLA come azione.
+   2. tramite una (o più) condizioni impostate in una REGOLA **IoTwebUI** ad hoc.<br>
+   3. tramite una proprietà di un `device virtuale` (particolarmente indicato il `countdown` di un relay, non funzionale nei device virtuali, e non azzerato ai cambi di stato - purtroppo NON sempre presente. e.g. `BRIDGE-vdevo.countdown_1`) dedicata a fungere da 'BRIDGE'. Questa tecnica deriva da tuyaDAEMON (vedi [tuyaTRIGGER](https://github.com/msillano/tuyaDAEMON/tree/main/tuyaTRIGGER)).
+* Lato **Tuya** si imposta un valore predefinito per `BRIDGE-vdevo.countdown_1` (per semplificare, uno tra 1440 valori diversi, da 00:00 a 24:00).<br> 
+Inoltre esiste il tap-to-run BRIDGEACK, che esegue `BRIDGE-vdevo.countdown_1 = 0`, per evitare trigger multipli.
+* Lato **IoTwebUI** REGOLE abbiamo:
 ```
- var _trig = GET('BRIDGE-vdevo','countdown_2', false) ;
- if (_trig == 3600) SCENE('RESETBRIDGE'),POP("Countdown","valore: "+_trig);  // 3600s = 01:00:00    
- if (_trig == 7200) SCENE('RESETBRIDGE'),POP("Countdown","valore: "+_trig);  // 7200s = 02:00:00   
+ var _trig = GET('BRIDGE-vdevo','countdown_1', false) ;
+// case for RULE/action selector:
+ if (_trig == 3600) SCENE('BRIDGEACK'),POP("Countdown","valore: "+_trig);  // 3600s = 01:00    
+ if (_trig == 7200) SCENE('BRIDGEACK'),POP("Countdown","valore: "+_trig);  // 7200s = 02:00  
 ```  
     
 (<up>1</up>) nota:
-  _Si possono definire diversi insiemi di  proprietà legate ad un **device Tuya**. In questo contesto ci interessano:_<br>
-* _**visibili**: sono le proprietà che **IoTwebUI** legge da Tuya Cloud, usate nei tooltip, leggibili nelle REGOLE con GET(), etc..._
-* _**accessibili**: sono le proprietà leggibili in una `condizione` e scrivibili con una `azione` nelle **SCENE Tuya**. Sono predefinite per ogni device dal produttore.
+  _Si possono definire diversi insiemi differenti di  proprietà legate ad un **device Tuya**. In questo contesto ci interessano:_<br>
+* _**visibili**: sono le proprietà che **IoTwebUI** legge ogni loop da TuyaCloud, sempre  disponibili: usate nei tooltip, leggibili nelle REGOLE con GET(), etc..._
+* _**accessibili**: sono le proprietà leggibili in una `condizione` e scrivibili con una `azione` nelle **SCENE Tuya**. Sono predefinite dal produttore per ogni device.
 * _**estese**: sono le proprietà non visibili che l'addon `cloner01` può leggere da **TuyaCloud**, e copiare in un x-device 'mirror' (da usare solo se necessario, raddoppia gli accessi al Cloud ad ogni loop)_ 
 
   <hr>
