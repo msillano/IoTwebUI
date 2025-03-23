@@ -92,18 +92,18 @@ _Come strategia generale, è opportuno che la logica sia implementata il più po
     * LEGGERE in qualunque momento tutte le proprietà visibili (<sup>1</sup>) di un **device Tuya** (MACRO GET())
     * LEGGERE le proprietà estese (<sup>1</sup>) di un device Tuya tramite un **x-mirror**
     * LEGGERE E SCRIVERE tutte le proprietà di un **x_device** (MACRO GET(), MACRO SETXDEVICESTATUS()) 
-    * ATTIVARE un `tap_to_run` **Tuya**  (MACRO SCENE())
-     nota: Tramite un `tap_to_run`  **IoTwebUI** può ASSEGNARE un valore fisso ad una qualsiasi proprietà accessibile (<sup>1</sup>) dei **device Tuya**.
+    * ATTIVARE un `tap_to_run` **Tuya**  (MACRO SCENE())<br>
+     _nota: Tramite un `tap_to_run`  **IoTwebUI** può ASSEGNARE un valore fisso ad una qualsiasi proprietà accessibile (<sup>1</sup>) dei **device Tuya**_.
 5. _Funzionalità delle SCENE di  **Tuya**_: una **SCENA** può:
     * LEGGERE e SCRIVERE in qualunque momento le proprietà di un **device Tuya** limitatamente a quelle accessibili (<sup>1</sup>).
     * NON può accedere agli **x-device**
 6. Da **Tuya** si può attivare un una REGOLA di **IoTwebUI** indirettamente, basandosi sui valori di  proprietà visibili (<sup>1</sup>) dei device Tuya (reali o virtuali), in tre modi <br>
    1. con una sola condizione sul valore di una proprietà usando gli ALARMI **IoTwebUI** e una REGOLA come azione.
    2. tramite una (o più) condizioni impostate in una REGOLA **IoTwebUI** ad hoc.<br>
-   3. tramite una proprietà di un `device virtuale` (particolarmente indicato il `countdown` di un relay, non funzionale nei device virtuali, e non azzerato ai cambi di stato - purtroppo NON sempre presente. e.g. `BRIDGE-vdevo.countdown_1`) dedicata a fungere da 'BRIDGE'. Questa tecnica deriva da tuyaDAEMON (vedi [tuyaTRIGGER](https://github.com/msillano/tuyaDAEMON/tree/main/tuyaTRIGGER)).
-* Lato **Tuya** si imposta un valore predefinito per `BRIDGE-vdevo.countdown_1` (per semplificare, uno tra 1440 valori diversi, da 00:00 a 24:00).<br> 
+   3. tramite una proprietà di un `device virtuale` (particolarmente indicato il `countdown` di un relay, non funzionale nei device virtuali, e non azzerato ai cambi di stato - purtroppo NON sempre presente. e.g. `BRIDGE-vdevo.countdown_1`) dedicata a fungere da 'BRIDGE'. <br> Questa tecnica deriva da tuyaDAEMON (vedi [tuyaTRIGGER](https://github.com/msillano/tuyaDAEMON/tree/main/tuyaTRIGGER)).
+  * Lato **Tuya** si imposta un valore predefinito per `BRIDGE-vdevo.countdown_1` (per semplificare, uno tra 1440 valori diversi, da 00:00 a 24:00).<br> 
 Inoltre esiste il tap-to-run BRIDGEACK, che esegue `BRIDGE-vdevo.countdown_1 = 0`, per evitare trigger multipli.
-* Lato **IoTwebUI** REGOLE abbiamo:
+  * Lato **IoTwebUI** REGOLE abbiamo:
 ```
  var _trig = GET('BRIDGE-vdevo','countdown_1', false) ;
 // case for RULE/action selector:
