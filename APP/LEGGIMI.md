@@ -111,11 +111,11 @@ Inoltre esiste il tap-to-run BRIDGEACK, che esegue `BRIDGE-vdevo.countdown_1 = 0
  if (_trig == 7200) SCENE('BRIDGEACK'),POP("Countdown","valore: "+_trig);  // 7200s = 02:00  
 ```  
     
-(<up>1</up>) nota:
+(<sup>1</sup>) nota:
   _Si possono definire diversi insiemi differenti di  proprietà legate ad un **device Tuya**. In questo contesto ci interessano:_<br>
-* _**visibili**: sono le proprietà che **IoTwebUI** legge ogni loop da TuyaCloud, sempre  disponibili: usate nei tooltip, leggibili nelle REGOLE con GET(), etc..._
-* _**accessibili**: sono le proprietà leggibili in una `condizione` e scrivibili con una `azione` nelle **SCENE Tuya**. Sono predefinite dal produttore per ogni device.
-* _**estese**: sono le proprietà non visibili che l'addon `cloner01` può leggere da **TuyaCloud**, e copiare in un x-device 'mirror' (da usare solo se necessario, raddoppia gli accessi al Cloud ad ogni loop)_ 
+* _**visibili**: sono le proprietà che **IoTwebUI** legge ogni loop da TuyaCloud, sempre  disponibili: usate nei tooltip, leggibili nelle REGOLE con GET(), etc..._<br> _Sono le proprietà che mostra l'APP 'Explore device'-'IoTwebUI' in `status`._
+* _**accessibili**: sono le proprietà leggibili in una `condizione` e scrivibili con una `azione` nelle **SCENE Tuya**. Sono predefinite dal produttore per ogni device. <br> _Appaiono in `SmartLife/Tuya Smart` quando si crea una AUTOMAZIONE._
+* _**estese**: sono proprietà non visibili che l'addon `cloner01` può leggere da **TuyaCloud**, e copiare in un x-device 'mirror' (da usare solo se necessario, raddoppia gli accessi al Cloud ad ogni loop)_ <br> _Sono le proprietà che mostra l'APP 'Explore device'-'Tuya Schema'._
 
   <hr>
 Progetto OpenSource, Licenza MIT, (c)2024 marco sillano
