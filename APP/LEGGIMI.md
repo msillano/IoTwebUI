@@ -16,7 +16,7 @@ _Per comodità di uso li abbiamo separati in questa dir: in fase di installazion
 
 * Dettagli sul [Pattern MVP](https://github.com/msillano/IoTwebUI/blob/main/html/clima01-leggimi.md#pattern-mvp) 
 * "Vantaggi di questa architettura" e 'Processo di sviluppo' in [testBattery01](https://github.com/msillano/IoTwebUI/blob/main/addon/TestBattery01_leggimi.pdf)
-* "Interazioni Tuya <=> IOTwebUI" in [questo documento]()
+* "Interazioni Tuya <=> IOTwebUI" in [questo documento](https://github.com/msillano/IoTwebUI/blob/main/APP/LEGGIMI.md#interazioni-tuya--iotwebui)
 
 ### Installazione e Uso
 >>_nota: molte operazioni di installazione e configurazione richiedono da parte dell'utente l'editing di file source, a causa dei limiti delle WEBBAPP. Usare le solite avvertenze: Fare una copia del file prima di ogni modifica. Usare un editor UTF8 (io uso Notepad-plusplus). Attenzione a NON ALTERARE niente altro (soprattutto virgole ',' ed apici '"' e "`")._
@@ -82,7 +82,7 @@ Successivamente **IoTwebUI** e l'**interfaccia** possono essere chiusi e rilanci
 ### Interazioni Tuya <=> IOTwebUI
 Facciamo alcune considerazioni utili nella fase di progetto di una APP, o, più in generale, nella organizzazione delle REGOLE di IoTwebUI.
 
-_Come strategia generale, è opportuno che la logica sia implementata il più possibile nelle 'scene' Tuya, e meglio ancora con 'local linkage' per avere la massima affidabilità e robustezza!_ I  menu e i panel, le APP, etc. sono però implementate in IOTwebUI, e quindi vediamo nella loro globalità le possibili interazioni **Tuya** <=> **IoTwbUI**.
+_Come strategia generale, è opportuno che la logica sia implementata il più possibile nelle 'scene' Tuya, e meglio ancora con 'local linkage' per avere la massima affidabilità e robustezza!_ <br> I  menu e i panel, le APP, etc. sono però implementate in IOTwebUI, e quindi vediamo nella loro globalità le possibili interazioni **Tuya** <=> **IoTwbUI**.
 
 1. **IoTwebUI** legge i dati di tutti i dati visibili (<sup>1</sup>) dei device **Tuya** in polling (ogni 120 secondi - min. 20s - vedi `tuyaInterval` in `config.js`).
 2. Le 'REGOLE' **IoTwebUI** sono tutte eseguite subito dopo la lettura  dei dati, per usare rapidamente i dati aggiornati.
@@ -101,9 +101,9 @@ _Come strategia generale, è opportuno che la logica sia implementata il più po
    1. con una sola condizione sul valore di una proprietà usando gli ALARMI **IoTwebUI** e una REGOLA come azione.
    2. tramite una (o più) condizioni impostate in una REGOLA **IoTwebUI** ad hoc.<br>
    3. tramite una proprietà di un `device virtuale` (particolarmente indicato il `countdown` di un relay, non funzionale nei device virtuali, e non azzerato ai cambi di stato - purtroppo NON sempre presente. e.g. `BRIDGE-vdevo.countdown_1`) dedicata a fungere da 'BRIDGE'. <br> Questa tecnica deriva da tuyaDAEMON (vedi [tuyaTRIGGER](https://github.com/msillano/tuyaDAEMON/tree/main/tuyaTRIGGER)).
-  * Lato **Tuya** si imposta un valore predefinito per `BRIDGE-vdevo.countdown_1` (per semplificare, uno tra 1440 valori diversi, da 00:00 a 24:00).<br> 
+   * Lato **Tuya** si imposta un valore predefinito per `BRIDGE-vdevo.countdown_1` (per semplificare, uno tra 1440 valori diversi, da 00:00 a 24:00).<br> 
 Inoltre esiste il tap-to-run BRIDGEACK, che esegue `BRIDGE-vdevo.countdown_1 = 0`, per evitare trigger multipli.
-  * Lato **IoTwebUI** REGOLE abbiamo:
+   * Lato **IoTwebUI** REGOLE abbiamo:
 ```
  var _trig = GET('BRIDGE-vdevo','countdown_1', false) ;
 // case for RULE/action selector:
