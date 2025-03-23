@@ -38,9 +38,9 @@ Istruzioni comuni e generali. Per ulteriori dettagli vedere le singole APP.
    * Completare la configurazione di  `addon/xxxxx0y.js`<br>
    _In particolare controllare `xroom` (room: deve esistere), `xhome` (home: deve esistere) dove deve andare l'x-device, seguendo le istruzione nel file._<br>
    
-    * Se richiesto dalla APP creare i 'tap-to-run' in SmartLife per agire sui device Tuya, ovvero quant'altro necessario fare in Tuya (e.g. _Thermostat_ richiede l'installazione di una specifica _device virtuale_).
+   * Se richiesto dalla APP creare i 'tap-to-run' in SmartLife per agire sui device Tuya, ovvero quant'altro necessario fare in Tuya (e.g. _Thermostat_ richiede l'installazione di una specifica _device virtuale_).
 
-    * Creare in  IoTwebUI le REGOLE necessarie, consiglio di modificare stabilmente `usrrules02.2.js`. Sono indicate nel file stesso `addon/xxxxx0y.js`:      
+  * Creare in  IoTwebUI le REGOLE necessarie, consiglio di modificare stabilmente `usrrules02.2.js`. Sono indicate nel file stesso `addon/xxxxx0y.js`:      
 
 2. **Installazione completa** (User Inteface)
    _Alcune APP funzionano perfettamente senza UI (e.g. Thermostat) per altre l'UI è insispensabile_
@@ -117,9 +117,10 @@ Inoltre esiste il tap-to-run BRIDGEACK, che esegue `BRIDGE-vdevo.countdown_1 = 0
 * _**accessibili**: sono le proprietà leggibili in una `condizione` e scrivibili con una `azione` nelle **SCENE Tuya**. Sono predefinite dal produttore per ogni device. <br> _Appaiono in `SmartLife/Tuya Smart` quando si crea una AUTOMAZIONE._
 * _**estese**: sono proprietà non visibili che l'addon `cloner01` può leggere da **TuyaCloud**, e copiare in un x-device 'mirror' (da usare solo se necessario, raddoppia gli accessi al Cloud ad ogni loop)_ <br> _Sono le proprietà che mostra l'APP 'Explore device'-'Tuya Schema'._
 
-  <hr>
+<hr>
+  
 Progetto OpenSource, Licenza MIT, (c)2024 marco sillano
 
-IoTwebUI, Rest, addon, APP sono un work-in-progress: vengono fornite "così come sono", senza garanzie di alcun tipo, implicite o esplicite.
+IoTwebUI, Rest, addon, APP sono un work-in-progress: vengono forniti "così come sono", senza garanzie di alcun tipo, implicite o esplicite.
 <hr>
 
