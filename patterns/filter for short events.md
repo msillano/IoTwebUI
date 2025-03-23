@@ -94,8 +94,8 @@ nota: se è complesso inserire in SmartLife un countdown di 100 (s), usate pure 
 A1:
 SE (trigger(test_dispositivo(startDevice, start, =, true)))
 POI (
-    set_device_status(MASTER, countdown, 80),  // Imposta timer a durataMinima (valore > 0)
     set_device_status(MASTER, switch_1, false)  // Resetta l'allarme
+    set_device_status(MASTER, countdown, 80),  // Imposta timer a durataMinima (valore > 0)
 )
 
 // Automazione A2: Interrompi timer alla chiusura della porta
