@@ -101,9 +101,9 @@ _Come strategia generale, è opportuno che la logica sia implementata il più po
    1. con una sola condizione sul valore di una proprietà usando gli ALARMI **IoTwebUI** e una REGOLA come azione.
    2. tramite una (o più) condizioni impostate in una REGOLA **IoTwebUI** ad hoc.<br>
    3. tramite una proprietà di un `device virtuale` (particolarmente indicato il `countdown` di un relay, non funzionale nei device virtuali, e non azzerato ai cambi di stato - purtroppo NON sempre presente. e.g. `BRIDGE-vdevo.countdown_1`) dedicata a fungere da 'BRIDGE'. <br> Questa tecnica deriva da tuyaDAEMON (vedi [tuyaTRIGGER](https://github.com/msillano/tuyaDAEMON/tree/main/tuyaTRIGGER)).
-   * Lato **Tuya** si imposta un valore predefinito per `BRIDGE-vdevo.countdown_1` (per semplificare, uno tra 1440 valori diversi, da 00:00 a 24:00).<br> 
+      * Lato **Tuya** si imposta un valore predefinito per `BRIDGE-vdevo.countdown_1` (per semplificare, uno tra 1440 valori diversi, da 00:00 a 24:00).<br> 
 Inoltre esiste il tap-to-run BRIDGEACK, che esegue `BRIDGE-vdevo.countdown_1 = 0`, per evitare trigger multipli.
-   * Lato **IoTwebUI** REGOLE abbiamo:
+      * Lato **IoTwebUI** REGOLE abbiamo:
 ```
  var _trig = GET('BRIDGE-vdevo','countdown_1', false) ;
 // case for RULE/action selector:
