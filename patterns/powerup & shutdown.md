@@ -5,7 +5,8 @@ _powerup & shutdown_
 ### Spiegazione del Pattern e Implementazioni
 
 **Modello Concettuale**  
- Molte volte si è interessati a monitorare e si vogliono intraprendere azioni in caso di blachout.
+Molte volte si è interessati a monitorare la rete a 2309V e si vogliono intraprendere azioni in caso di blackout.<br>
+_Ovviamente una parte dei dispositivi Tuya (Router, HUB o gateway, qualche device) devono essere alimentati con un UPS per continuare a funzionare!_
 
 **Esempi**<br>
 
