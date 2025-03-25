@@ -15,7 +15,9 @@ Rileva quando un evento inizia (`startDevice.start = true`) e termina (`stopDevi
 ### Implementazione 1 ('local linking' con 1/2 Switch Zigbee)
 **Device**: _Switch Zigbee (SWITCH) con funzione countdown. Le altre funzioni dello switch (ON/OFF, etc.) possono essere usate in modo indipendente per altri scopi_.
 
-IMPORTANTE: in alcuni `smart switch` il `countdown` si azzera automaticamente ad un cambio di stato del relay! In questo caso le due funzioni ON/OFF e countdown NON sono indipendenti: giocoforza usare un device dedicato. 
+* Nei _device virtuali_ il `countdown` è presente, ma è solo un registro R/W: non viene decrementato: pertanto SWITCH non può essere un device virtuale!
+* In alcuni `smart switch` il `countdown` si azzera automaticamente ad un cambio di stato del relay. In questo caso le due funzioni ON/OFF e countdown NON sono indipendenti: giocoforza usare un device dedicato. 
+
 
 **Codice**
 
