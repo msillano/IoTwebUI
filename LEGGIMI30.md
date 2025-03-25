@@ -717,7 +717,10 @@ nota: ADDXDEVICE() inizia 'online' con false: solo dopo aver completato tutti i 
 <dd> Client REST, per servizi web API REST (GET) o device che tornano come risposta un testo semplice.<br>
  <i>Esempio:</i>  <code>
   // see https://www.ipify.org/ <br>
- if(TRIGBYNAME("my IP"))  POP( "My IP", REST("https://api.ipify.org/?format=txt"));   </code> </dd>
+ if(TRIGBYNAME("my IP"))  POP( "My IP", REST("https://api.ipify.org/?format=txt"));   </code>
+
+ Note **MacroDroid** è usato spesso per processare le `notifiche` provenienti da SmartLife ( vedi [post](https://www.facebook.com/groups/tuyaitalia/permalink/1613512135949800/)). Una caratteristica interessante è che `MacroDroid` può essere comandato via REST! Ovvero tramite REST **IoTwebUI** può esegure una qualunque MACRO  di MacroDroid, comandata da un qualsiasi evento (non solo `notifiche`).
+ </dd>
  
 <dt>RESTJSON(url)</dt>
 <dd> Client REST, per servizi web API REST (GET) o device che forniscono la risposta in formato JSON (la maggior parte). Questa funzione restituisce, per semplificare l'uso, direttamente un oggetto.<br>
