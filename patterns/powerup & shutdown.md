@@ -36,7 +36,7 @@ Circuito
     dopo qualche secondo (tempo necessario all'avvio delgli altri device e alla connessione alla rete, da tarare caso per caso) l'`inching` termina lo stato ON di STARTUP (vedi Analyser).
 
 3. **Evento powerup**
-   La condizione di powerup è indicata univocamente da questa condizione, utilizzabile nelle automazioni per controllare l'avvio di altre device:
+   La condizione di powerup è indicata univocamente da questa condizione, utilizzabile nelle automazioni per controllare l'avvio di altre device:<br>
        `STARTUP.Switch = OFF`
 
 Nota: _questa soluzione usa un 'quirk' di Tuya: nel controllo di un condizione, Tuya non prende in considerazione se il relay è 'online' oppure 'offline', quindi `STARTUP.Switch = OFF` può essere usato con tranquillità nelle condizioni, non dando mai 'esecuzione fallita'_.
