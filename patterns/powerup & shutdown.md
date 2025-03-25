@@ -16,7 +16,7 @@ _Ovviamente una parte dei dispositivi Tuya (Router, HUB o gateway, qualche devic
 
 ---
 ### Powerup  ('local linking', Switch Zigbee)
-**Device**: _Switch Zigbee (SWITCH) con funzione `stato` e `inching`_.
+**Device**: _Switch Zigbee (POWERUP) con funzione `stato` e `inching`_.
 
 ![image](https://github.com/user-attachments/assets/c888d43a-6ab2-45e0-8d02-5c31ae7179bd)
 
@@ -27,3 +27,14 @@ _Ovviamente una parte dei dispositivi Tuya (Router, HUB o gateway, qualche devic
 
 ![image](https://github.com/user-attachments/assets/1957a83d-8e63-42c9-a5da-c30df3282f49)
 
+**Logica**:  
+
+1. **Ripristino 230V**:  
+   il device POWERUP dispone lo switch in ON (operazione locale, rapida) per l'impostazione `stato`.
+
+2. **Termine impulso**
+    dopo qualche secondo (tempo necessario all'avvio delgli altri device e alla connessione alla rete, da tarare caso per caso) l'`inching` termina lo stato ON (vedi Analyser).
+
+3. **Evento powerup**
+   La condizione di powerup è indicata univocamente da questa condizione, utilizzabile nelle automazioni per contrllare l'avvio di altre device:
+       `POWERUP.Switch = OFF`
