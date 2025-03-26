@@ -3,7 +3,7 @@
 <tr><td width = "400pt"> <b><i>Logic Analyzer 5ch</i></b><br><br>
  This APP is a 5-channel <b>Logic Analyzer</b> made for testing, debugging, and documenting <b>Tuya</b> and <b>IoTwebUI</b> <i>scenes</i> and <i>RULES</i>.
 <hr>
-Questa APP è un <b>Analizzatore Logico</b> a 5 canali realizzato per il test, il debug e la documentazione di <i>scene</i> e <i>REGOLE</i> <b>Tuya</b> e </b>IoTwebUI**.
+Questa APP è un <b>Analizzatore Logico</b> a 5 canali realizzato per il test, il debug e la documentazione di <i>scene</i> e <i>REGOLE</i> <b>Tuya</b> e <b>IoTwebUI</b>.
 </td><td colspan=2>  
  <img src="https://github.com/user-attachments/assets/a52a6742-0848-4f83-8239-63d848b7d00a">
 </td></tr>
