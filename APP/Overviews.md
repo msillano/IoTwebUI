@@ -1,5 +1,5 @@
 #  Tuya APPLICATIONS 
-<table width="100%" style=" border: 1px solid black; border-left: none; border-right: none; border-collapse: collapse;">
+<table width="100%" style=" border: 3px solid black; border-left: none; border-right: none; border-collapse: collapse;">
 <tr><td width = "400pt"> <b><i>Logic Analyzer 5ch</i></b><br><br>
  This APP is a 5-channel <b>Logic Analyzer</b> made for testing, debugging, and documenting <b>Tuya</b> and <b>IoTwebUI</b> <i>scenes</i> and <i>RULES</i>.
 <hr>
