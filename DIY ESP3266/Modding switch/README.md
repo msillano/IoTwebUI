@@ -1,7 +1,7 @@
 
 **Introduzione:**
 
-I wanted to explore the possibilities of modifying (modding) the Tuya smart switches, starting from the [observation](https://www.facebook.com/groups/tuyaitalia/permalink/1601909300443417/) that the voltage across the physical control switch is typically a low voltage DC voltage (3.3V or 5V), galvanically isolated from the 230V power circuit. This feature opens up interesting scenarios for integrating sensors and microcontrollers, allowing the creation of 'custom Tuya devices'.
+I wanted to explore the possibilities of modifying (modding) the Tuya smart switches, starting from the [observation](https://www.facebook.com/groups/tuyaitalia/permalink/1601909300443417/) that the voltage across the physical control switch is typically a low-voltage DC voltage (3.3V or 5V), galvanically isolated from the 230V power circuit. This feature opens up interesting scenarios for integrating sensors and microcontrollers, allowing the creation of 'custom Tuya devices'.
 
 ### Smart Switch Analysis
 
@@ -9,7 +9,7 @@ I wanted to explore the possibilities of modifying (modding) the Tuya smart swit
 
 ![full001](https://github.com/user-attachments/assets/5526c2b4-8f3b-400d-9d63-45ec7e69cd55) 
 
-**IMPORTANT** _With other types of 'smart switches' the indications may change.<br>
+**IMPORTANT** _With other types of 'smart switches', the indications may change.<br>
 Do not use Tuya smart switches with switches connected to 230 (F or N!) because the DC power supply in these cases is not galvanically isolated from the 230V. Try only with smart switches that have S1 and S2 (or COM). Check the voltage between S1/S2 and F/N with a tester!_<br>
 
 DO NOT OPEN A TUYA SMART SWITCH IF YOU ARE NOT SURE OF WHAT YOU ARE DOING!
@@ -26,7 +26,7 @@ From a [series of posts](https://www.facebook.com/groups/tuyaitalia/permalink/15
 
 ![image](https://github.com/user-attachments/assets/bfd57a5a-3507-4ab2-805d-2bc537dfc0cd)
 
- * A flame detector prototype was built using a high sensitivity IR sensor and a comparator with adjustable threshold using a [module for Ardiuno](https://it.aliexpress.com/item/1005007581633099.html).
+ * A flame detector prototype was built using a high-sensitivity IR sensor and a comparator with adjustable threshold using a [module for Arduino](https://it.aliexpress.com/item/1005007581633099.html).
  * _note: this module is part of a series of [37 sensors for Arduino](https://it.aliexpress.com/w/wholesale-37-arduino-sensor.html) very popular_..
 * The module is powered at 3.3V and its digital output is connected to the input pin of the smart switch.
 * The connection is very simple, three wires in total: GND, +3.3V, DO/IN: basically just one solder (+3.3V).
@@ -49,7 +49,7 @@ _Instead a general introduction to the use of ESP3266 in custom devices can be f
 ![esp01-02](https://github.com/user-attachments/assets/ea6eaf65-409b-411d-b6c5-6f81525e3bfc)
 Left: ESP01S programming with adapter via USB. Right: finished.
 
-To keep it simple, as is the case for a _proof of concept_, we take the Arduino demo 'blink' perhaps the simplest and most famous program, only we implement it with a timer. In practice, we transform the smart relay into a flasher.
+To keep it simple, as is the case for a _proof of concept_, we take the Arduino demo 'blink', perhaps the simplest and most famous program, only we implement it with a timer. In practice, we transform the smart relay into a flasher.
 
 ### Hardware
 
@@ -57,19 +57,19 @@ Modding smart switch: we use the same 3 connections used in Example 1: one inter
 
 ### Firmware
 
-Both the installation and the use of Arduino to program an ESP01s are very simple: you only need a USB adapter. For details see the project [Watchdog03](https://github.com/msillano/tuyaDEAMON-applications/wiki/note-5:-Watchdog-for-IOT#watchdog03-esp01-relay--arduino).
+Both the installation and the use of Arduino to program an ESP01 are straightforward: you only need a USB adapter. For details, see the project [Watchdog03](https://github.com/msillano/tuyaDEAMON-applications/wiki/note-5:-Watchdog-for-IOT#watchdog03-esp01-relay--arduino).
 
-note: The mode change (run/programming) occurs at the startup of the ESP01 and the programming mode requires the IN0 PIN to ground. I therefore added a small switch to the programmer (in some models it is already present) and therefore the procedure is the following:
+note: The mode change (run/programming) occurs at the startup of the ESP01, and the programming mode requires the IN0 PIN to ground. I therefore added a small switch to the programmer (in some models it is already present), and therefore the procedure is the following:
 * switch with IN0 to GND (programming)
-* insert the programmer into the USB socket
+* Insert the programmer into the USB socket
 * programming with Arduino
-* remove the programmer from the USB socket
+* Remove the programmer from the USB socket
 * switch with IN0 open (run)
 * Open the serial terminal on Arduino at 9600 baud.
-* insert the programmer into the USB socket: the program starts automatically
-* debug the program with the help of echos on the serial
+* Insert the programmer into the USB socket: the program starts automatically
+* debug the program with the help of echoes on the serial
 
-_ATTENTION: some programmers have jumpers to choose 5V or 3.3V. ESP01S requires 3.3V!_
+_ATTENTION: Some programmers have jumpers to choose 5V or 3.3V. ESP01S requires 3.3V!_
 
 _References_
 * Introduction to [ESP01 - ESP8266](https://securipi.co.uk/esp01.pdf) use.
@@ -77,7 +77,7 @@ _References_
 * Technical Reference manual for [ESP01S](https://doc.10gtek.com/en/p/ESP-01S-12E-12F-Technical-Reference-Manual)
 
 ### HTTP control
-We need to add some control functionality: ON/OFF and the possibility to change the period. We cannot use the relay in any way. To manage these 'extra' parameters we exploit the capabilities of ESP3266 to implement two alternative WiFi-HTTP interfaces:
+We need to add some control functionality: ON/OFF and the possibility to change the period. We cannot use the relay in any way. To manage these 'extra' parameters, we exploit the capabilities of ESP3266 to implement two alternative WiFi-HTTP interfaces:
 
 **WEB Interface: URL `http://192.168.1.23/`**
 
@@ -95,20 +95,20 @@ For greater convenience, there is a second interface, always via the WEB server,
   
 The response is TEXT and contains 'OK' or 'BAD'. (Alternative: use JSON responses, when data must be provided).
 You can also try them with a browser, directly writing the previous URLs.<br>
-These interfaces are not intended for interactive uses but for programmatic uses in any APP or language capable of sending HTTP requests (in particular, from IoTwebUI).
+These interfaces are not intended for interactive uses but for programmatic uses in any APP or language capable of sending HTTP requests (in particular, from IoTwebUI or MacroDroid).
 
 _If you want, you could also use an MQTT interface, but it is more complex and requires an external MQTT broker._
 
 **Examples of use with IOTwebUI**
 
-* The simplest way are two 'RULES with name' (equivalent to Tuya tap-to-run) that will appear in the _tap-to-run_ page of **IoTwebUI**:
+* The simplest way is two 'RULES with name' (equivalent to Tuya tap-to-run) that will appear in the _tap-to-run_ page of **IoTwebUI**:
 ```
 if (TRIGBYNAME("BLINK on"))   REST("http://192.168.1.23/ON"), BEEP();
 if (TRIGBYNAME("BLINK off"))  REST("http://192.168.1.23/OFF"), BEEP();
 ```
-* If you want, you can use a _smart switch virtual Tuya_ to implement a 'proxy' to control the ON/OFF state of the ESP3266: when the proxy is ON it blinks, otherwise it doesn't. Once you've done this, you can control the proxy in the standard Tuya 'scenes'!
+* If you want, you can use a _smart switch virtual Tuya_ to implement a 'proxy' to control the ON/OFF state of the ESP3266: when the proxy is ON, it blinks, otherwise it doesn't. Once you've done this, you can control the proxy in the standard Tuya 'scenes'!
 
-These two IoTwebUI rules copy the state of 'blink-proxy.switch_1' to the ESP3266, via rest, using the appropriate command (in this case the response is TEXT - not JSON - and so we use the MACRO `REST()`).
+These two IoTwebUI rules copy the state of 'blink-proxy.switch_1' to the ESP3266, via rest, using the appropriate command (in this case, the response is TEXT - not JSON - and so we use the MACRO `REST()`).
 
 ![image](https://github.com/user-attachments/assets/5de0a999-f4a5-4636-b084-b8167fcea8fa)
 ```
@@ -121,6 +121,6 @@ note: these commands have latency due to TuyaCloud loops!
 
 **General Considerations:**
 
-* Galvanic isolation between the low voltage control circuit and the 230V power circuit is crucial for safety and the ability to make changes.
+* Galvanic isolation between the low-voltage control circuit and the 230V power circuit is crucial for safety and the ability to make changes.
 * Knowledge of the electrical characteristics of the input pin (voltage, current, activation threshold) is essential for the integration of sensors and microcontrollers.
 * Using an ESP32 microcontroller opens the way to more advanced features, such as complex signal processing and wireless communication.
