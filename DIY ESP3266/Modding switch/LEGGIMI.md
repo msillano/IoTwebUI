@@ -29,7 +29,7 @@ Da una [serie di post](https://www.facebook.com/groups/tuyaitalia/permalink/1543
 
 ![image](https://github.com/user-attachments/assets/bfd57a5a-3507-4ab2-805d-2bc537dfc0cd)
 
- * È stato realizzato un prototipo di rivelatore di fiamma utilizzando un sensore IR ad alta sensibilità e un comparatore con soglia regolabile utilizzando un [modulo per Ardiuno](https://it.aliexpress.com/item/1005007581633099.html).
+ * È stato realizzato un prototipo di rivelatore di fiamma utilizzando un sensore IR ad alta sensibilità e un comparatore con soglia regolabile utilizzando un [modulo per Arduino](https://it.aliexpress.com/item/1005007581633099.html).
  * _nota: questo modulo fa parte di una serie di [37 sensori per Arduino](https://it.aliexpress.com/w/wholesale-37-arduino-sensor.html) molto diffusa_.
  * Il modulo è alimentato a 3.3V e il suo output digitale è collegato al pin di input dell'interruttore smart.
  * Il collegamento è molto semplice, in tutto tre fili: GND, +3.3V, DO/IN: in pratica una sola saldatura (+3.3V).
@@ -105,7 +105,7 @@ Per  gestire questi parametri 'extra' sfruttiamo le capacità di ESP3266 per imp
 
 La risposta è TESTO e contiene 'OK' o 'BAD'. (Alternativa: usare risposte JSON, quando devono essere forniti più dati).
 Si posono provare anche con un browser, scrivendo direttamente gli URL precedenti.<br>
-Queste interfacce sono pensate non per usi interattivi ma per usi programmatici in qualsiasi APP o linguaggio in grado di inviare richieste HTPP (in particolare, da IoTwebUI).
+Queste interfacce sono pensate non per usi interattivi ma per usi programmatici in qualsiasi APP o linguaggio in grado di inviare richieste HTPP (in particolare, da IoTwebUI o da MacroDRoid).
 
 _Volendo si potrebbe usare anche un'interfaccia MQTT, ma è più complessa e richiede un broker MQTT esterno._
 
