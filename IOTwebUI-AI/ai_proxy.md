@@ -6,20 +6,38 @@ Questa documentazione descrive la libreria JavaScript `ai_proxy.js`, che fornisc
 
 ### `async function updateConfig(configuration)`
 
-- **Descrizione:** Aggiorna la configurazione globale del server `ai_server`.
+- **Descrizione:** Aggiorna la configurazione globale. Se necessario riavvia automaticamente OpenAI.
+ La struttura di default è la seguente (definita in `server02.js`):
+```
+ *	 provider:'deepseek',                      // 'openai' o altri
+ *   baseURL: 'https://api.deepseek.com',      // dipende dal provider
+ *   apiKey:  'sk-*************2876754fe',     // default from PC environment, OPENAI_API_KEY 
+ *   model:   'deepseek-chat'                  // 'deepseek-code'...
+ *   emableStremMode: false
+ *   enableTuyaTools: true,                    // Attiva/disattiva i tool Tuya
+```
 - **Parametri:**
-  - `{object} configuration`: Oggetto contenente la nuova configurazione da applicare al server. La struttura di questo oggetto dipende dalla configurazione supportata dal `ai_server`.
+  - `{object} configuration`: Oggetto contenente la nuova configurazione da applicare al server. Può essere incompleta e contenre solo uno o due valori nuovi.
 - **Ritorna:**
-  - `{Promise<boolean>}`: Una Promise che risolve con `true` se la configurazione è stata aggiornata con successo dal server, e `false` in caso di errore nella comunicazione o se il server riporta un fallimento.
+  - `{Promise<boolean>}`: Promise che risolve con true, in caso di successo + echo in console della configurazione aggiornata.
+  -  altrimenti false + ERROR in console + ALERT.
+  -   nota:_questa funzione è chiamata automaticamente allo startup, per ricevere la configurazine dal server. In caso di server non funzionante, un popup (ALERT) avverte l'utente di controllare il server e di ricaricare il chatbot._ 
 
 ### `async function proxyGetHistory(responseID, sessionId)`
 
-- **Descrizione:** Recupera la cronologia delle conversazioni per una specifica sessione utente.
+- **Descrizione:** Recupera una coppia query/answer delle conversazioni per una specifica sessione utente.
 - **Parametri:**
-  - `{string} responseID`: ID della risposta specifica da cui iniziare a recuperare la cronologia. Può essere `null` o una stringa vuota se si desidera recuperare la cronologia completa o la cronologia più recente.
+  - `{string} responseID`: ID della risposta specifica: ritorna la prima coppia  query/answer con indice uguale o minore a responseID.
   - `{string} sessionId`: L'identificatore univoco della sessione utente per cui si desidera recuperare la cronologia.
 - **Ritorna:**
-  - `{Promise<Array<object>|null>}`: Una Promise che risolve con un array di oggetti. Ogni oggetto rappresenta un messaggio nella cronologia della conversazione. La struttura di questi oggetti dipende da come il `ai_server` memorizza la cronologia (es. `{ role: 'user', content: '...' }`). Risolve con `null` se si verifica un errore nella comunicazione con il server o se non viene trovata alcuna cronologia per la `sessionId` specificata.
+  - `{Promise<Array<object>|null>}`: Una Promise che risolve con una coppia query/answer come modello.
+  ```js
+  {
+        query: user_prompt                       // tool messages are skipped
+       answer: assistant_answer || tool_calls    // the _reasoning_ part is NOT stored in history
+   responseID: <number>                          // index for this data: può essere < di responseID in input.
+   }
+ ```
 
 ### `async function proxyForgetHistory(limit, sessionId)`
 
