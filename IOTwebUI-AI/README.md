@@ -22,7 +22,7 @@ In more detail, **IOTwebUI-AI** has been designed to test:
 * **Optimization of Prompts and Interactions:** Experimenting with different instructions (prompts) to obtain the desired responses and actions from the AI in relation to IoT devices.
 * **IoT Context Management:** Evaluating the effectiveness of integrating specific information about devices and their status into conversations with the AI.
 * **Use of IoT Tools:** Developing and testing specific tools to interact with the Tuya ecosystem via AI (e.g., intelligent voice commands, automations based on AI analysis...).
-```md
+```mermaid
 %%{init: {'theme': 'neutral'}}%%
 graph LR
     subgraph User Interface
