@@ -3,20 +3,21 @@
 # IOTwebUI-AI
 
 **Introduzione:**
+[English version](https://github.com/msillano/IoTwebUI/blob/main/IOTwebUI-AI/README.md)
 
 Questo documento introduce il progetto **IOTwebUI-AI**, un _chatbot general purpose integrato con l'ecosistema Tuya_.
-Questo ambiente versatile è stato sviluppato per permettere agli utenti più avventurosi di esplorare e sperimentare le potenzialità dell'intelligenza artificiale (AI) in combinazione con dispositivi IoT della piattaforma Tuya. L'obiettivo principale è fornire uno strumento flessibile per condurre prove e analisi, interagire con i dispositivi IoT presenti e sperimentare le potenzialità dell'AI in questo contesto.
+Questo ambiente versatile è stato sviluppato per permettere agli utenti più avventurosi di esplorare e sperimentare le potenzialità dell'intelligenza artificiale (AI) in combinazione con dispositivi IoT **Tuya** tramite l'estensione **IoTwebUI**. L'obiettivo principale è fornire uno strumento flessibile per condurre prove e analisi, interagire con i dispositivi IoT presenti e sperimentare le potenzialità dell'AI in questo contesto.
 
 ### Obiettivo Primario: Sperimentazione di AI e Integrazione con Tuya
 
 L'obiettivo principale di **IOTwebUI-AI** è la sperimentazione con diverse configurazioni di intelligenza artificiale (modelli), con gestione diretta del contesto, dello storico conversazionale e degli strumenti (TOOL) per analizzare e interagire con i dispositivi Tuya. Questo include:
 
 * **Documentazione Assistita:** Sfruttare l'AI per generare documentazione, riassunti o analisi basate sulle informazioni dei dispositivi.
-* **Automazione Assistita:** Sfruttare l'AI per generare algoritmi ed automatismi per gestire situazioni complesse di non immediata soluzione, tenendo conto dei vincoli delle 'scene' Tuya.
 * **Manutenzione Assistita:** Altro settore in cui il contributo dell'AI puo portare benefici in termini di ottimizzazioni e risparmi.
-* **Esplorazione di Applicazioni Future:** Testare diverse interazioni e automazioni che combinano le capacità dell'AI con il controllo e la gestione dei dispositivi Tuya + IOTwebUI.
+* **Automazione Assistita:** Sfruttare l'AI per generare algoritmi ed automazioni per gestire situazioni complesse di non immediata soluzione, tenendo conto dei vincoli delle 'scene' Tuya.
+* **Esplorazione di Applicazioni Future:** Testare diverse configurazioni ed ipotesi che combinino le capacità dell'AI con il controllo e la gestione dei dispositivi Tuya + IOTwebUI.
   
-Più in dettaglio,  **IOTwebUI-AI**  è stato progettato per testare: 
+Più in dettaglio,  **IOTwebUI-AI**  è stato progettato per gestire: 
 
 * **Ottimizzazione di Prompt e Interazioni:** Sperimentare con diverse istruzioni (prompt) per ottenere le risposte e le azioni desiderate dall'AI in relazione ai dispositivi IoT.
 * **Gestione del Contesto IoT:** Valutare l'efficacia dell'integrazione di informazioni specifiche sui dispositivi e sul loro stato nelle conversazioni con l'AI.
