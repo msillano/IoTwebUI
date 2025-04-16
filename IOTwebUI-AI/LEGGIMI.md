@@ -1,23 +1,23 @@
 
 
-# IOTwebUI-AI
+# IoTwebUI-AI
 
 **Introduzione:**
 [English version](https://github.com/msillano/IoTwebUI/blob/main/IOTwebUI-AI/README.md)
 
-Questo documento introduce il progetto **IOTwebUI-AI**, un _chatbot general purpose integrato con l'ecosistema Tuya_.
+Questo documento introduce il progetto **IoTwebUI-AI**, un _chatbot general purpose integrato con l'ecosistema Tuya_.
 Questo ambiente versatile è stato sviluppato per permettere agli utenti più avventurosi di esplorare e sperimentare le potenzialità dell'intelligenza artificiale (AI) in combinazione con dispositivi IoT **Tuya** tramite l'estensione **IoTwebUI**. L'obiettivo principale è fornire uno strumento flessibile per condurre prove e analisi, interagire con i dispositivi IoT presenti e sperimentare le potenzialità dell'AI in questo contesto.
 
 ### Obiettivo Primario: Sperimentazione di AI e Integrazione con Tuya
 
-L'obiettivo principale di **IOTwebUI-AI** è la sperimentazione con diverse configurazioni di intelligenza artificiale (modelli), con gestione diretta del contesto, dello storico conversazionale e degli strumenti (TOOL) per analizzare e interagire con i dispositivi Tuya. Questo include:
+L'obiettivo principale di **IoTwebUI-AI** è la sperimentazione con diverse configurazioni di intelligenza artificiale (modelli), con gestione diretta del contesto, dello storico conversazionale e degli strumenti (TOOL) per analizzare e interagire con i dispositivi Tuya. Questo include:
 
 * **Documentazione Assistita:** Sfruttare l'AI per generare documentazione, riassunti o analisi basate sulle informazioni dei dispositivi.
 * **Manutenzione Assistita:** Altro settore in cui il contributo dell'AI puo portare benefici in termini di ottimizzazioni e risparmi.
 * **Automazione Assistita:** Sfruttare l'AI per generare algoritmi ed automazioni per gestire situazioni complesse di non immediata soluzione, tenendo conto dei vincoli delle 'scene' Tuya.
 * **Esplorazione di Applicazioni Future:** Testare diverse configurazioni ed ipotesi che combinino le capacità dell'AI con il controllo e la gestione dei dispositivi Tuya + IOTwebUI.
   
-Più in dettaglio,  **IOTwebUI-AI**  è stato progettato per gestire: 
+Più in dettaglio,  **IoTwebUI-AI**  è stato progettato per gestire: 
 
 * **Ottimizzazione di Prompt e Interazioni:** Sperimentare con diverse istruzioni (prompt) per ottenere le risposte e le azioni desiderate dall'AI in relazione ai dispositivi IoT.
 * **Gestione del Contesto IoT:** Valutare l'efficacia dell'integrazione di informazioni specifiche sui dispositivi e sul loro stato nelle conversazioni con l'AI.
@@ -25,7 +25,7 @@ Più in dettaglio,  **IOTwebUI-AI**  è stato progettato per gestire:
   
 ### Architettura di Alto Livello:
 
-Il chatbot **IOTwebUI-AI** si basa su un'architettura modulare, progettata per massimizzare la flessibilità e semplificare l'interazione con l'AI e i dispositivi Tuya:
+Il chatbot **IoTwebUI-AI** si basa su un'architettura modulare, progettata per massimizzare la flessibilità e semplificare l'interazione con l'AI e i dispositivi Tuya:
 
 1.  **Modelli AI (Cloud o Locale):** Il sistema può utilizzare molti modelli di intelligenza artificiale, principalmente basati su cloud, tramite l'API di OpenAI, per poter valutare le diverse capacità di elaborazione del linguaggio naturale ed individuare il miglior modello per ogni compito. L'architettura è pensata per poter integrare anche modelli locali.
 
@@ -37,7 +37,7 @@ Il chatbot **IOTwebUI-AI** si basa su un'architettura modulare, progettata per m
     * Il supporto per sessioni multiple di utenti.
     * L'implementazione dei TOOL specifici per l'interazione con l'ecosistema Tuya tramite comunicazioni REST con **IOTwebUI**.
 
-4.  **`ai_proxy` (Libreria di Interfaccia):** Questa libreria JavaScript fornisce un'interfaccia semplificata per interagire con il "`ai_server`". Offre funzioni asincrone che astraggono le complesse chiamate al server, facilitando lo sviluppo dell'interfaccia utente. Le funzioni principali includono la gestione della configurazione, dello storico, del contesto e le chiamate all'API OpenAI (testo e streaming).
+4.  **`ai_proxy` (Libreria di Interfaccia):** Questa libreria JavaScript fornisce un'interfaccia semplificata per interagire con il "`ai_server`". Offre funzioni asincrone che astraggono le complesse chiamate al server, facilitando lo sviluppo dell'interfaccia utente. Le funzioni principali includono la gestione della configurazione, dello storico, del contesto e le chiamate all'API `OpenAI` (testo e streaming).
 
 5.  **Funzioni JavaScript per l'Interfaccia Utente:** Un insieme di funzioni JavaScript (`IOTwebUIAI.js`) dedicate all'interfaccia HTML si occupa di:
     * Tradurre le azioni dell'utente in chiamate alle funzioni di "`ai_proxy`".
