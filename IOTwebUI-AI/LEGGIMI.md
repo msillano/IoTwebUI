@@ -1,11 +1,11 @@
 
 
-#IOTwebUI-AI
+# IOTwebUI-AI
 
 **Introduzione:**
 
 Questo documento introduce il progetto **IOTwebUI-AI**, un _chatbot general purpose integrato con l'ecosistema Tuya_.
-Questo ambiente versatile è stato sviluppato per permettere agli utenti più avventurosi di esplorare e sperimentare le potenzialità dell'intelligenza artificiale (AI) in combinazione con dispositivi IoT della piattaforma Tuya. L'obiettivo principale è fornire uno strumento flessibile per condurre prove e analisi, ottenere documentazione sui dispositivi IoT presenti e sperimentare le potenzialità dell'AI in questo contesto.
+Questo ambiente versatile è stato sviluppato per permettere agli utenti più avventurosi di esplorare e sperimentare le potenzialità dell'intelligenza artificiale (AI) in combinazione con dispositivi IoT della piattaforma Tuya. L'obiettivo principale è fornire uno strumento flessibile per condurre prove e analisi, interagire con i dispositivi IoT presenti e sperimentare le potenzialità dell'AI in questo contesto.
 
 ### Obiettivo Primario: Sperimentazione di AI e Integrazione con Tuya
 
