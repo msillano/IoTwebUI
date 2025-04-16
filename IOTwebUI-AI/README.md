@@ -1,6 +1,7 @@
 # IOTwebUI-AI
 
-**Introduction:**
+**Introduction:**<br>
+[Versione italiana](https://github.com/msillano/IoTwebUI/blob/main/IOTwebUI-AI/LEGGIMI.md)
 
 This document introduces the **IOTwebUI-AI** project, a general-purpose chatbot integrated with the Tuya ecosystem.
 This versatile environment has been developed to allow more adventurous users to explore and experiment with the potential of artificial intelligence (AI) in combination with IoT devices from the **IoTwebUI** extension. The main objective is to provide a flexible tool for conducting tests and analyses, interacting with existing IoT devices, and experimenting with AI's potential in this context.
