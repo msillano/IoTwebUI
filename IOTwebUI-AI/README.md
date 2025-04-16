@@ -22,7 +22,46 @@ In more detail, **IOTwebUI-AI** has been designed to test:
 * **Optimization of Prompts and Interactions:** Experimenting with different instructions (prompts) to obtain the desired responses and actions from the AI in relation to IoT devices.
 * **IoT Context Management:** Evaluating the effectiveness of integrating specific information about devices and their status into conversations with the AI.
 * **Use of IoT Tools:** Developing and testing specific tools to interact with the Tuya ecosystem via AI (e.g., intelligent voice commands, automations based on AI analysis...).
+```md
+%%{init: {'theme': 'neutral'}}%%
+graph LR
+    subgraph User Interface
+        style UI fill:#ccf,stroke:#333,stroke-width:2px
+        style UI_JS fill:#f9f,stroke:#333,stroke-width:2px
+        style UI_Menu fill:#ccf,stroke:#333,stroke-width:2px
+        UI[HTML/CSS] --> UI_JS(UI JS Functions);
+        UI_Menu(ai_verticalMenu.js) -- Configures --> UI_JS;
+        UI_JS -- Calls --> Proxy(ai_proxy);
+    end
 
+    subgraph Backend
+        style Proxy fill:#9cf,stroke:#333,stroke-width:2px
+        style AIServer fill:#fcc,stroke:#333,stroke-width:2px
+        style HistoryDB fill:#f9c,stroke:#333,stroke-width:2px
+        style ContextFiles fill:#cff,stroke:#333,stroke-width:2px
+        Proxy -- Calls --> AIServer;
+        AIServer -- Uses AI Models from --> AIModels(AI Models);
+        AIServer -- Manages --> HistoryDB(History Storage);
+        AIServer -- Manages --> ContextFiles(Context Documents Storage);
+        AIServer -- Calls TOOL via REST --> IoT(IoT / Tuya);
+    end
+
+    subgraph AI Models
+        style AIModels fill:#cf9,stroke:#333,stroke-width:2px
+        style OpenAI fill:#ace,stroke:#333,stroke-width:2px
+        AIModels -- Provides API --> OpenAI;
+        OpenAI -- Contains --> Deepseek;
+        OpenAI -- Contains --> GPTModels[Other OpenAI Models];
+     end
+
+    subgraph IoT / Tuya
+        style IoT fill:#9fc,stroke:#333,stroke-width:2px
+        style IoTWebUI fill:#afe,stroke:#333,stroke-width:2px
+        IoT -- Interacts with --> IoTWebUI;
+        IoTWebUI -- Controls --> TuyaDevices[Tuya Devices];
+        IoTWebUI -- Executes --> TuyaAutomations[Tuya Automations / IOTwebUI Rules];
+    end
+```
 ### High-Level Architecture:
 
 The **IOTwebUI-AI** chatbot is based on a modular architecture designed to maximize flexibility and simplify interaction with AI and Tuya devices:
