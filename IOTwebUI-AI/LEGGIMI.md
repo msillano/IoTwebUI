@@ -5,7 +5,7 @@
 **Introduzione:**<br>
 [English version](https://github.com/msillano/IoTwebUI/blob/main/IOTwebUI-AI/README.md)
 
-Questo documento introduce il progetto **IoTwebUI-AI**, un _chatbot general purpose integrato con l'ecosistema Tuya_.
+Questo documento introduce il **progetto IoTwebUI-AI**, un _chatbot general purpose integrato con l'ecosistema Tuya_.
 Questo ambiente versatile è stato sviluppato per permettere agli utenti più avventurosi di esplorare e sperimentare le potenzialità dell'intelligenza artificiale (AI) in combinazione con dispositivi IoT **Tuya** tramite l'estensione **IoTwebUI**. L'obiettivo principale è fornire uno strumento flessibile per condurre prove e analisi, interagire con i dispositivi IoT presenti e sperimentare le potenzialità dell'AI in questo contesto.
 
 ### Obiettivo Primario: Sperimentazione di AI e Integrazione con Tuya
