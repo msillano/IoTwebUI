@@ -22,7 +22,7 @@ Più in dettaglio,  **IOTwebUI-AI**  è stato progettato per testare ed ottimizz
 * **Gestione del Contesto IoT:** Valutare l'efficacia dell'integrazione di informazioni specifiche sui dispositivi e sul loro stato nelle conversazioni con l'AI.
 * **Utilizzo di TOOL IoT:** Sviluppare e testare strumenti specifici per interagire con l'ecosistema Tuya tramite l'AI (ad esempio, comandi vocali intelligenti, automazioni basate su analisi AI...).
   
-### Architettura di Alto Livello:**
+### Architettura di Alto Livello:
 
 Il chatbot **IOTwebUI-AI** si basa su un'architettura modulare, progettata per massimizzare la flessibilità e semplificare l'interazione con l'AI e i dispositivi Tuya:
 
@@ -66,6 +66,6 @@ Il chatbot IOTwebUI-AI offre una notevole flessibilità per la sperimentazione n
 
 L'esperienza acquisita e le specifiche definite attraverso la sperimentazione con **IOTwebUI-AI** potranno in futuro essere utilizzate per lo sviluppo di applicazioni + AI specializzate, focalizzate su specifiche interazioni con i dispositivi Tuya o su particolari analisi dei dati IoT.
 
-**Conclusione:**
+### _Conclusione:_
 
-Il progetto IOTwebUI-AI rappresenta un ambiente di sperimentazione versatile e potente per esplorare le sinergie tra l'intelligenza artificiale e l'ecosistema Tuya. La sua architettura flessibile e l'integrazione di TOOL specifici offrono ai tecnici la possibilità di analizzare i dispositivi IoT, sperimentare nuove interazioni e definire le basi per future applicazioni intelligenti.
+_Il progetto IOTwebUI-AI rappresenta un ambiente di sperimentazione versatile e potente per esplorare le sinergie tra l'intelligenza artificiale e l'ecosistema Tuya. La sua architettura flessibile e l'integrazione di TOOL specifici offrono ai tecnici la possibilità di analizzare i dispositivi IoT, sperimentare nuove interazioni e definire le basi per future applicazioni intelligenti._
