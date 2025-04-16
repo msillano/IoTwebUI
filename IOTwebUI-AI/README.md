@@ -6,22 +6,6 @@
 This document introduces the **IOTwebUI-AI** project, a general-purpose chatbot integrated with the Tuya ecosystem.
 This versatile environment has been developed to allow more adventurous users to explore and experiment with the potential of artificial intelligence (AI) in combination with IoT devices from the **IoTwebUI** extension. The main objective is to provide a flexible tool for conducting tests and analyses, interacting with existing IoT devices, and experimenting with AI's potential in this context.
 
-![image](https://github.com/user-attachments/assets/78b1c2b1-a8e3-41ae-b083-49b9fcd78bed)
-
-### Primary Objective: Experimentation of AI and Integration with Tuya
-
-The primary objective of **IOTwebUI-AI** is experimentation with different artificial intelligence configurations (models), with direct management of context, conversation history, and tools (TOOLs) to analyze and interact with Tuya devices. This includes:
-
-* **Assisted Documentation:** Leveraging AI to generate documentation, summaries, or analyses based on device information.
-* **Assisted Automation:** Leveraging AI to generate algorithms and automations to manage complex situations that are not immediately solvable, taking into account the constraints of Tuya 'scenes'.
-* **Assisted Maintenance:** Another area where AI's contribution can bring benefits in terms of optimizations and savings.
-* **Exploration of Future Applications:** Testing different interactions and automation,  combining the capabilities of **AI** with the control and management of **Tuya** + **IoTwebUI** devices.
-
-In more detail, **IOTwebUI-AI** has been designed to test:
-
-* **Optimization of Prompts and Interactions:** Experimenting with different instructions (prompts) to obtain the desired responses and actions from the AI in relation to IoT devices.
-* **IoT Context Management:** Evaluating the effectiveness of integrating specific information about devices and their status into conversations with the AI.
-* **Use of IoT Tools:** Developing and testing specific tools to interact with the Tuya ecosystem via AI (e.g., intelligent voice commands, automations based on AI analysis...).
 ```mermaid
 %%{init: {'theme': 'neutral'}}%%
 graph LR
@@ -62,6 +46,22 @@ graph LR
         IoTWebUI -- Executes --> TuyaAutomations[Tuya Automations / IOTwebUI Rules];
     end
 ```
+
+### Primary Objective: Experimentation of AI and Integration with Tuya
+
+The primary objective of **IOTwebUI-AI** is experimentation with different artificial intelligence configurations (models), with direct management of context, conversation history, and tools (TOOLs) to analyze and interact with Tuya devices. This includes:
+
+* **Assisted Documentation:** Leveraging AI to generate documentation, summaries, or analyses based on device information.
+* **Assisted Automation:** Leveraging AI to generate algorithms and automations to manage complex situations that are not immediately solvable, taking into account the constraints of Tuya 'scenes'.
+* **Assisted Maintenance:** Another area where AI's contribution can bring benefits in terms of optimizations and savings.
+* **Exploration of Future Applications:** Testing different interactions and automation,  combining the capabilities of **AI** with the control and management of **Tuya** + **IoTwebUI** devices.
+
+In more detail, **IOTwebUI-AI** has been designed to test:
+
+* **Optimization of Prompts and Interactions:** Experimenting with different instructions (prompts) to obtain the desired responses and actions from the AI in relation to IoT devices.
+* **IoT Context Management:** Evaluating the effectiveness of integrating specific information about devices and their status into conversations with the AI.
+* **Use of IoT Tools:** Developing and testing specific tools to interact with the Tuya ecosystem via AI (e.g., intelligent voice commands, automations based on AI analysis...).
+
 ### High-Level Architecture:
 
 The **IOTwebUI-AI** chatbot is based on a modular architecture designed to maximize flexibility and simplify interaction with AI and Tuya devices:
