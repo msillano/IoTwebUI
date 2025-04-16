@@ -16,7 +16,7 @@ L'obiettivo principale di **IOTwebUI-AI** è la sperimentazione con diverse conf
 * **Manutenzione Assistita:** Altro settore in cui il contributo dell'AI puo portare benefici in termini di ottimizzazioni e risparmi.
 * **Esplorazione di Applicazioni Future:** Testare diverse interazioni e automazioni che combinano le capacità dell'AI con il controllo e la gestione dei dispositivi Tuya + IOTwebUI.
   
-Più in dettaglio,  **IOTwebUI-AI**  è stato progettato per testare ed ottimizzare: 
+Più in dettaglio,  **IOTwebUI-AI**  è stato progettato per testare: 
 
 * **Ottimizzazione di Prompt e Interazioni:** Sperimentare con diverse istruzioni (prompt) per ottenere le risposte e le azioni desiderate dall'AI in relazione ai dispositivi IoT.
 * **Gestione del Contesto IoT:** Valutare l'efficacia dell'integrazione di informazioni specifiche sui dispositivi e sul loro stato nelle conversazioni con l'AI.
@@ -47,7 +47,7 @@ Il chatbot **IOTwebUI-AI** si basa su un'architettura modulare, progettata per m
 6.  **Interfaccia Utente (HTML + CSS):** L'interfaccia utente  (`IOTwebUIAI.html`) è costruita con HTML e CSS per una struttura e uno stile flessibili. Poche funzioni JavaScript gestiscono interazioni dinamiche di base, come il menu a scomparsa.
 Per favorire le customizzazioni, la definizione del menu è in un file separato: "`ai_verticalMenu.js`".
 
-### Flessibilità e Potenza per la Sperimentazione con Tuya e AI:**
+### Flessibilità e Potenza per la Sperimentazione con Tuya e AI:
 
 Il chatbot IOTwebUI-AI offre una notevole flessibilità per la sperimentazione nell'ambito dell'IoT e dell'AI permettendo il controllo utente diretto di tutti i principali fattori:
 
