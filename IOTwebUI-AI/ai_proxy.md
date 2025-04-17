@@ -1,27 +1,29 @@
 # Documentazione Tecnica di `ai_proxy.js`
 
-Questa documentazione descrive la libreria JavaScript `ai_proxy.js`, che fornisce un'interfaccia semplificata per comunicare con il server locale `ai_server`. Le funzioni in questa libreria sono asincrone e restituiscono Promises per gestire le operazioni non bloccanti.
+Questa documentazione descrive la libreria JavaScript `ai_proxy.js`, che fornisce la principale interfaccia per comunicare con il server locale `ai_server` ed OpenAI. <br>
+Le funzioni in questa libreria sono asincrone e restituiscono Promises per gestire le operazioni in modo non bloccante.
 
 ## Funzioni Pubbliche
 
 ### `async function updateConfig(configuration)`
 
 - **Descrizione:** Aggiorna la configurazione globale. Se necessario riavvia automaticamente OpenAI.
+ Inoltre sincronizza le due copie di 'aiConfig': quella del server (default, definita in `server02.js`) e la sua copia nel client. E' eseguita automaticamente all'avvio, per avere una sincronizzazione iniziale.<br>
  La struttura di default è la seguente (definita in `server02.js`):
 ```
- *  provider:'deepseek',                       // 'openai' o altri
+ *   provider:'deepseek',                      // 'openai' o altri
  *   baseURL: 'https://api.deepseek.com',      // dipende dal provider
  *   apiKey:  'sk-*************2876754fe',     // default from PC environment, OPENAI_API_KEY 
  *   model:   'deepseek-chat'                  // 'deepseek-code'...
  *   emableStremMode: false
- *   enableTuyaTools: true,                    // Attiva/disattiva i tool Tuya
+ *   enableTuyaTools: true,                    // Attiva/disattiva i tool Tuya (richiesto da alcuni model)
 ```
 - **Parametri:**
-  - `{object} configuration`: Oggetto contenente la nuova configurazione da applicare al server. Può essere incompleta e contenere solo uno o due valori nuovi.
+  - `{object} configuration`: Oggetto contenente la nuova configurazione da applicare al server. Può essere incompleta e contenere solo uno o due valori nuovi. Estensibile: accetta qualsiasi valore.
 - **Ritorna:**
   - `{Promise<boolean>}`: Promise che risolve con true, in caso di successo + echo in console della configurazione aggiornata.
   -  altrimenti false + ERROR in console + ALERT.
-  -   nota:_questa funzione è chiamata automaticamente allo startup, per ricevere la configurazine dal server. In caso di server non funzionante, un popup (ALERT) avverte l'utente di controllare il server e di ricaricare il chatbot._ 
+  -   nota:_In caso di server non funzionante, un popup (ALERT) avverte l'utente di controllare il server e di ricaricare il chatbot._ 
 
 ### `async function proxyGetHistory(responseID, sessionId)`
 
