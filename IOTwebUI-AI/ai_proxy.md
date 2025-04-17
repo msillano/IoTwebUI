@@ -1,6 +1,6 @@
-# Documentazione Tecnica di `ai_proxy.js`
+# `ai_proxy.js`
 
-Questa documentazione descrive la libreria JavaScript `ai_proxy.js`, che fornisce la principale interfaccia per comunicare con il server locale `ai_server` ed OpenAI. <br>
+Questa documentazione descrive la libreria JavaScript `ai_proxy.js`, che fornisce _la principale interfaccia per comunicare con il server locale `ai_server` ed OpenAI._ <br>
 Le funzioni in questa libreria sono asincrone e restituiscono Promises per gestire le operazioni in modo non bloccante.
 
 ## Funzioni Pubbliche
@@ -8,14 +8,14 @@ Le funzioni in questa libreria sono asincrone e restituiscono Promises per gesti
 ### `async function updateConfig(configuration)`
 
 - **Descrizione:** Aggiorna la configurazione globale. Se necessario riavvia automaticamente OpenAI.
- Inoltre sincronizza le due copie di 'aiConfig': quella del server (default, definita in `server02.js`) e la sua copia nel client. E' eseguita automaticamente all'avvio, per avere una sincronizzazione iniziale.<br>
- La struttura di default è la seguente (definita in `server02.js`):
+ Inoltre sincronizza le due copie di 'aiConfig': quella del server (default, definita in `server02.js`) e la sua copia nel client (in `ai_proxy.js`). E' eseguita automaticamente all'avvio, per avere la sincronizzazione iniziale, e successivamente, ad ogni richiesta utente.<br>
+ La struttura (estensibile) di default è la seguente (definita in `server02.js`):
 ```
  *   provider:'deepseek',                      // 'openai' o altri
  *   baseURL: 'https://api.deepseek.com',      // dipende dal provider
  *   apiKey:  'sk-*************2876754fe',     // default from PC environment, OPENAI_API_KEY 
  *   model:   'deepseek-chat'                  // 'deepseek-code'...
- *   emableStremMode: false
+ *   emableStremMode: false                    // block mode / stream mode
  *   enableTuyaTools: true,                    // Attiva/disattiva i tool Tuya (richiesto da alcuni model)
 ```
 - **Parametri:**
