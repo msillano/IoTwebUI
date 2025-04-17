@@ -9,7 +9,7 @@ Questa documentazione descrive la libreria JavaScript `ai_proxy.js`, che fornisc
 - **Descrizione:** Aggiorna la configurazione globale. Se necessario riavvia automaticamente OpenAI.
  La struttura di default è la seguente (definita in `server02.js`):
 ```
- *	 provider:'deepseek',                      // 'openai' o altri
+ *  provider:'deepseek',                       // 'openai' o altri
  *   baseURL: 'https://api.deepseek.com',      // dipende dal provider
  *   apiKey:  'sk-*************2876754fe',     // default from PC environment, OPENAI_API_KEY 
  *   model:   'deepseek-chat'                  // 'deepseek-code'...
@@ -17,7 +17,7 @@ Questa documentazione descrive la libreria JavaScript `ai_proxy.js`, che fornisc
  *   enableTuyaTools: true,                    // Attiva/disattiva i tool Tuya
 ```
 - **Parametri:**
-  - `{object} configuration`: Oggetto contenente la nuova configurazione da applicare al server. Può essere incompleta e contenre solo uno o due valori nuovi.
+  - `{object} configuration`: Oggetto contenente la nuova configurazione da applicare al server. Può essere incompleta e contenere solo uno o due valori nuovi.
 - **Ritorna:**
   - `{Promise<boolean>}`: Promise che risolve con true, in caso di successo + echo in console della configurazione aggiornata.
   -  altrimenti false + ERROR in console + ALERT.
