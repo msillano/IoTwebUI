@@ -32,7 +32,7 @@ Le funzioni in questa libreria sono asincrone e restituiscono Promises per gesti
   - `{string} responseID`: ID della risposta specifica: ritorna la prima coppia  query/answer con indice uguale o minore a responseID.
   - `{string} sessionId`: L'identificatore univoco della sessione utente per cui si desidera recuperare la cronologia.
 - **Ritorna:**
-  - `{Promise<Array<object>|null>}`: Una Promise che risolve con una coppia query/answer come modello.
+  - `{Promise<object>|null>}`: Una Promise che risolve con una coppia query/answer:
   ```javascript
   {
         query: user_prompt                       // tool messages are skipped
@@ -45,10 +45,19 @@ Le funzioni in questa libreria sono asincrone e restituiscono Promises per gesti
 
 - **Descrizione:** definisce la conversazione con cui inizia la History inviata all'AI. Le conversazioni NON sono cancellate, perciò si può varare a volontà, permettendo un buon controllo. e.g. Far fare all'AI un riassunto di tutte le conversazioni, poi iniziare l'history dal riassunto, tralsciando tutte le risposte precedenti: aumenta la prontezza e si riducono i costi.
 - **Parametri:**
-  - `{number} limit`: L'indice del primo messaggio da inviare nella cronologia. Se maggiore dell'ultimo messaggio, azzera la History. Nota: L'indice. che è visibile a video, non cambia al cambio sessione: cresce sempre, è azzerato solo da un restart del server02.
+  - `{number} limit`: L'indice del primo messaggio da inviare nella cronologia. Se maggiore dell'ultimo messaggio, azzera la History. Se è 0 o una stringa, non altera la situazione, ma ritorna nella risposta gli indici attuali.<br>
+Nota: L'indice. che è visibile a video, non cambia al cambio sessione: cresce sempre, è azzerato solo da un restart del server02.
   - `{string} sessionId`: L'identificatore univoco della sessione utente da cui rimuovere la cronologia.
 - **Ritorna:**
-  - `{Promise<boolean>}`: Una Promise che risolve con `true` se i messaggi sono stati rimossi con successo dalla cronologia della sessione, e `false` in caso di errore nella comunicazione con il server.
+  - `{Promise<object>}`: Una Promise che risolve in una struttura con due indici:
+  ```javascript
+  {
+          success: true|false         
+     currentStart: <number>             // indice della prima conversazione nella History        
+      currentNext: <number>             // indice della prossima conversazione
+
+   }
+ ```
 
 ### `async function proxyResetHistory(sessionId)`
 
