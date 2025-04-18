@@ -33,7 +33,7 @@ Le funzioni in questa libreria sono asincrone e restituiscono Promises per gesti
   - `{string} sessionId`: L'identificatore univoco della sessione utente per cui si desidera recuperare la cronologia.
 - **Ritorna:**
   - `{Promise<Array<object>|null>}`: Una Promise che risolve con una coppia query/answer come modello.
-  ```js
+  ```javascript
   {
         query: user_prompt                       // tool messages are skipped
        answer: assistant_answer || tool_calls    // the _reasoning_ part is NOT stored in history
@@ -43,9 +43,9 @@ Le funzioni in questa libreria sono asincrone e restituiscono Promises per gesti
 
 ### `async function proxyForgetHistory(limit, sessionId)`
 
-- **Descrizione:** Rimuove un certo numero di messaggi più vecchi dalla cronologia di una sessione utente.
+- **Descrizione:** definisce la conversazione con cui inizia la History inviata all'AI. Le conversazioni NON sono cancellate, perciò si può varare a volontà, permettendo un buon controllo. e.g. Far fare all'AI un riassunto di tutte le conversazioni, poi iniziare l'history dal riassunto, tralsciando tutte le risposte precedenti: aumenta la prontezza e si riducono i costi.
 - **Parametri:**
-  - `{number} limit`: Il numero di messaggi più vecchi da eliminare dalla cronologia.
+  - `{number} limit`: L'indice del primo messaggio da inviare nella cronologia. Se maggiore dell'ultimo messaggio, azzera la History. Nota: L'indice. che è visibile a video, non cambia al cambio sessione: cresce sempre, è azzerato solo da un restart del server02.
   - `{string} sessionId`: L'identificatore univoco della sessione utente da cui rimuovere la cronologia.
 - **Ritorna:**
   - `{Promise<boolean>}`: Una Promise che risolve con `true` se i messaggi sono stati rimossi con successo dalla cronologia della sessione, e `false` in caso di errore nella comunicazione con il server.
