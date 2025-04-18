@@ -39,25 +39,27 @@ Le funzioni in questa libreria sono asincrone e restituiscono Promises per gesti
        answer: assistant_answer || tool_calls    // the _reasoning_ part is NOT stored in history
    responseID: <number>                          // index for this data: può essere < di responseID in input.
    }
- ```
-
+  ```
+  
 ### `async function proxyForgetHistory(limit, sessionId)`
 
 - **Descrizione:** definisce la conversazione con cui inizia la History inviata all'AI. Le conversazioni NON sono cancellate, perciò si può varare a volontà, permettendo un buon controllo. e.g. Far fare all'AI un riassunto di tutte le conversazioni, poi iniziare l'history dal riassunto, tralsciando tutte le risposte precedenti: aumenta la prontezza e si riducono i costi.
 - **Parametri:**
-  - `{number} limit`: L'indice del primo messaggio da inviare nella cronologia. Se maggiore dell'ultimo messaggio, azzera la History. Se è 0 o una stringa, non altera la situazione, ma ritorna nella risposta gli indici attuali.<br>
+  - `{number} limit`: L'indice del primo messaggio da inviare nella cronologia. 
+  * Se maggiore dell'ultimo messaggio, azzera la History. 
+  * Se è 0 o una stringa, non altera la situazione, ma ritorna nella risposta gli indici attuali.<br>
 Nota: L'indice. che è visibile a video, non cambia al cambio sessione: cresce sempre, è azzerato solo da un restart del server02.
   - `{string} sessionId`: L'identificatore univoco della sessione utente da cui rimuovere la cronologia.
 - **Ritorna:**
   - `{Promise<object>}`: Una Promise che risolve in una struttura con due indici:
-  ```javascript
+   ```javascript
   {
           success: true|false         
      currentStart: <number>             // indice della prima conversazione nella History        
       currentNext: <number>             // indice della prossima conversazione
 
    }
- ```
+  ```
 
 ### `async function proxyResetHistory(sessionId)`
 
