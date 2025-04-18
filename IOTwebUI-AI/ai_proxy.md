@@ -7,10 +7,10 @@ Le funzioni in questa libreria sono asincrone e restituiscono Promises per gesti
 
 ### `async function updateConfig(configuration)`
 
-- **Descrizione:** Aggiorna la configurazione globale. Se necessario riavvia automaticamente OpenAI.
+- **Descrizione:** Aggiorna la configurazione globale, indipendente dalla sessione. <br>Se necessario riavvia automaticamente OpenAI.
  Inoltre sincronizza le due copie di 'aiConfig': quella del server (default, definita in `server02.js`) e la sua copia nel client (in `ai_proxy.js`). E' eseguita automaticamente all'avvio, per avere la sincronizzazione iniziale, e successivamente, ad ogni richiesta utente.<br>
  La struttura (estensibile) di default è la seguente (definita in `server02.js`):
-```
+```javascript
  *   provider:'deepseek',                      // 'openai' o altri
  *   baseURL: 'https://api.deepseek.com',      // dipende dal provider
  *   apiKey:  'sk-*************2876754fe',     // default from PC environment, OPENAI_API_KEY 
