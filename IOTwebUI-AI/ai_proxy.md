@@ -1,7 +1,20 @@
 # `ai_proxy.js`
 
 Questa documentazione descrive la libreria JavaScript `ai_proxy.js`, che fornisce _la principale interfaccia per comunicare con il server locale `ai_server` ed OpenAI._ <br>
-Le funzioni in questa libreria sono asincrone e restituiscono Promises per gestire le operazioni in modo non bloccante.
+Le aree gestite da `server02 + ai_proxy` sono: 
+- conigurazione base, indipendente dalla sessione
+- storage e gestione dei documenti da inviare all'AI come `context` ad ogni conversazione
+- storage e gestione dei dialoghi con l'AI, da inviare come `history`  ad ogni conversazione
+- gestione completa di una conversazione, sia in `block mode` che in `stream mode`
+- definizione ed esecuzione via REST dei TOOL di integrazione di con **IoTwebUI**
+Le funzioni in questa libreria sono asincrone e restituiscono Promises per gestire le operazioni in modo non bloccante.<br>
+**riusultati e gestione**<br>
+Salvo poche poche eccezzioni, tutte le funzioni tornano una strutture che contien i segunti campi:
+   - `success: false`: in caso di errore, ed è presente solo il campo `error` con un messagio (dattagli in console)
+   - `success: true`: nessun errore 
+   - `found`:  opzionale - indica un fallimento possibile, e.g. cancellazione di un `context` non esistente
+   - `query`:  opzionale - una stringa per UI: o inviata come 'message' nella richiesta, o creata ad hoc da ai_proxy.
+   -  altri dati specifici della funzione chiamata.
 
 ## Funzioni Pubbliche
 
@@ -23,7 +36,7 @@ Le funzioni in questa libreria sono asincrone e restituiscono Promises per gesti
 - **Ritorna:**
   - `{Promise<boolean>}`: Promise che risolve con true, in caso di successo + echo in console della configurazione aggiornata.
   -  altrimenti false + ERROR in console + ALERT.
-  -   nota:_In caso di server non funzionante, un popup (ALERT) avverte l'utente di controllare il server e di ricaricare il chatbot._ 
+  -   nota: _In caso di server non funzionante, un popup (ALERT) avverte l'utente allo startup di controllare il server e di ricaricare il chatbot._ 
 
 ### `async function proxyGetHistory(responseID, sessionId)`
 
