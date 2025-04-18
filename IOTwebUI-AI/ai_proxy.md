@@ -48,7 +48,7 @@ Le funzioni in questa libreria sono asincrone e restituiscono Promises per gesti
   - `{number} limit`: L'indice del primo messaggio da inviare nella cronologia. 
     * Se maggiore dell'ultimo messaggio, azzera la History. 
     * Se è 0 o una stringa, non altera la situazione, ma ritorna nella risposta gli indici attuali.<br>
-    Nota: L'indice. che è visibile a video, non cambia al cambio sessione: cresce sempre, è azzerato solo da un restart del server02.
+    _Nota: L'indice. che è visibile a video, non cambia al cambio sessione: cresce sempre, è azzerato solo da un restart del server02._
   - `{string} sessionId`: L'identificatore univoco della sessione utente da cui rimuovere la cronologia.
 - **Ritorna:**
   - `{Promise<object>}`: Una Promise che risolve in una struttura con due indici:
