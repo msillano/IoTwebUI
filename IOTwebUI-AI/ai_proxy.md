@@ -40,8 +40,7 @@ Le funzioni in questa libreria sono asincrone e restituiscono Promises per gesti
   - `{Promise<boolean>}`: Promise che risolve in true, in caso di successo + echo in console della configurazione aggiornata.
   -  altrimenti false + ERROR in console + ALERT.
   -   nota: _In caso di server non funzionante, un popup (ALERT) avverte l'utente allo startup per controllare il server e ricaricare il chatbot._
-<hr>
-
+   <hr>
 ## _History_
 
 ### `async function proxyGetHistory(responseID, sessionId)`
@@ -90,22 +89,21 @@ Le funzioni in questa libreria sono asincrone e restituiscono Promises per gesti
    ```javascript
   {
           success: true|false           // se false, si ha {succes, error}
-     currentStart: <number>             // indice della prima conversazione inviata alla AI         
+     currentStart: <number>             // indice della prima conversazione inviata alla AI     
       currentNext: <number>             // indice della prossima conversazione
   }
   ```
-<hr>
-   
+   <hr> 
 ## _Context_
 
 ### `async function proxyAddContext(payload, name, message, sessionId)`
 
 - **Descrizione:** Low level, aggiunge incondizionatamente un buffer al contesto associato ad una sessione utente.
 - **Parametri:**
-  - `{string} payload`: buffer dati da salvare.
+  - `{string} payload`: buffer dati da salvare (text, markdown...).
   - `{string} name`:  nome unico, identificativo di payload.
-  - `{string} message`: Un messaggio per UI, ritorna  modificato (+' added')
-  - `{string} sessionId`: L'identificatore univoco della sessione utente a cui aggiungere il contesto.
+  - `{string} message`: un messaggio per UI, ritorna  modificato (+' added')
+  - `{string} sessionId`: l'identificatore univoco della sessione utente a cui aggiungere il contesto.
 - **Ritorna:**
   - `{Promise<object>}`: Una Promise che risolve in una struttura:
    ```javascript
@@ -129,17 +127,95 @@ Le funzioni in questa libreria sono asincrone e restituiscono Promises per gesti
    ```javascript
    {
           success: true|false           // se false, si ha {succes, error}
+            found: true|false           // solo se esistente
             reply: <string>             // il 'messaggio' fornito + ' added'
      storageCount: <number>             // totale
       enableCount: <number>             // attualmente in uso
-   ]
+   }
   ```
 
-### `async function proxyExistsContextFile(filename, sessionId)`
+### `async function proxyExistsContext(name, sessionId)`
 
 - **Descrizione:** Verifica se un file di contesto con un determinato nome esiste già per una specifica sessione utente. Se lo trova lo abilita.
 - **Parametri:**
-  - `{string} filename`: Il nome del file di contesto da verificare.
+  - `{string} name`: Il nome del contesto da verificare.
   - `{string} sessionId`: L'identificatore univoco della sessione utente in cui cercare il file.
 - **Ritorna:**
-  - `{Promise<boolean>}`: Una Promise che risolve con `true`****
+   - `{Promise<object>}`: Una Promise che risolve in una struttura:
+   ```javascript
+   {
+          success: true|false           // se false, si ha {succes, error}
+            found: true|false           // solo se trovato (e abilitato)
+     storageCount: <number>             // totale
+      enableCount: <number>             // attualmente in uso
+   }
+  ```
+ ### `async function proxyDisableContext(name, sessionId)`
+
+- **Descrizione:** Disabilita il documento identificato da '`nome`' nel contesto  per una specifica sessione utente. Se disabilitato rimane nello storage, ma non è inviato all'AI.<br>
+ Per riabilitarlo usare  proxyExistsContext().
+- **Parametri:**
+  - `{string} name`: Il nome del contesto da verificare.
+  - `{string} sessionId`: L'identificatore univoco della sessione utente in cui cercare il file.
+- **Ritorna:**
+   - `{Promise<object>}`: Una Promise che risolve in una struttura:
+   ```javascript
+   {
+          success: true|false           // se false, si ha {succes, error}
+            found: true|false           // solo se trovato (e disabilitato)
+     storageCount: <number>             // totale
+      enableCount: <number>             // attualmente in uso
+   }
+  ```
+ ### `async function proxyClearContext( sessionId)`
+
+- **Descrizione:** Elimina tutti i documenti nel contesto  per una specifica sessione utente. 
+- **Parametri:**
+  - `{string} sessionId`: L'identificatore univoco della sessione utente da distruggere.
+- **Ritorna:**
+   - `{Promise<object>}`: Una Promise che risolve in una struttura:
+   ```javascript
+   {
+          success: true|false           // se false, si ha {succes, error}
+     storageCount: <number>             // totale (i.e. 0)
+      enableCount: <number>             // attualmente in uso (i.e. 0)
+   }
+  ```
+   <hr>
+## _Chat_
+
+### `async function proxyCallOpenai(message, sessionId)`
+
+- **Descrizione:** gestisce uno scambio query/reply con L'AI
+   - Oltre al testo della query utente, invia all'AI automatiacamente l'History (precedenti messaggi) e i documenti di contesto (solo gli abilitati)
+   - Risponde alla eventuali richeste di eseguire funzioni (tool Tuya) da parte dell'AI
+   - Elabora la risposta dall'AI suddividendola in due parti: 'reasoning' (opzionale, usualmente solo presentata a video) ed 'reply'
+   - aggiunge allo storage 'Historical' la query utente, la prima risposta dell'AI (solo reply oppure richiesta Tool), le risposte dei tool (opzionali), la richiesta utente 'relay' da protocollo dopo i tool, la risposta finale (solo reply - opzionale).
+   - il timeout  è fissato a 60 secondi
+     
+- **Parametri:**
+  - `{string} message`:  Il testo della domanda, usualmente inserita dall'utente nel chatbot
+  - `{string} sessionId`: L'identificatore univoco della sessione utente 
+- **Ritorna:**
+   - `{Promise<object>}`: Una Promise che risolve in una struttura:
+   ```javascript
+   {
+       success: true|false      // se false, si ha {succes, error}
+         reply: <text>          //risposta (formato default: markdown + mermaid)
+     reasoning: <text>|''       // ragionamento opzionale (formato default: HTML) 
+         model:                 // come in config
+    responseId:                 // ID progressivo univoco della risposta nello storage
+         usage:                 // dati sul 'costo' (tokens) della conversazione (in console)
+     }
+  ```
+### `async function proxyCallStream(message, sessionId, onReasoning, onAnswer) {
+
+- **Descrizione:** Versione Stream di proxyCallOpenai() (a blocco). La logica e le prestazioni sono identiche, con la differenza che la comunicazione con OpenAI è a stream, protocollo SSE. Il risultato è maggior prontezza, anche se non è un modo supportata da tutti i modelli.
+I chunck sono accumulati in buffer di `server02`, ed inviati alle funzioni di callback `onReasoning`, `onAnswer`...
+    
+- **Parametri:**
+  - `{string} message`:    Il testo della domanda, usualmente inserita dall'utente nel chatbot
+  - `{string} sessionId`:   L'identificatore univoco della sessione utente 
+  - `{function} onReasoning`:   Callback per la visualizzazione di reasoning text (HTML)
+  - `{function} onAnswer`:      Callback per la visualizzazione di reply text (markdown + mermaid) 
+  ```
