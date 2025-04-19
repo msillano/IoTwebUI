@@ -40,22 +40,22 @@ Le funzioni in questa libreria sono asincrone e restituiscono Promises per gesti
 
 **_note: Temperature_**<br>
  _Parametro che controlla la "creatività" o la "casualità" della risposta generata dal modello._
-- Generazione di codice: 0 - 0.2. Per un codice funzionante e preciso, non divagazioni creative.
-- Traduzione: 0 - 0.3. L'accuratezza è fondamentale.
-- Risposte a domande fattuali: 0 - 0.4. Per la risposta più corretta e diretta.
-- Riassunti: 0.2 - 0.5. Un po' di flessibilità per riformulare, ma mantenendo la coerenza.
-- Scrittura creativa (storie, poesie): 0.7 - 1. Incoraggia la creatività e l'originalità.
-- Brainstorming: 0.6 - 0.9. Utile per esplorare diverse idee e prospettive.
-- Conversazioni informali: 0.5 - 0.8. Un buon equilibrio tra coerenza e spontaneità.
+   - Generazione di codice: 0 - 0.2. Per un codice funzionante e preciso, non divagazioni creative.
+   - Traduzione: 0 - 0.3. L'accuratezza è fondamentale.
+   - Risposte a domande fattuali: 0 - 0.4. Per la risposta più corretta e diretta.
+   - Riassunti: 0.2 - 0.5. Un po' di flessibilità per riformulare, ma mantenendo la coerenza.
+   - Scrittura creativa (storie, poesie): 0.7 - 1. Incoraggia la creatività e l'originalità.
+   - Brainstorming: 0.6 - 0.9. Utile per esplorare diverse idee e prospettive.
+   - Conversazioni informali: 0.5 - 0.8. Un buon equilibrio tra coerenza e spontaneità.
 
 **_note: max_tokens_** <br>
 _Il numero massimo di "token" che la risposta del modello può generare_
-- Risposte brevi e dirette: 50 - 150 token.
-- Riassunti: 100 - 300 token (a seconda della lunghezza del testo originale).
-- Generazione di codice (snippet): 50 - 500 token (a seconda della complessità).
-- Scrittura creativa (frasi, brevi paragrafi): 100 - 500 token.
-- Conversazioni: 50 - 250 token per turno.
-- Generazione di articoli o storie più lunghe: 500 - 2000 o più token (tieni presente i costi).
+   - Risposte brevi e dirette: 50 - 150 token.
+   - Riassunti: 100 - 300 token (a seconda della lunghezza del testo originale).
+   - Generazione di codice (snippet): 50 - 500 token (a seconda della complessità).
+   - Scrittura creativa (frasi, brevi paragrafi): 100 - 500 token.
+   - Conversazioni: 50 - 250 token per turno.
+   - Generazione di articoli o storie più lunghe: 500 - 2000 o più token (tieni presente i costi).
 
 - **Parametri:**
   - `{object} configuration`: Oggetto contenente la nuova configurazione da applicare al server. Può essere incompleta e contenere solo uno o due valori nuovi. Estensibile: accetta qualsiasi valore.
