@@ -23,7 +23,7 @@ graph LR
         style AIServer fill:#fcc,stroke:#333,stroke-width:2px
         style HistoryDB fill:#f9c,stroke:#333,stroke-width:2px
         style ContextFiles fill:#cff,stroke:#333,stroke-width:2px
-        Proxy -- Calls --> AIServer;
+        Proxy -- HTTP --> AIServer;
         AIServer -- Uses AI Models from --> AIModels(AI Models);
         AIServer -- Manages --> HistoryDB(History Storage);
         AIServer -- Manages --> ContextFiles(Context Documents Storage);
