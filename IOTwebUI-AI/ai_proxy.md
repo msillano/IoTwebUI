@@ -65,6 +65,12 @@ _Il numero massimo di "token" che la risposta del modello può generare._
   -   nota: _In caso di server non funzionante, un popup (ALERT) avverte l'utente allo startup per controllare il server e ricaricare il chatbot._
    <hr>
 ## _History_
+_Le AI sono 'status less':  insieme al prompt (domanda) attuale, ogni volta occorre inviare al server AI tutti i colloqui precedenti_.<br>
+_In `server02` lo storage è implementato con un Map, e la chiave di accesso è un indice numerico (responseID). L'indice è globale (indipendente dalla sessione) e cresce sempre.<br>
+L'indice è visibile nella interfaccia utente, e può essere usato dall'utente per fornire all'AI un riferimento ai colloqui precedenti, puntuale ed univoco: esempi: [Q13] oppure [R124]. In genere (non nel caso di uso di Tool) la domanda [Qxx] e la risposta [Rxx] hanno lo stesso indice_.<br>
+_Le funzioni di 'colloquio' con l'AI automaticamente aggiungono le nuove conversazioni.
+Non sempre è necessaria l'intera History: in ogni sessione è possibile definire liberamente un ID di inizio per la  History inviata all'AI_. <br>
+_Un meccanismo di cleanup automatico cancella le conversazioni dopo 24h. Il riavvio di `server02` distrugge l'History._
 
 ### `async function proxyGetHistory(responseID, sessionId)`
 
@@ -81,7 +87,7 @@ _Il numero massimo di "token" che la risposta del modello può generare._
    responseID: <number>                          // index for this data: può essere < di responseID in input.
    }
   ```
- _nota: l'ID nella risposta può essere diverso dal valore in fornito input, e si riferisce all'answer trovata (query può avere un ID uguale o minore)._
+ _nota: l'ID nella risposta può essere diverso dal valore in fornito input, e si riferisce all'answer trovata (query può avere un ID uguale o minore se sono usati i tool)._
   
 ### `async function proxyForgetHistory(limit, sessionId)`
 
@@ -97,7 +103,7 @@ _Il numero massimo di "token" che la risposta del modello può generare._
    ```javascript
   {
           success: true|false           // se false, si ha {succes, error}
-     currentStart: <number>             // indice della prima conversazione inviata all'AI        
+     currentStart: <number>             // indice della prima conversazione inviata all'AI      
       currentNext: <number>             // indice della prossima conversazione
   }
   ```
@@ -118,6 +124,10 @@ _Il numero massimo di "token" che la risposta del modello può generare._
   ```
    <hr> 
 ## _Context_
+_Si può 'estendere' momentaneamente il know-how di una AI, inviando con ogni prompt documenti 'allegati' di contesto in un formato testo (markdown), con `role` 'system'._ <br>
+_In `server02` lo storage del contesto è implementato con un `Map`, e la chiave di accesso è  un 'nome' univoco (usualmente il `filename`).<br>
+I documenti di contesto devono essere 'abilitati' per essere inviati all'AI. <br>
+Un meccanismo di cleanup automatico cancella i documenti dopo 24h. Il riavvio di `server02` distrugge il `context`._
 
 ### `async function proxyAddContext(payload, name, message, sessionId)`
 
@@ -133,27 +143,26 @@ _Il numero massimo di "token" che la risposta del modello può generare._
    {
           success: true|false           // se false, si ha {succes, error}
             reply: <string>             // il 'messaggio' fornito + ' added'
-     storageCount: <number>             // totale
-      enableCount: <number>             // attualmente in uso
+     storageCount: <number>             // totale documenti in context
+      enableCount: <number>             // attualmente in uso (abilitati)
    }
   ```
 ### `async function proxyFileToContext(file, message, sessionId)`
 
-- **Descrizione:** Carica il contenuto di un oggetto `File` (tipicamente ottenuto da un input di tipo `file` in HTML) e lo aggiunge come contesto a una sessione utente. Agisce in due step: cvontrolla se il file esiste, e se esiste lo abilita. Altrimenti legge il file  e lo carica in storage!
+- **Descrizione:** Carica il contenuto di un oggetto `File` (tipicamente ottenuto da un input di tipo `file` in HTML) e lo aggiunge come contesto a una sessione utente. Agisce in due step: cvontrolla se il file esiste, e se esiste lo abilita. Altrimenti legge il file  e lo carica in storage.
 - **Parametri:**
   - `{File} file`: L'oggetto `File` da leggere e inviare al server.
   - `{string} message`: Un messaggio opzionale (stringa) da associare al contenuto del file nel contesto.
   - `{string} sessionId`: L'identificatore univoco della sessione utente a cui aggiungere il contesto dal file.
 - **Ritorna:**
-- **Ritorna:**
   - `{Promise<object>}`: Una Promise che risolve in una struttura:
    ```javascript
    {
           success: true|false           // se false, si ha {succes, error}
-            found: true|false           // solo se esistente
-            reply: <string>             // il 'messaggio' fornito + ' added'
-     storageCount: <number>             // totale
-      enableCount: <number>             // attualmente in uso
+            found: true|false           // solo se esistente, e quindi non caricato
+            reply: <string>             // il 'messaggio' fornito + ' added'|' enabled'
+     storageCount: <number>             // totale documenti in context
+      enableCount: <number>             // attualmente in uso (ablitati)
    }
   ```
 
@@ -214,7 +223,7 @@ _Il numero massimo di "token" che la risposta del modello può generare._
    - Risponde alla eventuali richeste di eseguire funzioni (tool Tuya) da parte dell'AI
    - Elabora la risposta dall'AI suddividendola in due parti: 'reasoning' (opzionale, usualmente solo presentata a video) ed 'reply'
    - aggiunge allo storage 'Historical' la query utente, la prima risposta dell'AI (solo reply oppure richiesta Tool), le risposte dei tool (opzionali), la richiesta utente 'relay' da protocollo dopo i tool, la risposta finale (solo reply - opzionale).
-   - il timeout  è fissato a 60 secondi
+   - il timeout è definto in config (default 90 secondi).  In caso di deep thinking con ricerche web può superare i 30 minuti.
      
 - **Parametri:**
   - `{string} message`:  Il testo della domanda, usualmente inserita dall'utente nel chatbot
@@ -233,12 +242,12 @@ _Il numero massimo di "token" che la risposta del modello può generare._
   ```
 ### `async function proxyCallStream(message, sessionId, onReasoning, onAnswer) {
 
-- **Descrizione:** Versione Stream di proxyCallOpenai() (a blocco). La logica e le prestazioni sono identiche, con la differenza che la comunicazione con OpenAI è a stream, protocollo SSE. Il risultato è maggior prontezza, anche se non è un modo supportata da tutti i modelli.
+- **Descrizione:** Versione Stream di proxyCallOpenai() (a blocco). La logica e le prestazioni sono identiche, con la differenza che la comunicazione con OpenAI è a stream, protocollo SSE. Il risultato è maggior prontezza, anche se il modo 'stream' non e supportato da tutti i modelli.
 I chunck sono accumulati in buffer di `server02`, ed inviati alle funzioni di callback `onReasoning`, `onAnswer`...
     
 - **Parametri:**
-  - `{string} message`:    Il testo della domanda, usualmente inserita dall'utente nel chatbot
-  - `{string} sessionId`:   L'identificatore univoco della sessione utente 
+  - `{string} message`:         Il testo della domanda, usualmente inserita dall'utente nel chatbot
+  - `{string} sessionId`:       L'identificatore univoco della sessione utente 
   - `{function} onReasoning`:   Callback per la visualizzazione di reasoning text (HTML)
   - `{function} onAnswer`:      Callback per la visualizzazione di reply text (markdown + mermaid) 
   ```
