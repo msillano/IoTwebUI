@@ -27,7 +27,7 @@ graph LR
         AIServer -- Uses AI Models from --> AIModels(AI Models);
         AIServer -- Manages --> HistoryDB(History Storage);
         AIServer -- Manages --> ContextFiles(Context Documents Storage);
-        AIServer -- Calls TOOL  --> IoT(IoT / Tuya);
+        AIServer -- Calls TOOL  --> IoT(Tuya Tools);
     end
 
     subgraph AI Models
