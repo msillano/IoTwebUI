@@ -8,14 +8,15 @@
 Questo documento introduce il **progetto IoTwebUI-AI**, un _chatbot general purpose integrato con l'ecosistema Tuya_.
 Questo ambiente versatile è stato sviluppato per permettere agli utenti più avventurosi di esplorare e sperimentare le potenzialità dell'intelligenza artificiale (AI) in combinazione con dispositivi IoT **Tuya** tramite l'estensione **IoTwebUI**. L'obiettivo principale è fornire uno strumento flessibile per condurre prove e analisi, interagire con i dispositivi IoT presenti e sperimentare le potenzialità dell'AI in questo contesto.
 
+
 ```mermaid
 %%{init: {'theme': 'neutral'}}%%
 graph LR
-    subgraph User Interface
+    subgraph Chatbot IoTwebUI-AI
         style UI fill:#ccf,stroke:#333,stroke-width:2px
         style UI_JS fill:#f9f,stroke:#333,stroke-width:2px
         style UI_Menu fill:#ccf,stroke:#333,stroke-width:2px
-        UI[HTML/CSS] --> UI_JS(UI JS Functions);
+        UI[HTML/CSS] --> UI_JS(JS Functions);
         UI_Menu(ai_verticalMenu.js) -- Configures --> UI_JS;
         UI_JS -- Calls --> Proxy(ai_proxy);
     end
@@ -25,11 +26,11 @@ graph LR
         style AIServer fill:#fcc,stroke:#333,stroke-width:2px
         style HistoryDB fill:#f9c,stroke:#333,stroke-width:2px
         style ContextFiles fill:#cff,stroke:#333,stroke-width:2px
-        Proxy -- Calls --> AIServer;
+        Proxy -- HTTP --> AIServer;
         AIServer -- Uses AI Models from --> AIModels(AI Models);
         AIServer -- Manages --> HistoryDB(History Storage);
         AIServer -- Manages --> ContextFiles(Context Documents Storage);
-        AIServer -- Calls TOOL via REST --> IoT(IoT / Tuya);
+        AIServer -- Calls   --> IoT(Tuya TOOL);
     end
 
     subgraph AI Models
@@ -42,10 +43,11 @@ graph LR
 
     subgraph IoT / Tuya
         style IoT fill:#9fc,stroke:#333,stroke-width:2px
-        style IoTWebUI fill:#afe,stroke:#333,stroke-width:2px
-        IoT -- Interacts with --> IoTWebUI;
-        IoTWebUI -- Controls --> TuyaDevices[Tuya Devices];
-        IoTWebUI -- Executes --> TuyaAutomations[Tuya Automations / IOTwebUI Rules];
+        style IoTwebUI fill:#afe,stroke:#333,stroke-width:2px
+        IoT -- REST --> IoTwebUI;
+        IoTwebUI -- Read -->     TuyaDevices[Tuya Devices];
+        IoTwebUI -- Controls --> x_device;
+        IoTwebUI -- Executes --> TuyaAutomations[Tuya Automations / IoTwebUI Rules];
     end
 ```
 
