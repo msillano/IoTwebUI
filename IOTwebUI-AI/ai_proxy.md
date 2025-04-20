@@ -33,7 +33,7 @@ Le funzioni in questa libreria sono asincrone e restituiscono Promises per gesti
  *   model:   'deepseek-chat',                 // 'deepseek-code'...
  *   temperature: 0.7,                         // parametro per AI
  *   max_tokens: 3000,                         // parametro per AI
- *	  timeoutAi: 90,                            // per server02, chiamata ad AI, in secondi
+ *   timeoutAi: 90,                            // per server02, chiamata ad AI, in secondi
  *   emableStremMode: false                    // block mode / stream mode
  *   enableTuyaTools: true,                    // Attiva/disattiva i tool Tuya (richiesto da alcuni model)
 ```
@@ -49,7 +49,7 @@ Le funzioni in questa libreria sono asincrone e restituiscono Promises per gesti
    - Conversazioni informali: 0.5 - 0.8. Un buon equilibrio tra coerenza e spontaneità.
 
 **_note: max_tokens_** <br>
-_Il numero massimo di "token" che la risposta del modello può generare_
+_Il numero massimo di "token" che la risposta del modello può generare._
    - Risposte brevi e dirette: 50 - 150 token.
    - Riassunti: 100 - 300 token (a seconda della lunghezza del testo originale).
    - Generazione di codice (snippet): 50 - 500 token (a seconda della complessità).
