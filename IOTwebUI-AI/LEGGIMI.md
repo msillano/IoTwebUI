@@ -74,13 +74,13 @@ Il chatbot **IoTwebUI-AI** si basa su un'architettura modulare, progettata per m
 
 2.  **API di OpenAI (Punto di Accesso Unificato):** L'accesso ai diversi modelli AI compatibili avviene attraverso l'interfaccia standard dell'API di OpenAI, fornendo un metodo coerente per interagire con diverse intelligenze artificiali.
 
-3.  **`ai_server` (Server Locale Dedicato):** Un server locale, chiamato "`ai_server`" e implementato con Express, funge da intermediario tra l'interfaccia utente e l'API di OpenAI. Questo componente gestisce:
+3.  **`AIserver` (Server Locale Dedicato):** Un server locale, chiamato "`AIserver`" e implementato con Express, funge da intermediario tra l'interfaccia utente e l'API di OpenAI. Questo componente gestisce:
     * Le comunicazioni con l'API di OpenAI, inclusa la formattazione delle richieste e la gestione delle risposte.
     * Funzionalità accessorie come l'archiviazione dello storico delle conversazioni e la gestione delle informazioni di contesto da utilizzare.
     * Il supporto per sessioni multiple di utenti.
     * L'implementazione dei TOOL specifici per l'interazione con l'ecosistema Tuya tramite comunicazioni REST con **IOTwebUI**.
 
-4.  **`ai_proxy` (Libreria di Interfaccia):** Questa libreria JavaScript fornisce un'interfaccia semplificata per interagire con  "`ai_server`". Offre funzioni asincrone che astraggono le complesse chiamate al server, facilitando lo sviluppo dell'interfaccia utente. Le funzioni principali includono la gestione della configurazione, dello storico, del contesto e le chiamate all'API `OpenAI` (testo e streaming).
+4.  **`ai_proxy` (Libreria di Interfaccia):** Questa libreria JavaScript fornisce un'interfaccia semplificata per interagire con  "`AIserver`". Offre funzioni asincrone che astraggono le complesse chiamate al server, facilitando lo sviluppo dell'interfaccia utente. Le funzioni principali includono la gestione della configurazione, dello storico, del contesto e le chiamate all'API `OpenAI` (testo e streaming).
 
 5.  **Funzioni JavaScript per l'Interfaccia Utente:** Un insieme di funzioni JavaScript (`IOTwebUIAI.js`) dedicate all'interfaccia HTML si occupa di:
     * Tradurre le azioni dell'utente in chiamate alle funzioni di "`ai_proxy`".
