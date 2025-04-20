@@ -42,8 +42,8 @@ graph LR
         style IoT fill:#9fc,stroke:#333,stroke-width:2px
         style IoTwebUI fill:#afe,stroke:#333,stroke-width:2px
         IoT -- REST --> IoTwebUI;
-        IoTwebUI -- Controls --> x_device;
         IoTwebUI -- Read -->     TuyaDevices[Tuya Devices];
+        IoTwebUI -- Controls --> x_device;
         IoTwebUI -- Executes --> TuyaAutomations[Tuya Automations / IoTwebUI Rules];
     end
 ```
