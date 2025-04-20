@@ -9,7 +9,7 @@ This versatile environment has been developed to allow more adventurous users to
 ```mermaid
 %%{init: {'theme': 'neutral'}}%%
 graph LR
-    subgraph Chatbot
+    subgraph Chatbot IOTwebUI-AI
         style UI fill:#ccf,stroke:#333,stroke-width:2px
         style UI_JS fill:#f9f,stroke:#333,stroke-width:2px
         style UI_Menu fill:#ccf,stroke:#333,stroke-width:2px
