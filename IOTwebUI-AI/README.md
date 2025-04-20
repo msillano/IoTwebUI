@@ -13,7 +13,7 @@ graph LR
         style UI fill:#ccf,stroke:#333,stroke-width:2px
         style UI_JS fill:#f9f,stroke:#333,stroke-width:2px
         style UI_Menu fill:#ccf,stroke:#333,stroke-width:2px
-        UI[HTML/CSS] --> UI_JS(UI JS Functions);
+        UI[HTML/CSS] --> UI_JS(JS Functions);
         UI_Menu(ai_verticalMenu.js) -- Configures --> UI_JS;
         UI_JS -- Calls --> Proxy(ai_proxy);
     end
