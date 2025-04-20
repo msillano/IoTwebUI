@@ -145,6 +145,7 @@ Un meccanismo di cleanup automatico cancella i documenti dopo 24h. Il riavvio di
    {
           success: true|false           // se false, si ha {succes, error}
             reply: <string>             // messaggio informativo per UI
+             name: <string>             // file nome, identificativo di payload
      storageCount: <number>             // totale documenti in context
       enableCount: <number>             // attualmente in uso (abilitati)
    }
@@ -162,6 +163,7 @@ Un meccanismo di cleanup automatico cancella i documenti dopo 24h. Il riavvio di
           success: true|false           // se false, si ha {succes, error}
             found: true|false           // true se esistente, e quindi non caricato
             reply: <string>             // messaggio informativo per UI
+             name: <string>             // file nome
      storageCount: <number>             // totale documenti in context
       enableCount: <number>             // attualmente in uso (ablitati)
    }
