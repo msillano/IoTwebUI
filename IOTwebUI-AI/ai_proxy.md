@@ -4,8 +4,8 @@ Questa documentazione descrive la libreria JavaScript `ai_proxy.js`, che fornisc
 Le aree gestite da `ai_proxy + ai_server` sono le seguenti: 
 - configurazione base, indipendente dalla sessione
 - gestione di più sessioni concorrenti (più interfacce: ai_server e configurazione sono globali)
-- storage e gestione dei documenti da inviare all'AI come `context` ad ogni conversazione (`role` = 'system')
 - storage e gestione dei dialoghi precedenti con l'AI, da inviare come `history`  ad ogni conversazione (`role` = 'assistant'|'user'|'tool')
+- storage e gestione dei documenti da inviare all'AI come `context` ad ogni conversazione (`role` = 'system')
 - gestione completa di una conversazione, sia in `block mode` che in `stream mode`  (`role` = 'assistant'|'user')
 - definizione ed esecuzione via REST dei TOOL di integrazione con **IoTwebUI**  (`role` = 'tool')
 
