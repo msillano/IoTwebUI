@@ -16,7 +16,7 @@ Le funzioni in questa libreria sono asincrone e restituiscono Promises per gesti
    - `success: false`: in caso di errore, è presente solo il campo `error` con un messaggio (dettagli in console)
    - `success: true`: nessun errore 
    - `found`:  opzionale - indica un fallimento possibile, e.g. cancellazione di un `context` non esistente
-   - `query`:  opzionale - una stringa di feedback per UI che illustra il risultato raggiunto, creata ad hoc da ai_proxy (in inglese!).
+   - `reply`:  opzionale - una stringa di feedback per UI che illustra il risultato raggiunto, creata ad hoc da ai_proxy (in inglese!) in alcune funzioni.
    -  altri dati specifici della funzione chiamata.
 
 ## Funzioni Pubbliche
@@ -29,7 +29,7 @@ Le funzioni in questa libreria sono asincrone e restituiscono Promises per gesti
 ```javascript
  *   provider:'deepseek',                      // 'openai' o altri
  *   baseURL: 'https://api.deepseek.com',      // dipende dal provider
- *   apiKey:  'sk-*************2876754fe',     // default from PC environment, OPENAI_API_KEY 
+ *   apiKey:  'sk-*************754fe',         // default from PC environment, OPENAI_API_KEY 
  *   model:   'deepseek-chat',                 // 'deepseek-code'...
  *   temperature: 0.7,                         // parametro per AI
  *   max_tokens: 3000,                         // parametro per AI
@@ -91,7 +91,8 @@ _Un meccanismo di cleanup automatico cancella le conversazioni dopo 24h. Il riav
   
 ### `async function proxyForgetHistory(limit, sessionId)`
 
-- **Descrizione:** definisce la conversazione con cui inizia la History inviata all'AI. Le conversazioni NON sono cancellate, perciò si può varare a volontà, permettendo un buon controllo.<br> e.g. Far fare all'AI un riassunto di tutte le conversazioni, poi iniziare l'history dal riassunto, tralasciando tutte le risposte precedenti: aumenta la prontezza e si riducono i costi.
+- **Descrizione:** definisce la conversazione con cui inizia la History inviata all'AI. Le conversazioni NON sono cancellate, perciò si può varare a volontà, permettendo un buon controllo.<br>
+e.g. Far fare all'AI un riassunto di tutte le conversazioni, poi iniziare l'history dal riassunto, tralasciando tutte le risposte precedenti: aumenta la prontezza e si riducono i costi.
 - **Parametri:**
   - `{number} limit`: L'indice del primo messaggio da inviare nella cronologia. 
     * Se maggiore dell'ultimo messaggio, azzera la History. 
@@ -150,7 +151,7 @@ Un meccanismo di cleanup automatico cancella i documenti dopo 24h. Il riavvio di
   ```
 ### `async function proxyFileToContext(file, sessionId)`
 
-- **Descrizione:** Carica il contenuto di un oggetto `File` (tipicamente ottenuto da un input di tipo `file` in HTML) e lo aggiunge come contesto a una sessione utente. Agisce in due step: cvontrolla se il file esiste, e se esiste lo abilita. Altrimenti legge il file  e lo carica in storage.
+- **Descrizione:** Carica il contenuto di un oggetto `File` (tipicamente ottenuto da un input di tipo `file` in HTML) e lo aggiunge come contesto a una sessione utente. Agisce in due step: cvontrolla se il file esiste, e se esiste si limita ad abilitarlo. Altrimenti legge il file  e lo carica in storage.
 - **Parametri:**
   - `{File} file`: L'oggetto `File` da leggere e inviare al server.
   - `{string} sessionId`: L'identificatore univoco della sessione utente a cui aggiungere il contesto dal file.
@@ -245,7 +246,7 @@ Un meccanismo di cleanup automatico cancella i documenti dopo 24h. Il riavvio di
 ### `async function proxyCallStream(message, sessionId, onReasoning, onAnswer) {
 
 - **Descrizione:** Versione Stream di `proxyCallOpenai()`. La logica e le prestazioni sono identiche, con la differenza che la comunicazione con OpenAI è a stream, protocollo SSE. Il risultato è maggior prontezza, anche se il modo 'stream' non e supportato da tutti i modelli.
-I chunck sono accumulati in buffer di `AIserver`, ed inviati alle funzioni di callback `onReasoning`, `onAnswer`...
+I chunk sono accumulati in buffer di `AIserver`, ed inviati alle funzioni di callback `onReasoning`, `onAnswer`...
     
 - **Parametri:**
   - `{string} message`:         Il testo della domanda, usualmente inserita dall'utente nel chatbot
