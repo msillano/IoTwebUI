@@ -27,7 +27,7 @@ graph LR
         AIServer -- Uses AI Models from --> AIModels(AI Models);
         AIServer -- Manages --> HistoryDB(History Storage);
         AIServer -- Manages --> ContextFiles(Context Documents Storage);
-        AIServer -- Calls TOOL via REST --> IoT(IoT / Tuya);
+        AIServer -- Calls TOOL  --> IoT(IoT / Tuya);
     end
 
     subgraph AI Models
@@ -41,7 +41,7 @@ graph LR
     subgraph IoT / Tuya
         style IoT fill:#9fc,stroke:#333,stroke-width:2px
         style IoTwebUI fill:#afe,stroke:#333,stroke-width:2px
-        IoT -- Interacts with --> IoTwebUI;
+        IoT -- REST --> IoTwebUI;
         IoTwebUI -- Controls --> TuyaDevices[Tuya Devices];
         IoTwebUI -- Executes --> TuyaAutomations[Tuya Automations / IoTwebUI Rules];
     end
