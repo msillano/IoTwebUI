@@ -39,7 +39,7 @@ Le funzioni in questa libreria sono asincrone e restituiscono Promises per gesti
 ```
 
 **_note: Temperature_**<br>
- _Parametro che controlla la "creatività" o la "casualità" della risposta generata dal modello._
+ _Parametro che controlla la "creatività" o la "casualità" della risposta generata dal modello.(Gemini)_
    - Generazione di codice: 0 - 0.2. Per un codice funzionante e preciso, non divagazioni creative.
    - Traduzione: 0 - 0.3. L'accuratezza è fondamentale.
    - Risposte a domande fattuali: 0 - 0.4. Per la risposta più corretta e diretta.
@@ -47,6 +47,14 @@ Le funzioni in questa libreria sono asincrone e restituiscono Promises per gesti
    - Scrittura creativa (storie, poesie): 0.7 - 1. Incoraggia la creatività e l'originalità.
    - Brainstorming: 0.6 - 0.9. Utile per esplorare diverse idee e prospettive.
    - Conversazioni informali: 0.5 - 0.8. Un buon equilibrio tra coerenza e spontaneità.
+     
+Per deepssek:
+   - Coding / Math:   	            0.0
+   - Data Cleaning / Data Analysis:	1.0
+   - General Conversation:       	1.3
+   - Translation	                  1.3
+   - Creative Writing / Poetry:    	1.5
+
 
 **_note: max_tokens_** <br>
 _Il numero massimo di "token" che la risposta del modello può generare._
