@@ -36,8 +36,8 @@ graph LR
     subgraph AI Models
         style AIModels fill:#cf9,stroke:#333,stroke-width:2px
         style OpenAI fill:#ace,stroke:#333,stroke-width:2px
-        OpenAI -- Contiene --> Deepseek;
-        OpenAI -- Contiene --> GPTModels[Altri OpenAI Model];
+        OpenAI -- Interroga --> Deepseek;
+        OpenAI -- Interroga --> GPTModels[Altri OpenAI Model];
      end
 
     subgraph IoT / Tuya
