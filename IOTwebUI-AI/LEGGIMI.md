@@ -110,8 +110,10 @@ Il chatbot IOTwebUI-AI offre una notevole flessibilità per la sperimentazione n
 E' richiesta in'intefaccia API compatibile openai.
 #### Groq
      Free plan (con limiti di accesso): vedi https://groq.com/ to get APIKEY
+          rate limits here: https://console.groq.com/docs/rate-limits
      AccessPoint: https://api.groq.com/openai/v1
      Models: 9 (Wisper, llama..) vedi https://console.groq.com/docs/models
+     note: groq-llama3.3 (meta) implementa tools ed è molto veloce, limit 1000/day
 #### Deepseek
      a consumo:  https://www.deepseek.com/ to get APIKEY
          e.g. Aprile '25: 1250 API requests, 3'500'000 Tokens = 0.64 USD    
