@@ -35,7 +35,7 @@ graph LR
     subgraph AI Models
         style AIModels fill:#cf9,stroke:#333,stroke-width:2px
         style OpenAI fill:#ace,stroke:#333,stroke-width:2px
-        AIServer -- Usa HTPP API di --> OpenAI;
+        AIServer <-- Usa API (funzioni) di --> OpenAI;
         OpenAI -- Contiene --> Deepseek;
         OpenAI -- Contiene --> GPTModels[Altri OpenAI Model];
      end
