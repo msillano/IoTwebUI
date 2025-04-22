@@ -106,6 +106,21 @@ Il chatbot IOTwebUI-AI offre una notevole flessibilità per la sperimentazione n
     * Sviluppare scenari di automazione intelligenti basati sull'analisi AI dei dati dei dispositivi.
     * Sperimentare nuove modalità di interazione uomo-macchina per la gestione della smart home e di altri dispositivi IoT.
 
+### AI provider
+E' richiesta in'intefaccia API compatibile openai.
+#### Groq
+     Free plan (con limiti di accesso) https://groq.com/ to get APIKEY
+     AccessPoint: https://api.groq.com/openai/v1
+     Models: 9 (Wisper, llama..) vedi https://console.groq.com/docs/models
+#### Deepseek
+     a consumo  (e.g. Aprile '25: 1250 API requests, 3'500'000 Tokens = 0.64 USD) https://www.deepseek.com/ to get APIKEY
+     AccessPoint: https://api.deepseek.com
+     Models: 2 (deepseek-chat, deepseek-reasoner) vedi https://api-docs.deepseek.com/quick_start/pricing
+#### OpenAi
+     a consumo vedi [https://openai.com/api/pricing/](https://openai.com/api/pricing/)
+     AccessPoint: https://api.openai.com/v1
+     Models: 10+ (ChatGPT-4o, DALL·E 3...) vedi [https://platform.openai.com/docs/models](https://platform.openai.com/docs/models)
+
 ### Potenziali Sviluppi Futuri
 
 L'esperienza acquisita e le specifiche definite attraverso la sperimentazione con **IOTwebUI-AI** potranno in futuro essere utilizzate per lo sviluppo di applicazioni + AI specializzate, focalizzate su specifiche interazioni con i dispositivi Tuya o su particolari analisi dei dati IoT.
