@@ -44,7 +44,7 @@ graph LR
         IoT -- REST --> IoTwebUI;
         IoTwebUI -- Read -->     TuyaDevices[Tuya Devices];
         IoTwebUI -- Controls --> x_device;
-        IoTwebUI -- Executes --> TuyaAutomations[Tuya Automations / IoTwebUI Rules];
+        IoTwebUI -- Executes --> TuyaAutomations[Tuya Tap-To-Run / IoTwebUI Rules];
     end
 ```
 
