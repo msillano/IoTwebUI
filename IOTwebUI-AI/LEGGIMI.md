@@ -109,17 +109,18 @@ Il chatbot IOTwebUI-AI offre una notevole flessibilità per la sperimentazione n
 ### AI provider
 E' richiesta in'intefaccia API compatibile openai.
 #### Groq
-     Free plan (con limiti di accesso) https://groq.com/ to get APIKEY
+     Free plan (con limiti di accesso): vedi https://groq.com/ to get APIKEY
      AccessPoint: https://api.groq.com/openai/v1
      Models: 9 (Wisper, llama..) vedi https://console.groq.com/docs/models
 #### Deepseek
-     a consumo  (e.g. Aprile '25: 1250 API requests, 3'500'000 Tokens = 0.64 USD) https://www.deepseek.com/ to get APIKEY
+     a consumo:  https://www.deepseek.com/ to get APIKEY
+         e.g. Aprile '25: 1250 API requests, 3'500'000 Tokens = 0.64 USD    
      AccessPoint: https://api.deepseek.com
      Models: 2 (deepseek-chat, deepseek-reasoner) vedi https://api-docs.deepseek.com/quick_start/pricing
 #### OpenAi
-     a consumo vedi [https://openai.com/api/pricing/](https://openai.com/api/pricing/)
+     a consumo: vedi https://openai.com/api/pricing/ to get APIKEY
      AccessPoint: https://api.openai.com/v1
-     Models: 10+ (ChatGPT-4o, DALL·E 3...) vedi [https://platform.openai.com/docs/models](https://platform.openai.com/docs/models)
+     Models: 10+ (ChatGPT-4o, DALL·E 3...) vedi https://platform.openai.com/docs/models
 
 ### Potenziali Sviluppi Futuri
 
