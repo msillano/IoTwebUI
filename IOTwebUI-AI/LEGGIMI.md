@@ -33,7 +33,7 @@ graph LR
         AIServer -- Utilizza   --> IoT(Tuya TOOL);
     end
 
-    subgraph AI Models (Cloud)
+    subgraph AI Models 
         style OpenAI fill:#ace,stroke:#333,stroke-width:2px
         OpenAI -- Interroga  --> Deepseek;
         OpenAI -- Interroga --> GPTModels[Altri OpenAI Model];
