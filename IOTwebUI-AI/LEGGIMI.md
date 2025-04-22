@@ -27,6 +27,7 @@ graph LR
         style HistoryDB fill:#f9c,stroke:#333,stroke-width:2px
         style ContextFiles fill:#cff,stroke:#333,stroke-width:2px
         Proxy -- HTTP --> AIServer;
+        AIServer <-- Usa API (funzioni) di --> OpenAI;
         AIServer -- Gestisce --> HistoryDB(History Storage);
         AIServer -- Gestisce --> ContextFiles(Context Documents Storage);
         AIServer -- Utilizza   --> IoT(Tuya TOOL);
@@ -35,7 +36,6 @@ graph LR
     subgraph AI Models
         style AIModels fill:#cf9,stroke:#333,stroke-width:2px
         style OpenAI fill:#ace,stroke:#333,stroke-width:2px
-        AIServer <-- Usa API (funzioni) di --> OpenAI;
         OpenAI -- Contiene --> Deepseek;
         OpenAI -- Contiene --> GPTModels[Altri OpenAI Model];
      end
