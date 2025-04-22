@@ -17,8 +17,8 @@ graph LR
         style UI_JS fill:#f9f,stroke:#333,stroke-width:2px
         style UI_Menu fill:#ccf,stroke:#333,stroke-width:2px
         UI[HTML/CSS] --> UI_JS(JS Functions);
-        UI_Menu(ai_verticalMenu.js) -- Configures --> UI_JS;
-        UI_JS -- Calls --> Proxy(ai_proxy);
+        UI_Menu(ai_verticalMenu.js) -- Configura --> UI_JS;
+        UI_JS -- Chiama funzioni --> Proxy(ai_proxy);
     end
 
     subgraph Backend
@@ -27,27 +27,27 @@ graph LR
         style HistoryDB fill:#f9c,stroke:#333,stroke-width:2px
         style ContextFiles fill:#cff,stroke:#333,stroke-width:2px
         Proxy -- HTTP --> AIServer;
-        AIServer -- Uses AI Models from --> AIModels(AI Models);
-        AIServer -- Manages --> HistoryDB(History Storage);
-        AIServer -- Manages --> ContextFiles(Context Documents Storage);
-        AIServer -- Calls   --> IoT(Tuya TOOL);
+        AIServer -- Usa gli AI Model in --> AIModels(AI Model);
+        AIServer -- Gestisce --> HistoryDB(History Storage);
+        AIServer -- Gestisce --> ContextFiles(Context Documents Storage);
+        AIServer -- Utilizza   --> IoT(Tuya TOOL);
     end
 
     subgraph AI Models
         style AIModels fill:#cf9,stroke:#333,stroke-width:2px
         style OpenAI fill:#ace,stroke:#333,stroke-width:2px
         AIModels -- Provides API --> OpenAI;
-        OpenAI -- Contains --> Deepseek;
-        OpenAI -- Contains --> GPTModels[Other OpenAI Models];
+        OpenAI -- Contiene --> Deepseek;
+        OpenAI -- Contiene --> GPTModels[Altri OpenAI Model];
      end
 
     subgraph IoT / Tuya
         style IoT fill:#9fc,stroke:#333,stroke-width:2px
         style IoTwebUI fill:#afe,stroke:#333,stroke-width:2px
         IoT -- REST --> IoTwebUI;
-        IoTwebUI -- Read -->     TuyaDevices[Tuya Devices];
-        IoTwebUI -- Controls --> x_device;
-        IoTwebUI -- Executes --> TuyaAutomations[Tuya Automations / IoTwebUI Rules];
+        IoTwebUI -- Legge -->     TuyaDevices[Tuya Devices];
+        IoTwebUI -- Controlla --> x_device;
+        IoTwebUI -- Esegue --> TuyaAutomations[Tuya Tap-To-Run / IoTwebUI Regole];
     end
 ```
 
