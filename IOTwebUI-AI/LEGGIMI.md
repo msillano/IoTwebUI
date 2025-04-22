@@ -18,7 +18,7 @@ graph LR
         style UI_Menu fill:#ccf,stroke:#333,stroke-width:2px
         UI[HTML/CSS] --> UI_JS(JS Functions);
         UI_Menu(ai_verticalMenu.js) -- Configura --> UI_JS;
-        UI_JS -- Chiama funzioni --> Proxy(ai_proxy);
+        UI_JS -- Usa funzioni di --> Proxy(ai_proxy);
     end
 
     subgraph Backend
@@ -27,7 +27,6 @@ graph LR
         style HistoryDB fill:#f9c,stroke:#333,stroke-width:2px
         style ContextFiles fill:#cff,stroke:#333,stroke-width:2px
         Proxy -- HTTP --> AIServer;
-        AIServer -- Usa gli AI Model in --> AIModels(AI Model);
         AIServer -- Gestisce --> HistoryDB(History Storage);
         AIServer -- Gestisce --> ContextFiles(Context Documents Storage);
         AIServer -- Utilizza   --> IoT(Tuya TOOL);
@@ -36,7 +35,7 @@ graph LR
     subgraph AI Models
         style AIModels fill:#cf9,stroke:#333,stroke-width:2px
         style OpenAI fill:#ace,stroke:#333,stroke-width:2px
-        AIModels -- Provides API --> OpenAI;
+        AIServer -- Usa HTPP API di --> OpenAI;
         OpenAI -- Contiene --> Deepseek;
         OpenAI -- Contiene --> GPTModels[Altri OpenAI Model];
      end
