@@ -105,13 +105,13 @@ Il chatbot IOTwebUI-AI offre una notevole flessibilità per la sperimentazione n
     * Sperimentare nuove modalità di interazione uomo-macchina per la gestione della smart home e di altri dispositivi IoT.
 
 ### AI provider
-E' richiesta in'intefaccia API compatibile openai.
+E' richiesta in'intefaccia API compatibile openai. Ho testato:
 #### Groq
      Free plan (con limiti di accesso): vedi https://groq.com/ to get APIKEY
           rate limits here: https://console.groq.com/docs/rate-limits
      AccessPoint: https://api.groq.com/openai/v1
      Models: 9 (Wisper, llama..) vedi https://console.groq.com/docs/models
-     note: groq-llama3.3 (meta) implementa tools ed è molto veloce, limit 1000/day
+     note: groq-llama3.3 (meta) implementa tools ed è molto veloce
 #### Deepseek
      a consumo:  https://www.deepseek.com/ to get APIKEY
          e.g. Aprile '25: 1250 API requests, 3'500'000 Tokens = 0.64 USD    
@@ -121,6 +121,9 @@ E' richiesta in'intefaccia API compatibile openai.
      a consumo: vedi https://openai.com/api/pricing/ to get APIKEY
      AccessPoint: https://api.openai.com/v1
      Models: 10+ (ChatGPT-4o, DALL·E 3...) vedi https://platform.openai.com/docs/models
+
+_nota: esistono varie limitazioni all'uso, e.g. l'implementazione di TOOL, ma anche come numero di comunicazioni o come dimensioni dei documenti allegati, variabili da modello a modello ed ovviamente più stringenti nei casi free._
+In ogni caso la scelta del modello avviene a menu, ed ogni modifica è un semplice problema di configurazione del menu (v. `ai_verticalMenu.js`) 
 
 ### Potenziali Sviluppi Futuri
 
