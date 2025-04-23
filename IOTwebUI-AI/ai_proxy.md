@@ -54,6 +54,8 @@ Per deepssek:
    - General Conversation:       	1.3
    - Translation	                  1.3
    - Creative Writing / Poetry:    	1.5
+     
+_nota: Ho trovato model con vincoli sulla temperatura: e.g. 'o4-mini' richiede una temperature fissa di 1 (implementato nei menu)._
 
 
 **_note: max_tokens_** <br>
@@ -65,6 +67,8 @@ _Il numero massimo di "token" che la risposta del modello può generare._
    - Conversazioni: 50 - 250 token per turno.
    - Generazione di articoli o storie più lunghe: 500 - 2000 o più token (tieni presente i costi).
 
+ _nota: ho trovato che alcuni model (e.g. GPT3.5-turbo) richiedono 'max_completion_tokens' al posto di 'max_tokens' (implementato nei menu)_
+ 
 - **Parametri:**
   - `{object} configuration`: Oggetto contenente la nuova configurazione da applicare al server. Può essere incompleta e contenere solo uno o due valori nuovi. Estensibile: accetta qualsiasi valore.
 - **Ritorna:**
