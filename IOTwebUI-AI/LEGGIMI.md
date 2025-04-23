@@ -68,7 +68,7 @@ Più in dettaglio,  **IoTwebUI-AI**  è stato progettato per gestire:
 
 Il chatbot **IoTwebUI-AI** si basa su un'architettura modulare, progettata per massimizzare la flessibilità e semplificare l'interazione con l'AI e i dispositivi Tuya:
 
-1.  **Modelli AI (Cloud o Locale):** Il sistema può utilizzare molti modelli di intelligenza artificiale, principalmente basati su cloud, tramite l'API di OpenAI, per poter valutare le diverse capacità di elaborazione del linguaggio naturale ed individuare il miglior modello per ogni compito. L'architettura è pensata per poter integrare anche modelli locali.
+1.  **Modelli AI (Cloud o Locale):** Il sistema può utilizzare molti modelli di intelligenza artificiale, attualmente basati su cloud, tramite l'API di OpenAI, per poter valutare le diverse capacità di elaborazione del linguaggio naturale ed individuare il miglior modello per ogni compito. L'architettura è studiata per poter integrare anche modelli locali.
 
 2.  **API di OpenAI (Punto di Accesso Unificato):** L'accesso ai diversi modelli AI compatibili avviene attraverso l'interfaccia standard dell'API di OpenAI, fornendo un metodo coerente per interagire con diverse intelligenze artificiali.
 
