@@ -2,10 +2,11 @@
 
 Questa documentazione descrive la libreria JavaScript `ai_proxy.js`, che fornisce _la principale astrazione per comunicare, via server locale `AIserver`, con OpenAI._ <br>
 Le aree gestite da `ai_proxy + AIserver` sono le seguenti: 
-- configurazione base, indipendente dalla sessione
-- gestione di più sessioni concorrenti (più interfacce: AIserver e configurazione sono globali)
+- configurazione base, gestita per ogni sessione
+- gestione di più sessioni concorrenti (più interfacce: AIserver è globale, multisessione)
 - storage e gestione dei dialoghi precedenti con l'AI, da inviare come `history`  ad ogni conversazione (`role = 'assistant'|'user'|'tool'`)
 - storage e gestione dei documenti da inviare all'AI come `context` ad ogni conversazione (`role = 'system'`)
+- Cache in  AIserver, per ottimizzare il riuso dei documenti di contesto.
 - gestione completa di una conversazione, sia in `block mode` che in `stream mode`  (`role = 'assistant'|'user'`)
 - definizione ed esecuzione via REST di **IoTwebUI** dei TOOL di integrazione con Tuya  (`role = 'tool'`)
 
@@ -21,9 +22,9 @@ Le funzioni in questa libreria sono asincrone e restituiscono Promises per gesti
 
 ## Funzioni Pubbliche
 
-### `async function updateConfig(configuration)`
+### `async function updateConfig(sessionId, configuration)`
 
-- **Descrizione:** Aggiorna la configurazione globale, indipendente dalla sessione. <br>Se necessario riavvia automaticamente OpenAI.<br>
+- **Descrizione:** Aggiorna la configurazione, per la sessione indicata. <br>Se necessario riavvia automaticamente OpenAI.<br>
  Inoltre sincronizza le due copie di 'aiConfig': quella di AIserver (default, definita in `server02.js`) e la sua copia nel client (in `ai_proxy.js`). E' eseguita automaticamente all'avvio, per avere la sincronizzazione iniziale, e successivamente, ad ogni richiesta utente.<br>
  La struttura (estensibile) di default è la seguente (definita in `AIserver.js`):
 ```javascript
@@ -31,11 +32,18 @@ Le funzioni in questa libreria sono asincrone e restituiscono Promises per gesti
  *   baseURL: 'https://api.deepseek.com',      // dipende dal provider
  *   apiKey:  'sk-*************754fe',         // default from PC environment, OPENAI_API_KEY 
  *   model:   'deepseek-chat',                 // 'deepseek-code'...
- *   temperature: 0.7,                         // parametro per AI
- *   max_tokens: 3000,                         // parametro per AI
+ *   temperature: 0.7,                         // parametro per AI (in menu)
+ *   seed: false,                              // parametro per AI (in menu)
+ *   max_tokens: 3000,                         // parametro per AI (in menu)
+ *   stop: null,                               // parametro per AI
+ *   top_k: null,                              // parametro per AI
+ *   top_p: null,                              // parametro per AI
+ *   frequency_penalty: null,                  // parametro per AI
  *   timeoutAi: 90,                            // per AIserver, chiamata ad AI, in secondi
  *   emableStremMode: false                    // block mode / stream mode
- *   enableTuyaTools: true,                    // Attiva/disattiva i tool Tuya (richiesto da alcuni model)
+ *   enableTuyaTools: true,                    // Attiva/disattiva i tool Tuya (richiesto da
+alcuni model)
+_estensioni (opzionali_
 ```
 
 **_note: Temperature_**<br>
@@ -47,6 +55,7 @@ Le funzioni in questa libreria sono asincrone e restituiscono Promises per gesti
    - Scrittura creativa (storie, poesie): 0.7 - 1. Incoraggia la creatività e l'originalità.
    - Brainstorming: 0.6 - 0.9. Utile per esplorare diverse idee e prospettive.
    - Conversazioni informali: 0.5 - 0.8. Un buon equilibrio tra coerenza e spontaneità.
+_Spesso è consigliabile usare o temperature o top_p, ma non entrambi contemporaneamente. Potrebbe darti un controllo più preciso sulla coerenza della risposta._
      
 Per deepssek:
    - Coding / Math:   	            0.0
@@ -68,9 +77,14 @@ _Il numero massimo di "token" che la risposta del modello può generare._
    - Generazione di articoli o storie più lunghe: 500 - 2000 o più token (tieni presente i costi).
 
  _nota: ho trovato che alcuni model (e.g. GPT3.5-turbo) richiedono 'max_completion_tokens' al posto di 'max_tokens' (implementato nei menu)_
+
+**_note: seed_** <br>
+Se si desidera ottenere risultati deterministici per la stessa richiesta e gli stessi parametri, impostare seed ON. Questo è utile per il debugging e per garantire la riproducibilità.
+Esempio:  Sperimentando con diversi parametri (ad esempio, diverse impostazioni di temperature), mantenere lo stesso seed ti permette di isolare l'effetto della modifica del parametro, poiché la componente di casualità sarà la stessa in entrambi i casi.
  
 - **Parametri:**
   - `{object} configuration`: Oggetto contenente la nuova configurazione da applicare al server. Può essere incompleta e contenere solo uno o due valori nuovi. Estensibile: accetta qualsiasi valore.
+  - - `{string} sessionId`: L'identificatore univoco della sessione utente per cui si desidera recuperare la cronologia.
 - **Ritorna:**
   - `{Promise<boolean>}`: Promise che risolve in true, in caso di successo + echo in console della configurazione aggiornata.
   -  altrimenti false + ERROR in console + ALERT.
@@ -174,6 +188,7 @@ Un meccanismo di cleanup automatico cancella i documenti dopo 24h. Il riavvio di
    {
           success: true|false           // se false, si ha {succes, error}
             found: true|false           // true se esistente, e quindi non caricato
+            cache: "hit"|"miss"         // 'hit' se preso dalla cache (e non caricato)
             reply: <string>             // messaggio informativo per UI
              name: <string>             // file nome
      storageCount: <number>             // totale documenti in context
@@ -183,7 +198,7 @@ Un meccanismo di cleanup automatico cancella i documenti dopo 24h. Il riavvio di
 
 ### `async function proxyExistsContext(name, sessionId)`
 
-- **Descrizione:** low level, verifica se un file di contesto con un determinato nome esiste già per una specifica sessione utente. Se lo trova lo abilita.
+- **Descrizione:** low level, verifica se un file di contesto con un determinato nome esiste già per una specifica sessione utente. Se lo trova lo abilita. Se lo trova nella cache, lo sposta in storage, abilitato.
 - **Parametri:**
   - `{string} name`: Il nome del contesto da verificare.
   - `{string} sessionId`: L'identificatore univoco della sessione utente in cui cercare il file.
@@ -193,6 +208,7 @@ Un meccanismo di cleanup automatico cancella i documenti dopo 24h. Il riavvio di
    {
           success: true|false           // se false, si ha {succes, error}
             found: true|false           // solo se trovato (e abilitato)
+            cache: "hit"|"miss"         // 'hit' se preso dalla cache (e non caricato)
      storageCount: <number>             // totale
       enableCount: <number>             // attualmente in uso
    }
