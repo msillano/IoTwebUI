@@ -75,7 +75,7 @@ Il chatbot **IoTwebUI-AI** si basa su un'architettura modulare, progettata per m
 3.  **`AIserver` (Server Locale Dedicato):** Un server locale, chiamato "`AIserver`" e implementato con Express, funge da intermediario tra l'interfaccia utente e l'API di OpenAI. Questo componente gestisce:
     * Le comunicazioni con l'API di OpenAI, inclusa la formattazione delle richieste e la gestione delle risposte.
     * Funzionalità accessorie come l'archiviazione dello storico delle conversazioni e la gestione delle informazioni di contesto da utilizzare.
-    * Il supporto per sessioni multiple di utenti.
+    * Il supporto per sessioni multiple di utenti, anche con modelli differenti.
     * L'implementazione dei TOOL specifici per l'interazione con l'ecosistema Tuya tramite comunicazioni REST con **IOTwebUI**.
 
 4.  **`ai_proxy` (Libreria di Interfaccia):** Questa libreria JavaScript fornisce un'interfaccia semplificata per interagire con  "`AIserver`". Offre funzioni asincrone che astraggono le complesse chiamate al server, facilitando lo sviluppo dell'interfaccia utente. Le funzioni principali includono la gestione della configurazione, dello storico, del contesto e le chiamate all'API `OpenAI` (testo e streaming).
@@ -93,9 +93,9 @@ Per favorire le customizzazioni, la definizione del menu è in un file separato:
 
 Il chatbot IOTwebUI-AI offre una notevole flessibilità per la sperimentazione nell'ambito dell'IoT e dell'AI permettendo il controllo utente diretto di tutti i principali fattori:
 
-* **Configurazione Dinamica:** La configurazione del modello AI e delle impostazioni di accesso può essere modificata dinamicamente a livello globale.
+* **Configurazione Dinamica:** La configurazione del modello AI e delle impostazioni di accesso può essere modificata dinamicamente per sessione.
 * **Gestione Indipendente di Sessione e Modello:** Ogni sessione utente opera in modo indipendente, permettendo di testare diverse configurazioni contemporaneamente.
-* **Contesto e Storico per Sessione:** Le informazioni di contesto relative ai dispositivi Tuya e lo storico delle conversazioni sono gestiti per ogni sessione.
+* **Contesto e Storico per Sessione:** Le informazioni di contesto e lo storico delle conversazioni sono gestiti per ogni sessione. Una cache ottimizza il riuso dei documenti.
 * **Pulizia Automatica:** I dati delle sessioni (storico, contesto) vengono eliminati automaticamente dopo 24 ore.
 * **Integrazione Avanzata con Tuya:** Una delle funzionalità chiave è l'integrazione di **TOOL** specifici per l'interazione con l'ecosistema Tuya. Questo permette di:
     * Accedere allo stato e alle informazioni dei dispositivi reali e virtuali Tuya ed agli x-device di IOTwebUI.
@@ -123,7 +123,7 @@ E' richiesta in'intefaccia API compatibile openai. Ho testato:
      Models: 10+ (ChatGPT-4o, DALL·E 3...) vedi https://platform.openai.com/docs/models
 
 _nota: esistono varie limitazioni all'uso, e.g. l'implementazione di TOOL, ma anche come numero di comunicazioni o come dimensioni dei documenti allegati, variabili da modello a modello ed ovviamente più stringenti nei casi free._
-In ogni caso la scelta del modello avviene a menu, ed ogni modifica è un semplice problema di configurazione del menu (v. `ai_verticalMenu.js`) 
+In ogni caso la scelta del modello avviene a menu, ed ogni customizzazione è un semplice problema di configurazione del menu (v. `ai_verticalMenu.js`) 
 
 ### Potenziali Sviluppi Futuri
 
