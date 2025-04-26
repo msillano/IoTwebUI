@@ -92,6 +92,8 @@ The **IoTwebUI-AI** chatbot is based on a modular architecture designed to maxim
 
 The IoTwebUI-AI chatbot offers considerable flexibility for experimentation in the field of IoT and AI, allowing direct user control of all major factors:
 
+![2025-04-26 10_46_10-IoTwebUI AI](https://github.com/user-attachments/assets/2bb39f1c-1647-49ec-9245-ead381cb491a)
+
 * **Dynamic Configuration:** The configuration of the AI model and access settings can be dynamically modified globally.
 * **Independent Session and Model Management:** Each user session operates independently, allowing for simultaneous testing of different configurations.
 * **Context and History per Session:** Context information related to Tuya devices and conversation history are managed for each session.
