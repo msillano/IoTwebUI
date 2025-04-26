@@ -91,6 +91,8 @@ Per favorire le customizzazioni, la definizione del menu è in un file separato:
 
 ### Flessibilità e Potenza per la Sperimentazione con Tuya e AI:
 
+![2025-04-26 10_46_10-IoTwebUI AI](https://github.com/user-attachments/assets/d50176be-b92e-4886-9981-6ea2d1258800)
+
 Il chatbot IOTwebUI-AI offre una notevole flessibilità per la sperimentazione nell'ambito dell'IoT e dell'AI permettendo il controllo utente diretto di tutti i principali fattori:
 
 * **Configurazione Dinamica:** La configurazione del modello AI e delle impostazioni di accesso può essere modificata dinamicamente per sessione.
