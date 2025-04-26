@@ -4,7 +4,7 @@
 [Versione italiana](https://github.com/msillano/IoTwebUI/blob/main/IOTwebUI-AI/LEGGIMI.md)
 
 This document introduces the **IoTwebUI-AI** project, a general-purpose chatbot integrated with the Tuya ecosystem.
-This versatile environment has been developed to allow more adventurous users to explore and experiment with the potential of artificial intelligence (AI) in combination with IoT devices from the **IoTwebUI** extension. The main objective is to provide a flexible tool for conducting tests and analyses, interacting with existing IoT devices, and experimenting with AI's potential in this context.
+This versatile environment has been developed to allow more adventurous users to explore and experiment with artificial intelligence's (AI) potential in combination with IoT devices from the **IoTwebUI** extension. The main objective is to provide a flexible tool for conducting tests and analyses, interacting with existing IoT devices, and experimenting with AI's potential in this context.
 
 ```mermaid
 %%{init: {'theme': 'neutral'}}%%
@@ -24,27 +24,25 @@ graph LR
         style HistoryDB fill:#f9c,stroke:#333,stroke-width:2px
         style ContextFiles fill:#cff,stroke:#333,stroke-width:2px
         Proxy -- HTTP --> AIServer;
-        AIServer -- Uses AI Models from --> AIModels(AI Models);
+        AIServer <-- Uses API (functions) of --> OpenAI;
         AIServer -- Manages --> HistoryDB(History Storage);
         AIServer -- Manages --> ContextFiles(Context Documents Storage);
-        AIServer -- Calls   --> IoT(Tuya TOOL);
+        AIServer -- Uses --> IoT(Tuya TOOL);
     end
 
-    subgraph AI Models
-        style AIModels fill:#cf9,stroke:#333,stroke-width:2px
+    subgraph AI Models 
         style OpenAI fill:#ace,stroke:#333,stroke-width:2px
-        AIModels -- Provides API --> OpenAI;
-        OpenAI -- Contains --> Deepseek;
-        OpenAI -- Contains --> GPTModels[Other OpenAI Models];
+        OpenAI -- Contains  --> Deepseek;
+        OpenAI -- Contains --> GPTModels[Altri OpenAI Model];
      end
 
     subgraph IoT / Tuya
         style IoT fill:#9fc,stroke:#333,stroke-width:2px
         style IoTwebUI fill:#afe,stroke:#333,stroke-width:2px
         IoT -- REST --> IoTwebUI;
-        IoTwebUI -- Read -->     TuyaDevices[Tuya Devices];
+        IoTwebUI -- Reads -->     TuyaDevices[Tuya Devices];
         IoTwebUI -- Controls --> x_device;
-        IoTwebUI -- Executes --> TuyaAutomations[Tuya Tap-To-Run / IoTwebUI Rules];
+        IoTwebUI -- Executes --> TuyaAutomations[Tuya Tap-To-Run / IoTwebUI Regole];
     end
 ```
 
