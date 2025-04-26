@@ -107,7 +107,7 @@ Il chatbot IOTwebUI-AI offre una notevole flessibilità per la sperimentazione n
     * Sperimentare nuove modalità di interazione uomo-macchina per la gestione della smart home e di altri dispositivi IoT.
 
 ### AI provider
-E' richiesta in'intefaccia API compatibile openai. Ho testato:
+E' richiesta in'intefaccia API compatibile openai. Al momento ho testato:
 #### Groq
      Free plan (con limiti di accesso): vedi https://groq.com/ to get APIKEY
           rate limits here: https://console.groq.com/docs/rate-limits
@@ -127,6 +127,8 @@ E' richiesta in'intefaccia API compatibile openai. Ho testato:
 _nota: esistono varie limitazioni all'uso, e.g. l'implementazione di TOOL, ma anche come numero di comunicazioni o come dimensioni dei documenti allegati, variabili da modello a modello ed ovviamente più stringenti nei casi free._
 In ogni caso la scelta del modello avviene a menu, ed ogni customizzazione è un semplice problema di configurazione del menu (v. `ai_verticalMenu.js`) 
 
+_nota: il menu laterale è dinamico e facilmente customizzabile: ad esempio l'aggionta/eliminazione di nuovi modelli è molto semplice (vedi file `ai_verticalMenu.js`)._
+ 
 ### Potenziali Sviluppi Futuri
 
 L'esperienza acquisita e le specifiche definite attraverso la sperimentazione con **IOTwebUI-AI** potranno in futuro essere utilizzate per lo sviluppo di applicazioni + AI specializzate, focalizzate su specifiche interazioni con i dispositivi Tuya o su particolari analisi dei dati IoT.
