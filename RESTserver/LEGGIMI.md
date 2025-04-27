@@ -117,7 +117,16 @@ Sempre un oggetto js, vedi i formati nei vari casi
             logged: ["va_temperature"],
             test: false}
 ```
-&nbsp;&nbsp;&nbsp;&nbsp;  Ricevuto: (dstatus) 
+&nbsp;&nbsp;&nbsp;&nbsp;Received (dstatus) 
+``` 
+           {name: "Termo studio",
+            online: true,
+            status: {switch: true,
+                     temp_current: 306,
+                     temp_set: 200 }}
+            icon: long HTML fragment with icon+tooltip (URLescaped)
+```
+&nbsp;&nbsp;&nbsp;&nbsp;Received (ddata) 
 ``` 
            {name: "Termo studio",
             online: true,
@@ -130,6 +139,7 @@ note:<br>
       - `dinfo.logged` _IoTwebUI extension_: Lista delle proprietà esportate da IoTwebUI su file.<br>
       - `dinfo.test` _IoTwebUI extension_: `true` Se esiste un allatme IoTwebUI collegato al device.<br>
       - `dinfo.category` : codice corrispondente a `is-a` (in pop-ups, EXPERT mode).
+      - `dstatus.icon` : frammento HTML per UI: icona e toolip del device.
 
 * **set/_dev-name_|_dev-id_/_code_/_value_** (e.g.: set/Device list/home/ROMA )<br>
  Solo for x-devices! <br>
