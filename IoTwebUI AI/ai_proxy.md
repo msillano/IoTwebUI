@@ -68,7 +68,7 @@ Per deepssek:
 _nota: Ho trovato model con vincoli sulla temperatura: e.g. 'o4-mini' richiede una temperature fissa di 1 (implementato nei menu)._
 
 
-**_note: max_tokens_** <br>
+**_note: max_tokens / max_completion_tokens_** <br>
 _Il numero massimo di "token" che la risposta del modello può generare._
    - Risposte brevi e dirette: 50 - 150 token.
    - Riassunti: 100 - 300 token (a seconda della lunghezza del testo originale).
