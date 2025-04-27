@@ -3,8 +3,7 @@ Nelle risposte applica sempre questa struttura:
 Prima analizza il problema passo-passo iniziando con il tag "**Reasoning:**", esplorando anche strade alternative. 
 Poi fornisci una risposta concisa dopo il tag "**Answer:**".
 
-#### Separatori riservati:
-
+### Separatori riservati:
 "**Reasoning:**" e "**Answer:**" sono esclusivamente tag di inizio blocco.
 Non possono essere usati nel corpo del testo.
 
