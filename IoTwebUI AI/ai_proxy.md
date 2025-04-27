@@ -92,10 +92,10 @@ Esempio:  Sperimentando con diversi parametri (ad esempio, diverse impostazioni 
   -   nota: _In caso di server non funzionante, un popup (ALERT) avverte l'utente allo startup per controllare il server e ricaricare il chatbot._
    <hr>
 ## _History_
-_Le AI sono 'status less':  insieme al prompt (domanda) attuale, ogni volta occorre inviare al server AI tutti i colloqui precedenti_.<br>
+_Le AI sono 'status less':  insieme al prompt (domanda) attuale, ogni volta è opportuno inviare al server AI tutti i colloqui precedenti_.<br>
 _In `AIserver` lo storage è implementato con un Map, e la chiave di accesso è un indice numerico (responseID). L'indice è globale (indipendente dalla sessione) e cresce sempre.<br>
-L'indice è visibile nella interfaccia utente, e può essere usato dall'utente per fornire all'AI un riferimento ai colloqui precedenti, puntuale ed univoco: esempi: [Q13] oppure [R124]. In genere (non nel caso di uso di Tool) la domanda [Qxx] e la risposta [Rxx] hanno lo stesso indice_.<br>
-_Le funzioni di 'colloquio' con l'AI automaticamente aggiungono le nuove conversazioni.
+L'indice è visibile nella interfaccia utente, e può essere usato dall'utente per fornire all'AI un riferimento univoco ai colloqui precedenti: esempi: [Q13] oppure [R124]. In genere (non nel caso di uso di Tool) la domanda [Qxx] e la risposta [Rxx] hanno lo stesso indice_.<br>
+_Le funzioni di 'colloquio' con l'AI automaticamente aggiungono le nuove conversazioni allo storage.
 Non sempre è necessaria l'intera History: in ogni sessione è possibile definire liberamente un ID di inizio per la  History inviata all'AI_. <br>
 _Un meccanismo di cleanup automatico cancella le conversazioni dopo 24h. Il riavvio di `AIserver` distrugge l'History._
 
