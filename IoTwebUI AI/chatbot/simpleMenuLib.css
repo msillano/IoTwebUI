@@ -1,0 +1,74 @@
+       .simple-menu {
+            width: 180px;
+            font-family: sans-serif;
+            border: 1px solid #ccc;
+        }
+        .simple-menu ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        .simple-menu li a {
+            display: block;
+            padding: 8px 10px;
+            text-decoration: none;
+            color: #333;
+            border-bottom: 1px solid #eee;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+        }
+        .simple-menu li a:hover {
+            background-color: #f0f0f0;
+        }
+        .simple-menu .state-indicator {
+            font-weight: bold;
+            font-size: 1em;
+            margin-left: 8px;
+        }
+        .simple-menu .submenu {
+            display: none;
+            margin-left: 10px;
+            background-color: #f9f9f9;
+            border-left: 1px solid #ccc;
+        }
+        .simple-menu .has-submenu > a::after {
+            content: "›";
+            margin-left: 5px;
+        }
+        .simple-menu .radio-group {
+            padding: 5px 15px;
+        }
+        .simple-menu .radio-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 3px;
+        }
+        .simple-menu .radio-item input[type="radio"] {
+            margin-right: 0;
+            margin-left: auto;
+        }
+        .simple-menu .radio-item label {
+            flex-grow: 1;
+            cursor: pointer;
+        }
+        /* Stile per le voci di menu disabilitate */
+        .simple-menu li.disabled > a {
+            color: #aaa;
+            text-decoration: line-through;
+            cursor: not-allowed;
+        }
+        .simple-menu li.disabled > a:hover {
+            background-color: #fff;
+        }
+        .simple-menu .radio-item.disabled label,
+        .simple-menu .radio-item.disabled input[type="radio"] {
+            color: #aaa;
+            cursor: not-allowed;
+        }
+        .simple-menu .radio-item.disabled input[type="radio"] {
+            pointer-events: none;
+        }
+ 

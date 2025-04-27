@@ -1,0 +1,153 @@
+/* general page layout  */	 
+	html {
+		  font-size: 14px; /* Base più piccola */
+		  }
+#main {
+  /*  display: flex;
+    flex-direction: column;
+    justify-content: flex-end;*/
+	min-height: 60vh;
+    max-height: 60vh; /* Imposta un'altezza massima per il contenitore principale */
+    overflow: scroll; /* Abilita la scrollbar verticale quando necessario */
+    border: 1px solid #ccc; /* (Opzionale) Mantiene il bordo */
+    border-radius: 8px; /* (Opzionale) Mantiene gli angoli arrotondati */
+    padding: 10px; /* (Opzionale) Mantiene il padding interno */
+    margin-bottom: 0px; /* (Opzionale) Mantiene il margine inferiore */
+ }
+
+#chat-container {
+  /*  height: 100%;  Fa in modo che chat-container occupi tutta l'altezza disponibile nel main */
+    padding: 0; /* Rimuove il padding interno duplicato, se necessario */
+    border: none; /* Rimuove il bordo duplicato, se necessario */
+    border-radius: 0; /* Rimuove gli angoli arrotondati duplicati, se necessario */
+    margin-bottom: 0; /* Rimuove il margine inferiore duplicato, se necessario */
+	/*overflow-y: auto;*/
+}
+
+body {
+    font-family: Arial, sans-serif;
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 0px 20px 20px;
+}	
+h1 {
+		color: #333;
+		text-align: center;
+	}
+	.input-area {
+		display: flex;
+		flex-direction: column;
+	}
+	#user-input {
+		width: 100%;
+		padding: 10px;
+		margin-bottom: 10px;
+		border: 1px solid #ccc;
+		border-radius: 4px;
+		box-sizing: border-box;
+		resize: vertical;
+	}
+	button {
+		padding: 10px 20px;
+		background-color: #4CAF50;
+		color: white;
+		border: none;
+		border-radius: 4px;
+		cursor: pointer;
+		align-self: flex-start;
+	}
+	button:hover {
+		background-color: #45a049;
+	}
+ /* copia clipboard */
+	#copy-btn {
+    position: fixed;
+    bottom: 15px;
+    right: 20px;
+    background: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    font-size: 20px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    transition: all 0.3s;
+}
+
+#copy-btn:hover {
+    background: #45a049;
+    transform: scale(1.1);
+}
+/* markdown to HML function */
+  #markdown-content h1 {
+	color: #333;
+	font-size: 2em;
+  }
+  #markdown-content code {
+	background: #f4f4f4;
+	padding: 2px 5px;
+	border-radius: 3px;
+  }
+  #markdown-content pre {
+	background: #f8f8f8;
+	padding: 10px;
+	border-radius: 5px;
+	overflow-x: auto;
+	}
+ .mermaid {
+	background-color: white;
+	padding: 10px;
+	border-radius: 5px;
+ }
+ 
+/* box code With copy */
+ .code-container {
+    background: #f8f9fa;
+    border-radius: 6px;
+    border: 1px solid #ddd;
+    margin: 16px 0;
+    overflow: auto; /*hidden*/
+  }
+  
+  .code-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #e9ecef;
+    padding: 1px 6px;  /* 8px 12px */
+    border-bottom: 1px solid #ddd;
+  }
+  
+  .code-title {
+    font-family: monospace;
+    font-weight: bold;
+    color: #555;
+  }
+  
+  .copybtn {
+    background: #6c757d;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    padding: 4px 16px;
+    font-size: 12px;
+    cursor: pointer;
+    transition: background 0.2s;
+  }
+  
+  .copy-btn:hover {
+    background: #5a6268;
+  }
+  
+  .code-content {
+    padding: 12px;
+    margin: 0;
+    overflow: auto;
+  }
+	
+	
