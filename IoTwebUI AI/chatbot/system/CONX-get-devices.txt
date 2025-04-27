@@ -1,4 +1,4 @@
-DEVICE for GetTuyaValue TOOL 
+DEVICE for GetTuyaValue TOOL   (EXAMPLE!)
 
 HOME, ROOM, TIPO,  CATEGORIA, NOME
 ROMA, tools, x-device, x-dev, Devices BattTest2;
