@@ -31,18 +31,18 @@ Le funzioni in questa libreria sono asincrone e restituiscono Promises per gesti
  *   provider:'deepseek',                      // 'openai' o altri
  *   baseURL: 'https://api.deepseek.com',      // dipende dal provider
  *   apiKey:  'OPENAI_API_KEY',                // from PC environment
- *   model:   'deepseek-chat',                 
+ *   model:   'deepseek-chat',                 // modificabile in menu
  *   temperature: 0.7,                         // parametro per AI (in menu)
  *   seed: false,                              // parametro per AI (in menu)
  *   max_tokens: 3000,                         // parametro per AI (in menu)
  *   quirkMaxCompletion: false,                // usa 'max_completion_tokens' invece di 'max_tokens' (alcuni model)
- *   stop: null,                               // parametro per AI
- *   top_k: null,                              // parametro per AI
- *   top_p: null,                              // parametro per AI
- *   frequency_penalty: null,                  // parametro per AI
+ *   stop: null,                               // parametro per AI (defoult null => not used)
+ *   top_k: null,                              // parametro per AI (defoult null => not used)
+ *   top_p: null,                              // parametro per AI (defoult null => not used)
+ *   frequency_penalty: null,                  // parametro per AI (defoult null => not used)
  *   timeoutAi: 90,                            // per AIserver, chiamata ad AI, in secondi
  *   emableStremMode: false                    // block mode / stream mode
- *   IoTwebUIok: true                          // auto at startup : IoTwebUI REST accessibile.
+ *   IoTwebUIok: true                          // auto allo startup: IoTwebUI REST accessibile.
  *   enableTuyaTools: true,                    // Attiva/disattiva i tool Tuya (auto per alcuni model)
 _estensioni (opzionali)_
 ```
