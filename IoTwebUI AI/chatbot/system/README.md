@@ -1,4 +1,4 @@
-Qesta dir contiene file usabili come CONTEXT nelle conversazioni AI<br>
+Qesta dir contiene file usabili come CONTEXT nelle conversazioni AI. Possono essere aggiunti o eliminati interattivamente durante le conversazioni dal frontend del chatbot.<br>
 Devono essere mantenuti e aggiornati dall'utente, che aggiungerà o modificherà i file necessari in base ai propri obiettivi.
 
 _Sono presenti alcuni esempi:_
