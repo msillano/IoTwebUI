@@ -179,7 +179,7 @@ Un meccanismo di cleanup automatico cancella i documenti dopo 24h. Il riavvio di
   ```
 ### `async function proxyFileToContext(file, sessionId)`
 
-- **Descrizione:** Carica il contenuto di un oggetto `File` (tipicamente ottenuto da un input di tipo `file` in HTML) e lo aggiunge come contesto a una sessione utente. Agisce in due step: cvontrolla se il file esiste, e se esiste si limita ad abilitarlo. Altrimenti legge il file  e lo carica in storage.
+- **Descrizione:** Carica il contenuto di un oggetto `File` (tipicamente ottenuto da un input di tipo `file` in HTML) e lo aggiunge come contesto a una sessione utente. Agisce in due step: controlla prima se il file esiste (in storage o cache), e se esiste si limita ad abilitarlo. Altrimenti legge il file  e lo carica in storage.
 - **Parametri:**
   - `{File} file`: L'oggetto `File` da leggere e inviare al server.
   - `{string} sessionId`: L'identificatore univoco della sessione utente a cui aggiungere il contesto dal file.
@@ -255,7 +255,7 @@ Un meccanismo di cleanup automatico cancella i documenti dopo 24h. Il riavvio di
 - **Descrizione:** gestisce uno scambio query/reply con L'AI
    - Oltre al testo della query utente, invia all'AI automatiacamente l'History (precedenti messaggi) e i documenti di contesto (solo gli abilitati)
    - Risponde alla eventuali richeste di eseguire funzioni (tool Tuya) da parte dell'AI
-   - Elabora la risposta dall'AI suddividendola in due parti: 'reasoning' (opzionale, usualmente solo presentata a video) ed 'reply'
+   - Elabora la risposta dall'AI suddividendola in due parti: 'reasoning' (opzionale, usualmente solo presentata a video) e 'reply'
    - aggiunge allo storage 'Historical' la query utente, la prima risposta dell'AI (solo reply oppure richiesta Tool), le risposte dei tool (opzionali), la richiesta utente 'relay' da protocollo dopo i tool, la risposta finale (solo reply - opzionale).
    - il timeout è definto in config (default 90 secondi).  In caso di deep thinking con ricerche web può superare i 30 minuti.
      
@@ -267,8 +267,8 @@ Un meccanismo di cleanup automatico cancella i documenti dopo 24h. Il riavvio di
    ```javascript
    {
        success: true|false      // se false, si ha {succes, error}
+     reasoning: <text>|''       // ragionamento (opzionale - formato default: HTML) 
          reply: <text>          // risposta (formato default: markdown + mermaid)
-     reasoning: <text>|''       // ragionamento opzionale (formato default: HTML) 
          model:                 // come in config
     responseId:                 // ID progressivo univoco della risposta nello storage
          usage:                 // dati sul 'costo' (tokens) della conversazione (in console)
