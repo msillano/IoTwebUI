@@ -1,5 +1,6 @@
 # **IoTrest: Un ponte REST per i device Tuya**
 [English version](https://github.com/msillano/IoTwebUI/blob/main/RESTserver/README.md)
+
 **IoTrest** è un'estensione opzionale per **IoTwebUI** 2.2 che trasforma i tuoi dispositivi Tuya in un _**servizio web** accessibile tramite semplici richieste HTTP_. Oltre a leggere i dati dai tuoi dispositivi, IoTrest ti permette di interagire con essi in modo avanzato, attivando scene e regole e ricevendo avvisi in tempo reale.
 
 ### **Caratteristiche principali**
@@ -44,6 +45,7 @@ Ci sono tre file principali:
 Quindi l'insieme dei tre file è autosufficiente, non richiede `IoTwebUI` e può essere utilizzato come test. Quando tutto funziona come dovrebbe, chiudi **MockIOTweb** e apri **IoTwebUI** e inizia a lavorare con i veri dispositivi Tuya.<br>
 
 `client.html` può essere utilizzato finché non hai uno o più client REST personalizzati (applicazioni o interfacce utente). Se vuoi creare interfacce WEB, il codice HTML/javascript di `client.html` può servire come modello.
+
 ## **Utilizzo**
 1. Per prima cosa avvia `server.js` con `run_server.bat`: se OK compare il messaggio "Server HAPI running on http://localhost:3031"
 2. Riduci a icona il terminale. Puoi riaprirlo per vedere i messaggi scambiati o i messaggi di errore. Chiudilo quando hai finito di usarlo.
@@ -76,21 +78,21 @@ Interfacce utente come queste, con immagini, pulsanti, gadget, dati dei disposit
 
 ## Endpoint URI
 
-**Request:** <br>
-general: `http://localhost:3031/IoTrest/` + path (see below) <br>
+**Richiesta:** <br>
+generale: `http://localhost:3031/IoTrest/` + path (vedi oltre) <br>
 
-**Response:** <br>
-Always a js object, see individual cases.
+**Risposta:** <br>
+Sempre un oggetto js, vedi i formati nei vari casi
 
 *  **home/list** <br>
-    Received
+    Ricevuto:
  ```
             {homes:["ROMA",
                     "ADMIN"]}
 ```
 
 * **device/list[/_home_[/_room_]]** (e.g.: device/list, device/list/ROMA, device/list/ROMA/Studio) <br>
-Received (ROMA/Studio)
+  Ricevuto: (ROMA/Studio)
 ```
           {home:"ROMA",
            room:"Studio",
@@ -98,13 +100,13 @@ Received (ROMA/Studio)
                     "USBswitch",
                     "Zigbee Gateway"]}
  ```
-* **device/_dev-name_|_dev-id_/dinfo| dstatus|_code_** (e.g.: device/Temperatura studio/va_temperature, device/Temperatura studio/dinfo, device/Termo studio/dstatus ) <br>
-Received (va_temperature)
+* **device/_dev-name_|_dev-id_/dinfo|dstatus|ddata|_code_** (e.g.: device/Temperatura studio/va_temperature, device/Temperatura studio/dinfo, device/Termo studio/dstatus ) <br>
+  Ricevuto: (va_temperature)
  ```
            {name:"Temperatura studio",
             va_temperature: 28}
 ```
-&nbsp;&nbsp;&nbsp;&nbsp;Received (dinfo) <br> 
+&nbsp;&nbsp;&nbsp;&nbsp;  Ricevuto: (dinfo) <br> 
 ```
            {name: "Temperatura studio",
             id: "xxxxxxxxxxxxxxxxxxxx",
@@ -115,7 +117,7 @@ Received (va_temperature)
             logged: ["va_temperature"],
             test: false}
 ```
-&nbsp;&nbsp;&nbsp;&nbsp;Received (dstatus) 
+&nbsp;&nbsp;&nbsp;&nbsp;  Ricevuto: (dstatus) 
 ``` 
            {name: "Termo studio",
             online: true,
@@ -124,22 +126,22 @@ Received (va_temperature)
                      temp_set: 200 }}
 ```
 note:<br>
-      - `dinfo.sub` `true` if the device is a sub-device (i.e. use a HUB) <br>
-      - `dinfo.logged` _IoTwebUI extension_: list of properties exported from IoTwebUI to file.<br>
-      - `dinfo.test` _IoTwebUI extension_: `true` if there is an IoTwebUI alarm connected to the device.<br>
-      - `dinfo.category` : code corresponding to `is-a` (in pop-ups, EXPERT mode).
+      - `dinfo.sub` `true` se il device è sub-device (i.e. usa un  HUB) <br>
+      - `dinfo.logged` _IoTwebUI extension_: Lista delle proprietà esportate da IoTwebUI su file.<br>
+      - `dinfo.test` _IoTwebUI extension_: `true` Se esiste un allatme IoTwebUI collegato al device.<br>
+      - `dinfo.category` : codice corrispondente a `is-a` (in pop-ups, EXPERT mode).
 
 * **set/_dev-name_|_dev-id_/_code_/_value_** (e.g.: set/Device list/home/ROMA )<br>
- Only for x-devices! <br>
+ Solo for x-devices! <br>
 
-Received
+  Ricevuto:
 ```
           {done: "set"}
 ```
 
 
 * **alert/list/_dev-name_|_dev-id_** ( e.g.: alert/list/tuya_bridge)<br>
-Received
+  Ricevuto:
 ```
            {"name":"tuya_bridge",
             "alarms":[ {"code": "switch_1",
@@ -150,13 +152,13 @@ Received
                         "action":["pop", "beep", "voice" ]}
                          ]}
 ```
-notes:<br> 
-      - `alarms[x].trigger`: `true` in case of active alarm.<br>
-      - `alarms[x].conditon` values: "grt", "equ", "lst" for ">", "=", "<" <br>
-      - `alarms[x].action[y]` values: "beep", "pop", "sound", "voice" (URL and SCENE/RULE: auto, based on `message`)
+note:<br> 
+      - `alarms[x].trigger`: `true` In caso di allarme attivo.<br>
+      - `alarms[x].conditon` valori: "grt", "equ", "lst" per ">", "=", "<" <br>
+      - `alarms[x].action[y]` valori: "beep", "pop", "sound", "voice" (URL e SCENE/RULE: auto, basate su `message`)
 
 * **scene/list[/_room_]** (scene/list, scene/list/ROMA)<br>
-  Received
+    Ricevuto:
 ```
            {home: "ROMA".
             scenes: [{name: "ALARM OFF",
@@ -169,7 +171,7 @@ notes:<br>
                  }
 ```
 * **rule/list** (e.g.: rule/list)<br>
-Received
+  Ricevuto:
 ```
           ["turn off light",
            "pippo",
@@ -177,55 +179,55 @@ Received
 ```
 
 * **execute/_scene-name_|_rule-name_** (e.g.: execute/call pippo)<br>
-Received
+  Ricevuto:
 ``` 
           {done: "rule"}
 ```
 
 **Errors:**
 
-TX: device/Living room temperature/_va\_humidity_ => **{error: "unknown"}**
+TX: device/Living room temperature/_va\_humidità_ => **{error: "unknown"}**
 
-TX: device/_Living room temperature/va\_humidity => **{error: "unknown"}**
+TX: device/_Livingroom temperature_/va\_humidity => **{error: "unknown"}**
 
 TX: device/Living room temperature/ => **{error: "malformed"}**
 
 nota:
 - La risposta è sempre un oggetto Js (anche in caso di errore).
-- I dati sono così come provengono da Tuya Cloud: potrebbero necessitare di decodifica o scalatura (es. `'temp_current', value: 284` => 28.4 °C). [Vedi sotto](https://github.com/msillano/IoTwebUI/blob/main/RESTserver/LEGGIMI-REST22.md#customizzazioni).
+- I dati sono così come provengono da Tuya Cloud: potrebbero necessitare di decodifica o scalatura (es. `'temp_current', value: 284` => 28.4 °C). [Vedi sotto](https://github.com/msillano/IoTwebUI/blob/main/RESTserver/LEGGIMI.md#customizzazioni).
 - **"unknown"** in caso di nomi errati o non trovati (errori di battitura).
 - **"malformed"** in caso di parti del percorso mancanti o fuori posto (errore di sintassi).
-- I dispositivi sono identificati tramite il loro nome o ID: l'utilizzo dell'ID è indipendente dal nome che puoi cambiare liberamente.
+- I dispositivi sono identificati tramite il loro nome o ID: l'utilizzo dell'ID è indipendente dal nome che puoi cambiare liberamente. (nota: per gli x-device si deve usare il nome! L'ID e variabile).
 <hr style="height:2px;border-width:0;color:gray;background-color:gray">
 
 L'esempio seguente è presente nel file 'custom.js', creato appositamente per facilitare eventuali personalizzazioni dell'utente.
 
-Il problema
+#### Il problema
 Questo interruttore-misuratore (OPWTY-63), utilizzato con il nome "Main AC", presenta nel Cloud i dati in tempo reale (V, A, W, dispersione) non in chiaro, ma codificati in 'phase_a', come vediamo nel primo tooltip di IoTwebUI: {code: 'phase_a', value: 'CRAAArwAAJYACg=='}. La ragione di questa scelta progettuale è che i dati vengono inviati dal dispositivo ogni secondo, e quindi il throughput è ridotto.
 
-Codice
+#### Codice
 È possibile avere i valori RT in chiaro sia nel tooltip di IoTwebUI che nei dati esportati da IoTrest, intervenendo nel file 'custom.js' come segue:
 
-L'algoritmo di decodifica è noto: è implementato nella funzione context.global.datadecode.STRUCTELERT presente nel nodo *ENCODE/DECODE user library di tuyaDAEMON.CORE_devices. Purtroppo, la funzione è in nodejs e deve essere riscritta per l'ambiente js del browser. La funzione è comunque abbastanza semplice:
+1) L'algoritmo di decodifica è noto: è implementato nella funzione `context.global.datadecode.STRUCTELERT` presente nel nodo `*ENCODE/DECODE user library` di **tuyaDAEMON.CORE_devices**. Purtroppo, la funzione è in nodejs e deve essere riscritta per l'ambiente js del browser. La funzione è comunque abbastanza semplice:
+   
  ```
 function datadecodeSTRUCTELERT(value) {
     let result = {};
 // versione javascript riscritta (Buffer non disponibile nel browser)
     const decod = atob(value); // stringa ASCII da code64
 // conversioni Int16BE, scalatura:
-    result["V"] = (decod.charCodeAt(1) + 256decod.charCodeAt(0)) / 10.0;       // V
-    result["Leack"] = (decod.charCodeAt(3) + 256decod.charCodeAt(2)) / 1000.0; // A
-    result["A"] = (decod.charCodeAt(5) + 256decod.charCodeAt(4)) / 40000.0;    // A
-    result["W"] = (decod.charCodeAt(7) + 256decod.charCodeAt(6)) ;             // W
+    result["V"]     = (decod.charCodeAt(1) + 256*decod.charCodeAt(0)) / 10.0;       // V
+    result["Leack"] = (decod.charCodeAt(3) + 256*decod.charCodeAt(2)) / 1000.0;     // A
+    result["A"]     = (decod.charCodeAt(5) + 256*decod.charCodeAt(4)) / 40000.0;    // A
+    result["W"]     = (decod.charCodeAt(7) + 256*decod.charCodeAt(6)) ;             // W
     return (result);
 };
-
+```
 
 2) La funzione hook `filterDP(res, devData)` viene chiamata per ogni dispositivo letto dal Cloud e normalmente non fa nulla, ma è presente per inserire l'elaborazione personalizzata dei valori.
-Il parametro `res` è l'oggetto con i dati completi del dispositivo, mentre `devData` è un oggetto `{code1:value1, code2:value2...}` con i valori predefiniti da visualizzare nel tooltip.
+Il parametro `res` è l'oggetto con i dati completi del device, mentre `devData` è un oggetto `{code1:value1, code2:value2...}` con i valori predefiniti da visualizzare nel tooltip.
 In questo caso avremo:
-
-
+```
    if (res.name == "Main AC") {                     //Misuratore di potenza
   // la decodifica per il tooltip aggiunge valori extra a devData
       const vals = datadecodeSTRUCTELERT(devData.phase_a); // decodifica 'phase_a'
@@ -233,11 +235,12 @@ In questo caso avremo:
       devData['phase_a_Leack'] = vals.Leack.toFixed(3);
       devData['phase_a_A'] = vals.A.toFixed(3);
       devData['phase_a_W'] = vals.W.toString();
-  // ALTRO: Per esportare tramite REST il valore decodificato, lo aggiungiamo a device.status
+  // ALTRO: Per esportare tramite REST il valore decodificato, lo aggiungiamo anche a device.status
       addToStatus("Main AC","phase_a_decoded", vals) ;
 }
-
+```
 nota: `addToStatus()` è un'utility che aggiorna i dati locali (utilizzati da REST), aggiungendo o aggiornando, in questo caso, il valore `phase_a_decoded`.
+
 
 #### Risultati
 Le modifiche apportate sono additive: non alterano i dati esistenti.
@@ -247,131 +250,16 @@ Le modifiche apportate sono additive: non alterano i dati esistenti.
 - Come ulteriore vantaggio, i dati in tempo reale (V, A, W, dispersione), non utilizzabili con l'automazione Tuya/Smartlife, possono ora essere utilizzati come condizioni nelle REGOLE di IoTwebUI! Esempio: `GET("Main AC","phase_a_decoded").W`
 
 - I dati possono essere esportati: la richiesta REST `device/Main AC/phase_a_decoded` restituisce:
-
+```
          {name: "Main AC",
          phase_a_decoded: {V: 227,
                            Leack: 0.002,
                            A: 1.408,
                            W: 302 }
          }
+````
 
+_Le varie stranezze (quirk) dei dispositivi Tuya a volte richiedono interventi mirati: l'obiettivo nell'implementazione di IoTwebUI era rendere queste personalizzazioni il più semplici possibile._
 
-_Le varie stranezze dei dispositivi Tuya a volte richiedono interventi mirati: l'obiettivo nell'implementazione di IoTwebUI era rendere queste personalizzazioni il più semplici possibile._
-L'esempio seguente è presente nel file 'custom.js', creato appositamente per facilitare eventuali personalizzazioni dell'utente.
+L'esempio è presente nel file 'custom.js', creato appositamente per facilitare eventuali personalizzazioni dell'utente.
 
-Il problema
-Questo interruttore-misuratore (OPWTY-63), utilizzato con il nome "Main AC", presenta nel Cloud i dati in tempo reale (V, A, W, dispersione) non in chiaro, ma codificati in 'phase_a', come vediamo nel primo tooltip di IoTwebUI: {code: 'phase_a', value: 'CRAAArwAAJYACg=='}. La ragione di questa scelta progettuale è che i dati vengono inviati dal dispositivo ogni secondo, e quindi il throughput è ridotto.
-
-Codice
-È possibile avere i valori RT in chiaro sia nel tooltip di IoTwebUI che nei dati esportati da IoTrest, intervenendo nel file 'custom.js' come segue:
-
-L'algoritmo di decodifica è noto: è implementato nella funzione context.global.datadecode.STRUCTELERT presente nel nodo *ENCODE/DECODE user library di tuyaDAEMON.CORE_devices. Purtroppo, la funzione è in nodejs e deve essere riscritta per l'ambiente js del browser. La funzione è comunque abbastanza semplice:
- ```
-function datadecodeSTRUCTELERT(value) {
-    let result = {};
-// versione javascript riscritta (Buffer non disponibile nel browser)
-    const decod = atob(value); // stringa ASCII da code64
-// conversioni Int16BE, scalatura:
-    result["V"] = (decod.charCodeAt(1) + 256decod.charCodeAt(0)) / 10.0;       // V
-    result["Leack"] = (decod.charCodeAt(3) + 256decod.charCodeAt(2)) / 1000.0; // A
-    result["A"] = (decod.charCodeAt(5) + 256decod.charCodeAt(4)) / 40000.0;    // A
-    result["W"] = (decod.charCodeAt(7) + 256decod.charCodeAt(6)) ;             // W
-    return (result);
-};
-
-
-2) La funzione hook `filterDP(res, devData)` viene chiamata per ogni dispositivo letto dal Cloud e normalmente non fa nulla, ma è presente per inserire l'elaborazione personalizzata dei valori.
-Il parametro `res` è l'oggetto con i dati completi del dispositivo, mentre `devData` è un oggetto `{code1:value1, code2:value2...}` con i valori predefiniti da visualizzare nel tooltip.
-In questo caso avremo:
-
-
-   if (res.name == "Main AC") {                     //Misuratore di potenza
-  // la decodifica per il tooltip aggiunge valori extra a devData
-      const vals = datadecodeSTRUCTELERT(devData.phase_a); // decodifica 'phase_a'
-      devData['phase_a_V'] = vals.V.toFixed(1);     // esplode 'vals'
-      devData['phase_a_Leack'] = vals.Leack.toFixed(3);
-      devData['phase_a_A'] = vals.A.toFixed(3);
-      devData['phase_a_W'] = vals.W.toString();
-  // ALTRO: Per esportare tramite REST il valore decodificato, lo aggiungiamo a device.status
-      addToStatus("Main AC","phase_a_decoded", vals) ;
-}
-
-nota: `addToStatus()` è un'utility che aggiorna i dati locali (utilizzati da REST), aggiungendo o aggiornando, in questo caso, il valore `phase_a_decoded`.
-
-#### Risultati
-Le modifiche apportate sono additive: non alterano i dati esistenti.
-
-- Il tooltip ora mostra i dati RT in chiaro (ultimo tooltip nella figura).
-
-- Come ulteriore vantaggio, i dati in tempo reale (V, A, W, dispersione), non utilizzabili con l'automazione Tuya/Smartlife, possono ora essere utilizzati come condizioni nelle REGOLE di IoTwebUI! Esempio: `GET("Main AC","phase_a_decoded").W`
-
-- I dati possono essere esportati: la richiesta REST `device/Main AC/phase_a_decoded` restituisce:
-
-         {name: "Main AC",
-         phase_a_decoded: {V: 227,
-                           Leack: 0.002,
-                           A: 1.408,
-                           W: 302 }
-         }
-
-
-_Le varie stranezze dei dispositivi Tuya a volte richiedono interventi mirati: l'obiettivo nell'implementazione di IoTwebUI era rendere queste personalizzazioni il più semplici possibile._
-L'esempio seguente è presente nel file 'custom.js', creato appositamente per facilitare eventuali personalizzazioni dell'utente.
-
-Il problema
-Questo interruttore-misuratore (OPWTY-63), utilizzato con il nome "Main AC", presenta nel Cloud i dati in tempo reale (V, A, W, dispersione) non in chiaro, ma codificati in 'phase_a', come vediamo nel primo tooltip di IoTwebUI: {code: 'phase_a', value: 'CRAAArwAAJYACg=='}. La ragione di questa scelta progettuale è che i dati vengono inviati dal dispositivo ogni secondo, e quindi il throughput è ridotto.
-
-Codice
-È possibile avere i valori RT in chiaro sia nel tooltip di IoTwebUI che nei dati esportati da IoTrest, intervenendo nel file 'custom.js' come segue:
-
-L'algoritmo di decodifica è noto: è implementato nella funzione context.global.datadecode.STRUCTELERT presente nel nodo *ENCODE/DECODE user library di tuyaDAEMON.CORE_devices. Purtroppo, la funzione è in nodejs e deve essere riscritta per l'ambiente js del browser. La funzione è comunque abbastanza semplice:
- ```
-function datadecodeSTRUCTELERT(value) {
-    let result = {};
-// versione javascript riscritta (Buffer non disponibile nel browser)
-    const decod = atob(value); // stringa ASCII da code64
-// conversioni Int16BE, scalatura:
-    result["V"] = (decod.charCodeAt(1) + 256decod.charCodeAt(0)) / 10.0;       // V
-    result["Leack"] = (decod.charCodeAt(3) + 256decod.charCodeAt(2)) / 1000.0; // A
-    result["A"] = (decod.charCodeAt(5) + 256decod.charCodeAt(4)) / 40000.0;    // A
-    result["W"] = (decod.charCodeAt(7) + 256decod.charCodeAt(6)) ;             // W
-    return (result);
-};
-
-
-2) La funzione hook `filterDP(res, devData)` viene chiamata per ogni dispositivo letto dal Cloud e normalmente non fa nulla, ma è presente per inserire l'elaborazione personalizzata dei valori.
-Il parametro `res` è l'oggetto con i dati completi del dispositivo, mentre `devData` è un oggetto `{code1:value1, code2:value2...}` con i valori predefiniti da visualizzare nel tooltip.
-In questo caso avremo:
-
-
-   if (res.name == "Main AC") {                     //Misuratore di potenza
-  // la decodifica per il tooltip aggiunge valori extra a devData
-      const vals = datadecodeSTRUCTELERT(devData.phase_a); // decodifica 'phase_a'
-      devData['phase_a_V'] = vals.V.toFixed(1);     // esplode 'vals'
-      devData['phase_a_Leack'] = vals.Leack.toFixed(3);
-      devData['phase_a_A'] = vals.A.toFixed(3);
-      devData['phase_a_W'] = vals.W.toString();
-  // ALTRO: Per esportare tramite REST il valore decodificato, lo aggiungiamo a device.status
-      addToStatus("Main AC","phase_a_decoded", vals) ;
-}
-
-nota: `addToStatus()` è un'utility che aggiorna i dati locali (utilizzati da REST), aggiungendo o aggiornando, in questo caso, il valore `phase_a_decoded`.
-
-#### Risultati
-Le modifiche apportate sono additive: non alterano i dati esistenti.
-
-- Il tooltip ora mostra i dati RT in chiaro (ultimo tooltip nella figura).
-
-- Come ulteriore vantaggio, i dati in tempo reale (V, A, W, dispersione), non utilizzabili con l'automazione Tuya/Smartlife, possono ora essere utilizzati come condizioni nelle REGOLE di IoTwebUI! Esempio: `GET("Main AC","phase_a_decoded").W`
-
-- I dati possono essere esportati: la richiesta REST `device/Main AC/phase_a_decoded` restituisce:
-
-         {name: "Main AC",
-         phase_a_decoded: {V: 227,
-                           Leack: 0.002,
-                           A: 1.408,
-                           W: 302 }
-         }
-
-
-_Le varie stranezze dei dispositivi Tuya a volte richiedono interventi mirati: l'obiettivo nell'implementazione di IoTwebUI era rendere queste personalizzazioni il più semplici possibile._
