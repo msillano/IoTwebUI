@@ -30,20 +30,21 @@ Le funzioni in questa libreria sono asincrone e restituiscono Promises per gesti
 ```javascript
  *   provider:'deepseek',                      // 'openai' o altri
  *   baseURL: 'https://api.deepseek.com',      // dipende dal provider
- *   apiKey:  'sk-*************754fe',         // default from PC environment, OPENAI_API_KEY 
- *   model:   'deepseek-chat',                 // 'deepseek-code'...
+ *   apiKey:  'OPENAI_API_KEY',                // from PC environment
+ *   model:   'deepseek-chat',                 
  *   temperature: 0.7,                         // parametro per AI (in menu)
  *   seed: false,                              // parametro per AI (in menu)
  *   max_tokens: 3000,                         // parametro per AI (in menu)
+ *   quirkMaxCompletion: false,                // usa 'max_completion_tokens' invece di 'max_tokens' (alcuni model)
  *   stop: null,                               // parametro per AI
  *   top_k: null,                              // parametro per AI
  *   top_p: null,                              // parametro per AI
  *   frequency_penalty: null,                  // parametro per AI
  *   timeoutAi: 90,                            // per AIserver, chiamata ad AI, in secondi
  *   emableStremMode: false                    // block mode / stream mode
- *   enableTuyaTools: true,                    // Attiva/disattiva i tool Tuya (richiesto da
-alcuni model)
-_estensioni (opzionali_
+ *   IoTwebUIok: true                          // auto at startup : IoTwebUI REST accessibile.
+ *   enableTuyaTools: true,                    // Attiva/disattiva i tool Tuya (auto per alcuni model)
+_estensioni (opzionali)_
 ```
 
 **_note: Temperature_**<br>
@@ -117,7 +118,7 @@ _Un meccanismo di cleanup automatico cancella le conversazioni dopo 24h. Il riav
   
 ### `async function proxyForgetHistory(limit, sessionId)`
 
-- **Descrizione:** definisce la conversazione con cui inizia la History inviata all'AI. Le conversazioni NON sono cancellate, perciò si può varare a volontà, permettendo un buon controllo.<br>
+- **Descrizione:** definisce la conversazione con cui inizia la History inviata all'AI. Le conversazioni NON sono cancellate, perciò si può variare a volontà, permettendo un buon controllo.<br>
 e.g. Far fare all'AI un riassunto di tutte le conversazioni, poi iniziare l'history dal riassunto, tralasciando tutte le risposte precedenti: aumenta la prontezza e si riducono i costi.
 - **Parametri:**
   - `{number} limit`: L'indice del primo messaggio da inviare nella cronologia. 
