@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<!--
+This file is part of IoTwebUI project (https://github.com/msillano/IoTwebUI) 
+------------------------------
+License MIT
+(C)2025 marco.sillano@gmail.com
+ver 1.0 03/04/2025
+------------------------------
+HTML Chat with strong user control
+For OpenAPI (ChatGPT, DeepSeek..) 
+-->
+
+<html lang="it">
+	<head>
+		<script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js" ></script>
+		<script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js" ></script>
+		<script>
+			mermaid.initialize({ 
+				startOnLoad: false,
+				theme: 'default'
+			});
+		</script>
+
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<link rel = "stylesheet" href ="IOTwebUIAI.css" ></link>
+		<link rel = "stylesheet" href ="simpleMenuLib.css" ></link>
+		<title>IoTwebUI AI</title>
+		<style>
+#menuShow{
+border: 2px solid #4CAF50;
+background-color: rgba(220,220,220,0.85);
+border-radius: 10px 10px 10px 10px;
+padding: 14px;
+font-size: 13px;
+font-family: tahoma, Arial;
+position: absolute;
+width: auto;
+height: auto;
+}
+
+</style>
+	</head>
+    <body  onload="atStartupInit();" >
+		<h2 style=" vertical-align: middle;"><a href="#" onClick="toggleMenu()">
+<img src="logoIOT.png" width="28" height="28" border="0"/></a> &nbsp; &nbsp; IOTwebUI Chat</h2>
+
+<!-- ============== menu section  =======  -->
+<div id="menuShow">
+<div id="simpleDynamicMenu" class="simple-menu" ></div>
+</div>
+<script src="simpleMenuLib.js"></script>
+<script type="text/javascript" language="javascript">
+Show ="no";
+var OffX = -250;
+var PosX = 0;
+var PosY = 86;
+
+var speed = 1;
+var increment = 2;
+var incrementNS4 = 5;
+
+var is_NS  = navigator.appName=="Netscape";
+var is_Ver = parseInt(navigator.appVersion);
+var is_NS4 = is_NS&&is_Ver>=4&&is_Ver<5;
+var is_NS5up = is_NS&&is_Ver>=5;
+
+var MenuX=OffX;
+var sPosX=PosX;
+var sOffX=OffX;
+
+if (Show=="yes"){
+	sPosX=OffX;
+	sOffX=PosX;
+	MenuX=sOffX;
+}
+
+if (is_NS4){
+	increment=incrementNS4;
+	Lq="document.layers.";
+	Sq="";
+	eval(Lq+'menuShow'+Sq+'.left=sOffX');
+	eval(Lq+'menuShow'+Sq+'.top=PosY');
+}else{
+	Lq="document.all.";
+	Sq=".style";
+	document.getElementById('menuShow').style.left=sOffX+"px";
+	document.getElementById('menuShow').style.top=PosY+"px";
+}
+
+function toggleMenu(){
+	if (MenuX>=PosX)
+		moveOffMenu();
+	else
+		moveOnMenu();
+};
+
+function moveOnMenu(){
+	if (MenuX<PosX){
+		MenuX=MenuX+increment;
+		if (is_NS5up){
+			document.getElementById('menuShow').style.left=MenuX+"px";
+		}else{
+			eval(Lq+'menuShow'+Sq+'.left=MenuX');
+		}
+	setTimeout('moveOnMenu()',speed);
+	}
+}
+
+function moveOffMenu(){
+	if (MenuX>OffX){
+		MenuX=MenuX-increment;
+		if (is_NS5up){
+			document.getElementById('menuShow').style.left=MenuX+"px";
+		}else{
+			eval(Lq+'menuShow'+Sq+'.left=MenuX');
+		}
+	setTimeout('moveOffMenu()',speed);
+	}
+}
+</script>
+<!-- ============== menu section ends ===  -->	
+        <div id="main">	
+		  <div id="chat-container"></div>
+		</div>
+	    <div id="copy-btn" title="Copia la conversazione">⎘</div>
+	    <div class="input-area">
+			<textarea 
+				id="user-input" 
+				placeholder="Scrivi qui..." 
+				rows="2"
+				onkeydown="handleKeyPress(event)" ></textarea>
+			<button onclick="sendMessage()">Invia</button>
+		</div>
+		<hr />
+        <div> 
+			<button id="cutHistory" onclick="cutHistory()">Cut History</button> &nbsp; &nbsp; &nbsp;
+			<input id="fileInput" type="file" style="display:none" onchange="document.getElementById('contextFile').innerHTML = this.value.replace(/.*[\/\\]/, '');"  accept=".ctx,.md, text/plain, text/markdown" />
+			<button id="contextFile" onClick="document.getElementById('fileInput').click();this.style.backgroundColor = '#0000FF',document.getElementById('storeContext').style.backgroundColor = '#4CAF50';">Select context</button>&nbsp; &nbsp; &nbsp;
+			<button id="storeContext" onclick="addContext();this.style.backgroundColor = '#0000FF';">Store context</button> &nbsp; &nbsp; &nbsp;
+		</div>
+    </body>
+    <script src="ai_verticalMenu.js"></script>
+    <script src="ai_session.js"></script>
+    <script src="ai_format.js"></script>
+    <script src="ai_proxy.js"></script>
+    <script src="IOTwebUIAI.js"></script>
+ </html>
