@@ -102,7 +102,7 @@ Sempre un oggetto js, vedi i formati nei vari casi
  ```
 * **device/_dev-name_|_dev-id_/dinfo|dstatus|ddata|_code_** (e.g.: device/Temperatura studio/va_temperature, device/Temperatura studio/dinfo, device/Termo studio/dstatus ) <br>
   Ricevuto: (va_temperature)
- ```
+```
            {name:"Temperatura studio",
             va_temperature: 28}
 ```
@@ -208,36 +208,35 @@ Questo interruttore-misuratore (OPWTY-63), utilizzato con il nome "Main AC", pre
 #### Codice
 È possibile avere i valori RT in chiaro sia nel tooltip di IoTwebUI che nei dati esportati da IoTrest, intervenendo nel file 'custom.js' come segue:
 
-1) L'algoritmo di decodifica è noto: è implementato nella funzione `context.global.datadecode.STRUCTELERT` presente nel nodo `*ENCODE/DECODE user library` di **tuyaDAEMON.CORE_devices**. Purtroppo, la funzione è in nodejs e deve essere riscritta per l'ambiente js del browser. La funzione è comunque abbastanza semplice:
-   
- ```
-function datadecodeSTRUCTELERT(value) {
-    let result = {};
-// versione javascript riscritta (Buffer non disponibile nel browser)
-    const decod = atob(value); // stringa ASCII da code64
-// conversioni Int16BE, scalatura:
-    result["V"]     = (decod.charCodeAt(1) + 256*decod.charCodeAt(0)) / 10.0;       // V
-    result["Leack"] = (decod.charCodeAt(3) + 256*decod.charCodeAt(2)) / 1000.0;     // A
-    result["A"]     = (decod.charCodeAt(5) + 256*decod.charCodeAt(4)) / 40000.0;    // A
-    result["W"]     = (decod.charCodeAt(7) + 256*decod.charCodeAt(6)) ;             // W
-    return (result);
-};
+1) L'algoritmo di decodifica è noto: è implementato nella funzione `context.global.datadecode.STRUCTELERT` presente nel nodo `*ENCODE/DECODE user library` di **tuyaDAEMON.CORE_devices**. Purtroppo, la funzione è in _nodejs_ e deve essere riscritta per l'ambiente js del browser. La funzione è comunque abbastanza semplice:
+```
+   function datadecodeSTRUCTELERT(value) {
+       let result = {};
+   // versione javascript riscritta (Buffer non disponibile nel browser)
+       const decod = atob(value); // stringa ASCII da code64
+   // conversioni Int16BE, scalatura:
+       result["V"]     = (decod.charCodeAt(1) + 256*decod.charCodeAt(0)) / 10.0;       // V
+       result["Leack"] = (decod.charCodeAt(3) + 256*decod.charCodeAt(2)) / 1000.0;     // A
+       result["A"]     = (decod.charCodeAt(5) + 256*decod.charCodeAt(4)) / 40000.0;    // A
+       result["W"]     = (decod.charCodeAt(7) + 256*decod.charCodeAt(6)) ;             // W
+       return (result);
+   };
 ```
 
 2) La funzione hook `filterDP(res, devData)` viene chiamata per ogni dispositivo letto dal Cloud e normalmente non fa nulla, ma è presente per inserire l'elaborazione personalizzata dei valori.
 Il parametro `res` è l'oggetto con i dati completi del device, mentre `devData` è un oggetto `{code1:value1, code2:value2...}` con i valori predefiniti da visualizzare nel tooltip.
 In questo caso avremo:
 ```
-   if (res.name == "Main AC") {                     //Misuratore di potenza
-  // la decodifica per il tooltip aggiunge valori extra a devData
-      const vals = datadecodeSTRUCTELERT(devData.phase_a); // decodifica 'phase_a'
-      devData['phase_a_V'] = vals.V.toFixed(1);     // esplode 'vals'
-      devData['phase_a_Leack'] = vals.Leack.toFixed(3);
-      devData['phase_a_A'] = vals.A.toFixed(3);
-      devData['phase_a_W'] = vals.W.toString();
-  // ALTRO: Per esportare tramite REST il valore decodificato, lo aggiungiamo anche a device.status
-      addToStatus("Main AC","phase_a_decoded", vals) ;
-}
+   if (res.name == "Main AC") {                               //Misuratore di potenza
+     // la decodifica per il tooltip aggiunge valori extra a devData
+         const vals = datadecodeSTRUCTELERT(devData.phase_a); // decodifica 'phase_a'
+         devData['phase_a_V'] = vals.V.toFixed(1);            // esplode 'vals'
+         devData['phase_a_Leack'] = vals.Leack.toFixed(3);
+         devData['phase_a_A'] = vals.A.toFixed(3);
+         devData['phase_a_W'] = vals.W.toString();
+     // ALTRO: Per esportare tramite REST il valore decodificato, lo aggiungiamo anche a 'device.status'
+         addToStatus("Main AC","phase_a_decoded", vals) ;
+  }
 ```
 nota: `addToStatus()` è un'utility che aggiorna i dati locali (utilizzati da REST), aggiungendo o aggiornando, in questo caso, il valore `phase_a_decoded`.
 
