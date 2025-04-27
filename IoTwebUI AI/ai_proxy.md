@@ -24,7 +24,7 @@ Le funzioni in questa libreria sono asincrone e restituiscono Promises per gesti
 
 ### `async function updateConfig(sessionId, configuration)`
 
-- **Descrizione:** Aggiorna la configurazione, per la sessione indicata. <br>Se necessario riavvia automaticamente OpenAI.<br>
+- **Descrizione:** Aggiorna la configurazione, per la sessione indicata. <br>
  Inoltre sincronizza le due copie di 'aiConfig': quella di AIserver (default, definita in `server02.js`) e la sua copia nel client (in `ai_proxy.js`). E' eseguita automaticamente all'avvio, per avere la sincronizzazione iniziale, e successivamente, ad ogni richiesta utente.<br>
  La struttura (estensibile) di default è la seguente (definita in `AIserver.js`):
 ```javascript
@@ -253,8 +253,10 @@ Un meccanismo di cleanup automatico cancella i documenti dopo 24h. Il riavvio di
 ### `async function proxyCallOpenai(message, sessionId)`
 
 - **Descrizione:** gestisce uno scambio query/reply con L'AI
+   - In base alla sessione, se necessario riavvia automaticamente OpenAI, utilizzando le API_KEY in environment.
    - Oltre al testo della query utente, invia all'AI automatiacamente l'History (precedenti messaggi) e i documenti di contesto (solo gli abilitati)
    - Risponde alla eventuali richeste di eseguire funzioni (tool Tuya) da parte dell'AI
+   - nota: ogni TOOL è definto da una struttura JSON e implementato in js (in server02.js).
    - Elabora la risposta dall'AI suddividendola in due parti: 'reasoning' (opzionale, usualmente solo presentata a video) e 'reply'
    - aggiunge allo storage 'Historical' la query utente, la prima risposta dell'AI (solo reply oppure richiesta Tool), le risposte dei tool (opzionali), la richiesta utente 'relay' da protocollo dopo i tool, la risposta finale (solo reply - opzionale).
    - il timeout è definto in config (default 90 secondi).  In caso di deep thinking con ricerche web può superare i 30 minuti.
