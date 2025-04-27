@@ -1,4 +1,4 @@
-# **IoTrest: Un ponte REST per le vostre device Tuya**
+# **IoTrest: Un ponte REST per i device Tuya**
 [English version](https://github.com/msillano/IoTwebUI/blob/main/RESTserver/README.md)
 **IoTrest** è un'estensione opzionale per **IoTwebUI** 2.2 che trasforma i tuoi dispositivi Tuya in un _**servizio web** accessibile tramite semplici richieste HTTP_. Oltre a leggere i dati dai tuoi dispositivi, IoTrest ti permette di interagire con essi in modo avanzato, attivando scene e regole e ricevendo avvisi in tempo reale.
 
