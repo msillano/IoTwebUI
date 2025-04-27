@@ -137,8 +137,8 @@ Sempre un oggetto js, vedi i formati nei vari casi
 note:<br>
       - `dinfo.sub` `true` se il device è sub-device (i.e. usa un  HUB) <br>
       - `dinfo.logged` _IoTwebUI extension_: Lista delle proprietà esportate da IoTwebUI su file.<br>
-      - `dinfo.test` _IoTwebUI extension_: `true` Se esiste un allatme IoTwebUI collegato al device.<br>
-      - `dinfo.category` : codice corrispondente a `is-a` (in pop-ups, EXPERT mode).
+      - `dinfo.test` _IoTwebUI extension_: `true` Se esiste un allarme IoTwebUI collegato al device.<br>
+      - `dinfo.category` : codice corrispondente a `is-a` (in pop-ups, EXPERT mode).<br>
       - `dstatus.icon` : frammento HTML per UI: icona e toolip del device.
 
 * **set/_dev-name_|_dev-id_/_code_/_value_** (e.g.: set/Device list/home/ROMA )<br>
