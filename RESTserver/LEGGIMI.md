@@ -54,7 +54,7 @@ Quindi l'insieme dei tre file è autosufficiente, non richiede `IoTwebUI` e può
 
 Nota: se non utilizzi REST, non eseguire `server.js`, ma avvia semplicemente **IoTwebUI** normalmente (con `run_me.bat` o direttamente): funzionerà perfettamente (senza il pop-up iniziale di conferma della connessione).
 
-### **Considerazioni finali**
+### Considerazioni finali
 
 * **Sicurezza:** Per motivi di sicurezza, esegui _IOTrest_ su una rete locale e non esporlo direttamente a Internet.
 * **Affidabilità:** _IoTrest_ e _IoTwebUI_ accedono a Tuya Cloud solo in modalità di lettura. **In NESSUN CASO i dati Tuya possono essere alterati.**
@@ -63,16 +63,18 @@ Nota: se non utilizzi REST, non eseguire `server.js`, ma avvia semplicemente **I
 * **Errori:** _IoTrest_ gestisce gli errori in modo robusto, fornendo messaggi di errore semplici e chiari, non bloccanti.
 * **Avvertenze:**
     - il valore `online` fornito da Tuya Cloud potrebbe differire dal valore effettivo mostrato in SmartLife.
-    - Se un dispositivo è `online = false`, Tuya Cloud conserva gli ultimi valori, quindi la richiesta `device/_dev-name_/_code_` potrebbe fornire dati obsoleti.### 
+    - Se un dispositivo è `online = false`, Tuya Cloud conserva gli ultimi valori, quindi la richiesta `device/_dev-name_/_code_` potrebbe fornire dati obsoleti.
 
-**Conclusioni**
+### **Conclusioni**
 **IoTrest** è lo strumento ideale per chi desidera creare rapidamente soluzioni personalizzate per la gestione dei propri dispositivi Tuya. Grazie alla sua flessibilità e facilità d'uso, REST ti permette di eseguire automazioni senza precedenti per le tue attività domestiche e creare esperienze utente uniche.
-L'utente (o un'APP o una UI) può leggere tutti i dati dal Tuya Cloud filtrati, quando necessario, tramite decodifica o elaborazione. Tutte le possibili operazioni di configurazione e comando sono garantite dalla mediazione del 'tap-to-run' di Tuya: massima libertà con totale sicurezza!
+L'utente (o un'APP o una UI) può leggere tutti i dati dal Tuya Cloud filtrati, quando necessario, tramite decodifica o elaborazione. Tutte le possibili operazioni di configurazione e comando sono garantite dalla mediazione dei 'tap-to-run' di Tuya: massima libertà con totale sicurezza!
 ![](https://github.com/msillano/IoTwebUI/blob/main/pics/screen02.png?raw=true)
 
 Interfacce utente come queste, con immagini, pulsanti, gadget, dati dei dispositivi, persino multi-pagina, sono realizzabili piuttosto facilmente in HTML e (un po') di js, e sono totalmente interattive tramite REST.
 
 ![](https://github.com/msillano/IoTwebUI/blob/main/pics/screen04.png?raw=true)
+
+Esempio pronto: la versione 3.0 di [IoTwebUI](https://github.com/msillano/IoTwebUI/blob/main/README.md)
 
 <hr style="height:2px;border-width:0;color:gray;background-color:gray">
 
