@@ -99,7 +99,7 @@ Received (ROMA/Studio)
                     "USBswitch",
                     "Zigbee Gateway"]}
  ```
-* **device/_dev-name_|_dev-id_/dinfo| dstatus|_code_** (e.g.: device/Temperatura studio/va_temperature, device/Temperatura studio/dinfo, device/Termo studio/dstatus ) <br>
+* **device/_dev-name_|_dev-id_/dinfo| dstatus|ddata|_code_** (e.g.: device/Temperatura studio/va_temperature, device/Temperatura studio/dinfo, device/Termo studio/dstatus ) <br>
 Received (va_temperature)
  ```
            {name:"Temperatura studio",
@@ -123,7 +123,17 @@ Received (va_temperature)
             status: {switch: true,
                      temp_current: 306,
                      temp_set: 200 }}
+            icon: long HTML fragment with icon+tooltip (URLescaped)
 ```
+&nbsp;&nbsp;&nbsp;&nbsp;Received (ddata) 
+``` 
+           {name: "Termo studio",
+            online: true,
+            status: {switch: true,
+                     temp_current: 306,
+                     temp_set: 200 }}
+```
+
 note:<br>
       - `dinfo.sub` `true` if the device is a sub-device (i.e. use a HUB) <br>
       - `dinfo.logged` _IoTwebUI extension_: list of properties exported from IoTwebUI to file.<br>
