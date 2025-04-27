@@ -8,5 +8,5 @@ _Sono presenti alcuni esempi:_
     File CSV, può essere creato da DB, a mano, o usando `IoTwebUI - APP Explore devices`
 - `CONX-set-devices.txt`: Elenco di tutti i device e attributi scrivibili dall'AI (x-device) _Esempio: device fittizi_<br>
     File CSV, può essere creato da DB, a mano, o usando `IoTwebUI - APP Explore devices`
-- `CONX-TTR Tuya.txt`: Elenco di tutti i Tap-To-Run (TUIA) e le REGOLE (IoTwebUI) attivabili da AI. _Esempio: TTR fittizi_ <br> 
+- `CONX-TTR Tuya.txt`: Elenco di tutti i Tap-To-Run (Tuya) e le REGOLE (IoTwebUI) attivabili da AI. _Esempio: TTR fittizi_ <br> 
     File CSV, può essere creato da DB, a mano, o usando `IoTwebUI - APP Explore scenes`
