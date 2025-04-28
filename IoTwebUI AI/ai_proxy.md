@@ -17,16 +17,17 @@ Le funzioni in questa libreria sono asincrone e restituiscono Promises per gesti
    - `success: false`: in caso di errore, è presente solo il campo `error` con un messaggio (dettagli in console)
    - `success: true`: nessun errore 
    - `found`:  opzionale - indica un fallimento possibile, e.g. cancellazione di un `context` non esistente
-   - `reply`:  opzionale - una stringa di feedback per UI che illustra il risultato raggiunto, creata ad hoc da ai_proxy (in inglese!) in alcune funzioni.
+   - `reply`:  opzionale - una stringa di feedback per UI che illustra il risultato raggiunto, creata ad hoc da ai_proxy (in inglese!) per alcune funzioni.
    -  altri dati specifici della funzione chiamata.
 
 ## Funzioni Pubbliche
 
 ### `async function updateConfig(sessionId, configuration)`
 
-- **Descrizione:** Aggiorna la configurazione, per la sessione indicata. <br>
- Inoltre sincronizza le due copie di 'aiConfig': quella di AIserver (default, definita in `server02.js`) e la sua copia nel client (in `ai_proxy.js`). E' eseguita automaticamente all'avvio, per avere la sincronizzazione iniziale, e successivamente, ad ogni richiesta utente.<br>
- La struttura (estensibile) di default è la seguente (definita in `AIserver.js`):
+- **Descrizione:** Svolge due funzioni:
+   1. Aggiorna la configurazione, per la sessione indicata. <br>
+   2. Sincronizza le due copie di 'aiConfig': quella di AIserver (default, definita in `server02.js`) e la sua copia nel client (in `ai_proxy.js`). E' eseguita automaticamente all'avvio, per avere la sincronizzazione iniziale, e successivamente, ad ogni richiesta utente.<br>
+ La struttura (estensibile) della configurazione di default è la seguente (definita in `AIserver.js`):
 ```javascript
  *   provider:'deepseek',                      // 'openai' o altri
  *   baseURL: 'https://api.deepseek.com',      // dipende dal provider
@@ -36,13 +37,13 @@ Le funzioni in questa libreria sono asincrone e restituiscono Promises per gesti
  *   seed: false,                              // parametro per AI (in menu)
  *   max_tokens: 3000,                         // parametro per AI (in menu)
  *   quirkMaxCompletion: false,                // usa 'max_completion_tokens' invece di 'max_tokens' (alcuni model)
- *   stop: null,                               // parametro per AI (defoult null => not used)
- *   top_k: null,                              // parametro per AI (defoult null => not used)
- *   top_p: null,                              // parametro per AI (defoult null => not used)
- *   frequency_penalty: null,                  // parametro per AI (defoult null => not used)
+ *   stop: null,                               // parametro per AI (default null => not used)
+ *   top_k: null,                              // parametro per AI (default null => not used)
+ *   top_p: null,                              // parametro per AI (default null => not used)
+ *   frequency_penalty: null,                  // parametro per AI (default null => not used)
  *   timeoutAi: 90,                            // per AIserver, chiamata ad AI, in secondi
  *   emableStremMode: false                    // block mode / stream mode
- *   IoTwebUIok: true                          // auto allo startup: IoTwebUI REST accessibile.
+ *   IoTwebUIok: true                          // auto allo startup: Tuya (IoTwebUI REST) accessibile.
  *   enableTuyaTools: true,                    // Attiva/disattiva i tool Tuya (auto per alcuni model)
 _estensioni (opzionali)_
 ```
@@ -82,14 +83,17 @@ _Il numero massimo di "token" che la risposta del modello può generare._
 **_note: seed_** <br>
 Se si desidera ottenere risultati deterministici per la stessa richiesta e gli stessi parametri, impostare seed ON. Questo è utile per il debugging e per garantire la riproducibilità.
 Esempio:  Sperimentando con diversi parametri (ad esempio, diverse impostazioni di temperature), mantenere lo stesso seed ti permette di isolare l'effetto della modifica del parametro, poiché la componente di casualità sarà la stessa in entrambi i casi.
+
+**_note: IoTwebUIok_** <br>
+Se all'avvio Tuya (IoTwebUI REST) non è disponibile, un popup avverte l'utente, e viene disabilitata l'opzione 
  
 - **Parametri:**
-  - `{object} configuration`: Oggetto contenente la nuova configurazione da applicare al server. Può essere incompleta e contenere solo uno o due valori nuovi. Estensibile: accetta qualsiasi valore.
-  - - `{string} sessionId`: L'identificatore univoco della sessione utente per cui si desidera recuperare la cronologia.
+  - `{object} configuration`: Oggetto contenente la nuova configurazione da applicare al server. Può essere incompleta e contenere solo uno o due valori da aggiornare. Estensibile: accetta qualsiasi valore.
+  - `{string} sessionId`: L'identificatore univoco della sessione utente per cui si desidera recuperare la cronologia.
 - **Ritorna:**
   - `{Promise<boolean>}`: Promise che risolve in true, in caso di successo + echo in console della configurazione aggiornata.
   -  altrimenti false + ERROR in console + ALERT.
-  -   nota: _In caso di server non funzionante, un popup (ALERT) avverte l'utente allo startup per controllare il server e ricaricare il chatbot._
+  -  nota: _Questa funzione è chiamata automaticamente allo startup. In caso di AIserver non funzionante, un popup (ALERT) avverte l'utente  di controllare il server e ricaricare il chatbot._
    <hr>
 ## _History_
 _Le AI sono 'status less':  insieme al prompt (domanda) attuale, ogni volta è opportuno inviare al server AI tutti i colloqui precedenti_.<br>
