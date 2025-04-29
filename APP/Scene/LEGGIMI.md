@@ -102,6 +102,7 @@ I mondi Tuya e IoTwebUI hanno limitati punti di contatto:
 * un _x-device_ appare nei grafi di **Explore Scene** solo se ha metadati. 
 * una _REGOLA_(IoTwebUI) non può avere metadati, ed appare nei grafi di **Explore Scene** solo se è presente nei metadati di un _x-device_.
 
+In pratica i metadati definiscono solo gli archi del grapho, e (implicitamente) i nodi di arrivo e partenza.
 La struttura (opzionale) per i metadati di un **x-device** è la seguente (esempio):
 ```
 x-device.details: = [
@@ -120,7 +121,8 @@ _note:_
 	- **auto**: _automazione_, in (to) se è un evento trigger, in (from) se è un'azione
 	- **tap**: _Tap-To-Run_,  in (to) se è un evento trigger, in (from) se è un'azione
 	- **extra**: _risorse esterne_: alarm, miniAPP, Tuya data, UI etc...<br>
- I valori che iniziano la x (e.g. _xdevice_) si riferiscono a elementi di `IoTwebUI`, gli altri a `Tuya`. Ad ogni _type_ corrisponde un nodo di aspetto diverso, in tutto 8.
+        - I valori che iniziano la x (e.g. _xdevice_) si riferiscono a elementi di `IoTwebUI`, gli altri a `Tuya`.
+        - Ad ogni _type_ corrisponde un nodo di aspetto diverso, in tutto 8.
 * **id**, obbligatorio, è il nome di un elemento e compare al centro del nodo. Se non esiste ancora è creato: questo è il modo per inserire nel grafo le _ROUTINE di_ _IoTwebUI_, che altrimenti non comparirebbero.
 * **action** è la label dell'arco che unisce _from_ a _to_.
 
