@@ -35,4 +35,4 @@ Un prompt engineer deve combinare:
 ### Conclusione
 Il prompt engineering è una competenza sempre più richiesta in un mondo dove l'AI generativa diventa pervasiva. Comprendere come comunicare efficacemente con questi modelli non solo migliora la qualità degli output, ma apre nuove opportunità in settori che vanno dalla medicina all'intrattenimento. Con strumenti come quelli di IBM, le aziende possono trasformare questa disciplina in un vantaggio competitivo.
 
-**Fonte**: IBM Think Topics, ["Prompt Engineering"](https://www.ibm.com/it-it/think/topics/prompt-engineering) (modificato).  
+**Fonte**: IBM Think Topics, ["Prompt Engineering"](https://www.ibm.com/it-it/think/topics/prompt-engineering) (modificato con Deepseek).  
