@@ -13,11 +13,13 @@ Rileva quando un evento inizia (`startDevice.start = true`) e termina (`stopDevi
 
 ---
 ### Implementazione 1 ('local linking' con 1/2 Switch Zigbee)
-**Device**: _Switch Zigbee (SWITCH) con funzione countdown. Le altre funzioni dello switch (ON/OFF, etc.) possono essere usate in modo indipendente per altri scopi_.
+**Device**:
+1.  _Switch Zigbee (SWITCH) con funzione countdown. Le altre funzioni dello switch (ON/OFF, etc.) possono essere usate in modo indipendente per altri scopi_.
 
 * Nei _device virtuali_ il `countdown` è presente, ma è solo un registro R/W: non viene decrementato: pertanto SWITCH non può essere un device virtuale!
 * In alcuni `smart switch` il `countdown` si azzera automaticamente ad un cambio di stato del relay. In questo caso le due funzioni ON/OFF e countdown NON sono indipendenti: giocoforza usare un device dedicato. 
 
+2. Device o Tap-to-run da attivare per la segnalazione dell'evento 'tempo max superato'.
 
 **Codice**
 
@@ -89,7 +91,8 @@ nota: se è complesso inserire in SmartLife un countdown di 100 (s), usate pure 
   - Proprietà: `countdown()` (timer retriggerabile, valore > 0 per avviare, 0 per annullare).
                          quando arriva a 0 effettua il TOGGLE di  MASTER.switch_1. 
   - Output: `MASTER.switch_1 == true` indica l'attivazione dell'allarme.  
-
+  - _nota: l'output è comandato dal countdown, quindi basta che lo switch scelto ne sia fornito._
+  
 **Codice**  
 ``` 
 // Automazione A1: Avvia timer all'apertura della porta
