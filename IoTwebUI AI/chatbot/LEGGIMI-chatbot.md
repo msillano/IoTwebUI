@@ -1,10 +1,12 @@
 ## IoTwebUI chatbot - USO
 E' un ambiente nuovo e sto imparando facendo.
 
-Il primo punto da tener presente è che la maggior parte delle AI è status less, cioè senza memoria. Per esempio, un'AI non conosce nemmeno la data odierna, se non viene fornita nella conversazione! E' il chatbot che si occupa di presentare, ad ogni conversazione, 3 tipi di informazione, tutte in formato testo:
-       a) Contesto di sistema: sono documenti, istruzioni sotto il controllo utente, oppure lette direttamente dall'AI nel web con il TOOL a disposizione. L'utente può cancellarlo, o aggiungere file (locali). Esempi di file usati come contesto in varie prove sono nella dir 'system'. (Ad ogni documento di contesto il chatbot agguinge data e ora attuali, così l'AI ha questa informazione in automatico).
-       b) History: contiene le conversazioni passate. Le conversazioni sono numerate progressivamente, così si può fare un riferimento esatto ad una domanda precedente [Qxx] oppure ad una risposta dell'AI [Rxx]. Per evitare che l'History cresca a dismisura, si può chiedere all'AI di fare un riassunto di tutte le conversazioni precedenti, e poi, con il bottone "Cut History", l'utente conserva il solo  riassunto!
-      c) Promp o domanda utente, che influenza molto il contenuto e la forma della risposta. Esiste già un'abbondante letteratura sul 'prompt Engeenering'
+Il primo punto da tener presente è che la maggior parte delle AI è status less, cioè senza memoria. Per esempio, un'AI non conosce nemmeno la data odierna, se non viene fornita nella conversazione!
+
+E' il **chatbot** che si occupa di presentare, ad ogni conversazione, 3 tipi di informazione, tutte in formato testo:
+    1. **Contesto di sistema**: sono documenti, istruzioni sotto il controllo utente, oppure lette direttamente dall'AI nel web con il TOOL a disposizione. L'utente può cancellarlo, o aggiungere file (locali). Esempi di file usati come contesto in varie prove sono nella dir `system`. (Ad ogni documento di contesto il chatbot agguinge data e ora attuali, così l'AI ha questa informazione in automatico).
+    2. **History**: contiene le conversazioni passate. Le conversazioni sono numerate progressivamente, così si può fare un riferimento esatto ad una domanda precedente [Qxx] oppure ad una risposta dell'AI [Rxx]. Per evitare che l'History cresca a dismisura, si può chiedere all'AI di fare un riassunto di tutte le conversazioni precedenti, e poi, con il bottone "Cut History", l'utente conserva il solo  riassunto!
+   3. **Prompt** o domanda utente, che influenza molto il contenuto e la forma della risposta. Esiste già un'abbondante letteratura sul 'prompt Engineering'
        
 Altri modelli di AI dedicano dello spazio in memoria ad ogni conversazione, eg. 8K o 32K: è limitato perchè va moltiplicato per il numero di utenti collegati: molte migliaia! Ci si accorge di questa cache se nelle risposte sono presenti delle informazioni precedenti, non più nel context o nella History attuali.
 
