@@ -114,9 +114,14 @@ x-device.details: = [
 ```
 
 _note:_
-* **from** e/o **to** sono opzionali, quando mancano come default è usato il nodo dell'_x-device_.
-* **type** è obbligatorio e deve assumere uno dei seguenti valori:  **device, auto, tap, extra, xdevice, xauto, xtap, xextra.** I valori che iniziano la x (e.g. _xdevice_) si riferiscono a elementi di `IoTwebUI`, gli altri a `Tuya`. Ad ogni _type_ corrisponde un nodo di aspetto diverso, in tutto 8.
-* **id**, obbligatorio, è il nome di un elemento e compare al centro del nodo. Se non esiste ancora è creato: questo è il modo per inserire nel grafo le _ROUTINE di_ _IoTwebUI_ che altrimenti non comparirebbero.
+* **from** e/o **to** sono opzionali, quando mancano come default è usato il nodo dell'_x-device_. (e.g. {data-driven}
+* **type** è obbligatorio e deve assumere uno dei seguenti valori:  **device, auto, tap, extra, xdevice, xauto, xtap, xextra.**:
+	- **device**: _device Tuya_ sorgente (from) o arrivo (to) di un freccia
+	- **auto**: _automazione_, in (to) se è un evento trigger, in (from) se è un'azione
+	- **tap**: _Tap-To-Run_,  in (to) se è un evento trigger, in (from) se è un'azione
+	- **extra**: _risorse esterne_: alarm, miniAPP, Tuya data, UI etc...<br>
+ I valori che iniziano la x (e.g. _xdevice_) si riferiscono a elementi di `IoTwebUI`, gli altri a `Tuya`. Ad ogni _type_ corrisponde un nodo di aspetto diverso, in tutto 8.
+* **id**, obbligatorio, è il nome di un elemento e compare al centro del nodo. Se non esiste ancora è creato: questo è il modo per inserire nel grafo le _ROUTINE di_ _IoTwebUI_, che altrimenti non comparirebbero.
 * **action** è la label dell'arco che unisce _from_ a _to_.
 
 Esempi si possono trovare nei source in molti addon o APP. (`battery01.2.js`, `scene01.js` etc.)
