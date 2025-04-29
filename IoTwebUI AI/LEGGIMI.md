@@ -77,6 +77,7 @@ Il chatbot **IoTwebUI-AI** si basa su un'architettura modulare, progettata per m
     * Funzionalità accessorie come l'archiviazione dello storico delle conversazioni e la gestione delle informazioni di contesto da utilizzare.
     * Il supporto per sessioni multiple di utenti, anche con modelli differenti.
     * L'implementazione dei TOOL specifici per l'interazione con l'ecosistema Tuya tramite comunicazioni REST con **IOTwebUI**.
+    * Tool extra per il caricamento diretto in context di pagine e documenti dal web (URL).
 
 4.  **`ai_proxy` (Libreria di Interfaccia):** Questa libreria JavaScript fornisce un'interfaccia semplificata per interagire con  "`AIserver`". Offre funzioni asincrone che astraggono le complesse chiamate al server, facilitando lo sviluppo dell'interfaccia utente. Le funzioni principali includono la gestione della configurazione, dello storico, del contesto e le chiamate all'API `OpenAI` (testo e streaming).
 Questa libreria ha una [dettagliata descrizione](https://github.com/msillano/IoTwebUI/blob/main/IoTwebUI%20AI/ai_proxy.md) con indicazioni tecniche sui vari parametri. 
