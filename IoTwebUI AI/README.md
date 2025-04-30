@@ -110,3 +110,5 @@ The experience gained and the specifications defined through experimentation wit
 ### _Conclusion:_
 
 _The IoTwebUI-AI project represents a versatile and powerful experimentation environment for exploring the synergies between artificial intelligence and the Tuya ecosystem. Its flexible architecture and the integration of specific TOOLs offer technicians the ability to analyze IoT devices, experiment with new interactions, and lay the foundations for future intelligent applications._
+
+For usage and installation, see [chatbot](https://github.com/msillano/IoTwebUI/blob/main/IoTwebUI%20AI/chatbot/README.md)
