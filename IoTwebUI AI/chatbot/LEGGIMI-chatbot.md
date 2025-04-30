@@ -33,7 +33,7 @@ Alcuni modelli di IA dedicano una piccola parte della memoria a ogni conversazio
 ### **Parametri che Influenzano lo Stile delle Risposte**
 Alcuni parametri possono essere modificati da menu per personalizzare le risposte dell'IA:
 - **Temperature**: Controlla la creatività delle risposte (valori più alti = più creative, valori più bassi = più precise).  
-- **Seek**: controlla la ripetibilità delle risposte: seek ON = risposte senza variazioni.
+- **Seek**: controlla la ripetibilità delle risposte: seek ON = deterministico.
 - Altri parametri avanzati possono essere configurati nel file `server02.js`.  
 - Per maggiori dettagli, consulta [queste informazioni](https://github.com/msillano/IoTwebUI/blob/main/IoTwebUI%20AI/ai_proxy.md#async-function-updateconfigsessionid-configuration).  
 
