@@ -67,8 +67,8 @@ Per utilizzare un modello di IA, è necessario conoscere:
 ## **Installazione del Chatbot IoTwebUI**
 
 ### **Prerequisiti**  
-- Avere **IoTwebUI versione 3.0** installata e funzionante (segui (https://github.com/msillano/IoTwebUI/blob/main/APP/LEGGIMI.md#installazione-e-uso)), incluso **IoTrest**.  
-- Nota: Il chatbot può funzionare anche senza IoTwebUI, ma perderà l'integrazione con Tuya (la sua caratteristica principale). Resta comunque un chatbot flessibile con accesso al web.  
+- Avere **IoTwebUI versione 3.0** installata e funzionante ([vedi istruzioni](https://github.com/msillano/IoTwebUI/blob/main/APP/LEGGIMI.md#installazione-e-uso)), incluso **IoTrest**.  
+- Nota: Il chatbot può funzionare anche senza _IoTwebUI_, ma perderà l'integrazione con Tuya (la sua caratteristica principale). Resta comunque un chatbot flessibile con accesso al web.  
 
 ### **Passo 1: Scaricare e Preparare i File**  
 1. Scarica il file `chatbot01.zip` e posizionalo nella cartella `\IoTwebUI\`.  
