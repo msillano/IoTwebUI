@@ -127,9 +127,8 @@ E' richiesta in'intefaccia API compatibile openai. Al momento ho testato:
      Models: 10+ (ChatGPT-4o, DALL·E 3...) vedi https://platform.openai.com/docs/models
 
 _nota: esistono varie limitazioni all'uso, e.g. l'implementazione di TOOL, ma anche come numero di comunicazioni o come dimensioni dei documenti allegati, variabili da modello a modello ed ovviamente più stringenti nei casi free._
-In ogni caso la scelta del modello avviene a menu, ed ogni customizzazione è un semplice problema di configurazione del menu (v. `ai_verticalMenu.js`) 
 
-_nota: il menu laterale è dinamico e facilmente customizzabile: ad esempio l'aggionta/eliminazione di nuovi modelli è molto semplice (vedi file `ai_verticalMenu.js`)._
+_nota: il menu laterale è dinamico e facilmente customizzabile: ad esempio l'aggionta/eliminazione dei modelli è molto semplice (vedi file `ai_verticalMenu.js`)._
  
 ### Potenziali Sviluppi Futuri
 
