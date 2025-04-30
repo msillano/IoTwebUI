@@ -50,7 +50,7 @@ To use an AI model, you need to know:
 1. **Exact Model Name** (value)
 2. **Access URL** (baseURL)
 3. **API_KEY** (access key, which can be free or pay-as-you-go).
-    - For more details, see [this page](https://github.com/msillano/IoTwebUI/blob/main/IoTwebUI%20AI/LEGGIMI.md#ai-provider).
+    - For more details, see [this page](https://github.com/msillano/IoTwebUI/blob/main/IoTwebUI%20AI/README.md#ai-provider).
 
 ### **Steps to Configure the API Key**
 1. **Assign a Name to the Key** (e.g., `API_KEY_GROQ`) and save it in your computer's environment variables:
@@ -68,7 +68,7 @@ To use an AI model, you need to know:
 ## **IoTwebUI Chatbot Installation**
 
 ### **Prerequisites**
-- Have **IoTwebUI version 3.0** installed and working ([see instructions](https://github.com/msillano/IoTwebUI/blob/main/APP/LEGGIMI.md#installazione-e-uso)), including **IoTrest**.
+- Have **IoTwebUI version 3.0** installed and working ([see instructions](https://github.com/msillano/IoTwebUI/blob/main/APP/README.md#installation-and-use)), including **IoTrest**.
 - Note: The chatbot can also work without _IoTwebUI_, but it will lose integration with Tuya (its main feature). However, it remains a flexible chatbot with web access.
 
 ### **Step 1: Download and Prepare Files**
