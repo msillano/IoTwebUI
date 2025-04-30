@@ -10,3 +10,10 @@ _Sono presenti alcuni esempi:_
     File CSV, può essere creato da DB, a mano, o usando `IoTwebUI - APP Explore devices`
 - `CONX-TTR Tuya.txt`: Elenco di tutti i Tap-To-Run (Tuya) e le REGOLE (IoTwebUI) attivabili da AI. _Esempio: TTR fittizi_ <br> 
     File CSV, può essere creato da DB, a mano, o usando `IoTwebUI - APP Explore scenes`
+
+Inoltre possono ewssere usati i seguenti file, accessibili pubblicamente (gist):
+
+* [https://gist.github.com/msillano/e06d4125077d5690dd8b75ed7c0ee442/raw/34d5f43eb2c9194ccf289483473804e757f10594/tuya_BNF_local.it.dsv1.0.txt](https://gist.github.com/msillano/e06d4125077d5690dd8b75ed7c0ee442/raw/34d5f43eb2c9194ccf289483473804e757f10594/tuya_BNF_local.it.dsv1.0.txt)  Descrizione delle 'scene' Tuya in BNF, italiano (local linkage).
+
+* [https://gist.github.com/msillano/64615e499df46326b9500ff3b5288c6a/raw/3bf7a9d5925530ecc667d085995a5df318c8e9b3/tuya_BNF_full.it.dsv1.0.txt](https://gist.github.com/msillano/64615e499df46326b9500ff3b5288c6a/raw/3bf7a9d5925530ecc667d085995a5df318c8e9b3/tuya_BNF_full.it.dsv1.0.txt)   Descrizione delle 'scene' Tuya in BNF, italiano (completo, incluso ambito).
+
