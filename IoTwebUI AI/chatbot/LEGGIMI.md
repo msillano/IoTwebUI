@@ -1,7 +1,8 @@
 ## IoTwebUI chatbot - USO
 
 ### **Come Funzionano le AI Senza Memoria (Stateless)**
-[English version]()
+[English version](https://github.com/msillano/IoTwebUI/blob/main/IoTwebUI%20AI/chatbot/README.md)
+
 La maggior parte dei sistemi di Intelligenza Artificiale (AI) sono **senza memoria** (stateless), il che significa che non conservano informazioni tra una conversazione e l'altra. Ad esempio, un'IA non sa nemmeno qual è la data odierna a meno che non gliela forniamo esplicitamente durante la conversazione!
 
 ### **Come Gestisce le Informazioni IoTwebUI Chatbot?**
