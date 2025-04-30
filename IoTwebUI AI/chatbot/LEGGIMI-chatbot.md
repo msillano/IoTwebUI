@@ -80,7 +80,7 @@ Per utilizzare un modello di IA, è necessario conoscere:
    - `install_AIserver.bat`: Installa le dipendenze necessarie per Node.js.
         
 ### **Passo 3: Installare le dipendenze**  
-1.  Una volta aggiornato, devi usare `install_AIserver.bat`: crea la dir /node_modules.
+1.  Una volta aggiornato, devi usare `install_AIserver.bat`: crea la dir `/node_modules`.
 
 _Ora **IoTwebUI chatbot** è pronto per essere utilizzato:_ esegui  `RUN chatbot.bat`!  
 
