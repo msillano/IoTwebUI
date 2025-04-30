@@ -102,6 +102,31 @@ The IoTwebUI-AI chatbot offers considerable flexibility for experimentation in t
     * Directly update the status values of _IoTwebUI x-devices_.
     * Develop intelligent automation scenarios based on AI analysis of device data.
     * Experiment with new human-machine interaction modes for managing smart homes and other IoT devices.
+    
+### AI Providers
+
+An OpenAI-compatible API interface is required. Currently, I have tested:
+
+#### Groq
+    Free plan (with access limitations): see https://groq.com/ to get APIKEY
+        rate limits here: https://console.groq.com/docs/rate-limits
+    AccessPoint: https://api.groq.com/openai/v1
+    Models: 9 (Whisper, llama..) see https://console.groq.com/docs/models
+    note: groq-llama3.3 (meta) implements tools and is very fast
+    
+#### Deepseek
+    Pay-as-you-go: https://www.deepseek.com/ to get APIKEY
+        e.g., April '25: 1250 API requests, 3,500,000 Tokens = 0.64 USD
+    AccessPoint: https://api.deepseek.com
+    Models: 2 (deepseek-chat, deepseek-reasoner) see https://api-docs.deepseek.com/quick_start/pricing
+    
+#### OpenAI
+    Pay-as-you-go: see https://openai.com/api/pricing/ to get APIKEY
+    AccessPoint: https://api.openai.com/v1
+    Models: 10+ (ChatGPT-4o, DALL·E 3...) see https://platform.openai.com/docs/models
+
+_note: there are various usage limitations, e.g., the implementation of TOOLs, but also the number of communications or the size of attached documents, which vary from model to model and are obviously more restrictive in free plans._
+_note: the side menu is dynamic and easily customizable: for example, adding/removing models is very simple (see file `ai_verticalMenu.js`)._
 
 ### Potential Future Developments
 
