@@ -9,18 +9,17 @@ Il chatbot si occupa di organizzare tre tipi di informazioni, tutte in formato t
 
 1. **Contesto di Sistema**  
    - Sono documenti o istruzioni che l'utente può controllare o che l'IA legge direttamente dal web utilizzando un TOOL dedicato.  
-   - L'utente può aggiungere o rimuovere file locali.  
+   - L'utente può aggiungere o rimuovere i file locali.  
    - Ogni documento di contesto include automaticamente la data e l'ora corrente, così l'IA ha sempre questa informazione a disposizione.  
    - Esempi di file usati come contesto si trovano nella cartella `system`.
 
 2. **Cronologia (History)**  
    - Contiene tutte le conversazioni passate, numerate progressivamente (es. [Q4], [R4]).  
-   - Per evitare che la cronologia diventi troppo lunga, è possibile chiedere all'IA di riassumere le conversazioni precedenti e con il pulsante **"Cut History"**, l'utente può conservare solo il riassunto, eliminando il resto.
+   - Per evitare che la cronologia diventi troppo lunga, è possibile chiedere all'IA di riassumere le conversazioni precedenti e con il pulsante **"Cut History"**, l'utente può conservare solo l'ultima conversazione (il riassunto), eliminando il resto.
 
 3. **Prompt (Domanda dell'Utente)**  
    - È la richiesta che l'utente fa all'IA e ha un grande impatto sulla risposta.  
-   - Esiste una vasta letteratura su come scrivere prompt efficaci, nota come **Prompt Engineering**.  
-   - Per un'introduzione, puoi leggere [questo articolo](https://github.com/msillano/IoTwebUI/blob/main/IoTwebUI%20AI/chatbot/system/info:%20Prompt%20Engineering.md).
+   - Esiste una vasta letteratura su come scrivere prompt efficaci, nota come **Prompt Engineering**. Per un'introduzione, puoi leggere [questo articolo](https://github.com/msillano/IoTwebUI/blob/main/IoTwebUI%20AI/chatbot/system/info:%20Prompt%20Engineering.md).
    - Esempio di prompt: "_Leggi per favore questo documento: https://www.ibm.com/it-it/think/topics/prompt-engineering, riassumilo in un articolo su 'Prompt Engineering' di circa 100 righe, in fondo cita la fonte + 'modificato da deepseek'_"
 
 ### **Altri Modelli di IA con Memoria Limitata**
