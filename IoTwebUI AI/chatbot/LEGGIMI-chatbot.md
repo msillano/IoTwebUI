@@ -27,7 +27,8 @@ Alcuni modelli di IA dedicano una piccola parte della memoria a ogni conversazio
 - Ci si accorge di questa "cache" quando l'IA fa riferimento a informazioni precedenti che non sono più nel contesto o nella cronologia attuali.  
 - Se i limiti di memoria della AI vengono superati, il contesto o il prompt vengono semplicemente troncati.
 
----
+![image](https://github.com/user-attachments/assets/2d1204c5-8008-46f7-9f45-118dd1e91eb0)
+
 
 ### **Parametri che Influenzano lo Stile delle Risposte**
 Alcuni parametri possono essere modificati da menu per personalizzare le risposte dell'IA:
