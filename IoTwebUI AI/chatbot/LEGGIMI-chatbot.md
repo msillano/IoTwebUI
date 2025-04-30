@@ -23,7 +23,7 @@ Il chatbot si occupa di organizzare tre tipi di informazioni, tutte in formato t
    - Esempio di prompt: "_Leggi per favore questo documento: https://www.ibm.com/it-it/think/topics/prompt-engineering, riassumilo in un articolo su 'Prompt Engineering' di circa 100 righe, in fondo cita la fonte + 'modificato da deepseek'_"
 
 ### **Altri Modelli di IA con Memoria Limitata**
-Alcuni modelli di IA dedicano una piccola parte della memoria a ogni conversazione (es. 8K o 32K). Questo spazio è limitato perché deve essere moltiplicato per il numero di utenti collegati (spesso migliaia!).  
+Alcuni modelli di IA dedicano una piccola parte della memoria a ogni conversazione (es. 8K o 32K). Questo spazio è limitato perché deve essere moltiplicato per il numero di utenti collegati (anche centinaia di migliaia!).  
 - Ci si accorge di questa "cache" quando l'IA fa riferimento a informazioni precedenti che non sono più nel contesto o nella cronologia attuali.  
 - Se i limiti di memoria della AI vengono superati, il contesto o il prompt vengono semplicemente troncati.
 
