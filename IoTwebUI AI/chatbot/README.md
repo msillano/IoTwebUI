@@ -1,4 +1,5 @@
 ## IoTwebUI Chatbot - Usage
+[Versione italiana](https://github.com/msillano/IoTwebUI/blob/main/IoTwebUI%20AI/chatbot/LEGGIMI.md)
 
 ### **How Stateless AIs Work**
 
