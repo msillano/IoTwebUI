@@ -4,13 +4,14 @@
 
 La maggior parte dei sistemi di Intelligenza Artificiale (AI) sono **senza memoria** (stateless), il che significa che non conservano informazioni tra una conversazione e l'altra. Ad esempio, un'IA non sa nemmeno qual è la data odierna a meno che non gliela forniamo esplicitamente durante la conversazione!
 
-### **Come Gestisce le Informazioni un Chatbot?**
+### **Come Gestisce le Informazioni IoTwebUI Chatbot?**
 Il chatbot si occupa di organizzare tre tipi di informazioni, tutte in formato testo, fornite all'AI per ogni conversazione:
 
 1. **Contesto di Sistema**  
    - Sono documenti o istruzioni che l'utente può controllare o che l'IA legge direttamente dal web utilizzando un TOOL dedicato.  
    - L'utente può aggiungere o rimuovere i file locali.  
-   - Ogni documento di contesto include automaticamente la data e l'ora corrente, così l'IA ha sempre questa informazione a disposizione.  
+   - Il primo documento di contesto include automaticamente la data e l'ora corrente, così l'IA ha sempre questa informazione a disposizione.  
+   - Per velocizzare, anche `server02.js` usa un meccanismo di cache per i file di contesto: un file è letto dal PC solo se non è presente nella cache.
    - Esempi di file usati come contesto si trovano nella cartella `system`.
 
 2. **Cronologia (History)**  
@@ -34,7 +35,8 @@ Alcuni modelli di IA dedicano una piccola parte della memoria a ogni conversazio
 Alcuni parametri possono essere modificati da menu per personalizzare le risposte dell'IA:
 - **Temperature**: Controlla la creatività delle risposte (valori più alti = più creative, valori più bassi = più precise).  
 - **Seek**: controlla la ripetibilità delle risposte: seek ON = deterministico.
-- Altri parametri avanzati possono essere configurati nel file `server02.js`.  
+
+Altri parametri avanzati possono essere configurati nel file `server02.js`.  
 - Per maggiori dettagli, consulta [queste informazioni](https://github.com/msillano/IoTwebUI/blob/main/IoTwebUI%20AI/ai_proxy.md#async-function-updateconfigsessionid-configuration).  
 
 Questi parametri saranno utili per ottimizzare le prestazioni dell'IA.
