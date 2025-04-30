@@ -8,10 +8,10 @@ Most Artificial Intelligence (AI) systems are **stateless**, meaning they do not
 The chatbot organizes three types of information, all in text format, provided to the AI for each conversation:
 
 1. **System Context**
-    - These are documents or instructions that the user can control or that the AI reads directly from the web using a dedicated TOOL.
+    - These are documents or instructions the user can control or that the AI reads directly from the web using a dedicated TOOL.
     - The user can add or remove local files.
     - The first context document automatically includes the current date and time, so the AI always has this information available.
-    - To speed things up, `server02.js` also uses a cache mechanism for context files: a file is read from the PC only if it is not present in the cache.
+    - To speed things up, `server02.js` also uses a cache mechanism for context files: a file is read from the PC only if it is not in the cache.
     - Examples of files used as context can be found in the `system` folder.
 
 2. **History**
