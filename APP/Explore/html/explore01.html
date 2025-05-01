@@ -71,8 +71,17 @@ function doModel() {
 function doStandard() {
   RESTget(baseURL + "set/" + xDeviceName +"/action/standard");
 }
-function doList() {
-  RESTget(baseURL + "set/" + xDeviceName +"/action/list");
+
+function doListRead() {
+  RESTget(baseURL + "set/" + xDeviceName +"/action/listRead");
+}
+
+function doListWrite() {
+  RESTget(baseURL + "set/" + xDeviceName +"/action/listWrite");
+}
+
+function doListFull() {
+  RESTget(baseURL + "set/" + xDeviceName +"/action/listFull");
 }
 
 
@@ -106,27 +115,32 @@ form {margin: 0px; padding: 0px; border: 0px;}
 <div id="ldheLabel1" style="position: absolute; left: 36px; top: 23px; width: 176px; height: 23px; text-align: justify;">
 <span class="verdana14C0C000FFFFFFtib">Esplore device</span></div>
 
-<div id="ldheText1" style="position: absolute; left: 44px; top: 65px;">
+<div id="ldheText1" style="position: absolute; left: 44px; top: 55px;">
 <input type="text" id="Text1" name="Text1" style="width: 175px; height: 24px;" value="device Id/name" maxlength="255" onblur="setId();"></div>
 
-<div id="ldheButton1" style="position: absolute; left: 44px; top: 100px;" onClick="doInfo();">
+<div id="ldheButton1" style="position: absolute; left: 44px; top: 85px;" onClick="doInfo();">
 <input type="button" id="Button1" name="Button1" style="width: 147px; height: 26px;" value="Tuya info" title="Device Attributes"></div>
 <!-- top delta: 38pt --> 
-<div id="ldheButton2" style="position: absolute; left: 44px; top: 135px;" onClick="doStandard();">
+<div id="ldheButton2" style="position: absolute; left: 44px; top: 115px;" onClick="doStandard();">
 <input type="button" id="Button2" name="Button2" style="width: 147px; height: 25px;" value="Tuya standard set" title="'Type' Data model"></div>
 
-<div id="ldheButton3" style="position: absolute; left: 44px; top: 170px;" onClick="doModel();">
+<div id="ldheButton3" style="position: absolute; left: 44px; top: 145px;" onClick="doModel();">
 <input type="button" id="Button3" name="Button3" style="width: 147px; height: 25px;" value="Tuya model" title="'Device' Data model"></div>
 
-<div id="ldheButton10" style="position: absolute; left: 44px; top: 205px;" onClick="doIoT();">
+<div id="ldheButton10" style="position: absolute; left: 44px; top: 175px;" onClick="doIoT();">
 <input type="button" id="Button10" name="Button10" style="width: 147px; height: 25px;" value="IoTwebUI" title="Locals RT Data&Attributes"></div>
 
-<div id="ldheButton4" style="position: absolute; left: 44px; top: 240px;" onClick="doSchema();">
+<div id="ldheButton4" style="position: absolute; left: 44px; top: 205px;" onClick="doSchema();">
 <input type="button" id="Button4" name="Button4" style="width: 147px; height: 25px;" value="Tuya schema" title="RT all Data - as by CLONE()"></div>
 
-<div id="ldheButton5" style="position: absolute; left: 44px; top: 275px;" onClick="doList();">
-<input type="button" id="Button5" name="Button5" style="width: 147px; height: 25px;" value="Full list CSV" title="Complete table of all devices"></div>
+<div id="ldheButton5" style="position: absolute; left: 44px; top: 235px;" onClick="doListRead();">
+<input type="button" id="Button5" name="Button5" style="width: 147px; height: 25px;" value="AI-readable devices" title="CSV Table of all AI-readable devices"></div>
 
+<div id="ldheButton6" style="position: absolute; left: 44px; top: 265px;" onClick="doListWrite();">
+<input type="button" id="Button6" name="Button5" style="width: 147px; height: 25px;" value="AI-writable devices" title="CSV Table of all AI-writable devices"></div>
+
+<div id="ldheButton7" style="position: absolute; left: 44px; top: 295px;" onClick="doListFull();">
+<input type="button" id="Button7" name="Button7" style="width: 147px; height: 25px;" value="CSV list of devices" title="Complete table of all devices, values ​​included"></div>
 
 </body>
 
