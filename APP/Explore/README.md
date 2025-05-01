@@ -23,3 +23,5 @@ Specific description of the RT data, associated with a Tuya device. Usually rich
 A detailed list (follows 'Tuya model') of the specific RT data of a device, but with extra info, e.g. the low-level DP index (replaced by 'code' in the standard model) and the current values. This data is used by the MACRO [CLONER01()](sillano/IoTwebUI/blob/main/addon/cloner01-leggimi.md) to build/maintain the copy of a device, when it is of interest to a given RT value present in 'schema' but not in 'standard model'.
 5. **IoTwebUI**
 A complete list (attributes and RT data - follows 'standard model') of the data present in [IoTwebUI](https://github.com/msillano/IoTwebUI), with the current values. These values ​​are all accessible by the user and usable in the RULES using the MACRO GET() for the data and GETATTRIBUTE() for the other attributes.
+
+New version: updated lists for AI
