@@ -1,9 +1,0 @@
-DEVICE for SetTuyaValue TOOL   (ESEMPIO!)
-
-N, HOME, ROOM, TIPO,  NOME,  ATTRIBUTO;
-1, ADMIN, tools, x-device, Explore devices, device;
-2, ADMIN, tools, x-device, Explore devices, action;
-3, ADMIN, tools, x-device, Explore Scene, home;
-4, ADMIN, tools, x-device, Explore Scene, action;
-
-by 'IoTwebUI.Explore devices.action(listWrite)' 27/04/2025, 18:52:36
