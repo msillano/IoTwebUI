@@ -25,5 +25,5 @@ Elenco dettagliato (segue 'Tuya model') dei dati RT specifici di un device, ma c
 5. **IoTwebUI**
 Elenco completo (attributi e dati RT - segue 'standard model') dei dati presenti in [IoTwebUI](https://github.com/msillano/IoTwebUI), con gli attuali valori. Questi valori sono tutti accessibili dall'utente e utilizzabili nelle REGOLE usando le MACRO GET() per i dati e GETATTRIBUTE() per gli altri attributi.
 
-
+Nuova versione: aggiornate liste per AI
    
