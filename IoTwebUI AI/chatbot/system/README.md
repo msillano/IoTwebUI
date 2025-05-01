@@ -8,7 +8,7 @@ _Sono presenti alcuni esempi:_
     File CSV, può essere creato da DB, a mano, o usando `IoTwebUI - APP Explore devices`
 - `set-devices-xxxx.txt`: Elenco di tutti i device e attributi scrivibili dall'AI (x-device) _Esempio: contiene device fittizi_<br>
     File CSV, può essere creato da DB, a mano, o usando `IoTwebUI - APP Explore devices`
-- `all-TTR-xxxx.txt`: Elenco di tutti i Tap-To-Run (Tuya) e le REGOLE (IoTwebUI) attivabili da AI. _Esempio: contiene TTR fittizi_ <br> 
+- `all-TTR-xxxx.txt`: Elenco di tutti i Tap-To-Run (Tuya) e REGOLE (IoTwebUI) attivabili da AI. _Esempio: contiene TTR fittizi_ <br> 
     File CSV, può essere creato da DB, a mano, o usando `IoTwebUI - APP Explore scenes`
 
 Inoltre possono essere usati i seguenti file, accessibili pubblicamente (gist):
