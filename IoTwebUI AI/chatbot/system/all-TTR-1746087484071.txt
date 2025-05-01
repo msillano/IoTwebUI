@@ -1,0 +1,14 @@
+**CSV TABLE - TAP-TO-RUN (TTR, Tuya) and RULES (IoTebUI) for AI RunTuyaTTR TOOL** 
+
+N, ORIGIN, NAME 
+1, ROMA, "ALARM OFF",
+2, ROMA, "ALARM ON",
+3, ROMA, "HOTTURNOFF",
+6, ROMA, "HOTTURNON",
+7, ROMA, "sirena1",
+14, ROMA, "sirena2",
+25, IoTwebUI, "meteo",
+26, IoTwebUI, "spegni luce",
+27, IoTwebUI, "pippo",
+
+// by scene03 addon: 'IoTwebUI.Explore Scene.action(AIlist)' 01/05/2025, 10:18:00

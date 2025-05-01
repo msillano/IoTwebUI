@@ -1,0 +1,14 @@
+** CSV TABLE - DEVICE for SetTuyaValue TOOL 
+
+N, HOME, ROOM, TIPO,  NOME,  ATTRIBUTO;
+1, ROMA, tools, x-device, Devices BattTest2, home;
+2,  ADMIN, System, x-device, Device list, home;
+18, ADMIN, System, x-device, Device list, mode;
+19, ADMIN, System, x-device, Device list, count;
+76, ADMIN, tools, x-device, Explore devices, device;
+77, ADMIN, tools, x-device, Explore devices, action;
+78, ADMIN, tools, x-device, Explore Scene, home;
+79, ADMIN, tools, x-device, Explore Scene, action;
+
+
+// by explore01 addon: 'IoTwebUI.Explore devices.action(listWrite)' 01/05/2025, 10:12:59

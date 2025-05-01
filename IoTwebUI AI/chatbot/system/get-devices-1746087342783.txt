@@ -1,0 +1,10 @@
+**CSV TABLE - DEVICE for GetTuyaValue TOOL** 
+
+N, HOME, ROOM, TIPO,  CATEGORIA, NOME
+3, ROMA, tools, virtual, Switch, blink-proxy;
+4, ROMA, none, Zigbee or BLE, Plant monitor, SGS01;
+74, ADMIN, tools, x-device, x-device custom, Explore devices;
+75, ADMIN, tools, x-device, x-device custom, Explore Scene;
+
+
+// by explore01 addon: 'IoTwebUI.Explore devices.action(listRead)' 01/05/2025, 10:15:30
