@@ -5,11 +5,11 @@ _Sono presenti alcuni esempi:_
 
 - `CONX-Tink mode.txt`: Istruzioni per formattare le risposte in due parti: regionamento seguito da risposta vera e propria
 - `get-devices-xxxx.txt`: Elenco di tutti i device con dati leggibili (real, virtual, x-device) _Esempio: contiene device fittizi_<br>
-    File CSV, può essere creato da DB, a mano, o usando `IoTwebUI - APP Explore devices`
+    File CSV, può essere creato da DB, a mano, o usando `IoTwebUI + addon EXPLORE01`
 - `set-devices-xxxx.txt`: Elenco di tutti i device e attributi scrivibili dall'AI (x-device) _Esempio: contiene device fittizi_<br>
-    File CSV, può essere creato da DB, a mano, o usando `IoTwebUI - APP Explore devices`
+    File CSV, può essere creato da DB, a mano, o usando `IoTwebUI + addon EXPLORE01`
 - `all-TTR-xxxx.txt`: Elenco di tutti i Tap-To-Run (Tuya) e REGOLE (IoTwebUI) attivabili da AI. _Esempio: contiene TTR fittizi_ <br> 
-    File CSV, può essere creato da DB, a mano, o usando `IoTwebUI - APP Explore scenes`
+    File CSV, può essere creato da DB, a mano, o usando `IoTwebUI + addon SCENE03`
 
 Inoltre possono essere usati i seguenti file, accessibili pubblicamente (gist):
 
