@@ -1,0 +1,161 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<!--
+USER frontend for EXPLORE01 - device info
+
+Requires: 
+  IotWebUI 2.2, REST2.2, EXPLORE01 installati e funzionanti.
+Plus:
+  inc/restget.js
+  blank.gif
+  preview_emptyrrect1.png
+ -->
+
+<html>
+<head>
+<title></title>
+<!-- Created with an unregistered copy of Dynamic HTML WYSIWYG Editor -->
+<meta http-equiv="Content-Type" content="text/html; charset=Windows-1252">
+<meta http-equiv="Content-Style-Type" content="text/css">
+<meta name="GENERATOR" content="Dynamic HTML Editor v.6.8 - http://www.hexagora.com">
+<script type="text/javascript" src="inc/restget.js"> </script >
+
+<script language="javascript" type="text/javascript">
+<!--
+// ================= CUSTOMIZATION (required)
+const xDeviceName = "Explore Scene";   // the name of the x.device by MACRO SCENE01() (in RULE)
+// ---------------------- customization zone ends   
+
+const baseURL = 'http://localhost:3031/IoTrest/';
+let xid ="";
+
+async function initFrame() {
+let inframe = true;
+    if  (window === window.parent || window.opener) {
+	// The page is not in an iFrames
+	    inframe = false;
+        document.getElementById("goBack").style.display = 'none';
+        }
+// test x-device presence
+	let devTest = await RESTget(baseURL + "device/" + xDeviceName +"/dinfo");
+	if (devTest.error){
+	  alert("The x-device "+xDeviceName+" (SCENE01) is not running!\nCheck IoTwebUI RULES or console\n...Closing...");
+      if (inframe) 
+	       window.history.back();	
+	  else
+	       window.close();
+	  }
+// update select
+   let homeList = await  RESTget(baseURL + "home/list");
+   if (!homeList.error){
+	   let txt = '<option value="">--Please choose</option>';
+	   homeList.homes.forEach((h) => {
+		   txt +='<option value="'+h+'">'+h+'</option>';
+		   });
+	   e = document.getElementById("Text1"); 
+	   e.innerHTML = txt;
+	   }
+}   
+
+
+function setId(){
+ // xid = document.getElementById("Text1").value.trim();  //.innerText;
+  e = document.getElementById("Text1");  //.innerText;
+  xid = e.options[e.selectedIndex].value;
+  if (xid)
+     RESTget(baseURL + "set/" + xDeviceName +"/home/" + xid);
+ console.log("HOME NAME "+ xid);
+}
+ 
+function doAutomation() {
+  RESTget(baseURL + "set/" + xDeviceName +"/action/Automation");
+  }
+
+function doTap_to_run() {
+  RESTget(baseURL + "set/" + xDeviceName +"/action/Tap-to-run");
+  }
+  
+function doCross() {
+  RESTget(baseURL + "set/" + xDeviceName +"/action/Cross");
+}
+
+function doList() {
+  RESTget(baseURL + "set/" + xDeviceName +"/action/List");
+ }
+ 
+ function doAIlist() {
+  RESTget(baseURL + "set/" + xDeviceName +"/action/AIlist");
+ }
+
+function doClear() {
+  RESTget(baseURL + "set/" + xDeviceName +"/action/Clear");
+ }
+
+
+function doSchema() {
+  
+}
+
+//-->
+</script>
+<style>
+body {margin: 0px; padding: 0px; border: 0px; vertical-align: baseline; text-align: left; font-size: 10px; -webkit-text-size-adjust: 100%; }
+form {margin: 0px; padding: 0px; border: 0px;}
+.verdana100FFFFFFt {font-family: Verdana, Geneva, sans-serif; font-size: 13px; color: #000000; text-decoration: none;}
+.verdana14C0C000FFFFFFtib {font-family: Verdana, Geneva, sans-serif; font-size: 19px; color: #00C0C0; font-weight: bold; font-style: italic; text-decoration: none;}
+
+</style>
+</head>
+
+
+
+<body text="#00C0C0" bgcolor="#FFFFFF" link="#0000FF" alink="#FF0000" vlink="#800080" onload="initFrame();">
+
+<table width="242" border="0" cellspacing="0" cellpadding="0" style="position: relative;">
+<tr>
+<td>
+<img src="blank.gif" width="20" height="16" border="0" alt=""></td>
+<td>
+<img src="blank.gif" width="222" height="1" border="0" alt=""></td></tr>
+<tr>
+<td>
+<img src="blank.gif" width="1" height="311" border="0" alt=""></td>
+<td align="left" valign="top">
+<img id="EmptyRRect1" src="preview_emptyrrect1.png" width="222" height="311" border="0" alt="">
+<br><a id='goBack' href="javascript:window.history.back();" style="font-family: Verdana, Geneva, sans-serif; font-size: 10px;">&lt;&lt;BACK</a>
+</td></tr></table>
+
+<!-- absolute positons -->
+
+<div id="ldheLabel1" style="position: absolute; left: 36px; top: 23px; width: 176px; height: 23px; text-align: justify;">
+<span class="verdana14C0C000FFFFFFtib">Explore scene</span></div>
+
+<div id="ldheText1" style="position: absolute; left: 44px; top: 65px;">
+<select name="Text1" id="Text1" style="width: 175px; height: 24px;" onblur="setId()">
+  <option value="">--old</option>
+  </select>
+<!--
+<input type="text" id="Text1" name="Text1" style="width: 175px; height: 24px;" value="home" maxlength="255" onblur="setId();">
+-->
+</div>
+
+<div id="ldheButton0" style="position: absolute; left: 44px; top: 110px;" onClick="doAutomation();">
+<input type="button" id="Button10" name="Button10" style="width: 147px; height: 25px;" value="Automation" title="Table with all data"></div>
+<!--  top delta = 38 -->
+<div id="ldheButton1" style="position: absolute; left: 44px; top: 140px;" onClick="doTap_to_run();">
+<input type="button" id="Button1" name="Button1" style="width: 147px; height: 26px;" value="Tap-to-run" title="Table with all data"></div>
+
+<div id="ldheButton2" style="position: absolute; left: 44px; top: 170px;" onClick="doCross();">
+<input type="button" id="Button2" name="Button2" style="width: 147px; height: 25px;" value="Tuya grapho" title="device-scene links"></div>
+
+<div id="ldheButton4" style="position: absolute; left: 44px; top: 200px;" onClick="doList();">
+<input type="button" id="Button2" name="Button2" style="width: 147px; height: 25px;" value="Plain list" title="Full list for scene03.js exclusions."></div>
+
+<div id="ldheButton4" style="position: absolute; left: 44px; top: 230px;" onClick="doAIlist();">
+<input type="button" id="Button2" name="Button2" style="width: 147px; height: 25px;" value="AI list" title="scene for AI"></div>
+
+
+<div id="ldheButton5" style="position: absolute; left: 44px; top: 270px;" onClick="doClear();">
+<input type="button" id="Button2" name="Button2" style="width: 147px; height: 25px;" value="Clear" title="To delete all 'scenes', redo Home"></div>
+
+</body>
+</html>
