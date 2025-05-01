@@ -42,9 +42,10 @@ emableStreamMode: false
 async function init_ai_proxy() {
   try {
     const isOnline = await testIoTwebUI();  // test REST => popup if bad
+ 	console.log("init_ai_proxy", isOnline);
     await updateConfig({                    // updates server02 & local aiConfig + IoTwebUIok
-      IoTwebUIok: isOnline, 
-      enableTuyaTools: isOnline 
+       IoTwebUIok: isOnline, 
+  //    enableTuyaTools: isOnline 
     });
    } catch {} // Mangia tutti gli errori
 }
@@ -69,12 +70,12 @@ function windowPopup(textHTML) {
  */
  async function testIoTwebUI() {
   try {
-    const res = await fetch(IOTwbUI_rest_URL + 'home/list', { timeout: 2000 });
-    if (!res.ok) throw new Error();
-	return true;
+		const res = await fetch(IOTwbUI_rest_URL + 'home/list', { timeout: 2000 });
+		if (!res.ok) throw new Error();
+		return true;
   } catch {
-    alert( '\nThe REST of IoTwebUI is offline.\nTuya TOOL are disabled.');
-  }
+		alert( '\nThe REST of IoTwebUI is offline.\nTuya TOOL are disabled.');
+	  }
   return false;
  }
 
@@ -132,6 +133,41 @@ async function updateConfig(configuration) {
         return false;
     }
 };
+
+
+/**
+ * @async
+ * @function proxyGetHistory
+ * @description Recupera la cronologia delle conversazioni per una specifica sessione.
+ * @param {string} responseID - ID della risposta. Ricerca la prima conversazione con ID uquale o minore di quello fornito  (default: last, ID <= 1: first).
+ * @param {string} sessionId - ID della sessione per cui recuperare la cronologia.
+ * @returns {Promise<Array<object>} - Promise che risolve con succes = true + {found, reply, answer, responseID }
+ *  altrimenti success = false + error= info.
+ */
+async function proxyGetHistory(responseID, sessionId) {
+    try {
+        const response = await fetch(proxyURL + "/history/get?sessionId=" + sessionId + '&responseID=' + responseID, {
+            method: 'GET',
+        });
+        if (response.ok) {
+            return await response.json();
+        } else {
+            console.log(`ERROR ${response.status} in  ai_proxy.proxyGetHistory(): Fix it - see AIserver console`);
+            return {
+                success: false,
+                error: "Server02 error: see console"
+            };
+        }
+
+    } catch (error) {
+        console.error("ERROR in ai_proxy.proxyGetHistory():", error);
+        return {
+            success: false,
+            error: "Internal error: see console"
+        };
+    }
+}
+
 
 /**
  * @async

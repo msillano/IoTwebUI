@@ -1,5 +1,5 @@
 // ================ MENU STRUCTURE DEFINITIONS
-
+// THE USER MUST CUSTOMIZE IT TO MATCH THE MODELS USED
 const simpleMenuData = 
        [{
         // menu radio scelta modello AI, label dinamica		   
@@ -7,39 +7,43 @@ const simpleMenuData =
         key: "model",
         children: [
 // ============================ MODEL menu LIST:		
-// Any children is an AI model:	interface, logic, config definitions:	
+// Any children is an AI model:	interface, menu logic and config definitions:	
 		        {
-                label: "deepseek-chat", // MODEL seepseek-chat
-                name: "modelGroup",     // don't change
+//	deepseek-chat model: Tool ok, standard solo un po' lento		
+//  Limit Fino a 128.000 token (circa ~300-350k caratteri o ~100k-175k parole).
+//  Questo include:
+//      Il tuo prompt (domanda/istruzione).(limite 16K)
+//      Eventuali dati aggiuntivi (testo, documenti, ecc.).
+//      La cronologia della chat (se supportata).		
+                label: "deepseek-chat",   // MODEL seepseek-chat
+                name: "modelGroup",       // don't change
                 value: "deepseek-chat",
-                type: "radio",          // don't change
+                type: "radio",            // don't change
                 checked: true,         
                 callback: (value) => {
-// required					
-                    updateRadioSelection(name, value);
-					simpleMenuData[0].label = "AI: "+ value;
-// this model can use TOOLS:  so enable TOOLS					
-					if (aiConfig.IoTwebUIok)                     // if REST ok
-                        setMenuStatus("toolUse",  'on', true);   // tools available
-				    else
-                        setMenuStatus("toolUse",  'off', false); // else tools disabled
+// menu update - required:					
+                    updateRadioSelection(name, value);        // don't change
+					simpleMenuData[0].label = "AI: deepseek-chat";  // v. Label
+// this model uses TOOLS:  so enable TOOLS option					
+                    setMenuStatus("toolUse",  'on', true);   // tools option available
 // this model can use the temperature param: enabled					
 					setMenuStatus("tempRadio", null, true);
-// all Config data for This model:					
                     if (aiConfig.model != value) {
-						// per ogni modello, scelte conseguenziali:						
+// Config update for This model:					
                         updateConfig({
                             provider: 'deepseek',
-                            baseURL: 'https://api.deepseek.com',
-                            apiKey: 'API_KEY_DEEPSEEK',  // key is in environment
-                            model: value,
-                            enableTuyaTools: true,
-							quirkMaxCompletion: false,  // use max_tokens, not max_completion_tokens
+                            baseURL:  'https://api.deepseek.com',
+                            apiKey:   'API_KEY_DEEPSEEK',  // key is in environment
+                            model: value,                  // do not change
+                            enableTuyaTools: true,         // toop capability
+							quirkMaxCompletion: false,     // uses max_tokens, not max_completion_tokens
                         });
                     }
                 },
                 disabled: false
             }, {
+ //	deepseek-reasoner model: Tool no, ottimo solo un po' lento	
+// limit 131k, 16k 
                 type: "radio",        // don't change
                 label: "*deepseek-reasoner", // asterisk: no TOOL
                 name: "modelGroup",   // don't change
@@ -47,7 +51,7 @@ const simpleMenuData =
                 checked: false,
                 callback: (value) => {
                     updateRadioSelection(name, value);
- 					simpleMenuData[0].label = "AI: "+ value;
+ 					simpleMenuData[0].label = "AI: *deepseek-reasoner";  // v. Label
 // no TOOLS: set OFF and disabled					
                     setMenuStatus("toolUse", 'off', false);
 // this model can use temperature param: enabled					
@@ -66,6 +70,7 @@ const simpleMenuData =
                 },
                 disabled: false
             }, {
+ //	DeepSeek-R1-Distill-Llama-70B model: Tool ok, limiti 131K totale, 16K prompt.  buono, molto veloce		
                 type:  "radio",
                 label: "deepseek-llama",
                 name:  "modelGroup",
@@ -74,12 +79,9 @@ const simpleMenuData =
                 callback: (value) => {
 // required
                     updateRadioSelection(name, value);
-					simpleMenuData[0].label = "AI: "+ value;
+					simpleMenuData[0].label = "AI: deepseek-llama";  // v. Label
 // this model can use TOOLS:  so enable TOOLS					
- 					if (aiConfig.IoTwebUIok)
-                        setMenuStatus("toolUse",  'on', true);
-				    else
-                        setMenuStatus("toolUse",  'off', false);
+                    setMenuStatus("toolUse",  'on', true);   // tools available
 // this model can use temperature param: enabled					
  					setMenuStatus("tempRadio",null, true);
                     if (aiConfig.model != value) {
@@ -95,18 +97,16 @@ const simpleMenuData =
                 },
                 disabled: false
             }, {
+//GPT3.5-turbo model: Tool ok, limiti 4K totale, 4K prompt.  buono	
                 type: "radio",
-                label: "GPT3.5-turbo",
+                label: "Llama-3.3",
                 name: "modelGroup",
                 value: "gpt-3.5-turbo",
                 checked: false,
                 callback: (value) => {
                     updateRadioSelection(name, value);
- 					simpleMenuData[0].label = "AI: "+ value;
- 					if (aiConfig.IoTwebUIok)
-                        setMenuStatus("toolUse",  'on', true);
-				    else
-                        setMenuStatus("toolUse",  'off', false);
+ 					simpleMenuData[0].label = "AI: Llama-3.3";  // v. Label
+                    setMenuStatus("toolUse",  'on', true);   // tools available
 					setMenuStatus("tempRadio",null, true);
                    if (aiConfig.model != value) {
                         updateConfig({
@@ -121,18 +121,21 @@ const simpleMenuData =
                 },
                 disabled: false
             }, {
-                type: "radio",
-                label: "o4-mini",
+//o4-mini model: Tool ok.  buono	
+// Limiti attuali (maggio 2024)
+// • gpt-3.5-turbo: ~4.096 token
+// • gpt-4 (standard): ~8.192 token
+// • gpt-4-32k: ~32.768 token
+
+              type: "radio",
+                label: "Llama-3.3",
                 name: "modelGroup",
                 value: "o4-mini",
                 checked: false,
                 callback: (value) => {
                     updateRadioSelection(name, value);
-					simpleMenuData[0].label = "AI: "+ value;
- 					if (aiConfig.IoTwebUIok)
-                        setMenuStatus("toolUse",  'on', true);
-				    else
-                        setMenuStatus("toolUse",  'off', false);
+					simpleMenuData[0].label = "AI: Llama-3.3";  // v. Label
+                    setMenuStatus("toolUse",  'on', true);   // tools available
 					updateRadioSelection("tempGroup", "1")   // set temperature to 1 
 					setMenuStatus("tempRadio",null, false);  // temperature disabled
                    if (aiConfig.model != value) {
@@ -148,7 +151,11 @@ const simpleMenuData =
                     }
                 },
                 disabled: false
-            }, {
+            },
+			
+ /*  MODELLO NON IN USO:  COMMENTATO
+			{
+//o4-mini model: Tool no.  limit ??	
                 type: "radio",
                 label: "*Gemma2",   // asterisk  => no tools
                 name: "modelGroup",
@@ -156,9 +163,9 @@ const simpleMenuData =
                 checked: false,
                 callback: (value) => {
                     updateRadioSelection(name, value);
-					simpleMenuData[0].label = "AI: "+ value;
+					simpleMenuData[0].label = "AI: "+ label;
 // tools disable					
-                     setMenuStatus("toolUse", 'off', false);
+                    setMenuStatus("toolUse", 'off', false);
 					setMenuStatus("tempRadio",null, true);
                     if (aiConfig.model != value) {
                         updateConfig({
@@ -172,19 +179,20 @@ const simpleMenuData =
                     }
                 },
                 disabled: false
-            }, {
-                type: "radio",
+            },
+*/ // FINE MODELLO COMMENTATO
+
+			{
+//Llama-3.3 model: Tool ok.  limit 2k, prompt: 512, molto veloce	
+               type: "radio",
                 label: "Llama-3.3",
                 name: "modelGroup",
                 value: "Llama-3.3-70B-Versatile",
                 checked: false,
                 callback: (value) => {
                     updateRadioSelection(name, value);
-					simpleMenuData[0].label = "AI: "+ value;
- 					if (aiConfig.IoTwebUIok)
-                        setMenuStatus("toolUse",  'on', true);
-				    else
-                        setMenuStatus("toolUse",  'off', false);
+					simpleMenuData[0].label = "AI: Llama-3.3";  // v. label
+                    setMenuStatus("toolUse",  'on', true);   // tools available
  					setMenuStatus("tempRadio",null, true);
                    if (aiConfig.model != value) {
                         updateConfig({
@@ -199,18 +207,17 @@ const simpleMenuData =
                 },
                 disabled: false
             }, {
+//mistral-saba: Tool no.  limit 2k, tutto incluso: system, history, prompr risposta	
+ 
                 type: "radio",
-                label: "mistral-saba",
+                label: "*mistral-saba",
                 name: "modelGroup",
                 value: "mistral-saba-24b",
                 checked: false,
                 callback: (value) => {
                     updateRadioSelection(name, value);
-					simpleMenuData[0].label = "AI: "+ value;
-  					if (aiConfig.IoTwebUIok)
-                        setMenuStatus("toolUse",  'on', true);
-				    else
-                        setMenuStatus("toolUse",  'off', false);
+					simpleMenuData[0].label = "AI: *mistral-saba";
+  	                setMenuStatus("toolUse",  'off', false);
  					setMenuStatus("tempRadio",null, true);
                   if (aiConfig.model != value) {
                         updateConfig({
@@ -218,13 +225,14 @@ const simpleMenuData =
                             baseURL: 'https://api.groq.com/openai/v1',
                             apiKey: 'API_KEY_GROQ',
                             model: value,
-                            enableTuyaTools: true,
+                            enableTuyaTools: false,
 							quirkMaxCompletion: false,
                         });
                     }
                 },
                 disabled: false
             }, {
+ //qwen-qwq-32b: Tool no.  limit totale 32k, prompt: 3k. Answer 3K
                 type: "radio",
                 label: "qwen",
                 name: "modelGroup",
@@ -232,18 +240,15 @@ const simpleMenuData =
                 checked: false,
                 callback: (value) => {
                     updateRadioSelection(name, value);
-					simpleMenuData[0].label = "AI: "+ value;
- 					if (aiConfig.IoTwebUIok)
-                        setMenuStatus("toolUse",  'on', true);
-				    else
-                        setMenuStatus("toolUse",  'off', false);
+					simpleMenuData[0].label = "AI: qwen";
+                    setMenuStatus("toolUse",  'on', true);   // tools available
  					setMenuStatus("tempRadio", null, true);
                   if (aiConfig.model != value) {
                         updateConfig({
                             provider: 'groq-alibaba',
-                            baseURL: 'https://api.groq.com/openai/v1',
-                            apiKey: 'API_KEY_GROQ',
-                            model: value,
+                            baseURL:  'https://api.groq.com/openai/v1',
+                            apiKey:   'API_KEY_GROQ',
+                            model:     value,
                             enableTuyaTools: true,
                         });
                     }
@@ -548,16 +553,14 @@ function init_SimpleMenu() {
     updateSimpleMenu();
 	// aggiorna menu con i dati in confg (default)
     simpleMenuData[0].label = "AI: "+ aiConfig.model;
-    let result =  setMenuChoicee('model', aiConfig.model);
-	    if (aiConfig.IoTwebUIok)
-           result |= setMenuChoicee('toolUse',  aiConfig.enableTuyaTools?"ON":"OFF");
-	    else 
-	       setMenuStatus("toolUse", 'off', false);
+//	console.log(aiConfig);
+    let result =  setMenuChoicee('model',      aiConfig.model);
+        result |= setMenuChoicee('toolUse',    aiConfig.enableTuyaTools?"ON":"OFF");
         result |= setMenuChoicee('serverDbg',  aiConfig.enableDebugMode?"ON":"OFF");
 	    result |= setMenuChoicee('tempRadio',  aiConfig.temperature.toString());
 	    result |= setMenuChoicee('tokenRadio', aiConfig.max_tokens);
         result |= setMenuChoicee('seed'  ,     aiConfig.seed?"ON":"OFF");
 // se necessario, update		
      if (result)
-        updateSimpleMenu(); // key, name
+        updateSimpleMenu(); 
 }

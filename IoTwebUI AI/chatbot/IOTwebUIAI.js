@@ -12,10 +12,10 @@
  */
 // ==================== STARTUP
 
-
-function atStartupInit(){
-    init_ai_proxy();
-    setTimeout(init_SimpleMenu, 50);  // updates menu after aiConfig
+// chiamata da body.onload
+async function atStartupInit(){
+    await init_ai_proxy();            // updates Config
+    setTimeout(init_SimpleMenu, 10);  // updates menu after aiConfig
 }	
 
 // setTimeout(atStartupInit, 20);

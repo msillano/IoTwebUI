@@ -14,11 +14,13 @@
  */
 
 // ===== MODULI =====
+const cheerio = require( 'cheerio');
 const express = require('express');
 const cors = require('cors');
 const OpenAI = require("openai");
 const assert = require('assert');
-// also requires (node-fetch) installed
+
+
 
 // ===== INIZIALIZZAZIONE =====
 const app = express();
@@ -28,7 +30,7 @@ app.use(express.json({
     })); // Supporta payload grandi (base64 files)
 
 // ===== CONFIGURAZIONE AI =====
-var aiClient;       // openAi point
+var aiClient; // openAi point
 const PORT = 3035; // see also file ai_proxy.js riga 14
 
 // IoTwebUI config: (see also ai_proxy).
@@ -53,10 +55,10 @@ const IOTwbUI_rest_URL = 'http://localhost:3031/IoTrest/';
  * @property (string) stop: null,  //  parameter for AI
  * @property (bool)   seed: false,      //  parameter for AI (a menu)
  * @property (bool)   IoTwebUIok: true, //  accessibilità REST Tuya (startup auto)
-  
- 
- 
- 
+
+
+
+
  */
 
 let aiConfig = {
@@ -70,14 +72,14 @@ let aiConfig = {
     // non interattivo + usato
     enableStreamMode: false,
     enableDebugMode: false,
-     max_tokens: 1024, // parametro per AI
+    max_tokens: 1024, // parametro per AI
     temperature: 0.6, // parameter for AI
     seed: false, //  parameter for AI
-   //non interattivi(per ora) controllo fine output testuale
+    //non interattivi(per ora) controllo fine output testuale
     timeoutAi: 90, // attesa risposta block mode in secondi
     top_p: null, // top-p: 0,  //     0.5 parameter for AI
     top_k: null, // top-k: 0,  // e.g. 50 parameter for AI
-    stop: null,  //  parameter for AI
+    stop: null, //  parameter for AI
     frequency_penalty: null, // parameter for AI
 };
 
@@ -85,6 +87,7 @@ var aiClient = null;
 var _useKey = null;
 var _useURL = null;
 
+// save/overwrite the configuration clone
 function storeConfig(sessionId) {
     serverStorage.set(sessionId + 'config', {
         config: {
@@ -94,14 +97,14 @@ function storeConfig(sessionId) {
     });
     //  	   console.log(">> Set stored config", aiConfig);
 }
-
+// restore the config from storage
 function restoreConfig(sessionId) {
     const xConfig = serverStorage.get(sessionId + 'config');
     if (xConfig)
         aiConfig = xConfig.config;
     //  console.log("<< Get stored config", aiConfig);
 }
-
+// opdates aiClient only if the model is changed
 function checkOpenAI() {
     if ((aiClient == null) || (_useKey != aiConfig.apiKey) || (_useURL != aiConfig.baseURL)) {
         _useKey = aiConfig.apiKey;
@@ -119,7 +122,7 @@ const ANSWERSTART = '**Answer:**';
 
 // ===== UTILITIES =====
 /**
- * Aggiorna la configurazione AI e reinizializza il client
+ * Aggiorna la configurazione stored che diventa la config corrente.
  * @param {AIConfig} [newConfig={}] - Nuovi parametri (uno/tutti, opzionali)
  */
 function updateAIClient(sessionId, newConfig = {}) {
@@ -278,9 +281,9 @@ app.post('/update-ai-settings', (req, res) => {
         sessionId = 'default',
         config
     } = req.body;
-    //   console.log("udConf",sessionId, config);
     updateAIClient(sessionId, config);
-    //   console.log("return", aiConfig);
+  	if (config.IoTwebUIok !== undefined)  // ad ogni cambiamento
+		initializeTools();
     res.json(aiConfig);
 });
 
@@ -364,7 +367,7 @@ app.get('/history/forget', (req, res) => {
                 timestamp: Date.now() // auto cleanup for start
             });
         } else
-            uselimit = serverStorage.get(sessionId + 'start').limit || 1;
+            uselimit = serverStorage.get(sessionId + 'start')?.limit || 1;
 
         // only for test:
         //    console.log('TEST limit = '+limit, buildContext(sessionId));
@@ -625,6 +628,7 @@ function buildContext(sessionId) {
         const ctx = serverStorage.get(sessionId + "X" + i);
         // adding today date to first content
         if (ctx?.enabled) {
+// merca con date time il primo doc in context			
             if (first) {
                 let content2 = ctx.data.content + "\n Today: " + (new Date().toString()) + "\n";
                 first = false;
@@ -691,31 +695,29 @@ app.post('/api/chat', async(req, res) => {
             message,
             sessionId = 'default'
         } = req.body;
-        restoreConfig(sessionId);
-        checkOpenAI();
+        restoreConfig(sessionId);   // set config by session
+        checkOpenAI();              // openai by config 
         req.setTimeout(aiConfig.timeoutAi * 1000, () => {
             res.status(408);
             res.send("Request timeout " + aiConfig.timeoutAi + "s.");
         });
-
-        var messages = buildContext(sessionId);
         // Aggiungi nuovo messaggio utente
         storageAppend(sessionId, {
             role: "user",
             content: message
         });
-        var messages = buildContext(sessionId);
+        var messages = buildContext(sessionId);  // updated
         let response = null;
-        // optional
-        let base = {
+        let base = {                  // data structure for AI
             model: aiConfig.model
         }
-		if (aiConfig.max_tokens !== null){
-			if (aiConfig.quirkMaxCompletion)
-				base["max_completion_tokens"] = aiConfig.max_tokens;
-			else
-				base["max_tokens"] = aiConfig.max_tokens;
-		}
+        // optional  for AI
+        if (aiConfig.max_tokens !== null) {
+            if (aiConfig.quirkMaxCompletion)
+                base["max_completion_tokens"] = aiConfig.max_tokens;
+            else
+                base["max_tokens"] = aiConfig.max_tokens;
+        }
         if (aiConfig.top_p !== null)
             base.top_p = aiConfig.top_p;
         if (aiConfig.top_k !== null)
@@ -723,13 +725,14 @@ app.post('/api/chat', async(req, res) => {
         if (aiConfig.stop !== null)
             base.stop = aiConfig.stop;
         if (aiConfig.seed)
-            base.seed = 126;                // non importa il valore
+            base.seed = 126; // non importa il valore
         if (aiConfig.frequency_penalty !== null)
             base.frequency_penalty = aiConfig.frequency_penalty;
         if (aiConfig.temperature !== null)
             base.temperature = aiConfig.temperature;
 
-        if (aiConfig.enableTuyaTools  && aiConfig.IoTwebUIok) {
+        if (aiConfig.enableTuyaTools) {
+			//  ----------- tool processing
             const tools = Array.from(toolsRegistry).map(([name, tool]) => ({
                         type: "function",
                         function : {
@@ -743,7 +746,7 @@ app.post('/api/chat', async(req, res) => {
             if (aiConfig.enableDebugMode)
                 console.log(">>> to AI: ", {
                     ...base,
-                    messages: messages.slice(-3),
+                    messages: messages.slice(-4),
                     tools,
                     tool_choice: "auto"
                 });
@@ -767,14 +770,14 @@ app.post('/api/chat', async(req, res) => {
                         }
                     ]
                 };
-            }
+            } // catch ends
         } // tool case ends
         else {
             // log Prima chiamata API
             if (aiConfig.enableDebugMode)
                 console.log(">>> to AI: ", {
                     ...base,
-                    messages: messages.slice(-3)
+                    messages: messages.slice(-4)
                 });
             startTime = Date.now();
             //  Prima chiamata API
@@ -793,9 +796,10 @@ app.post('/api/chat', async(req, res) => {
                         }
                     ]
                 };
-            }
+            } // catch ends
 
         } // notool case ends
+		
         // 2. AI response processing
         const aiResponse = response?.choices[0]?.message; // primo messaggio
         if (aiConfig.enableDebugMode)
@@ -813,7 +817,8 @@ app.post('/api/chat', async(req, res) => {
             });
 
         finalReply = aiResponse.content || "";
-        // TOOL processing if tool_calls[]
+		
+        // 3. TOOL processing if tool_calls[]
         if (aiResponse.tool_calls && Array.isArray(aiResponse.tool_calls)) {
             // 3. option: process custom tool calls
             await processTools(sessionId, aiResponse.tool_calls);
@@ -858,6 +863,7 @@ app.post('/api/chat', async(req, res) => {
             finalReply = (finalReply ? (finalReply + '<hr>') : "") + secondResponse.content.replace(REASONINGSTART, "");
 
         } // ends if tool_calls
+		
         // 4. general AI response process
         finalReply = cleanRef(finalReply); // after: or naked or with REASONINGSTART  ANSWERSTART
         // cuts finalReply => reasoning + finalReply, or only finalReply
@@ -873,13 +879,10 @@ app.post('/api/chat', async(req, res) => {
             success: true,
             reply: finalReply,
             reasoning: reasoning, //  .replace(/\n/g, '<br>'),
-            //      toolCalls: aiResponse.tool_calls ? toolResults : null,
             model: aiConfig.model,
             responseId: responseNumber - 1,
-            usage: response.usage,
-            delay: new Date(Date.now() - startTime).toLocaleTimeString('sv-SE', {
-                timeZone: 'UTC'
-            })
+            usage: response.usage ||{},
+            delay: new Date(Date.now() - startTime).toLocaleTimeString('sv-SE', {timeZone: 'UTC'}),
         });
 
     } catch (error) {
@@ -927,7 +930,7 @@ app.post('/api/chat-stream', async(req, res) => {
             content: message
         });
         let tools = [];
-        if (aiConfig.enableTuyaTools  && aiConfig.IoTwebUIok) {
+        if (aiConfig.enableTuyaTools) {
             tools = Array.from(toolsRegistry).map(([name, tool]) => ({
                         type: "function",
                         function : {
@@ -1104,6 +1107,21 @@ const toolsRegistry = new Map(); // {name: {desc, params, endpoint}}
 // ===== TOOLS PREDEFINITI =====
 // static definition of TOOLS
 const TUYA_TOOLS = {
+    GetWebDocument: {
+        name: "GetWebDocument",
+        description: "Legge da URL un documento, eliminando, quando necessario, tutti i tag HTML. In caso di successo, il documento è accessibile in context, con il nome 'file letto dal web #xz'",
+        parameters: {
+            type: "object",
+            properties: {
+                url: {
+                    type: "string",
+                    description: "Un URL completa, per accedere al documento via http. Lo schema 'file:' non è supportato, ma è possibile aggiuungere un qualsiasi file al context usando il bottone 'Select context' (file pitcher) dell'interfaccia utente del chatbot."
+                },
+            },
+            required: ["url"]
+        },
+    },
+
     GetTuyaValue: {
         name: "GetTuyaValue",
         description: "Recupera, legge il valore di un attributo di un dispositivo Tuya o IoTwebUI. Esempio per sensori, interruttori o stati di tutti i device disponibili.",
@@ -1165,15 +1183,15 @@ const TUYA_TOOLS = {
 };
 
 // ===== INIZIALIZZAZIONE TOOLS =====
-// Aggiungi questa parte dopo l'inizializzazione di aiConfig
-setTimeout(() => {
-    if (aiConfig.enableTuyaTools) { // Flag configurabile
-        for (let key in TUYA_TOOLS) {
-            toolsRegistry.set(TUYA_TOOLS[key].name, TUYA_TOOLS[key])
+// Viene eseguita ad ogni cambio di IoTwbUIok: vedi app.post('/update-ai-settings'...
+function initializeTools(){
+	  toolsRegistry.clear(); 
+      for (let key in TUYA_TOOLS) {
+			if ( (!key.includes("Tuya"))|| aiConfig.IoTwebUIok)   // tool selection
+               toolsRegistry.set(TUYA_TOOLS[key].name, TUYA_TOOLS[key])
         };
-        console.log(`[Init] Registred Tuya tools: ${toolsRegistry.size}`);
-    }
-}, 1000);
+      console.log(`[Init] Registred tools: ${toolsRegistry.size}`);
+};
 
 /**
  * Utility processes tools request
@@ -1201,160 +1219,244 @@ async function processTools(sessionId, tool_calls) {
         } else {
             const params = JSON.parse(toolCall.function.arguments);
             // ================= 2) LOCAL CALL
-            // tool RunTuyaTTR
-            if (toolName == "RunTuyaTTR") {
-                const ttrName = params.name; // Es.'SuonaSirena'
+
+            if (toolName == "GetWebDocument") {
                 try {
-                    let result = await RESTget(IOTwbUI_rest_URL + 'execute/' + ttrName);
-                    //                console.log('REST run(' + ttrName + ') => ', result);
-                    let more = "\n(debug:" + JSON.stringify(result) + ")";
-                    if (result.done) {
-                        toolResult = {
-                            status: 'success',
-                            message: "REST Tap_to_run(" + ttrName + ") play ok " + more,
-                        }
+					const { default: fetch } = await import('node-fetch');
+                    const response = await fetch(params.url);
+                    if (!response.ok) {
+                        throw new Error(`Errore nella richiesta: ${response.status}`);
                     } else {
-                        toolResult = {
-                            status: "error",
-                            message: "REST Tap_to_run(" + ttrName + ") is " + (result.error || 'offline') + more,
+                        const contentType = response.headers.get('Content-Type');
+                        if (contentType && contentType.includes('text/html')) {
+                            const html = await response.text();						
+                            const $ = cheerio.load(html);
+      // Estrai il testo di tutti gli elementi (puoi adattare la selezione)
+                            const testoPulito = $('body').text();
+							if (testoPulito.trim() != "") {
+ /*								
+                                if (testoPulito.length > 4096) {
+                                    console.log("File letto maggiore di 4096 (" + testoPulito.length + ") byte, tagliato",
+                                    params.url);
+                                    testoPulito = testoPulito.slice(0, 4095);
+                                }
+								*/
+                                console.log("FILE HTML LETTO>>", testoPulito);
+                                    const store = {
+                                    data: {
+                                        content: "### file letto dal web #" + contextNumber + ": [INIZIO DEL CONTENUTO DEL FILE]" + testoPulito.trim() + "[FINE DEL CONTENUTO DEL FILE]",
+                                        role: "system",
+                                    },
+                                    name: "File read #" + contextNumber,
+                                    enabled: true,
+                                };
+                                    storageAppend(sessionId, store);
+                                    toolResult = {
+                                        status: 'success',
+                                        message: "Il file HTML #" + contextNumber + " è nel contesto di sistema.",
+                                    }
+                                } else {
+                                    toolResult = {
+                                        status: 'warning',
+                                        message: "Nessun testo letto",
+                                    }
+                                }
+                            } else if (contentType && (contentType.includes('text/plain') || contentType.includes('text/markdown'))) {
+                                var text = await response.text();
+/*
+                                if (text.length > 4096) {
+                                    console.log( "File text maggiore di 4096 (" + text.length + ") byte, tagliato",
+                                    params.url);
+                                    text = text.slice(0, 4095);
+                                }
+								*/
+                                console.log("FILE TESTO LETTO>>", text);
+                                const store = {
+                                    data: {
+                                        content: "### file letto dal web #" + contextNumber + ": [INIZIO DEL CONTENUTO DEL FILE]" + text.trim() + "[FINE DEL CONTENUTO DEL FILE]",
+                                        role: "system",
+                                    },
+                                    name: "File read #" + contextNumber,
+                                    enabled: true,
+                                };
+                                storageAppend(sessionId, store);
+                                toolResult = {
+                                    status: 'success',
+                                    message: "Il file letto #" + contextNumber + " è nel contesto di sistema.",
+                                }
+                            } else {
+                                console.log("formato file ContentType:" + contentType + " non supportato", params.url);
+                                toolResult = {
+                                    status: 'error',
+                                    message: "Formato del documento non supportato: " + contentType,
+                                }
+                            }
                         }
-                    };
-
-                } catch (error) {
-                    console.error('TOOL stream error:', error);
-                    toolResult = {
-                        status: "error",
-                        message: "REST error: " + error
-                    }
-                };
-
-            };
-            // tool GetTuyaValue
-            if (toolName == "GetTuyaValue") {
-                const deviceName = params.device; // Es. " SuonaSirena "
-                const valueCode = params.attribute;
-                // ==== here custom code
-                // using stotus to get online + value!
-                try {
-                    let result = await RESTget(IOTwbUI_rest_URL + 'device/' + deviceName + '/ddata');
-                    /* e.g.	    {name:'Termo studio',
-                    online: true,
-                    status: {switch: true,
-                    temp_current: 306,
-                    temp_set: 200 }} */
-                    let more = '\n(debug:' + JSON.stringify(result) + ')';
-                    if (!result.online) {
+                    } catch (error) {
                         toolResult = {
                             status: 'error',
-                            value: 'unknown',
-                            message: 'REST(set(' + deviceName + '.' + valueCode + ")) returns " + (result.error || 'offline') + more,
-                        };
+                            message: "Errore durante il download: "+error,
+                        }
 
-                    } else {
-                        const online = (result.online === true) || (result.online == 'true');
-                        const xvalue = result.status[valueCode] || 'unknow';
-                        if (online) {
+                        console.error("Errore durante il download o l'elaborazione del documento:", error);
+
+                    }
+
+                }
+                // tool RunTuyaTTR
+                if (toolName == "RunTuyaTTR") {
+                    const ttrName = params.name; // Es.'SuonaSirena'
+                    try {
+                        let result = await RESTget(IOTwbUI_rest_URL + 'execute/' + ttrName);
+                        //                console.log('REST run(' + ttrName + ') => ', result);
+                        let more = "\n(debug:" + JSON.stringify(result) + ")";
+                        if (result.done) {
                             toolResult = {
-                                status: "success",
-                                value: xvalue,
-                                message: "REST ok, " + deviceName + '.' + valueCode + ' = ' + xvalue + more,
+                                status: 'success',
+                                message: "REST Tap_to_run(" + ttrName + ") play ok " + more,
                             }
                         } else {
                             toolResult = {
-                                status: "warning",
-                                value: 'unknown',
-                                message: 'Device ' + deviceName + ' is now offline, last ' + valueCode + ' = ' + xvalue + more,
+                                status: "error",
+                                message: "REST Tap_to_run(" + ttrName + ") is " + (result.error || 'offline') + more,
                             }
                         };
-                    };
-                } catch (error) {
-                    console.error('TOOL stream error:', error);
-                    toolResult = {
-                        status: "error",
-                        message: "REST error: " + error
-                    }
-                };
-            };
-            // tool SetTuyaValue
-            if (toolName == "SetTuyaValue") {
-                const deviceName = params.device; // Es. " SuonaSirena "
-                const valueCode = params.attribute;
-                const newValue = params.value;
-                try {
-                    let result = await RESTget(IOTwbUI_rest_URL + 'set/' + deviceName + '/' + valueCode + '/' + newValue);
-                    let more = "\n(debug: " + JSON.stringify(result) + ")";
 
-                    if (result.done) {
+                    } catch (error) {
+                        console.error('TOOL stream error:', error);
                         toolResult = {
-                            status: "success",
-                            message: "REST set()ok, " + deviceName + '.' + valueCode + ' aggiornato' + more,
-                        }
-                    } else {
-                        toolResult = {
-                            status: 'error',
-                            message: "REST(set(" + deviceName + '.' + valueCode + "))returns " + (result.error || 'offline') + more,
+                            status: "error",
+                            message: "REST error: " + error
                         }
                     };
 
-                } catch (error) {
-                    console.error('TOOL stream error:', error);
-                    toolResult = {
-                        status: "error",
-                        message: "REST error: " + error
-                    }
                 };
-            } // if SetTuyaValue
-            // ===================== LOCAL TOOLS ENDS
-        } // if tool ok
-        // final result
-        storageAppend(sessionId, {
-            //           index: toolCall.index,
-            tool_call_id: toolCall.id,
-            role: 'tool',
-            name: toolName,
-            content: JSON.stringify(toolResult)
-        });
-    } // for tool
-}
+                // tool GetTuyaValue
+                if (toolName == "GetTuyaValue") {
+                    const deviceName = params.device; // Es. " SuonaSirena "
+                    const valueCode = params.attribute;
+                    // ==== here custom code
+                    // using stotus to get online + value!
+                    try {
+                        let result = await RESTget(IOTwbUI_rest_URL + 'device/' + deviceName + '/ddata');
+                        /* e.g.	    {name:'Termo studio',
+                        online: true,
+                        status: {switch: true,
+                        temp_current: 306,
+                        temp_set: 200 }} */
+                        let more = '\n(debug:' + JSON.stringify(result) + ')';
+                        if (!result.online) {
+                            toolResult = {
+                                status: 'error',
+                                value: 'unknown',
+                                message: 'REST(set(' + deviceName + '.' + valueCode + ")) returns " + (result.error || 'offline') + more,
+                            };
 
-// utility: REST implementation for nodej requires node-fetch
-async function RESTget(url) {
-    try {
-        const {
-        default:
-            fetch
-        } = await import('node-fetch');
-        const response = await fetch(url);
-        if (!response.ok) {
-            if (response.status === 404) {
-                response.status = 200;
-                console.log("ERROR *** REST result: 'unfound' on " + url);
-                return {
-                    error: "unfound"
+                        } else {
+                            const online = (result.online === true) || (result.online == 'true');
+                            const xvalue = result.status[valueCode] || 'unknow';
+                            if (online) {
+                                toolResult = {
+                                    status: "success",
+                                    value: xvalue,
+                                    message: "REST ok, " + deviceName + '.' + valueCode + ' = ' + xvalue + more,
+                                }
+                            } else {
+                                toolResult = {
+                                    status: "warning",
+                                    value: 'unknown',
+                                    message: 'Device ' + deviceName + ' is offline, last ' + valueCode + ' = ' + xvalue + more,
+                                }
+                            };
+                        };
+                    } catch (error) {
+                        console.error('TOOL stream error:', error);
+                        toolResult = {
+                            status: "error",
+                            message: "REST error: " + error
+                        }
+                    };
                 };
-            } else {
-                throw new Error('Network response was not ok. Status: ' + response.status);
-            }
-        }
-        const data = await response.json();
-        if (data && data.error) {
-            console.log("ERROR *** REST result: '" + data.error + "' on " + url);
-        }
-        return data;
-    } catch (error) {
-        console.error('There has been a problem with your fetch operation:', error);
-        return {
-            error: error.message || error
-        }; // Restituisci un oggetto errore coerente
+                // tool SetTuyaValue
+                if (toolName == "SetTuyaValue") {
+                    const deviceName = params.device; // Es. " SuonaSirena "
+                    const valueCode = params.attribute;
+                    const newValue = params.value;
+                    try {
+                        let result = await RESTget(IOTwbUI_rest_URL + 'set/' + deviceName + '/' + valueCode + '/' + newValue);
+                        let more = "\n(debug: " + JSON.stringify(result) + ")";
+
+                        if (result.done) {
+                            toolResult = {
+                                status: "success",
+                                message: "REST set()ok, " + deviceName + '.' + valueCode + ' aggiornato' + more,
+                            }
+                        } else {
+                            toolResult = {
+                                status: 'error',
+                                message: "REST(set(" + deviceName + '.' + valueCode + "))returns " + (result.error || 'offline') + more,
+                            }
+                        };
+
+                    } catch (error) {
+                        console.error('TOOL stream error:', error);
+                        toolResult = {
+                            status: "error",
+                            message: "REST error: " + error
+                        }
+                    };
+                } // if SetTuyaValue
+                // ===================== LOCAL TOOLS ENDS
+            } // if tool ok
+            // final result
+            storageAppend(sessionId, {
+                //           index: toolCall.index,
+                tool_call_id: toolCall.id,
+                role: 'tool',
+                name: toolName,
+                content: JSON.stringify(toolResult)
+            });
+        } // for tool
     }
-}
 
-// Helper: Lista tools registrati - not used
-app.get('/tools/list', (req, res) => {
-    res.json(Array.from(toolsRegistry).map(([name, data]) => ({
-                name,
-                description: data.description,
-                parameters: data.parameters,
-                endpoint: data.endpoint
-            })));
-});
+    // utility: REST implementation for nodej requires node-fetch
+    async function RESTget(url) {
+        try {
+            const {
+            default:
+                fetch
+            } = await import('node-fetch');
+            const response = await fetch(url);
+            if (!response.ok) {
+                if (response.status === 404) {
+                    response.status = 200;
+                    console.log("ERROR *** REST result: 'unfound' on " + url);
+                    return {
+                        error: "unfound"
+                    };
+                } else {
+                    throw new Error('Network response was not ok. Status: ' + response.status);
+                }
+            }
+            const data = await response.json();
+            if (data && data.error) {
+                console.log("ERROR *** REST result: '" + data.error + "' on " + url);
+            }
+            return data;
+        } catch (error) {
+            console.error('There has been a problem with your fetch operation:', error);
+            return {
+                error: error.message || error
+            }; // Restituisci un oggetto errore coerente
+        }
+    }
+
+    // Helper: Lista tools registrati - not used
+    app.get('/tools/list', (req, res) => {
+        res.json(Array.from(toolsRegistry).map(([name, data]) => ({
+                    name,
+                    description: data.description,
+                    parameters: data.parameters,
+                    endpoint: data.endpoint
+                })));
+    });
