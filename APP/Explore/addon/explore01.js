@@ -8,7 +8,7 @@ per IOTwebUI version 2.2 10/08/2024
  */
  
 // =====================  x-device EXPLORE01
-// This addon implements EXPLORE01() MACRO. This MACRO implements a x-device that allow access to your device information, calling some Tuya API.
+// This addon implements EXPLORE01() MACRO. This MACRO implements a x-device that allow access to your device information, calling some Tuya API, and produces some artifacts useful for AI.
 // USE: With the collaboration of the UI explore01.html, we have a standalone documentation APP.
 // Requres  IoTwebUI plus REST.
 
@@ -19,16 +19,8 @@ per IOTwebUI version 2.2 10/08/2024
 // You can use 'EXPLORE01( xname [, room, home])' as new MACRO in RULE-pad:
 // 2-A) Copy the 'RULES for EXPLORE01' in the RULE-pad at run time (temporary)
 // 2-B) Or copy the 'RULES for EXPLORE01' in the 'var usrrules' in the usrrulesXX.X.js file (permanent).
-// 3) optional: update 'custom.js' to set icon and color for this x-devices
-// note: [, room, home] are optional, because default are defined in code (row 44). You can change the defaults.  
-
-// =====================  USE AS NEW MACRO - ALTERNATIVE
-// 1) Copy just 'EXPLORE01' function CODE (updated) in the 'CUSTOM USER MACROS' section of usrrulesXX.X.js file
-// You can use 'EXPLORE01( xname [, room, home])' as new MACRO in RULE-pad:
-// 2-A) Copy the 'RULES for EXPLORE01' in the RULE-pad at run time (temporary)
-// 2-B) Or copy the 'RULES for EXPLORE01' in the 'var usrrules' in the usrrulesXX.X.js file (permanent).
-// 3) optional: update 'custom.js' to set icon and color for this x-devices
-// note: [, room, home] are optional, because default are defined in code. You can change the defaults.  
+// 3) optional: you can update 'custom.js' to set icon and color for this x-devices
+// note: [, room, home] are optional, because default are defined in code (row 31). You can change the defaults.  
 
 // ==== end use instructions
 
@@ -59,9 +51,9 @@ function EXPLORE01( xname, room = "tools", home = 'ADMIN') {             // defa
        let idx = GET(xname, "device", false);
 //	   console.log("EXPLORE01", idx, stp);
 	   let odev = getDeviceFromRef(idx);
-  	   if ((!( odev && odev.id)) && (stp != 'list')){     // list without device!
+  	   if ((!( odev && odev.id)) && (!stp.startsWith('list'))){     // list without device!
 			   SETXDEVICESTATUS(xname, "action", "idle");
-	           VOICE("Device not found - verify ID");
+	           VOICE("Definire prima un device, verificare ID");
 			   return;
 		        }				   
        let tit ="<b>" + (odev?odev.name:'full') +" - "+stp+"</b><br><br>";
@@ -107,10 +99,21 @@ function EXPLORE01( xname, room = "tools", home = 'ADMIN') {             // defa
 		   SETXDEVICESTATUS(xname, "action", "idle");
 		   break;
 		   
-		 case "list":
-	  	     autoPopup("IoTwenUI & EXPLORE01", getListPageCSV());
+		 case "listRead":
+	  	     autoPopup("IoTwenUI & EXPLORE01", getListPageRDCSV(xname));
   	         SETXDEVICESTATUS(xname, "action", "idle");
 	         break;		 
+			 
+ 		 case "listWrite":
+	  	     autoPopup("IoTwenUI & EXPLORE01", getListPageWRCSV(xname));
+  	         SETXDEVICESTATUS(xname, "action", "idle");
+	         break;		 
+   	     
+		 case "listFull":
+	  	     autoPopup("IoTwenUI & EXPLORE01", getListPageFullCSV(xname));
+  	         SETXDEVICESTATUS(xname, "action", "idle");
+	         break;		 
+      			 
 	     case "standard":
 		   if (odev.id.startsWith("x-")) {
 			   autoPopup(odev.name +" "+stp, tit+ JSON.stringify(odev.status, undefined, 2));
@@ -155,26 +158,91 @@ function EXPLORE01( xname, room = "tools", home = 'ADMIN') {             // defa
         return txt;
         }
 
-    function getListPageCSV() {
+  function getListPageFullCSV(xname) {
         cols = 4;
         let d = 0;
-        let txt = "<pre>\nDB CSV DEVICE TUYA INSTALLATE:\n\n";
-        Object.keys(tuyaData).forEach((homeId) => {
-             txt += "HOME, CATEGORIA, NOME, ONLINE, ATTRIBUTO, VALORE;\n";            
- 			
-            for (const device of tuyaData[homeId].devices) {
- //           if (device.online == true) {
+        let txt = "</pre><pre id='exp'>\n**CSV TABLE - ALL DEVICE**\n\n";
+        txt += "N, HOME, ROOM, TIPO, CATEGORIA, NOME, ATTRIBUTO, VALUE;\n";            
+      	let i = 1;
+		Object.keys(tuyaData).forEach((homeId) => {
+              for (const device of tuyaData[homeId].devices) {
+				 const idroom = tuyaData[homeId]['device_map'][device.id] || 0;
+				 const xroom  = tuyaData[homeId]['rooms'].find((room) => room.room_id == idroom) ;
+				 let dtipo = 'WiFi';
+				 if (device.sub)
+				      dtipo = "Zigbee or BLE";
+				 else if (device.category == "x-dev")
+				      dtipo = "x-device";
+				 else if (device.id.startsWith('vdev'))
+				      dtipo = "virtual";
+				 
 	            device.status.forEach((rec) => {
-                txt += tuyaData[homeId].name + ", "+ (device["is-a"] || device.category) + ", "+ device.name  + ", "+ device.online  + ", "+ rec.code+ ", "+rec.value +";\n";
+                  txt += i++ + ", " + tuyaData[homeId].name + ", "+ (xroom?xroom.name:'none') + ", "+  dtipo + ", "+ (device["is-a"] || device.category) + ", "+ device.name + ", "+ rec.code?.replace('<','&lt;') +  ", "+ rec.value?.toString().replace('<','&lt;') +";\n";
                       })
-  //               } // if true
+  
             } // device loop
+			
         }); // homes loop
-        return txt + "</pre>";
+		
+		   return txt + "\n\n// by explore01 addon: 'IoTwebUI."+xname+".action(listFull)' "+(new Date().toLocaleString('it-IT')) +"\n</pre>" + "<br><button onclick=\"d=document,a=d.createElement('a'),	 a.href='data:text/plain;base64,'+btoa(unescape(encodeURIComponent(d.getElementById('exp').textContent))),a.download='all-devices-'+Date.now()+'.txt', a.click()\">download</button><pre>";
         }
 
 
 
+    function getListPageRDCSV(xname) {
+        cols = 4;
+        let d = 0;
+        let txt = "</pre><pre id='exp'>\n**CSV TABLE - DEVICE for GetTuyaValue TOOL** \n\n";
+        txt += "N, HOME, ROOM, TIPO,  CATEGORIA, NOME\n";            
+  		let i = 1;
+     
+		Object.keys(tuyaData).forEach((homeId) => {
+             for (const device of tuyaData[homeId].devices) {
+				 const idroom = tuyaData[homeId]['device_map'][device.id] || 0;
+				 const xroom  = tuyaData[homeId]['rooms'].find((room) => room.room_id == idroom) ;
+				 let dtipo = 'WiFi';
+				 if (device.sub)
+				      dtipo = "Zigbee or BLE";
+				 else if (device.category == "x-dev")
+				      dtipo = "x-device";
+				 else if (device.id.startsWith('vdev'))
+				      dtipo = "virtual";
+            
+                txt += i++ + ", " + tuyaData[homeId].name + ", "+ (xroom?xroom.name:'none') + ", "+  dtipo + ", "+ (device["is-a"] || device.category) + ", "+ device.name + ";\n";
+             } // device loop
+        }); // homes loop
+	// footer	
+  	    return txt + "\n\n// by explore01 addon: 'IoTwebUI."+xname+".action(listRead)' "+(new Date().toLocaleString('it-IT')) +"\n</pre>" + "<br><button onclick=\"d=document,a=d.createElement('a'),	 a.href='data:text/plain;base64,'+btoa(unescape(encodeURIComponent(d.getElementById('exp').textContent))),a.download='get-devices-'+Date.now()+'.txt', a.click()\">download</button><pre>";
+        }
+
+   function getListPageWRCSV(xname) {
+        cols = 4;
+        let d = 0;
+        let txt = "</pre><pre id='exp'>\n**CSV TABLE - DEVICE for SetTuyaValue TOOL** \n\n";
+        txt += "N, HOME, ROOM, TIPO,  NOME,  ATTRIBUTO;\n"; 
+        let i=1;		
+        Object.keys(tuyaData).forEach((homeId) => {
+             for (const device of tuyaData[homeId].devices) {
+				 const idroom = tuyaData[homeId]['device_map'][device.id] || 0;
+				 const xroom  = tuyaData[homeId]['rooms'].find((room) => room.room_id == idroom) ;
+				 let dtipo = 'WiFi';
+				 if (device.sub)
+				      dtipo = "Zigbee or BLE";
+				 else if (device.category == "x-dev")
+				      dtipo = "x-device";
+				 else if (device.id.startsWith('vdev'))
+				      dtipo = "virtual";
+				 
+			    if (dtipo == "x-device"){
+	              device.status.forEach((rec) => {
+                    txt += i++ + ", " + tuyaData[homeId].name + ", "+ (xroom?xroom.name:'none') + ", "+  dtipo + ", "+ device.name + ", "+ rec.code?.replace('<','&lt;') + ";\n";
+                      })
+				} //  x-device
+             } // device loop
+        }); // homes loop
+		// footer
+   	   return txt + "\n\n// by explore01 addon: 'IoTwebUI."+xname+".action(listWrite)' "+(new Date().toLocaleString('it-IT')) +"\n</pre>" + "<br><button onclick=\"d=document,a=d.createElement('a'),	 a.href='data:text/plain;base64,'+btoa(unescape(encodeURIComponent(d.getElementById('exp').textContent))),a.download='set-devices-'+Date.now()+'.txt', a.click()\">download</button><pre>";
+        }
 
 // end  EXPLORE01 code
 
@@ -184,6 +252,6 @@ function EXPLORE01( xname, room = "tools", home = 'ADMIN') {             // defa
 // note: if you use EXPLORE01() many times, to buil many x-devices, take care to performances.
 
 /*
-  EXPLORE01("Explore");                //  MACRO call
+  EXPLORE01("Explore devices");                //  MACRO call
 */
 
