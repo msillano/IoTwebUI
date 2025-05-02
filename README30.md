@@ -322,6 +322,12 @@ _These two paths finally allow the integration of Tuya in vertical projects, wit
 <hr style="height:2px;border-width:0;color:gray;background-color:gray">
 
 ## Versions
+
+- 3.1 Introduction Artificial Intelligence
+   - IoTwebUI AI: **chatbot** integrated
+   - Added REST command for AI
+   - Added 'download' button in some popups.
+
 - 3.0 **IoTwebUI** interface with command/control panel, supporting a custom hierarchical menu system.
    - Mainly external HTML development: changed the launch file (REST activation is automatic)
    - Created two sets of pages: the 'panels' with graphical interface, and the simpler 'menus', used as controls for some APPs.
