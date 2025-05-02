@@ -1,5 +1,5 @@
 # IoTwebUI 3.0: Tuya WEBAPP open extension #
-[versione italiana](https://github.com/msillano/IoTwebUI/blob/main/LEGGIMI22.md)<br>
+[versione italiana](https://github.com/msillano/IoTwebUI/blob/main/LEGGIMI30.md)<br>
 
 **_Tired of SmartLife limitations? IoTwebUI 2.2 is here to give new life to your smart home, with an arsenal of features that will make you say "Finally!". <br> The 'open' philosophy is in the DNA of this APP, which enhances customization and user control._**
 
@@ -322,6 +322,13 @@ _These two paths finally allow the integration of Tuya in vertical projects, wit
 <hr style="height:2px;border-width:0;color:gray;background-color:gray">
 
 ## Versions
+- 3.0 **IoTwebUI** interface with command/control panel, supporting a custom hierarchical menu system.
+   - Mainly external HTML development: changed the launch file (REST activation is automatic)
+   - Created two sets of pages: the 'panels' with graphical interface, and the simpler 'menus', used as controls for some APPs.
+   - All **addons** updated to be compatible with the graphs created by _Explore scene_ (`sceneo1.js`)
+   - The new look and the default panel (`index.html` - without dependencies) are distributed with _IoTwebUI_, the others as APP (see [APP/panel](https://github.com/msillano/IoTwebUI/tree/main/APP/panel) ) to be added later.
+  - The distributed version `IoTwebUI3.0.zip` now contains everything you need: `IoTwebUI 3.0`, `REST3.0`, and the `index.html` Panel. The /html dir with the default panel is reinserted into the ZIP.
+    
 - 2.2.3 Bug Fixes
     - Updated some MACROs
 
