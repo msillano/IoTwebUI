@@ -12,6 +12,9 @@
 👌 Integrazione perfetta: Combina device, proprietà, voce, REGOLE e Tuya tap-to-run per un'automazione fluida, completa ed affidabile. <br>
 🏚  E' un ponte tra le HOME: può leggere i dati dei device in qualsiasi HOME e può usarli nelle REGOLE e attivare tap-to-run in tutte le HOME. Le 'scene' Tuya agiscono solo sui device dell'HOME in cui sono definite. 
 
+**NUOVO _versione 3.1_**
+* _IoTwebUI AI_:  un **chatbot** general purpose integrato con [l'ecosistema Tuya](https://github.com/msillano/IoTwebUI/blob/main/IoTwebUI%20AI/LEGGIMI.md).
+
 **_versione 2.2_**
 * _Interfaccia REST (server)_: webservice per il semplice collegamento con applicazioni od interfacce custom (documento [LEGGIMI-REST22](https://github.com/msillano/IoTwebUI/blob/main/RESTserver/LEGGIMI-REST22.md)).<br>
 * _x-device_: device virtuali IoTwebUI, ricorsive, e meccanismo di cooperazione [addon](https://github.com/msillano/IoTwebUI/tree/main/addon).
@@ -21,7 +24,7 @@
 
  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;![](https://github.com/msillano/IoTwebUI/blob/main/pics/useschema.png?raw=true)
 
-**NUOVO _versione 3.0_**
+** _versione 3.0_**
 * versione per tablet: integrazione di menu totalmente customizzabili (panel e IoTmenu) con IoTwebUI, per una migliore esperienza d'uso con sforzo minimo. 
 
 ![vers30](https://github.com/user-attachments/assets/5d8b9565-37bc-41af-86de-91a46d73b732)
