@@ -59,9 +59,9 @@ Istruzioni comuni e generali. Per ulteriori dettagli vedere le singole APP.
        * premere bottone: _PRONTO... premere per continuare_
    * Lanciare l'**interfaccia** cliccando sul file  `html\xxxxxx0y.html` (opzionale). Si aprirà nel browser preferito.   
 
-3. **Uso - ver. 3.0 - panel menu**
+3. **Uso - da ver. 3.0 - panel menu**
 
-    * Lanciare **IoTwebUI 3.0** (file `APP_me.bat` - richiede aggiornamento delle dir!) per IoTwebUI, REST e menu
+    * Lanciare **IoTwebUI 3.x** (file `APP_me.bat` - richiede aggiornamento delle dir!) per IoTwebUI, REST e menu
        * premere OK per  _INFO: Connected to REST server!_
        * premere bottone: _PRONTO... premere per continuare_
     * Ora potete controllare le APP che avete installato sul vostro sistema dal menu.
@@ -70,7 +70,7 @@ Successivamente **IoTwebUI** e l'**interfaccia** possono essere chiusi e rilanci
 
 4. **Limits**
    * **IoTwebUI** una sola istanza
-   * **interface** anche più istanze se specificato nele istruzioni.
+   * **interface** anche più istanze se specificato nelle istruzioni.
 
 5. **Troubleshooting** 
    * Sia con **IoTwebUI** che con l'**interfaccia** click mouse destro, scegliere 'ispeziona..'. Poi 'console': lì appaiono i messaggi di errore.
