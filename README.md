@@ -16,6 +16,11 @@ _**New: in ver 2.2 for 'power users':**_
 - **clima01** interactive WEB custom page (example) - see **/html**<br>
 - **Addon** and virtual **x-device** with recursive composition - see **/addon**
 - **APPLICATION** with specialized user interface - see **/APP**<br>
+- [NiMH battery tester](https://github.com/msillano/IoTwebUI/blob/main/addon/TestBattery01_leggimi.pdf) implemented with **x-device** and user interface.
+- [Logic Analyzer 5 ch](https://github.com/msillano/IoTwebUI/tree/main/APP/Logic%20Analyzer) to examine scene and device details.
+
+_**New: in ver 3.1 for 'power users':**_
+- **chatbot** interface for AI connected with Tuya devices! see **/IoTwebUI AI**<br>
 
 😃 [Version  3.0 - English](https://github.com/msillano/IoTwebUI/blob/main/README30.md) <br>
  ⬦ [Version  2.2 - English](https://github.com/msillano/IoTwebUI/blob/main/README22.md) <br>
