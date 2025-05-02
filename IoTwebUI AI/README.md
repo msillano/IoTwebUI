@@ -142,6 +142,6 @@ For usage and installation, see [chatbot](https://github.com/msillano/IoTwebUI/b
   
 OpenSource Project, MIT License, (c)2025 marco sillano
 
-IoTwebUI and IoTwebUI AI are works in progress. They are provided "as is"without warranties of any kind, implicit or explicit.
+IoTwebUI and IoTwebUI AI are works in progress. They are provided "as is" without warranties of any kind, implicit or explicit.
 <hr>
 
