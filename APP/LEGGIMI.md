@@ -88,6 +88,7 @@ _Come strategia generale, è opportuno che la logica sia implementata il più po
 2. Le 'REGOLE' **IoTwebUI** sono tutte eseguite subito dopo la lettura  dei dati, per usare rapidamente i dati aggiornati.
      * _Sono possibili dei run delle REGOLE extra, per avere risposte più pronte: quando una regola ne chiama un'altra (MACRO TRIGRULE(name)) oppure quando l'interfaccia utente di una APP aggiorna un valore di un **x_device** con REST, etc._
 3. Gli **x-device** sono device virtuali a tutti gli effetti, ma NON sono visibili da **Tuya**, esitono solo per  **IoTwebUI**
+   nota: gli **x_device** sono virtuali, ma possono fare da 'mirror' di device reali custom (NON Tuya compatibili, o solo parzialmente compatibili: vedi [modding](https://github.com/msillano/IoTwebUI/tree/main/DIY%20ESP3266/Modding%20switch) ).
 4. _Funzionalità delle REGOLE di  **IoTwebUI**_: una **REGOLA** può:
     * LEGGERE in qualunque momento tutte le proprietà visibili (<sup>1</sup>) di un **device Tuya** (MACRO GET())
     * LEGGERE le proprietà estese (<sup>1</sup>) di un device Tuya tramite un **x-mirror**
