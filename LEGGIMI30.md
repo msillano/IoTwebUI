@@ -328,6 +328,9 @@ Realizzati in HTML, le pagine 'Panel' si possono pensare suddivise in strisce or
 <hr style="height:2px;border-width:0;color:gray;background-color:gray">
 
 ## Versioni
+- 3.1 Manutenzione:
+  - Aggiunto comando REST per AI
+
 - 3.0  Interfaccia **IoTwebUI** con pannello di comando/controllo, che supporta un sistema gerarchico di menu custom.
   - Essenzialmente sviluppo HTML esterno: cambiato il file di lancio (l'attivazione del REST è auto)
   - Create due serie di pagine: i 'panel' con interfaccia grafica, e i 'menu' più semplici, usati come controllo per alcune APP.
