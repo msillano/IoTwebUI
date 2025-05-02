@@ -1,4 +1,4 @@
-# IoTwebUI 3.0: Tuya WEBAPP open extension #
+# IoTwebUI 3.1: Tuya WEBAPP open extension #
 [english version](https://github.com/msillano/IoTwebUI/blob/main/README30.md)<br>
 
 **_Stanco delle limitazioni di SmartLife?  IoTwebUI 3.0 è arrivato per dare nuova linfa alla tua casa intelligente, con un arsenale di funzionalità che ti faranno dire "finalmente!". <br> La filosofia 'open' è nel DNA di questa APP, che esalta la customizzazione ed il controllo da parte dell'utente._** 
