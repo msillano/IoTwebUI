@@ -138,4 +138,12 @@ L'esperienza acquisita e le specifiche definite attraverso la sperimentazione co
 
 _Il progetto IOTwebUI-AI rappresenta un ambiente di sperimentazione versatile e potente per esplorare le sinergie tra l'intelligenza artificiale e l'ecosistema Tuya. La sua architettura flessibile e l'integrazione di TOOL specifici offrono ai tecnici la possibilità di analizzare i dispositivi IoT, sperimentare nuove interazioni e definire le basi per future applicazioni intelligenti._
 
+<hr>
+  
+Progetto OpenSource, Licenza MIT, (c)2025 marco sillano
+
+IoTwebUI, IoTwebUI AI sono un work-in-progress: vengono forniti "così come sono", senza garanzie di alcun tipo, implicite o esplicite.
+<hr>
+
+
 #### Per installazione ed uso vedi [chatbot](https://github.com/msillano/IoTwebUI/blob/main/IoTwebUI%20AI/chatbot/LEGGIMI.md)
