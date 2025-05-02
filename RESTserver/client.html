@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<!--
+This file is part of IoTrest project (https://github.com/msillano/IoTwebUI/tree/main/RESTserver)
+ HTML-js standard REST client for IOTwebUI 
+ - use it for TEST
+ - use code as model for advanced WEB USER INTERFACES
+------------------------------
+License MIT
+(C)2024 marco.sillano@gmail.com
+ version 2.2 10/08/2024
+ -->
+
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	
+    <!-- REQUIRED to use same icons as IoTwebUI	-->
+	<link rel = "stylesheet"     href ="http://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" >
+
+  
+    <title>IOTwebUI Client</title>
+<!-- REQUIRED to use tooltip as IoTwebUI
+     can be modified to suit the look and feel you require	-->	
+	 <style>
+		.hover {
+			position:relative;
+		}
+
+		.tooltip {
+			background-color:black;
+			color:white;
+			border-radius:5px;
+			font: 10px Arial, sans-serif;
+			padding: 5px;
+
+			opacity:0;
+			top:30px;
+			position:absolute;
+			-webkit-transition: opacity 0.5s;
+			-moz-transition:  opacity 0.5s;
+			-ms-transition: opacity 0.5s;
+			-o-transition:  opacity 0.5s;
+			transition:  opacity 0.5s;
+		}
+
+		.hover:hover .tooltip {
+			opacity:1;
+		}
+    </style>
+	
+<!-- local, for this sample page -->	
+    <style>
+        h1 {
+            color: green;
+        }
+
+        .container {
+            margin: 10px;
+        }
+    </style>
+
+
+<script type="text/javascript">
+
+ const baseURL = 'http://localhost:3031/IoTrest/'; 
+ 
+ var tick;
+// for this example page		
+ function sendMessage() {
+            // Get the message input element
+            const messageInput = document.getElementById('messageInput');
+            // Get the value of the message input
+            const message = messageInput.value.trim();
+	         // Get the output div element
+            const outputDiv = document.getElementById('output');
+            // Append a paragraph with the input message to the output div
+            outputDiv.innerHTML += "<p>TX: <b>"+message+"</b><br>";
+			tick = performance.now();
+			
+            // Send the message to the REST server (GET)
+			RESTget(baseURL+message)
+			.then(data => {
+			 // echo received data 
+				let tdata = JSON.stringify(data);
+                 console.log('Dati ricevuti:', tdata);
+	         // Get the output div element
+                 const outputDiv = document.getElementById('output');
+            // Append a paragraph with the received message to the output div
+                 outputDiv.innerHTML += "Received <b>"+tdata+"</b> in "+(performance.now()-tick) +" ms <br>";
+				 if (data.tooltip){
+				    outputDiv.innerHTML += "<p>Special for DSTATUS - device info use example:<br>"; 
+				    outputDiv.innerHTML += getDeviceHTML(data);
+				    }
+				 });    		
+           // Clear the message input 
+            messageInput.value = '';
+        };
+</script >		
+
+<script type="text/javascript">	
+	
+// ========================= RESTlibrary
+
+function getDeviceHTML(data){
+// EXSAMPLE: how to use REST  data to show device icon and tooltip:
+//      can be modified to suit the look and feel you require	-->	
+ 
+ let tmp  =  "<div class='hover'><span class='fa fa-2x' style='color:"+ data.icon.color + "; vertical-align: middle;'>";
+  tmp +=  String.fromCharCode(data.icon.code)+"</span>"+ data.name;
+  tmp +=  "<div class='tooltip'>"+decodeURI(data.tooltip)+"</div></div>";
+  return (tmp);
+}
+
+// DO NOT CHANGE: see https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API/Using_Fetch 
+function RESTget(url) {
+  return fetch(url, { method: 'GET'})
+    .then(response => {
+		if (response.ok)
+			      return response.json();
+		else if(response.status === 404) {
+		     response.status = 200;
+			 return {error:"unknown"};
+			 }
+		else {
+			 throw new Error('Network response was not ok');
+			 } 
+    })
+    .catch(error => {
+      console.error('There has been a problem with your fetch operation:', error);
+    });
+}
+</script >
+</head>
+
+<body>
+    <h1>REST Client Example</h1>
+    <div class="container">
+        <b>Send GET Request to Server:</b> <br><br>
+		&nbsp;&nbsp;device/list[/<i>home</i>[/<i>room</i>]]<br>
+ 		&nbsp;&nbsp;device/<i>dev-name</i>|<i>dev-id</i>/dinfo|dstatus|<i>property</i><br>
+ 		&nbsp;&nbsp;alert/list/<i>dev-name</i>|<i>dev-id</i><br>
+		&nbsp;&nbsp;scene/list[/<i>room</i>]<br>
+ 		&nbsp;&nbsp;rule/list<br>
+ 		&nbsp;&nbsp;execute/<i>scene-name</i>|<i>rule-name</i><br>
+		<br>
+	    <input type="text" id="messageInput">
+        <button onclick="sendMessage()">Send</button><br>
+  		<i>note - <b>malformed</b>:syntax error, <b>unknown</b>:not found</i><br> 
+       <div id="output"></div>
+    </div>
+</body>
+</html>

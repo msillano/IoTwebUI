@@ -1,0 +1,226 @@
+ <!DOCTYPE html>
+ <!--
+This file is part of IoTrest project(https: //github.com/msillano/IoTwebUI/tree/main/RESTserver)
+HTML - js Mock for IOTwebUI, with stubs.
+------------------------------
+License MIT
+(C)2024 marco.sillano @ gmail.com
+version 2.2 10/08/2024
+-->
+     <html lang = "en">
+
+	 <head>
+         <meta charset = "UTF-8">
+         <meta name = "viewport" content = "width=device-width, initial-scale=1.0">
+         <title> IOTwebUI Mock </title>
+         <style>
+           h1 { color: green; }
+           .container { margin: 10px;}
+         </style>
+     </head>
+
+     <body>
+		<h1> IOTwebUI Mock websocket </h1>
+		<div class = "container">
+			Server messages:  <br>
+			 <code id = "output">  </code>
+			 </div>
+
+  <script type = "text/javascript">
+
+        // ===================  data access functions
+
+    function getDeviceList(home, room) {
+        res ={};
+	    if (home !== 'x') 
+		      res['home'] = home;
+	    if (room !== 'x') 
+		      res['room'] = room;
+		res["devices"] =  ['deviceOne', 'deviceTwo', 'deviceThree']
+		return JSON.stringify(res);
+		};
+
+    function getDeviceInfo(device) {
+    // all data from cloud, no status, no online
+		return JSON.stringify({
+			name: device,
+			id: 'ABC123456',
+			product_name: "HK56",
+			model: "3.2",
+			category: "wsdcg",
+			sub: true,
+			test: false
+			});
+		};
+
+    function getDeviceStatus(device) {
+		return JSON.stringify({
+			name: device,
+			online: true,
+			status: {
+				property01: 1,
+				property02: 'low',
+				property03: 333 }
+			});
+		};
+
+    var i = 0; // to test many types
+    function getPropertyValue(device, datapoint) {
+		if ((device == 'x') || (datapoint == 'x'))
+			return JSON.stringify({error:"malformed"});
+		i = ++i % 4;
+		switch (i) {
+		case 0:
+			return JSON.stringify({name: device, code:datapoint, value:false});
+		case 1:
+			return JSON.stringify({name: device, code:datapoint, value:4444});
+		case 2:
+			return JSON.stringify({name: device, code:datapoint, value:3.24});
+		case 3:
+			return JSON.stringify({name: device, code:datapoint, value:"some text"});
+			};
+		}
+
+    function doInfoAlert(device) {
+		i = ++i % 4;
+		switch (i) {
+		case 0:
+		case 3:
+			return JSON.stringify({
+				name: device,
+				alarms: []
+			});
+		case 1:
+			return JSON.stringify({
+				name: device,
+				alarms: [{
+						code: 'property02',
+						test: "equ",
+						limit: false,
+						trigger: false
+					}
+				]
+			});
+		case 2:
+			return JSON.stringify({
+				name: device,
+				alarms: [{
+						code: 'property02',
+						test: "grt",
+						limit: 5,
+						trigger: false
+					}, {
+						code: 'property03',
+						test: "equ",
+						limit: false,
+						trigger: true
+					}]
+				});
+			};  // switch ends
+		};
+
+    function getSceneList() {
+		return JSON.stringify({
+			scenes: [{
+					"name": "ALARM OFF",
+					"status": "enable",
+					"running_mode": "cloud"
+				}, {
+					"name": "ALARM ON",
+					"status": "enable",
+					"running_mode": "cloud"
+				}]
+			});
+		}
+
+    function getRuleList() {
+		return JSON.stringify(['pippo', 'chiamata pippo']);
+		}
+
+    function doSceneRule(sceneName) {
+		 return JSON.stringify({done: "scene"})
+		}
+
+  </script>
+
+  <script type = "text/javascript">
+        // Create a WebSocket instance and connect to the server
+     const socket = new WebSocket('ws://localhost:3030');
+
+    function ERRmessage() {
+			return JSON.stringify({error:"malformed"});
+         	}
+
+    // Event listener for when the WebSocket connection is opened
+    socket.onopen = function (event) {
+    // Alert the user that they are  connected to the WebSocket server
+		alert('You are Connected to IOYwebUI Server');
+		};
+
+    // Event listener for when a message is received from the server
+    socket.onmessage = function (event) {
+		// Mock local echo: Get the output div element
+		const outputDiv = document.getElementById('output');
+		outputDiv.innerHTML += "RX: " + event.data + "<BR>";
+		// here input route processing
+		let parts = (event.data + '/x/x/x/x/x').split('/');
+		switch (parts[0]) {
+		case 'device':
+			if ((parts[1] == 'list') && (parts[4] == 'x')) {
+				sendMessage(getDeviceList(parts[2], parts[3])); // can be also 'x'
+			} else if ((parts[2] == 'dinfo')  && (parts[3] == 'x')) {
+				sendMessage(getDeviceInfo(parts[1]));
+			} else if ((parts[2] == 'dstatus') && (parts[3] == 'x')) {
+				sendMessage(getDeviceStatus(parts[1]));
+			} else if ((parts[1] != 'x') && (parts[2] != 'x') && (parts[3] == 'x'))
+				sendMessage(getPropertyValue(parts[1], parts[2]));
+			else
+				sendMessage(ERRmessage());
+			break;
+		case 'scene':
+			if ((parts[1] == 'list')  && (parts[3] == 'x')) {
+				sendMessage(getSceneList(parts[2]));
+			} else
+				sendMessage(ERRmessage());
+			break;
+		case 'rule':
+			if ((parts[1] == 'list')  && (parts[2] == 'x')) {
+				sendMessage(getRuleList());
+			} else
+				sendMessage(ERRmessage());
+			break;
+		case 'execute':
+			if ((parts[1] != 'x') && (parts[2] == 'x')) {
+				sendMessage(doSceneRule(parts[1]));
+			} else
+				sendMessage(ERRmessage());
+			break;
+		case 'alert':
+			if ((parts[1] == 'list') && (parts[2] != 'x')  && (parts[3] == 'x')) {
+				sendMessage(doInfoAlert(parts[2]));
+			} else
+				sendMessage(ERRmessage());
+			break;
+
+		default:
+			sendMessage(ERRmessage());
+			};
+		};
+
+    // Event listener for when the WebSocket connection is closed
+    socket.onclose = function (event) {
+		// Log a message when disconnected  from the WebSocket server
+		console.log('Disconnected from WebSocket server');
+		};
+    // Function to send a message to the WebSocket server
+    function sendMessage(message) {
+		// Send the message to the WebSocket server
+		socket.send(message);
+		// Mock local echo: Get the output div element
+		const outputDiv = document.getElementById('output');
+		outputDiv.innerHTML += "TX: <b>" + message + "</b><br>";
+		};
+   </script>
+   
+   </body>
+   </html>

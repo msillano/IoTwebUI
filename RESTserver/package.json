@@ -1,0 +1,16 @@
+{
+  "name": "rest01",
+  "version": "2.2.0",
+  "description": "Server REST and WebSocket for IOTwebUI 2.2",
+  "main": "server.js",
+  "dependencies": {
+    "@hapi/hapi": "^20.3.0",
+    "ws": "^8.18.0"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "author": "m.s.",
+  "license": "ISC"
+}
