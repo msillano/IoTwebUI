@@ -68,7 +68,7 @@ To use an AI model, you need to know:
 ## **IoTwebUI Chatbot Installation**
 
 ### **Prerequisites**
-- Have **IoTwebUI version 3.0** installed and working ([see instructions](https://github.com/msillano/IoTwebUI/blob/main/APP/README.md#installation-and-use)), including **IoTrest**.
+- Have **IoTwebUI version 3.1** installed and working ([see instructions](https://github.com/msillano/IoTwebUI/blob/main/APP/README.md#installation-and-use)), including **IoTrest**.
 - Note: The chatbot can also work without _IoTwebUI_, but it will lose integration with Tuya (its main feature). However, it remains a flexible chatbot with web access.
 
 ### **Step 1: Download and Prepare Files**
