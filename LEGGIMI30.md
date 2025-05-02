@@ -24,7 +24,7 @@
 
  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;![](https://github.com/msillano/IoTwebUI/blob/main/pics/useschema.png?raw=true)
 
-** _versione 3.0_**
+**_versione 3.0_**
 * versione per tablet: integrazione di menu totalmente customizzabili (panel e IoTmenu) con IoTwebUI, per una migliore esperienza d'uso con sforzo minimo. 
 
 ![vers30](https://github.com/user-attachments/assets/5d8b9565-37bc-41af-86de-91a46d73b732)
