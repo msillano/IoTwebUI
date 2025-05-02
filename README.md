@@ -16,8 +16,8 @@ _**New: in ver 2.2 for 'power users':**_
 - **clima01** interactive WEB custom page (example) - see **/html**<br>
 - **Addon** and virtual **x-device** with recursive composition - see **/addon**
 - **APPLICATION** with specialized user interface - see **/APP**<br>
-- [NiMH battery tester](https://github.com/msillano/IoTwebUI/blob/main/addon/TestBattery01_leggimi.pdf) implemented with **x-device** and user interface.
-- [Logic Analyzer 5 ch](https://github.com/msillano/IoTwebUI/tree/main/APP/Logic%20Analyzer) to examine scene and device details.
+    - [NiMH battery tester](https://github.com/msillano/IoTwebUI/blob/main/addon/TestBattery01_leggimi.pdf) implemented with **x-device** and user interface.
+    - [Logic Analyzer 5 ch](https://github.com/msillano/IoTwebUI/tree/main/APP/Logic%20Analyzer) to examine scene and device details.
 
 _**New: in ver 3.1 for 'power users':**_
 - **chatbot** interface for AI connected with Tuya devices! see **/IoTwebUI AI**<br>
@@ -50,8 +50,8 @@ _**New: nella ver 2.2 per 'power users':**_
 - **clima01** pagina WEB dinamica ed interattiva custom - vedi **/html**<br>
 - **Addon** e **x-device** virtuali ricorsive! - vedi **/addon**<br>
 - **APPLICATION** con interfaccia utente specializzata - vedi **/APP**<br>
-- [Tester per batterie NiMH](https://github.com/msillano/IoTwebUI/blob/main/addon/TestBattery01_leggimi.pdf) implementata con **x-device** ed interfaccia utente.
-- [Logic Analyzer 5 ch](https://github.com/msillano/IoTwebUI/tree/main/APP/Logic%20Analyzer) per esaminare i dettagli di scene e device.
+    - [Tester per batterie NiMH](https://github.com/msillano/IoTwebUI/blob/main/addon/TestBattery01_leggimi.pdf) implementata con **x-device** ed interfaccia utente.
+    - [Logic Analyzer 5 ch](https://github.com/msillano/IoTwebUI/tree/main/APP/Logic%20Analyzer) per esaminare i dettagli di scene e device.
 
 _**New: nella ver 3.1 per 'power users':**_
 - **chatbot** interfaccia per AI collegata con i device Tuya! vedi **/IoTwebUI AI**<br>
