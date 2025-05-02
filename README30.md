@@ -1,4 +1,4 @@
-# IoTwebUI 3.0: Tuya WEBAPP open extension #
+# IoTwebUI 3.1: Tuya WEBAPP open extension #
 [versione italiana](https://github.com/msillano/IoTwebUI/blob/main/LEGGIMI30.md)<br>
 
 **_Tired of SmartLife limitations? IoTwebUI 2.2 is here to give new life to your smart home, with an arsenal of features that will make you say "Finally!". <br> The 'open' philosophy is in the DNA of this APP, which enhances customization and user control._**
@@ -13,8 +13,7 @@ _What can you do?_<br>
 👌 Perfect integration: Combine device, property, voice, RULES, and Tuya tap-to-run for smooth, complete, and reliable automation. <br>
 
 **NEW, _version 3.1_**
-   - Artificial Intelligence integration
-   - **IoTwebUI AI** - chatbot
+   * _IoTwebUI AI_: a general purpose **chatbot** integrated with [the Tuya ecosystem](https://github.com/msillano/IoTwebUI/blob/main/IoTwebUI%20AI/README.md).
 
 **_version 2.2_**
 * _REST interface_: web service for simple connection with applications or custom interfaces (document [README](https://github.com/msillano/IoTwebUI/blob/main/RESTserver/README.md)).<br>
