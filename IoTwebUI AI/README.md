@@ -140,8 +140,8 @@ For usage and installation, see [chatbot](https://github.com/msillano/IoTwebUI/b
 
 <hr>
   
-Progetto OpenSource, Licenza MIT, (c)2025 marco sillano
+OpenSource Project, MIT License, (c)2025 marco sillano
 
-IoTwebUI, IoTwebUI AI sono un work-in-progress: vengono forniti "così come sono", senza garanzie di alcun tipo, implicite o esplicite.
+IoTwebUI and IoTwebUI AI are works in progress. They are provided "as is"without warranties of any kind, implicit or explicit.
 <hr>
 
