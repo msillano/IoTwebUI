@@ -82,7 +82,7 @@ Successivamente **IoTwebUI** e l'**interfaccia** possono essere chiusi e rilanci
 ### Interazioni Tuya <=> IOTwebUI
 Facciamo alcune considerazioni utili nella fase di progetto di una APP, o, più in generale, nella organizzazione delle REGOLE di IoTwebUI.
 
-_Come strategia generale, è opportuno che la logica sia implementata il più possibile nelle 'scene' Tuya, e meglio ancora con 'local linkage' per avere la massima affidabilità e robustezza!_ <br> I  menu e i panel, le APP, etc. sono però implementate in IOTwebUI, e quindi vediamo nella loro globalità le possibili interazioni **Tuya** <=> **IoTwbUI**.
+_Come strategia generale, è opportuno che la logica sia implementata il più possibile nelle 'scene' Tuya, e meglio ancora con 'local linkage' per avere la massima affidabilità e robustezza!_ <br> I  menu e i panel, le APP, etc. sono però implementati in IOTwebUI, e quindi vediamo nella loro globalità le possibili interazioni **Tuya** <=> **IoTwbUI**.
 
 1. **IoTwebUI** legge i dati di tutti i dati visibili (<sup>1</sup>) dei device **Tuya** in polling (tipico ogni 120 secondi - min. 20s - vedi `tuyaInterval` in `config.js`).
 2. Le 'REGOLE' **IoTwebUI** sono tutte eseguite subito dopo la lettura  dei dati, per usare rapidamente i dati aggiornati.
