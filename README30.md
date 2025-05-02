@@ -12,11 +12,9 @@ _What can you do?_<br>
 🏚 It is a bridge between HOMEs: it can read data from devices in any HOME, use them in RULES, and activate tap-to-run in all HOMEs. Tuya 'scenes' only act on devices in the HOME in which they are defined.<br>
 👌 Perfect integration: Combine device, property, voice, RULES, and Tuya tap-to-run for smooth, complete, and reliable automation. <br>
 
-**_version 3.1_**
+**NEW, _version 3.1_**
    - Artificial Intelligence integration
    - **IoTwebUI AI** - chatbot
-   - Added a REST command for AI
-   - Added 'download' button to some popups.
 
 **_version 2.2_**
 * _REST interface_: web service for simple connection with applications or custom interfaces (document [README](https://github.com/msillano/IoTwebUI/blob/main/RESTserver/README.md)).<br>
@@ -27,7 +25,7 @@ _What can you do?_<br>
 
 ![](https://github.com/msillano/IoTwebUI/blob/main/pics/useschema.png?raw=true)
 
-**NEW _version 3.0_**
+**_version 3.0_**
 * tablet version: integration of fully customizable menus (panel and IoTmenu) with IoTwebUI, for a better user experience with minimal effort.
 
 ![vers30](https://github.com/user-attachments/assets/5d8b9565-37bc-41af-86de-91a46d73b732)
