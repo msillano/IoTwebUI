@@ -5,7 +5,7 @@
 In alcuni casi i device Tuya espongono, in IoTwebUI, meno proprietà di quelle disponibili in SmartLife, per esempio nel menu delle condizioni.
 _Questo può capitare perchè, per ragioni di prestazioni, IoTwebUI utilizza una funzione che legge tutti i device insieme, ma talvolta con proprietà ridotte._ 
 Questa macro invece crea un'**x-device**, clone di un device Tuya, dotandolo di tutte le proprità disponibili, aggiornate ad ogni loop.
-Quindi dello stesso device esistono due versioni: quella standard, gestita da IoTwebUI, e un **x-device** più dettagliato, generato da questo addon.
+Quindi dello stesso device possono esistere due versioni: quella standard, gestita da IoTwebUI, e un **x-device** più dettagliato, generato da questo addon.
 
 _nota: Ogni loop questo addon fa una richiesta a TuyaCloud, raddoppiando quindi le richieste per loop.  Attenzione a non superare i limiti Tuya (vedi `tuyaInterval` in `config.js`)_
 
