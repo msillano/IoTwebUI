@@ -12,8 +12,9 @@ We have separated them in this dir for ease of use: during installation, the fil
 
 **Programming Notes**<br>
 * Details on [Pattern MVP](https://github.com/msillano/IoTwebUI/blob/main/html/clima01-leggimi.md#pattern-mvp) 
-* "Advantages of this architecture" and 'Development process' in [testBattery01](https://github.com/msillano/IoTwebUI/blob/main/addon/TestBattery01_leggimi.pdf) <hr>
-
+* "Advantages of this architecture" and 'Development process' in [testBattery01](https://github.com/msillano/IoTwebUI/blob/main/addon/TestBattery01_leggimi.pdf) 
+* With **IoTwebUI 3.1**, attributes of an x_device can be read and written by AI, in addition to the user interface! This new option opens a new command channel that must be taken into account, both in terms of content and format!
+<hr>
 
 ### Installation and Use
 >>_note: many installation and configuration operations require the user to edit source files, due to WEBBAPP limitations. Use the usual warnings: Make a copy of the file before each change. Use a UTF8 editor (I use Notepad-plusplus). Be careful NOT to ALTER anything else (especially commas ',' and quotes '"' and "`")._
