@@ -11,12 +11,13 @@ _Per comodità di uso li abbiamo separati in questa dir: in fase di installazion
 
 **Tutte le APP disponibili sono presentate in [questa pagina](https://github.com/msillano/IoTwebUI/blob/main/APP/Overviews.md).**
 
-
-**Note di programmazione**<br>
+#### Note di programmazione
 
 * Dettagli sul [Pattern MVP](https://github.com/msillano/IoTwebUI/blob/main/html/clima01-leggimi.md#pattern-mvp) 
 * "Vantaggi di questa architettura" e 'Processo di sviluppo' in [testBattery01](https://github.com/msillano/IoTwebUI/blob/main/addon/TestBattery01_leggimi.pdf)
 * "Interazioni Tuya <=> IOTwebUI" in [questo documento](https://github.com/msillano/IoTwebUI/blob/main/APP/LEGGIMI.md#interazioni-tuya--iotwebui)
+* Con la versione **IoTwebUI 3.1**, gli attribuit di un **x_device** possono essere letti e scritti anche dall'AI, oltre che dalla interfaccia utente! Questa nuova opzione apre un nuovo canale di comando che deve essere tenuto in considerazione, sia come contenuti che come formati!
+
 
 ### Installazione e Uso
 >>_nota: molte operazioni di installazione e configurazione richiedono da parte dell'utente l'editing di file source, a causa dei limiti delle WEBBAPP. Usare le solite avvertenze: Fare una copia del file prima di ogni modifica. Usare un editor UTF8 (io uso Notepad-plusplus). Attenzione a NON ALTERARE niente altro (soprattutto virgole ',' ed apici '"' e "`")._
