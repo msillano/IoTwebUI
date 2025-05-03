@@ -162,7 +162,7 @@ function EXPLORE01( xname, room = "tools", home = 'ADMIN') {             // defa
         cols = 4;
         let d = 0;
         let txt = "</pre><pre id='exp'>\n**CSV TABLE - ALL DEVICE**\n\n";
-        txt += "N, HOME, ROOM, TIPO, CATEGORIA, NOME, ATTRIBUTO, VALUE;\n";            
+        txt += "N, HOME, ROOM, TIPO, CATEGORIA, NOME, ONLINE, ATTRIBUTO, VALUE;\n";            
       	let i = 1;
 		Object.keys(tuyaData).forEach((homeId) => {
               for (const device of tuyaData[homeId].devices) {
@@ -177,8 +177,11 @@ function EXPLORE01( xname, room = "tools", home = 'ADMIN') {             // defa
 				      dtipo = "virtual";
 				 
 	            device.status.forEach((rec) => {
-                  txt += i++ + ", " + tuyaData[homeId].name + ", "+ (xroom?xroom.name:'none') + ", "+  dtipo + ", "+ (device["is-a"] || device.category) + ", "+ device.name + ", "+ rec.code?.replace('<','&lt;') +  ", "+ rec.value?.toString().replace('<','&lt;') +";\n";
-                      })
+                  txt += i++ + ", " + tuyaData[homeId].name + ", "+ (xroom?xroom.name:'none') + ", "+  dtipo + ", ";
+				  txt += (device["is-a"] || device.category) + ", "+ device.name + ", ";
+				  txt += (device.online?"true":"false") + ", "+ rec.code?.replaceAll('<','&lt;') +  ", ";
+				  txt +=  rec.value?.toString().replaceAll('<','&lt;') +";\n";
+                  })
   
             } // device loop
 			
@@ -193,7 +196,7 @@ function EXPLORE01( xname, room = "tools", home = 'ADMIN') {             // defa
         cols = 4;
         let d = 0;
         let txt = "</pre><pre id='exp'>\n**CSV TABLE - DEVICE for GetTuyaValue TOOL** \n\n";
-        txt += "N, HOME, ROOM, TIPO,  CATEGORIA, NOME\n";            
+        txt += "N, HOME, ROOM, TIPO, CATEGORIA, NOME, ONLINE\n";            
   		let i = 1;
      
 		Object.keys(tuyaData).forEach((homeId) => {
@@ -206,9 +209,10 @@ function EXPLORE01( xname, room = "tools", home = 'ADMIN') {             // defa
 				 else if (device.category == "x-dev")
 				      dtipo = "x-device";
 				 else if (device.id.startsWith('vdev'))
-				      dtipo = "virtual";
-            
-                txt += i++ + ", " + tuyaData[homeId].name + ", "+ (xroom?xroom.name:'none') + ", "+  dtipo + ", "+ (device["is-a"] || device.category) + ", "+ device.name + ";\n";
+				      dtipo = "virtual";         
+                txt += i++ + ", " + tuyaData[homeId].name + ", "+ (xroom?xroom.name:'none') + ", "+  dtipo + ", ";
+				txt += (device["is-a"] || device.category) + ", "+ device.name +  ", ";
+				txt += (device.online?"true":"false" )+ ";\n";
              } // device loop
         }); // homes loop
 	// footer	
@@ -219,7 +223,7 @@ function EXPLORE01( xname, room = "tools", home = 'ADMIN') {             // defa
         cols = 4;
         let d = 0;
         let txt = "</pre><pre id='exp'>\n**CSV TABLE - DEVICE for SetTuyaValue TOOL** \n\n";
-        txt += "N, HOME, ROOM, TIPO,  NOME,  ATTRIBUTO;\n"; 
+        txt += "N, HOME, ROOM, TIPO,  NOME, ONLINE,  ATTRIBUTO;\n"; 
         let i=1;		
         Object.keys(tuyaData).forEach((homeId) => {
              for (const device of tuyaData[homeId].devices) {
@@ -235,7 +239,9 @@ function EXPLORE01( xname, room = "tools", home = 'ADMIN') {             // defa
 				 
 			    if (dtipo == "x-device"){
 	              device.status.forEach((rec) => {
-                    txt += i++ + ", " + tuyaData[homeId].name + ", "+ (xroom?xroom.name:'none') + ", "+  dtipo + ", "+ device.name + ", "+ rec.code?.replace('<','&lt;') + ";\n";
+                    txt += i++ + ", " + tuyaData[homeId].name + ", "+ (xroom?xroom.name:'none') + ", ";
+					txt += dtipo + ", "+ device.name +  ", "+ (device.online?"true":"false") + ", ";
+					txt += rec.code?.replaceAll('<','&lt;') + ";\n";
                       })
 				} //  x-device
              } // device loop
