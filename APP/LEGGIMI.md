@@ -85,7 +85,7 @@ Facciamo alcune considerazioni utili nella fase di progetto di una APP, o, più 
 
 _Come strategia generale, è opportuno che la logica sia implementata il più possibile nelle 'scene' Tuya, e meglio ancora con 'local linkage' per avere la massima affidabilità e robustezza!_ <br> I  menu e i panel, le APP, etc. sono però implementati in IOTwebUI, e quindi vediamo nella loro globalità le possibili interazioni **Tuya** <=> **IoTwbUI**.
 
-1. **IoTwebUI** legge i dati di tutti i dati visibili (<sup>1</sup>) dei device **Tuya** in polling (tipico ogni 120 secondi - min. 20s - vedi `tuyaInterval` in `config.js`).
+1. **IoTwebUI** legge tutti i dati visibili (<sup>1</sup>) dei device **Tuya** in polling (tipico ogni 120 secondi - min. 20s - vedi `tuyaInterval` in `config.js`).
 2. Le 'REGOLE' **IoTwebUI** sono tutte eseguite subito dopo la lettura  dei dati, per usare rapidamente i dati aggiornati.
      * _Sono possibili dei run delle REGOLE extra, per avere risposte più pronte: quando una regola ne chiama un'altra (MACRO TRIGRULE(name)) oppure quando l'interfaccia utente di una APP aggiorna un valore di un **x_device** con REST, etc._
 3. Gli **x-device** sono device virtuali a tutti gli effetti, ma NON sono visibili da **Tuya**, esitono solo per  **IoTwebUI**<br>
@@ -114,10 +114,10 @@ Inoltre esiste il tap-to-run BRIDGEACK, che esegue `BRIDGE-vdevo.countdown_1 = 0
 ```  
     
 (<sup>1</sup>) nota:
-  _Si possono definire diversi insiemi differenti di  proprietà legate ad un **device Tuya**. In questo contesto ci interessano:_<br>
+  _Si possono definire diversi insiemi di  proprietà legate ad un **device Tuya**. In questo contesto ci interessano:_<br>
 * _**visibili**: sono le proprietà che **IoTwebUI** legge ogni loop da TuyaCloud, sempre  disponibili: usate nei tooltip, leggibili nelle REGOLE con GET(), etc..._<br> _Sono le proprietà che mostra l'APP 'Explore device'-'IoTwebUI' in `status`._
-* _**accessibili**: sono le proprietà leggibili in una `condizione` e scrivibili con una `azione` nelle **SCENE Tuya**. Sono predefinite dal produttore per ogni device._ <br> _Appaiono in `SmartLife/Tuya Smart` quando si crea una AUTOMAZIONE._
-* _**estese**: sono proprietà non visibili che l'addon [`cloner01`](https://github.com/msillano/IoTwebUI/edit/main/addon/cloner01-leggimi.md) può leggere da **TuyaCloud**, e copiare in un x-device 'mirror' (da usare solo se necessario, raddoppia gli accessi al Cloud ad ogni loop)_ <br> _Sono le proprietà che mostra l'APP 'Explore device'-'Tuya Schema'._
+* _**accessibili**: sono le proprietà leggibili in una `condizione` e scrivibili con una `azione` nelle **SCENE Tuya**. Sono predefinite dal produttore per ogni device._ <br> _L'unico modo attuale per conoscerle è contrallare in `SmartLife/Tuya Smart` quando si crea una AUTOMAZIONE._
+* _**estese**: sono proprietà non visibili che l'addon [`cloner01`](https://github.com/msillano/IoTwebUI/edit/main/addon/cloner01-leggimi.md) può leggere da **TuyaCloud**, e copiare in un x-device 'mirror' (da usare solo se necessario, raddoppia gli accessi al Cloud ad ogni loop)_ <br> _Sono le proprietà che mostra l'APP 'Explore device', opzione: 'Tuya Schema'._
 
 <hr>
   
