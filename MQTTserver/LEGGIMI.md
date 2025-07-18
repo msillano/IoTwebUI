@@ -3,9 +3,9 @@
 Attualente (luglio 2025) Tuya accetta device Zigbee di terze parti ( con alcuni limiti, vedo https://www.tuyaos.com/viewtopic.php?t=2688 ) mentre rifiuta completamente il "pairing" ai
 device Tuya "non autorizzati" - Cioè i device Tuya Zigbee di produttori 'insolventi'! (vedi post https://www.facebook.com/groups/tuyaitalia/permalink/1678413936126286/ ).
 
-Se un utente ha un parco importante di device Zigbee, con molte scene di controllo, esiste una soluzione solamente: ricomprare i device 'non autorizzati', ma questa volta di marche note!
+Se un utente ha un parco importante di device Zigbee, con molte scene di controllo, la soluzione zero consiste nel ricomprare i device 'non autorizzati', ma questa volta di marche note e paganti!
 
-In uesto studio voglio affrontare le alternati possibili:
+Ciò non ostante è interessante affrontare le alternati possibili:
 
 <h4>Soluzione 1: SLZB-06 da solo<h4>
 Il coordinator Zigbee, non Tuya compatibile, modello SLZB-06p7 - per altri modelli vedi http://smlight.tech/ - ha caratteristiche molto interessanti!   
