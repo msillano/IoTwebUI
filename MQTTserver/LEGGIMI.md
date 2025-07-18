@@ -7,7 +7,7 @@ Se un utente ha un parco importante di device Zigbee, con molte scene di control
 
 Ciò non ostante è interessante affrontare le alternati possibili:
 
-<h4>Soluzione 1: SLZB-06 da solo</h4>
+<h3>Soluzione 1: SLZB-06 stand-alone</h3>m
 Il coordinator Zigbee, non Tuya compatibile, modello SLZB-06p7 - per altri modelli vedi http://smlight.tech/ - ha caratteristiche molto interessanti!   
 In particolare ha un modo di funzionamento chiamato "zigbee Hub" autonomo ( vedi https://github.com/smlight-tech/slzb-os-zigbee-hub/tree/main). 
 
@@ -27,10 +27,10 @@ CONTRO:
 ![514352507_10228789887283300_8876190228529040627_n](https://github.com/user-attachments/assets/24348a01-c471-4853-adf7-815f9527281d)
 ![516749877_10228789885683260_7727836866700025590_n](https://github.com/user-attachments/assets/0c145c4a-37dd-4772-97fd-51674b4ebb1e)
 
-Conclusione
+<h4>Conclusione</h4>
 
 Una soluzione veramente semplice (richiede solo SLZB-06). Le pagine WEB di configurazione presentano i device in due modi: sotto forma di lista e come dashboard (vedi figure).
-E' così possibile leggere i valori di sensori e dare comandi manuali ai device!
+E' così possibile leggere i valori dei sensori Zigbee e dare comandi manuali ai device, con i limiti di SLZB-06 indicati dal costruttore!
 
 
 (vedi https://www.facebook.com/groups/tuyaitalia/permalink/1690721174895562/ )
