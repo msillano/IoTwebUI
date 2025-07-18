@@ -7,7 +7,7 @@ Se un utente ha un parco importante di device Zigbee, con molte scene di control
 
 Ciò non ostante è interessante affrontare le alternati possibili:
 
-<h4>Soluzione 1: SLZB-06 da solo<h4>
+<h4>Soluzione 1: SLZB-06 da solo</h4>
 Il coordinator Zigbee, non Tuya compatibile, modello SLZB-06p7 - per altri modelli vedi http://smlight.tech/ - ha caratteristiche molto interessanti!   
 In particolare ha un modo di funzionamento chiamato "zigbee Hub" autonomo ( vedi https://github.com/smlight-tech/slzb-os-zigbee-hub/tree/main). 
  
