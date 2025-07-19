@@ -143,7 +143,7 @@ note:<br>
       - `dinfo.category` : codice corrispondente a `is-a` (in pop-ups, EXPERT mode).<br>
       - `dstatus.icon` : frammento HTML per UI: icona e toolip del device.
 
-* **set/_dev-name_|_dev-id_/_code_/_value_** (e.g.: set/Device list/home/ROMA )<br>
+* **set/_dev-name_/_code_/_value_** (e.g.: set/Device list/home/ROMA )<br>
  Solo for x-devices! <br>
 
   Ricevuto:
