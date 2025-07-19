@@ -35,7 +35,7 @@ E' così possibile leggere i valori dei sensori Zigbee e dare comandi manuali ai
 
 <h3>Soluzione 2: SLZB-06 (zigbee Hub) + mosquitto + MQTT Explorer </h3>
 Per elaborare ulteriorente i dati dei device occorre raccoglierli ed inviarli ad un SW di elaborazione!
-La soluzione più seplice è usare un Broker MQTT (e.g. mosquitto)  per ricevere i dati da SLZB-06 e una seplice APP che permetta di visualizzare i dati  MQTT in vari modi (e.g. MQTT Explorer)!
+La soluzione più semplice è usare un Broker MQTT (e.g. mosquitto)  per ricevere i dati da SLZB-06 e una seplice APP che permetta di visualizzare i dati  MQTT in vari modi (e.g. MQTT Explorer)!
 
 Come si vede dallo screenshot, in alto si hanno tutti i messaggi MQTT ricevuti (i codici nuerici sono tipici dei device Zigbee e definiti in ZCL - Zigbee Cluster Library), a destra i dati rappresentati come oggetto, e sotto i grafici di alcuni valori scelti dall'utente. Nell'esepio il topic è "zhub/data/a4c13849baf0f06c/1/0402/0000" e il grafico presenta i valori di "data.val' (temperature). Ogni punto rappresenta una misura inviata dal device!
 
