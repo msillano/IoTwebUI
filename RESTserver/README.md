@@ -140,7 +140,7 @@ note:<br>
       - `dinfo.test` _IoTwebUI extension_: `true` if there is an IoTwebUI alarm connected to the device.<br>
       - `dinfo.category` : code corresponding to `is-a` (in pop-ups, EXPERT mode).
 
-* **set/_dev-name_|_dev-id_/_code_/_value_** (e.g.: set/Device list/home/ROMA )<br>
+* **set/_dev-name_/_code_/_value_** (e.g.: set/Device list/home/ROMA )<br>
  Only for x-devices! <br>
 
 Received
