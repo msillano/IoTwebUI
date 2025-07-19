@@ -31,7 +31,7 @@ CONTRO:
 <h4>Conclusione</h4>
 
 Una soluzione veramente semplice (richiede solo SLZB-06). Le pagine WEB di configurazione presentano i device in due modi: sotto forma di lista e come dashboard (vedi figure).
-E' così possibile leggere i valori dei sensori Zigbee e dare comandi manuali ai device, con i limiti di SLZB-06 indicati dal costruttore!
+E' così possibile leggere i valori dei sensori Zigbee e dare comandi manuali ai device, con i limiti del SLZB-06 indicati dal costruttore!
 
 
 (vedi https://www.facebook.com/groups/tuyaitalia/permalink/1690721174895562/ )
