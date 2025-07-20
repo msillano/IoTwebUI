@@ -7,7 +7,7 @@ Se un utente ha un parco importante di device Zigbee, con molte scene di control
 Rimane perà il problema di come utilizzare i device 'bannati' ed i device Zigbee  non compatibili Tuya. Sono possibili diverse soluzioni, presentate qui in ordine di coplessità (e prestazioni) crescenti. Ogni utente può individuare la soluzione che meglio risponde alle sue esigenze!
 
 _**Nota generale**: Le automazioni essenziali è oppurtuno siano implementate usando solo Tuya, magari con 'local linkage'! Ogni applicazione aggiunta riduce l'affidabilità ed aumenta la latenza! 
-Quindi i device Zigbee di cui parliao qui saranno utilizzati in applicazioni accessorie, di uso sporadico e non in ruoli chiave nella domotica stabile!_
+Quindi i device Zigbee di cui parliao qui saranno meglio utilizzati in applicazioni accessorie, di uso sporadico e non in ruoli chiave nella domotica stabile!_
 
 <h3>Soluzione 1: SLZB-06 (zigbee Hub) stand-alone</h3>
 Ho preso e testato come coordinator Zigbee, non Tuya compatibile, il modello **SLZB-06p7** - per altri modelli vedi http://smlight.tech/manual/slzb-06/guide/slzb-models-overview/ ) - ha caratteristiche molto interessanti!   
