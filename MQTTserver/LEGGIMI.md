@@ -7,7 +7,7 @@ Se un utente ha un parco importante di device Zigbee, con molte scene di control
 Rimane perà il problema di come utilizzare i device Zigbee 'bannati' ed i device Zigbee di terze parti non compatibili Tuya. Sono possibili diverse soluzioni, presentate qui in ordine di complessità (e prestazioni) crescenti. Ogni utente può individuare la soluzione che meglio risponde alle sue esigenze!
 
 _**Nota generale**: Le automazioni essenziali è oppurtuno siano implementate usando solo Tuya, magari con 'local linkage'! Ogni applicazione aggiunta riduce l'affidabilità ed aumenta la latenza! 
-Quindi i device Zigbee di cui parliamo qui saranno meglio utilizzati in applicazioni accessorie, di uso sporadico e non in ruoli chiave nella domotica stabile!_
+Quindi i device Zigbee di cui parliamo qui, con le relative soluzioni, saranno meglio utilizzati in applicazioni accessorie, di uso sporadico e non in ruoli chiave nella domotica stabile!_
 
 <h3>Soluzione 1: SLZB-06 (zigbee Hub) stand-alone</h3>
 Ho preso e testato come coordinator Zigbee, non Tuya compatibile, il modello **SLZB-06p7** - per altri modelli vedi http://smlight.tech/manual/slzb-06/guide/slzb-models-overview/ ) - ha caratteristiche molto interessanti!   
@@ -17,7 +17,7 @@ Inoltre ha un linguaggio di programmazione per cui può eseguire script custom d
  ![516850804_10228789882683185_8445870067712513088_n](https://github.com/user-attachments/assets/084a0eb6-a901-4602-bf85-43377ab70c65) 
 
 PRO:
- - "Zigbee Hub è una modalità che consente l'elaborazione di tutto il traffico Zigbee all'interno del sistema SLZB-OS senza la necessità di utilizzare ZHA o Z2M."
+ - "`Zigbee Hub` è una modalità che consente l'elaborazione di tutto il traffico Zigbee all'interno del sistema SLZB-OS senza la necessità di utilizzare ZHA o Z2M."
  - "Questo garantisce un'eccellente stabilità, poiché non è più necessario inviare pacchetti Zigbee grezzi sulla rete, ma vengono invece inviati messaggi già elaborati.
 La perdita di un messaggio pronto non causerà un guasto nell'hub (come accade con ZHA/Z2M)."
 - "L'integrazione MQTT consente di garantire l'integrità del traffico (con QOS > 0)."
@@ -37,10 +37,10 @@ E' così possibile leggere i valori dei sensori Zigbee e dare comandi manuali ai
 
 
 <h3>Soluzione 2: SLZB-06 (zigbee Hub) + mosquitto + MQTT Explorer </h3>
-Per elaborare ulteriorente i dati dei device occorre raccoglierli ed inviarli ad un SW di elaborazione!
+Per elaborare ulteriorente i dati dei device occorre raccoglierli ed inviarli ad una APP di elaborazione!
 La soluzione più semplice è usare un _Broker MQTT_ (e.g. mosquitto - http://mosquitto.org/ )  per ricevere i dati da SLZB-06 e una semplice _APP client_ che permetta di visualizzare i dati  MQTT in vari modi (e.g. MQTT Explorer - http://mqtt-explorer.com/)! 
 
-_Come si vede dallo screenshot di MQTT Explorer, in alto si hanno tutti i messaggi MQTT ricevuti (i codici numerici sono tipici dei device Zigbee e definiti in ZCL - Zigbee Cluster Library), a destra i dati rappresentati come oggetto, e sotto i grafici di alcuni valori scelti dall'utente. Nell'esepio il topic è "zhub/data/a4c13849baf0f06c/1/0402/0000" e il grafico presenta i valori di "data.val' (temperature). Ogni punto rappresenta una misura inviata dal device!_
+_Come si vede dallo screenshot di MQTT Explorer, in alto si hanno tutti i messaggi MQTT ricevuti (i codici numerici sono tipici dei device Zigbee e definiti in ZCL - Zigbee Cluster Library), a destra i dati rappresentati come oggetto, e sotto i grafici di alcuni valori scelti dall'utente. Nell'esempio il topic è "zhub/data/a4c13849baf0f06c/1/0402/0000" e il grafico presenta i valori di "data.val' (temperature). Ogni punto rappresenta una misura inviata dal device!_
 
 
 <img width="1025" height="617" alt="Schermata 2025-07-19 alle 19 33 18" src="https://github.com/user-attachments/assets/54bf88ee-b08c-4557-a836-095cbbef6595" />
@@ -62,7 +62,7 @@ Per rendere questo realizzabile, occorre usare **IoTwebUI**, e creare degli **'x
 Questo screenshot mostra come appare in IoTwebUI un x-device per un sensore teperatura/pressione.
 Note:
  - Gli x-device, con icona ad ingranaggi, possono essere inseriti in ogni stanza creata con Tuya (nella figura, la 'stanza' MQTT).
- - Mancano alcuni dati, ad esempio l'opzione C/F per la temperatura. Questo perchè non sono implementati in "SLZB-06 zigbee Hub" (vedi https://github.com/smlight-tech/slzb-os-zigbee-hub/tree/main?tab=readme-ov-file#what-is-currently-supported)
+ - Mancano alcuni dati, ad esempio l'opzione °C/°F per la temperatura. Questo perchè non sono implementati in "SLZB-06 zigbee Hub" (vedi https://github.com/smlight-tech/slzb-os-zigbee-hub/tree/main?tab=readme-ov-file#what-is-currently-supported)
  - Poichè l'x-device è implementata dall'utente, si possono invece aggiungere altri dati disponibili (in questo caso ho aggiunto `lqi`, indice di qualità del collegamento ZIgbee).
 
 Installazione:
