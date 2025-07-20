@@ -35,17 +35,19 @@ E' così possibile leggere i valori dei sensori Zigbee e dare comandi manuali ai
 
 <h3>Soluzione 2: SLZB-06 (zigbee Hub) + mosquitto + MQTT Explorer </h3>
 Per elaborare ulteriorente i dati dei device occorre raccoglierli ed inviarli ad un SW di elaborazione!
-La soluzione più semplice è usare un Broker MQTT (e.g. mosquitto)  per ricevere i dati da SLZB-06 e una seplice APP che permetta di visualizzare i dati  MQTT in vari modi (e.g. MQTT Explorer)!
+La soluzione più semplice è usare un _Broker MQTT_ (e.g. mosquitto - http://mosquitto.org/ )  per ricevere i dati da SLZB-06 e una semplice _APP client_ che permetta di visualizzare i dati  MQTT in vari modi (e.g. MQTT Explorer - http://mqtt-explorer.com/)! 
 
-Come si vede dallo screenshot, in alto si hanno tutti i messaggi MQTT ricevuti (i codici nuerici sono tipici dei device Zigbee e definiti in ZCL - Zigbee Cluster Library), a destra i dati rappresentati come oggetto, e sotto i grafici di alcuni valori scelti dall'utente. Nell'esepio il topic è "zhub/data/a4c13849baf0f06c/1/0402/0000" e il grafico presenta i valori di "data.val' (temperature). Ogni punto rappresenta una misura inviata dal device!
+_Come si vede dallo screenshot, in alto si hanno tutti i messaggi MQTT ricevuti (i codici numerici sono tipici dei device Zigbee e definiti in ZCL - Zigbee Cluster Library), a destra i dati rappresentati come oggetto, e sotto i grafici di alcuni valori scelti dall'utente. Nell'esepio il topic è "zhub/data/a4c13849baf0f06c/1/0402/0000" e il grafico presenta i valori di "data.val' (temperature). Ogni punto rappresenta una misura inviata dal device!_
 
 
 <img width="1025" height="617" alt="Schermata 2025-07-19 alle 19 33 18" src="https://github.com/user-attachments/assets/54bf88ee-b08c-4557-a836-095cbbef6595" />
+
+<h4>Conclusione 2</h4>
+
+Una soluzione ancora molto semplice perchè **mosquitto** e **MQTT Explorer** sono facili da installare, anche su un unico PC, e richiedono poca configurazione! Naturalente su SLZB-06 rimane il modo "zigbee Hub" con i suoi limiti, e deve essere abilitato l'output MQTT! 
+Le funzionalità aggiunte sono la memorizzazione di serie storiche e la visulazzione in grafici! Non è però disponibile in 'MQTT Explorer' l'esportazione di serie di dati.
 
 
 
 (vedi https://www.facebook.com/groups/tuyaitalia/permalink/1690721174895562/ )
 
-<h4>Conclusione 2</h4>
-
-Una soluzione ancora molto semplice perchè mosquitto e MQTT Explorer sono facili da installare, anche su un unico PC, e richiedono poca configurazione! Naturalente su SLZB-06 rimane il modo "zigbee Hub" con i suoi limiti, e deve esserev abilitato l'output MQTT! Le funzionalità aggiunte sono la memorizzazione di serie storiche e la visulazzione in grafici! Non è disponibile l'esportazione dei dati.
