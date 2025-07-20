@@ -4,7 +4,7 @@ _Attualente (luglio 2025) Tuya accetta device Zigbee di terze parti ( con alcuni
 
 Se un utente ha un parco importante di device Zigbee, con molte scene di controllo, la soluzione zero consiste nel ricomprare i device 'non autorizzati', ma questa volta di marche note e paganti!
 
-Rimane perà il problema di come utilizzare i device 'bannati' ed i device Zigbee  non compatibili Tuya. Sono possibili diverse soluzioni, presentate qui in ordine di coplessità (e prestazioni) crescenti. Ogni utente può individuare la soluzione che meglio risponde alle sue esigenze!
+Rimane perà il problema di come utilizzare i device Zigbee 'bannati' ed i device Zigbee di terze parti non compatibili Tuya. Sono possibili diverse soluzioni, presentate qui in ordine di coplessità (e prestazioni) crescenti. Ogni utente può individuare la soluzione che meglio risponde alle sue esigenze!
 
 _**Nota generale**: Le automazioni essenziali è oppurtuno siano implementate usando solo Tuya, magari con 'local linkage'! Ogni applicazione aggiunta riduce l'affidabilità ed aumenta la latenza! 
 Quindi i device Zigbee di cui parliao qui saranno meglio utilizzati in applicazioni accessorie, di uso sporadico e non in ruoli chiave nella domotica stabile!_
@@ -50,6 +50,20 @@ _Come si vede dallo screenshot di MQTT Explorer, in alto si hanno tutti i messag
 Una soluzione ancora molto semplice perchè **mosquitto** e **MQTT Explorer** sono facili da installare, anche su un unico PC, e richiedono poca configurazione! Naturalente su SLZB-06 rimane il modo "zigbee Hub" con i suoi limiti, e deve essere abilitato l'output MQTT! 
 Le funzionalità aggiunte sono la memorizzazione di serie storiche e la visulazzione in grafici! Non è però disponibile in 'MQTT Explorer' l'esportazione di serie di dati.
 
+<h3>Soluzione 3: SLZB-06 (zigbee Hub) + mosquitto + IoTwebUI </h3>
+
+_Uno dei limiti gravi delle due soluzioni precedenti è l'impossibilità di usare i device Zigbee gestiti da SLZB-06p7 in automazioni! Sia tra di loro, sia includendo i device controllati da Tuya!_
+
+Per rendere questo realizzabile, occorre usare **IoTwebUI**, e creare degli **'x-device' custom** con i dati aggiornati automaticaente: gli 'x-device' possono essere usati insiee ai device standard Tuya nelle REGOLE di IotwebUI (più potenti delle 'scene' Tuya), e possono attivare 'Tap-to-run' Tuya! 
+
+<img width="489" height="238" alt="Schermata 2025-07-20 alle 09 04 53" src="https://github.com/user-attachments/assets/e02adab1-5475-436e-b00b-a385275982f7" />
+
+
+Questo screenshot mostra come appare in IoTwebUI un x-device per un sensore teperatura/pressione.
+Note:
+ - Gli x-device, con icona ad ingranaggi, sono possono essere inseriti in ogni stanza (creata con Tuya, nella figura, la 'stanza' MQTT)
+ - Mancano alcuni dati, in particolare l'opzione C/F per la temperatura. Non sono implementati nel modello usato da SLZB-06.
+ - Poichè l'x-device è implementata dall'utente, si possono aggiungere altri dati disponibili (in questo caso lqi, indice di qualità del collegaento ZIgbee) 
 
 
 (vedi https://www.facebook.com/groups/tuyaitalia/permalink/1690721174895562/ )
