@@ -4,7 +4,10 @@ _Attualente (luglio 2025) Tuya accetta device Zigbee di terze parti ( con alcuni
 
 Se un utente ha un parco importante di device Zigbee, con molte scene di controllo, la soluzione zero consiste nel ricomprare i device 'non autorizzati', ma questa volta di marche note e paganti!
 
-Ciò non ostante è interessante affrontare le alternati possibili, per utilizzare ancora i device 'bannati' ed altri device Zigbee  non compatibili Tuya.
+Rimane perà il problema di come utilizzare i device 'bannati' ed i device Zigbee  non compatibili Tuya. Sono possibili diverse soluzioni, presentate qui in ordine di coplessità (e prestazioni) crescenti. Ogni utente può individuare la soluzione che meglio risponde alle sue esigenze!
+
+_**Nota generale**: Le automazioni essenziali è oppurtuno siano implementate usando solo Tuya, magari con 'local linkage'! Ogni applicazione aggiunta riduce l'affidabilità ed aumenta la latenza! 
+Quindi i device Zigbee di cui parliao qui saranno utilizzati in applicazioni accessorie, di uso sporadico e non in ruoli chiave nella domotica stabile!_
 
 <h3>Soluzione 1: SLZB-06 (zigbee Hub) stand-alone</h3>
 Ho preso e testato come coordinator Zigbee, non Tuya compatibile, il modello **SLZB-06p7** - per altri modelli vedi http://smlight.tech/manual/slzb-06/guide/slzb-models-overview/ ) - ha caratteristiche molto interessanti!   
@@ -37,7 +40,7 @@ E' così possibile leggere i valori dei sensori Zigbee e dare comandi manuali ai
 Per elaborare ulteriorente i dati dei device occorre raccoglierli ed inviarli ad un SW di elaborazione!
 La soluzione più semplice è usare un _Broker MQTT_ (e.g. mosquitto - http://mosquitto.org/ )  per ricevere i dati da SLZB-06 e una semplice _APP client_ che permetta di visualizzare i dati  MQTT in vari modi (e.g. MQTT Explorer - http://mqtt-explorer.com/)! 
 
-_Come si vede dallo screenshot, in alto si hanno tutti i messaggi MQTT ricevuti (i codici numerici sono tipici dei device Zigbee e definiti in ZCL - Zigbee Cluster Library), a destra i dati rappresentati come oggetto, e sotto i grafici di alcuni valori scelti dall'utente. Nell'esepio il topic è "zhub/data/a4c13849baf0f06c/1/0402/0000" e il grafico presenta i valori di "data.val' (temperature). Ogni punto rappresenta una misura inviata dal device!_
+_Come si vede dallo screenshot di MQTT Explorer, in alto si hanno tutti i messaggi MQTT ricevuti (i codici numerici sono tipici dei device Zigbee e definiti in ZCL - Zigbee Cluster Library), a destra i dati rappresentati come oggetto, e sotto i grafici di alcuni valori scelti dall'utente. Nell'esepio il topic è "zhub/data/a4c13849baf0f06c/1/0402/0000" e il grafico presenta i valori di "data.val' (temperature). Ogni punto rappresenta una misura inviata dal device!_
 
 
 <img width="1025" height="617" alt="Schermata 2025-07-19 alle 19 33 18" src="https://github.com/user-attachments/assets/54bf88ee-b08c-4557-a836-095cbbef6595" />
