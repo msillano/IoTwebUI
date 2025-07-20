@@ -4,10 +4,10 @@ _Attualente (luglio 2025) Tuya accetta device Zigbee di terze parti ( con alcuni
 
 Se un utente ha un parco importante di device Zigbee, con molte scene di controllo, la soluzione zero consiste nel ricomprare i device 'non autorizzati', ma questa volta di marche note e paganti!
 
-Rimane perà il problema di come utilizzare i device Zigbee 'bannati' ed i device Zigbee di terze parti non compatibili Tuya. Sono possibili diverse soluzioni, presentate qui in ordine di coplessità (e prestazioni) crescenti. Ogni utente può individuare la soluzione che meglio risponde alle sue esigenze!
+Rimane perà il problema di come utilizzare i device Zigbee 'bannati' ed i device Zigbee di terze parti non compatibili Tuya. Sono possibili diverse soluzioni, presentate qui in ordine di complessità (e prestazioni) crescenti. Ogni utente può individuare la soluzione che meglio risponde alle sue esigenze!
 
 _**Nota generale**: Le automazioni essenziali è oppurtuno siano implementate usando solo Tuya, magari con 'local linkage'! Ogni applicazione aggiunta riduce l'affidabilità ed aumenta la latenza! 
-Quindi i device Zigbee di cui parliao qui saranno meglio utilizzati in applicazioni accessorie, di uso sporadico e non in ruoli chiave nella domotica stabile!_
+Quindi i device Zigbee di cui parliamo qui saranno meglio utilizzati in applicazioni accessorie, di uso sporadico e non in ruoli chiave nella domotica stabile!_
 
 <h3>Soluzione 1: SLZB-06 (zigbee Hub) stand-alone</h3>
 Ho preso e testato come coordinator Zigbee, non Tuya compatibile, il modello **SLZB-06p7** - per altri modelli vedi http://smlight.tech/manual/slzb-06/guide/slzb-models-overview/ ) - ha caratteristiche molto interessanti!   
@@ -61,9 +61,9 @@ Per rendere questo realizzabile, occorre usare **IoTwebUI**, e creare degli **'x
 
 Questo screenshot mostra come appare in IoTwebUI un x-device per un sensore teperatura/pressione.
 Note:
- - Gli x-device, con icona ad ingranaggi, sono possono essere inseriti in ogni stanza (creata con Tuya, nella figura, la 'stanza' MQTT)
- - Mancano alcuni dati, in particolare l'opzione C/F per la temperatura. Non sono implementati nel modello usato da SLZB-06.
- - Poichè l'x-device è implementata dall'utente, si possono aggiungere altri dati disponibili (in questo caso lqi, indice di qualità del collegaento ZIgbee) 
+ - Gli x-device, con icona ad ingranaggi, possono essere inseriti in ogni stanza (creata con Tuya, nella figura, la 'stanza' MQTT)
+ - Mancano alcuni dati, in particolare l'opzione C/F per la temperatura. Questo perchè non sono implementati nel modello usato da SLZB-06.
+ - Poichè l'x-device è implementata dall'utente, si possono invece aggiungere altri dati disponibili (in questo caso lqi, indice di qualità del collegamento ZIgbee) 
 
 
 (vedi https://www.facebook.com/groups/tuyaitalia/permalink/1690721174895562/ )
