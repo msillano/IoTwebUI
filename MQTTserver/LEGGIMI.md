@@ -54,16 +54,19 @@ Le funzionalità aggiunte sono la memorizzazione di serie storiche e la visulazz
 
 _Uno dei limiti gravi delle due soluzioni precedenti è l'impossibilità di usare i device Zigbee gestiti da SLZB-06p7 in automazioni! Sia tra di loro, sia includendo i device controllati da Tuya!_
 
-Per rendere questo realizzabile, occorre usare **IoTwebUI**, e creare degli **'x-device' custom** con i dati aggiornati automaticaente: gli 'x-device' possono essere usati insiee ai device standard Tuya nelle REGOLE di IotwebUI (più potenti delle 'scene' Tuya), e possono attivare 'Tap-to-run' Tuya! 
+Per rendere questo realizzabile, occorre usare **IoTwebUI**, e creare degli **'x-device' custom** con i dati aggiornati automaticaente: gli 'x-device' possono essere usati insieme ai device standard Tuya nelle REGOLE di IotwebUI (più potenti delle 'scene' Tuya), e possono attivare 'Tap-to-run' Tuya! 
 
 <img width="489" height="238" alt="Schermata 2025-07-20 alle 09 04 53" src="https://github.com/user-attachments/assets/e02adab1-5475-436e-b00b-a385275982f7" />
 
 
 Questo screenshot mostra come appare in IoTwebUI un x-device per un sensore teperatura/pressione.
 Note:
- - Gli x-device, con icona ad ingranaggi, possono essere inseriti in ogni stanza (creata con Tuya, nella figura, la 'stanza' MQTT)
- - Mancano alcuni dati, in particolare l'opzione C/F per la temperatura. Questo perchè non sono implementati nel modello usato da SLZB-06.
- - Poichè l'x-device è implementata dall'utente, si possono invece aggiungere altri dati disponibili (in questo caso lqi, indice di qualità del collegamento ZIgbee) 
+ - Gli x-device, con icona ad ingranaggi, possono essere inseriti in ogni stanza creata con Tuya (nella figura, la 'stanza' MQTT).
+ - Mancano alcuni dati, ad esempio l'opzione C/F per la temperatura. Questo perchè non sono implementati in "SLZB-06 zigbee Hub" (vedi https://github.com/smlight-tech/slzb-os-zigbee-hub/tree/main?tab=readme-ov-file#what-is-currently-supported)
+ - Poichè l'x-device è implementata dall'utente, si possono invece aggiungere altri dati disponibili (in questo caso ho aggiunto `lqi`, indice di qualità del collegamento ZIgbee).
+
+Installazione:
+- 
 
 
 (vedi https://www.facebook.com/groups/tuyaitalia/permalink/1690721174895562/ )
