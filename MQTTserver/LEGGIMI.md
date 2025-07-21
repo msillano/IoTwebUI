@@ -33,6 +33,7 @@ CONTRO:
 ![516749877_10228789885683260_7727836866700025590_n](https://github.com/user-attachments/assets/0c145c4a-37dd-4772-97fd-51674b4ebb1e) 
 
 <h4>Note d'uso</h4> 
+
 - collegare LAN al router e USB per alimentazione. 
 - Impostare con il pulsande (scomodo) il modo LAN (vedi  https://smlight.tech/manual/slzb-06/guide/configuration/#configuring-with-button) - LED blu acceso.
 - Accedere via browser alle pagine di configurazione (vedi https://smlight.tech/manual/slzb-06/guide/configuration/#configuring-with-web-interface)
