@@ -10,7 +10,7 @@ _**Nota generale**: Le automazioni essenziali è oppurtuno siano implementate us
 Quindi i device Zigbee di cui parliamo qui, con le relative soluzioni, saranno meglio utilizzati in applicazioni accessorie, di uso sporadico e non in ruoli chiave nella domotica stabile!_
 
 <h3>Soluzione 1: SLZB-06 (zigbee Hub) stand-alone</h3>
-Ho preso e testato come coordinator Zigbee, non Tuya compatibile, il modello **SLZB-06p7** - per altri modelli vedi http://smlight.tech/manual/slzb-06/guide/slzb-models-overview/ ) - ha caratteristiche molto interessanti!   
+Ho preso e testato come adapter Zigbee, non Tuya compatibile, il modello **SLZB-06p7** - per altri modelli vedi http://smlight.tech/manual/slzb-06/guide/slzb-models-overview/ ) - ha caratteristiche molto interessanti!   
 In particolare ha un modo di funzionamento chiamato _"zigbee Hub"_ autonomo ( vedi https://github.com/smlight-tech/slzb-os-zigbee-hub/tree/main). 
 Inoltre ha un linguaggio di programmazione per cui può eseguire script custom di controllo ( vedi https://github.com/smlight-tech/slzb-os-scripts )<br><br>
 <table><tr>
@@ -35,15 +35,15 @@ CONTRO:
 <h4>Note d'uso (SLZB-06P7)</h4> 
 
 - collegare LAN al router e USB per alimentazione. 
-- Impostare con il pulsande (scomodo) il modo LAN (vedi  https://smlight.tech/manual/slzb-06/guide/configuration/#configuring-with-button) - LED blu acceso.
-- Cercare SLZB-06P7 via modem/scan WiFi, accedere via browser alle pagine di configurazione - (vedi https://smlight.tech/manual/slzb-06/guide/configuration/#configuring-with-web-interface)
+- SE necessario, impostare con il pulsante (scomodo) il modo LAN (vedi  https://smlight.tech/manual/slzb-06/guide/configuration/#configuring-with-button) - LED blu acceso.t
+- Cercare IP di SLZB-06P7 via modem/scan WiFi, accedere con un browser alle pagine di configurazione - (vedi https://smlight.tech/manual/slzb-06/guide/configuration/#configuring-with-web-interface)
 - Aggiornare via OTA il FW - Provata la versione 2.9.4 e 20240316 (vedi http://smlight.tech/manual/slzb-06/guide/flashing-and-updating/updating-zigbee.html) 
 - Configurazione: mode - zigbee Hub, Network. Ethernet/WiFi a scelta,  MQTT off.
 - Hard reset: "turn on the device with the button pressed, when the LEDs start to flash, release the button".
 
 <h4>Conclusione 1</h4>
 
-Una soluzione veramente semplice (richiede solo il coordinator SLZB-06). Le pagine WEB di configurazione presentano i device in due modi: sotto forma di lista e come dashboard (vedi figure).
+Una soluzione veramente semplice (richiede solo un adapter SLZB-06). Le pagine WEB di configurazione presentano i device in due modi: sotto forma di lista e come dashboard (vedi figure).
 E' così possibile leggere i valori dei sensori Zigbee e dare comandi manuali ai device, con i limiti del SLZB-06 indicati dal costruttore!
 
 
@@ -58,7 +58,15 @@ _Come si vede dallo screenshot di MQTT Explorer, in alto si hanno tutti i messag
 
 <h4>Note d'uso (mosquitto)</h4> 
 
+- Installare mosquitto da (https://mosquitto.org/download/) In Win può essere installato come APP o come servizio: https://cedalo.com/blog/how-to-install-mosquitto-mqtt-broker-on-windows/ 
+- Configurazione. Questi due valori devono essere aggiunti in `mosquitto.conf`  per poter accedere facilmente al Broker: 
+                    listener  1883  0.0.0.0
+                    allow_anonymanonyous true
+                   
 <h4>Note d'uso (MQTT Explorer)</h4> 
+
+Installare MQTT Explorer da [MQTT Explorer](http://mqtt-explorer.com/)
+Fornire i dati per la connessione al Broker mosquitto.
 
 <h4>Conclusione 2</h4>
 
