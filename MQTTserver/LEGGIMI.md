@@ -89,9 +89,9 @@ Note:
  - Gli x-device, con icona ad ingranaggi, possono essere inseriti in ogni stanza creata con Tuya (nella figura, la 'stanza' MQTT).
  - Mancano alcuni dati, ad esempio l'opzione °C/°F per la temperatura. Questo perchè non sono implementati in "SLZB-06 zigbee Hub" (vedi https://github.com/smlight-tech/slzb-os-zigbee-hub/tree/main?tab=readme-ov-file#what-is-currently-supported)
  - Poichè l'x-device è implementata dall'utente, si possono scalare/formattare i dati, utilizzare attributi in ogni lingua, oppure aggiungere altri dati disponibili (in questo caso ho aggiunto `lqi`, indice di qualità del collegamento ZIgbee).
-- Nelle Autoazioni (REGOLE) di IoTwebUI si possono mescolare `device Tuya` e `x-device`. Semplice esempio:
+- Nelle Autoazioni (REGOLE) di IoTwebUI si possono mescolare `device Tuya` e `x-device` e lanciare 'tap-to-run' Tuya. Semplice esempio:
 
-              if (  (GET("x-clima-sala", "Temperatura")  > 22,0 ) || 
+              if (  (GET("x-clima-sala", "Temperatura")  > 22.0 ) || 
                     ((GET("Teperature letto", "va_temperature")/10 ) > 22.0) ) SCENE("Spegni riscaldaento")
 
 
