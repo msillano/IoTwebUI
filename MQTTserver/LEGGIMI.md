@@ -32,12 +32,13 @@ CONTRO:
 ![514352507_10228789887283300_8876190228529040627_n](https://github.com/user-attachments/assets/24348a01-c471-4853-adf7-815f9527281d)
 ![516749877_10228789885683260_7727836866700025590_n](https://github.com/user-attachments/assets/0c145c4a-37dd-4772-97fd-51674b4ebb1e) 
 
-<h4>Note d'uso</h4> 
+<h4>Note d'uso (SLZB-06P7)</h4> 
 
 - collegare LAN al router e USB per alimentazione. 
 - Impostare con il pulsande (scomodo) il modo LAN (vedi  https://smlight.tech/manual/slzb-06/guide/configuration/#configuring-with-button) - LED blu acceso.
-- Accedere via browser alle pagine di configurazione (vedi https://smlight.tech/manual/slzb-06/guide/configuration/#configuring-with-web-interface)
-- Aggiornare via OTA il FW - Provata la versione 2.9.4 e (vedi http://smlight.tech/manual/slzb-06/guide/flashing-and-updating/updating-zigbee.html) 
+- Cercare SLZB-06P7 via modem/scan WiFi, accedere via browser alle pagine di configurazione - (vedi https://smlight.tech/manual/slzb-06/guide/configuration/#configuring-with-web-interface)
+- Aggiornare via OTA il FW - Provata la versione 2.9.4 e 20240316 (vedi http://smlight.tech/manual/slzb-06/guide/flashing-and-updating/updating-zigbee.html) 
+- Configurazione: mode - zigbee Hub, Network. Ethernet/WiFi a scelta,  MQTT off.
 - Hard reset: "turn on the device with the button pressed, when the LEDs start to flash, release the button".
 
 <h4>Conclusione 1</h4>
@@ -54,6 +55,10 @@ _Come si vede dallo screenshot di MQTT Explorer, in alto si hanno tutti i messag
 
 
 <img width="1025" height="617" alt="Schermata 2025-07-19 alle 19 33 18" src="https://github.com/user-attachments/assets/54bf88ee-b08c-4557-a836-095cbbef6595" />
+
+<h4>Note d'uso (mosquitto)</h4> 
+
+<h4>Note d'uso (MQTT Explorer)</h4> 
 
 <h4>Conclusione 2</h4>
 
