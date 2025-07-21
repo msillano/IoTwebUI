@@ -9,7 +9,7 @@ Rimane perà il problema di come utilizzare i device Zigbee 'bannati' ed i devic
 _**Nota generale**: Le automazioni essenziali è oppurtuno siano implementate usando solo Tuya, magari con 'local linkage'! Ogni applicazione aggiunta riduce l'affidabilità ed aumenta la latenza! 
 Quindi i device Zigbee di cui parliamo qui, con le relative soluzioni, saranno meglio utilizzati in applicazioni accessorie, di uso sporadico e non in ruoli chiave nella domotica stabile!_
 
-<h3>Soluzione 1: SLZB-06 (zigbee Hub) stand-alone</h3>
+<h3>SOLUZIONE 1: SLZB-06 (zigbee Hub) stand-alone</h3>
 Ho preso e testato come adapter Zigbee, non Tuya compatibile, il modello **SLZB-06p7** - per altri modelli vedi http://smlight.tech/manual/slzb-06/guide/slzb-models-overview/ ) - ha caratteristiche molto interessanti!   
 In particolare ha un modo di funzionamento chiamato _"zigbee Hub"_ autonomo ( vedi https://github.com/smlight-tech/slzb-os-zigbee-hub/tree/main). 
 Inoltre ha un linguaggio di programmazione per cui può eseguire script custom di controllo ( vedi https://github.com/smlight-tech/slzb-os-scripts )<br><br>
@@ -47,7 +47,7 @@ Una soluzione veramente semplice (richiede solo un adapter SLZB-06). Le pagine W
 E' così possibile leggere i valori dei sensori Zigbee e dare comandi manuali ai device, con i limiti del SLZB-06 indicati dal costruttore!
 
 
-<h3>Soluzione 2: SLZB-06 (zigbee Hub) + mosquitto + MQTT Explorer </h3>
+<h3>SOLUZIONE 2: SLZB-06 (zigbee Hub) + mosquitto + MQTT Explorer </h3>
 Per elaborare ulteriorente i dati dei device occorre raccoglierli ed inviarli ad una APP di elaborazione!
 La soluzione più semplice è usare un _Broker MQTT_ (e.g. mosquitto - http://mosquitto.org/ )  per ricevere i dati da SLZB-06 e una semplice _APP client_ che permetta di visualizzare i dati  MQTT in vari modi (e.g. MQTT Explorer - http://mqtt-explorer.com/)! 
 
@@ -73,7 +73,7 @@ Fornire i dati per la connessione al Broker mosquitto.
 Una soluzione ancora molto semplice perchè **mosquitto** e **MQTT Explorer** sono facili da installare, anche su un unico PC, e richiedono poca configurazione! Naturalente su SLZB-06 rimane il modo "zigbee Hub" con i suoi limiti, e deve essere abilitato l'output MQTT! 
 Le funzionalità aggiunte sono la memorizzazione di serie storiche e la visulazzione in grafici! Non è però disponibile in 'MQTT Explorer' l'esportazione di serie di dati.
 
-<h3>Soluzione 3: SLZB-06 (zigbee Hub) + mosquitto + IoTwebUI </h3>
+<h3>SOLUZIONE 3: SLZB-06 (zigbee Hub) + mosquitto + IoTwebUI </h3>
 
 _Uno dei limiti gravi delle due soluzioni precedenti è l'impossibilità di usare i device Zigbee gestiti da SLZB-06p7 in automazioni! Sia tra di loro, sia includendo i device controllati da Tuya!_
 
