@@ -12,9 +12,11 @@ Quindi i device Zigbee di cui parliamo qui, con le relative soluzioni, saranno m
 <h3>Soluzione 1: SLZB-06 (zigbee Hub) stand-alone</h3>
 Ho preso e testato come coordinator Zigbee, non Tuya compatibile, il modello **SLZB-06p7** - per altri modelli vedi http://smlight.tech/manual/slzb-06/guide/slzb-models-overview/ ) - ha caratteristiche molto interessanti!   
 In particolare ha un modo di funzionamento chiamato _"zigbee Hub"_ autonomo ( vedi https://github.com/smlight-tech/slzb-os-zigbee-hub/tree/main). 
-Inoltre ha un linguaggio di programmazione per cui può eseguire script custom di controllo ( vedi https://github.com/smlight-tech/slzb-os-scripts )
-
- ![516850804_10228789882683185_8445870067712513088_n](https://github.com/user-attachments/assets/084a0eb6-a901-4602-bf85-43377ab70c65) 
+Inoltre ha un linguaggio di programmazione per cui può eseguire script custom di controllo ( vedi https://github.com/smlight-tech/slzb-os-scripts )<br><br>
+<table><tr>
+<img  height="230"  alt="image" src="https://github.com/user-attachments/assets/084a0eb6-a901-4602-bf85-43377ab70c65" />
+ <img width="700" height="230" alt="image" src="https://github.com/user-attachments/assets/31bfd295-1a1c-41b9-b771-d39a348cfd65" />
+</tr></table>
 
 PRO:
  - "`Zigbee Hub` è una modalità che consente l'elaborazione di tutto il traffico Zigbee all'interno del sistema SLZB-OS senza la necessità di utilizzare ZHA o Z2M."
@@ -28,7 +30,14 @@ CONTRO:
  (fonte  https://github.com/smlight-tech/slzb-os-zigbee-hub/tree/main).
 
 ![514352507_10228789887283300_8876190228529040627_n](https://github.com/user-attachments/assets/24348a01-c471-4853-adf7-815f9527281d)
-![516749877_10228789885683260_7727836866700025590_n](https://github.com/user-attachments/assets/0c145c4a-37dd-4772-97fd-51674b4ebb1e)
+![516749877_10228789885683260_7727836866700025590_n](https://github.com/user-attachments/assets/0c145c4a-37dd-4772-97fd-51674b4ebb1e) 
+
+<h4>Note d'uso</h4> 
+- collegare LAN al router e USB per alimentazione. 
+- Impostare con il pulsande (scomodo) il modo LAN (vedi  https://smlight.tech/manual/slzb-06/guide/configuration/#configuring-with-button) - LED blu acceso.
+- Accedere via browser alle pagine di configurazione (vedi https://smlight.tech/manual/slzb-06/guide/configuration/#configuring-with-web-interface)
+- Aggiornare via OTA il FW - Provata la versione 2.9.4 e (vedi http://smlight.tech/manual/slzb-06/guide/flashing-and-updating/updating-zigbee.html) 
+- Hard reset: "turn on the device with the button pressed, when the LEDs start to flash, release the button".
 
 <h4>Conclusione 1</h4>
 
