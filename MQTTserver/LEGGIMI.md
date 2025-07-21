@@ -71,14 +71,16 @@ _Uno dei limiti gravi delle due soluzioni precedenti è l'impossibilità di usar
 
 Per rendere questo realizzabile, occorre usare **IoTwebUI**, e creare degli **'x-device' custom** con i dati aggiornati automaticaente: gli 'x-device' possono essere usati insieme ai device standard Tuya nelle REGOLE di IotwebUI (più potenti delle 'scene' Tuya), e possono attivare 'Tap-to-run' Tuya! 
 
+<table><tr>
 <img width="489" height="238" alt="Schermata 2025-07-20 alle 09 04 53" src="https://github.com/user-attachments/assets/e02adab1-5475-436e-b00b-a385275982f7" />
+<img width="404" height="187" alt="Schermata 2025-07-21 alle 13 09 25" src="https://github.com/user-attachments/assets/19263121-02d2-49df-82be-79d9b4f3ea37" />
+</tr></table>
 
-
-Questo screenshot mostra come appare in IoTwebUI un x-device per un sensore teperatura/pressione.
+Questo screenshot mostra come appare in IoTwebUI un x-device per un sensore teperatura/pressione. A DX un device Tuya analogo.
 Note:
  - Gli x-device, con icona ad ingranaggi, possono essere inseriti in ogni stanza creata con Tuya (nella figura, la 'stanza' MQTT).
  - Mancano alcuni dati, ad esempio l'opzione °C/°F per la temperatura. Questo perchè non sono implementati in "SLZB-06 zigbee Hub" (vedi https://github.com/smlight-tech/slzb-os-zigbee-hub/tree/main?tab=readme-ov-file#what-is-currently-supported)
- - Poichè l'x-device è implementata dall'utente, si possono invece aggiungere altri dati disponibili (in questo caso ho aggiunto `lqi`, indice di qualità del collegamento ZIgbee).
+ - Poichè l'x-device è implementata dall'utente, si possono formattare i dati, oppure aggiungere altri dati disponibili (in questo caso ho aggiunto `lqi`, indice di qualità del collegamento ZIgbee).
 
 Installazione:
 - 
