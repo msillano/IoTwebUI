@@ -65,8 +65,8 @@ _Come si vede dallo screenshot di MQTT Explorer, in alto si hanno tutti i messag
                    
 <h4>Note d'uso (MQTT Explorer)</h4> 
 
-Installare MQTT Explorer da [MQTT Explorer](http://mqtt-explorer.com/)
-Fornire i dati per la connessione al Broker mosquitto.
+- Installare 'MQTT Explorer' da [MQTT Explorer](http://mqtt-explorer.com/)
+- Fornire i dati per la connessione al Broker mosquitto.
 
 <h4>Conclusione 2</h4>
 
@@ -89,15 +89,51 @@ Note:
  - Gli x-device, con icona ad ingranaggi, possono essere inseriti in ogni stanza creata con Tuya (nella figura, la 'stanza' MQTT).
  - Mancano alcuni dati, ad esempio l'opzione °C/°F per la temperatura. Questo perchè non sono implementati in "SLZB-06 zigbee Hub" (vedi https://github.com/smlight-tech/slzb-os-zigbee-hub/tree/main?tab=readme-ov-file#what-is-currently-supported)
  - Poichè l'x-device è implementata dall'utente, si possono scalare/formattare i dati, utilizzare attributi in ogni lingua, oppure aggiungere altri dati disponibili (in questo caso ho aggiunto `lqi`, indice di qualità del collegamento ZIgbee).
-- Nelle Autoazioni (REGOLE) di IoTwebUI si possono mescolare `device Tuya` e `x-device` e lanciare 'tap-to-run' Tuya. Semplice esempio:
+- Nelle Automazioni (REGOLE) di IoTwebUI si possono mescolare `device Tuya` e `x-device` e lanciare 'tap-to-run' Tuya. Semplice esempio (vedi https://github.com/msillano/IoTwebUI/blob/main/LEGGIMI30.md#ref-macro-per-risorse ):
 
               if (  (GET("x-clima-sala", "Temperatura")  > 22.0 ) || 
                     ((GET("Teperature letto", "va_temperature")/10 ) > 22.0) ) SCENE("Spegni riscaldaento")
 
+<h4>Note d'uso (IoTwebUI)</h4> 
+- Installare IoTwebUI (ver > 3.0) e REST (ver. > 3.0) come da istruzioni (vedi https://github.com/msillano/IoTwebUI/blob/main/APP/LEGGIMI.md#installazione-e-uso )
+- Configurazione: La mappatura tra i topic MQTT e REST (device, attributo, valore) è a carico dell'utente e deve essere fatta per ogni device. A differenza dei 'tipi' questa implementazione offre la massima libertà all'utente, perchè permette l'ottimizzazione per ogni device. 
+- Pertanto va aggiornato il file `'server.js'` per ogni device usata. Vedi esempi all'inizio del file! I topic usati per ogni device si possono vedere con 'MQTT Explorer' Esempio:
+
+       "zhub/data/a4c13849baf0f06c/1/0402/0000": {           // topic MQTT
+              description: "Temperatura - x-clima-sala",   
+              lastValue: null,                    // default
+              handler: (data, thisMap) => {       //  funzione di crezione REST qui 
+                  if (data.data.val === thisMap.lastValue)   // skips duplicates
+                        return null;
+                  thisMap.lastValue = data.data.val;
+                  return (baseREST + "set/x-clima-sala/Temperatura/" + data.data.val + "°C");   
+                         // REST: set/<x-device-name>/<attribute>/<value>
+                },
+            },
+
+- Per ogni virtual device che volete usare, dovete aggiungere una riga di definizione (singleton) nelle REGOLE (file `usrrules03.x.js` ), come il seguente esempio (home: 'ROMA'; room: 'mqtt'; nome: 'x-clima-sala';):
+
+            if (!GETATTRIBUTE('x-clima-sala', "name", false)) ADDXDEVICE('ROMA', 'mqtt', 'x-clima-sala'), SETXDEVICEONLINE('x-clima-sala');
+  
+- Ordine di lancio:
+   1. "mosquitto" per primo (se è un servizio l'avvio è automatico). Sulle pagine di SLZB-06 si vede se la connessione è avvenuta!
+   2. `APP_me.bat` lancia sia il server REST + MQTT (server.js), ma solo se necessario, poi l'interfaccia utente (IoTwebUI)!.
+   3. Per debug, è possibile lanciare il server REST + MQTT (server.js) in una finestra cmd: `node  server.js` poi si può usare `APP_me.bat`: in questo modo si vede il log delle operazioni effettuate da   REST + MQTT
+ 
+ <img width="727" height="452" alt="Schermata 2025-07-22 alle 20 16 36" src="https://github.com/user-attachments/assets/09896242-222d-4244-bcb9-0e52c765d0c1" />
+ 
+
+<h4>Conclusione 3</h4>
+
+Una soluzione tutto sommato completa, a costo di un aggiornamento per ogni device aggiunta! L'utente ha una completa libertà di customizzazione per ogni device! Perette quindi il riuso dei device Tuya 'bannati' in automazioni interagenti con Tuya. 
+Sono sempre validi i limiti del modo _zigbee Hub di SLZB-06_: poche device e funzioni limitate!
+
+<h3>SOLUZIONE 4: SLZB-06 + zigbee2mqtt + mosquitto + IoTwebUI </h3>
+
+_Per poter elaborare più device, la soluzione è usare un SW esterno all'adapter SLZB-06, con a disposizione le risorse del sistema ospite!_ 
+Il SW in questione è zigbee2mqtt, che in coppia con SLZB-06 permette di gestire fino a 300 device Zigbee, purchè appartenenti al set delle  4464 devices 'note' a zigbee2mqtt, (vedi https://www.zigbee2mqtt.io/supported-devices/ ). 
 
 
-Installazione:
-- 
 
 
 (vedi https://www.facebook.com/groups/tuyaitalia/permalink/1690721174895562/ )
