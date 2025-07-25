@@ -128,10 +128,22 @@ Note:
 Una soluzione tutto sommato completa, a costo di un aggiornamento per ogni device aggiunta! L'utente ha una completa libertà di customizzazione per ogni device! Perette quindi il riuso dei device Tuya 'bannati' in automazioni interagenti con Tuya. 
 Sono sempre validi i limiti del modo _zigbee Hub di SLZB-06_: poche device e funzioni limitate!
 
-<h3>SOLUZIONE 4: SLZB-06 + zigbee2mqtt + mosquitto + IoTwebUI </h3>
+<h3>SOLUZIONE 4: SLZB-06 + zigbee2mqtt + mosquitto + ( MQTT Explorer | IoTwebUI | APPs ) </h3>
 
 _Per poter elaborare più device, la soluzione è usare un SW esterno all'adapter SLZB-06, con a disposizione le risorse del sistema ospite!_ 
-Il SW in questione è zigbee2mqtt, che in coppia con SLZB-06 permette di gestire fino a 300 device Zigbee, purchè appartenenti al set delle  4464 devices 'note' a zigbee2mqtt, (vedi https://www.zigbee2mqtt.io/supported-devices/ ). 
+Il SW in questione è zigbee2mqtt, che in coppia con SLZB-06 permette di gestire fino a **300** device Zigbee, purchè appartenenti al set delle  **4464** devices 'note' a zigbee2mqtt, (vedi https://www.zigbee2mqtt.io/supported-devices/ ). 
+nota: è comunque possibile aggiungere device Zigbee Tuya 'sconosciute', vedi https://medium.com/@dzegarra/zigbee2mqtt-how-to-add-support-for-a-new-tuya-based-device-part-1-b20227251d46  
+
+`zigbee2mqtt` presenta numerose pagine, alcune simili a quelle già viste con `zigbee Hub` (dasboard, lista) altre nuove: Mappa, Gruppi, oetc.
+
+![ScreenShot_20250725194703](https://github.com/user-attachments/assets/9dd59e9b-085a-40ea-a4ea-49504f4a7253)
+![ScreenShot_20250725194808](https://github.com/user-attachments/assets/1218d458-e45b-4bb4-bf08-7a5bfd2fbb14)
+![ScreenShot_20250725194931](https://github.com/user-attachments/assets/af00f0b1-937a-42a5-ac20-963ac35b7dd0)
+
+
+I topic usati da `zigbee2mqtt` sono più sintetici, quindi di più seplice gestione e uso.
+
+
 
 
 
