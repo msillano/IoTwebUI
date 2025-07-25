@@ -89,7 +89,7 @@ Note:
  - Gli x-device, con icona ad ingranaggi, possono essere inseriti in ogni stanza creata con Tuya (nella figura, la 'stanza' MQTT).
  - Mancano alcuni dati, ad esempio l'opzione °C/°F per la temperatura. Questo perchè non sono implementati in "SLZB-06 zigbee Hub" (vedi https://github.com/smlight-tech/slzb-os-zigbee-hub/tree/main?tab=readme-ov-file#what-is-currently-supported)
  - Poichè l'x-device è implementata dall'utente, si possono scalare/formattare i dati, utilizzare attributi in ogni lingua, oppure aggiungere altri dati disponibili (in questo caso ho aggiunto `lqi`, indice di qualità del collegamento ZIgbee).
-- Nelle Automazioni (REGOLE) di IoTwebUI si possono mescolare `device Tuya` e `x-device` e lanciare 'tap-to-run' Tuya. Semplice esempio (vedi https://github.com/msillano/IoTwebUI/blob/main/LEGGIMI30.md#ref-macro-per-risorse ):
+ - Nelle Automazioni (REGOLE) di IoTwebUI si possono mescolare `device Tuya` e `x-device` e lanciare 'tap-to-run' Tuya. Semplice esempio (vedi https://github.com/msillano/IoTwebUI/blob/main/LEGGIMI30.md#ref-macro-per-risorse ):
 
               if (  (GET("x-clima-sala", "Temperatura")  > 22.0 ) || 
                     ((GET("Teperature letto", "va_temperature")/10 ) > 22.0) ) SCENE("Spegni riscaldaento")
@@ -134,19 +134,48 @@ _Per poter elaborare più device, la soluzione è usare un SW esterno all'adapte
 Il SW in questione è zigbee2mqtt, che in coppia con SLZB-06 permette di gestire fino a **300** device Zigbee, purchè appartenenti al set delle  **4464** devices 'note' a zigbee2mqtt, (vedi https://www.zigbee2mqtt.io/supported-devices/ ). 
 nota: è comunque possibile aggiungere device Zigbee Tuya 'sconosciute', vedi https://medium.com/@dzegarra/zigbee2mqtt-how-to-add-support-for-a-new-tuya-based-device-part-1-b20227251d46  
 
-`zigbee2mqtt` presenta numerose pagine, alcune simili a quelle già viste con `zigbee Hub` (dasboard, lista) altre nuove: Mappa, Gruppi, oetc.
+`zigbee2mqtt` presenta numerose pagine, alcune simili a quelle già viste con `zigbee Hub` (lista, dasboard) altre nuove: Mappa, Gruppi, etc.
 
 ![ScreenShot_20250725194703](https://github.com/user-attachments/assets/9dd59e9b-085a-40ea-a4ea-49504f4a7253)
 ![ScreenShot_20250725194808](https://github.com/user-attachments/assets/1218d458-e45b-4bb4-bf08-7a5bfd2fbb14)
 ![ScreenShot_20250725194931](https://github.com/user-attachments/assets/af00f0b1-937a-42a5-ac20-963ac35b7dd0)
 
 
-I topic usati da `zigbee2mqtt` sono più sintetici, quindi di più seplice gestione e uso.
+I topic usati da `zigbee2mqtt` sono più sintetici, quindi di più seplice gestione e uso, come fa vedere bene  MQTT Explorer: 
 
 
 
+<h4>Note d'uso (SLZB-06P7)</h4> 
 
+Per l'uso con `zigbee2mqtt`, l'adapter SLZB-06 può essere configurato in vari modi. In particolare ho scelto USB + Ethernet, e modo 'coordinator'. Ovviamente sono stati aggiornati i FW. 
 
+<img width="1144" height="405" alt="Schermata 2025-07-25 alle 20 41 50" src="https://github.com/user-attachments/assets/813a6810-85f1-4088-9f93-f168837ae4d0" />
+
+<h4>Note d'uso (zigbee2mqtt)</h4> 
+
+L'installazione non è seplicissima. Seguire le istruzioni https://www.zigbee2mqtt.io/guide/installation/ <br>
+La configurazione si può fare aggiornando il file `zigbee2mqtt/data/configuration.yaml` Esempio, uso questo:
+
+                 version: 4
+                 mqtt:
+                    base_topic: zigbee2mqtt
+                    server:  mqtt://localhost:1883
+                 serial:
+                    port: COM3 
+                    baudrate: 115200
+                    rtscts: false
+                 advanced:
+                    transmit_power: 20
+                    log_level: info
+                  ........        
+
+<h4>Note d'uso </h4> 
+
+Una volta che i dati raggiungono il broker mosquitto possono poi essere utilizzati in base alle esigenze ad alle preferenze dell'utente.
+
+ - **MQTT Explorer** è  la soluzione più semplice, sempre utile per vedere i dettagli dei topic e payload MQTT, inoltre perette grafici di tutte le misure!
+
+ - **IoTwebUI** è la soluzione che offre più opportunità di customizzazione, integrazione con Tuya, 
 
 (vedi https://www.facebook.com/groups/tuyaitalia/permalink/1690721174895562/ )
 
