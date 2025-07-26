@@ -198,7 +198,52 @@ Valutare quindi bene il bilancio vantaggio/svantaggi di questa soluzione.
 
 <h3>SOLUZIONE 5: SLZB-06 + zigbee2mqtt (+ mosquitto) + APP </h3>
 
-zigbee2mqtt ha una posizione di standard di fatto nel copo dei device Zigbee, 
+zigbee2mqtt ha una posizione di standard di fatto nel campo dei device Zigbee, pertanto molte applicazioni di domotica prevedo l'integrazione con `zigbee2mqtt`. Per utilizzare Zigbee2MQTT con altri sistemi non è obbligatorio disporre di un'integrazione nativa, ma è necessario il supporto per MQTT. Un'integrazione nativa rende le cose più semplici e "cliccabili".
+Zigbee2MQTT integrates well with (almost) every home automation solution because it uses MQTT. However the following integrations are worth mentioning:
+
+<img align="left" height="100px" width="100px" src="https://user-images.githubusercontent.com/7738048/40914297-49e6e560-6800-11e8-8904-36cce896e5a8.png">
+
+### [Home Assistant](https://www.home-assistant.io/)
+
+- [Home Assistant OS](https://www.home-assistant.io/installation/): Using [the official addon](https://github.com/zigbee2mqtt/hassio-zigbee2mqtt)
+- Other installation: using instructions [here](https://www.zigbee2mqtt.io/guide/usage/integrations/home_assistant.html)
+
+<br>
+
+<img align="left" height="100px" width="100px" src="https://etc.athom.com/logo/white/256.png">
+
+### [Homey](https://homey.app/)
+
+- Integration implemented in the [Homey App](https://homey.app/nl-nl/app/com.gruijter.zigbee2mqtt/)
+- Documentation and support in the [Homey Forum](https://community.homey.app/t/83214)
+
+<br>
+
+<img align="left" height="100px" width="100px" src="https://user-images.githubusercontent.com/2734836/47615848-b8dd8700-dabd-11e8-9d77-175002dd8987.png">
+
+### [Domoticz](https://www.domoticz.com/)
+
+- Integration implemented in Domoticz ([documentation](https://www.domoticz.com/wiki/Zigbee2MQTT)).
+
+<br>
+
+<img align="left" height="100px" width="100px" src="https://github.com/user-attachments/assets/5acd77fb-1cbe-40b6-9515-935fd21dd3b4" />
+
+
+### [Gladys Assistant](https://gladysassistant.com/)
+
+- Integration implemented natively in Gladys Assistant ([documentation](https://gladysassistant.com/docs/integrations/zigbee2mqtt/)).
+
+<br>
+
+<img align="left" height="100px" width="100px" src="https://forum.iobroker.net/assets/uploads/system/site-logo.png">
+
+### [IoBroker](https://www.iobroker.net/)
+
+- Integration implemented in IoBroker ([documentation](https://github.com/o0shojo0o/ioBroker.zigbee2mqtt)).
+
+<br>
+
 
 
 
