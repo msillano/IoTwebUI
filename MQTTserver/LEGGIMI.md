@@ -128,7 +128,7 @@ Note:
 Una soluzione tutto sommato completa, a costo di un aggiornamento per ogni device aggiunta! L'utente ha una completa libertà di customizzazione per ogni device! Perette quindi il riuso dei device Tuya 'bannati' in automazioni interagenti con Tuya. 
 Sono sempre validi i limiti del modo _zigbee Hub di SLZB-06_: poche device e funzioni limitate!
 
-<h3>SOLUZIONE 4: SLZB-06 + zigbee2mqtt + mosquitto + ( MQTT Explorer | IoTwebUI | APPs ) </h3>
+<h3>SOLUZIONE 4: SLZB-06 + zigbee2mqtt + mosquitto + ( MQTT Explorer | IoTwebUI ) </h3>
 
 _Per poter elaborare più device, la soluzione è usare un SW esterno all'adapter SLZB-06, con a disposizione le risorse del sistema ospite!_ 
 Il SW in questione è zigbee2mqtt, che in coppia con SLZB-06 permette di gestire fino a **300** device Zigbee, purchè appartenenti al set delle  **4464** devices 'note' a zigbee2mqtt, (vedi https://www.zigbee2mqtt.io/supported-devices/ ). 
@@ -143,7 +143,9 @@ nota: è comunque possibile aggiungere device Zigbee Tuya 'sconosciute', vedi ht
 
 I topic usati da `zigbee2mqtt` sono più sintetici, quindi di più seplice gestione e uso, come fa vedere bene  MQTT Explorer: 
 
+![ScreenShot_20250726123726](https://github.com/user-attachments/assets/3f8ba1ae-f9c8-427f-a65c-ed2af3da817d)
 
+In uesto caso viene usato un solo 'topic' per device!
 
 <h4>Note d'uso (SLZB-06P7)</h4> 
 
@@ -154,7 +156,9 @@ Per l'uso con `zigbee2mqtt`, l'adapter SLZB-06 può essere configurato in vari m
 <h4>Note d'uso (zigbee2mqtt)</h4> 
 
 L'installazione non è seplicissima. Seguire le istruzioni https://www.zigbee2mqtt.io/guide/installation/ <br>
-La configurazione si può fare aggiornando il file `zigbee2mqtt/data/configuration.yaml` Esempio, uso questo:
+La configurazione si può fare aggiornando il file `zigbee2mqtt/data/configuration.yaml` Vedi https://www.zigbee2mqtt.io/guide/configuration/ .
+L'obiettivo è un colloquio seriale via USB tra `SLZB-06P7` e `zigbee2mqtt`.
+ Esempio, sto usando questo:
 
                  version: 4
                  mqtt:
@@ -167,15 +171,36 @@ La configurazione si può fare aggiornando il file `zigbee2mqtt/data/configurati
                  advanced:
                     transmit_power: 20
                     log_level: info
-                  ........        
-
-<h4>Note d'uso </h4> 
+                  ........  
+      
+<h4>Note d'uso  </h4> 
 
 Una volta che i dati raggiungono il broker mosquitto possono poi essere utilizzati in base alle esigenze ad alle preferenze dell'utente.
 
- - **MQTT Explorer** è  la soluzione più semplice, sempre utile per vedere i dettagli dei topic e payload MQTT, inoltre perette grafici di tutte le misure!
+ - **MQTT Explorer** è  la soluzione più semplice, sempre utile per vedere i dettagli dei topic e payload MQTT, inoltre permette grafici di tutte le misure!
 
- - **IoTwebUI** è la soluzione che offre più opportunità di customizzazione, integrazione con Tuya, 
+ - **IoTwebUI** è la soluzione che offre più opportunità di customizzazione, mantenendo l'integrazione con Tuya, e ha la massima libertà di interfacce e di APP custom! ( vedi https://github.com/msillano/IoTwebUI/blob/main/APP/Overviews.md ). Ovviamente la mia soluzione preferita.
+
+<h4>Conclusione 4</h4>
+Utilizzare `zigbee2mqtt` ha vantaggi ed inconvenienti.
+
+PRO
+ - Massimizzazione dei device Zigbeee utilizzabili: fino a **300** device Zigbee, e un set di  **4464** device 'note'. 
+ - Uno standard MQTT 'pulito' compatibile con una infinità di APP domotiche (vedi soluzione 5) tra cui l'utente può scegliere.  
+
+CONTRO
+ - Una maggiore complessità generale: installazione, configurazione, manutenzione (mi sono serviti due giorni per farlo funzionare !)
+ - Aumento dei rischi legati all'affidabilità ( usando più  blocchi logici le probabilità di 'guasti' aumentano) 
+ - Diventa sempre più necessario utilizzare un server dedicato 24/7: un top-box Android  ( la soluzione che preferisco, vedi https://github.com/msillano/tuyaDAEMON/wiki/80.-deployment:-android-server ), un Raspberry, un mini PC etc... 
+
+Valutare quindi bene il bilancio vantaggio/svantaggi di questa soluzione.
+
+
+<h3>SOLUZIONE 5: SLZB-06 + zigbee2mqtt (+ mosquitto) + APP </h3>
+
+zigbee2mqtt ha una posizione di standard di fatto nel copo dei device Zigbee, 
+
+
 
 (vedi https://www.facebook.com/groups/tuyaitalia/permalink/1690721174895562/ )
 
