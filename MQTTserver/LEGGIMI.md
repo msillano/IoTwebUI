@@ -175,13 +175,33 @@ L'obiettivo è un colloquio seriale via USB tra `SLZB-06P7` e `zigbee2mqtt`.
                     log_level: info
                   ........  
       
-<h4>Note d'uso  </h4> 
+<h4>Note d'uso APP </h4> 
 
 Una volta che i dati raggiungono il broker mosquitto possono poi essere utilizzati in base alle esigenze ad alle preferenze dell'utente.
 
  - **MQTT Explorer** è  la soluzione più semplice, sempre utile per vedere i dettagli dei topic e payload MQTT, inoltre permette grafici di tutte le misure!
 
  - **IoTwebUI** è la soluzione che offre più opportunità di customizzazione, mantenendo l'integrazione con Tuya, e ha la massima libertà di interfacce e di APP custom! ( vedi https://github.com/msillano/IoTwebUI/blob/main/APP/Overviews.md ). Ovviamente la mia soluzione preferita.
+
+<h4>Note d'uso (IoTwebUI)</h4> 
+
+ -  `zigbee2mqtt` raggruppa i dati in un unico messaggio per device. Pertanto il file `'server.js'` deve essere aggiornato per ogni device usata in modo diverso dal caso `Zigbee Hub`. Vedi esempi all'inizio del file! I topic usati per ogni device si possono vedere con 'MQTT Explorer' - Possono convivere entrambe le definizioni , avendo 'topic' differenti!. Esempio:
+
+           "zigbee2mqtt/0xa4c13849baf0f06c": {            //  device-id
+                 description: "Temperatura - x-clima-sala",
+                 lastValue: null,
+           // {"battery":100,"humidity":63.84,"linkquality":102,"temperature":27.13,"voltage":3000}
+                 handler: (data, thisMap) => {
+                    if (data.linkquality === thisMap.lastValue)
+                        return null;
+                    thisMap.lastValue = data.linkquality;
+           // now set all dPs.
+                    addToRestBuffer(baseREST + "set/x-clima-sala/batteria/" + data.battery + "%");
+                    addToRestBuffer(baseREST + "set/x-clima-sala/lqi/" + data.linkquality );
+                    addToRestBuffer(baseREST + "set/x-clima-sala/Umidità/" + data.humidity + "%" );
+                    return (baseREST + "set/x-clima-sala/Temperatura/" + data.temperature +  "°C");
+                    },
+              },
 
 <h4>Conclusione 4</h4>
 Utilizzare `zigbee2mqtt` ha vantaggi ed inconvenienti.
