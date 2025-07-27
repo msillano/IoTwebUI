@@ -1,17 +1,19 @@
 <h1>Metodi di integrazione di sub-device Zigbee di terze parti nell'ecosistema Tuya</h1>
 
-_Attualente (luglio 2025) Tuya accetta device Zigbee di terze parti ( con alcuni limiti, vedi https://www.tuyaos.com/viewtopic.php?t=2688 ) mentre rifiuta completamente il "pairing" ai device Tuya "non autorizzati" - Cioè i device Tuya Zigbee di produttori 'insolventi'! (vedi post https://www.facebook.com/groups/tuyaitalia/permalink/1678413936126286/ )._
+_Attualente (luglio 2025) Tuya accetta device Zigbee di terze parti ( con alcuni limiti, vedi https://www.tuyaos.com/viewtopic.php?t=2688 ) mentre rifiuta completamente il "pairing" ai device Tuya "non autorizzati" - Cioè sembra i device Tuya Zigbee di produttori 'insolventi'! (notizie ancora incerte, vedi post https://www.facebook.com/groups/tuyaitalia/permalink/1678413936126286/ )._
 
-Se un utente ha un parco importante di device Zigbee, con molte scene di controllo, la soluzione zero consiste nel ricomprare i device 'non autorizzati', ma questa volta di marche serie e paganti!
+Se un utente ha un parco importante di device Zigbee, con molte scene di controllo, la soluzione zero dovrebbe consistere nel ricomprare i device 'non autorizzati', ma questa volta di marche serie e paganti!
 
-Rimane perà il problema di come utilizzare i device Zigbee 'bannati' ed i device Zigbee di terze parti non compatibili Tuya. Sono possibili diverse soluzioni, presentate qui in ordine di complessità (e prestazioni) crescenti. Ogni utente può individuare la soluzione che meglio risponde alle sue esigenze!
+Rimane perà il problema di come utilizzare i device Zigbee 'bannati' ed i device Zigbee di terze parti non compatibili Tuya. Sono possibili diverse soluzioni, alcune presentate qui in ordine di complessità (e prestazioni) crescenti. Ogni utente può individuare la soluzione che meglio risponde alle sue esigenze!
 
 _**Nota generale**: Le automazioni essenziali è oppurtuno siano implementate usando solo Tuya, magari con 'local linkage'! Ogni applicazione aggiunta riduce l'affidabilità ed aumenta la latenza! 
 Quindi i device Zigbee di cui parliamo qui, con le relative soluzioni, saranno meglio utilizzati in applicazioni accessorie, di uso sporadico e non in ruoli chiave nella domotica stabile!_
 
+
 <h3>SOLUZIONE 1: SLZB-06 (zigbee Hub) stand-alone</h3>
-Ho preso e testato come adapter Zigbee, non Tuya compatibile, il modello **SLZB-06p7** - per altri modelli vedi http://smlight.tech/manual/slzb-06/guide/slzb-models-overview/ ) - ha caratteristiche molto interessanti!   
-In particolare ha un modo di funzionamento chiamato _"zigbee Hub"_ autonomo ( vedi https://github.com/smlight-tech/slzb-os-zigbee-hub/tree/main). 
+
+Ho preso e testato come adapter Zigbee, non Tuya compatibile, il modello **SLZB-06p7** di progettazione Ukraina - per altri modelli vedi http://smlight.tech/manual/slzb-06/guide/slzb-models-overview/ ) - che ha caratteristiche molto interessanti!   
+In particolare ha un modo di funzionamento chiamato **zigbee Hub** autonomo ( vedi https://github.com/smlight-tech/slzb-os-zigbee-hub/tree/main). 
 Inoltre ha un linguaggio di programmazione per cui può eseguire script custom di controllo ( vedi https://github.com/smlight-tech/slzb-os-scripts )<br><br>
 <table><tr>
 <img  height="230"  alt="image" src="https://github.com/user-attachments/assets/084a0eb6-a901-4602-bf85-43377ab70c65" />
@@ -35,11 +37,11 @@ CONTRO:
 <h4>Note d'uso (SLZB-06P7)</h4> 
 
 - collegare LAN al router e USB per alimentazione. 
-- SE necessario, impostare con il pulsante (scomodo) il modo LAN (vedi  https://smlight.tech/manual/slzb-06/guide/configuration/#configuring-with-button) - LED blu acceso.t
-- Cercare IP di SLZB-06P7 via modem/scan WiFi, accedere con un browser alle pagine di configurazione - (vedi https://smlight.tech/manual/slzb-06/guide/configuration/#configuring-with-web-interface)
+- Se necessario, impostare con il pulsante (scomodo) il modo LAN (vedi  https://smlight.tech/manual/slzb-06/guide/configuration/#configuring-with-button) - LED blu acceso.t
+- Cercare IP di SLZB-06P7 via modem/scan WiFi (oppure usate direttamente http://slzb-06p7.local/ ) per accedere con un browser alle pagine di configurazione - (vedi https://smlight.tech/manual/slzb-06/guide/configuration/#configuring-with-web-interface)
 - Aggiornare via OTA il FW - Provata la versione 2.9.4 e 20240316 (vedi http://smlight.tech/manual/slzb-06/guide/flashing-and-updating/updating-zigbee.html) 
-- Configurazione: mode - zigbee Hub, Network. Ethernet/WiFi a scelta,  MQTT off.
-- Hard reset: "turn on the device with the button pressed, when the LEDs start to flash, release the button".
+- Configurazione: mode => zigbee Hub, Network => Ethernet/WiFi a scelta,  MQTT => off.
+- Hard reset, se perdete la pagina di configurazione: "turn on the device with the button pressed, when the LEDs start to flash, release the button".
 
 <h4>Conclusione 1</h4>
 
@@ -199,7 +201,8 @@ Valutare quindi bene il bilancio vantaggio/svantaggi di questa soluzione.
 <h3>SOLUZIONE 5: SLZB-06 + zigbee2mqtt (+ mosquitto) + APP </h3>
 
 zigbee2mqtt ha una posizione di standard di fatto nel campo dei device Zigbee, pertanto molte applicazioni di domotica prevedo l'integrazione con `zigbee2mqtt`. Per utilizzare Zigbee2MQTT con altri sistemi non è obbligatorio disporre di un'integrazione nativa, ma è necessario il supporto per MQTT. Un'integrazione nativa rende le cose più semplici e "cliccabili".
-Zigbee2MQTT integrates well with (almost) every home automation solution because it uses MQTT. However the following integrations are worth mentioning:
+
+"Zigbee2MQTT integrates well with (almost) every home automation solution because it uses MQTT. However the following integrations are worth mentioning:" (https://github.com/Koenkk/zigbee2mqtt/blob/master/README.md#integrations )
 
 <img align="left" height="100px" width="100px" src="https://user-images.githubusercontent.com/7738048/40914297-49e6e560-6800-11e8-8904-36cce896e5a8.png">
 
@@ -243,9 +246,25 @@ Zigbee2MQTT integrates well with (almost) every home automation solution because
 - Integration implemented in IoBroker ([documentation](https://github.com/o0shojo0o/ioBroker.zigbee2mqtt)).
 
 <br>
+Inoltre anche (vedi https://www.zigbee2mqtt.io/guide/usage/integrations.html#integrations ):
 
+- **Majordomo** (Russian)
+- Mozilla IoT **WebThings** Gateway via Zigbee2MQTT adapter
+- **openHAB**
+- **Homebridge** plugin (Apple HomeKit)
+- **Symcon Automation** Solutions
+- **HomeSeer**
+- Matterbridge Zigbee2MQTT Plugin (**Apple HomeKit** and Google Home)
+- Zigbee2MQTT **Automations**
+- **node-red-contrib-zigbee2mqtt**
 
+Tutte queste applicazioni di domotica presentano differenti look and feel, e diversi modi per creare automazioni, nonchè maggiore o minore compatibilità e semplicità di installazione ed uso.
+**Consiglio di provarne più di una prima di fare una scelta!**
 
+_Tutte però presentano un problema comune, che dal mio punto di vista ne sconsiglia l'adozione generalizzata: non perettono l'integrazione con i device gestiti direttamente da Tuya!_  
 
-(vedi https://www.facebook.com/groups/tuyaitalia/permalink/1690721174895562/ )
+<h4>Conclusione 5</h4>
+Se c'è l'esigenza di un sottoinsieme costituito da device Zigbee, autonomo dal sistema Tuya, queste APP possono velocizzare l'implementazione! 
+Se però si desidera avere sistemi più interconnessi, come è l'ideale domotico, o dovete rinunciare a Tuya ed al suo ecosistema, oppure utilizzare soluzioni come IoTwebUI oppure custom che consentano counicazioni bidirezionali con Tuya! 
+
 
