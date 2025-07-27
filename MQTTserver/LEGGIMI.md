@@ -2,9 +2,9 @@
 
 _Attualente (luglio 2025) Tuya accetta device Zigbee di terze parti ( con alcuni limiti, vedi https://www.tuyaos.com/viewtopic.php?t=2688 ) mentre rifiuta completamente il "pairing" ai device Tuya "non autorizzati" - Cioè i device Tuya Zigbee con chip non Tuya originali (notizie ancora incerte, vedi post https://www.facebook.com/groups/tuyaitalia/permalink/1678413936126286/ )._
 
-Se un utente ha un parco importante di device Zigbee, con molte scene di controllo, la soluzione zero dovrebbe consistere nel ricomprare i device 'non autorizzati', ma questa volta di marche serie e paganti!
+Se un utente ha un parco importante di device Zigbee, con molte scene di controllo, la soluzione zero dovrebbe consistere nel ricomprare i device 'non autorizzati', ma questa volta di marche note ed affidabili!
 
-Rimane però il problema di come utilizzare i device Zigbee 'bannati' ed i device Zigbee di terze parti non compatibili Tuya. Sono possibili diverse soluzioni, alcune presentate qui in ordine di complessità (e prestazioni) crescenti. Ogni utente può individuare la soluzione che meglio risponde alle sue esigenze!
+Rimane però il problema di come utilizzare i device Zigbee 'bannati' ed i device Zigbee di terze parti non compatibili Tuya. Sono possibili diverse soluzioni, alcune presentate qui in ordine crescente di complessità e prestazioni. Ogni utente può individuare la soluzione che meglio risponde alle sue esigenze!
 
 _**Nota generale**: Le automazioni essenziali è oppurtuno siano implementate usando solo Tuya, magari con 'local linkage'! Ogni applicazione aggiunta riduce l'affidabilità ed aumenta la latenza! 
 Quindi i device Zigbee di cui parliamo qui, con le relative soluzioni, saranno meglio utilizzati in applicazioni accessorie, di uso sporadico e non in ruoli chiave nella domotica stabile!_
@@ -27,7 +27,7 @@ La perdita di un messaggio pronto non causerà un guasto nell'hub (come accade c
 - "L'integrazione MQTT consente di garantire l'integrità del traffico (con QOS > 0)."
 
 CONTRO:
- - "Lo svantaggio di questa soluzione è la limitata potenza di calcolo della CPU del controller SLZB-06, che limita il numero massimo di dispositivi ZigBee che può elaborare."
+ - "Lo svantaggio di questa soluzione è la limitata potenza di calcolo della CPU del controller SLZB-06, che limita il numero massimo di dispositivi ZigBee che può elaborare." (circa una decina)
 -  "Inoltre, il supporto per le funzionalità dei dispositivi ZigBee è limitato (sarà ampliato nel tempo)."  
  (fonte  https://github.com/smlight-tech/slzb-os-zigbee-hub/tree/main).
 
@@ -37,11 +37,11 @@ CONTRO:
 <h4>Note d'uso (SLZB-06P7)</h4> 
 
 - collegare LAN al router e USB per alimentazione. 
-- Se necessario, impostare con il pulsante (scomodo) il modo LAN (vedi  https://smlight.tech/manual/slzb-06/guide/configuration/#configuring-with-button) - LED blu acceso.t
-- Cercare IP di SLZB-06P7 via modem/scan WiFi (oppure usate direttamente http://slzb-06p7.local/ ) per accedere con un browser alle pagine di configurazione - (vedi https://smlight.tech/manual/slzb-06/guide/configuration/#configuring-with-web-interface)
+- Se necessario, impostare con il pulsante (scomodo) il modo LAN (vedi  https://smlight.tech/manual/slzb-06/guide/configuration/#configuring-with-button) - LED blu acceso.
+- Cercare IP di SLZB-06P7 via modem/scan WiFi (oppure usate direttamente `http://slzb-06p7.local/` ) per accedere con un browser alle pagine di configurazione - (vedi https://smlight.tech/manual/slzb-06/guide/configuration/#configuring-with-web-interface)
 - Aggiornare via OTA il FW - Provata la versione 2.9.4 e 20240316 (vedi http://smlight.tech/manual/slzb-06/guide/flashing-and-updating/updating-zigbee.html) 
 - Configurazione: mode => zigbee Hub, Network => Ethernet/WiFi a scelta,  MQTT => off.
-- Hard reset, se perdete la pagina di configurazione: "turn on the device with the button pressed, when the LEDs start to flash, release the button".
+- Hard reset (se perdete la pagina di configurazione): "turn on the device with the button pressed, when the LEDs start to flash, release the button".
 
 <h4>Conclusione 1</h4>
 
@@ -62,6 +62,7 @@ _Come si vede dallo screenshot di MQTT Explorer, in alto si hanno tutti i messag
 
 - Installare mosquitto da (https://mosquitto.org/download/) In Win può essere installato come APP o come servizio: https://cedalo.com/blog/how-to-install-mosquitto-mqtt-broker-on-windows/ 
 - Configurazione. Questi due valori devono essere aggiunti in `mosquitto.conf`  per poter accedere facilmente al Broker: 
+
                     listener  1883  0.0.0.0
                     allow_anonymanonyous true
                    
@@ -77,7 +78,7 @@ Le funzionalità aggiunte sono la memorizzazione di serie storiche e la visulazz
 
 <h3>SOLUZIONE 3: SLZB-06 (zigbee Hub) + mosquitto + IoTwebUI </h3>
 
-_Uno dei limiti gravi delle due soluzioni precedenti è l'impossibilità di usare i device Zigbee gestiti da SLZB-06p7 in automazioni! Sia tra di loro, sia includendo i device controllati da Tuya!_
+_Uno dei limiti gravi delle due soluzioni precedenti è l'impossibilità di usare i device Zigbee gestiti da SLZB-06p7 in automazioni! Sia tra di loro, sia includendo le 'scene' ed i device controllati da Tuya!_
 
 Per rendere questo realizzabile, occorre usare **IoTwebUI**, e creare degli **'x-device' custom** con i dati aggiornati automaticaente: gli 'x-device' possono essere usati insieme ai device standard Tuya nelle REGOLE di IotwebUI (più potenti delle 'scene' Tuya), e possono attivare 'Tap-to-run' Tuya! 
 
@@ -87,6 +88,7 @@ Per rendere questo realizzabile, occorre usare **IoTwebUI**, e creare degli **'x
 </tr></table>
 
 Questo screenshot mostra come appare in IoTwebUI un x-device per un sensore teperatura/pressione. A DX un device Tuya analogo.
+
 Note:
  - Gli x-device, con icona ad ingranaggi, possono essere inseriti in ogni stanza creata con Tuya (nella figura, la 'stanza' MQTT).
  - Mancano alcuni dati, ad esempio l'opzione °C/°F per la temperatura. Questo perchè non sono implementati in "SLZB-06 zigbee Hub" (vedi https://github.com/smlight-tech/slzb-os-zigbee-hub/tree/main?tab=readme-ov-file#what-is-currently-supported)
@@ -94,14 +96,14 @@ Note:
  - Nelle Automazioni (REGOLE) di IoTwebUI si possono mescolare `device Tuya` e `x-device` e lanciare 'tap-to-run' Tuya. Semplice esempio (vedi https://github.com/msillano/IoTwebUI/blob/main/LEGGIMI30.md#ref-macro-per-risorse ):
 
               if (  (GET("x-clima-sala", "Temperatura")  > 22.0 ) || 
-                    ((GET("Teperature letto", "va_temperature")/10 ) > 22.0) ) SCENE("Spegni riscaldaento")
+                    ((GET("Temperature letto", "va_temperature")/10 ) > 22.0) ) SCENE("Spegni riscaldamento")
 
 <h4>Note d'uso (IoTwebUI)</h4> 
 - Installare IoTwebUI (ver > 3.0) e REST (ver. > 3.0) come da istruzioni (vedi https://github.com/msillano/IoTwebUI/blob/main/APP/LEGGIMI.md#installazione-e-uso )
 - Configurazione: La mappatura tra i topic MQTT e REST (device, attributo, valore) è a carico dell'utente e deve essere fatta per ogni device. A differenza dei 'tipi' questa implementazione offre la massima libertà all'utente, perchè permette l'ottimizzazione per ogni device. 
 - Pertanto va aggiornato il file `'server.js'` per ogni device usata. Vedi esempi all'inizio del file! I topic usati per ogni device si possono vedere con 'MQTT Explorer' Esempio:
 
-       "zhub/data/a4c13849baf0f06c/1/0402/0000": {           // topic MQTT
+       "zhub/data/a4c13849baf0f06c/1/0402/0000": {           // topic MQTT - temperatura
               description: "Temperatura - x-clima-sala",   
               lastValue: null,                    // default
               handler: (data, thisMap) => {       //  funzione di crezione REST qui 
@@ -127,16 +129,16 @@ Note:
 
 <h4>Conclusione 3</h4>
 
-Una soluzione tutto sommato completa, a costo di un aggiornamento per ogni device aggiunta! L'utente ha una completa libertà di customizzazione per ogni device! Perette quindi il riuso dei device Tuya 'bannati' in automazioni interagenti con Tuya. 
+Una soluzione tutto sommato completa, a costo di un aggiornamento per ogni device aggiunta! L'utente ha una completa libertà di customizzazione per ogni device. Permette quindi il riuso dei device Tuya 'bannati' in automazioni interagenti con Tuya. 
 Sono sempre validi i limiti del modo _zigbee Hub di SLZB-06_: poche device e funzioni limitate!
 
 <h3>SOLUZIONE 4: SLZB-06 + zigbee2mqtt + mosquitto + ( MQTT Explorer | IoTwebUI ) </h3>
 
-_Per poter elaborare più device, la soluzione è usare un SW esterno all'adapter SLZB-06, con a disposizione le risorse del sistema ospite!_ 
-Il SW in questione è zigbee2mqtt, che in coppia con SLZB-06 permette di gestire fino a **300** device Zigbee, purchè appartenenti al set delle  **4464** devices 'note' a zigbee2mqtt, (vedi https://www.zigbee2mqtt.io/supported-devices/ ). 
-nota: è comunque possibile aggiungere device Zigbee Tuya 'sconosciute', vedi https://medium.com/@dzegarra/zigbee2mqtt-how-to-add-support-for-a-new-tuya-based-device-part-1-b20227251d46  
+_Per poter elaborare più device, la soluzione è usare un SW di decodifica esterno all'adapter SLZB-06, con a disposizione le risorse del sistema ospite!_ 
+Il SW in questione è **zigbee2mqtt**, che in coppia con **SLZB-06P7** permette di gestire fino a **300** device Zigbee, purchè appartenenti al set delle  **4464** devices 'note' a zigbee2mqtt, (vedi https://www.zigbee2mqtt.io/supported-devices/ ). 
+nota: è comunque possibile aggiungere device Zigbee Tuya 'sconosciute' a `zigbee2mqtt`, vedi https://medium.com/@dzegarra/zigbee2mqtt-how-to-add-support-for-a-new-tuya-based-device-part-1-b20227251d46  
 
-`zigbee2mqtt` presenta numerose pagine, alcune simili a quelle già viste con `zigbee Hub` (lista, dasboard) altre nuove: Mappa, Gruppi, etc.
+L'interfaccia web di `zigbee2mqtt` presenta numerose pagine, alcune simili a quelle già viste con `zigbee Hub` (lista, dasboard) altre nuove: Mappa, Gruppi, etc.
 
 ![ScreenShot_20250725194703](https://github.com/user-attachments/assets/9dd59e9b-085a-40ea-a4ea-49504f4a7253)
 ![ScreenShot_20250725194808](https://github.com/user-attachments/assets/1218d458-e45b-4bb4-bf08-7a5bfd2fbb14)
@@ -151,7 +153,7 @@ In uesto caso viene usato un solo 'topic' per device!
 
 <h4>Note d'uso (SLZB-06P7)</h4> 
 
-Per l'uso con `zigbee2mqtt`, l'adapter SLZB-06 può essere configurato in vari modi. In particolare ho scelto USB + Ethernet, e modo 'coordinator'. Ovviamente sono stati aggiornati i FW. 
+Per l'uso con `zigbee2mqtt`, l'adapter SLZB-06 può essere configurato in vari modi. In particolare ho scelto USB + Ethernet, e modo 'coordinator'. Ovviamente sono stati aggiornati i FW zigbee. 
 
 <img width="1144" height="405" alt="Schermata 2025-07-25 alle 20 41 50" src="https://github.com/user-attachments/assets/813a6810-85f1-4088-9f93-f168837ae4d0" />
 
@@ -177,7 +179,7 @@ L'obiettivo è un colloquio seriale via USB tra `SLZB-06P7` e `zigbee2mqtt`.
       
 <h4>Note d'uso APP </h4> 
 
-Una volta che i dati raggiungono il broker mosquitto possono poi essere utilizzati in base alle esigenze ad alle preferenze dell'utente.
+Una volta che i dati raggiungono il broker mosquitto possono poi essere utilizzati nei modi già visti, in base alle esigenze ed alle preferenze dell'utente.
 
  - **MQTT Explorer** è  la soluzione più semplice, sempre utile per vedere i dettagli dei topic e payload MQTT, inoltre permette grafici di tutte le misure!
 
@@ -185,7 +187,7 @@ Una volta che i dati raggiungono il broker mosquitto possono poi essere utilizza
 
 <h4>Note d'uso (IoTwebUI)</h4> 
 
- -  `zigbee2mqtt` raggruppa i dati in un unico messaggio per device. Pertanto il file `'server.js'` deve essere aggiornato per ogni device usata in modo diverso dal caso `Zigbee Hub`. Vedi esempi all'inizio del file! I topic usati per ogni device si possono vedere con 'MQTT Explorer' - Possono convivere entrambe le definizioni , avendo 'topic' differenti!. Esempio:
+ -  `zigbee2mqtt` raggruppa i dati in un unico messaggio per device. Pertanto il file `'server.js'` deve essere aggiornato per ogni device usata in modo diverso dal caso `Zigbee Hub`. Vedi esempi all'inizio del file! I topic usati per ogni device si possono vedere con 'MQTT Explorer' - Possono convivere entrambe le definizioni, avendo 'topic' differenti!. Esempio:
 
            "zigbee2mqtt/0xa4c13849baf0f06c": {            //  device-id
                  description: "Temperatura - x-clima-sala",
@@ -212,15 +214,15 @@ PRO
 
 CONTRO
  - Una maggiore complessità generale: installazione, configurazione, manutenzione (mi sono serviti due giorni per farlo funzionare !)
- - Aumento dei rischi legati all'affidabilità ( usando più  blocchi logici le probabilità di 'guasti' aumentano) 
- - Diventa sempre più necessario utilizzare un server dedicato 24/7: un top-box Android  ( la soluzione che preferisco, vedi https://github.com/msillano/tuyaDAEMON/wiki/80.-deployment:-android-server ), un Raspberry, un mini PC etc... 
+ - Aumento dei rischi legati all'affidabilità (usando più  blocchi logici le probabilità di 'guasti' aumentano) 
+ - Diventa sempre più necessario utilizzare un server dedicato 24/7: un top-box Android  (la soluzione che preferisco, vedi https://github.com/msillano/tuyaDAEMON/wiki/80.-deployment:-android-server ), un Raspberry, un mini PC etc... 
 
 Valutare quindi bene il bilancio vantaggio/svantaggi di questa soluzione.
 
 
 <h3>SOLUZIONE 5: SLZB-06 + zigbee2mqtt (+ mosquitto) + APP </h3>
 
-zigbee2mqtt ha una posizione di standard di fatto nel campo dei device Zigbee, pertanto molte applicazioni di domotica prevedo l'integrazione con `zigbee2mqtt`. Per utilizzare Zigbee2MQTT con altri sistemi non è obbligatorio disporre di un'integrazione nativa, ma è necessario il supporto per MQTT. Un'integrazione nativa rende le cose più semplici e "cliccabili".
+zigbee2mqtt ha una posizione di standard di fatto nel campo dei device Zigbee, pertanto molte applicazioni di domotica prevedono l'integrazione con `zigbee2mqtt`. Per utilizzare Zigbee2MQTT con altri sistemi non è obbligatorio disporre di un'integrazione nativa, ma è necessario il supporto per MQTT. Un'integrazione nativa rende le cose più semplici e "cliccabili".
 
 "Zigbee2MQTT integrates well with (almost) every home automation solution because it uses MQTT. However the following integrations are worth mentioning:" (https://github.com/Koenkk/zigbee2mqtt/blob/master/README.md#integrations )
 
@@ -266,7 +268,7 @@ zigbee2mqtt ha una posizione di standard di fatto nel campo dei device Zigbee, p
 - Integration implemented in IoBroker ([documentation](https://github.com/o0shojo0o/ioBroker.zigbee2mqtt)).
 
 <br>
-Inoltre anche (vedi https://www.zigbee2mqtt.io/guide/usage/integrations.html#integrations ):
+_Inoltre anche queste applicazioni sono state integrate (vedi https://www.zigbee2mqtt.io/guide/usage/integrations.html#integrations ):_
 
 - **Majordomo** (Russian)
 - Mozilla IoT **WebThings** Gateway via Zigbee2MQTT adapter
@@ -276,15 +278,17 @@ Inoltre anche (vedi https://www.zigbee2mqtt.io/guide/usage/integrations.html#int
 - **HomeSeer**
 - Matterbridge Zigbee2MQTT Plugin (**Apple HomeKit** and Google Home)
 - Zigbee2MQTT **Automations**
-- **node-red-contrib-zigbee2mqtt**
+- **node-red-contrib-zigbee2mqtt** per applicazioni custom in node-red
 
 Tutte queste applicazioni di domotica presentano differenti look and feel, e diversi modi per creare automazioni, nonchè maggiore o minore compatibilità e semplicità di installazione ed uso.
 **Consiglio di provarne più di una prima di fare una scelta!**
 
-_Tutte però presentano un problema comune, che dal mio punto di vista ne sconsiglia l'adozione generalizzata: non perettono l'integrazione con i device gestiti direttamente da Tuya!_  
+_Tutte queste ottime applicazioni di domotica però presentano un problema comune, che dal mio punto di vista ne sconsiglia l'adozione generalizzata: nessuna permette l'integrazione con le 'scene' e tutti i device gestiti direttamente da Tuya!_  
 
 <h4>Conclusione 5</h4>
 Se c'è l'esigenza di un sottoinsieme costituito da device Zigbee, autonomo dal sistema Tuya, queste APP possono velocizzare l'implementazione! 
-Se però si desidera avere sistemi più interconnessi, come è l'ideale domotico, o dovete rinunciare a Tuya ed al suo ecosistema, oppure utilizzare soluzioni come IoTwebUI oppure custom che consentano counicazioni bidirezionali con Tuya! 
+Se però si desidera avere sistemi più interconnessi, come è l'ideale domotico, o dovete rinunciare a Tuya ed al suo ecosistema, oppure dovete utilizzare soluzioni come IoTwebUI oppure soluzioni custom che consentano counicazioni bidirezionali con Tuya! 
 
+_Se implementate una di queste soluzioni, fatemi conoscere i vostri pro e contro per aggiornare questa guida._
 
+Cordialmente
