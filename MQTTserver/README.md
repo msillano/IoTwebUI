@@ -6,13 +6,13 @@ If a user has a significant number of Zigbee devices, with many control scenes, 
 
 However, the problem remains of how to use 'banned' Zigbee devices and third-party Zigbee devices not compatible with Tuya. Several solutions are possible, some presented here in increasing order of complexity and performance. Each user can identify the solution that best meets their needs!
 
-_**General Note**: Essential automations should be implemented using Tuya only, perhaps with 'local linkage'! Every added application reduces reliability and increases latency!
+_**General Note**: Essential automations should be implemented using Tuya only, perhaps with 'local linkage'! Every added application reduces reliability and increases latency! <br>
 Therefore, the Zigbee devices we are discussing here, with their respective solutions, will be better utilized in accessory applications, for sporadic use and not in key roles in stable home automation!_
 
 <h3>SOLUTION 1: SLZB-06 (zigbee Hub) stand-alone</h3>
 
 I acquired and tested the **SLZB-06p7** model, designed in Ukraine - for other models see http://smlight.tech/manual/slzb-06/guide/slzb-models-overview/) - which has very interesting features!
-In particular, it has an operating mode called **zigbee Hub** standalone (see https://github.com/smlight-tech/slzb-os-zigbee-hub/tree/main).
+In particular, it has an operating mode called **zigbee Hub** standalone (see https://github.com/smlight-tech/slzb-os-zigbee-hub/tree/main).<br>
 It also has a programming language for which it can execute custom control scripts (see https://github.com/smlight-tech/slzb-os-scripts)<br><br>
 <table><tr>
 <img height="230" alt="image" src="https://github.com/user-attachments/assets/084a0eb6-a901-4602-bf85-43377ab70c65" />
@@ -70,7 +70,7 @@ _As seen from the MQTT Explorer screenshot, at the top are all received MQTT mes
 
 <h4>Conclusion 2</h4>
 
-Still a very simple solution because **mosquitto** and **MQTT Explorer** are easy to install, even on a single PC, and require little configuration! Naturally, on SLZB-06, the "zigbee Hub" mode remains with its limitations, and MQTT output must be enabled!
+Still a very simple solution because **mosquitto** and **MQTT Explorer** are easy to install, even on a single PC, and require little configuration! Naturally, on SLZB-06, the "zigbee Hub" mode remains with its limitations, and MQTT output must be enabled! <br>
 Added functionalities include historical data storage and visualization in graphs! However, data series export is not available in 'MQTT Explorer'.
 
 <h3>SOLUTION 3: SLZB-06 (zigbee Hub) + mosquitto + IoTwebUI </h3>
@@ -126,13 +126,13 @@ Notes:
 
 <h4>Conclusion 3</h4>
 
-An overall complete solution, at the cost of an update for each added device! The user has complete customization freedom for each device. It therefore allows the reuse of 'banned' Tuya devices in automations interacting with Tuya.
+An overall complete solution, at the cost of an update for each added device! The user has complete customization freedom for each device. It therefore allows the reuse of 'banned' Tuya devices in automations interacting with Tuya.<br>
 The limitations of the _SLZB-06 zigbee Hub_ mode are always valid: few devices and limited functions!
 
 <h3>SOLUTION 4: SLZB-06 + zigbee2mqtt + mosquitto + ( MQTT Explorer | IoTwebUI ) </h3>
 
 _To be able to process more devices, the solution is to use an external decoding software to the SLZB-06 adapter, with the host system's resources available!_
-The SW in question is **zigbee2mqtt**, which, coupled with **SLZB-06P7**, allows managing up to **300** Zigbee devices, provided they belong to the set of **4464** 'known' devices to zigbee2mqtt (see https://www.zigbee2mqtt.io/supported-devices/).
+The SW in question is **zigbee2mqtt**, which, coupled with **SLZB-06P7**, allows managing up to **300** Zigbee devices, provided they belong to the set of **4464** 'known' devices to zigbee2mqtt (see https://www.zigbee2mqtt.io/supported-devices/).<br>
 Note: it is still possible to add 'unknown' Tuya Zigbee devices to `zigbee2mqtt`, see https://medium.com/@dzegarra/zigbee2mqtt-how-to-add-support-for-a-new-tuya-based-device-part-1-b20227251d46
 
 The `zigbee2mqtt` web interface presents numerous pages, some similar to those already seen with `zigbee Hub` (list, dashboard), others new: Map, Groups, etc.
@@ -157,7 +157,7 @@ For use with `zigbee2mqtt`, the SLZB-06 adapter can be configured in various way
 <h4>Usage Notes (zigbee2mqtt)</h4>
 
 Installation is not very simple. Follow the instructions https://www.zigbee2mqtt.io/guide/installation/<br>
-Configuration can be done by updating the `zigbee2mqtt/data/configuration.yaml` file. See https://www.zigbee2mqtt.io/guide/configuration/.
+Configuration can be done by updating the `zigbee2mqtt/data/configuration.yaml` file. See https://www.zigbee2mqtt.io/guide/configuration/.<br>
 The goal is a serial communication via USB between `SLZB-06P7` and `zigbee2mqtt`.
 Example, I am using this:
 
@@ -264,7 +264,7 @@ zigbee2mqtt holds a de facto standard position in the field of Zigbee devices; t
 - Integration implemented in IoBroker ([documentation](https://github.com/o0shojo0o/ioBroker.zigbee2mqtt)).
 
 <br>
-_Furthermore, these applications have also been integrated (see https://www.zigbee2mqtt.io/guide/usage/integrations.html#integrations):_
+_Furthermore, these applications have also been integrated_ (see https://www.zigbee2mqtt.io/guide/usage/integrations.html#integrations):
 
 - **Majordomo** (Russian)
 - Mozilla IoT **WebThings** Gateway via Zigbee2MQTT adapter
@@ -282,6 +282,7 @@ All these home automation applications feature different look and feel, and diff
 _However, all these excellent home automation applications present a common problem, which from my point of view advises against their generalized adoption: none allow integration with 'scenes' and all devices directly managed by Tuya!_
 
 <h4>Conclusion 5</h4>
+
 If there is a need for a subset of Zigbee devices, independent of the Tuya system, these APPs can speed up implementation!
 However, if you want more interconnected systems, as is ideal for home automation, you either have to abandon Tuya and its ecosystem, or you have to use solutions like IoTwebUI or custom solutions that allow bidirectional communication with Tuya!
 
