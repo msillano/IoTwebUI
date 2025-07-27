@@ -1,10 +1,10 @@
 <h1>Metodi di integrazione di sub-device Zigbee di terze parti nell'ecosistema Tuya</h1>
 
-_Attualente (luglio 2025) Tuya accetta device Zigbee di terze parti ( con alcuni limiti, vedi https://www.tuyaos.com/viewtopic.php?t=2688 ) mentre rifiuta completamente il "pairing" ai device Tuya "non autorizzati" - Cioè sembra i device Tuya Zigbee di produttori 'insolventi'! (notizie ancora incerte, vedi post https://www.facebook.com/groups/tuyaitalia/permalink/1678413936126286/ )._
+_Attualente (luglio 2025) Tuya accetta device Zigbee di terze parti ( con alcuni limiti, vedi https://www.tuyaos.com/viewtopic.php?t=2688 ) mentre rifiuta completamente il "pairing" ai device Tuya "non autorizzati" - Cioè i device Tuya Zigbee con chip non Tuya originali (notizie ancora incerte, vedi post https://www.facebook.com/groups/tuyaitalia/permalink/1678413936126286/ )._
 
 Se un utente ha un parco importante di device Zigbee, con molte scene di controllo, la soluzione zero dovrebbe consistere nel ricomprare i device 'non autorizzati', ma questa volta di marche serie e paganti!
 
-Rimane perà il problema di come utilizzare i device Zigbee 'bannati' ed i device Zigbee di terze parti non compatibili Tuya. Sono possibili diverse soluzioni, alcune presentate qui in ordine di complessità (e prestazioni) crescenti. Ogni utente può individuare la soluzione che meglio risponde alle sue esigenze!
+Rimane però il problema di come utilizzare i device Zigbee 'bannati' ed i device Zigbee di terze parti non compatibili Tuya. Sono possibili diverse soluzioni, alcune presentate qui in ordine di complessità (e prestazioni) crescenti. Ogni utente può individuare la soluzione che meglio risponde alle sue esigenze!
 
 _**Nota generale**: Le automazioni essenziali è oppurtuno siano implementate usando solo Tuya, magari con 'local linkage'! Ogni applicazione aggiunta riduce l'affidabilità ed aumenta la latenza! 
 Quindi i device Zigbee di cui parliamo qui, con le relative soluzioni, saranno meglio utilizzati in applicazioni accessorie, di uso sporadico e non in ruoli chiave nella domotica stabile!_
