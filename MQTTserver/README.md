@@ -1,4 +1,5 @@
 <h1>Integration Methods for Third-Party Zigbee Sub-Devices into the Tuya Ecosystem</h1>
+
 [versione italiana](https://github.com/msillano/IoTwebUI/blob/main/MQTTserver/LEGGIMI.md)
 
 _Currently (July 2025), Tuya accepts third-party Zigbee devices (with some limitations, see https://www.tuyaos.com/viewtopic.php?t=2688) while completely rejecting the "pairing" to "unauthorized" Tuya devices - i.e., Tuya Zigbee devices with non-original Tuya chips (news still uncertain, see post https://www.facebook.com/groups/tuyaitalia/permalink/1678413936126286/)._
