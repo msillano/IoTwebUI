@@ -308,6 +308,7 @@ _Purtroppo queste ottime applicazioni di domotica presentano tutte un problema c
 Se c'è l'esigenza di un sottoinsieme costituito da device Zigbee, autonomo dal sistema Tuya, queste APP possono velocizzare l'implementazione! 
 Se però si desidera avere sistemi più interconnessi, come è l'ideale domotico, o dovete rinunciare a Tuya ed al suo ecosistema, oppure dovete utilizzare soluzioni come IoTwebUI oppure soluzioni custom che consentano counicazioni bidirezionali con Tuya! 
 
-_Ho provato tutte le soluzioni 1..4: se implementate una di queste soluzioni, fatemi conoscere i vostri pro e contro per aggiornare questa guida._
+<hr>
+_Ho provato tutte le soluzioni: se implementate una di queste soluzioni, fatemi conoscere i vostri pro e contro per aggiornare questa guida._
 
 Cordialmente
