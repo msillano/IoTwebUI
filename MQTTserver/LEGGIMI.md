@@ -287,7 +287,7 @@ Valutare quindi bene il bilancio vantaggio/svantaggi di questa soluzione.
 
 <br>
 
-_Inoltre anche queste applicazioni sono state integrate (vedi https://www.zigbee2mqtt.io/guide/usage/integrations.html#integrations ):_
+_Inoltre anche queste applicazioni sono state integrate con zigbee2mqtt (vedi https://www.zigbee2mqtt.io/guide/usage/integrations.html#integrations ):_
 
 - **Majordomo** (Russian)
 - Mozilla IoT **WebThings** Gateway via Zigbee2MQTT adapter
@@ -302,7 +302,7 @@ _Inoltre anche queste applicazioni sono state integrate (vedi https://www.zigbee
 Queste applicazioni di domotica presentano differenti look and feel, e diversi modi per creare automazioni, nonchè maggiore o minore compatibilità e semplicità di installazione ed uso.<br>
 **Consiglio di provarne più di una prima di fare una scelta!**
 
-_Purtroppo queste ottime applicazioni di domotica presentano tutte un problema comune, che dal mio punto di vista ne sconsiglia l'adozione generalizzata: nessuna di esse permette l'integrazione con le 'scene' e con tutti i device gestiti direttamente da Tuya!_  
+_Purtroppo queste ottime applicazioni di domotica presentano tutte un problema comune, che dal mio punto di vista ne sconsiglia l'adozione generalizzata: nessuna di esse permette l'integrazione con le 'scene' e con tutti i device gestiti direttamente da Tuya!_ 
 
 <h4>Conclusione 5</h4>
 
