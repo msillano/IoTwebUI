@@ -15,7 +15,7 @@ Quindi i device Zigbee di cui parliamo qui, con le relative soluzioni, saranno m
 <h3>SOLUZIONE 1: SLZB-06 (zigbee Hub) stand-alone</h3>
 
 Ho preso e testato come adapter Zigbee, non Tuya compatibile, il modello **SLZB-06p7** di progettazione Ukraina - sono disponibili vari modelli vedi http://smlight.tech/manual/slzb-06/guide/slzb-models-overview/ ) - che ha caratteristiche molto interessanti!   
-Ha vari modi di funzionamento, è pronto all'uso con zigbee2mqtt (non occorre flashare FW),  e possiede un linguaggio di programmazione per cui può eseguire script custom di controllo (vedi https://github.com/smlight-tech/slzb-os-scripts )<br>
+Ha vari modi di funzionamento, è pronto all'uso con _zigbee2mqtt_ (non occorre flashare FW),  e possiede un linguaggio di programmazione per cui può eseguire script custom di controllo (vedi https://github.com/smlight-tech/slzb-os-scripts )<br>
 In particolare ha un modo di funzionamento chiamato **zigbee Hub** totalmente autonomo ( vedi https://github.com/smlight-tech/slzb-os-zigbee-hub/tree/main) con una sua interfaccia web!. 
 <br>
 <table><tr>
@@ -50,7 +50,7 @@ CONTRO:
 
 Una soluzione veramente semplice (richiede solo un adapter SLZB-06). Le pagine WEB di configurazione presentano i device in due modi: sotto forma di lista e come dashboard (vedi figure).
 E' così possibile leggere i valori dei sensori Zigbee e dare comandi manuali ai device, con i limiti del SLZB-06 indicati dal costruttore!<br> 
-Ottima soluzione se si vogliono riutilizzare solo alcuni device Zigbee 'bannati' da Tuya!
+Ottima soluzione se si vogliono riutilizzare in odo eleentare alcuni device Zigbee 'bannati' da Tuya!
 
 
 <h3>SOLUZIONE 2: SLZB-06 (zigbee Hub) + mosquitto + MQTT Explorer </h3>
@@ -69,6 +69,11 @@ _Come si vede dallo screenshot di MQTT Explorer, in alto si hanno tutti i messag
 
                     listener  1883  0.0.0.0
                     allow_anonymanonyous true
+
+ALTERNATIVA: Per applicazioni DIY custom, potete usare come broker MQTT, al posto di mosquitto, anche [node-red-contrib-zigbee2mqtt](https://flows.nodered.org/node/node-red-contrib-zigbee2mqtt)
+
+<img width="755" height="232" alt="Schermata 2025-07-28 alle 11 54 54" src="https://github.com/user-attachments/assets/12b43925-0c6e-4157-bcf4-5b645217dd5e" />
+ 
                    
 <h4>Note d'uso (MQTT Explorer)</h4> 
 
