@@ -286,6 +286,7 @@ Valutare quindi bene il bilancio vantaggio/svantaggi di questa soluzione.
 - Integration implemented in IoBroker ([documentation](https://github.com/o0shojo0o/ioBroker.zigbee2mqtt)).
 
 <br>
+
 _Inoltre anche queste applicazioni sono state integrate (vedi https://www.zigbee2mqtt.io/guide/usage/integrations.html#integrations ):_
 
 - **Majordomo** (Russian)
