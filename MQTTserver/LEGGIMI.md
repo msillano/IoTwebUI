@@ -8,7 +8,7 @@ Se un utente ha un parco importante di device Zigbee, con molte scene di control
 
 Rimane però il problema di come utilizzare i device Zigbee 'bannati' ed i device Zigbee di terze parti non compatibili Tuya. Ho provato diverse soluzioni, alcune presentate qui in ordine crescente di complessità e prestazioni. Ogni utente può individuare la soluzione che meglio risponde alle sue esigenze!
 
-_**Nota generale**: Le automazioni essenziali è oppurtuno siano implementate usando solo Tuya, magari con 'local linkage'! Ogni applicazione aggiunta riduce l'affidabilità ed aumenta la latenza! 
+_**Nota generale**: Le automazioni essenziali è oppurtuno siano implementate usando solo Tuya, magari con 'local linkage'! Ogni applicazione aggiunta riduce l'affidabilità ed aumenta la latenza!<br> 
 Quindi i device Zigbee di cui parliamo qui, con le relative soluzioni, saranno meglio utilizzati in applicazioni accessorie, di uso sporadico e non in ruoli chiave nella domotica stabile!_
 
 
