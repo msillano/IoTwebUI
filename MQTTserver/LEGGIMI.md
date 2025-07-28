@@ -166,19 +166,19 @@ I topic usati da `zigbee2mqtt` sono più sintetici, quindi di più seplice gesti
 
 ![ScreenShot_20250726123726](https://github.com/user-attachments/assets/3f8ba1ae-f9c8-427f-a65c-ed2af3da817d)
 
-In uesto caso viene usato un solo 'topic' per device!
+In questo caso viene usato un solo 'topic' per device!
 
 <h4>Note d'uso (SLZB-06P7)</h4> 
 
-Per l'uso con `zigbee2mqtt`, l'adapter SLZB-06 può essere configurato in vari modi. In particolare ho scelto USB + Ethernet, e modo 'coordinator'. Ovviamente sono stati aggiornati i FW zigbee via OTA. <br>
+Per l'uso con `zigbee2mqtt`, l'adapter `SLZB-06` può essere configurato in vari modi. In particolare ho scelto USB + Ethernet, e modo 'coordinator'. Ovviamente sono stati aggiornati i FW zigbee via OTA. <br>
 
 <img width="1144" height="405" alt="Schermata 2025-07-25 alle 20 41 50" src="https://github.com/user-attachments/assets/813a6810-85f1-4088-9f93-f168837ae4d0" />
 
 <h4>Note d'uso (zigbee2mqtt)</h4> 
 
 L'installazione non è seplicissima. Seguire le istruzioni https://www.zigbee2mqtt.io/guide/installation/ <br>
-La configurazione si può fare aggiornando manualente il file `zigbee2mqtt/data/configuration.yaml` Vedi https://www.zigbee2mqtt.io/guide/configuration/ , oppure al primo 'run' di `zigbee2mqtt` (cmd: `pnpm start` nella dir di installazione) 
-L'obiettivo è un colloquio seriale via USB tra `SLZB-06P7` e `zigbee2mqtt`.
+La configurazione si può fare aggiornando manualente il file `zigbee2mqtt/data/configuration.yaml` Vedi https://www.zigbee2mqtt.io/guide/configuration/ , oppure al primo 'run' di `zigbee2mqtt` (cmd: `pnpm start` nella dir di installazione) <br>
+L'obiettivo è un colloquio seriale via USB tra `SLZB-06P7` e `zigbee2mqtt`.<br>
  Esempio, sto usando questo:
 
                  version: 4
@@ -194,7 +194,6 @@ L'obiettivo è un colloquio seriale via USB tra `SLZB-06P7` e `zigbee2mqtt`.
                     log_level: info
                   ........  
       
-<h4>Note d'uso APP </h4> 
 
 Una volta che i dati raggiungono il broker `mosquitto` possono poi essere utilizzati nei modi già visti, in base alle esigenze ed alle preferenze dell'utente.
 
@@ -204,7 +203,8 @@ Una volta che i dati raggiungono il broker `mosquitto` possono poi essere utiliz
 
 <h4>Note d'uso (IoTwebUI)</h4> 
 
- -  `zigbee2mqtt` raggruppa i dati in un unico messaggio per device. Pertanto il file `'server.js'` deve essere aggiornato per ogni device usata in modo diverso dal caso `Zigbee Hub`. Vedi esempi all'inizio del file! I topic usati per ogni device si possono vedere con 'MQTT Explorer' - Possono convivere entrambe le definizioni, avendo 'topic' differenti!. Esempio:
+ -  `zigbee2mqtt` raggruppa i dati in un unico messaggio per device. Pertanto il file `'server.js'` deve essere aggiornato per ogni device usata, in modo diverso dal caso `Zigbee Hub`. Vedi esempi all'inizio del file! I topic usati per ogni device si possono vedere con 'MQTT Explorer' 
+- Possono convivere entrambe le definizioni, per `Zigbee Hub` e `zigbee2mqtt`, avendo 'topic' differenti!. Esempio:
 
            "zigbee2mqtt/0xa4c13849baf0f06c": {            //  device-id
                  description: "Temperatura - x-clima-sala",
@@ -240,7 +240,7 @@ Valutare quindi bene il bilancio vantaggio/svantaggi di questa soluzione.
 
 <h3>SOLUZIONE 5: SLZB-06 + zigbee2mqtt (+ mosquitto) + APP </h3>
 
-zigbee2mqtt ha una posizione di standard di fatto nel campo dei device Zigbee, pertanto molte applicazioni di domotica prevedono l'integrazione con `zigbee2mqtt`. Per utilizzare Zigbee2MQTT con altri sistemi non è obbligatorio disporre di un'integrazione nativa, ma è necessario il supporto per MQTT. Un'integrazione nativa rende le cose più semplici e "cliccabili".
+**Zigbee2mqtt** ha una posizione di standard di fatto nel campo dei device Zigbee, pertanto molte applicazioni di domotica prevedono l'integrazione con `zigbee2mqtt`. Per utilizzare Zigbee2MQTT con altri sistemi non è obbligatorio disporre di un'integrazione nativa, ma è necessario il supporto per MQTT. Un'integrazione nativa rende le cose più semplici e "cliccabili".
 
 "Zigbee2MQTT integrates well with (almost) every home automation solution because it uses MQTT. However the following integrations are worth mentioning:" (https://github.com/Koenkk/zigbee2mqtt/blob/master/README.md#integrations )
 
@@ -298,7 +298,7 @@ _Inoltre anche queste applicazioni sono state integrate (vedi https://www.zigbee
 - Zigbee2MQTT **Automations**
 - **node-red-contrib-zigbee2mqtt** per applicazioni custom in node-red
 
-TQueste applicazioni di domotica presentano differenti look and feel, e diversi modi per creare automazioni, nonchè maggiore o minore compatibilità e semplicità di installazione ed uso.
+Queste applicazioni di domotica presentano differenti look and feel, e diversi modi per creare automazioni, nonchè maggiore o minore compatibilità e semplicità di installazione ed uso.<br>
 **Consiglio di provarne più di una prima di fare una scelta!**
 
 _Purtroppo queste ottime applicazioni di domotica presentano tutte un problema comune, che dal mio punto di vista ne sconsiglia l'adozione generalizzata: nessuna di esse permette l'integrazione con le 'scene' e con tutti i device gestiti direttamente da Tuya!_  
