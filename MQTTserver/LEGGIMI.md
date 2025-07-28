@@ -309,6 +309,7 @@ Se c'è l'esigenza di un sottoinsieme costituito da device Zigbee, autonomo dal 
 Se però si desidera avere sistemi più interconnessi, come è l'ideale domotico, o dovete rinunciare a Tuya ed al suo ecosistema, oppure dovete utilizzare soluzioni come IoTwebUI oppure soluzioni custom che consentano counicazioni bidirezionali con Tuya! 
 
 <hr>
+
 _Ho provato tutte le soluzioni: se implementate una di queste soluzioni, fatemi conoscere i vostri pro e contro per aggiornare questa guida._
 
 Cordialmente
