@@ -108,7 +108,8 @@ Note:
               if (  (GET("x-clima-sala", "Temperatura")  > 22.0 ) || 
                     ((GET("Temperature letto", "va_temperature")/10 ) > 22.0) ) SCENE("Spegni riscaldamento")
 
-<h4>Note d'uso (IoTwebUI)</h4> 
+<h4>Note d'uso (IoTwebUI)</h4>
+
 - Installare IoTwebUI (ver > 3.0) e REST (ver. > 3.0) come da istruzioni (vedi https://github.com/msillano/IoTwebUI/blob/main/APP/LEGGIMI.md#installazione-e-uso )
 - Configurazione: La mappatura tra i topic MQTT e REST (device, attributo, valore) è a carico dell'utente e deve essere fatta per ogni device. A differenza dei 'tipi' questa implementazione offre la massima libertà all'utente, perchè permette l'ottimizzazione per ogni device. 
 - Pertanto va aggiornato il file `'server.js'`. Vedi esempi all'inizio del file! I topic usati per ogni device si possono vedere con 'MQTT Explorer' Esempio:
@@ -222,6 +223,7 @@ Una volta che i dati raggiungono il broker `mosquitto` possono poi essere utiliz
               },
 
 <h4>Conclusione 4</h4>
+
 Utilizzare `zigbee2mqtt` ha vantaggi ed inconvenienti.
 
 PRO
@@ -302,6 +304,7 @@ TQueste applicazioni di domotica presentano differenti look and feel, e diversi 
 _Purtroppo queste ottime applicazioni di domotica presentano tutte un problema comune, che dal mio punto di vista ne sconsiglia l'adozione generalizzata: nessuna di esse permette l'integrazione con le 'scene' e con tutti i device gestiti direttamente da Tuya!_  
 
 <h4>Conclusione 5</h4>
+
 Se c'è l'esigenza di un sottoinsieme costituito da device Zigbee, autonomo dal sistema Tuya, queste APP possono velocizzare l'implementazione! 
 Se però si desidera avere sistemi più interconnessi, come è l'ideale domotico, o dovete rinunciare a Tuya ed al suo ecosistema, oppure dovete utilizzare soluzioni come IoTwebUI oppure soluzioni custom che consentano counicazioni bidirezionali con Tuya! 
 
