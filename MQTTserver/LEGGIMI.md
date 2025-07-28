@@ -70,7 +70,7 @@ _Come si vede dallo screenshot di MQTT Explorer, in alto si hanno tutti i messag
                     listener  1883  0.0.0.0
                     allow_anonymanonyous true
 
-ALTERNATIVA: Per applicazioni DIY custom, potete usare come broker MQTT, al posto di mosquitto, anche [node-red-contrib-zigbee2mqtt](https://flows.nodered.org/node/node-red-contrib-zigbee2mqtt)
+ALTERNATIVA: Per applicazioni DIY custom, e seplici automazioni, potete usare come broker MQTT, al posto di mosquitto, anche [node-red-contrib-zigbee2mqtt](https://flows.nodered.org/node/node-red-contrib-zigbee2mqtt)
 
 <img width="755" height="232" alt="Schermata 2025-07-28 alle 11 54 54" src="https://github.com/user-attachments/assets/12b43925-0c6e-4157-bcf4-5b645217dd5e" />
  
