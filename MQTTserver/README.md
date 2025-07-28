@@ -1,4 +1,5 @@
 <h1>Integration Methods for Third-Party Zigbee Sub-Devices into the Tuya Ecosystem</h1>
+[versione italiana](https://github.com/msillano/IoTwebUI/blob/main/MQTTserver/LEGGIMI.md)
 
 _Currently (July 2025), Tuya accepts third-party Zigbee devices (with some limitations, see https://www.tuyaos.com/viewtopic.php?t=2688) while completely rejecting the "pairing" to "unauthorized" Tuya devices - i.e., Tuya Zigbee devices with non-original Tuya chips (news still uncertain, see post https://www.facebook.com/groups/tuyaitalia/permalink/1678413936126286/)._
 
@@ -132,7 +133,11 @@ The limitations of the _SLZB-06 zigbee Hub_ mode are always valid: few devices a
 <h3>SOLUTION 4: SLZB-06 + zigbee2mqtt + mosquitto + ( MQTT Explorer | IoTwebUI ) </h3>
 
 _To be able to process more devices, the solution is to use an external decoding software to the SLZB-06 adapter, with the host system's resources available!_
-The SW in question is **zigbee2mqtt**, which, coupled with **SLZB-06P7**, allows managing up to **300** Zigbee devices, provided they belong to the set of **4464** 'known' devices to zigbee2mqtt (see https://www.zigbee2mqtt.io/supported-devices/).<br>
+The SW in question is **zigbee2mqtt**, which, coupled with **SLZB-06P7**, allows managing up to **300** Zigbee devices, provided they belong to the set of **4464** 'known' devices to zigbee2mqtt (see https://www.zigbee2mqtt.io/supported-devices/).<br> 
+
+<img width="1808" height="605" alt="image" src="https://github.com/user-attachments/assets/1e7707c7-d9a5-4145-ba3f-d9bcbf0b69e1" />
+
+
 Note: it is still possible to add 'unknown' Tuya Zigbee devices to `zigbee2mqtt`, see https://medium.com/@dzegarra/zigbee2mqtt-how-to-add-support-for-a-new-tuya-based-device-part-1-b20227251d46
 
 The `zigbee2mqtt` web interface presents numerous pages, some similar to those already seen with `zigbee Hub` (list, dashboard), others new: Map, Groups, etc.
