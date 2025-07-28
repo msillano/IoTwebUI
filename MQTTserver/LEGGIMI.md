@@ -2,7 +2,7 @@
 
 [English version](https://github.com/msillano/IoTwebUI/blob/main/MQTTserver/README.md)
 
-_Attualente (luglio 2025) Tuya accetta device Zigbee di terze parti ( con alcuni limiti, vedi https://www.tuyaos.com/viewtopic.php?t=2688 ) mentre rifiuta completamente il "pairing" ai device Tuya "non autorizzati" - Cioè i device Tuya Zigbee con chip non Tuya originali (notizie ancora incerte, vedi post https://www.facebook.com/groups/tuyaitalia/permalink/1678413936126286/ )._
+_Attualente (luglio 2025) Tuya accetta device Zigbee standard di terze parti ( con alcuni limiti, vedi https://www.tuyaos.com/viewtopic.php?t=2688 ) mentre rifiuta completamente il "pairing" ai device Tuya "non autorizzati" - Cioè i device Tuya Zigbee con chip non Tuya originali (notizie ancora incerte, vedi post https://www.facebook.com/groups/tuyaitalia/permalink/1678413936126286/ )._
 
 Se un utente ha un parco importante di device Zigbee, con molte scene di controllo, la soluzione zero dovrebbe consistere nel ricomprare i device 'non autorizzati', ma questa volta di marche note ed affidabili!
 
@@ -16,7 +16,7 @@ Quindi i device Zigbee di cui parliamo qui, con le relative soluzioni, saranno m
 
 Ho preso e testato come adapter Zigbee, non Tuya compatibile, il modello **SLZB-06p7** di progettazione Ukraina - sono disponibili vari modelli vedi http://smlight.tech/manual/slzb-06/guide/slzb-models-overview/ ) - che ha caratteristiche molto interessanti!   
 Ha vari modi di funzionamento, è pronto all'uso con _zigbee2mqtt_ (non occorre flashare FW),  e possiede un linguaggio di programmazione per cui può eseguire script custom di controllo (vedi https://github.com/smlight-tech/slzb-os-scripts )<br>
-In particolare ha un modo di funzionamento chiamato **zigbee Hub** totalmente autonomo ( vedi https://github.com/smlight-tech/slzb-os-zigbee-hub/tree/main) con una sua interfaccia web!. 
+In particolare ha un modo di funzionamento chiamato **zigbee Hub** totalmente autonomo ( vedi https://github.com/smlight-tech/slzb-os-zigbee-hub/tree/main) con una sua interfaccia web. 
 <br>
 <table><tr>
 <img  height="230"  alt="image" src="https://github.com/user-attachments/assets/084a0eb6-a901-4602-bf85-43377ab70c65" />
@@ -50,7 +50,7 @@ CONTRO:
 
 Una soluzione veramente semplice (richiede solo un adapter SLZB-06). Le pagine WEB di configurazione presentano i device in due modi: sotto forma di lista e come dashboard (vedi figure).
 E' così possibile leggere i valori dei sensori Zigbee e dare comandi manuali ai device, con i limiti del SLZB-06 indicati dal costruttore!<br> 
-Ottima soluzione se si vogliono riutilizzare in odo eleentare alcuni device Zigbee 'bannati' da Tuya!
+Ottima soluzione se si vogliono riutilizzare in modo elementare alcuni device Zigbee 'bannati' da Tuya!
 
 
 <h3>SOLUZIONE 2: SLZB-06 (zigbee Hub) + mosquitto + MQTT Explorer </h3>
@@ -82,7 +82,7 @@ ALTERNATIVA: Per applicazioni DIY custom, e seplici automazioni, potete usare co
 
 <h4>Conclusione 2</h4>
 
-Una soluzione ancora molto semplice perchè **mosquitto** e **MQTT Explorer** sono facili da installare, anche su un unico PC, e richiedono poca configurazione! Naturalente su SLZB-06 rimane il modo "zigbee Hub" con i suoi limiti, e deve essere abilitato l'output MQTT! <br>
+Una soluzione ancora molto semplice perchè **mosquitto** e **MQTT Explorer** sono facili da installare, anche su un unico PC, e richiedono poca configurazione! Naturalente su SLZB-06 rimane il modo "zigbee Hub" con i suoi limiti, e deve essere abilitato l'output MQTT. <br>
 Le funzionalità aggiunte sono la memorizzazione di serie storiche e la visulazzione in grafici! Non è però disponibile in 'MQTT Explorer' l'esportazione di serie di dati.<br>
 Può essere utile anche come semplice ambiente di test per nuove device Tuya, per ottenere grafici ed informazioni (e.g. frequenza di aggiornamento dei termometri etc..).
 
@@ -111,7 +111,7 @@ Note:
 <h4>Note d'uso (IoTwebUI)</h4> 
 - Installare IoTwebUI (ver > 3.0) e REST (ver. > 3.0) come da istruzioni (vedi https://github.com/msillano/IoTwebUI/blob/main/APP/LEGGIMI.md#installazione-e-uso )
 - Configurazione: La mappatura tra i topic MQTT e REST (device, attributo, valore) è a carico dell'utente e deve essere fatta per ogni device. A differenza dei 'tipi' questa implementazione offre la massima libertà all'utente, perchè permette l'ottimizzazione per ogni device. 
-- Pertanto va aggiornato il file `'server.js'` per ogni device usata. Vedi esempi all'inizio del file! I topic usati per ogni device si possono vedere con 'MQTT Explorer' Esempio:
+- Pertanto va aggiornato il file `'server.js'`. Vedi esempi all'inizio del file! I topic usati per ogni device si possono vedere con 'MQTT Explorer' Esempio:
 
        "zhub/data/a4c13849baf0f06c/1/0402/0000": {           // topic MQTT - temperatura
               description: "Temperatura - x-clima-sala",   
@@ -139,22 +139,22 @@ Note:
 
 <h4>Conclusione 3</h4>
 
-Una soluzione tutto sommato completa, a costo di un aggiornamento per ogni device aggiunta! L'utente ha pertanto una completa libertà di customizzazione per ogni device.<br> 
+Una soluzione tutto sommato completa, a costo di un aggiornamento per ogni device aggiunta! L'utente ha pertanto una completa libertà di customizzazione dei singoli device.<br> 
 Permette quindi il riuso dei device Tuya 'bannati' in automazioni interagenti con Tuya. <br>
 Sono sempre validi i limiti del modo _zigbee Hub di SLZB-06_: poche device e funzioni limitate! <br>
 Adatto, secondo me, allo sviluppo di APP e tools complessi, per i quali non sono sufficienti le 'scene' Tuya, sul genere di questi esempi: https://github.com/msillano/IoTwebUI/blob/main/APP/Overviews.md   
 
 <h3>SOLUZIONE 4: SLZB-06 + zigbee2mqtt + mosquitto + ( MQTT Explorer | IoTwebUI ) </h3>
 
-_Per poter elaborare più device, la soluzione è usare un SW di decodifica esterno all'adapter SLZB-06, con a disposizione le risorse del sistema ospite!_ 
-Il SW in questione è **zigbee2mqtt**, che in coppia con **SLZB-06P7** permette di gestire fino a **300** device Zigbee, purchè appartenenti al set delle  **4464** devices 'note' a zigbee2mqtt, (vedi https://www.zigbee2mqtt.io/supported-devices/ ). 
+_Per poter elaborare più device, la soluzione è usare un SW di decodifica esterno all'adapter SLZB-06, con a disposizione le risorse del sistema ospite!_ <br>
+Il SW in questione è **zigbee2mqtt**, che in coppia con **SLZB-06P7** permette di gestire fino a **300** device Zigbee, purchè appartenenti al set delle  **4464** devices 'note' a zigbee2mqtt, (vedi https://www.zigbee2mqtt.io/supported-devices/ ). In questo caso SLZB-06 NON elabora i dati dei device Zigbee, ma si limita ad inviarli a  `zigbee2mqtt`.
 
 <img width="1808" height="605" alt="image" src="https://github.com/user-attachments/assets/bae275e5-f074-4e3d-8361-162571e6a84c" />
 
 
 nota: è comunque possibile aggiungere device Zigbee Tuya 'sconosciute' a `zigbee2mqtt`, vedi https://medium.com/@dzegarra/zigbee2mqtt-how-to-add-support-for-a-new-tuya-based-device-part-1-b20227251d46  
 
-L'interfaccia web di `zigbee2mqtt` presenta numerose pagine, alcune simili a quelle già viste con `zigbee Hub` (lista, dasboard) altre nuove: Mappa, Gruppi, etc.
+L'interfaccia web di `zigbee2mqtt` presenta numerose pagine, alcune simili a quelle già viste con `zigbee Hub` (lista, dashboard) altre nuove: Mappa, Gruppi, etc.
 
 ![ScreenShot_20250725194703](https://github.com/user-attachments/assets/9dd59e9b-085a-40ea-a4ea-49504f4a7253)
 ![ScreenShot_20250725194808](https://github.com/user-attachments/assets/1218d458-e45b-4bb4-bf08-7a5bfd2fbb14)
@@ -169,14 +169,14 @@ In uesto caso viene usato un solo 'topic' per device!
 
 <h4>Note d'uso (SLZB-06P7)</h4> 
 
-Per l'uso con `zigbee2mqtt`, l'adapter SLZB-06 può essere configurato in vari modi. In particolare ho scelto USB + Ethernet, e modo 'coordinator'. Ovviamente sono stati aggiornati i FW zigbee via OTA. 
+Per l'uso con `zigbee2mqtt`, l'adapter SLZB-06 può essere configurato in vari modi. In particolare ho scelto USB + Ethernet, e modo 'coordinator'. Ovviamente sono stati aggiornati i FW zigbee via OTA. <br>
 
 <img width="1144" height="405" alt="Schermata 2025-07-25 alle 20 41 50" src="https://github.com/user-attachments/assets/813a6810-85f1-4088-9f93-f168837ae4d0" />
 
 <h4>Note d'uso (zigbee2mqtt)</h4> 
 
 L'installazione non è seplicissima. Seguire le istruzioni https://www.zigbee2mqtt.io/guide/installation/ <br>
-La configurazione si può fare aggiornando anualente il file `zigbee2mqtt/data/configuration.yaml` Vedi https://www.zigbee2mqtt.io/guide/configuration/ , oppure al primo 'run' di zigbee2mqtt (cmd: `pnpm start` nella dir di installazione) 
+La configurazione si può fare aggiornando manualente il file `zigbee2mqtt/data/configuration.yaml` Vedi https://www.zigbee2mqtt.io/guide/configuration/ , oppure al primo 'run' di `zigbee2mqtt` (cmd: `pnpm start` nella dir di installazione) 
 L'obiettivo è un colloquio seriale via USB tra `SLZB-06P7` e `zigbee2mqtt`.
  Esempio, sto usando questo:
 
@@ -195,7 +195,7 @@ L'obiettivo è un colloquio seriale via USB tra `SLZB-06P7` e `zigbee2mqtt`.
       
 <h4>Note d'uso APP </h4> 
 
-Una volta che i dati raggiungono il broker mosquitto possono poi essere utilizzati nei modi già visti, in base alle esigenze ed alle preferenze dell'utente.
+Una volta che i dati raggiungono il broker `mosquitto` possono poi essere utilizzati nei modi già visti, in base alle esigenze ed alle preferenze dell'utente.
 
  - **MQTT Explorer** è  la soluzione più semplice, sempre utile per vedere i dettagli dei topic e payload MQTT, inoltre permette grafici di tutte le misure!
 
@@ -296,15 +296,15 @@ _Inoltre anche queste applicazioni sono state integrate (vedi https://www.zigbee
 - Zigbee2MQTT **Automations**
 - **node-red-contrib-zigbee2mqtt** per applicazioni custom in node-red
 
-Tutte queste applicazioni di domotica presentano differenti look and feel, e diversi modi per creare automazioni, nonchè maggiore o minore compatibilità e semplicità di installazione ed uso.
+TQueste applicazioni di domotica presentano differenti look and feel, e diversi modi per creare automazioni, nonchè maggiore o minore compatibilità e semplicità di installazione ed uso.
 **Consiglio di provarne più di una prima di fare una scelta!**
 
-_Tutte queste ottime applicazioni di domotica però presentano un problema comune, che dal mio punto di vista ne sconsiglia l'adozione generalizzata: nessuna permette l'integrazione con le 'scene' e tutti i device gestiti direttamente da Tuya!_  
+_Purtroppo queste ottime applicazioni di domotica presentano tutte un problema comune, che dal mio punto di vista ne sconsiglia l'adozione generalizzata: nessuna di esse permette l'integrazione con le 'scene' e con tutti i device gestiti direttamente da Tuya!_  
 
 <h4>Conclusione 5</h4>
 Se c'è l'esigenza di un sottoinsieme costituito da device Zigbee, autonomo dal sistema Tuya, queste APP possono velocizzare l'implementazione! 
 Se però si desidera avere sistemi più interconnessi, come è l'ideale domotico, o dovete rinunciare a Tuya ed al suo ecosistema, oppure dovete utilizzare soluzioni come IoTwebUI oppure soluzioni custom che consentano counicazioni bidirezionali con Tuya! 
 
-_Se implementate una di queste soluzioni, fatemi conoscere i vostri pro e contro per aggiornare questa guida._
+_Ho provato tutte le soluzioni 1..4: se implementate una di queste soluzioni, fatemi conoscere i vostri pro e contro per aggiornare questa guida._
 
 Cordialmente
