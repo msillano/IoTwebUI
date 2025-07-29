@@ -199,9 +199,9 @@ L'obiettivo è un colloquio seriale via USB tra `SLZB-06P7` e `zigbee2mqtt`.<br>
 
 Una volta che i dati raggiungono il broker `mosquitto` possono poi essere utilizzati nei modi già visti, in base alle esigenze ed alle preferenze dell'utente.
 
- - **MQTT Explorer** è  la soluzione più semplice, sempre utile per vedere i dettagli dei topic e payload MQTT, inoltre permette grafici di tutte le misure!
+ - **MQTT Explorer** è  la soluzione più semplice, sempre utile per vedere i dettagli dei topic e payload MQTT. Inoltre MQTT Explorer memorizza i valori (max 500) e permette di visualizzare grafici di tutte le misure!
 
- - **IoTwebUI** è la soluzione che offre più opportunità di customizzazione, mantenendo l'integrazione con Tuya, e ha la massima libertà di interfacce e di APP custom! ( vedi https://github.com/msillano/IoTwebUI/blob/main/APP/Overviews.md ). Ovviamente la mia soluzione preferita.
+ - **IoTwebUI** è la soluzione che offre più opportunità di customizzazione, mantenendo l'integrazione con Tuya, ed ha la massima libertà di interfacce e di APP custom! ( vedi https://github.com/msillano/IoTwebUI/blob/main/APP/Overviews.md ). Ovviamente la mia soluzione preferita.
 
 <h4>Note d'uso (IoTwebUI)</h4> 
 
@@ -220,7 +220,7 @@ Una volta che i dati raggiungono il broker `mosquitto` possono poi essere utiliz
                     addToRestBuffer(baseREST + "set/x-clima-sala/batteria/" + data.battery + "%");
                     addToRestBuffer(baseREST + "set/x-clima-sala/lqi/" + data.linkquality );
                     addToRestBuffer(baseREST + "set/x-clima-sala/Umidità/" + data.humidity + "%" );
-                    return (baseREST + "set/x-clima-sala/Temperatura/" + data.temperature +  "°C");
+                    return (baseREST + "set/x-clima-sala/Temperatura/" + data.temperature  + "°C");
                     },
               },
 
