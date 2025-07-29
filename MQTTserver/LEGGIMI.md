@@ -99,7 +99,7 @@ Per rendere questo realizzabile, occorre usare **IoTwebUI**, e creare degli **'x
 <img width="404" height="187" alt="Schermata 2025-07-21 alle 13 09 25" src="https://github.com/user-attachments/assets/19263121-02d2-49df-82be-79d9b4f3ea37" />
 </tr></table>
 
-Questo screenshot mostra come appare in IoTwebUI un x-device per un sensore teperatura/pressione. A DX un device Tuya analogo.
+Questo screenshot mostra come appare in IoTwebUI un **x-device** per un sensore temperatura/pressione. A DX un `device Tuya` analogo.
 
 Note:
  - Gli x-device, con icona ad ingranaggi, possono essere inseriti in ogni stanza creata con Tuya (nella figura, la 'stanza' MQTT).
