@@ -2,7 +2,7 @@
 
 [English version](https://github.com/msillano/IoTwebUI/blob/main/MQTTserver/README.md)
 
-_Attualente (luglio 2025) Tuya accetta device Zigbee standard di terze parti ( con alcuni limiti, vedi https://www.tuyaos.com/viewtopic.php?t=2688 ) mentre rifiuta completamente il "pairing" ai device Tuya "non autorizzati" - Cioè i device Tuya Zigbee con chip non Tuya originali (notizie ancora incerte, vedi post https://www.facebook.com/groups/tuyaitalia/permalink/1678413936126286/ )._
+_Attualmente (luglio 2025) Tuya accetta device Zigbee standard di terze parti ( con alcuni limiti, vedi https://www.tuyaos.com/viewtopic.php?t=2688 ) mentre rifiuta completamente il "pairing" ai device Tuya "non autorizzati" - Cioè i device Tuya Zigbee con chip non Tuya originali (notizie ancora incerte, vedi post https://www.facebook.com/groups/tuyaitalia/permalink/1678413936126286/ )._
 
 Se un utente ha un parco importante di device Zigbee, con molte scene di controllo, la soluzione zero dovrebbe consistere nel ricomprare i device 'non autorizzati', ma questa volta di marche note ed affidabili!
 
