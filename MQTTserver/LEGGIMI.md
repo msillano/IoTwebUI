@@ -45,6 +45,7 @@ CONTRO:
 - Aggiornare via OTA il FW - Provata la versione 2.9.4 e 20240316 (vedi http://smlight.tech/manual/slzb-06/guide/flashing-and-updating/updating-zigbee.html) 
 - Configurazione: mode => zigbee Hub, Network => Ethernet/WiFi a scelta,  MQTT => off.
 - Hard reset (se perdete la pagina di configurazione): "turn on the device with the button pressed, when the LEDs start to flash, release the button".
+- I device Zigbee si aggiungono nella pagina di  SLZB-06 /zigbee Hub..
 
 <h4>Conclusione 1</h4>
 
@@ -178,9 +179,9 @@ Per l'uso con `zigbee2mqtt`, l'adapter `SLZB-06` può essere configurato in vari
 
 <h4>Note d'uso (zigbee2mqtt)</h4> 
 
-L'installazione non è seplicissima. Seguire le istruzioni https://www.zigbee2mqtt.io/guide/installation/ <br>
+ - L'installazione non è seplicissima. Seguire le istruzioni https://www.zigbee2mqtt.io/guide/installation/ <br>
 La configurazione si può fare aggiornando manualente il file `zigbee2mqtt/data/configuration.yaml` Vedi https://www.zigbee2mqtt.io/guide/configuration/ , oppure al primo 'run' di `zigbee2mqtt` (cmd: `pnpm start` nella dir di installazione) <br>
-L'obiettivo è un colloquio seriale via USB tra `SLZB-06P7` e `zigbee2mqtt`.<br>
+- L'obiettivo è un colloquio seriale via USB tra `SLZB-06P7` e `zigbee2mqtt`.<br>
  Esempio, sto usando questo:
 
                  version: 4
@@ -196,8 +197,9 @@ L'obiettivo è un colloquio seriale via USB tra `SLZB-06P7` e `zigbee2mqtt`.<br>
                     log_level: info
                   ........  
       
+- I nuovi device Zigbee si aggiungono nella pagina dashboard di `zigbee2mqtt`
 
-Una volta che i dati raggiungono il broker `mosquitto` possono poi essere utilizzati nei modi già visti, in base alle esigenze ed alle preferenze dell'utente.
+- Una volta che i dati raggiungono il broker `mosquitto` possono poi essere utilizzati nei modi già visti, in base alle esigenze ed alle preferenze dell'utente.
 
  - **MQTT Explorer** è  la soluzione più semplice, sempre utile per vedere i dettagli dei topic e payload MQTT. Inoltre MQTT Explorer memorizza i valori (max 500) e permette di visualizzare grafici di tutte le misure!
 
