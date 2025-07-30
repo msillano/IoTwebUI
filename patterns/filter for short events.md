@@ -249,7 +249,7 @@ Vedi [documentazione di riferimento](https://github.com/msillano/IoTwebUI/blob/m
 ### Esempi Pratici
 1. **Porta Aperta**:  
    - Implementazione 1: Lo switch Zigbee conta 340s. Se la porta viene chiusa prima di 240s, il timer si annulla. A 100s rimanenti (240s trascorsi), parte l'allarme.  
-   - Implementazione 2: Un messaggio vocale avverte che la posta è aperta dopo 5.5 minuti (+/- 90s)
+   - Implementazione 4: Un messaggio vocale avverte che la posta è aperta dopo 5.5 minuti (+/- 90s)
    
 
 2. **Consumo Elettrico**:  
