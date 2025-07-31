@@ -52,7 +52,7 @@ Istruzioni comuni e generali. Per ulteriori dettagli vedere le singole APP.
    
    * Completare la configurazione di  `html/xxxxxx0y.html`<br> _In particolare controllare x_name (nome del x-device, cioè `xname`) usato nella REGOLA di lancio. V. sopra. Controllare eventuali parametri e customizzazioni._
      
-2. **Uso - fino a ver. 2.2**
+3. **Uso - fino a ver. 2.2**
 
    * Lanciare **RESTserver** (file `rest02.2\run_server.bat`), poi iconizzare la finestra  `cmd.exe` (NON chiudere!).
    * Lanciare **IoTwebUI** (file `run_me.bat`) 
@@ -60,14 +60,14 @@ Istruzioni comuni e generali. Per ulteriori dettagli vedere le singole APP.
        * premere bottone: _PRONTO... premere per continuare_
    * Lanciare l'**interfaccia** cliccando sul file  `html\xxxxxx0y.html` (opzionale). Si aprirà nel browser preferito.   
 
-3. **Uso - da ver. 3.0 - panel menu**
+4. **Uso - da ver. 3.0 - panel menu**
 
     * Lanciare **IoTwebUI 3.x** (file `APP_me.bat` - richiede aggiornamento delle dir!) per IoTwebUI, REST e menu
        * premere OK per  _INFO: Connected to REST server!_
        * premere bottone: _PRONTO... premere per continuare_
     * Ora potete controllare le APP che avete installato sul vostro sistema dal menu.
 
-4. **Uso - da ver. 3.0 - REST + MQTT**
+5. **Uso - da ver. 3.0 - REST + MQTT**
     * vedi [MQTTserver](https://github.com/msillano/IoTwebUI/tree/main/MQTTserver)
     * Installare REST come indicato in  **Installazione completa** 
     * Sostituire il file `server.js` in RESTserver con il file  `server.js` in MQTTserver 
@@ -76,11 +76,11 @@ a seconda della soluzione usata.
 
 Successivamente **IoTwebUI** e l'**interfaccia** possono essere chiusi e rilanciati come si vuole.
 
-4. **Limits**
+6. **Limits**
    * **IoTwebUI** una sola istanza
    * **interface** anche più istanze se specificato nelle istruzioni.
 
-5. **Troubleshooting** 
+7. **Troubleshooting** 
    * Sia con **IoTwebUI** che con l'**interfaccia** click mouse destro, scegliere 'ispeziona..'. Poi 'console': lì appaiono i messaggi di errore.
    * Per  **RESTserver**  i messaggi appaiono nella finestra di `cmd.exe`   
    *  vedi [issues](https://github.com/msillano/IoTwebUI/issues).
