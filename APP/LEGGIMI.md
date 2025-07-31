@@ -67,6 +67,13 @@ Istruzioni comuni e generali. Per ulteriori dettagli vedere le singole APP.
        * premere bottone: _PRONTO... premere per continuare_
     * Ora potete controllare le APP che avete installato sul vostro sistema dal menu.
 
+4. **Uso - da ver. 3.0 - REST + MQTT**
+    * vedi [MQTTserver](https://github.com/msillano/IoTwebUI/tree/main/MQTTserver)
+    * Installare REST coe indicato in  **Installazione completa** 
+    * Sostituire il file `server.js` in RESTserver con il file  `server.js` in MQTTserver 
+    * Aggiornare `server.js` come indicato in [MQTTserver/LEGGIMI.md](https://github.com/msillano/IoTwebUI/blob/main/MQTTserver/LEGGIMI.md)
+a seconda della soluzione usata.
+
 Successivamente **IoTwebUI** e l'**interfaccia** possono essere chiusi e rilanciati come si vuole.
 
 4. **Limits**
