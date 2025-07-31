@@ -53,25 +53,25 @@ Check also any parameters and customizations._
       * press button: _READY... press to continue_
    * Launch the **interface** by clicking on the file `html\xxxxxx0y.html` (optional). It will open in your favorite browser.
 
-3. **Use - ver. 3.0 - panel menu**
+4. **Use - ver. 3.0 - panel menu**
 
    * Launch **IoTwebUI 3.0** (file `APP_me.bat` - needs a local update!) for IoTwebUI, REST and menu
       * press OK for _INFO: Connected to REST server!_
       * press button: _READY... press to continue_
    * Now you can control APP via the custom menu.
 
-4. **Usage - ver. 3.0 - REST + MQTT**
+5. **Usage - ver. 3.0 - REST + MQTT**
 
     * See [MQTTserver](https://github.com/msillano/IoTwebUI/tree/main/MQTTserver)
     * Install REST as indicated in **2. Complete Installation**
     * Replace the `server.js` file in RESTserver with the `server.js` file in MQTTserver dir.
     * Update `server.js`, see [MQTTserver/README.md](https://github.com/msillano/IoTwebUI/blob/main/MQTTserver/README.md) depending on the solution used.
 
-5. **Limits** 
+6. **Limits** 
    * **IoTwebUI** a single instance.
    * **interface** also multiple instances if specified in the instructions.
     
-6. **Troubleshooting**
+7. **Troubleshooting**
 * Both with **IoTwebUI** and with the **interface** right mouse click, choose 'inspect..'. Then 'console': there the error messages appear.
 * For **RESTserver** the messages appear in the `cmd.exe` window
 * see [issues](https://github.com/msillano/IoTwebUI/issues).
