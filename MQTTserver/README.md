@@ -180,6 +180,8 @@ Example, I am using this:
               log_level: info
               ........
 
+- The MQTT data and commands used by **zigbee2mqtt** are documented at https://github.com/Koenkk/zigbee2mqtt.io/blob/master/docs/guide/usage/mqtt_topics_and_messages.md>
+
 <h4>Usage Notes (APP) </h4>
 
 Once the data reaches the mosquitto broker, it can then be used in the ways already seen, according to the user's needs and preferences.
