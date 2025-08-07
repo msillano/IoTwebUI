@@ -201,7 +201,9 @@ La configurazione si può fare aggiornando manualente il file `zigbee2mqtt/data/
 
 - Una volta che i dati raggiungono il broker `mosquitto` possono poi essere utilizzati nei modi già visti, in base alle esigenze ed alle preferenze dell'utente.
 
-- I dati ed i comandi MQTT utilizzati da **zigbee2mqtt** sono docuentati in https://github.com/Koenkk/zigbee2mqtt.io/blob/master/docs/guide/usage/mqtt_topics_and_messages.md
+- I dati ed i comandi MQTT utilizzati da **zigbee2mqtt** sono documentati in https://github.com/Koenkk/zigbee2mqtt.io/blob/master/docs/guide/usage/mqtt_topics_and_messages.md
+
+<h4>Note d'uso (APP)</h4> 
 
  - **MQTT Explorer** è  la soluzione più semplice, sempre utile per vedere i dettagli dei topic e payload MQTT. Inoltre MQTT Explorer memorizza i valori (max 500) e permette di visualizzare grafici di tutte le misure!
 
