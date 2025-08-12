@@ -1,0 +1,42 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<!--
+Opens 2 frames for IoTwebUT and Applications
+Requires:
+  IotWebUI 3.0, REST 3.0,installati e funzionanti.
+Più
+  ../APP_me.bat
+  menu01.html
+  -->
+
+	<head>
+		<title>IoTwebUI applications</title>
+	</head>
+	<body>
+		<table style="width:100%;height:100%"
+		       border=1><tr><td>
+		<iframe
+		        name="IoTwebUI"
+		        src="IoTwebUI.html"
+		        title="IoTwebUI ver. 3.3"
+		        height="100%"
+		        width="100%"
+		        style='border:0px;vertical-align:bottom;width:100%;overflow:hidden;'
+		        target='_PARENT'
+		        marginwidth='0'
+		        marginheight='0'
+		        frameborder='0'>
+		</iframe>
+	</td>
+	<td id="iframe-container" style="width:264;   -webkit-filter: blur(3px);  filter: blur(3px);">
+		<iframe width="100%"
+		        height="100%"
+		        src="html/index.html"
+		        title="Applications"
+		        style="border:1px solid black; "
+             >
+  	</iframe>
+	</td>
+</tr>
+</table>
+<body>
+</HTML>
