@@ -48,12 +48,13 @@ L'idea di questo progetto mi è nata trovando su AliExpress l'interssante offert
 - Languages:Android OS 13 multi-language.
 
 **Commento**
-a. La strategia per questo progetto è volutamente 'minimalista': ho scelto il modello più economico, non uso SIM nè TF, etc...
-b. Il tablet consegnato (rapidamente, da un deposito europeo) rispetta le specifiche. Una piacevole sorpresa.
-c. Nonostate il 'core 10' il tablet risulta MOLTO lento, al limite dell'usabilità in un impiego standard. Appaiono spesso i pop-up "L'applicazione non risponde" (scegliere 'attendi').
+
+1. La strategia per questo progetto è volutamente 'minimalista': ho scelto il modello più economico, non uso SIM nè TF, etc...
+2. Il tablet consegnato (rapidamente, da un deposito europeo) rispetta le specifiche. Una piacevole sorpresa.
+3. Nonostate il 'core 10' il tablet risulta MOLTO lento, al limite dell'usabilità in un impiego standard. Appaiono spesso i pop-up "L'applicazione non risponde" (scegliere 'attendi').
 Per gli obiettivi del progetto ho deciso di proseguire comunque, e di valutare i risultati alla fine.
-d. Anche se i 12000 mA di batteria permettono 2 ore di uso continuato a schermo illuminato, questo non è un problema, essendo i 'control panel' con alimentazione fissa.
-c. Un particolare non presente nel manuale: il bordo superiore è removibile, offrendo accesso a SIM e TF.
+4. Anche se i 12000 mA di batteria permettono 2 ore di uso continuato a schermo illuminato, questo non è un problema, essendo i 'control panel' con alimentazione fissa.
+5. Un particolare non presente nel manuale: il bordo superiore è removibile, offrendo accesso a SIM e TF.
 
 
 ###SmartLife###
