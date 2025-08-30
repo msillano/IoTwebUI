@@ -23,10 +23,10 @@ In generale, analizzando questo tipo di prodotti troviamo:
 _Questo progetto vuole analizzare le opzioni a disposizione di un utente per utilizzare un **tablet** come **smart panel control Tuya**, fornendo una guida passo passo._
 
 ### HW: Tablet ###
-L'idea di questo progetto mi è nata trovando su AliExpress l'interssante offerta di questo tablet (ref: https://it.aliexpress.com/item/1005008843917320.html ) da 10".
-<img width="1125" height="453" alt="image" src="https://github.com/user-attachments/assets/59f253f3-8661-46f3-8506-169023585748" />
+L'idea di questo progetto mi è nata trovando su AliExpress l'interssante offerta di questo tablet (ref: https://it.aliexpress.com/item/1005008843917320.html ) da 10".<hr/>
+<img width="1125" height="453" alt="image" src="https://github.com/user-attachments/assets/59f253f3-8661-46f3-8506-169023585748" /><hr/>
 
-**Specifiche**
+**Specifiche del costruttore**
 - CPU:10 core
 - RAM: 16GB
 - ROM: 1TB
@@ -47,8 +47,13 @@ L'idea di questo progetto mi è nata trovando su AliExpress l'interssante offert
 - Sensor: G-sensor
 - Languages:Android OS 13 multi-language.
 
-
-
+**Commento**
+a. La strategia per questo progetto è volutamente 'minimalista': ho scelto il modello più economico, non uso SIM nè TF, etc...
+b. Il tablet consegnato (rapidamente, da un deposito europeo) rispetta le specifiche. Una piacevole sorpresa.
+c. Nonostate il 'core 10' il tablet risulta MOLTO lento, al limite dell'usabilità in un impiego standard. Appaiono spesso i pop-up "L'applicazione non risponde" (scegliere 'attendi').
+Per gli obiettivi del progetto ho deciso di proseguire comunque, e di valutare i risultati alla fine.
+d. Anche se i 12000 mA di batteria permettono 2 ore di uso continuato a schermo illuminato, questo non è un problema, essendo i 'control panel' con alimentazione fissa.
+c. Un particolare non presente nel manuale: il bordo superiore è removibile, offrendo accesso a SIM e TF.
 
 
 ###SmartLife###
