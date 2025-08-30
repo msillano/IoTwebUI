@@ -56,7 +56,7 @@ L'idea di questo progetto mi è nata trovando su AliExpress l'interssante offert
 
 **Commento**
 
-1. La strategia per questo progetto è volutamente 'minimalista': ho scelto il modello più economico, non uso SIM nè TF, etc...
+1. La strategia per questo progetto è volutamente 'minimalista': ho scelto il modello più economico (12G/256G), non uso SIM nè TF, etc...
 2. Il tablet consegnato (rapidamente, da un deposito europeo) rispetta le specifiche. Una piacevole sorpresa.
 3. Nonostante il 'core 10' il tablet risulta MOLTO lento, al limite dell'usabilità in un impiego standard. Appaiono spesso i pop-up "L'applicazione non risponde" (scegliere 'attendi').
 Per gli obiettivi del progetto ho deciso di proseguire comunque e di valutare i risultati alla fine.<br>
