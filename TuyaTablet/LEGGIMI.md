@@ -71,8 +71,38 @@ Le operazioni preliminari effettuate sono state:
 - impostare fuso orario 
 - impostare accesso WiFi
 
-###SmartLife###
+### SmartLife ###
+La soluzione più semplice consiste nell'usare SmartLife sul Tablet, associandolo alla versione principale come 'membro comune'. 
+Nella versione attuale di SmarLife (6.9.0) è molto migliorata la possibilità di configurazione della 'home page' di ciascuna `CASA`(home).
+ 1. L'opzione menu `'Me' => Configurazione => Impostazioni Smart control` abilita le customizzazioni.
+ 1. L'opzione menu `'Me' => Configurazione => modalità Tablet`, permette di passare da un layout verticale (standard) a uno orizzontale. Nota: un layout ottimizzato in un modo NON funziona nell'altro, occorre riorganizzarlo!
+ 2. Nella home page è ora presente un nuovo menu (3 punti in un cerchio) con 3 opzioni: `Tutti i dispositivi`, `Elenco stanze` e `Gestisci la 'Home page'`, che abilita le modifiche.
+3. In modalità 'gestione' è possibile spostare i widdet trascinandoli
+4. con il bottone `'aggiungi scheda'` (widget) si possono aggiungere/eliminare 3 tipi di widget:
+   - **Domotica**, i.e.  widget (12) gestionali e miniAPP più tutte le stanze
+   - **Dispositivi**: tutti i device con widget tipizzati che mostrano stato e principali comandi
+   - **Esegui con un clic** (tap-to-run): per scegliere i comandi presenti nella home page.
 
-La soluzione più semplice consiste nell'usare SmartLife sul Tablet.
+E' quindi presente una completa flessibilità funzionale per la home page, equiparabile a quella degi 'smart panels', con ancora alcuni limiti di carattere estetico:
+    - non esistono nè separatori nè box
+    - non è possibile cambiare il numero di colonne dell'impaginazione nè le icone o le dimensioni dei widget
+    - Perfino il colore dei bottoni dei tap-to-run è definito una tantum tramite l'APP del proprietario!
+
+Nonostante la persistenza di questi limiti, questa è una soluzione semplice, funzionalmente completa, che vale la pena almeno provare.
+E devo dire che usare SmrtLife con uno schermo da 10" è veramente molto gradevole, con finalmente una tastiera su schermo di adeguate dimensioni!
+
+**Installazione di una APP smart**
+Per il già enunciato principio 'minimalista' non voglio usare Google Play per il download delle APP, evitando così ogni iscrizione ed interferenza da parte di Google. Userò quindi store alternativi.
+
+1. Scaricare ed installare **APKpure APP** dalla  sua pagina WEB ( https://apkpure.com/ ).
+2. Cercare e scaricare **Smart Life** (o **Tuya Smart**, o anche **Moes APP** - che presenta il grande vantaggio di icone custom) ma ATTENZIONE deve essere la stessa APP usata dal Proprietario, altrimenti non potete aggiungere un nuovo utente!
+3. Installate sul tablet l'APP (e.g. SmartLife). A volte dovete aprire APKpure e scegliere il menu `Me => APK/XAPK` per installare il file scaricato se l'installazione non è automatica. 
+4. Ho creato un indirizzo di email solo per questo uso (uno free: Libero, Gmail ecc.) e scelto un nome utente qualsiasi, ad es. 'tablet', per la registrazione con Tuya (n.b. scrivete in un posto sicuro questi due dati di accesso!).
+5. Ora sull'APP (SmartLife) del proprietario, tramite il menu `Me => Gestione casa` scegliere una casa,  poi `Aggiungi membri, condividi Account dell'app`, poi inserire il nome (tablet) e l'indirizzo di email usato.
+6. Solo dopo aver accettato, il Tablet diventa un membro della famiglia e visualizzerà i device della casa scelta.
+7. Per più case, ripetere i passi 5 e 6 per ogni casa.
+8. Ultima cosa, Tablet: `Impostazioni => Batteria => 3 punti verticali => ottimizzaBatteria`. Nella videata clicca su `Senza ottimizzazione` e poi `Tutte le app`.
+Cercare nell'elenco **SmartLife**, cliccare su `SmartLife` e scegliere `Non ottimizzare`!
+
 
 ###IoTwebUI###
