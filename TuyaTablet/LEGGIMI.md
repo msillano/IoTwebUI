@@ -1,7 +1,7 @@
 ### intro ###  
 Una categoria di dispositivi solleva molto interesse ultimamente, gli _**smart control panel**_ (https://it.aliexpress.com/w/wholesale-tuya-smart-control-panel-10-inch.html) perché è comodo avere un pannello fisso, accessibile a tutti i familiari, senza dover usare sempre lo smartphone, con una grafica molto accattivante!
 <img width="664" height="375" alt="2025-08-30 10_03_00-10 Inchtuya Touch Control Panel, Smart Home ,smart Switch,smart Touch Screen Pan" src="https://github.com/user-attachments/assets/8279bc14-3bbf-43e9-8467-df502a575bfa" />
-Esaminando in dettaglio l'esempio commerciale in figura, troviamo una serie di widget posizionati su un dashboard: dall'alto si riconoscono: orologio, meteo e un controllo per la riproduzione di musica;  i comandi dell'antifurto; due bottoni (uno forse collegato a un 'tap-to-run', l'altro per applicazioni vocali), un controllo per serrande, un termostato ambiente e un dimmer per la luce.<br>
+Esaminando in dettaglio l'esempio commerciale in figura, troviamo una serie di widget posizionati su un dashboard: dall'alto si riconoscono: orologio, meteo e un controllo per la riproduzione di musica;  i comandi dell'antifurto; due bottoni (uno forse collegato a un 'tap-to-run', l'altro per applicazioni vocali), un controllo per tende, un termostato ambiente e un dimmer per la luce.<br>
 In generale, analizzando questo tipo di prodotti troviamo:
 
  **funzionalità**
