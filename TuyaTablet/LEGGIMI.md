@@ -32,9 +32,7 @@ L'idea di questo progetto mi è nata trovando su AliExpress l'interssante offert
 <li> ROM: 1TB
 <li> Screen size: 10.36 inch (21.5 x 13.5 cm)
 <li> Screen resolution:2560*1600
-<li> Camera type: Dual cameras (one front one rear)
-   - Front camera: 16.0MP
-   - Rear camera: 32.0MP
+<li> Camera type: Dual cameras - Front camera: 16.0MP - Rear camera: 32.0MP
 <li> WiFi: 802.11 a/b/g/n/ac wireless internet
 <li> Bluetooth: Yes
 <li> External Memory: TF card up to 128GB (not included)
@@ -48,8 +46,8 @@ L'idea di questo progetto mi è nata trovando su AliExpress l'interssante offert
 <li> Languages:Android OS 13 multi-language.
 </td>
 <td width='25%'>
-<img src='https://github.com/user-attachments/assets/e207085e-f01d-40df-bcfe-663ab924bfa8'><br/>APP di sistema preinstallate (Android 13)
-<img src='https://github.com/user-attachments/assets/cb043885-d5c0-4bcb-ba9b-9831fdd7d81d'><br/>AQpertura cornice superiore
+<img src='https://github.com/user-attachments/assets/e207085e-f01d-40df-bcfe-663ab924bfa8'><br/>APP  preinstallate 
+<img src='https://github.com/user-attachments/assets/cb043885-d5c0-4bcb-ba9b-9831fdd7d81d'><br/>Cornice superiore aperta
 </td>
 </tr>
 </table>
