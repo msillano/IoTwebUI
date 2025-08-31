@@ -23,7 +23,7 @@ In generale, analizzando questo tipo di prodotti troviamo:
 _Questo progetto vuole analizzare le opzioni a disposizione di un utente per utilizzare un **tablet** come **smart panel control Tuya**, fornendo una guida passo passo._
 
 ### HW: Tablet ###
-L'occasione per iniziare questo progetto è venuta trovando su AliExpress l'interessante offerta di questo tablet (ref: https://it.aliexpress.com/item/1005008843917320.html ) da 10".<hr/>
+L'occasione per iniziare questo progetto è venuta trovando su AliExpress l'interessante offerta di questo tablet (ref: https://it.aliexpress.com/item/1005008843917320.html ) da 10". Non ho saputo resistere.<hr/>
 <img width="1125" height="453" alt="image" src="https://github.com/user-attachments/assets/59f253f3-8661-46f3-8506-169023585748" /><hr/>
 <table><tr><<td>
 <b>Specifiche del costruttore</b><br/>
@@ -200,6 +200,8 @@ Questo passaggio, sebbene complesso, è cruciale per eliminare conflitti e messa
 
 #### **Prestazioni Finali**
 La configurazione finale con le sole tre app **Smart Life, MacroDroid (per l'avvio automatico) e un monitor di sistema (Simple System Monitor)** garantisce un utilizzo della CPU quasi sempre **inferiore al 30%**, valore eccellente per un funzionamento fluido e senza lag. Il tablet si trasformerà in un pannello di controllo reattivo e affidabile.
+
+
 
 
 ###IoTwebUI###
