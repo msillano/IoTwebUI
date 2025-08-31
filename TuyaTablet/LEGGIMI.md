@@ -203,12 +203,12 @@ _Sono funzionalità accessorie opzionali, per migliorare il funzionamento del ta
 _E' comodo, per un control panel, che all'accensione parta automaticamente la home page di SmartLife, senza che l'utente debba cercare e cliccare l'icona dell'APP._ Tempo di avvio totale (dipende anche dal numero di device) circa 80 secondi (extreme).
 
 Viene utilizzato MacroDroid, un semplice flessibile `tasker` dalle molte applicazioni potenziali, con una logica trigger => azione simile alle scene di Tuya.
-    *   Installare MacroDroid (da _Google play_ oppure da _APKpure_).
-    *   Aprire MacroDroid.
-    *   Creare una nuova macro (+):
-        *   **Trigger:** `Avvio dispositivo` (Device Boot).
-        *   **Azione:** `Avvia attività app` (Launch Application) > Selezionare **Smart Life**.
-        *   **Opzione** 'ThingSplashActivity'
+*   Installare MacroDroid (da _Google play_ oppure da _APKpure_).
+*   Aprire MacroDroid.
+*   Creare una nuova macro (+):
+     *   **Trigger:** `Avvio dispositivo` (Device Boot).
+     *   **Azione:** `Avvia attività app` (Launch Application) > Selezionare **Smart Life**.
+     *   **Opzione** 'ThingSplashActivity'
     *   Concedere all'app i permessi richiesti.
 
 nota: Il salvataggio di una macro avviene all'uscita della pagina di editing (freccia a sx).
