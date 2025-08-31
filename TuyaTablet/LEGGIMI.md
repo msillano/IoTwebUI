@@ -71,7 +71,7 @@ Le operazioni preliminari effettuate sono state:
 - impostare fuso orario 
 - impostare accesso WiFi
 
-### SmartLife ###
+### SmartLife - standard installation ###
 La soluzione più semplice consiste nell'usare SmartLife sul Tablet, associandolo alla versione principale come 'membro comune'. 
 Nella versione attuale di SmarLife (6.9.0) è molto migliorata la possibilità di configurazione della 'home page' di ciascuna `CASA`(home).
  1. L'opzione menu `'Me' => Configurazione => Impostazioni Smart control` abilita le customizzazioni.
@@ -102,6 +102,53 @@ Per il già enunciato principio 'minimalista' non voglio usare Google Play per i
 6. Solo dopo aver accettato, il Tablet diventa un membro della famiglia e visualizzerà i device della casa scelta.
 7. Per più case, ripetere i passi 5 e 6 per ogni casa.
 8. Ultima cosa, Tablet: `Impostazioni => Batteria => 3 punti verticali => ottimizzaBatteria`. Nella videata clicca su `Senza ottimizzazione` e poi `Tutte le app`.
+Cercare nell'elenco **SmartLife**, cliccare su `SmartLife` e scegliere `Non ottimizzare`!
+
+### SmartLife - extreme installation ###
+
+_Per cercare di ottenere le massime prestazioni, la strada migliore è ridurre le attivita in backgraund, riducendo drasticamente applicazioni, iscrizioni etc. <br>
+E' destinato agli utenti più esperti, ma i risultati valgono lo sforzo._
+
+I passi da effettuare sono indicati un po' sommariamente: fatevi aiutare da un'AI per i dettagli e per superare le eventuali difficoltà, come ho fatto anch'io!
+
+1. Pulizia iniziale del sistema (eliminare tutto ciò che NON serve):
+   - Tablet: Andare in Impostazioni > App > Tutte le app.
+   - Per ogni APP, cliccare su Disabilita o Disinstalla. Questo impedirà loro di eseguire qualsiasi operazione.
+ 2. Eliminazione di Google play (tramite ADB, richiede un PC WIND, complesso ma indispensabile).
+     1.Tablet: Abilitare il debug USB:
+        - Andare in `Impostazioni > Informazioni sul tablet > Build number` e toccare per 7 volte per sbloccare le Opzioni sviluppatore.
+         - Indietro, scegliere `Opzioni sviluppatore` ed abilitare _Debug USB_.
+      2. Tablet, eliminare gli amministratori:
+            - `Andare su Sicurezza => Amministratori dispositivo`, e togliere la spunta atutte le APP
+
+      3. PC: Preparare il computer:
+         - Scaricare e installare _Android SDK Platform-Tools_ (che contengono adb). [Download diretto da Google per Windows/Mac/Linux](https://developer.android.com/tools/releases/platform-tools?hl=it) 
+         - Collegare il tablet al PC via USB. Quando apparirà una richiesta di autorizzazione sul tablet, concedere i permessi.
+       4. PC: comandi di disinstallazione
+Eseguire i comandi di disinstallazione:
+        - Aprire un terminale (Prompt dei comandi, PowerShell o Terminale) nella cartella dove hai installato adb. (Se si è installato l'intero _Android Studio_ si trovano invece in `C:\Users\(utente)\AppData\Local\Android\Sdk\platform-tools\adb.exe` )
+       - Eseguire questi comandi uno dopo l'altro:
+
+`./adb.exe shell pm uninstall --user 0 com.google.android.gms
+./adb.exe shell pm uninstall --user 0 com.google.android.gsf
+./adb.exe shell pm uninstall --user 0 com.android.vending`
+
+ Questi comandi rimuovono i pacchetti per l'utente corrente (0) senza eliminarli definitivamente dal sistema. Lo "disinstalla" efficacemente.
+ 
+     - `com.google.android.gms`: Il pacchetto principale di Google Play Services.
+     - `com.google.android.gsf`: Google Services Framework (un componente di supporto).
+     - `com.android.vending`: Google Play Store (se presente).
+
+Nota: Questa operazione è reversibile solo tramite un reset completo di fabbrica del tablet.
+3. installare SmartLife
+   1. Scaricare ed installare **APKpure APP** dalla  sua pagina WEB ( https://apkpure.com/ ).
+   2. Cercare e scaricare **Smart Life** (o **Tuya Smart**, o anche **Moes APP** - che presenta il grande vantaggio di icone custom) ma ATTENZIONE deve essere la stessa APP usata dal Proprietario, altrimenti non potete aggiungere un nuovo utente!
+   3. Installate sul tablet l'APP (e.g. SmartLife). A volte dovete aprire APKpure e scegliere il menu `Me => APK/XAPK` per installare il file scaricato se l'installazione non è automatica. 
+   4. Ho creato un indirizzo di email solo per questo uso (uno free: Libero, Gmail ecc.) e scelto un nome utente qualsiasi, ad es. 'tablet', per la registrazione con Tuya (n.b. scrivete in un posto sicuro questi due dati di accesso!).
+   5. Ora sull'APP (SmartLife) del proprietario, tramite il menu `Me => Gestione casa` scegliere una casa,  poi `Aggiungi membri, condividi Account dell'app`, poi inserire il nome (tablet) e l'indirizzo di email usato.
+   6. Solo dopo aver accettato, il Tablet diventa un membro della famiglia e visualizzerà i device della casa scelta.
+  7. Per più case, ripetere i passi 5 e 6 per ogni casa.
+  8. Ultima cosa, Tablet: `Impostazioni => Batteria => 3 punti verticali => ottimizzaBatteria`. Nella videata clicca su `Senza ottimizzazione` e poi `Tutte le app`.
 Cercare nell'elenco **SmartLife**, cliccare su `SmartLife` e scegliere `Non ottimizzare`!
 
 
