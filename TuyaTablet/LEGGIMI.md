@@ -23,7 +23,7 @@ In generale, analizzando questo tipo di prodotti troviamo:
 _Questo progetto vuole analizzare le opzioni a disposizione di un utente per utilizzare un **tablet** come **smart panel control Tuya**, fornendo una guida passo passo._
 
 ### HW: Tablet ###
-L'idea di questo progetto mi è nata trovando su AliExpress l'interssante offerta di questo tablet (ref: https://it.aliexpress.com/item/1005008843917320.html ) da 10".<hr/>
+L'occasione per iniziare questo progetto è venuta trovando su AliExpress l'interssante offerta di questo tablet (ref: https://it.aliexpress.com/item/1005008843917320.html ) da 10".<hr/>
 <img width="1125" height="453" alt="image" src="https://github.com/user-attachments/assets/59f253f3-8661-46f3-8506-169023585748" /><hr/>
 <table><tr><<td>
 <b>Specifiche del costruttore</b><br/>
@@ -73,26 +73,26 @@ Le operazioni preliminari da effettuare sono:
 ### B. SmartLife ###
 
 _La soluzione più semplice consiste nell'usare SmartLife sul Tablet, associandolo alla versione principale come 'membro comune'._<br> 
-Dico **Smart Life** perchè è su questo che ho fatto le prove, ma può essere **Tuya Smart**, o anche **Moes APP** - che presenta il grande vantaggio di icone custom - ma in ogni caso deve essere la stessa APP usata dal Proprietario, altrimenti non potete aggiungere un nuovo utente!
+Dico **Smart Life** perchè è su questo che ho fatto le prove, ma può essere anche **Tuya Smart**, o anche **Moes APP** - che presenta il grande vantaggio di icone custom - ma in ogni caso deve essere la stessa APP usata dal Proprietario, altrimenti non potete aggiungere un nuovo utente!
 
 Nella versione attuale di SmarLife (6.9.0) è molto migliorata la possibilità di configurazione della 'home page' di ciascuna `CASA`(home).
  1. L'opzione menu `'Me' => Configurazione => Impostazioni Smart control` abilita le customizzazioni.
- 2. L'opzione menu `'Me' => Configurazione => modalità Tablet`, permette di passare da un layout verticale (standard) a uno orizzontale. <br> Nota: un layout ottimizzato in un modo NON funziona nell'altro, occorre riorganizzarlo!
+ 2. L'opzione menu `'Me' => Configurazione => modalità Tablet`, permette di passare da un layout verticale (standard) a uno orizzontale. <br> Nota: un layout ottimizzato in un modo NON funziona automaticamente nell'altro, occorre riorganizzarlo!
  3. Nella home page è ora presente un nuovo menu (3 punti in un cerchio) con 3 opzioni: `Tutti i dispositivi`, `Elenco stanze` e `Gestisci la 'Home page'`, che abilita le modifiche.
 4. In modalità 'gestione' è possibile spostare i widget trascinandoli
 5. con il bottone `'aggiungi scheda'` (widget) si possono aggiungere/eliminare 3 tipi di widget:
-   - **Domotica**, i.e.  widget (12) gestionali e miniAPP più tutte le stanze
-   - **Dispositivi**: tutti i device con widget tipizzati che mostrano stato e principali comandi
-   - **Esegui con un clic** (tap-to-run): per scegliere i comandi presenti nella home page.
+  - **Domotica**, i.e.  widget (12) gestionali e miniAPP più tutte le stanze
+  - **Dispositivi**: tutti i device con widget tipizzati che mostrano stato e principali comandi
+  - **Esegui con un clic** (tap-to-run): per scegliere i comandi presenti nella home page.
 
-E' quindi presente una completa flessibilità funzionale per la home page, equiparabile a quella degi 'smart panels', con ancora alcuni limiti di carattere estetico:
-    - non esistono nè separatori nè box
-    - non è possibile cambiare il numero di colonne dell'impaginazione nè le icone o le dimensioni dei widget
-    - Perfino il colore dei bottoni dei tap-to-run è definito una tantum tramite l'APP del proprietario!
+E' quindi presente una completa flessibilità funzionale per la home page, equiparabile a quella degli 'smart panels', con ancora alcuni limiti di carattere estetico:
+  - non esistono nè separatori nè box
+  - non è possibile cambiare il numero di colonne dell'impaginazione nè le icone o le dimensioni dei widget
+  - Perfino il colore dei bottoni dei tap-to-run è definito una tantum tramite l'APP del proprietario!
     
 <img width="3000" height="663" alt="3viste" src="https://github.com/user-attachments/assets/fbeaed08-a77e-429a-b1e4-ddb45550b192" />
 
-Nonostante la persistenza di questi limiti, questa è una soluzione semplice, funzionalmente completa, che vale la pena almeno provare.
+Nonostante la persistenza di questi limiti, il modo 'tablet' + 'smart control' di SmartLife è una soluzione semplice, funzionalmente completa, che vale la pena almeno di provare.
 E devo dire che usare SmrtLife con uno schermo da 10" è veramente molto gradevole, con finalmente una tastiera su schermo di adeguate dimensioni!
 
 ### C. SmartLife - installazione standard ###
@@ -140,10 +140,10 @@ La configurazione standard con **Smart Life, MacroDroid e i servizi Google attiv
 
 Questa soluzione rappresenta il miglior compromesso tra semplicità di setup e stabilità di funzionamento per la maggior parte degli utenti.
 
-Per il già enunciato principio 'minimalista' non voglio usare Google Play per il download delle APP, evitando così ogni iscrizione ed interferenza da parte di Google. Userò quindi store alternativi.
+Per il già enunciato principio 'minimalista' non voglio usare Google Play per il download delle APP, evitando così ogni registrazione ed interferenza da parte di Google. Userò quindi store alternativi.
 
 1. Scaricare ed installare **APKpure APP** dalla  sua pagina WEB ( https://apkpure.com/ ).
-2. Cercare e scaricare **Smart Life** (o **Tuya Smart**, o anche **Moes APP** - che presenta il grande vantaggio di icone custom) ma ATTENZIONE deve essere la stessa APP usata dal Proprietario, altrimenti non potete aggiungere un nuovo utente!
+2. Cercare e scaricare **Smart Life** (o **Tuya Smart**, o anche **Moes APP** ) ma ATTENZIONE deve essere la stessa APP usata dal Proprietario, altrimenti non potete aggiungere un nuovo utente!
 3. Installate sul tablet l'APP (e.g. SmartLife). A volte dovete aprire APKpure e scegliere il menu `Me => APK/XAPK` per installare il file scaricato se l'installazione non è automatica. 
 4. Ho creato un indirizzo di email solo per questo uso (uno free: Libero, Gmail ecc.) e scelto un nome utente qualsiasi, ad es. 'tablet', per la registrazione con Tuya (n.b. scrivete in un posto sicuro questi due dati di accesso!).
 5. Ora sull'APP (SmartLife) del proprietario, tramite il menu `Me => Gestione casa` scegliere una casa,  poi `Aggiungi membri, condividi Account dell'app`, poi inserire il nome (tablet) e l'indirizzo di email usato.
@@ -155,6 +155,8 @@ Cercare nell'elenco **SmartLife**, cliccare su `SmartLife` e scegliere `Non otti
 ### D. SmartLife - extreme installation ###
 
 _Per ottenere le massime prestazioni da un tablet utilizzato esclusivamente come pannello di controllo, la strategia vincente è eliminare ogni attività in background superflua. Questa guida, destinata a utenti esperti, richiede un po' di impegno ma garantisce un dispositivo reattivo e stabile._
+
+Per il già enunciato principio 'minimalista' non voglio usare Google Play per il download delle APP, evitando così ogni registrazione ed interferenza da parte di Google. Userò quindi store alternativi.
 
 I passaggi sono illustrati in sintesi. Per i dettagli operativi e per superare eventuali difficoltà, non esitate a consultare un'assistente AI, come ho fatto io stesso.
 
@@ -174,15 +176,15 @@ Questo passaggio, sebbene complesso, è cruciale per eliminare conflitti e messa
 
 2.  **Preparare il PC:**
     *   Scaricare **Android SDK Platform-Tools** (contiene `adb`) dal [sito ufficiale per Windows](https://developer.android.com/tools/releases/platform-tools?hl=it).
-    *   Collegare il tablet al PC via USB e concedere i permessi di debug quando richiesto sul dispositivo.
+    *   Collegare il tablet al PC via USB e concedere i permessi di debug quando richiesto dal dispositivo.
 
 3.  **Eseguire la Rimozione:**
     *   Aprire un terminale (Prompt dei comandi o PowerShell) nella cartella contenente `adb.exe` (es. `C:\platform-tools`). Se avete installato Android Studio, si trova in `C:\Users\[Utente]\AppData\Local\Android\Sdk\platform-tools\`.
     *   Eseguire questi comandi in sequenza:
-        ```bash
-        adb shell pm uninstall --user 0 com.google.android.gms
-        adb shell pm uninstall --user 0 com.google.android.gsf
-        adb shell pm uninstall --user 0 com.android.vending
+        ```
+        .\adb.exe shell pm uninstall --user 0 com.google.android.gms
+        .\adb.exe shell pm uninstall --user 0 com.google.android.gsf
+        .\adb.exe shell pm uninstall --user 0 com.android.vending
         ```
     *   **Spiegazione comandi:**
         *   `com.google.android.gms`: Pacchetto principale di Google Play Services.
@@ -195,7 +197,7 @@ Questo passaggio, sebbene complesso, è cruciale per eliminare conflitti e messa
 1.  **Installare APKPure e Smart Life:**
     *   Dal browser del tablet, scaricare e installare **APKPure** dal suo sito web ufficiale (`https://apkpure.com`).
     *   Cercare e scaricare **Smart Life** (o Tuya Smart/Moes App) tramite APKPure. **Cruciale:** deve essere la stessa app utilizzata dal proprietario degli dispositivi per gestire la casa.
-    *   A volte l'installazione non parte automaticamente. In tal caso, aprire l'app APKPure, andare nella sezione `Me > I miei APK/XAPK` e installare manualmente il file scaricato.
+    *   A volte l'installazione non parte automaticamente. In tal caso, aprire l'app APKPure, andare nella sezione `Me > I miei APK/XAPK` e installare manualmente il file APK/XAPK scaricato.
 
 2.  **Condividere l'Accesso alla Casa:**
     *   Creare un indirizzo email dedicato (es. su Libero o Gmail) e un nome utente (es. "tablet") per registrarsi a Tuya. *Consiglio: conservare queste credenziali in un posto sicuro.*
@@ -209,7 +211,7 @@ Questo passaggio, sebbene complesso, è cruciale per eliminare conflitti e messa
     *   Selezionare `Tutte le app`, cercare **Smart Life** e impostare l'opzione su **Non ottimizzare**. Questo impedisce al sistema di uccidere il processo in background, mantenendo la connessione sempre attiva.
 
 #### **Prestazioni Finali**
-La configurazione finale con le sole tre app **Smart Life, MacroDroid (per l'avvio automatico) e un monitor di sistema (es. Simple System Monitor)** garantisce un utilizzo della CPU quasi sempre **inferiore al 30%**, valore eccellente per un funzionamento fluido e senza lag. Il tablet si trasformerà in un pannello di controllo reattivo e affidabile.
+La configurazione finale con le sole tre app **Smart Life, MacroDroid (per l'avvio automatico) e un monitor di sistema (Simple System Monitor)** garantisce un utilizzo della CPU quasi sempre **inferiore al 30%**, valore eccellente per un funzionamento fluido e senza lag. Il tablet si trasformerà in un pannello di controllo reattivo e affidabile.
 
 
 ###IoTwebUI###
