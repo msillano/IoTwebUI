@@ -51,34 +51,33 @@ L'idea di questo progetto mi è nata trovando su AliExpress l'interssante offert
 </td>
 </tr>
 </table>
-
-
-
+ 
 **Commento**
 
 1. La strategia per questo progetto è volutamente 'minimalista': ho scelto il modello più economico (12G/256G), non uso SIM nè TF, etc...
 2. Il tablet consegnato (rapidamente, da un deposito europeo) rispetta le specifiche. Una piacevole sorpresa.
-3. Nonostante il 'core 10' il tablet risulta MOLTO lento, al limite dell'usabilità in un impiego standard. Appaiono spesso i pop-up "L'applicazione non risponde" (scegliere 'attendi').
+3. Nonostante il 'core 10' il tablet risulta MOLTO lento, al limite dell'usabilità in un impiego standard. Appaiono spesso i pop-up ANR: "L'applicazione xxxx non risponde" (scegliere 'attendi').
 Per gli obiettivi del progetto ho deciso di proseguire comunque e di valutare i risultati alla fine.<br>
 AVVISO:  per questo motivo, in alcune fasi dell'installazione, occorre molta, ma MOLTA pazienza!
 4. Anche se i 12000 mA di batteria permettono solo 2 ore di uso continuato a schermo illuminato, questo non è un problema: a regime i 'control panel' hanno l'alimentazione fissa.
 5. Un particolare non presente nel manuale: il bordo superiore è removibile, offrendo accesso alle due SIM e TF (non usate in questo progetto)."Removing the top cover in one of the corners, there is a small notch to pull it with your fingernail so the cover comes off and there are the 3 slots for the cards."
 
-**Installazione**
+** A. Installazione**
+Se il tablet o lo smartphone non è nuovo, riportarlo alle condizioni di fabbrica da `Impostazioni > Backup e ripristino > Ripristino dati di fabbrica`: tornerà come nuovo!
 
-Le operazioni preliminari effettuate sono state:
+Le operazioni preliminari da effettuare sono:
 - impostare linguaggio 'italiano'
 - impostare fuso orario 
 - impostare accesso WiFi
 
-### SmartLife - standard installation ###
+### B. SmartLife - standard installation ###
 La soluzione più semplice consiste nell'usare SmartLife sul Tablet, associandolo alla versione principale come 'membro comune'. 
 Nella versione attuale di SmarLife (6.9.0) è molto migliorata la possibilità di configurazione della 'home page' di ciascuna `CASA`(home).
  1. L'opzione menu `'Me' => Configurazione => Impostazioni Smart control` abilita le customizzazioni.
- 1. L'opzione menu `'Me' => Configurazione => modalità Tablet`, permette di passare da un layout verticale (standard) a uno orizzontale. Nota: un layout ottimizzato in un modo NON funziona nell'altro, occorre riorganizzarlo!
- 2. Nella home page è ora presente un nuovo menu (3 punti in un cerchio) con 3 opzioni: `Tutti i dispositivi`, `Elenco stanze` e `Gestisci la 'Home page'`, che abilita le modifiche.
-3. In modalità 'gestione' è possibile spostare i widdet trascinandoli
-4. con il bottone `'aggiungi scheda'` (widget) si possono aggiungere/eliminare 3 tipi di widget:
+ 2. L'opzione menu `'Me' => Configurazione => modalità Tablet`, permette di passare da un layout verticale (standard) a uno orizzontale. Nota: un layout ottimizzato in un modo NON funziona nell'altro, occorre riorganizzarlo!
+ 3. Nella home page è ora presente un nuovo menu (3 punti in un cerchio) con 3 opzioni: `Tutti i dispositivi`, `Elenco stanze` e `Gestisci la 'Home page'`, che abilita le modifiche.
+4. In modalità 'gestione' è possibile spostare i widdet trascinandoli
+5. con il bottone `'aggiungi scheda'` (widget) si possono aggiungere/eliminare 3 tipi di widget:
    - **Domotica**, i.e.  widget (12) gestionali e miniAPP più tutte le stanze
    - **Dispositivi**: tutti i device con widget tipizzati che mostrano stato e principali comandi
    - **Esegui con un clic** (tap-to-run): per scegliere i comandi presenti nella home page.
@@ -87,6 +86,8 @@ E' quindi presente una completa flessibilità funzionale per la home page, equip
     - non esistono nè separatori nè box
     - non è possibile cambiare il numero di colonne dell'impaginazione nè le icone o le dimensioni dei widget
     - Perfino il colore dei bottoni dei tap-to-run è definito una tantum tramite l'APP del proprietario!
+    
+<img width="3000" height="663" alt="3viste" src="https://github.com/user-attachments/assets/fbeaed08-a77e-429a-b1e4-ddb45550b192" />
 
 Nonostante la persistenza di questi limiti, questa è una soluzione semplice, funzionalmente completa, che vale la pena almeno provare.
 E devo dire che usare SmrtLife con uno schermo da 10" è veramente molto gradevole, con finalmente una tastiera su schermo di adeguate dimensioni!
@@ -104,7 +105,7 @@ Per il già enunciato principio 'minimalista' non voglio usare Google Play per i
 8. Ultima cosa, Tablet: `Impostazioni => Batteria => 3 punti verticali => ottimizzaBatteria`. Nella videata clicca su `Senza ottimizzazione` e poi `Tutte le app`.
 Cercare nell'elenco **SmartLife**, cliccare su `SmartLife` e scegliere `Non ottimizzare`!
 
-### SmartLife - extreme installation ###
+### C. SmartLife - extreme installation ###
 
 _Per cercare di ottenere le massime prestazioni, la strada migliore è ridurre le attivita in backgraund, riducendo drasticamente applicazioni, iscrizioni etc. <br>
 E' destinato agli utenti più esperti, ma i risultati valgono lo sforzo._
@@ -115,35 +116,31 @@ I passi da effettuare sono indicati un po' sommariamente: fatevi aiutare da un'A
    - Tablet: Andare in Impostazioni > App > Tutte le app.
    - Per ogni APP, cliccare su Disabilita o Disinstalla. Questo impedirà loro di eseguire qualsiasi operazione (Alcune APP non permettono nè Disabilita o Disinstalla: lasciatele).
 2. **Eliminazione di Google play** tramite ADB, richiede un PC WIND, complesso ma è indispensabile per evitare alcune incompatibilità con APKpure.
-   
-   1.Tablet: Abilitare il debug USB:
-        - Andare in `Impostazioni > Informazioni sul tablet > Build number` e toccare per 7 volte per sbloccare le Opzioni sviluppatore.
-         - Indietro, scegliere `Opzioni sviluppatore` ed abilitare _Debug USB_.
+    1. Tablet: Abilitare il debug USB:
+      - Andare in `Impostazioni > Informazioni sul tablet > Build number` e toccare per 7 volte per sbloccare le Opzioni sviluppatore.
+      - Indietro, scegliere `Opzioni sviluppatore` ed abilitare _Debug USB_.
    2. Tablet, eliminare i diritti di amministrazione:
-         - `Andare su Sicurezza => Amministratori dispositivo`, e togliere la spunta a tutte le APP
+      - `Andare su Sicurezza => Amministratori dispositivo`, e togliere la spunta a tutte le APP
 
    3. PC: Preparare il computer:
-         - Scaricare e installare _Android SDK Platform-Tools_ (che contengono adb). [Download diretto da Google per Windows/Mac/Linux](https://developer.android.com/tools/releases/platform-tools?hl=it) 
-         - Collegare il tablet al PC via USB. Quando apparirà una richiesta di autorizzazione sul tablet, concedere i permessi.
+      - Scaricare e installare _Android SDK Platform-Tools_ (che contengono adb). [Download diretto da Google per Windows/Mac/Linux](https://developer.android.com/tools/releases/platform-tools?hl=it) 
+      - Collegare il tablet al PC via USB. Quando apparirà una richiesta di autorizzazione sul tablet, concedere i permessi.
     
-   4. PC: comandi di disinstallazione
-Eseguire i comandi di disinstallazione:
-        - Aprire un terminale (Prompt dei comandi, PowerShell o Terminale) nella cartella dove hai installato adb. (Se si è installato l'intero _Android Studio_ si trovano invece in `C:\Users\(utente)\AppData\Local\Android\Sdk\platform-tools\adb.exe` )
-       - Eseguire questi comandi uno dopo l'altro:
-
+   4. PC: comandi di disinstallazione:
+   - Aprire un terminale (Prompt dei comandi, PowerShell o Terminale) nella cartella dove hai installato adb. (Se si è installato l'intero _Android Studio_ si trovano invece in `C:\Users\(utente)\AppData\Local\Android\Sdk\platform-tools\adb.exe` )
+    - Eseguire questi comandi uno dopo l'altro:
 ```
             ./adb.exe shell pm uninstall --user 0 com.google.android.gms
             ./adb.exe shell pm uninstall --user 0 com.google.android.gsf
             ./adb.exe shell pm uninstall --user 0 com.android.vending
 ```
-
- Questi comandi rimuovono i pacchetti per l'utente corrente (0) senza eliminarli definitivamente dal sistema. Lo "disinstalla" efficacemente.
+ Questi comandi rimuovono i pacchetti per l'utente corrente (0) senza eliminarli definitivamente dal sistema. Un "disinstalla" efficace.
  
      - `com.google.android.gms`: Il pacchetto principale di Google Play Services.
      - `com.google.android.gsf`: Google Services Framework (un componente di supporto).
      - `com.android.vending`: Google Play Store (se presente).
 
-Nota: Questa operazione è reversibile solo tramite un reset completo di fabbrica del tablet.
+Nota: _Questa operazione è reversibile solo tramite un reset completo di fabbrica del tablet._
 
 3. installare SmartLife
    1. Scaricare ed installare **APKpure APP** dalla  sua pagina WEB ( https://apkpure.com/ ).
