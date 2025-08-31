@@ -1,4 +1,4 @@
-### intro ###  
+### introduzione ###  
 Una categoria di dispositivi solleva molto interesse ultimamente, gli _**smart control panel**_ (https://it.aliexpress.com/w/wholesale-tuya-smart-control-panel-10-inch.html) perché è comodo avere un pannello fisso, accessibile a tutti i familiari, senza dover usare sempre lo smartphone, con una grafica molto accattivante!<br/>
 <img width="664" height="375" alt="2025-08-30 10_03_00-10 Inchtuya Touch Control Panel, Smart Home ,smart Switch,smart Touch Screen Pan" src="https://github.com/user-attachments/assets/8279bc14-3bbf-43e9-8467-df502a575bfa" /> <br/>
 Esaminando in dettaglio l'esempio commerciale in figura, troviamo una serie di widget posizionati su un dashboard. Dall'alto si riconoscono: orologio, meteo e un controllo per la riproduzione di musica;  i comandi dell'antifurto; seconda riga: due bottoni (uno forse collegato a un 'tap-to-run', l'altro per applicazioni vocali), un controllo per tende, un termostato ambiente e un dimmer per la luce.<br>
@@ -23,7 +23,7 @@ In generale, analizzando questo tipo di prodotti troviamo:
 _Questo progetto vuole analizzare le opzioni a disposizione di un utente per utilizzare un **tablet** come **smart panel control Tuya**, fornendo una guida passo passo._
 
 ### HW: Tablet ###
-L'occasione per iniziare questo progetto è venuta trovando su AliExpress l'interssante offerta di questo tablet (ref: https://it.aliexpress.com/item/1005008843917320.html ) da 10".<hr/>
+L'occasione per iniziare questo progetto è venuta trovando su AliExpress l'interessante offerta di questo tablet (ref: https://it.aliexpress.com/item/1005008843917320.html ) da 10".<hr/>
 <img width="1125" height="453" alt="image" src="https://github.com/user-attachments/assets/59f253f3-8661-46f3-8506-169023585748" /><hr/>
 <table><tr><<td>
 <b>Specifiche del costruttore</b><br/>
@@ -63,7 +63,7 @@ AVVISO:  per questo motivo, in alcune fasi dell'installazione, occorre molta, ma
 5. Un particolare non presente nel manuale: il bordo superiore è removibile, offrendo accesso alle due SIM e TF (non usate in questo progetto)."Removing the top cover in one of the corners, there is a small notch to pull it with your fingernail so the cover comes off and there are the 3 slots for the cards."
 
 ### A. Installazione iniziale ###
-_Se il tablet o lo smartphone che volte usare non è nuovo,potete riportarlo alle condizioni di fabbrica con `Impostazioni > Backup e ripristino > Ripristino dati di fabbrica`: tornerà come nuovo!_
+_Se il tablet o lo smartphone che volete usare non è nuovo, potete riportarlo alle condizioni di fabbrica con `Impostazioni > Backup e ripristino > Ripristino dati di fabbrica`: tornerà come nuovo!_
 
 Le operazioni preliminari da effettuare sono:
 - impostare linguaggio 'italiano'
@@ -72,18 +72,18 @@ Le operazioni preliminari da effettuare sono:
 
 ### B. SmartLife ###
 
-_La soluzione più semplice consiste nell'usare SmartLife sul Tablet, associandolo alla versione principale come 'membro comune'._<br> 
-Dico **Smart Life** perchè è su questo che ho fatto le prove, ma può essere anche **Tuya Smart**, o anche **Moes APP** - che presenta il grande vantaggio di icone custom - ma in ogni caso deve essere la stessa APP usata dal Proprietario, altrimenti non potete aggiungere un nuovo utente!
+_La soluzione più semplice consiste nell'usare SmartLife sul Tablet, associandolo alla istanza principale come 'membro comune' della famiglia._<br> 
+Dico **Smart Life** perchè è su questa APP che ho fatto le prove, ma potrebbe essere anche **Tuya Smart**, o anche **Moes APP** - che presenta il grande vantaggio di icone custom - ma in ogni caso deve essere la stessa APP usata dal Proprietario, altrimenti non potete aggiungere un nuovo utente!
 
 Nella versione attuale di SmarLife (6.9.0) è molto migliorata la possibilità di configurazione della 'home page' di ciascuna `CASA`(home).
  1. L'opzione menu `'Me' => Configurazione => Impostazioni Smart control` abilita le customizzazioni.
  2. L'opzione menu `'Me' => Configurazione => modalità Tablet`, permette di passare da un layout verticale (standard) a uno orizzontale. <br> Nota: un layout ottimizzato in un modo NON funziona automaticamente nell'altro, occorre riorganizzarlo!
- 3. Nella home page è ora presente un nuovo menu (3 punti in un cerchio) con 3 opzioni: `Tutti i dispositivi`, `Elenco stanze` e `Gestisci la 'Home page'`, che abilita le modifiche.
-4. In modalità 'gestione' è possibile spostare i widget trascinandoli
-5. con il bottone `'aggiungi scheda'` (widget) si possono aggiungere/eliminare 3 tipi di widget:
-  - **Domotica**, i.e.  widget (12) gestionali e miniAPP più tutte le stanze
+ 3. Nella home page è ora presente un nuovo menu (3 punti in un cerchio) con 3 opzioni: `Tutti i dispositivi`, `Elenco stanze` e `Gestisci la 'Home page'`, opzione che abilita le modifiche.
+4. In modalità 'gestione' è possibile spostare i widget trascinandoli sullo schermo
+5. Con il bottone `'aggiungi scheda'` (widget) si possono aggiungere/eliminare 3 tipi di widget:
+  - **Domotica**, i.e.  widget (12) gestionali e miniAPP, più tutte le stanze
   - **Dispositivi**: tutti i device con widget tipizzati che mostrano stato e principali comandi
-  - **Esegui con un clic** (tap-to-run): per scegliere i comandi presenti nella home page.
+  - **Esegui con un clic** (tap-to-run): per scegliere i comandi desiderati nella home page.
 
 E' quindi presente una completa flessibilità funzionale per la home page, equiparabile a quella degli 'smart panels', con ancora alcuni limiti di carattere estetico:
   - non esistono nè separatori nè box
@@ -99,7 +99,7 @@ E devo dire che usare SmrtLife con uno schermo da 10" è veramente molto gradevo
 
 _Questa procedura è la soluzione più semplice e consigliata per la maggior parte degli utenti. Configurando correttamente i servizi Google si evita la causa principale degli errori e si ottiene un sistema stabile, anche a fronte di un carico aggiuntivo di background._
 
-I passaggi seguenti guidano attraverso un reset di fabbrica e una configurazione corretta per evitare i fastidiosi messaggi "L'applicazione non risponde".
+I passaggi seguenti guidano attraverso una configurazione corretta per evitare i fastidiosi messaggi "L'applicazione xxx non risponde".
 
 #### **Fase 1: Configurazione Iniziale**
 L'obiettivo è configurare un account Google per placare i servizi di sistema.
@@ -135,28 +135,16 @@ L'obiettivo è configurare un account Google per placare i servizi di sistema.
 #### **Prestazioni e Considerazioni Finali**
 La configurazione standard con **Smart Life, MacroDroid e i servizi Google attivi** risulta stabile e senza i messaggi di errore "ANR". Le prestazioni sono ottime per l'uso come pannello di controllo, con un utilizzo della CPU accettabile.
 
-*   **Vantaggio:** Procedura semplice e guidata, adatta a tutti. Massima compatibilità.
+*   **Vantaggio:** Procedura standard semplice, adatta a tutti. Massima compatibilità.
 *   **Svantaggio:** I servizi Google funzioneranno in background, consumando una certa quantità di risorse (RAM, CPU, batteria) per sincronizzazioni e aggiornamenti.
 
 Questa soluzione rappresenta il miglior compromesso tra semplicità di setup e stabilità di funzionamento per la maggior parte degli utenti.
 
-Per il già enunciato principio 'minimalista' non voglio usare Google Play per il download delle APP, evitando così ogni registrazione ed interferenza da parte di Google. Userò quindi store alternativi.
-
-1. Scaricare ed installare **APKpure APP** dalla  sua pagina WEB ( https://apkpure.com/ ).
-2. Cercare e scaricare **Smart Life** (o **Tuya Smart**, o anche **Moes APP** ) ma ATTENZIONE deve essere la stessa APP usata dal Proprietario, altrimenti non potete aggiungere un nuovo utente!
-3. Installate sul tablet l'APP (e.g. SmartLife). A volte dovete aprire APKpure e scegliere il menu `Me => APK/XAPK` per installare il file scaricato se l'installazione non è automatica. 
-4. Ho creato un indirizzo di email solo per questo uso (uno free: Libero, Gmail ecc.) e scelto un nome utente qualsiasi, ad es. 'tablet', per la registrazione con Tuya (n.b. scrivete in un posto sicuro questi due dati di accesso!).
-5. Ora sull'APP (SmartLife) del proprietario, tramite il menu `Me => Gestione casa` scegliere una casa,  poi `Aggiungi membri, condividi Account dell'app`, poi inserire il nome (tablet) e l'indirizzo di email usato.
-6. Solo dopo aver accettato, il Tablet diventa un membro della famiglia e visualizzerà i device della casa scelta.
-7. Per più case, ripetere i passi 5 e 6 per ogni casa.
-8. Ultima cosa, Tablet: `Impostazioni => Batteria => 3 punti verticali => ottimizzaBatteria`. Nella videata clicca su `Senza ottimizzazione` e poi `Tutte le app`.
-Cercare nell'elenco **SmartLife**, cliccare su `SmartLife` e scegliere `Non ottimizzare`!
-
 ### D. SmartLife - extreme installation ###
 
-_Per ottenere le massime prestazioni da un tablet utilizzato esclusivamente come pannello di controllo, la strategia vincente è eliminare ogni attività in background superflua. Questa guida, destinata a utenti esperti, richiede un po' di impegno ma garantisce un dispositivo reattivo e stabile._
+_Per ottenere le massime prestazioni da un tablet utilizzato esclusivamente come pannello di controllo, la strategia vincente è eliminare ogni attività in background superflua. Questo include anche l'eliminazione delle attività di monitoraggio particolarmente invasive di Google. Questa guida, destinata a utenti esperti, richiede un po' di impegno ma garantisce un dispositivo reattivo e stabile._
 
-Per il già enunciato principio 'minimalista' non voglio usare Google Play per il download delle APP, evitando così ogni registrazione ed interferenza da parte di Google. Userò quindi store alternativi.
+Per il già enunciato principio 'minimalista' non useremo Google Play per il download delle APP, evitando così ogni registrazione ed interferenza da parte di Google. Si useranno quindi store alternativi.
 
 I passaggi sono illustrati in sintesi. Per i dettagli operativi e per superare eventuali difficoltà, non esitate a consultare un'assistente AI, come ho fatto io stesso.
 
