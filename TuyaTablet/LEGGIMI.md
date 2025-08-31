@@ -61,7 +61,7 @@ Per gli obiettivi del progetto ho deciso di proseguire comunque e di valutare i 
 AVVISO:  per questo motivo, in alcune fasi dell'installazione, occorre molta, ma MOLTA pazienza!
 4. Anche se i 12000 mA di batteria permettono solo 2 ore di uso continuato a schermo illuminato, questo non è un problema: a regime i 'control panel' hanno l'alimentazione fissa.
 5. Un particolare non presente nel manuale: il bordo superiore è removibile, offrendo accesso alle due SIM e TF (non usate in questo progetto)."Removing the top cover in one of the corners, there is a small notch to pull it with your fingernail so the cover comes off and there are the 3 slots for the cards."
-6. 
+
 ### A. Installazione iniziale ###
 _Se il tablet o lo smartphone che volte usare non è nuovo,potete riportarlo alle condizioni di fabbrica con `Impostazioni > Backup e ripristino > Ripristino dati di fabbrica`: tornerà come nuovo!_
 
@@ -71,6 +71,7 @@ Le operazioni preliminari da effettuare sono:
 - impostare accesso WiFi
 
 ### B. SmartLife ###
+
 _La soluzione più semplice consiste nell'usare SmartLife sul Tablet, associandolo alla versione principale come 'membro comune'._<br> 
 Dico **Smart Life** perchè è su questo che ho fatto le prove, ma può essere **Tuya Smart**, o anche **Moes APP** - che presenta il grande vantaggio di icone custom - ma in ogni caso deve essere la stessa APP usata dal Proprietario, altrimenti non potete aggiungere un nuovo utente!
 
@@ -95,6 +96,50 @@ Nonostante la persistenza di questi limiti, questa è una soluzione semplice, fu
 E devo dire che usare SmrtLife con uno schermo da 10" è veramente molto gradevole, con finalmente una tastiera su schermo di adeguate dimensioni!
 
 ### C. SmartLife - installazione standard ###
+
+_Questa procedura è la soluzione più semplice e consigliata per la maggior parte degli utenti. Configurando correttamente i servizi Google si evita la causa principale degli errori e si ottiene un sistema stabile, anche a fronte di un carico aggiuntivo di background._
+
+I passaggi seguenti guidano attraverso un reset di fabbrica e una configurazione corretta per evitare i fastidiosi messaggi "L'applicazione non risponde".
+
+#### **Fase 1: Configurazione Iniziale**
+L'obiettivo è configurare un account Google per placare i servizi di sistema.
+
+1.  **Configurazione Guidata (Setup Wizard) - Il Passaggio Fondamentale:**
+    *   Seguire la procedura guidata di Android per impostare la lingua, la rete Wi-Fi, ecc.
+    *   **Fondamentale:** Quando richiesto, **accedere con un account Google esistente o crearne uno nuovo**. Questo step è cruciale per fornire un'identità ai servizi Google e prevenire gli stati di errore che causano gli crash.
+    *   *Consiglio: Creare un account Google dedicato (ad es., tablet.casa@gmail.com) per questo scopo specifico. Registrare le credenziali in un posto sicuro.*
+
+#### **Fase 2: Installazione delle App e Ottimizzazione**
+1.  **Installare le App dal Play Store:**
+    *   Aprire l'app **Google Play Store**.
+    *   Cercare e installare **Smart Life**. **Importante:** Deve essere la stessa versione dell'app utilizzata dal proprietario della casa.
+    *   Cercare e installare **MacroDroid** (opzionale: per l'automazione dell'avvio).
+
+2.  **Condividere l'Accesso alla Casa:**
+    *   Sull'APP Smart Life del **proprietario**, andare in `Me > Gestione casa`, selezionare una casa e poi `Aggiungi membri > Condividi Account dell'app`.
+    *   Inserire l'indirizzo email dell'account Google dedicato creato durante il setup ("tablet.casa@gmail.com"). Il tablet, una volta accettato l'invito, visualizzerà i device.
+    *   Ripetere l'operazione per ogni casa da condividere.
+
+3.  **Configurare MacroDroid per l'Avvio Automatico:**
+    *   Aprire MacroDroid.
+    *   Creare una nuova macro:
+        *   **Trigger:** `Avvio dispositivo` (Device Boot).
+        *   **Azione:** `Avvia applicazione` (Launch Application) > Selezionare **Smart Life**.
+    *   Concedere all'app i permessi richiesti.
+
+4.  **Disabilitare l'Ottimizzazione della Batteria per Smart Life:**
+    *   Sul tablet, andare in `Impostazioni > Batteria > Risparmio batteria` (o simili).
+    *   Trovare l'opzione per gestire l'ottimizzazione (spesso tramite il menu dei tre punti o "Opzioni avanzate").
+    *   Selezionare `Tutte le app`, cercare **Smart Life** e impostare l'opzione su **Non ottimizzare**. Questo garantisce che l'app rimanga sempre in esecuzione in background.
+
+#### **Prestazioni e Considerazioni Finali**
+La configurazione standard con **Smart Life, MacroDroid e i servizi Google attivi** risulta stabile e senza i messaggi di errore "ANR". Le prestazioni sono ottime per l'uso come pannello di controllo, con un utilizzo della CPU accettabile.
+
+*   **Vantaggio:** Procedura semplice e guidata, adatta a tutti. Massima compatibilità.
+*   **Svantaggio:** I servizi Google funzioneranno in background, consumando una certa quantità di risorse (RAM, CPU, batteria) per sincronizzazioni e aggiornamenti.
+
+Questa soluzione rappresenta il miglior compromesso tra semplicità di setup e stabilità di funzionamento per la maggior parte degli utenti.
+
 Per il già enunciato principio 'minimalista' non voglio usare Google Play per il download delle APP, evitando così ogni iscrizione ed interferenza da parte di Google. Userò quindi store alternativi.
 
 1. Scaricare ed installare **APKpure APP** dalla  sua pagina WEB ( https://apkpure.com/ ).
