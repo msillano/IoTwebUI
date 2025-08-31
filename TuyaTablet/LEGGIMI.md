@@ -111,15 +111,16 @@ E' destinato agli utenti più esperti, ma i risultati valgono lo sforzo._
 
 I passi da effettuare sono indicati un po' sommariamente: fatevi aiutare da un'AI per i dettagli e per superare le eventuali difficoltà, come ho fatto anch'io!
 
-1. Pulizia iniziale del sistema (eliminare tutto ciò che NON serve):
+1. **Pulizia iniziale del sistema** (eliminare tutto ciò che NON serve):
    - Tablet: Andare in Impostazioni > App > Tutte le app.
-   - Per ogni APP, cliccare su Disabilita o Disinstalla. Questo impedirà loro di eseguire qualsiasi operazione.
-2. Eliminazione di Google play (tramite ADB, richiede un PC WIND, complesso ma indispensabile).
+   - Per ogni APP, cliccare su Disabilita o Disinstalla. Questo impedirà loro di eseguire qualsiasi operazione (Alcune APP non permettono nè Disabilita o Disinstalla: lasciatele).
+2. **Eliminazione di Google play** tramite ADB, richiede un PC WIND, complesso ma è indispensabile per evitare alcune incompatibilità con APKpure.
+   
    1.Tablet: Abilitare il debug USB:
         - Andare in `Impostazioni > Informazioni sul tablet > Build number` e toccare per 7 volte per sbloccare le Opzioni sviluppatore.
          - Indietro, scegliere `Opzioni sviluppatore` ed abilitare _Debug USB_.
-   2. Tablet, eliminare gli amministratori:
-            - `Andare su Sicurezza => Amministratori dispositivo`, e togliere la spunta atutte le APP
+   2. Tablet, eliminare i diritti di amministrazione:
+         - `Andare su Sicurezza => Amministratori dispositivo`, e togliere la spunta a tutte le APP
 
    3. PC: Preparare il computer:
          - Scaricare e installare _Android SDK Platform-Tools_ (che contengono adb). [Download diretto da Google per Windows/Mac/Linux](https://developer.android.com/tools/releases/platform-tools?hl=it) 
