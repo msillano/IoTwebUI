@@ -77,10 +77,10 @@ Le operazioni preliminari da effettuare sono:
 _La soluzione più semplice consiste nell'usare SmartLife sul Tablet, associandolo alla istanza principale come 'membro comune' della famiglia._<br> 
 Dico **Smart Life** perchè è su questa APP che ho fatto le prove, ma potrebbe essere anche **Tuya Smart**, o anche **Moes APP** - che presenta il grande vantaggio di icone custom - ma in ogni caso deve essere la stessa APP usata dal Proprietario, altrimenti non potete aggiungere un nuovo utente!
 
-Nella versione attuale di SmarLife (6.9.0) è molto migliorata la possibilità di configurazione della 'home page' di ciascuna `CASA`(home).
+Nella versione attuale di SmarLife (6.9.0) è molto migliorata la possibilità di configurazione della 'home page' di ciascuna `CASA`.
  1. L'opzione menu `'Me' => Configurazione => Impostazioni Smart control` _abilita le customizzazioni_.
  2. L'opzione menu `'Me' => Configurazione => modalità Tablet`, permette di passare da un _layout verticale (standard) a uno orizzontale_. <br> Nota: un layout ottimizzato in un modo NON funziona automaticamente nell'altro, occorre riorganizzarlo!
- 3. Nella home page è ora presente un nuovo menu (3 punti in un cerchio) con 3 opzioni: `Tutti i dispositivi`, `Elenco stanze` e `Gestisci la 'Home page'`, opzione che _abilita le modifiche_.
+ 3. Nella home page è ora presente un nuovo menu (3 punti in un cerchio) con 3 opzioni: `Tutti i dispositivi`, `Elenco stanze` e `Gestisci la 'Home page'`: questa opzione _abilita le modifiche_.
 4. In modalità 'gestione' è possibile _spostare i widget trascinandoli_ sullo schermo
 5. Con il bottone `'aggiungi scheda'` (i.e. widget) si possono _aggiungere/eliminare dalla home page 3 tipi di widget_:
   - **Domotica**, i.e.  widget (12) gestionali e miniAPP, più tutte le stanze
@@ -128,7 +128,7 @@ L'obiettivo è configurare un account Google come richiesto dai servizi di siste
     *   Trovare l'opzione per gestire l'ottimizzazione (spesso tramite il menu dei tre punti o "Opzioni avanzate").
     *   Selezionare `Tutte le app`, cercare **Smart Life** e impostare l'opzione su **Non ottimizzare**. Questo garantisce che l'app rimanga sempre in esecuzione in background.
 
-#### **Prestazioni e Considerazioni Finali**
+#### **Prestazioni**
 La configurazione standard con **Smart Life, MacroDroid e i servizi Google attivi** risulta stabile e senza i messaggi di errore "ANR". Le prestazioni sono ottime per l'uso come pannello di controllo, con un utilizzo della CPU accettabile.
 
 *   **Vantaggio:** Procedura standard semplice, adatta a tutti. Massima compatibilità.
@@ -162,7 +162,7 @@ Questo passaggio, sebbene complesso, è cruciale per eliminare conflitti e messa
 
 3.  **Eseguire la Rimozione:**
     *   Aprire un terminale (Prompt dei comandi o PowerShell) nella cartella contenente `adb.exe` (es. `C:\platform-tools`). Se avete installato Android Studio completo, si trova in `C:\Users\[Utente]\AppData\Local\Android\Sdk\platform-tools\`.
-    *   Eseguire nel terminale questi comandi in sequenza:
+    *   Eseguire nel terminale questi comandi in sequenza (il tablet deve essere acceso e collegato via USB al PC):
         ```
         .\adb.exe shell pm uninstall --user 0 com.google.android.gms
         .\adb.exe shell pm uninstall --user 0 com.google.android.gsf
@@ -197,7 +197,7 @@ La configurazione finale con le sole tre app **Smart Life, MacroDroid (per l'avv
 VOTO  8
 
 ### E. SmartLife - extras opzionali ###
-_Sono funzionalità accessorie opzionali, per migliorare il funzionamento del tablet + Smartlife, indipendenti dalla modalità di installazione (standard o extreme) e poco invasive._ 
+_Sono funzionalità accessorie opzionali, per migliorare il funzionamento del **tablet + Smartlife**, indipendenti dalla modalità di installazione (standard o extreme) e poco invasive._ 
 
 #### **Autostart di Smartlife all'avvio**
 _E' comodo, per un control panel, che all'accensione parta automaticamente la home page di SmartLife, senza che l'utente debba cercare e cliccare l'icona dell'APP._ Tempo di avvio totale (dipende anche dal numero di device) circa 80 secondi (extreme).
@@ -212,14 +212,15 @@ Viene utilizzato MacroDroid, un semplice flessibile `tasker` dalle molte applica
     *   Concedere all'app i permessi richiesti.
 
 nota: Non esiste un pulsante 'salva': il salvataggio di una macro avviene all'uscita della pagina di editing (freccia a sx).
+
 nota: Altri usi di MacroDroid legati a Tuya:
    *  Log su file delle notifiche: vedi post https://www.facebook.com/groups/tuyaitalia/permalink/1613512135949800/
    *  SMS attivati da noifiche Tuya: vedi post https://www.facebook.com/groups/tuyaitalia/posts/1393621837938832/?comment_id=1393920424575640
 
 #### **Debug: monitor_1 in overlay**
 _Una piccolissima scritta sullo schermo fornisce tre numeri: carico CPU nell'ultimo minuto, utimi 5 minuti,  ultimi 10 minuti, poco invasivo e utile in caso di problemi di prestazioni._
-   *   Abilitare le **Opzioni Sviluppatore**: Andare in `Impostazioni > Informazioni sul tablet > Numero build` e toccare 7 volte.
-   *   In   `Impostazioni > Opzioni Sviluppatore` abilitare 'Mostra utilizzo CPU'
+  *   Abilitare le **Opzioni Sviluppatore**: Andare in `Impostazioni > Informazioni sul tablet > Numero build` e toccare 7 volte.
+  *   In   `Impostazioni > Opzioni Sviluppatore` abilitare 'Mostra utilizzo CPU'
 
 #### **Debug: monitor_2 grafici full screen e in overlay**
 _Una APP abbastanza leggera, fornisce molti grafici interessanti, a full screen ma anche in overlay._
