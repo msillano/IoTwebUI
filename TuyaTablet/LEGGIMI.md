@@ -225,4 +225,5 @@ _Una piccolissima scritta sullo schermo fornisce tre numeri: carico CPU nell'ult
 _Una APP abbastanza leggera, fornisce molti grafici interessanti, a full screen ma anche in overlay._
   *   Installare Simple System Monitor (da _Google play_ oppure da _APKpure_).
 
+
 ###IoTwebUI###
