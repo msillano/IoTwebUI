@@ -1,14 +1,15 @@
 ### introduzione ###  
 Una categoria di dispositivi solleva molto interesse ultimamente, gli _**smart control panel**_ (https://it.aliexpress.com/w/wholesale-tuya-smart-control-panel-10-inch.html) perché è comodo avere un pannello fisso, accessibile a tutti i familiari, senza dover usare sempre lo smartphone, con una grafica molto accattivante!<br/>
 <img width="664" height="375" alt="2025-08-30 10_03_00-10 Inchtuya Touch Control Panel, Smart Home ,smart Switch,smart Touch Screen Pan" src="https://github.com/user-attachments/assets/8279bc14-3bbf-43e9-8467-df502a575bfa" /> <br/>
-Esaminando in dettaglio l'esempio commerciale in figura, troviamo una serie di widget posizionati su un dashboard. Dall'alto si riconoscono: orologio, meteo e un controllo per la riproduzione di musica;  i comandi dell'antifurto; seconda riga: due bottoni (uno forse collegato a un 'tap-to-run', l'altro per applicazioni vocali), un controllo per tende, un termostato ambiente e un dimmer per la luce.<br>
-In generale, analizzando questo tipo di prodotti troviamo:
+Esaminando in dettaglio l'esempio commerciale in figura, troviamo una serie di widget posizionati su un dashboard. Dall'alto si riconoscono: orologio, meteo e un controllo per la riproduzione di musica;  i comandi dell'antifurto; seconda riga: due bottoni (uno forse collegato a un 'tap-to-run', l'altro per applicazioni vocali), un controllo per tende, un termostato ambiente e un dimmer per la luce.
+
+_In generale, analizzando questo tipo di prodotti troviamo:_
 
  **funzionalità**
 
- - alcuni gadget extra: orologio, meteo, musica, controllo vocale Alexa etc...
- - controllo diretto di alcuni  device (dimmer, termostato, serrande...)
- - lancio di 'tap-to-run'
+ - alcuni gadget extra:_ orologio, meteo, musica, controllo vocale Alexa_ etc...
+ - controllo diretto di alcuni  device (_dimmer, termostato, serrande_...)
+ - lancio di _'tap-to-run'_
 
 **look and feel**
 
@@ -16,9 +17,9 @@ In generale, analizzando questo tipo di prodotti troviamo:
  - Troviamo widget specializzati solo per i gadget e per alcuni device (in genere pochi) 
  - Oppure widget universali per 'tap-to-run'
   - La scelta dei widget visualizzati e la disposizione nel dashboard sono sotto controllo utente.
-  - Nessuna possibilità di personalizzare/creare widget custom, e.g. per particolari device.
+  - Nessuna possibilità di personalizzare/creare nuovi widget custom, e.g. per particolari device.
 
-  Risulta evidente la limitatezza delle funzioni offerte da device di questo tipo, che ha portato più di uno a cercare soluzioni diverse (e più economiche) utilizzando tablet.
+  Risulta evidente la limitatezza delle funzioni offerte da device di questo tipo, che ha portato più di un utente a cercare soluzioni diverse (e più economiche) utilizzando tablet.
 
 _Questo progetto vuole analizzare le opzioni a disposizione di un utente per utilizzare un **tablet** come **smart panel control Tuya**, fornendo una guida passo passo._
 
@@ -81,17 +82,19 @@ Nella versione attuale di SmarLife (6.9.0) è molto migliorata la possibilità d
  2. L'opzione menu `'Me' => Configurazione => modalità Tablet`, permette di passare da un _layout verticale (standard) a uno orizzontale_. <br> Nota: un layout ottimizzato in un modo NON funziona automaticamente nell'altro, occorre riorganizzarlo!
  3. Nella home page è ora presente un nuovo menu (3 punti in un cerchio) con 3 opzioni: `Tutti i dispositivi`, `Elenco stanze` e `Gestisci la 'Home page'`, opzione che _abilita le modifiche_.
 4. In modalità 'gestione' è possibile _spostare i widget trascinandoli_ sullo schermo
-5. Con il bottone `'aggiungi scheda'` (widget) si possono _aggiungere/eliminare dalla home page 3 tipi di widget_:
+5. Con il bottone `'aggiungi scheda'` (i.e. widget) si possono _aggiungere/eliminare dalla home page 3 tipi di widget_:
   - **Domotica**, i.e.  widget (12) gestionali e miniAPP, più tutte le stanze
-  - **Dispositivi**: tutti i device con widget tipizzati che mostrano stato e principali comandi
+  - **Dispositivi**: tutti i device con widget tipizzati che mostrano lo stato e i principali comandi
   - **Esegui con un clic** (tap-to-run): per scegliere i comandi desiderati nella home page.
 
-E' quindi presente una completa flessibilità funzionale per la home page, equiparabile a quella degli 'smart panels', con ancora alcuni limiti di carattere estetico:
-  - non esistono nè separatori nè box
+E' quindi presente una completa flessibilità funzionale per la home page, equiparabile a quella degli 'smart panels', anzi, migliore, perchè garantisce l'accessibilità a TUTTI i device Tuya posseduti.<br>
+Purtroppo sono ancora presenti alcuni limiti di carattere estetico:
+  - non è possibile organizzare la home page in più pagine collegate
   - non è possibile cambiare il numero di colonne dell'impaginazione nè le icone o le dimensioni dei widget
-  - Perfino il colore dei bottoni dei tap-to-run è definito una tantum tramite l'APP del proprietario!
+  - non esistono nè separatori nè box
+  - perfino il colore dei bottoni dei tap-to-run è definito una tantum tramite l'APP del proprietario!
     
-<img width="3000" height="663" alt="3viste" src="https://github.com/user-attachments/assets/fbeaed08-a77e-429a-b1e4-ddb45550b192" /> <br> Esempio di customizzazione
+<img width="3000" height="663" alt="3viste" src="https://github.com/user-attachments/assets/fbeaed08-a77e-429a-b1e4-ddb45550b192" /> <br> SmartLife modo Tablet: Home page, Device, Tap-to-run
 
 Nonostante la persistenza di questi limiti, il modo 'tablet' + 'smart control' di SmartLife è una soluzione semplice, funzionalmente completa, che vale la pena almeno di provare.
 E devo dire che usare SmrtLife con uno schermo da 10" è veramente molto gradevole, con finalmente una tastiera su schermo di adeguate dimensioni!
@@ -114,8 +117,7 @@ L'obiettivo è configurare un account Google come richiesto dai servizi di siste
 1.  **Installare le App dal Play Store:**
     *   Aprire l'app **Google Play Store**.
     *   Cercare e installare **Smart Life**. **Importante:** Deve essere la stessa versione dell'app utilizzata dal proprietario della casa.
-    *   Cercare e installare **MacroDroid** (opzionale: per l'automazione dell'avvio).
-
+   
 2.  **Condividere l'Accesso alla Casa:**
     *   Sull'APP Smart Life del **proprietario**, andare in `Me > Gestione casa`, selezionare una casa e poi `Aggiungi membri > Condividi Account dell'app`.
     *   Inserire l'indirizzo email dell'account Google dedicato creato durante il setup ("tablet.casa@gmail.com"). Il tablet, una volta accettato l'invito, visualizzerà i device.
@@ -138,8 +140,6 @@ Questa soluzione rappresenta il miglior compromesso tra semplicità di setup e s
 
 _Per ottenere le massime prestazioni da un tablet utilizzato esclusivamente come pannello di controllo, la strategia vincente è eliminare ogni attività in background superflua. Questo include anche l'eliminazione delle attività di monitoraggio particolarmente invasive di Google. Questa guida, destinata a utenti esperti, richiede un po' di impegno ma garantisce un dispositivo reattivo e stabile._
 
-Per il già enunciato principio 'minimalista' non useremo Google Play per il download delle APP, evitando così ogni registrazione ed interferenza da parte di Google. Si useranno quindi store alternativi.
-
 I passaggi sono illustrati in sintesi. Per i dettagli operativi e per superare eventuali difficoltà, non esitate a consultare un'assistente AI, come ho fatto io stesso.
 
 #### **Fase 1: Pulizia Iniziale del Sistema**
@@ -161,8 +161,8 @@ Questo passaggio, sebbene complesso, è cruciale per eliminare conflitti e messa
     *   Collegare il tablet al PC via USB e concedere i permessi di debug quando richiesto dal dispositivo.
 
 3.  **Eseguire la Rimozione:**
-    *   Aprire un terminale (Prompt dei comandi o PowerShell) nella cartella contenente `adb.exe` (es. `C:\platform-tools`). Se avete installato Android Studio, si trova in `C:\Users\[Utente]\AppData\Local\Android\Sdk\platform-tools\`.
-    *   Eseguire questi comandi in sequenza:
+    *   Aprire un terminale (Prompt dei comandi o PowerShell) nella cartella contenente `adb.exe` (es. `C:\platform-tools`). Se avete installato Android Studio completo, si trova in `C:\Users\[Utente]\AppData\Local\Android\Sdk\platform-tools\`.
+    *   Eseguire nel terminale questi comandi in sequenza:
         ```
         .\adb.exe shell pm uninstall --user 0 com.google.android.gms
         .\adb.exe shell pm uninstall --user 0 com.google.android.gsf
@@ -184,7 +184,7 @@ Questo passaggio, sebbene complesso, è cruciale per eliminare conflitti e messa
 2.  **Condividere l'Accesso alla Casa:**
     *   Creare un indirizzo email dedicato (es. su Libero o Gmail) e un nome utente (es. "tablet") per registrarsi a Tuya. *Consiglio: conservare queste credenziali in un posto sicuro.*
     *   Sull'APP Smart Life del **proprietario**, andare in `Me > Gestione casa`, selezionare una casa e poi `Aggiungi membri > Condividi Account dell'app`.
-    *   Inserire l'indirizzo email e il nome utente ("tablet") creati. Il tablet, una volta accettato l'invito, diventerà un membro della famiglia e visualizzerà i device di quella casa.
+    *   Inserire l'indirizzo email e il nome utente ("tablet") creati. Il tablet, una volta accettato l'invito, diventerà un membro della famiglia e visualizzerà i device di quella casa, con i limiti dei membri comuni.
     *   Ripetere l'operazione per ogni casa da condividere.
 
 3.  **Disabilitare l'Ottimizzazione della Batteria per Smart Life:**
@@ -193,7 +193,7 @@ Questo passaggio, sebbene complesso, è cruciale per eliminare conflitti e messa
     *   Selezionare `Tutte le app`, cercare **Smart Life** e impostare l'opzione su **Non ottimizzare**. Questo impedisce al sistema di uccidere il processo in background, mantenendo la connessione sempre attiva.
 
 #### **Prestazioni Finali**
-La configurazione finale con le sole tre app **Smart Life, MacroDroid (per l'avvio automatico) e un monitor di sistema (Simple System Monitor)** garantisce un utilizzo della CPU quasi sempre **inferiore al 30%**, valore eccellente per un funzionamento fluido e senza lag. Il tablet si trasformerà in un pannello di controllo reattivo e affidabile.
+La configurazione finale con le sole tre app **Smart Life, MacroDroid (per l'avvio automatico) e un monitor di sistema (Simple System Monitor)** garantisce un utilizzo della CPU quasi sempre **inferiore al 30%**, valore eccellente per un funzionamento fluido e senza lag. Il tablet si trasformerà in un pannello di controllo reattivo e affidabile.<br>
 VOTO  8
 
 ### E. SmartLife - extras opzionali ###
@@ -202,7 +202,7 @@ _Sono funzionalità accessorie opzionali, per migliorare il funzionamento del ta
 #### **Autostart di Smartlife all'avvio**
 _E' comodo, per un control panel, che all'accensione parta automaticamente la home page di SmartLife, senza che l'utente debba cercare e cliccare l'icona dell'APP._ Tempo di avvio totale (dipende anche dal numero di device) circa 80 secondi (extreme).
 
-Viene utilizzato MacroDroid, un semplice flessibile `tasker` dalle molte applicazioni potenziali, con una logica trigger => azione simile alle scene di Tuya.
+Viene utilizzato MacroDroid, un semplice flessibile `tasker` dalle molte applicazioni potenziali, con una logica `trigger => azione` simile alle scene di Tuya, che utilizza gli eventi del tablet o dello smartphone.
 *   Installare MacroDroid (da _Google play_ oppure da _APKpure_).
 *   Aprire MacroDroid.
 *   Creare una nuova macro (+):
@@ -211,7 +211,7 @@ Viene utilizzato MacroDroid, un semplice flessibile `tasker` dalle molte applica
      *   **Opzione** 'ThingSplashActivity'
     *   Concedere all'app i permessi richiesti.
 
-nota: Il salvataggio di una macro avviene all'uscita della pagina di editing (freccia a sx).
+nota: Non esiste un pulsante 'salva': il salvataggio di una macro avviene all'uscita della pagina di editing (freccia a sx).
 nota: Altri usi di MacroDroid legati a Tuya:
    *  Log su file delle notifiche: vedi post https://www.facebook.com/groups/tuyaitalia/permalink/1613512135949800/
    *  SMS attivati da noifiche Tuya: vedi post https://www.facebook.com/groups/tuyaitalia/posts/1393621837938832/?comment_id=1393920424575640
