@@ -118,20 +118,23 @@ I passi da effettuare sono indicati un po' sommariamente: fatevi aiutare da un'A
      1.Tablet: Abilitare il debug USB:
         - Andare in `Impostazioni > Informazioni sul tablet > Build number` e toccare per 7 volte per sbloccare le Opzioni sviluppatore.
          - Indietro, scegliere `Opzioni sviluppatore` ed abilitare _Debug USB_.
-      2. Tablet, eliminare gli amministratori:
+     2. Tablet, eliminare gli amministratori:
             - `Andare su Sicurezza => Amministratori dispositivo`, e togliere la spunta atutte le APP
 
-      3. PC: Preparare il computer:
+     3. PC: Preparare il computer:
          - Scaricare e installare _Android SDK Platform-Tools_ (che contengono adb). [Download diretto da Google per Windows/Mac/Linux](https://developer.android.com/tools/releases/platform-tools?hl=it) 
          - Collegare il tablet al PC via USB. Quando apparirà una richiesta di autorizzazione sul tablet, concedere i permessi.
-       4. PC: comandi di disinstallazione
+    
+     4. PC: comandi di disinstallazione
 Eseguire i comandi di disinstallazione:
         - Aprire un terminale (Prompt dei comandi, PowerShell o Terminale) nella cartella dove hai installato adb. (Se si è installato l'intero _Android Studio_ si trovano invece in `C:\Users\(utente)\AppData\Local\Android\Sdk\platform-tools\adb.exe` )
        - Eseguire questi comandi uno dopo l'altro:
 
-`./adb.exe shell pm uninstall --user 0 com.google.android.gms
-./adb.exe shell pm uninstall --user 0 com.google.android.gsf
-./adb.exe shell pm uninstall --user 0 com.android.vending`
+```
+            ./adb.exe shell pm uninstall --user 0 com.google.android.gms
+            ./adb.exe shell pm uninstall --user 0 com.google.android.gsf
+            ./adb.exe shell pm uninstall --user 0 com.android.vending
+```
 
  Questi comandi rimuovono i pacchetti per l'utente corrente (0) senza eliminarli definitivamente dal sistema. Lo "disinstalla" efficacemente.
  
@@ -140,6 +143,7 @@ Eseguire i comandi di disinstallazione:
      - `com.android.vending`: Google Play Store (se presente).
 
 Nota: Questa operazione è reversibile solo tramite un reset completo di fabbrica del tablet.
+
 3. installare SmartLife
    1. Scaricare ed installare **APKpure APP** dalla  sua pagina WEB ( https://apkpure.com/ ).
    2. Cercare e scaricare **Smart Life** (o **Tuya Smart**, o anche **Moes APP** - che presenta il grande vantaggio di icone custom) ma ATTENZIONE deve essere la stessa APP usata dal Proprietario, altrimenti non potete aggiungere un nuovo utente!
