@@ -197,7 +197,7 @@ La configurazione finale con le sole tre app **Smart Life, MacroDroid (per l'avv
 VOTO  8
 
 ### E. SmartLife - extras opzionali ###
-_Sono funzionalità accessorie opzionali, per migliorare il funzionamento del tablet + Smartlife, indipendenti dalla modalità di installazione (Google play o APKpure) e poco invasive._ 
+_Sono funzionalità accessorie opzionali, per migliorare il funzionamento del tablet + Smartlife, indipendenti dalla modalità di installazione (standard o extreme) e poco invasive._ 
 
 #### **Autostart di Smartlife all'avvio**
 _E' comodo, per un control panel, che all'accensione parta automaticamente la home page di SmartLife, senza che l'utente debba cercare e cliccare l'icona dell'APP._ Tempo di avvio totale (dipende anche dal numero di device) circa 80 secondi (extreme).
