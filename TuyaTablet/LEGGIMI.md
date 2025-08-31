@@ -114,18 +114,18 @@ I passi da effettuare sono indicati un po' sommariamente: fatevi aiutare da un'A
 1. Pulizia iniziale del sistema (eliminare tutto ciò che NON serve):
    - Tablet: Andare in Impostazioni > App > Tutte le app.
    - Per ogni APP, cliccare su Disabilita o Disinstalla. Questo impedirà loro di eseguire qualsiasi operazione.
- 2. Eliminazione di Google play (tramite ADB, richiede un PC WIND, complesso ma indispensabile).
-     1.Tablet: Abilitare il debug USB:
+2. Eliminazione di Google play (tramite ADB, richiede un PC WIND, complesso ma indispensabile).
+   1.Tablet: Abilitare il debug USB:
         - Andare in `Impostazioni > Informazioni sul tablet > Build number` e toccare per 7 volte per sbloccare le Opzioni sviluppatore.
          - Indietro, scegliere `Opzioni sviluppatore` ed abilitare _Debug USB_.
-     2. Tablet, eliminare gli amministratori:
+   2. Tablet, eliminare gli amministratori:
             - `Andare su Sicurezza => Amministratori dispositivo`, e togliere la spunta atutte le APP
 
-     3. PC: Preparare il computer:
+   3. PC: Preparare il computer:
          - Scaricare e installare _Android SDK Platform-Tools_ (che contengono adb). [Download diretto da Google per Windows/Mac/Linux](https://developer.android.com/tools/releases/platform-tools?hl=it) 
          - Collegare il tablet al PC via USB. Quando apparirà una richiesta di autorizzazione sul tablet, concedere i permessi.
     
-     4. PC: comandi di disinstallazione
+   4. PC: comandi di disinstallazione
 Eseguire i comandi di disinstallazione:
         - Aprire un terminale (Prompt dei comandi, PowerShell o Terminale) nella cartella dove hai installato adb. (Se si è installato l'intero _Android Studio_ si trovano invece in `C:\Users\(utente)\AppData\Local\Android\Sdk\platform-tools\adb.exe` )
        - Eseguire questi comandi uno dopo l'altro:
