@@ -56,11 +56,12 @@ L'occasione per iniziare questo progetto è venuta trovando su AliExpress l'inte
 
 1. La strategia per questo progetto è volutamente 'minimalista': ho scelto il modello più economico (12G/256G), non uso SIM nè TF, etc...
 2. Il tablet consegnato (rapidamente, da un deposito europeo) rispetta le specifiche. Una piacevole sorpresa.
-3. Nonostante il 'core 10' il tablet risulta MOLTO lento, al limite dell'usabilità in un impiego standard. Appaiono spesso i pop-up ANR: "L'applicazione xxxx non risponde" (scegliere 'attendi').
+3. Nonostante il 'core 10' il tablet risulta MOLTO lento, al limite dell'usabilità in un impiego standard. Appaiono spesso i pop-up ANR: "L'applicazione xxxx non risponde" (scegliere sempre 'attendi').
 Per gli obiettivi del progetto ho deciso di proseguire comunque e di valutare i risultati alla fine.<br>
-AVVISO:  per questo motivo, in alcune fasi dell'installazione, occorre molta, ma MOLTA pazienza!
+AVVISO:  per questo motivo, in alcune fasi dell'installazione, occorre molta, ma MOLTA pazienza! Non accavallate i comandi ma attendete il completamento di un comando prima di darne un altro.
 4. Anche se i 12000 mA di batteria permettono solo 2 ore di uso continuato a schermo illuminato, questo non è un problema: a regime i 'control panel' hanno l'alimentazione fissa.
 5. Un particolare non presente nel manuale: il bordo superiore è removibile, offrendo accesso alle due SIM e TF (non usate in questo progetto)."Removing the top cover in one of the corners, there is a small notch to pull it with your fingernail so the cover comes off and there are the 3 slots for the cards."
+6. Espongo l'esperienza e le prove fatte con questo tablet ed Android 13. Come principio sono generalizzabili e replicabili su ogni tablet o smartphone, ma potreste riscontrare differenze anche significative, dovute a diverso HW e SW.
 
 ### A. Installazione iniziale ###
 _Se il tablet o lo smartphone che volete usare non è nuovo, potete riportarlo alle condizioni di fabbrica con `Impostazioni > Backup e ripristino > Ripristino dati di fabbrica`: tornerà come nuovo!_
@@ -76,11 +77,11 @@ _La soluzione più semplice consiste nell'usare SmartLife sul Tablet, associando
 Dico **Smart Life** perchè è su questa APP che ho fatto le prove, ma potrebbe essere anche **Tuya Smart**, o anche **Moes APP** - che presenta il grande vantaggio di icone custom - ma in ogni caso deve essere la stessa APP usata dal Proprietario, altrimenti non potete aggiungere un nuovo utente!
 
 Nella versione attuale di SmarLife (6.9.0) è molto migliorata la possibilità di configurazione della 'home page' di ciascuna `CASA`(home).
- 1. L'opzione menu `'Me' => Configurazione => Impostazioni Smart control` abilita le customizzazioni.
- 2. L'opzione menu `'Me' => Configurazione => modalità Tablet`, permette di passare da un layout verticale (standard) a uno orizzontale. <br> Nota: un layout ottimizzato in un modo NON funziona automaticamente nell'altro, occorre riorganizzarlo!
- 3. Nella home page è ora presente un nuovo menu (3 punti in un cerchio) con 3 opzioni: `Tutti i dispositivi`, `Elenco stanze` e `Gestisci la 'Home page'`, opzione che abilita le modifiche.
-4. In modalità 'gestione' è possibile spostare i widget trascinandoli sullo schermo
-5. Con il bottone `'aggiungi scheda'` (widget) si possono aggiungere/eliminare 3 tipi di widget:
+ 1. L'opzione menu `'Me' => Configurazione => Impostazioni Smart control` _abilita le customizzazioni_.
+ 2. L'opzione menu `'Me' => Configurazione => modalità Tablet`, permette di passare da un _layout verticale (standard) a uno orizzontale_. <br> Nota: un layout ottimizzato in un modo NON funziona automaticamente nell'altro, occorre riorganizzarlo!
+ 3. Nella home page è ora presente un nuovo menu (3 punti in un cerchio) con 3 opzioni: `Tutti i dispositivi`, `Elenco stanze` e `Gestisci la 'Home page'`, opzione che _abilita le modifiche_.
+4. In modalità 'gestione' è possibile _spostare i widget trascinandoli_ sullo schermo
+5. Con il bottone `'aggiungi scheda'` (widget) si possono _aggiungere/eliminare dalla home page 3 tipi di widget_:
   - **Domotica**, i.e.  widget (12) gestionali e miniAPP, più tutte le stanze
   - **Dispositivi**: tutti i device con widget tipizzati che mostrano stato e principali comandi
   - **Esegui con un clic** (tap-to-run): per scegliere i comandi desiderati nella home page.
@@ -90,7 +91,7 @@ E' quindi presente una completa flessibilità funzionale per la home page, equip
   - non è possibile cambiare il numero di colonne dell'impaginazione nè le icone o le dimensioni dei widget
   - Perfino il colore dei bottoni dei tap-to-run è definito una tantum tramite l'APP del proprietario!
     
-<img width="3000" height="663" alt="3viste" src="https://github.com/user-attachments/assets/fbeaed08-a77e-429a-b1e4-ddb45550b192" />
+<img width="3000" height="663" alt="3viste" src="https://github.com/user-attachments/assets/fbeaed08-a77e-429a-b1e4-ddb45550b192" /> <br> Esempio di customizzazione
 
 Nonostante la persistenza di questi limiti, il modo 'tablet' + 'smart control' di SmartLife è una soluzione semplice, funzionalmente completa, che vale la pena almeno di provare.
 E devo dire che usare SmrtLife con uno schermo da 10" è veramente molto gradevole, con finalmente una tastiera su schermo di adeguate dimensioni!
@@ -102,7 +103,7 @@ _Questa procedura è la soluzione più semplice e consigliata per la maggior par
 I passaggi seguenti guidano attraverso una configurazione corretta per evitare i fastidiosi messaggi "L'applicazione xxx non risponde".
 
 #### **Fase 1: Configurazione Iniziale**
-L'obiettivo è configurare un account Google per placare i servizi di sistema.
+L'obiettivo è configurare un account Google come richiesto dai servizi di sistema.
 
 1.  **Configurazione Guidata (Setup Wizard) - Il Passaggio Fondamentale:**
     *   Seguire la procedura guidata di Android per impostare la lingua, la rete Wi-Fi, ecc.
@@ -120,14 +121,7 @@ L'obiettivo è configurare un account Google per placare i servizi di sistema.
     *   Inserire l'indirizzo email dell'account Google dedicato creato durante il setup ("tablet.casa@gmail.com"). Il tablet, una volta accettato l'invito, visualizzerà i device.
     *   Ripetere l'operazione per ogni casa da condividere.
 
-3.  **Configurare MacroDroid per l'Avvio Automatico:**
-    *   Aprire MacroDroid.
-    *   Creare una nuova macro:
-        *   **Trigger:** `Avvio dispositivo` (Device Boot).
-        *   **Azione:** `Avvia applicazione` (Launch Application) > Selezionare **Smart Life**.
-    *   Concedere all'app i permessi richiesti.
-
-4.  **Disabilitare l'Ottimizzazione della Batteria per Smart Life:**
+3.  **Disabilitare l'Ottimizzazione della Batteria per Smart Life:**
     *   Sul tablet, andare in `Impostazioni > Batteria > Risparmio batteria` (o simili).
     *   Trovare l'opzione per gestire l'ottimizzazione (spesso tramite il menu dei tre punti o "Opzioni avanzate").
     *   Selezionare `Tutte le app`, cercare **Smart Life** e impostare l'opzione su **Non ottimizzare**. Questo garantisce che l'app rimanga sempre in esecuzione in background.
@@ -200,8 +194,35 @@ Questo passaggio, sebbene complesso, è cruciale per eliminare conflitti e messa
 
 #### **Prestazioni Finali**
 La configurazione finale con le sole tre app **Smart Life, MacroDroid (per l'avvio automatico) e un monitor di sistema (Simple System Monitor)** garantisce un utilizzo della CPU quasi sempre **inferiore al 30%**, valore eccellente per un funzionamento fluido e senza lag. Il tablet si trasformerà in un pannello di controllo reattivo e affidabile.
+VOTO  8
 
+### E. SmartLife - extras opzionali ###
+_Sono funzionalità accessorie opzionali, per migliorare il funzionamento del tablet + Smartlife, indipendenti dalla modalità di installazione (Google play o APKpure) e poco invasive._ 
 
+#### **Autostart di Smartlife all'avvio**
+_E' comodo, per un control panel, che all'accensione parta automaticamente la home page di SmartLife, senza che l'utente debba cercare e cliccare l'icona dell'APP._ Tempo di avvio totale (dipende anche dal numero di device) circa 80 secondi (extreme).
 
+Viene utilizzato MacroDroid, un semplice flessibile `tasker` dalle molte applicazioni potenziali, con una logica trigger => azione simile alle scene di Tuya.
+    *   Installare MacroDroid (da _Google play_ oppure da _APKpure_).
+    *   Aprire MacroDroid.
+    *   Creare una nuova macro (+):
+        *   **Trigger:** `Avvio dispositivo` (Device Boot).
+        *   **Azione:** `Avvia attività app` (Launch Application) > Selezionare **Smart Life**.
+        *   **Opzione** 'ThingSplashActivity'
+    *   Concedere all'app i permessi richiesti.
+
+nota: Il salvataggio di una macro avviene all'uscita della pagina di editing (freccia a sx).
+nota: Altri usi di MacroDroid legati a Tuya:
+   *  Log su file delle notifiche: vedi post https://www.facebook.com/groups/tuyaitalia/permalink/1613512135949800/
+   *  SMS attivati da noifiche Tuya: vedi post https://www.facebook.com/groups/tuyaitalia/posts/1393621837938832/?comment_id=1393920424575640
+
+#### **Debug: monitor_1 in overlay**
+_Una piccolissima scritta sullo schermo fornisce tre numeri: carico CPU nell'ultimo minuto, utimi 5 minuti,  ultimi 10 minuti, poco invasivo e utile in caso di problemi di prestazioni._
+   *   Abilitare le **Opzioni Sviluppatore**: Andare in `Impostazioni > Informazioni sul tablet > Numero build` e toccare 7 volte.
+   *   In   `Impostazioni > Opzioni Sviluppatore` abilitare 'Mostra utilizzo CPU'
+
+#### **Debug: monitor_2 grafici full screen e in overlay**
+_Una APP abbastanza leggera, fornisce molti grafici interessanti, a full screen ma anche in overlay._
+  *   Installare Simple System Monitor (da _Google play_ oppure da _APKpure_).
 
 ###IoTwebUI###
