@@ -230,8 +230,8 @@ _Sono disponibili varie impostazoni per la gestione dello schermo_
 
 #### **Debug: monitor_1 in overlay**
 _Una piccolissima scritta sullo schermo fornisce informazioni sulla CPU, in modo poco invasivo e utile in caso di problemi di prestazioni:
-     *   _Tre numeri: Sono le medie di carico (load average) per gli ultimi 1, 5 e 15 minuti. L'unità di misura è un numero adimensionale che rappresenta il numero di processi attivi (in esecuzione o in attesa) in media in quel periodo. Non è una percentuale._
-     *   _Una barra colorata: Rappresenta l'utilizzo istantaneo della CPU in quel preciso momento. La lunghezza totale indica la percentuale totale di utilizzo, mentre i colori rosso e verde distinguono tra il tempo dedicato ai processi del kernel (rosso) e ai processi user (verde)._
+*   _Tre numeri: Sono le medie di carico (load average) per gli ultimi 1, 5 e 15 minuti. L'unità di misura è un numero adimensionale che rappresenta il numero di processi attivi (in esecuzione o in attesa) in media in quel periodo. Non è una percentuale._
+*   _Una barra colorata: Rappresenta l'utilizzo istantaneo della CPU in quel preciso momento. La lunghezza totale indica la percentuale totale di utilizzo, mentre i colori rosso e verde distinguono tra il tempo dedicato ai processi del kernel (rosso) e ai processi user (verde)._
   
 *   Abilitare le **Opzioni Sviluppatore**: Andare in `Impostazioni > Informazioni sul tablet > Numero build` e toccare 7 volte.
 *   In   `Impostazioni > Opzioni Sviluppatore` abilitare 'Mostra utilizzo CPU'
