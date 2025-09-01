@@ -71,6 +71,7 @@ Le operazioni preliminari da effettuare sono:
 - impostare linguaggio 'italiano'
 - impostare fuso orario 
 - impostare accesso WiFi
+- disabilitare il blocco schermo (`Impostazioni > Blocco schermo`)
 
 ### B. SmartLife ###
 
@@ -108,10 +109,11 @@ I passaggi seguenti guidano attraverso una configurazione corretta per evitare i
 #### **Fase 1: Configurazione Iniziale**
 L'obiettivo è configurare un account Google come richiesto dai servizi di sistema.
 
-1.  **Configurazione Guidata (Setup Wizard) - Il Passaggio Fondamentale:**
-    *   Seguire la procedura guidata di Android per impostare la lingua, la rete Wi-Fi, ecc.
+1.  **Configurazione Guidata (Setup Wizard) Fondamentale:**
+    *   Seguire la procedura guidata di Android (se esiste) per impostare la lingua, la rete Wi-Fi, ecc.
     *   **Fondamentale:** Quando richiesto, **accedere con un account Google esistente o crearne uno nuovo**. Questo step è cruciale per fornire un'identità ai servizi Google e prevenire gli stati di errore che causano gli crash.
     *   *Consiglio: Creare un account Google dedicato (ad es., tablet.casa@gmail.com) per questo scopo specifico. Registrare le credenziali in un posto sicuro.*
+    *  Alternativa: al primo uso di _Google play_
 
 #### **Fase 2: Installazione delle App e Ottimizzazione**
 1.  **Installare le App dal Play Store:**
@@ -217,14 +219,26 @@ nota: Altri usi di MacroDroid legati a Tuya:
    *  Log su file delle notifiche: vedi post https://www.facebook.com/groups/tuyaitalia/permalink/1613512135949800/
    *  SMS attivati da noifiche Tuya: vedi post https://www.facebook.com/groups/tuyaitalia/posts/1393621837938832/?comment_id=1393920424575640
 
+#### **Gestione schermo**
+_Sono disponibili varie impostazoni per la gestione dello schermo_
+*   Default: la schermo si spegne dopo un periodo di inattività da 15s fino a 30 minuti: vedi `Impostazioni > Display > Sospensione`
+*   Lo schermo si riaccende con una breve pressione sul bottone di start.
+*   Con alimentazione USB lo schermo può restare sempre acceso: vedi `Impostazioni > Opzioni sviluppatore > Rimani attivo`
+*   La luminosità dello schermo può essere regolata
+    *   In modo fisso:  `Impostazioni > Display > Livello di luminosità`
+    *   In modo adattativo automatico, in funzione della luminosità ambientale:  `Impostazioni > Display > Luminosità`adattativa`
+
 #### **Debug: monitor_1 in overlay**
-_Una piccolissima scritta sullo schermo fornisce tre numeri: carico CPU nell'ultimo minuto, utimi 5 minuti,  ultimi 10 minuti, poco invasivo e utile in caso di problemi di prestazioni._
-  *   Abilitare le **Opzioni Sviluppatore**: Andare in `Impostazioni > Informazioni sul tablet > Numero build` e toccare 7 volte.
-  *   In   `Impostazioni > Opzioni Sviluppatore` abilitare 'Mostra utilizzo CPU'
+_Una piccolissima scritta sullo schermo fornisce informazioni sulla CPU, in modo poco invasivo e utile in caso di problemi di prestazioni:
+     *   _Tre numeri: Sono le medie di carico (load average) per gli ultimi 1, 5 e 15 minuti. L'unità di misura è un numero adimensionale che rappresenta il numero di processi attivi (in esecuzione o in attesa) in media in quel periodo. Non è una percentuale._
+     *   _Una barra colorata: Rappresenta l'utilizzo istantaneo della CPU in quel preciso momento. La lunghezza totale indica la percentuale totale di utilizzo, mentre i colori rosso e verde distinguono tra il tempo dedicato ai processi del kernel (rosso) e ai processi user (verde)._
+  
+*   Abilitare le **Opzioni Sviluppatore**: Andare in `Impostazioni > Informazioni sul tablet > Numero build` e toccare 7 volte.
+*   In   `Impostazioni > Opzioni Sviluppatore` abilitare 'Mostra utilizzo CPU'
+
 
 #### **Debug: monitor_2 grafici full screen e in overlay**
 _Una APP abbastanza leggera, fornisce molti grafici interessanti, a full screen ma anche in overlay._
-  *   Installare Simple System Monitor (da _Google play_ oppure da _APKpure_).
-
+  *   Installare "Simple System Monitor" (da _Google play_ oppure da _APKpure_).
 
 ###IoTwebUI###
