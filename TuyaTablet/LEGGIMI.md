@@ -58,7 +58,7 @@ L'occasione per iniziare questo progetto è venuta trovando su AliExpress l'inte
 1. La strategia per questo progetto è volutamente 'minimalista': ho scelto il modello più economico (12G/256G), non uso SIM nè TF, etc...
 2. Il tablet consegnato (rapidamente, da un deposito europeo) rispetta le specifiche. Una piacevole sorpresa.
 3. Nonostante il 'core 10' il tablet risulta MOLTO lento, al limite dell'usabilità in un impiego standard. Appaiono spesso i pop-up ANR: "L'applicazione xxxx non risponde" (scegliere sempre 'attendi'). 
-Per gli obiettivi del progetto ho deciso di proseguire comunque e di valutare i risultati alla fine.<br>
+Per gli obiettivi specializzati del progetto ho deciso di proseguire comunque e di valutare i risultati alla fine.<br>
 AVVISO:  per questo motivo, in alcune fasi dell'installazione, occorre molta, ma MOLTA pazienza! Non accavallate i comandi ma attendete il completamento di un comando prima di darne un altro.
 4. Anche se i 12000 mA di batteria permettono solo 2 ore di uso continuato a schermo illuminato, questo non è un problema: a regime i 'control panel' hanno l'alimentazione fissa.
 5. Un particolare non presente nel manuale: il bordo superiore è removibile, offrendo accesso alle due SIM e TF (non usate in questo progetto)."Removing the top cover in one of the corners, there is a small notch to pull it with your fingernail so the cover comes off and there are the 3 slots for the cards."
@@ -89,17 +89,17 @@ _nota: l'assenza di un account Google provoca così tanti messaggi ANR ("L'appli
 _La soluzione più semplice consiste nell'usare SmartLife sul Tablet, associandolo all'istanza principale come 'membro comune' della famiglia._<br> 
 Dico **Smart Life** perchè è su questa APP che ho fatto le prove, ma potrebbe essere anche **Tuya Smart**, o anche **Moes APP** - che presenta il grande vantaggio di icone custom - _ma in ogni caso deve essere la stessa APP usata dal Proprietario, altrimenti non potete aggiungere un nuovo utente_!
 
-Nella versione attuale di SmarLife (6.9.0) è molto migliorata la possibilità di configurazione della 'home page' di ciascuna `CASA`.
- 1. L'opzione menu `'Me' => Configurazione => Impostazioni Smart control` _abilita le customizzazioni_.
+_Nella versione attuale di SmarLife (6.9.0) è molto migliorata la possibilità di configurazione della 'home page' di ciascuna `CASA`._
+ 1. L'opzione menu `'Me' => Configurazione => Impostazioni Smart control` scelta che _abilita le customizzazioni_.
  2. L'opzione menu `'Me' => Configurazione => modalità Tablet`, permette di passare da un _layout verticale (standard) a uno orizzontale_. <br> Nota: un layout ottimizzato in un modo NON funziona automaticamente nell'altro, occorre riorganizzarlo!
  3. Nella home page è ora presente un nuovo menu (3 punti in un cerchio) con 3 opzioni: `Tutti i dispositivi`, `Elenco stanze` e `Gestisci la 'Home page'`: questa opzione _abilita le modifiche_.
  4. In modalità 'gestione' è possibile _spostare i widget trascinandoli_ sullo schermo
  5. Con il bottone `'aggiungi scheda'` (i.e. widget) si possono _aggiungere/eliminare dalla home page 3 tipi di widget_:
    - **Domotica**, i.e.  widget (12) gestionali e miniAPP, più tutte le stanze
-   - **Dispositivi**: tutti i device con widget tipizzati che mostrano lo stato e i principali comandi
+   - **Dispositivi**: tutti i device con widget tipizzati standard Tuya, che mostrano lo stato e i principali comandi
    - **Esegui con un clic** (tap-to-run): per scegliere i comandi desiderati nella home page.
 
-E' quindi presente una completa flessibilità funzionale per la home page, equiparabile a quella degli 'smart panels', anzi, migliore, perchè garantisce l'accessibilità a TUTTI i device Tuya posseduti.<br>
+_E' quindi presente una completa **flessibilità funzionale** per la home page, equiparabile a quella degli 'smart panels', anzi, migliore, perchè garantisce l'accessibilità a TUTTI i device Tuya posseduti._<br>
 Purtroppo sono ancora presenti alcuni limiti di carattere estetico:
   - non è possibile organizzare la home page in più pagine collegate
   - non è possibile cambiare il numero di colonne dell'impaginazione nè le icone o le dimensioni dei widget
@@ -135,12 +135,12 @@ I passaggi seguenti guidano attraverso una configurazione corretta per evitare m
     *   Selezionare `Tutte le app`, cercare **Smart Life** e impostare l'opzione su **Non ottimizzare**. Questo garantisce che l'app rimanga sempre in esecuzione in background.
     *   Passando ad altra APP deve apparire un piccolo popup: "SmartLife in esecuzione in background".
 
-#### **Prestazioni**
+#### **note**
 
 *   **Vantaggio:** Procedura standard semplice, adatta a tutti. Massima compatibilità.
 *   **Svantaggio:** I servizi Google funzioneranno in background, consumando una certa quantità di risorse (RAM, CPU, batteria) per sincronizzazioni e aggiornamenti.
 
-Questa soluzione rappresenta il miglior compromesso tra semplicità di setup e stabilità di funzionamento per la maggior parte degli utenti.
+_Questa soluzione rappresenta il miglior compromesso tra semplicità di setup e stabilità di funzionamento per la maggior parte degli utenti._
 
 #### **Prestazioni Finali**
 La configurazione standard con **Smart Life, MacroDroid e i servizi Google attivi** risulta stabile e con pochi messaggi di errore "ANR". Le prestazioni sono accettabili per l'uso come pannello di controllo, con un utilizzo della CPU medio.
