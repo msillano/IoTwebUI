@@ -14,12 +14,12 @@ _In generale, analizzando questo tipo di prodotti troviamo:_
 **look and feel**
 
   - Un dashboard che presenta una scelta di widget graficamente molto curati ed omogenei 
- - Troviamo widget specializzati solo per i gadget e per alcuni device (in genere pochi) 
- - Oppure widget universali per 'tap-to-run'
+  - Troviamo widget specializzati solo per i gadget e per alcuni tipi di device (in genere pochi) 
+  - Oppure widget universali per 'tap-to-run'
   - La scelta dei widget visualizzati e la disposizione nel dashboard sono sotto controllo utente.
   - Nessuna possibilità di personalizzare/creare nuovi widget custom, e.g. per particolari device.
 
-  Risulta evidente la limitatezza delle funzioni offerte da device di questo tipo, che ha portato più di un utente a cercare soluzioni diverse (e più economiche) utilizzando tablet.
+  Risulta evidente la limitatezza delle funzioni offerte da device di questo tipo, soprattutto per la mancanza di garanzia di compatibilità con tutti i device Tuya,  che ha portato più di un utente a cercare soluzioni diverse (e più economiche) utilizzando tablet.
 
 _Questo progetto vuole analizzare le opzioni a disposizione di un utente per utilizzare un **tablet** come **smart panel control Tuya**, fornendo una guida passo passo._
 
@@ -86,7 +86,7 @@ _nota: l'assenza di un account Google provoca così tanti messaggi ANR ("L'appli
 
 ### SmartLife ###
 
-_La soluzione più semplice consiste nell'usare SmartLife sul Tablet, associandolo alla istanza principale come 'membro comune' della famiglia._<br> 
+_La soluzione più semplice consiste nell'usare SmartLife sul Tablet, associandolo all'istanza principale come 'membro comune' della famiglia._<br> 
 Dico **Smart Life** perchè è su questa APP che ho fatto le prove, ma potrebbe essere anche **Tuya Smart**, o anche **Moes APP** - che presenta il grande vantaggio di icone custom - _ma in ogni caso deve essere la stessa APP usata dal Proprietario, altrimenti non potete aggiungere un nuovo utente_!
 
 Nella versione attuale di SmarLife (6.9.0) è molto migliorata la possibilità di configurazione della 'home page' di ciascuna `CASA`.
