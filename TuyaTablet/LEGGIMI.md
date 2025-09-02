@@ -57,23 +57,33 @@ L'occasione per iniziare questo progetto è venuta trovando su AliExpress l'inte
 
 1. La strategia per questo progetto è volutamente 'minimalista': ho scelto il modello più economico (12G/256G), non uso SIM nè TF, etc...
 2. Il tablet consegnato (rapidamente, da un deposito europeo) rispetta le specifiche. Una piacevole sorpresa.
-3. Nonostante il 'core 10' il tablet risulta MOLTO lento, al limite dell'usabilità in un impiego standard. Appaiono spesso i pop-up ANR: "L'applicazione xxxx non risponde" (scegliere sempre 'attendi').
+3. Nonostante il 'core 10' il tablet risulta MOLTO lento, al limite dell'usabilità in un impiego standard. Appaiono spesso i pop-up ANR: "L'applicazione xxxx non risponde" (scegliere sempre 'attendi'). 
 Per gli obiettivi del progetto ho deciso di proseguire comunque e di valutare i risultati alla fine.<br>
 AVVISO:  per questo motivo, in alcune fasi dell'installazione, occorre molta, ma MOLTA pazienza! Non accavallate i comandi ma attendete il completamento di un comando prima di darne un altro.
 4. Anche se i 12000 mA di batteria permettono solo 2 ore di uso continuato a schermo illuminato, questo non è un problema: a regime i 'control panel' hanno l'alimentazione fissa.
 5. Un particolare non presente nel manuale: il bordo superiore è removibile, offrendo accesso alle due SIM e TF (non usate in questo progetto)."Removing the top cover in one of the corners, there is a small notch to pull it with your fingernail so the cover comes off and there are the 3 slots for the cards."
 6. Espongo l'esperienza e le prove fatte con questo tablet ed Android 13. Come principio sono generalizzabili e replicabili su ogni tablet o smartphone, ma potreste riscontrare differenze anche significative, dovute a diverso HW e SW.
 
-### A. Installazione iniziale ###
+
+### Fase 0. Installazione iniziale ###
 _Se il tablet o lo smartphone che volete usare non è nuovo, potete riportarlo alle condizioni di fabbrica con `Impostazioni > Backup e ripristino > Ripristino dati di fabbrica`: tornerà come nuovo!_
 
-Le operazioni preliminari da effettuare sono:
-- impostare linguaggio 'italiano'
-- impostare fuso orario 
+ *   Seguire la procedura guidata di Android (se esiste) per impostare la lingua, la rete Wi-Fi, ecc.
+   
+Altrimenti le operazioni preliminari da effettuare sono:
+- impostare linguaggio 'italiano' (`Settings > Languages & input`)
+- impostare fuso orario (`Impostazioni > Data e ora > Seleziona fuso orario`) Se manca Roma,scegliere Bruxselles.
 - impostare accesso WiFi
 - disabilitare il blocco schermo (`Impostazioni > Blocco schermo`)
 
-### B. SmartLife ###
+**IMPORTANTE**: Solo per l'installazione standard:
+- aggiungere un account Google - possibilmente esistente, più semplice! (`Impostazioni > Account > nuovo`)
+- disabilitare tutte le sicronizzazioni  (`Impostazioni > Google > Personalizza l'utilizzo dati condivisi`)
+- Nell'installazione 'extreme' i programmi dei servizi di Google vengono disabilitati!
+nota: l'assenza di un account Google provoca così tanti messaggi ANR ("L'applicazione Google non risponde")  da rendere inusabile il Tablet. 
+
+
+### SmartLife ###
 
 _La soluzione più semplice consiste nell'usare SmartLife sul Tablet, associandolo alla istanza principale come 'membro comune' della famiglia._<br> 
 Dico **Smart Life** perchè è su questa APP che ho fatto le prove, ma potrebbe essere anche **Tuya Smart**, o anche **Moes APP** - che presenta il grande vantaggio di icone custom - ma in ogni caso deve essere la stessa APP usata dal Proprietario, altrimenti non potete aggiungere un nuovo utente!
@@ -100,29 +110,22 @@ Purtroppo sono ancora presenti alcuni limiti di carattere estetico:
 Nonostante la persistenza di questi limiti, il modo 'tablet' + 'smart control' di SmartLife è una soluzione semplice, funzionalmente completa, che vale la pena almeno di provare.
 E devo dire che usare SmrtLife con uno schermo da 10" è veramente molto gradevole, con finalmente una tastiera su schermo di adeguate dimensioni!
 
-### C. SmartLife - installazione standard ###
+### Progetto A: SmartLife - installazione standard ###
 
 _Questa procedura è la soluzione più semplice e consigliata per la maggior parte degli utenti. Configurando correttamente i servizi Google si evita la causa principale degli errori e si ottiene un sistema stabile, anche a fronte di un carico aggiuntivo di background._
 
 I passaggi seguenti guidano attraverso una configurazione corretta per evitare i fastidiosi messaggi "L'applicazione xxx non risponde".
 
-#### **Fase 1: Configurazione Iniziale**
-L'obiettivo è configurare un account Google come richiesto dai servizi di sistema.
-
-1.  **Configurazione Guidata (Setup Wizard) Fondamentale:**
-    *   Seguire la procedura guidata di Android (se esiste) per impostare la lingua, la rete Wi-Fi, ecc.
-    *   **Fondamentale:** Quando richiesto, **accedere con un account Google esistente o crearne uno nuovo**. Questo step è cruciale per fornire un'identità ai servizi Google e prevenire gli stati di errore che causano gli crash.
-    *   *Consiglio: Creare un account Google dedicato (ad es., tablet.casa@gmail.com) per questo scopo specifico. Registrare le credenziali in un posto sicuro.*
-    *  Alternativa: al primo uso di _Google play_
-
-#### **Fase 2: Installazione delle App e Ottimizzazione**
+#### **Fase 1: Installazione delle App e Ottimizzazione**
 1.  **Installare le App dal Play Store:**
     *   Aprire l'app **Google Play Store**.
     *   Cercare e installare **Smart Life**. **Importante:** Deve essere la stessa versione dell'app utilizzata dal proprietario della casa.
+    *  Alla prima esecuzione, creare un nuovo account Tuya, con un nome utente (e.g. 'tablet') e un'email  ad hoc già creata (e.g. Libero o Gmail: "tablet.home@xxx").
    
 2.  **Condividere l'Accesso alla Casa:**
     *   Sull'APP Smart Life del **proprietario**, andare in `Me > Gestione casa`, selezionare una casa e poi `Aggiungi membri > Condividi Account dell'app`.
-    *   Inserire l'indirizzo email dell'account Google dedicato creato durante il setup ("tablet.casa@gmail.com"). Il tablet, una volta accettato l'invito, visualizzerà i device.
+    *   Inserire l'indirizzo email dell'account Google dedicato creato durante il setup ("tablet.casa@gmail.com"). 
+    *   Sul tablet, cliccando sull'icona HOME, trovare la casa condivisa. Dopo aver accettato l'invito, saranno visualizzati device.
     *   Ripetere l'operazione per ogni casa da condividere.
 
 3.  **Disabilitare l'Ottimizzazione della Batteria per Smart Life:**
@@ -138,7 +141,14 @@ La configurazione standard con **Smart Life, MacroDroid e i servizi Google attiv
 
 Questa soluzione rappresenta il miglior compromesso tra semplicità di setup e stabilità di funzionamento per la maggior parte degli utenti.
 
-### D. SmartLife - extreme installation ###
+#### **Prestazioni Finali**
+La configurazione standard con **Smart Life, MacroDroid e i servizi Google attivi** risulta stabile.
+Tempo di avvio (con MacroDroid) 3:27s (_nota: compaiono un paio di avvisi ANR("L'applicazione SmartLive non risponde"_).
+Utilizzo della CPU quasi sempre **inferiore al 30%**, valore eccellente per un funzionamento fluido e senza lag.
+VOTO  5
+
+
+###  Progetto B: SmartLife - extreme installation ###
 
 _Per ottenere le massime prestazioni da un tablet utilizzato esclusivamente come pannello di controllo, la strategia vincente è eliminare ogni attività in background superflua. Questo include anche l'eliminazione delle attività di monitoraggio particolarmente invasive di Google. Questa guida, destinata a utenti esperti, richiede un po' di impegno ma garantisce un dispositivo reattivo e stabile._
 
@@ -186,7 +196,8 @@ Questo passaggio, sebbene complesso, è cruciale per eliminare conflitti e messa
 2.  **Condividere l'Accesso alla Casa:**
     *   Creare un indirizzo email dedicato (es. su Libero o Gmail) e un nome utente (es. "tablet") per registrarsi a Tuya. *Consiglio: conservare queste credenziali in un posto sicuro.*
     *   Sull'APP Smart Life del **proprietario**, andare in `Me > Gestione casa`, selezionare una casa e poi `Aggiungi membri > Condividi Account dell'app`.
-    *   Inserire l'indirizzo email e il nome utente ("tablet") creati. Il tablet, una volta accettato l'invito, diventerà un membro della famiglia e visualizzerà i device di quella casa, con i limiti dei membri comuni.
+    *   Inserire l'indirizzo email e il nome utente ("tablet") creati. 
+    *  Nel tablet, scegliere la nuova CASA. Occorre accettare l'invito, per diventare un membro della famiglia e visualizzare i device di quella casa, con i limiti dei membri comuni.
     *   Ripetere l'operazione per ogni casa da condividere.
 
 3.  **Disabilitare l'Ottimizzazione della Batteria per Smart Life:**
@@ -195,8 +206,10 @@ Questo passaggio, sebbene complesso, è cruciale per eliminare conflitti e messa
     *   Selezionare `Tutte le app`, cercare **Smart Life** e impostare l'opzione su **Non ottimizzare**. Questo impedisce al sistema di uccidere il processo in background, mantenendo la connessione sempre attiva.
 
 #### **Prestazioni Finali**
-La configurazione finale con le sole tre app **Smart Life, MacroDroid (per l'avvio automatico) e un monitor di sistema (Simple System Monitor)** garantisce un utilizzo della CPU quasi sempre **inferiore al 30%**, valore eccellente per un funzionamento fluido e senza lag. Il tablet si trasformerà in un pannello di controllo reattivo e affidabile.<br>
-VOTO  8
+La configurazione finale con le sole tre app **Smart Life, MacroDroid (per l'avvio automatico) e un monitor di sistema (Simple System Monitor)** risulta stabile.
+Tempo di avvio (con MacroDroid)   1:20s nota. 
+Utilizzo della CPU quasi sempre **inferiore al 30%**, valore eccellente per un funzionamento fluido e senza lag.
+VOTO  7
 
 ### E. SmartLife - extras opzionali ###
 _Sono funzionalità accessorie opzionali, per migliorare il funzionamento del **tablet + Smartlife**, indipendenti dalla modalità di installazione (standard o extreme) e poco invasive._ 
@@ -221,9 +234,11 @@ nota: Altri usi di MacroDroid legati a Tuya:
 
 #### **Gestione schermo**
 _Sono disponibili varie impostazoni per la gestione dello schermo_
-*   Default: la schermo si spegne dopo un periodo di inattività da 15s fino a 30 minuti: vedi `Impostazioni > Display > Sospensione`
+*   Default: la schermo si spegne dopo un periodo di inattività da 15s fino a 30 minuti (std. 1 minuto): vedi `Impostazioni > Display > Sospensione`, essenzialmente per risparmiare la batteria.
 *   Lo schermo si riaccende con una breve pressione sul bottone di start.
-*   Con alimentazione USB lo schermo può restare sempre acceso: vedi `Impostazioni > Opzioni sviluppatore > Rimani attivo`
+*   Con alimentazione USB lo schermo può restare sempre acceso: 
+    *  Abilitare le **Opzioni Sviluppatore**: Andare in `Impostazioni > Informazioni sul tablet > Numero build` e toccare 7 volte.
+    *  vedi `Impostazioni > Opzioni sviluppatore > Rimani attivo`
 *   La luminosità dello schermo può essere regolata
     *   In modo fisso:  `Impostazioni > Display > Livello di luminosità`
     *   In modo adattativo automatico, in funzione della luminosità ambientale:  `Impostazioni > Display > Luminosità`adattativa`
@@ -239,6 +254,7 @@ _Una piccolissima scritta sullo schermo fornisce informazioni sulla CPU, in modo
 
 #### **Debug: monitor_2 grafici full screen e in overlay**
 _Una APP abbastanza leggera, fornisce molti grafici interessanti, a full screen ma anche in overlay._
-  *   Installare "Simple System Monitor" (da _Google play_ oppure da _APKpure_).
+  *   Installare "Simple System Monitor" (da _APKpure_).
 
 ###IoTwebUI###
+work in progress
