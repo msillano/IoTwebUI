@@ -79,8 +79,9 @@ _Se il tablet o lo smartphone che volete usare non è nuovo, oppure avete già f
 **IMPORTANTE**: Solo per l'installazione standard:
 - Aggiungere un account Google - meglio esistente, è più semplice (`Impostazioni > Account > nuovo > Google`)
 - Disabilitare tutte le sicronizzazioni  (`Impostazioni > Google > Personalizza l'utilizzo dati condivisi`)
-- Nell'installazione 'extreme' i programmi dei servizi di Google vengono disabilitati!
-nota: l'assenza di un account Google provoca così tanti messaggi ANR ("L'applicazione Google non risponde")  da rendere inusabile il Tablet. 
+- Nell'installazione 'extreme' i programmi dei servizi di Google vengono disabilitati.
+
+_nota: l'assenza di un account Google provoca così tanti messaggi ANR ("L'applicazione Google non risponde")  da rendere inusabile il Tablet._ 
 
 
 ### SmartLife ###
