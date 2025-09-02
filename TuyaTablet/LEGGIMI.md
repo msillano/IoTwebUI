@@ -62,7 +62,7 @@ Per gli obiettivi del progetto ho deciso di proseguire comunque e di valutare i 
 AVVISO:  per questo motivo, in alcune fasi dell'installazione, occorre molta, ma MOLTA pazienza! Non accavallate i comandi ma attendete il completamento di un comando prima di darne un altro.
 4. Anche se i 12000 mA di batteria permettono solo 2 ore di uso continuato a schermo illuminato, questo non è un problema: a regime i 'control panel' hanno l'alimentazione fissa.
 5. Un particolare non presente nel manuale: il bordo superiore è removibile, offrendo accesso alle due SIM e TF (non usate in questo progetto)."Removing the top cover in one of the corners, there is a small notch to pull it with your fingernail so the cover comes off and there are the 3 slots for the cards."
-6. Espongo l'esperienza e le prove fatte con questo tablet ed Android 13. Come principio sono generalizzabili e replicabili su ogni tablet o smartphone, ma potreste riscontrare differenze anche significative, dovute a diverso HW e SW.
+6. _Espongo l'esperienza e le prove fatte con questo tablet ed Android 13. Come principio sono generalizzabili e replicabili su ogni tablet o smartphone, ma potreste riscontrare differenze anche significative, dovute a diverso HW e SW._
 
 
 ### Fase 0. Installazione iniziale ###
@@ -93,11 +93,11 @@ Nella versione attuale di SmarLife (6.9.0) è molto migliorata la possibilità d
  1. L'opzione menu `'Me' => Configurazione => Impostazioni Smart control` _abilita le customizzazioni_.
  2. L'opzione menu `'Me' => Configurazione => modalità Tablet`, permette di passare da un _layout verticale (standard) a uno orizzontale_. <br> Nota: un layout ottimizzato in un modo NON funziona automaticamente nell'altro, occorre riorganizzarlo!
  3. Nella home page è ora presente un nuovo menu (3 punti in un cerchio) con 3 opzioni: `Tutti i dispositivi`, `Elenco stanze` e `Gestisci la 'Home page'`: questa opzione _abilita le modifiche_.
-4. In modalità 'gestione' è possibile _spostare i widget trascinandoli_ sullo schermo
-5. Con il bottone `'aggiungi scheda'` (i.e. widget) si possono _aggiungere/eliminare dalla home page 3 tipi di widget_:
-  - **Domotica**, i.e.  widget (12) gestionali e miniAPP, più tutte le stanze
-  - **Dispositivi**: tutti i device con widget tipizzati che mostrano lo stato e i principali comandi
-  - **Esegui con un clic** (tap-to-run): per scegliere i comandi desiderati nella home page.
+ 4. In modalità 'gestione' è possibile _spostare i widget trascinandoli_ sullo schermo
+ 5. Con il bottone `'aggiungi scheda'` (i.e. widget) si possono _aggiungere/eliminare dalla home page 3 tipi di widget_:
+   - **Domotica**, i.e.  widget (12) gestionali e miniAPP, più tutte le stanze
+   - **Dispositivi**: tutti i device con widget tipizzati che mostrano lo stato e i principali comandi
+   - **Esegui con un clic** (tap-to-run): per scegliere i comandi desiderati nella home page.
 
 E' quindi presente una completa flessibilità funzionale per la home page, equiparabile a quella degli 'smart panels', anzi, migliore, perchè garantisce l'accessibilità a TUTTI i device Tuya posseduti.<br>
 Purtroppo sono ancora presenti alcuni limiti di carattere estetico:
@@ -143,7 +143,7 @@ I passaggi seguenti guidano attraverso una configurazione corretta per evitare m
 Questa soluzione rappresenta il miglior compromesso tra semplicità di setup e stabilità di funzionamento per la maggior parte degli utenti.
 
 #### **Prestazioni Finali**
-La configurazione standard con **Smart Life, MacroDroid e i servizi Google attivi** risulta stabile e con pochi i messaggi di errore "ANR". Le prestazioni sono accettabili per l'uso come pannello di controllo, con un utilizzo della CPU medio.
+La configurazione standard con **Smart Life, MacroDroid e i servizi Google attivi** risulta stabile e con pochi messaggi di errore "ANR". Le prestazioni sono accettabili per l'uso come pannello di controllo, con un utilizzo della CPU medio.
 *   Tempo di avvio (con MacroDroid) **3:27s**
 *   Tempo di avvio (con MacroDroid) **2:48s** (_disabilitando le altre APP: vedi 'extreme - Fase 1'_)
 *   Utilizzo della CPU mediamente **inferiore al 30%**, valore adeguato per un funzionamento fluido e senza lag.
@@ -209,7 +209,7 @@ Questo passaggio, sebbene complesso, è cruciale per eliminare conflitti e la ma
     *   Selezionare `Tutte le app`, cercare **Smart Life** e impostare l'opzione su **Non ottimizzare**. Questo impedisce al sistema di uccidere il processo in background, mantenendo la connessione sempre attiva.
 
 #### **Prestazioni Finali**
-La configurazione finale con le sole tre app **Smart Life, MacroDroid (per l'avvio automatico) e un monitor di sistema (Simple System Monitor)** risulta stabile e con senza messaggi di errore "ANR". Le prestazioni sono discrete per l'uso come pannello di controllo, con un utilizzo della CPU medio.
+La configurazione finale con le sole tre app **Smart Life, MacroDroid (per l'avvio automatico) e un monitor di sistema (Simple System Monitor)** risulta stabile e senza messaggi di errore "ANR". Le prestazioni sono discrete per l'uso come pannello di controllo, con un utilizzo della CPU medio.
 *    Tempo di avvio (con MacroDroid)   **1:20s**  
 *    Utilizzo della CPU quasi sempre **inferiore al 30%**,  valore adeguato per un funzionamento fluido e senza lag.
 
@@ -237,8 +237,8 @@ nota: Altri usi di MacroDroid legati a Tuya:
    *  SMS attivati da noifiche Tuya: vedi post https://www.facebook.com/groups/tuyaitalia/posts/1393621837938832/?comment_id=1393920424575640
 
 #### **Gestione schermo**
-_Sono disponibili varie impostazoni per la gestione dello schermo_
-*   Default: la schermo si spegne dopo un periodo di inattività da 15s fino a 30 minuti (std. 1 minuto): vedi `Impostazioni > Display > Sospensione`, essenzialmente per risparmiare la batteria.
+_Sono disponibili varie impostazoni per la gestione dello schermo:_
+*   Default: lo schermo si spegne dopo un periodo di inattività da 15s fino a 30 minuti (std. 1 minuto): vedi `Impostazioni > Display > Sospensione`, essenzialmente per risparmiare la batteria.
 *   Lo schermo si riaccende con una breve pressione sul bottone di start.
 *   Con alimentazione USB lo schermo può restare sempre acceso: 
     *  Abilitare le **Opzioni Sviluppatore**: Andare in `Impostazioni > Informazioni sul tablet > Numero build` e toccare 7 volte.
@@ -250,7 +250,7 @@ _Sono disponibili varie impostazoni per la gestione dello schermo_
 #### **Debug: monitor_1 in overlay**
 _Una piccolissima scritta sullo schermo fornisce informazioni sulla CPU, in modo poco invasivo e utile in caso di problemi di prestazioni:
 *   _Tre numeri: Sono le medie di carico (load average) per gli ultimi 1, 5 e 15 minuti. L'unità di misura è un numero adimensionale che rappresenta il numero di processi attivi (in esecuzione o in attesa) in media in quel periodo. Non è una percentuale._
-*   _Una barra colorata: Rappresenta l'utilizzo istantaneo della CPU in quel preciso momento. La lunghezza totale indica la percentuale totale di utilizzo, mentre i colori rosso e verde distinguono tra il tempo dedicato ai processi del kernel (rosso) e ai processi user (verde)._
+*   _Una barra colorata: Rappresenta l'utilizzo istantaneo della CPU in quel preciso momento. La lunghezza totale indica la percentuale totale di utilizzo, mentre i colori distinguono tra il tempo dedicato  ai processi user (verde), ai processi del kernel (rosso), ai processi di rete (blu)._
   
 *   Abilitare le **Opzioni Sviluppatore**: Andare in `Impostazioni > Informazioni sul tablet > Numero build` e toccare 7 volte.
 *   In   `Impostazioni > Opzioni Sviluppatore` abilitare 'Mostra utilizzo CPU'
