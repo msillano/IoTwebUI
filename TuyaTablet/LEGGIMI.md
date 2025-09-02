@@ -142,8 +142,9 @@ La configurazione standard con **Smart Life, MacroDroid e i servizi Google attiv
 Questa soluzione rappresenta il miglior compromesso tra semplicità di setup e stabilità di funzionamento per la maggior parte degli utenti.
 
 #### **Prestazioni Finali**
-La configurazione standard con **Smart Life, MacroDroid e i servizi Google attivi** risulta stabile.
-Tempo di avvio (con MacroDroid) 3:27s (_nota: compaiono un paio di avvisi ANR("L'applicazione SmartLive non risponde"_).
+La configurazione standard con **Smart Life, MacroDroid e i servizi Google attivi** risulta stabile e con pochi messaggi di errore "ANR".
+Tempo di avvio (con MacroDroid) **3:27s**
+Tempo di avvio (con MacroDroid) **2:48s** (disabilitando le altre APP: vedi 'extreme - Fase 1')
 Utilizzo della CPU quasi sempre **inferiore al 30%**, valore eccellente per un funzionamento fluido e senza lag.
 VOTO  5
 
@@ -161,7 +162,7 @@ L'obiettivo è disinstallare o disabilitare tutto ciò che non è strettamente n
 *   *Nota: Alcune app di sistema potrebbero non permettere queste operazioni. È normale, vanno semplicemente ignorate e lasciate così come sono.*
 
 #### **Fase 2: Rimozione dei Servizi Google tramite ADB**
-Questo passaggio, sebbene complesso, è cruciale per eliminare conflitti e messaggi di errore derivanti da servizi non utilizzati. Richiede un PC Windows.
+Questo passaggio, sebbene complesso, è cruciale per eliminare conflitti e la maggior parte dei messaggi di errore ANR derivanti da servizi non utilizzati. Richiede un PC Windows.
 
 1.  **Preparare il Tablet:**
     *   Abilitare le **Opzioni Sviluppatore**: Andare in `Impostazioni > Informazioni sul tablet > Numero build` e toccare 7 volte.
