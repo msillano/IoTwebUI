@@ -66,19 +66,19 @@ AVVISO:  per questo motivo, in alcune fasi dell'installazione, occorre molta, ma
 
 
 ### Fase 0. Installazione iniziale ###
-_Se il tablet o lo smartphone che volete usare non è nuovo, potete riportarlo alle condizioni di fabbrica con `Impostazioni > Backup e ripristino > Ripristino dati di fabbrica`: tornerà come nuovo!_
+_Se il tablet o lo smartphone che volete usare non è nuovo, oppure avete già fatto delle prove ma volete ricominciare, potete riportarlo alle condizioni di fabbrica con `Impostazioni > Backup e ripristino > Ripristino dati di fabbrica`: tornerà come nuovo!_
 
  *   Seguire la procedura guidata di Android (se esiste) per impostare la lingua, la rete Wi-Fi, ecc.
    
-Altrimenti le operazioni preliminari da effettuare sono:
-- impostare linguaggio 'italiano' (`Settings > Languages & input`)
-- impostare fuso orario (`Impostazioni > Data e ora > Seleziona fuso orario`) Se manca Roma,scegliere Bruxselles.
-- impostare accesso WiFi
-- disabilitare il blocco schermo (`Impostazioni > Blocco schermo`)
+ *  Altrimenti le operazioni preliminari da effettuare sono:
+    - impostare linguaggio 'italiano' (`Settings > Languages & input`)
+    - impostare fuso orario (`Impostazioni > Data e ora > Seleziona fuso orario`) Se manca Roma,scegliere Bruxselles.
+    - impostare accesso WiFi
+    - disabilitare il blocco schermo (`Impostazioni > Blocco schermo`)
 
 **IMPORTANTE**: Solo per l'installazione standard:
-- aggiungere un account Google - possibilmente esistente, più semplice! (`Impostazioni > Account > nuovo`)
-- disabilitare tutte le sicronizzazioni  (`Impostazioni > Google > Personalizza l'utilizzo dati condivisi`)
+- Aggiungere un account Google - meglio esistente, è più semplice (`Impostazioni > Account > nuovo > Google`)
+- Disabilitare tutte le sicronizzazioni  (`Impostazioni > Google > Personalizza l'utilizzo dati condivisi`)
 - Nell'installazione 'extreme' i programmi dei servizi di Google vengono disabilitati!
 nota: l'assenza di un account Google provoca così tanti messaggi ANR ("L'applicazione Google non risponde")  da rendere inusabile il Tablet. 
 
@@ -86,7 +86,7 @@ nota: l'assenza di un account Google provoca così tanti messaggi ANR ("L'applic
 ### SmartLife ###
 
 _La soluzione più semplice consiste nell'usare SmartLife sul Tablet, associandolo alla istanza principale come 'membro comune' della famiglia._<br> 
-Dico **Smart Life** perchè è su questa APP che ho fatto le prove, ma potrebbe essere anche **Tuya Smart**, o anche **Moes APP** - che presenta il grande vantaggio di icone custom - ma in ogni caso deve essere la stessa APP usata dal Proprietario, altrimenti non potete aggiungere un nuovo utente!
+Dico **Smart Life** perchè è su questa APP che ho fatto le prove, ma potrebbe essere anche **Tuya Smart**, o anche **Moes APP** - che presenta il grande vantaggio di icone custom - _ma in ogni caso deve essere la stessa APP usata dal Proprietario, altrimenti non potete aggiungere un nuovo utente_!
 
 Nella versione attuale di SmarLife (6.9.0) è molto migliorata la possibilità di configurazione della 'home page' di ciascuna `CASA`.
  1. L'opzione menu `'Me' => Configurazione => Impostazioni Smart control` _abilita le customizzazioni_.
@@ -114,7 +114,7 @@ E devo dire che usare SmrtLife con uno schermo da 10" è veramente molto gradevo
 
 _Questa procedura è la soluzione più semplice e consigliata per la maggior parte degli utenti. Configurando correttamente i servizi Google si evita la causa principale degli errori e si ottiene un sistema stabile, anche a fronte di un carico aggiuntivo di background._
 
-I passaggi seguenti guidano attraverso una configurazione corretta per evitare i fastidiosi messaggi "L'applicazione xxx non risponde".
+I passaggi seguenti guidano attraverso una configurazione corretta per evitare molti dei fastidiosi messaggi "L'applicazione xxx non risponde".
 
 #### **Fase 1: Installazione delle App e Ottimizzazione**
 1.  **Installare le App dal Play Store:**
@@ -132,9 +132,9 @@ I passaggi seguenti guidano attraverso una configurazione corretta per evitare i
     *   Sul tablet, andare in `Impostazioni > Batteria > Risparmio batteria` (o simili).
     *   Trovare l'opzione per gestire l'ottimizzazione (spesso tramite il menu dei tre punti o "Opzioni avanzate").
     *   Selezionare `Tutte le app`, cercare **Smart Life** e impostare l'opzione su **Non ottimizzare**. Questo garantisce che l'app rimanga sempre in esecuzione in background.
+    *   Passando ad altra APP deve apparire un piccolo popup: "SmartLife in esecuzione in background".
 
 #### **Prestazioni**
-La configurazione standard con **Smart Life, MacroDroid e i servizi Google attivi** risulta stabile e senza i messaggi di errore "ANR". Le prestazioni sono ottime per l'uso come pannello di controllo, con un utilizzo della CPU accettabile.
 
 *   **Vantaggio:** Procedura standard semplice, adatta a tutti. Massima compatibilità.
 *   **Svantaggio:** I servizi Google funzioneranno in background, consumando una certa quantità di risorse (RAM, CPU, batteria) per sincronizzazioni e aggiornamenti.
@@ -142,11 +142,12 @@ La configurazione standard con **Smart Life, MacroDroid e i servizi Google attiv
 Questa soluzione rappresenta il miglior compromesso tra semplicità di setup e stabilità di funzionamento per la maggior parte degli utenti.
 
 #### **Prestazioni Finali**
-La configurazione standard con **Smart Life, MacroDroid e i servizi Google attivi** risulta stabile e con pochi messaggi di errore "ANR".
-Tempo di avvio (con MacroDroid) **3:27s**
-Tempo di avvio (con MacroDroid) **2:48s** (disabilitando le altre APP: vedi 'extreme - Fase 1')
-Utilizzo della CPU quasi sempre **inferiore al 30%**, valore eccellente per un funzionamento fluido e senza lag.
-VOTO  5
+La configurazione standard con **Smart Life, MacroDroid e i servizi Google attivi** risulta stabile e con pochi i messaggi di errore "ANR". Le prestazioni sono accettabili per l'uso come pannello di controllo, con un utilizzo della CPU medio.
+*   Tempo di avvio (con MacroDroid) **3:27s**
+*   Tempo di avvio (con MacroDroid) **2:48s** (_disabilitando le altre APP: vedi 'extreme - Fase 1'_)
+*   Utilizzo della CPU mediamente **inferiore al 30%**, valore adeguato per un funzionamento fluido e senza lag.
+
+**VOTO  5**
 
 
 ###  Progetto B: SmartLife - extreme installation ###
@@ -207,10 +208,11 @@ Questo passaggio, sebbene complesso, è cruciale per eliminare conflitti e la ma
     *   Selezionare `Tutte le app`, cercare **Smart Life** e impostare l'opzione su **Non ottimizzare**. Questo impedisce al sistema di uccidere il processo in background, mantenendo la connessione sempre attiva.
 
 #### **Prestazioni Finali**
-La configurazione finale con le sole tre app **Smart Life, MacroDroid (per l'avvio automatico) e un monitor di sistema (Simple System Monitor)** risulta stabile.
-Tempo di avvio (con MacroDroid)   1:20s nota. 
-Utilizzo della CPU quasi sempre **inferiore al 30%**, valore eccellente per un funzionamento fluido e senza lag.
-VOTO  7
+La configurazione finale con le sole tre app **Smart Life, MacroDroid (per l'avvio automatico) e un monitor di sistema (Simple System Monitor)** risulta stabile e con senza messaggi di errore "ANR". Le prestazioni sono discrete per l'uso come pannello di controllo, con un utilizzo della CPU medio.
+*    Tempo di avvio (con MacroDroid)   **1:20s**  
+*    Utilizzo della CPU quasi sempre **inferiore al 30%**,  valore adeguato per un funzionamento fluido e senza lag.
+
+**VOTO  7**
 
 ### E. SmartLife - extras opzionali ###
 _Sono funzionalità accessorie opzionali, per migliorare il funzionamento del **tablet + Smartlife**, indipendenti dalla modalità di installazione (standard o extreme) e poco invasive._ 
