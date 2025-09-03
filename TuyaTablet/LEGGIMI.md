@@ -17,11 +17,11 @@ _In generale, analizzando questo tipo di prodotti troviamo:_
   - Troviamo widget specializzati solo per i gadget e per alcuni tipi di device (in genere pochi) 
   - Oppure widget universali per 'tap-to-run'
   - La scelta dei widget visualizzati e la disposizione nel dashboard sono sotto controllo utente.
-  - Nessuna possibilità di personalizzare/creare nuovi widget custom, e.g. per particolari device.
+  - Normalmente poche possibilità di personalizzare/creare nuovi widget custom, e.g. per particolari device.
 
   Risulta evidente la limitatezza delle funzioni offerte da device di questo tipo, soprattutto per la mancanza di garanzia di compatibilità con tutti i device Tuya,  che ha portato più di un utente a cercare soluzioni diverse (e più economiche) utilizzando tablet.
 
-_Questo progetto vuole analizzare le opzioni a disposizione di un utente per utilizzare un **tablet** come **smart panel control Tuya**, fornendo una guida passo passo._
+_Questo progetto vuole analizzare le opzioni a disposizione di un utente per utilizzare un **tablet** come **Tuya smart control panel**, fornendo una guida passo passo._
 
 ### HW: Tablet ###
 L'occasione per iniziare questo progetto è venuta trovando su AliExpress l'interessante offerta di questo tablet (ref: https://it.aliexpress.com/item/1005008843917320.html ) da 10". Non ho saputo resistere.<hr/>
@@ -57,7 +57,7 @@ L'occasione per iniziare questo progetto è venuta trovando su AliExpress l'inte
 
 1. La strategia per questo progetto è volutamente 'minimalista': ho scelto il modello più economico (12G/256G), non uso SIM nè TF, etc...
 2. Il tablet consegnato (rapidamente, da un deposito europeo) rispetta le specifiche. Una piacevole sorpresa.
-3. Nonostante il 'core 10' il tablet risulta MOLTO lento, al limite dell'usabilità in un impiego standard. Appaiono spesso i pop-up ANR: "L'applicazione xxxx non risponde" (scegliere sempre 'attendi'). 
+3. Nonostante il 'core 10' (il monitor ne mostra solo 8) il tablet risulta MOLTO lento, al limite dell'usabilità in un impiego standard. Appaiono spesso i pop-up ANR: "L'applicazione xxxx non risponde" (scegliere sempre 'attendi'). 
 Per gli obiettivi specializzati del progetto ho deciso di proseguire comunque e di valutare i risultati alla fine.<br>
 AVVISO:  per questo motivo, in alcune fasi dell'installazione, occorre molta, ma MOLTA pazienza! Non accavallate i comandi ma attendete il completamento di un comando prima di darne un altro.
 4. Anche se i 12000 mA di batteria permettono solo 2 ore di uso continuato a schermo illuminato, questo non è un problema: a regime i 'control panel' hanno l'alimentazione fissa.
