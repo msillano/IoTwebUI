@@ -100,7 +100,8 @@ _Nella versione attuale di SmarLife (6.9.0) è molto migliorata la possibilità 
    - **Esegui con un clic** (tap-to-run): per scegliere i comandi desiderati nella home page.
 
 _E' quindi presente una completa **flessibilità funzionale** per la home page, equiparabile a quella degli 'smart panels', anzi, migliore, perchè garantisce l'accessibilità a TUTTI i device Tuya posseduti._<br>
-Purtroppo sono ancora presenti alcuni limiti di carattere estetico:
+Purtroppo sono ancora presenti alcuni limiti:
+  - non è possibile inibire `Gestisci la 'Home page'` per impedire modifiche (involontarie o maliziose)
   - non è possibile organizzare la home page in più pagine collegate
   - non è possibile cambiare il numero di colonne dell'impaginazione nè le icone o le dimensioni dei widget
   - non esistono nè separatori nè box
@@ -113,7 +114,7 @@ E devo dire che usare SmrtLife con uno schermo da 10" è veramente molto gradevo
 
 ### Progetto A: SmartLife - installazione standard ###
 
-_Questa procedura è la soluzione più semplice e consigliata per la maggior parte degli utenti. Configurando correttamente i servizi Google si evita la causa principale degli errori e si ottiene un sistema stabile, anche a fronte di un carico aggiuntivo di background._
+_Questa procedura è la soluzione più semplice e consigliata per la maggior parte degli utenti. Configurando correttamente i servizi Google si evita la causa principale degli errori e si ottiene un sistema stabile, anche a fronte di un carico aggiuntivo in background._
 
 I passaggi seguenti guidano attraverso una configurazione corretta per evitare molti dei fastidiosi messaggi "L'applicazione xxx non risponde".
 
@@ -125,8 +126,9 @@ I passaggi seguenti guidano attraverso una configurazione corretta per evitare m
    
 2.  **Condividere l'Accesso alla Casa:**
     *   Sull'APP Smart Life del **proprietario**, andare in `Me > Gestione casa`, selezionare una casa e poi `Aggiungi membri > Condividi Account dell'app`.
+nota: non ho esplorata le altre opzioni.
     *   Inserire l'indirizzo email dell'account Google dedicato creato durante il setup ("tablet.casa@gmail.com"). 
-    *   Sul tablet, cliccando sull'icona HOME, trovare la casa condivisa. Dopo aver accettato l'invito, saranno visualizzati device.
+    *   Sul tablet, cliccando sull'icona HOME, trovare la casa condivisa. Dopo aver accettato l'invito, saranno visualizzati i device.
     *   Ripetere l'operazione per ogni casa da condividere.
 
 3.  **Disabilitare l'Ottimizzazione della Batteria per Smart Life:**
@@ -191,6 +193,8 @@ Questo passaggio, sebbene complesso, è cruciale per eliminare conflitti e la ma
     *   **Attenzione:** Questa operazione è reversibile solo con un **reset completo di fabbrica** del tablet.
 
 #### **Fase 3: Installazione e Configurazione di Smart Life**
+Installazione senza usare 'Google Play', sostituito con uno store alternativo, **APKPure**: affidabile, abbastanza completo e di semplice uso. Ma soprattutto consuma meno risorse di Google!
+
 1.  **Installare APKPure e Smart Life:**
     *   Dal browser del tablet, scaricare e installare **APKPure** dal suo sito web ufficiale (`https://apkpure.com`).
     *   Cercare e scaricare **Smart Life** (o Tuya Smart/Moes App) tramite APKPure. **Cruciale:** deve essere la stessa app utilizzata dal proprietario degli dispositivi per gestire la casa.
@@ -200,7 +204,7 @@ Questo passaggio, sebbene complesso, è cruciale per eliminare conflitti e la ma
     *   Creare un indirizzo email dedicato (es. su Libero o Gmail) e un nome utente (es. "tablet") per registrarsi a Tuya. *Consiglio: conservare queste credenziali in un posto sicuro.*
     *   Sull'APP Smart Life del **proprietario**, andare in `Me > Gestione casa`, selezionare una casa e poi `Aggiungi membri > Condividi Account dell'app`.
     *   Inserire l'indirizzo email e il nome utente ("tablet") creati. 
-    *  Nel tablet, scegliere la nuova CASA. Occorre accettare l'invito, per diventare un membro della famiglia e visualizzare i device di quella casa, con i limiti dei membri comuni.
+    *   Nel tablet, scegliere la nuova CASA. Occorre accettare l'invito, per diventare un membro della famiglia e visualizzare i device di quella casa, con i limiti dei membri comuni.
     *   Ripetere l'operazione per ogni casa da condividere.
 
 3.  **Disabilitare l'Ottimizzazione della Batteria per Smart Life:**
@@ -219,7 +223,7 @@ La configurazione finale con le sole tre app **Smart Life, MacroDroid (per l'avv
 _Sono funzionalità accessorie opzionali, per migliorare il funzionamento del **tablet + Smartlife**, indipendenti dalla modalità di installazione (standard o extreme) e poco invasive._ 
 
 #### **Autostart di Smartlife all'avvio**
-_E' comodo, per un control panel, che all'accensione parta automaticamente la home page di SmartLife, senza che l'utente debba cercare e cliccare l'icona dell'APP._ Tempo di avvio totale (dipende anche dal numero di device) circa 80 secondi (extreme).
+_E' comodo, per un control panel, che all'accensione parta automaticamente la home page di SmartLife, senza che l'utente debba cercare e cliccare l'icona dell'APP._ 
 
 Viene utilizzato MacroDroid, un semplice flessibile `tasker` dalle molte applicazioni potenziali, con una logica `trigger => azione` simile alle scene di Tuya, che utilizza gli eventi del tablet o dello smartphone.
 *   Installare MacroDroid (da _Google play_ oppure da _APKpure_).
@@ -228,7 +232,7 @@ Viene utilizzato MacroDroid, un semplice flessibile `tasker` dalle molte applica
      *   **Trigger:** `Avvio dispositivo` (Device Boot).
      *   **Azione:** `Avvia attività app` (Launch Application) > Selezionare **Smart Life**.
      *   **Opzione** 'ThingSplashActivity'
-    *   Concedere all'app i permessi richiesti.
+     *   Dargli un nome: e.g. 'autostart' e salvare.
 
 nota: Non esiste un pulsante 'salva': il salvataggio di una macro avviene all'uscita della pagina di editing (freccia a sx).
 
