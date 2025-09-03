@@ -87,7 +87,7 @@ _nota: l'assenza di un account Google provoca così tanti messaggi ANR ("L'appli
 ### SmartLife ###
 
 _La soluzione più semplice consiste nell'usare SmartLife sul Tablet, associandolo all'istanza principale come 'membro comune' della famiglia._<br> 
-Dico **Smart Life** perchè è su questa APP che ho fatto le prove, ma potrebbe essere anche **Tuya Smart**, o anche **Moes APP** - che presenta il grande vantaggio di icone custom - _ma in ogni caso deve essere la stessa APP usata dal Proprietario, altrimenti non potete aggiungere un nuovo utente_!
+Dico **Smart Life** perchè è su questa APP che ho fatto le prove, ma potrebbe essere anche **Tuya Smart**, o anche **Moes APP** - che presenta il grande vantaggio di icone custom -, o **HomCloud**, _ma in ogni caso deve essere la stessa APP usata dal Proprietario, altrimenti non potete aggiungere un nuovo utente_!
 
 _Nella versione attuale di SmarLife (6.9.0) è molto migliorata la possibilità di configurazione della 'home page' di ciascuna `CASA`._
  1. L'opzione menu `'Me' => Configurazione => Impostazioni Smart control` scelta che _abilita le customizzazioni_.
