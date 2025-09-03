@@ -57,9 +57,9 @@ L'occasione per iniziare questo progetto è venuta trovando su AliExpress l'inte
 
 1. La strategia per questo progetto è volutamente 'minimalista': ho scelto il modello più economico (12G/256G), non uso SIM nè TF, etc...
 2. Il tablet consegnato (rapidamente, da un deposito europeo) rispetta le specifiche. Una piacevole sorpresa.
-3. Nonostante il 'core 10' (il monitor ne mostra solo 8) il tablet risulta MOLTO lento, al limite dell'usabilità in un impiego standard. Appaiono spesso i pop-up ANR: "L'applicazione xxxx non risponde" (scegliere sempre 'attendi'). 
+3. Nonostante il 'core 10' (SOC Mediatek MT6797 + GPU Mali-T830) il tablet risulta MOLTO lento, al limite dell'usabilità in un impiego standard. Appaiono spesso i pop-up ANR: "L'applicazione xxxx non risponde" (scegliere sempre 'attendi'). 
 Per gli obiettivi specializzati del progetto ho deciso di proseguire comunque e di valutare i risultati alla fine.<br>
-AVVISO:  per questo motivo, in alcune fasi dell'installazione, occorre molta, ma MOLTA pazienza! Non accavallate i comandi ma attendete il completamento di un comando prima di darne un altro.
+AVVISO:  per questo motivo, in alcune fasi dell'installazione, occorre molta, ma MOLTA pazienza! Non accavallate i comandi, ma attendete il completamento di un comando prima di darne un altro.
 4. Anche se i 12000 mA di batteria permettono solo 2 ore di uso continuato a schermo illuminato, questo non è un problema: a regime i 'control panel' hanno l'alimentazione fissa.
 5. Un particolare non presente nel manuale: il bordo superiore è removibile, offrendo accesso alle due SIM e TF (non usate in questo progetto)."Removing the top cover in one of the corners, there is a small notch to pull it with your fingernail so the cover comes off and there are the 3 slots for the cards."
 6. _Espongo l'esperienza e le prove fatte con questo tablet ed Android 13. Come principio sono generalizzabili e replicabili su ogni tablet o smartphone, ma potreste riscontrare differenze anche significative, dovute a diverso HW e SW._
