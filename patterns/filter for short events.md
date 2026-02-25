@@ -12,7 +12,7 @@ Rileva quando un evento inizia (`startDevice.start = true`) e termina (`stopDevi
 *  Una notifica se il consumo di casa supera 3.3 KW per più di 10 minuti
 
 ---
-### Implementazione 1 ('local linking' con 1/2 Switch Zigbee)
+### Implementazione 1 ('local linking' con 1/2 Switch Zigbee/Wi-Fi)
 **Device**:
 1.  _Switch Zigbee (SWITCH) con funzione countdown. Le altre funzioni dello switch (ON/OFF, etc.) possono essere usate in modo indipendente per altri scopi_.
 
@@ -85,7 +85,7 @@ nota: se è complesso inserire in SmartLife un countdown di 100 (s), usate pure 
 
 ---
 
-### Implementazione 2 ('local linking' con 1 Switch Zigbee)
+### Implementazione 2 ('local linking' con 1 Switch Zigbee/Wi-Fi)
 **Device**:  
 - **Switch Zigbee (MASTER)**: Utilizzato come dispositivo centrale per l'allarme.  
   - Proprietà: `countdown()` (timer retriggerabile, valore > 0 per avviare, 0 per annullare).
