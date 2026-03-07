@@ -53,12 +53,14 @@ Utilizzeremo il 'countdown' dei due relay per memorizzare lo 'stato' della tua l
 * **Comandi**
 I comandi per cambiare luce alla lampada, saranno 3 tap_to_run, che si limiteranno a mettere il valore voluto in `NEXT.countdown`
 Con tre bottoni l'utente (o un'altra scena) quindi modifica la sua luce, indipendentemente dallo 'stato' attuale della luce:
+```
 =========== DOOFF
 NEXT.countdown = 1 // codice OFF
 =========== DOFULL
 NEXT.countdown = 2 // codice FULL
 =========== DOHALF
 NEXT.countdown = 3 // codice HALF
+```
 
 * **Automazioni per cambiare lo stato**
 
