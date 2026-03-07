@@ -26,9 +26,10 @@ Da qui l'interesse ad usare smart relay al posto dei relay Finder.
 ---
 ### Implementazione 1: contatore binario up ('local linking' con Switch Zigbee)
 
-**Device**:  _N Switch Zigbee (BIT0, BIT1,...) di cui uno con controllo da pulsante (reset rocker)_.
+**Device**:  _N Switch Zigbee (BIT0, BIT1,...) di cui uno con controllo da pulsante_.<br>
+Nota: lo smart relay deve essere impostato in modalità "Momentary Switch" (pulsante a ritorno), altrimenti si deve cambiare relay: il toggle avverrebbe sia quando premi che quando rilasci, sfasando il conteggio.
 
-Prendimo in caso con 2 luci (o gruppi di luci): Si possono avere in tutto 4 possibilità (0 = spento, 1 = acceso): 00, 01, 10, 11, che come si vede, rappresentano una sequenza di conteggio binario.
+Prendiamo in caso con 2 luci (o gruppi di luci): Si possono avere in tutto 4 possibilità (0 = spento, 1 = acceso): 00, 01, 10, 11, che come si vede, rappresentano una sequenza di conteggio binario.
 Questa è la sequenza più semplice da implementare per 1, 2, 3 etc. luci: occorrono 1, 2, 3 etc. smart relay. Il primo (BIT0) è collegato sia ai pulsanti che ad una luce, gli altri sono collegati solo alle luci:
 
 ![fig001](https://github.com/user-attachments/assets/08601739-e811-4408-8b76-de448febe187)
@@ -54,7 +55,7 @@ Simulazione, usando 'loop' come ingresso.
 ---
 ### Implementazione 2: contatore binario down ('local linking' con Switch Zigbee)
 
-**Device**:  _N Switch Zigbee (BIT0, BIT1,...)  con controllo da pulsante (reset rocker)_.
+**Device**:  _N Switch Zigbee (BIT0, BIT1,...)  con controllo da pulsante (reset rocker) vedi nota precedente_.
 
 La sequenza inversa, cioè il conteggio all'indietro (11, 10, 01, 00), è altrettanto facile da realizzare:
 **Codice**
@@ -77,10 +78,10 @@ TD1:                        // per BIT1 - analogo per BIT2,...
 ---
 ### Implementazione 3: contatore up in una base qualsiasi ('local linking' con Switch Zigbee)
 
-**Device**:  _N Switch Zigbee (BIT0, BIT1,...) con controllo da pulsante (reset rocker)_.
+**Device**:  _N Switch Zigbee (BIT0, BIT1,...) con controllo da pulsante (reset rocker) vedi nota precedente_.
 
 Per contare invece in una base qualsiasi (esempio, base 3, conteggio: 0, 1, 2, 0, 1... ovvero: 00, 01, 10, 00, 01..) 
-occorrono N relay, con N  tale che  2<sup>N-1</sup> &lt; base &lt;= 2<sup>N</sup> con le automazione per avere un contatore binario 'up', ed aggiungere una 'automazione' di 'reset': che cioè porti a 00 una volta arrivati alla base (3 nell'esempio)<br>
+occorrono N relay, con N tale che $2^{N-1} < \text{base} \le 2^N$ con le automazioni per avere un contatore binario 'up', ed aggiungere una 'automazione' di 'reset': che cioè porti a 00 una volta arrivati alla base (3 nell'esempio)<br>
 nota: mentre il conteggio binario non presenta glitch, il contatore in una base qualsiasi, con funzionamentoo sequenziale, può presentare 'glitch' (come lampeggi spuri delle luci).
 
 **Codice**
