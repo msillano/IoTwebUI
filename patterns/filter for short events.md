@@ -15,6 +15,7 @@ Rileva quando un evento inizia (`startDevice.start = true`) e termina (`stopDevi
 ### Implementazione 1 ('local linking' con 1/2 Switch Zigbee/Wi-Fi)
 **Device**:
 1.  _Switch Zigbee (SWITCH) con funzione countdown. Le altre funzioni dello switch (ON/OFF, etc.) possono essere usate in modo indipendente per altri scopi_.
+Nota di affidabilità: L'implementazione 1 è testata con successo su dispositivi Wi-Fi. Se si utilizzano dispositivi Zigbee, verificare che il gateway riceva correttamente l'aggiornamento del countdown al valore target, poiché alcuni firmware Zigbee ottimizzano il traffico "saltando" alcuni secondi nel reporting.
 
 * Nei _device virtuali_ il `countdown` è presente, ma è solo un registro R/W: non viene decrementato: pertanto SWITCH non può essere un device virtuale!
 * In alcuni `smart switch` il `countdown` si azzera automaticamente ad un cambio di stato del relay. In questo caso le due funzioni ON/OFF e countdown NON sono indipendenti: giocoforza usare un device dedicato. 
@@ -78,8 +79,8 @@ direction LR
 
 **Vantaggi**:  
 - **Affidabile**: Funziona offline, senza dipendenze cloud, con sensori Zigbee.  
-- **Generale**: Funziona anche con sensori WiFI, in questo caso oviamente usa TuyaCloud.  
-- **Reattivo**: Gestisce correttamente interruzioni e riavvii.
+- **Generale**: Funziona anche con sensori Wi‑Fi; in questo caso, ovviamente, usa TuyaCloud.  
+- **Reattivo**: Gestisce correttamente le interruzioni e i riavvii.
 
 nota: se è complesso inserire in SmartLife un countdown di 100 (s), usate pure i minuti: 120 = 2 minuti; ritardo 240s = 4 minuti, totale 6 minuti.
 
@@ -152,7 +153,7 @@ direction LR
 
 **Note Tecniche**:  
 - **Calibrazione tempo**: Il valore `80` nel codice corrisponde a durataMinima = 80 secondi (Si può usare anche 01:20 se più semplice in SmartLife).  
-- **Sensori**: `startDevice` e `stopDevice` possono essere sostituiti con lo stesso sensore porta (es. `sensoreport.aperto` → `start=true` e `stop=false`).
+- **Sensori**: `startDevice` e `stopDevice` possono essere sostituiti con lo stesso sensore porta (es. `sensore.porta.aperto` → `start=true` e `stop=false`).
 - **MASTER**: è vero che rispetto all'implementazione 1 questa usa un relay in più, ma si ha il vantaggio di una variabile 'allarme' (MASTER.switch_1) usabile in altre automazioni.
 
 ---
@@ -183,7 +184,7 @@ POI (
    abilita_automazione(A1)  
 )  
 ```
-NOTA* Per un quirk di TuyaCloud, A1 con 'Cloud linkage' NON funziona come atteso, per cui A1 DEVE essere 'local linkage' (i.e. `startDevice` e `OUTPUT` devono essere device Zigbee!). A2 e E3 saranno sempre 'Cloud linkage' (contengono dis-abilita_automazione) quindi il tutto è 'Cloud linkage', anche se A1  DEVE essere 'local linkage'! (Ticket Tuya [T202503040017](https://service.console.tuya.com/8/3/detail?id=T202503040017))
+NOTA* Per un quirk di TuyaCloud, A1 con 'Cloud linkage' NON funziona come atteso, per cui A1 DEVE essere 'local linkage' (i.e. `startDevice` e `OUTPUT` devono essere device Zigbee!). A2 e E3 saranno sempre 'Cloud linkage' (contengono dis/abilita_automazione) quindi il tutto è 'Cloud linkage', anche se A1  DEVE essere 'local linkage'! (Ticket Tuya [T202503040017](https://service.console.tuya.com/8/3/detail?id=T202503040017))
 
 **Dettagli del quirk:**
 
@@ -249,7 +250,7 @@ Vedi [documentazione di riferimento](https://github.com/msillano/IoTwebUI/blob/m
 ### Esempi Pratici
 1. **Porta Aperta**:  
    - Implementazione 1: Lo switch Zigbee conta 340s. Se la porta viene chiusa prima di 240s, il timer si annulla. A 100s rimanenti (240s trascorsi), parte l'allarme.  
-   - Implementazione 4: Un messaggio vocale avverte che la posta è aperta dopo 5.5 minuti (+/- 90s)
+   - Implementazione 4: Un messaggio vocale avverte che la posta è aperta, dopo 5.5 minuti (+/- 90s)
    
 
 2. **Consumo Elettrico**:  
