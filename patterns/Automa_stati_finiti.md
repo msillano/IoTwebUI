@@ -27,13 +27,16 @@ Prendiamo spunto dal post di un utente che poneva il seguente problema: <br>
 Sono necessari uno oppure due impulsi per la commutazione della lampada. Questi sono TTR di basso livello, usati quando necessario:
    * Se il relay utilizzato (nome LUCE) possiede la funzione 'inching', regolarla per un valore adatto (e.g. 1s) poi
    creare i Tap-to-Run:
+   ```
    PULSE1:
      LUCE.switch1 = ON
    PULSE2:
      esegui PULSE1
      Delay 2 s
      esegui PULSE1
+   ```
    * Se il relay utilizzato (nome LUCE) NON possiede la funzione 'inching', ma possiede la funzione 'countdown':
+   ```
    PULSE1:
      LUCE.switch1 = ON
      LUCE.countdown1 = 1
@@ -41,6 +44,7 @@ Sono necessari uno oppure due impulsi per la commutazione della lampada. Questi 
      esegui PULSE1
      Delay 2 s
      esegui PULSE1
+   ```
 
 * **device virtuali** <br>
       
