@@ -197,4 +197,9 @@ Vedi dettagli [BLINK-ESP01S](https://github.com/msillano/IoTwebUI/blob/main/DIY%
 
 -----
 ### Raccomandazioni
-- **Preferire Implementazione 4** (Zigbee): più robusta e affidabile, oppure **Implementazione 1**, affidabile.  
+- **Preferire Implementazione 4** (Zigbee): più robusta e affidabile, oppure **Implementazione 1**, affidabile. 
+
+---
+### Nota metodologica
+- Le 'scene' di questo pattern sono state create/verificate/validate da AI utilizzando definizioni BNF del linguaggio Tuya. Nei file BNF (e qundi con le AI) si utilizza la 'notazione funzionale', che è usata anche nelle 'scene' in questa documentazione. Questa scelta non dovrebbe creare particolare disagio - vedi https://gist.github.com/msillano/bce716767d655adf695b227453fca78b. 
+
