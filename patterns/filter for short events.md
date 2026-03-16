@@ -262,3 +262,8 @@ Vedi [documentazione di riferimento](https://github.com/msillano/IoTwebUI/blob/m
 - **Preferire Implementazione 2** (Zigbee) se possibile: più robusta e immediata.  
 - **NON usare l'implementazione 3** sia per l'esistenza di un tempo cieco, sia perchè si basa su un quirk, ed in futuro potrebbe cambiare.
 - Se si usa già per altri motivi **IoTwebUI** (e.g. menu di interfaccia in un tablet) prendere in considerazione la **Implementazione 4** perchè più adattabile.
+
+---
+
+### Nota metodologica
+- Le 'scene' di questo pattern sono state create/verificate/validate da AI utilizzando definizioni BNF del linguaggio Tuya. Nei file BNF (e qundi con le AI) si utilizza la 'notazione funzionale', che è usata anche nelle 'scene' in questa documentazione. Questa scelta non dovrebbe creare particolare disagio - vedi https://gist.github.com/msillano/bce716767d655adf695b227453fca78b. 
