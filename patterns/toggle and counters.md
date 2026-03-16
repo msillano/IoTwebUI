@@ -171,3 +171,6 @@ note:<br>
 * Notare come i master comutano sul fronte in salita dell'input, mentre gli slave sul fronte in discesa.
 * L'uscita è 'pulita' (senza glitch) e sincrona: tutti i relay SLAVE commutano allo stesso tempo!
 
+---
+### Nota metodologica
+- Le 'scene' di questo pattern sono state create/verificate/validate da AI utilizzando definizioni BNF del linguaggio Tuya. Nei file BNF (e quindi con le AI) si utilizza la 'notazione funzionale', che è usata anche nelle 'scene' in questa documentazione. Questa scelta non dovrebbe creare particolare disagio - vedi https://gist.github.com/msillano/bce716767d655adf695b227453fca78b. 
