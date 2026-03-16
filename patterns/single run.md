@@ -100,10 +100,13 @@ graph TD;
 ```
 
 ---
-
 ### Raccomandazioni
 
 - **Usare Local Linkage** se la priorità è l'affidabilità e si vuole evitare dipendenze dalla connessione internet.
 - **Usare Cloud Linkage** se si desidera più flessibilità e se eventuali interruzioni della rete non hanno conseguenze negative.
 - In entrambi i casi, verificare che i dispositivi supportino la logica scelta e testare la configurazione prima della messa in uso definitiva.
+
+---
+### Nota metodologica
+- Le 'scene' di questo pattern sono state create/verificate/validate da AI utilizzando definizioni BNF del linguaggio Tuya. Nei file BNF (e qundi con le AI) si utilizza la 'notazione funzionale', che è usata anche nelle 'scene' in questa documentazione. Questa scelta non dovrebbe creare particolare disagio - vedi https://gist.github.com/msillano/bce716767d655adf695b227453fca78b. 
 
