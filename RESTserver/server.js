@@ -45,18 +45,40 @@ let connectedClient = null;
   });
 });
 
-// Improved getAnswer function using async/await
+// Improved getAnswer function using queue to solve race conditions on multi-requests
+let requestQueue = [];
+let isFetching = false;
+
 async function getAnswer(message) {
   if (!connectedClient) {
     throw new Error('No connected client');
   }
-  connectedClient.send(message); // Send the request message
 
   return new Promise((resolve, reject) => {
-    connectedClient.onmessage = ({ data }) => {
-      resolve(data);
-    };
-   });
+    requestQueue.push({ message, resolve, reject });
+    processQueue();
+  });
+}
+
+function processQueue() {
+  if (isFetching || requestQueue.length === 0 || !connectedClient) return;
+  
+  isFetching = true;
+  const task = requestQueue.shift();
+
+  connectedClient.onmessage = ({ data }) => {
+    isFetching = false;
+    task.resolve(data);
+    processQueue(); 
+  };
+  
+  try {
+     connectedClient.send(task.message);
+  } catch(e) {
+     isFetching = false;
+     task.reject(e);
+     processQueue();
+  }
 }
 
 // Define HAPI route for fetching all data
