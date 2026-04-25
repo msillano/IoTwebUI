@@ -33,6 +33,7 @@ The average latency (delay) between an event and its reporting in a WEB client u
     * Click on `install_server.bat`: it will install the updated dependencies in the 'node_modules' dir.
 3. **Configuration:**
     * Update your installation path in the `run_server.bat` file
+    * For Linux/Raspberry Pi users, a `iotwebui.service` file is provided for autostart functionality via systemd. 
 4. **Testing and debugging**
 There are three main files:
     * `server.js`: the executable file with the IoTrest implementation, to be launched in a terminal or using `run_server.bat`.

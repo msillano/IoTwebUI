@@ -1,0 +1,15 @@
+[Unit]
+Description=IoTwebUI REST Server
+After=network.target
+
+[Service]
+Type=simple
+# Update the path to your actual installation directory
+WorkingDirectory=/opt/IoTwebUI/RESTserver
+ExecStart=/usr/bin/node server.js
+Restart=on-failure
+RestartSec=5
+User=pi
+
+[Install]
+WantedBy=multi-user.target

@@ -35,6 +35,7 @@ La latenza media (ritardo) tra un evento e la sua segnalazione in un client WEB 
       
 3. **Configurazione:**
     * Aggiorna il tuo percorso di installazione nel file `run_server.bat`
+    * Per gli utenti Linux/Raspberry Pi, è fornito il file `iotwebui.service` per l'avvio automatico tramite systemd.
       
 4. **Test e debug**
 Ci sono tre file principali:
